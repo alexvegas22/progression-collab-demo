@@ -24,6 +24,9 @@
             <div class="col-sm-offset-3 uk-margin">
                 <input name="submit" type="submit" class="btn btn-primary" value="Connexion">
             </div>
+            <div class="col-sm-offset-3 uk-margin">
+              <button v-on:click="bypassePassword">Pas de mot de passe?</button>
+            </div>
         </form>
 		<div v-if="erreurs">
 			{{erreurs}}
@@ -33,40 +36,42 @@
 </template>
 
 <script>
- import Thèmes from './Thèmes.vue'
- import login_get_token from '../util/login';
- 
- export default {
-     name: 'Login',
-     components: {
-         Thèmes
-     },
-     props: {
-         password_req: String,
-		 domaine_mail: String
-     },
-     data () {
-         return {
-             username:"",
-             password:"",
-             logué:"",
-             token:"",
-			 erreurs:""
-         }
-     },
-     methods:{
-         login () {
-             const { username, password } = this
-             login_get_token( username, password ).then(
-                 token => {
-                     this.logué = "true";
-                     this.token = token;
-					 this.erreurs = "";
-             }).catch( err => {
-				 this.erreurs = err;
-                 this.logué = "";
-             });
-         } },
- }
-</script>
+  import Thèmes from './Question.vue'
+  import login_get_token from '../util/login';
 
+  export default {
+    name: 'Login',
+    components: {
+      Thèmes
+    },
+    props: {
+      password_req: String,
+      domaine_mail: String
+    },
+    data () {
+      return {
+        username:"",
+        password:"",
+        logué:"",
+        token:"",
+        erreurs:""
+      }
+    },
+    methods:{
+      bypassePassword() {
+        this.logué = "true";
+      },
+      login () {
+        const { username, password } = this
+        login_get_token( username, password ).then(
+          token => {
+            this.logué = "true";
+            this.token = token;
+            this.erreurs = "";
+          }).catch( err => {
+            this.erreurs = err;
+            this.logué = "";
+          });
+        } },
+      }
+</script>
