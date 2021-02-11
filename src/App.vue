@@ -1,16 +1,19 @@
 <template>
 	<div id="app">
     <Login password_req="true" domaine_mail="crosemont.qc.ca" />
+		<Question v-if="logué"/>
   </div>
 </template>
 
 <script>
 import Login from './components/Login.vue'
+import Question from './components/Question.vue'
 
 export default {
   name: 'App',
   components: {
-    Login
+    Login,
+		Question
   }
 }
 </script>

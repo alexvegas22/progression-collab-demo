@@ -5,4 +5,15 @@ Vue.config.productionTip = false
 
 new Vue({
 	render: h => h(App),
+
+	data: {
+		result:"",
+		responseAvailable:false
+	},
+
+	methods: {
+		fetch(){
+
+		}
+	}
 }).$mount('#app')
