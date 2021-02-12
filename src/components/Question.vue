@@ -7,12 +7,14 @@
     <table>
         <tr>
             <th>Test</th>
+            <th>Résultat</th>
             <th>Votre Entré</th>
             <th>Sortie Atendue</th>
             <th>Sortie Observé</th>
         </tr>
         <tr>
             <th>{{test.numéro}}</th>
+            <th>{{test.résultat}}</th>
             <th>{{test.entrée}}</th>
             <th>{{test.sortie_attendue}}</th>
             <th>{{test.sortie_observée}}</th>
