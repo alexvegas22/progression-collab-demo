@@ -3,7 +3,7 @@
         <div class="division">
             <codemirror
             ref="cmEditor"
-            :value="code"
+            :code="code"
             :options="cmOptions"
             @ready="onCmReady"
             @focus="onCmFocus"
@@ -16,13 +16,17 @@
 
 <script>
 let langage = "python"
+let categorie = 'programmation_1'
+let nom = 'les_fonctions'
+let titre = 'appeler_une_fonction'
 
 import { codemirror } from 'vue-codemirror'
 // import base style
 import 'codemirror/lib/codemirror.css'
 
-// Python
+// Modes
 import 'codemirror/mode/python/python.js'
+import 'codemirror/mode/javascript/javascript.js'
 
 // importation du question.js
 import get_ebauche from '../util/question';
@@ -30,31 +34,21 @@ import get_ebauche from '../util/question';
 // Theme darcula (choix du à sa visibilité)
 import 'codemirror/theme/darcula.css'
 
-// import more codemirror resource...
-
 export default {
     components:{
         codemirror
     },
     data () {
         return {
-            code: get_ebauche('programmation_1', 'les_fonctions', 'appeler_une_fonction', langage).then(
-                ebauche => {
-                    this.code = ebauche;
-                }
-            ).catch(
-                err =>{
-                    console.log(err);
-                    this.code = "";
-                }
-            ),
+            code: "",
             cmOptions: {
                 tabSize: 4,
                 mode: langage,
                 theme: 'darcula',
                 lineNumbers: true,
                 line: true,
-                smartIndent: true
+                smartIndent: true,
+                refresh:true
             }
         }
     },
@@ -66,8 +60,7 @@ export default {
             console.log('the editor is focused!', cm)
         },
         onCmCodeChange(newCode) {
-            console.log('this is new code', newCode)
-            document.getElementById("resultat").innerHTML = newCode
+            console.log('this is new code', this.codemirror.options.mode)
             this.code = newCode
         }
     },
@@ -78,7 +71,16 @@ export default {
     },
     mounted() {
         console.log('the current CodeMirror instance object:', this.codemirror)
-        // you can use this.codemirror to do something...
+        get_ebauche(categorie, nom, titre, langage).then(
+          ebauche => {
+              this.code = ebauche;
+          }
+        ).catch(
+          err =>{
+              console.log(err);
+              this.code = "";
+          }
+        )
     }
 }
 </script>
