@@ -6,11 +6,13 @@
 
 <script>
 import Login from './components/Login.vue'
+import ValidationReponse from "@/components/ValidationReponse";
 
 export default {
   name: 'App',
   components: {
-    Login
+    Login,
+    ValidationReponse
   }
 }
 </script>
