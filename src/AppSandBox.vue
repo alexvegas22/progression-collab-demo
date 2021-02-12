@@ -9,7 +9,6 @@
     </li>
   </ul>
 
-
   <Solutions v-bind:solutions="solutions" />
 </template>
 
@@ -36,9 +35,9 @@ export default {
   methods:{
     charger_solutions(question){
       get_solutions_user(question)
-      .then(res=>{
-        this.solutions=res.solutions;
-      })
+          .then(res=>{
+            this.solutions=res.solutions;
+          })
     },
     charger_etat(question, i){
       get_solutions_user(question)

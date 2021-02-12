@@ -1,0 +1,47 @@
+{
+  "avancement": [
+    {
+      "id":"ma_question_reussie",
+      "état": 2,
+      "solutions": [
+        {
+          "date_soumission": 1613069492,
+          "langage": 0,
+          "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+          "feedback": "Je suis Réussie"
+        },
+        {
+          "date_soumission": 463463,
+          "langage": 1,
+          "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+          "feedback": "Echec test blabla"
+        }
+      ]
+    },
+    {
+      "id": "ma_question",
+      "état": 1,
+      "solutions": [
+        {
+          "date_soumission": 42,
+          "langage": 0,
+          "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+          "feedback": "Je suis Python"
+        },
+        {
+          "date_soumission": 43,
+          "langage": 1,
+          "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+          "feedback": "Je suis Java"
+        },
+        {
+          "id": "ma_question_pas_repondue",
+          "état": 0,
+          "solutions": [
+          ]
+        }
+      ]
+    }
+
+  ]
+}

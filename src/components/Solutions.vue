@@ -1,15 +1,16 @@
 <template>
-  <div v-bind:key="solution.date_soumission" v-for="solution in solutions">
+  <div>
+    <div v-bind:key="solution.date_soumission" v-for="solution in solutions">
 
       <a href="#" v-on:click="afficherSolution(solution.date_soumission)">Solution du {{convetirDateDepuisTimeStamp(solution.date_soumission)}} </a>
-    <!-- TODO : afficher les résultats à partir de la requete question/date_soumission de l'api -->
+      <!-- TODO : afficher les résultats à partir de la requete question/date_soumission de l'api -->
       <div style="" id="{{solution.date_soumission}}" ref="{{solution.date_soumission}}">
         <h1> id de la soumission (epoch time de la soumission de l'étudiant d'apres la doc de l'api : {{solution.date_soumission}} )</h1>
 
         <br>
         <h3>Date de la soumission(1er janvier 1970 + le nombre de secondes équivalentes à l'id)</h3>
         <p>{{convetirDateDepuisTimeStamp(solution.date_soumission)}}</p>
-        <h4>le feedback de solution, aucune idée de ce que ca veut dire</h4>
+        <h4>le feedback de solution</h4>
         <p>{{solution.feedback}}</p>
         <h5>le langage de la solution</h5>
         <p>{{convertirLangageNbrEnString(solution.langage)}}</p>
@@ -19,7 +20,9 @@
         <br>
       </div>
 
+    </div>
   </div>
+
 
 </template>
 
