@@ -4,6 +4,20 @@
     <button v-on:click="obtenirRetroaction">Cliquer</button></br>
     <h2>Votre solution est: </br>{{solution}}</h2>
     <h2>Voici les tests effectués: </br>{{test}}</h2>
+    <table>
+        <tr>
+            <th>Test</th>
+            <th>Votre Entré</th>
+            <th>Sortie Atendue</th>
+            <th>Sortie Observé</th>
+        </tr>
+        <tr>
+            <th>{{test.numéro}}</th>
+            <th>{{test.entrée}}</th>
+            <th>{{test.sortie_attendue}}</th>
+            <th>{{test.sortie_observée}}</th>
+        </tr>
+    </table>
   </div>
 </template>
 
