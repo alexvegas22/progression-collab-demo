@@ -2,8 +2,7 @@
   <div id="Retroaction">
     <h1>Rétroaction</h1>
     <button v-on:click="obtenirRetroaction">Cliquer</button></br>
-    <h2>Votre solution est: </br>{{solution}}</h2>
-    <h2>Voici les tests effectués: </br>{{test}}</h2>
+    <h2>Voici les tests effectués: </br></h2>
     <table>
         <tr>
             <th>Test</th>
