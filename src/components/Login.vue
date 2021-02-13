@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import Thèmes from './Question.vue'
+  import Thèmes from './Feedback.vue'
   import login_get_token from '../util/login';
 
   export default {

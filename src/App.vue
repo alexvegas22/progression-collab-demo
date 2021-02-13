@@ -7,13 +7,13 @@
 
 <script>
 import Login from './components/Login.vue'
-import Question from './components/Question.vue'
+import Feedback from './components/Feedback.vue'
 
 export default {
   name: 'App',
   components: {
     Login,
-		Question
+		Feedback
   }
 }
 </script>

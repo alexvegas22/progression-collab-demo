@@ -12,11 +12,11 @@
             <th>Sortie Observé</th>
         </tr>
         <tr>
-            <th>{{test.numéro}}</th>
-            <th>{{test.résultat}}</th>
-            <th>{{test.entrée}}</th>
-            <th>{{test.sortie_attendue}}</th>
-            <th>{{test.sortie_observée}}</th>
+            <th>{{test}}</th>
+            <th>{{test}}</th>
+            <th>{{test}}</th>
+            <th>{{test}}</th>
+            <th>{{test}}</th>
         </tr>
     </table>
   </div>
@@ -26,7 +26,7 @@
 import axios from "axios";
 
 export default {
-  name: "Question",
+  name: "Feedback",
 
   data() {
     return {
@@ -38,12 +38,13 @@ export default {
   methods: {
     obtenirRetroaction() {
       this.sortieObserver = axios
-        .get(
-          "https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/retroaction"
+        .post(
+          "https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/solution_retroaction",
+          {codeJson: 'vocimoncode'}
         )
         .then((response) => {
-          this.solution = response.data.Solution;
-          this.test = response.data.Test;
+          this.solution = response.data;
+          this.test = response.data;
         })
         .catch((e) => {
           this.errors.push(e);
