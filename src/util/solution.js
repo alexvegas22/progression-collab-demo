@@ -1,10 +1,10 @@
 const AXIOS = require('axios');
-const ENTRY_POINT = 'https://8acdbddd-1b5d-468f-91ac-fe46027b62e0.mock.pstmn.io'
+const ENTRY_POINT = 'http://localhost:3000'
 
 const get_solution = (solutionId) => new Promise ((resolve, reject) => {
 
 	// url pattern is based on api doc example
-	let url = ENTRY_POINT + "/user/test/solution/programmation_1/les_fonctions/appeler_une_fonction/" + solutionId
+	let url = ENTRY_POINT + "/solutions/" + solutionId
 
     AXIOS({url: url ,
 		   method: 'GET' })
