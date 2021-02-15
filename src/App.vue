@@ -1,23 +1,24 @@
 <template>
-	<div id="app">
+  <div id="app">
     <Login password_req="true" domaine_mail="crosemont.qc.ca" />
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
+import Login from "./components/Login.vue";
+import Énoncé from "./components/Énoncé.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Login
-  }
-}
+    Login,
+    Énoncé,
+  },
+};
 </script>
 
 <style src="./css/style.css">
-<style>
-#app {
+<style > #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
