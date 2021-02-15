@@ -1,11 +1,12 @@
-<template>
+<template :idSolution = "id">
   <div>
-    <h3>Une solution</h3>
+    <h3>Component solution</h3>
     <p>Langage id: {{langage}}</p>
-  </div>
-  
-  
+    <p>Date de soumission: {{date_soumission}}</p>
+    <p>Code: {{code}}</p>
+    <p>FeedBack: {{feedback}}</p>
 
+  </div>
 </template>
 
 
@@ -13,6 +14,9 @@
 import get_solution from '../util/solution'
 
 export default {
+  props:{
+    'idSolution': Number
+  },
   data(){
     return {
       date_soumission: "",
@@ -22,10 +26,10 @@ export default {
     };
   },
   created(){
-    get_solution(1613094107)
+    get_solution(this.idSolution)
           .then(
             response=>{
-              this.date_soumission = response.date_soumission;
+              this.date_soumission = new Date(response.date_soumission * 1000);
               this.langage = response.langage;
               this.code = response.code;
               this.feedback = response.feedback

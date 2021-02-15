@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
     <Login password_req="true" domaine_mail="crosemont.qc.ca" />
-    <Solution />
+    <Solution :idSolution = "2"/>
   </div>
 </template>
 
