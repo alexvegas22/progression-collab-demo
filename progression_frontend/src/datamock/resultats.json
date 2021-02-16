@@ -8,10 +8,16 @@
         "feedback": "Bravo!"
       },
       {
-        "résultat": "true",
-        "sortie_erreur": "",
-        "sortie_observée": "itération 20\n",
-        "feedback": "Bravo!"
+        "résultat": "false",
+        "sortie_erreur": ":(",
+        "sortie_observée": "",
+        "feedback": "Non!"
+      },
+      {
+        "résultat": "false",
+        "sortie_erreur": ":(",
+        "sortie_observée": "",
+        "feedback": "Non!"
       }
     ],
     "feedback": "Bravo! tu sait comment faire une boucle dans une boucle"
