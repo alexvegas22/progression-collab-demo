@@ -1,0 +1,19 @@
+{
+  "tentative": {
+    "résultats": [
+      {
+        "résultat": "true",
+        "sortie_erreur": "",
+        "sortie_observée": "itération 0\n",
+        "feedback": "Bravo!"
+      },
+      {
+        "résultat": "true",
+        "sortie_erreur": "",
+        "sortie_observée": "itération 20\n",
+        "feedback": "Bravo!"
+      }
+    ],
+    "feedback": "Bravo! tu sait comment faire une boucle dans une boucle"
+  }
+}
