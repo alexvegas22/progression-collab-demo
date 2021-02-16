@@ -1,24 +1,11 @@
 <template>
-  <div id="Retroaction">
+  <div  id="Retroaction">
     <h1>Rétroaction</h1>
     <button v-on:click="obtenirRetroaction">Cliquer</button></br>
-    <h2>Voici les tests effectués: </br></h2>
-    <table>
-        <tr>
-            <th>Test</th>
-            <th>Résultat</th>
-            <th>Votre Entré</th>
-            <th>Sortie Atendue</th>
-            <th>Sortie Observé</th>
-        </tr>
-        <tr>
-            <th>{{test}}</th>
-            <th>{{test}}</th>
-            <th>{{test}}</th>
-            <th>{{test}}</th>
-            <th>{{test}}</th>
-        </tr>
-    </table>
+    <div v-if="test != null" id="Retroaction-principale">
+        <h2 >Conseil: </br></h2>
+        <h3>{{test}}</h3>
+    </div>
   </div>
 </template>
 
@@ -31,7 +18,7 @@ export default {
   data() {
     return {
       solution: "",
-      test:"",
+      test:null,
     };
   },
 
@@ -44,7 +31,7 @@ export default {
         )
         .then((response) => {
           this.solution = response.data;
-          this.test = response.data;
+          this.test = response.data.data.attributes.feedback;
         })
         .catch((e) => {
           this.errors.push(e);
