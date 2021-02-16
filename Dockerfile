@@ -1,3 +1,7 @@
+#Commandes pour build et run l'image Docker
+# docker build -t "progression" .
+# docker run -d -p 8080:8080 progression
+
 FROM node:lts-alpine
 
  
