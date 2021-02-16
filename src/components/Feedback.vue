@@ -17,7 +17,6 @@ export default {
 
   data() {
     return {
-      solution: "",
       test:null,
     };
   },
@@ -30,7 +29,6 @@ export default {
           {codeJson: 'vocimoncode'}
         )
         .then((response) => {
-          this.solution = response.data;
           this.test = response.data.data.attributes.feedback;
         })
         .catch((e) => {
