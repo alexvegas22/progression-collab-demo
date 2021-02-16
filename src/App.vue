@@ -1,16 +1,19 @@
 <template>
 	<div id="app">
     <Login password_req="true" domaine_mail="crosemont.qc.ca" />
+    <Solution :idSolution = "2"/>
   </div>
 </template>
 
 <script>
 import Login from './components/Login.vue'
+import Solution from './components/Solution.vue'
 
 export default {
   name: 'App',
   components: {
-    Login
+    Login,
+    Solution
   }
 }
 </script>
