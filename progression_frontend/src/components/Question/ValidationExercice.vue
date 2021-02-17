@@ -25,9 +25,9 @@
     <button @click="valider_tentative">envoie ta reponse</button>
 
     <h4 v-if="feedback_global">Feedback global: {{feedback_global}}</h4>
-    <h3 v-if="bonne_rep">{{bonne_rep==="true" ? "bonne":"mauvaise"}}</h3>
-      <!--h3 v-if="verifier_bonne_reponse">Ta reponse est:Bonne</h3>
-      <h3 v-else>Ta reponse est:Mauvaise</h3-->
+    <h3 v-if="bonne_rep">Bravo! Bonne reponse!</h3>
+      <!--h3 v-if="verifier_bonne_reponse">Ta reponse est:Bonne</h3-->
+      <h3 v-else>Ta reponse est:Mauvaise</h3>
   </div>
 </template>
 
@@ -60,28 +60,29 @@
             data: {code: this.code}
           })
               .then((response) => {
-                console.log(response);
+                console.log("toto");
                 this.resultats=response.data.résultats
                 this.feedback_global=response.data.feedback
-                this.verifier_bonne_reponse()
+
+                var testsPassent = true;
+                var i;
+                for(i=0; i < response.data.résultats.length; i++){
+                  if(response.data.résultats[i].résultat=="false"){
+                    testsPassent = false;
+                  }
+                }
+                if (testsPassent){
+                  this.bonne_rep = true;
+                }else{
+                  this.bonne_rep = false;
+                }
+
               }
               , (error) => {
                 console.log(error)
               })
         })
       },
-
-      //TODO trouver comment regler le probleme pour definir la bonne reponse
-      verifier_bonne_reponse(){
-        for(let unResult in this.resultats){
-          console.log(this.resultats)
-          console.log(JSON.parse)
-          if(unResult.résultat==="false"){
-            return "false";
-          }
-        }
-        return "true";
-      }
     }
 
   }
