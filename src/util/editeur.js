@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const get_ebauche = (categorie, nom, titre, langage) => new Promise ((resolve, reject) => {
-    axios({url: 'https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/question/{0}/{1}/{2}/solution?langage={3}'.format(categorie, nom, titre, langage), method: 'GET' })
+    axios({url: '{0}/question/{1}/{2}/{3}/solution?langage={4}'.format(process.env.VUE_APP_API_URL, categorie, nom, titre, langage), method: 'GET' })
         .then(resp => {
 
             resolve(resp.data.Solution.code)
@@ -10,6 +10,7 @@ const get_ebauche = (categorie, nom, titre, langage) => new Promise ((resolve, r
              reject(err)
          })
  })
+
 export default get_ebauche;
 
 // Formatage

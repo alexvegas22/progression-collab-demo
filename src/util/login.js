@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const login_get_token = ( user,password ) => new Promise ((resolve, reject) => {
-    axios({url: 'http://localhost:5002/auth_token', auth: {username: user, password: password}, method: 'GET' })
+    axios({url: process.env.VUE_APP_API_URL + '/auth_token', auth: {username: user, password: password}, method: 'GET' })
         .then(resp => {
             const token = resp.data.auth_token
             localStorage.setItem('user-token', token)
