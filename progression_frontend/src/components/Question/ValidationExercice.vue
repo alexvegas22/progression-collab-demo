@@ -27,9 +27,7 @@
     <h4 v-if="feedback_global">Feedback global: {{feedback_global}}</h4>
 
     <h3 v-if="testsPassent!=null">Ta reponse est {{testsPassent ? "Bonne" : "Mauvaise" }}</h3>
-    <!--h3 v-if="bonne_rep">Bravo! Bonne reponse!</h3>
 
-      <h3 v-else>Ta reponse est:Mauvaise</h3-->
   </div>
 </template>
 
@@ -43,7 +41,6 @@
         resultats:[],
         feedback_global:'',
         testsPassent:null
-        //bonne_rep:null
       }
     },
     //TODO: enlever le code de trop
@@ -70,23 +67,12 @@
                 //variable qui sera a false si ce ne sont pas tous les tests qui passent
                 this.testsPassent = true;
 
-                //var i;
-                //for(i=0; i < response.data.résultats.length; i++){
-                 // if(response.data.résultats[i].résultat=="false"){
-                   // testsPassent = false;
-                 // }
-              //  }
 
                 for(let unResultat of response.data.résultats){
                     if(unResultat.résultat==="false"){
                        this.testsPassent = false;
                      }
-                       }
-               // if (testsPassent){
-                //  this.bonne_rep = true;
-              //  }else{
-                 // this.bonne_rep = false;
-               //}
+                }
 
               }
               , (error) => {
