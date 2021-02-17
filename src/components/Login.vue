@@ -58,6 +58,7 @@
     </div>
     <Enonce v-if="logué" />
     <Feedback v-if="logué" />
+    <EditeurCode v-if="logué" />
   </div>
 </template>
 
