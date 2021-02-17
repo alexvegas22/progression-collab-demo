@@ -56,19 +56,21 @@
     <div v-if="erreurs">
       {{ erreurs }}
     </div>
-    <Thèmes v-if="logué" />
+    <Enonce v-if="logué" />
+    <Feedback v-if="logué" />
   </div>
 </template>
 
 <script>
-import Thèmes from "./Énoncé.vue";
-import Thèmes from './Feedback.vue';
+import Enonce from "./Énoncé.vue";
+import Feedback from "./Feedback.vue";
 import login_get_token from "../util/login";
 
 export default {
   name: "Login",
   components: {
-    Thèmes,
+    Enonce,
+    Feedback,
   },
   props: {
     password_req: String,
