@@ -62,6 +62,7 @@
 
 <script>
 import Thèmes from "./Énoncé.vue";
+import Thèmes from './Feedback.vue';
 import login_get_token from "../util/login";
 
 export default {
