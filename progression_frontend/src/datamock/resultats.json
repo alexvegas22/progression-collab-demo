@@ -14,12 +14,12 @@
         "feedback": "Non!"
       },
       {
-        "résultat": "false",
+        "résultat": "true",
         "sortie_erreur": ":(",
         "sortie_observée": "",
         "feedback": "Non!"
       }
     ],
-    "feedback": "Bravo! tu sait comment faire une boucle dans une boucle"
+    "feedback": "Feddback dependant du prof"
   }
 }
