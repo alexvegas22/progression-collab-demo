@@ -1,5 +1,20 @@
-import { createApp } from 'vue';
+import { createApp, h } from 'vue';
 import App from './App.vue'
 import router from './router'
 
-createApp(App).use(router).use(router).mount('#app')
+createApp({
+	render: () => h(App),
+
+	data: function() {
+return {
+		result:"",
+		responseAvailable:false
+	};
+},
+
+	methods: {
+		fetch(){
+
+		}
+	}
+}).use(router).mount('#app')
