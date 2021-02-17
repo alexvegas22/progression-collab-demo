@@ -1,0 +1,25 @@
+{
+  "tentative": {
+    "résultats": [
+      {
+        "résultat": "true",
+        "sortie_erreur": "",
+        "sortie_observée": "itération 0\n",
+        "feedback": "Bravo!"
+      },
+      {
+        "résultat": "true",
+        "sortie_erreur": ":(",
+        "sortie_observée": "",
+        "feedback": "Non!"
+      },
+      {
+        "résultat": "true",
+        "sortie_erreur": ":(",
+        "sortie_observée": "",
+        "feedback": "Non!"
+      }
+    ],
+    "feedback": "Feddback dependant du prof"
+  }
+}
