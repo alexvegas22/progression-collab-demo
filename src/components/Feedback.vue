@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { getRetroaction } from '../util/solution';
 
 export default {
   name: "Feedback",
@@ -23,17 +23,16 @@ export default {
 
   methods: {
     obtenirRetroaction() {
-      this.sortieObserver = axios
-        .post(
-          "https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/solution_false",
-          {codeJson: 'vocimoncode'}
-        )
-        .then((response) => {
-          this.feedBack = response.data.data.included.attributes.feedback;
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
+      getRetroaction().then(
+        retroaction => {
+            this.feedBack = retroaction;
+        }
+      ).catch(
+        err =>{
+            console.log(err);
+            this.feedBack = "";
+        }
+      )
     },
   },
 };

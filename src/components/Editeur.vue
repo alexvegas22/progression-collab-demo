@@ -1,5 +1,3 @@
-
-
 <template>
     <div id="question" class="container-editeur">
       <div class="division">
@@ -10,7 +8,7 @@
 </template>
 
 <script>
-  import getEbauche from '../util/editeur';
+  import { getEbauche } from '../util/solution';
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';

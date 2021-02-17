@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { getEnonce } from "../util/enonce.js";
 
 export default {
   name: "Énoncé",
@@ -20,16 +20,16 @@ export default {
 
   methods: {
     obtenirUneQuestion() {
-      this.enonce = axios
-        .get(
-          "https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/api/v1/question/2?include=Tests"
-        )
-        .then((response) => {
-          this.enonce = response.data.data.attributes.énoncé;
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
+      getEnonce().then(
+        enonce => {
+            this.enonce = enonce;
+        }
+      ).catch(
+        err => {
+            console.log(err);
+            this.enonce = "";
+        }
+      )
     },
   },
 };
