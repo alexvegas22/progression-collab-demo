@@ -56,7 +56,7 @@
           AXIOS({
             //TODO le faire avec un post, il faudra peut-être un middleware,pas si facile avec json-server
             url: url,
-            method: 'GET',
+            method: 'POST',
             data: {code: this.code}
           })
               .then((response) => {

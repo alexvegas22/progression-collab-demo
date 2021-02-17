@@ -14,12 +14,12 @@
         "feedback": "Non!"
       },
       {
-        "résultat": "true",
+        "résultat": "false",
         "sortie_erreur": ":(",
         "sortie_observée": "",
         "feedback": "Non!"
       }
     ],
-    "feedback": "Feddback dependant du prof"
+    "feedback": "Feedback dependant du prof"
   }
 }
