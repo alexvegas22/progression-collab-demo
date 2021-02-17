@@ -58,12 +58,14 @@
     </div>
     <Enonce v-if="logué" />
     <Feedback v-if="logué" />
+    <EditeurCode v-if="logué" />
   </div>
 </template>
 
 <script>
 import Enonce from "./Énoncé.vue";
 import Feedback from "./Feedback.vue";
+import EditeurCode from './Editeur.vue'
 import login_get_token from "../util/login";
 
 export default {
@@ -71,6 +73,7 @@ export default {
   components: {
     Enonce,
     Feedback,
+    EditeurCode
   },
   props: {
     password_req: String,
