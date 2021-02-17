@@ -1,19 +1,20 @@
-import Vue from 'vue'
+import { createApp, h } from 'vue';
 import App from './App.vue'
+import router from './router'
 
-Vue.config.productionTip = false
+createApp({
+	render: () => h(App),
 
-new Vue({
-	render: h => h(App),
-
-	data: {
+	data: function() {
+return {
 		result:"",
 		responseAvailable:false
-	},
+	};
+},
 
 	methods: {
 		fetch(){
 
 		}
 	}
-}).$mount('#app')
+}).use(router).mount('#app')

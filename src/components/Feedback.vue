@@ -1,9 +1,9 @@
 <template>
   <div  id="Retroaction">
     <h1>Rétroaction</h1>
-    <button v-on:click="obtenirRetroaction">Cliquer</button></br>
+    <button v-on:click="obtenirRetroaction">Cliquer</button>
     <div v-if="test != null" id="Retroaction-principale">
-        <h2 >Feedback: </br></h2>
+        <h2 >Feedback: </h2>
         <h3>{{test}}</h3>
     </div>
   </div>
