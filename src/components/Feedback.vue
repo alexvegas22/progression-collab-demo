@@ -3,7 +3,7 @@
     <h1>Rétroaction</h1>
     <button v-on:click="obtenirRetroaction">Cliquer</button></br>
     <div v-if="test != null" id="Retroaction-principale">
-        <h2 >Conseil: </br></h2>
+        <h2 >Feedback: </br></h2>
         <h3>{{test}}</h3>
     </div>
   </div>
@@ -25,11 +25,11 @@ export default {
     obtenirRetroaction() {
       this.sortieObserver = axios
         .post(
-          "https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/solution_retroaction",
+          "https://fb21cf46-76f2-4f2c-ae0d-2d2aa69baf67.mock.pstmn.io/solution_false",
           {codeJson: 'vocimoncode'}
         )
         .then((response) => {
-          this.test = response.data.data.attributes.feedback;
+          this.test = response.data.data.included.attributes.feedback;
         })
         .catch((e) => {
           this.errors.push(e);
