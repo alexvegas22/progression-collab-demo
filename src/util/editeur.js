@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const get_ebauche = (categorie, nom, titre, langage) => new Promise ((resolve, reject) => {
+const getEbauche = (categorie, nom, titre, langage) => new Promise ((resolve, reject) => {
     axios({url: '{0}/question/{1}/{2}/{3}/solution?langage={4}'.format(process.env.VUE_APP_API_URL, categorie, nom, titre, langage), method: 'GET' })
         .then(resp => {
 
@@ -11,7 +11,7 @@ const get_ebauche = (categorie, nom, titre, langage) => new Promise ((resolve, r
          })
  })
 
-export default get_ebauche;
+export default getEbauche;
 
 // Formatage
 String.prototype.format = function() {

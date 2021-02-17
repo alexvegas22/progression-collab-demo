@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import get_ebauche from '../util/editeur';
+  import getEbauche from '../util/editeur';
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -42,7 +42,7 @@
         },
       },
       mounted() {
-          get_ebauche(categorie, nom, titre, langage).then(
+          getEbauche(categorie, nom, titre, langage).then(
             ebauche => {
                 this.code = ebauche;
             }
