@@ -8,7 +8,7 @@
         "feedback": "Bravo!"
       },
       {
-        "résultat": "false",
+        "résultat": "true",
         "sortie_erreur": ":(",
         "sortie_observée": "",
         "feedback": "Non!"
