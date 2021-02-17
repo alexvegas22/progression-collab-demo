@@ -2,9 +2,9 @@
   <div  id="Retroaction">
     <h1>Rétroaction</h1>
     <button v-on:click="obtenirRetroaction">Cliquer</button>
-    <div v-if="test != null" id="Retroaction-principale">
+    <div v-if="feedBack != null" id="Retroaction-principale">
         <h2 >Feedback: </h2>
-        <h3>{{test}}</h3>
+        <h3>{{feedBack}}</h3>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 
   data() {
     return {
-      test:null,
+      feedBack:null,
     };
   },
 
@@ -29,7 +29,7 @@ export default {
           {codeJson: 'vocimoncode'}
         )
         .then((response) => {
-          this.test = response.data.data.included.attributes.feedback;
+          this.feedBack = response.data.data.included.attributes.feedback;
         })
         .catch((e) => {
           this.errors.push(e);
