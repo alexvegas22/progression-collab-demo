@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="login">
     <div id="main-logo">
-      <a href="index.php">
+      <a href="/">
         <h1>Progression</h1>
       </a>
     </div>
@@ -50,31 +50,20 @@
         />
       </div>
       <div class="col-sm-offset-3 uk-margin">
-        <button v-on:click="bypassePassword">Pas de mot de passe?</button>
+        <router-link :to="{name:'Question'}">Aller vers une question</router-link>
       </div>
     </form>
     <div v-if="erreurs">
       {{ erreurs }}
     </div>
-    <Enonce v-if="logué" />
-    <Feedback v-if="logué" />
-    <EditeurCode v-if="logué" />
   </div>
 </template>
 
 <script>
-import Enonce from "./Énoncé.vue";
-import Feedback from "./Feedback.vue";
-import EditeurCode from './Editeur.vue'
 import login_get_token from "../util/login";
 
 export default {
   name: "Login",
-  components: {
-    Enonce,
-    Feedback,
-    EditeurCode
-  },
   props: {
     password_req: String,
     domaine_mail: String,
@@ -89,9 +78,6 @@ export default {
     };
   },
   methods: {
-    bypassePassword() {
-      this.logué = "true";
-    },
     login() {
       const { username, password } = this;
       login_get_token(username, password)

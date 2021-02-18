@@ -1,13 +1,11 @@
 <template>
     <div id="question" class="container-editeur">
-      <div class="division">
         <prismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
-      </div>
-      <div id="resultat" class="division">Votre code ne fonctionne pas. :(</div>
     </div>
 </template>
 
 <script>
+
   import { getEbauche } from '../util/solution';
 
   import { PrismEditor } from 'vue-prism-editor';

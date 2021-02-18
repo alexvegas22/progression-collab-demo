@@ -1,7 +1,5 @@
 <template>
   <div id="énoncé">
-    <h1>Question</h1>
-    <button v-on:click="obtenirUneQuestion">Obtenir une question</button>
     <h2>{{ enonce }}</h2>
   </div>
 </template>
@@ -17,20 +15,17 @@ export default {
       enonce: "",
     };
   },
-
-  methods: {
-    obtenirUneQuestion() {
-      getEnonce().then(
-        enonce => {
-            this.enonce = enonce;
-        }
-      ).catch(
-        err => {
-            console.log(err);
-            this.enonce = "";
-        }
-      )
-    },
-  },
+  mounted() {
+    getEnonce().then(
+      enonce => {
+          this.enonce = enonce;
+      }
+    ).catch(
+      err => {
+          console.log(err);
+          this.enonce = "";
+      }
+    )
+  }
 };
 </script>
