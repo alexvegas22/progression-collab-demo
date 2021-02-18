@@ -15,7 +15,7 @@
 import get_question from '../util/question'
 
 export default {
-  name: 'Question',
+  name: 'Ebauche',
      data() {
         return {
             ebauches:[], // liste d'ébauche

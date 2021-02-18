@@ -1,5 +1,5 @@
 const axios = require('axios');
-const BASE_URL = 'http://localhost:3000' // json-server
+const BASE_URL = process.env.VUE_APP_API_URL // json-server
 
 const get_question = (catégorie, nom, titre, langage) => new Promise ((resolve, reject) => {
     //axios({ url: BASE_URL + '/question/{0}/{1}/{2}/solutions?langage={3}'.format(catégorie, nom, titre, langage), method: 'GET' })
