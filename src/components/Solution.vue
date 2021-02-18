@@ -1,11 +1,11 @@
 <template :idSolution = "id">
   <div>
     <h3>Component solution</h3>
-    <p>Langage id: {{langage}}</p>
-    <p>Langage : {{convertirLangageNbrEnString(langage)}}</p>
-    <p>Date de soumission: {{date_soumission}}</p>
-    <p>Code: {{code}}</p>
-    <p>FeedBack: {{feedback}}</p>
+    <p>Langage id: {{solution.langage}}</p>
+    <p>Langage : {{convertirLangageNbrEnString(solution.langage)}}</p>
+    <p>Date de soumission: {{solution.date_soumission}}</p>
+    <p>Code: {{solution.code}}</p>
+    <p>FeedBack: {{solution.feedback}}</p>
   </div>
 </template>
 
@@ -15,28 +15,12 @@ import get_solution from '../util/solution'
 
 export default {
   props:{
-    'idSolution': Number
-  },
-  data(){
-    return {
-      date_soumission: "",
-      langage: "",
-      code: "",
-      feedback: ""
-    };
-  },
-  beforeUpdate(){
-    get_solution(this.idSolution)
-          .then(
-            response=>{
-              this.date_soumission = new Date(response.date_soumission * 1000);
-              this.langage = response.langage;
-              this.code = response.code;
-              this.feedback = response.feedback
-            })
-        .catch(err=>{
-          this.erreurs = err;
-        });
+    solution:Object,
+    'idSolution': Number,
+    date_soumission:Number,
+    langage: Number,
+    code: String,
+    feedback:String
   },
   methods: {
     convertirLangageNbrEnString(langageNumero){
