@@ -36,7 +36,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
     body {
         font-family: "Avenir", Arial, Helvetica, sans-serif;
         display: flex;
