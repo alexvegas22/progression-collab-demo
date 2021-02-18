@@ -5,36 +5,39 @@
     <li v-for="(question, i ) in questions" :key="i">
       {{charger_etat(question, i)}}
       <Avancement v-on:load="charger_etat(question, i)" v-bind:question="question" v-bind:état="états[i]" />
-      <button v-on:click="charger_solutions(question)">Charger solutions</button>
+      <button v-on:click="charger_tentatives(question)">Charger solutions</button>
     </li>
   </ul>
-  <Solutions v-bind:solutions="solutions" />
+  <Tentatives v-bind:tentatives="tentatives"/>
 </template>
 
 <script>
-import Solutions from "@/components/Solutions";
-import get_solutions_user from "@/util/get_solutions_user";
 import Avancement from "@/components/Avancement"
+import get_solutions_user from "@/util/get_solutions_user";
+import Tentatives from "@/components/Tentatives";
 
 
 export default {
   name: 'SolutionsView',
   components: {
-    Avancement,
-    Solutions
+    Tentatives,
+    Avancement
   },
   data(){
+
     return {
-      solutions: [],
+      tentatives: [],
       états:[],
-      questions:['ma_question', 'ma_question_reussie', 'ma_question_pas_repondue']
+      questions:['/user/jdoe/categorie_toto/ma_question',
+        '/user/jdoe/categorie_toto/ma_question_reussie',
+        '/user/jdoe/categorie_toto/ma_question_pas_repondue']
     }
   },
   methods:{
-    charger_solutions(question){
+    charger_tentatives(question){
       get_solutions_user(question)
           .then(res=>{
-            this.solutions=res.solutions;
+            this.tentatives=res.tentative
           })
     },
     charger_etat(question, i){
@@ -43,7 +46,6 @@ export default {
             this.états[i]=res.état
           })
     }
-
   }
 
 }

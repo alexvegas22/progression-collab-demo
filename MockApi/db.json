@@ -3,63 +3,90 @@
     {
       "id":"ma_question_reussie",
       "état": 2,
-      "solutions": [
+      "tentative": [
         {
-          "date_soumission": 1613069492
+          "date_soumission": 1613069492,
+          "id": 1613069492
         },
         {
-          "date_soumission": 463463
+          "date_soumission": 463463,
+          "id": 463463
         }
       ]
     },
     {
       "id": "ma_question",
       "état": 1,
-      "solutions": [
+      "tentative": [
         {
-          "date_soumission": 42352353253
+          "date_soumission": 42352353253,
+          "id": 42352353253
         },
         {
-          "date_soumission": 4346436
-
+          "date_soumission": 4346436,
+          "id": 4346436
         }
       ]
     },
     {
       "id": "ma_question_pas_repondue",
       "état": 0,
-      "solutions": []
+      "tentative": []
     }
   ],
-  "solutions": [
+  "tentative": [
     {
       "id": 1613069492,
       "date_soumission": 1613069492,
-      "langage": 0,
-      "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
-      "feedback": "Je suis Réussie"
+      "feedback": "Je suis Réussie",
+      "solution": "/solution/4",
+      "résultats": []
     },
     {
       "id": 463463,
       "date_soumission": 463463,
-      "langage": 1,
-      "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
-      "feedback": "Echec test blabla"
+      "solution": "/solution/3",
+      "résultats": [],
+      "feedback": "Je suis Réussie"
     },
     {
       "id": 42352353253,
       "date_soumission": 42352353253,
-      "langage": 0,
-      "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
-      "feedback": "Je suis Python"
+      "feedback": "Blalalal",
+      "solution": "/solution/2",
+      "résultats": []
     },
     {
-      "id": 4346436,
       "date_soumission": 4346436,
+      "id": 4346436,
+      "feedback": "Blalalala",
+      "solution": "/solution/1",
+      "résultats": []
+    }
+  ],
+  "solution": [
+    {
+      "id": "1",
+      "langage": 0,
+      "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+    },
+    {
+      "id": "2",
       "langage": 1,
-      "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
-      "feedback": "Je suis Java"
+      "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+    },
+    {
+      "id": "3",
+      "langage": 1,
+       "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+    },
+    {
+      "id": "3",
+      "langage": 1,
+      "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
     }
 
   ]
+
+
 }
