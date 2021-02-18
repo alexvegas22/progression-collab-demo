@@ -52,5 +52,6 @@ export default {
         padding: 1rem;
         margin: 1rem;
         background: darkgray;
+        font-size: 22px;
     }
 </style>
