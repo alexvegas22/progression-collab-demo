@@ -1,10 +1,13 @@
 <template>
+  <div id="app">
+
+  </div>
+
   <div id="nav">
+
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-	<div id="app">
-    <Login password_req="true" domaine_mail="crosemont.qc.ca" />
-    <Solution :idSolution = "2"/>
+
   </div>
   <router-view/>
 </template>

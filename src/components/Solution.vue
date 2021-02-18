@@ -25,7 +25,7 @@ export default {
       feedback: ""
     };
   },
-  created(){
+  beforeUpdate(){
     get_solution(this.idSolution)
           .then(
             response=>{

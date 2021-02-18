@@ -3,7 +3,7 @@
     <div v-bind:key="solution.date_soumission" v-for="solution in solutions">
       <a v-on:click="afficherSolution(solution.date_soumission)">Solution du {{convetirDateDepuisTimeStamp(solution.date_soumission)}} </a>
     </div>
-    <Solution v-if="idSolutionEnCoursVisionement" v-bind:id-solution=idSolutionEnCoursVisionement></Solution>
+    <Solution v-if="idSolutionEnCoursVisionement" idSolutionEnCoursVisionement></Solution>
   </div>
 
 
