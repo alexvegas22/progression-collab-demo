@@ -14,7 +14,7 @@
   <router-view/>
 </template>
 
-<style>
+<style src="./css/style.css">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
