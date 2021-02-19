@@ -22,4 +22,14 @@ const getRetroaction = () => new Promise ((resolve, reject) => {
   })
 })
 
-export { getEbauche, getRetroaction };
+const envoyerTentative = (langage,  code) => new Promise ((resolve, reject) => {
+  axios({url: '{0}/tentative?langage={1}'.format(process.env.VUE_APP_API_URL, langage), data: {code: code}, method: 'POST' })
+  .then(resp => {
+    resolve(resp.data)
+  })
+  .catch(err => {
+    reject(err)
+  })
+})
+
+export { getEbauche, getRetroaction, envoyerTentative };

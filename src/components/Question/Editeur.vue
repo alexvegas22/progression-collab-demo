@@ -2,11 +2,34 @@
     <div id="question" class="container-editeur">
         <prismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
     </div>
+
+    <div>
+      <ul v-for="unResultat in resultats" :key="unResultat">
+        <li>
+          resultat: {{unResultat.résultat}}
+        </li>
+        <li>
+          sortie d'erreur: {{unResultat.sortie_erreur}}
+        </li>
+        <li>
+          sortie observée: {{unResultat.sortie_observée}}
+        </li>
+        <li>
+         feedback: {{unResultat.feedback}}
+        </li>
+      </ul>
+
+      <button @click="valider_tentative">envoie ta reponse</button>
+
+      <h4 v-if="feedback_global">Feedback global: {{feedback_global}}</h4>
+
+      <h3 v-if="testsPassent!=null">Ta reponse est {{testsPassent ? "Bonne" : "Mauvaise" }}</h3>
+    </div>
 </template>
 
 <script>
 
-  import { getEbauche } from '@/util/solution';
+  import { getEbauche, envoyerTentative } from '@/util/solution';
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -28,13 +51,39 @@
       components: {
         PrismEditor,
       },
-
       data: () => ({
-        code: ""
+        code: "",
+        resultats:[],
+        feedback_global:'',
+        testsPassent:null
       }),
       methods: {
         highlighter(code) {
           return highlight(code, languages.python);
+        },
+        valider_tentative(){
+          envoyerTentative(langage, this.code).then(
+            tentative => {
+                this.resultats = tentative.résultats
+                this.feedback_global = tentative.feedback
+
+                //variable qui sera a false si ce ne sont pas tous les tests qui passent
+                this.testsPassent = true;
+
+                //on itère à travers tous les tests pour voir s'il y en a un qui ne passent pas.
+                for(let unResultat of tentative.résultats){
+                  if(unResultat.résultat === "false") {
+                    this.testsPassent = false;
+                    break;
+                  }
+                }
+            }
+          ).catch(
+            err => {
+                console.log(err);
+                this.reponse = "";
+            }
+          )
         },
       },
       mounted() {

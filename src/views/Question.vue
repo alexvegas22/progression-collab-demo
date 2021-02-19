@@ -2,6 +2,8 @@
   <div class="question">
     <Enonce />
 
+    <hr>
+
     <div class="editeur-container">
       <div class="division">
         <EditeurCode />
@@ -11,14 +13,18 @@
       </div>
     </div>
 
+    <hr>
+
     <p>Voici les ébauches disponibles :</p>
     <div class="ebauche" v-bind:key="ebauche" v-for="ebauche in ebauches">
         <p>{{ebauche}}</p>
     </div>
 
-    <Solution />
+    <hr>
 
-    <ValidationExercice language="python"/>
+    <div style="width: 100%">
+      <Solution />
+    </div>
   </div>
 </template>
 
@@ -28,7 +34,6 @@ import Enonce from "@/components/Question/Énoncé.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
-import ValidationExercice from "@/components/Question/ValidationExercice";
 
 import get_question from '@/util/question'
 
@@ -39,7 +44,6 @@ export default {
     Feedback,
     EditeurCode,
     Solution,
-    ValidationExercice
   },
   data() {
      return {
@@ -62,7 +66,7 @@ export default {
 
 <style>
   .editeur-container {
-    height: 200px;
+    height: 650px;
     padding: 20px 0px;
   }
 
@@ -74,11 +78,6 @@ export default {
 
   body {
     font-family: "Avenir", Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    width: auto;
-    height: 80vh;
     font-size: 16px;
   }
 

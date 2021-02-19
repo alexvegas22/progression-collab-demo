@@ -71,12 +71,7 @@ li{
 }
 
 .left-column{
-  width: 50%;
-  float: left;
-}
-
-.right-column{
-  width: 50%;
+  width: 100%;
   float: left;
 }
 
