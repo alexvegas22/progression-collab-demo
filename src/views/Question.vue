@@ -18,10 +18,10 @@
 
 <script>
 // @ is an alias to /src
-import Enonce from "@/components/Énoncé.vue";
-import Feedback from "@/components/Feedback.vue";
-import EditeurCode from '@/components/Editeur.vue'
-import get_question from '../util/question'
+import Enonce from "@/components/Question/Énoncé.vue";
+import Feedback from "@/components/Question/Feedback.vue";
+import EditeurCode from '@/components/Question/Editeur.vue'
+import get_question from '@/util/question'
 
 export default {
   name: "Question",

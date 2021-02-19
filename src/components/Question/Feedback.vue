@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { getRetroaction } from '../util/solution';
+import { getRetroaction } from '@/util/solution';
 
 export default {
   name: "Feedback",

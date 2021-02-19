@@ -9,7 +9,7 @@
       </li>
     </ul>
   </div>
-  
+
   <div class="right-column">
     <h1>Tentatives de l'utilisateur</h1>
     <div v-if="tentatives.length > 0">
@@ -20,13 +20,13 @@
       <h3>aucune tentative à afficher</h3>
     </div>
   </div>
-  
+
 </template>
 
 <script>
-import Avancement from "@/components/Avancement"
+import Avancement from "@/components/Question/Avancement"
 import get_api_response from "@/util/get_api_response";
-import Tentatives from "@/components/Tentatives";
+import Tentatives from "@/components/Question/Tentatives";
 
 
 export default {

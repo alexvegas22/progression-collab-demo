@@ -1,18 +1,18 @@
 <template>
   <div class="question">
-        
+
         <h2><strong>{{question.enoncé}}</strong></h2>
         <p>Voici les ébauches disponibles :</p>
         <div class="ebauche" v-bind:key="ebauche" v-for="ebauche in ebauches">
             <p>{{ebauche}}</p>
         </div>
-        
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import get_question from '../util/question'
+import get_question from '@/util/question'
 
 export default {
   name: 'Ebauche',

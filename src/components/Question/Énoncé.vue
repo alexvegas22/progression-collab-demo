@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { getEnonce } from "../util/enonce.js";
+import { getEnonce } from "@/util/enonce.js";
 
 export default {
   name: "Énoncé",
