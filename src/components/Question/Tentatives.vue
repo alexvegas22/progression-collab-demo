@@ -71,7 +71,7 @@
             response=>{
               this.tentativeAffichee.date_soumission = response.date_soumission
               this.tentativeAffichee.feedback = response.feedback
-              this.tentativeAffichee.solutions = response.solutions
+              this.tentativeAffichee.solution = response.solutions
               this.afficherSolution(response.solutions)
             })
           .catch(err=>{
