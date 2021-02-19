@@ -7,6 +7,7 @@
 
     <router-link :to="{name:'Home'}">Home</router-link> |
     <router-link :to="{name:'About'}">About</router-link> |
+    <router-link :to="{name:'Question'}">Question</router-link> |
     <router-link :to="{name:'Solutions'}">Solutions</router-link>
 
   </div>
