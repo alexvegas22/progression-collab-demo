@@ -42,7 +42,7 @@
     methods:{
       // method to convert timestamp to dd/mm/yyyy hh:mm
       convetirDateDepuisTimeStamp : function (timestanp) {
-        var date = new Date(timestanp*1000)
+        let date = new Date(timestanp*1000)
         return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes()}`
       },
 
@@ -80,7 +80,7 @@
       },
 
       afficherSolution(url_solution){  
-        get_api_response(this.tentativeAffichee.solution)
+        get_api_response(url_solution)
           .then(
             response=>{
               this.solution.langage = response.langage
