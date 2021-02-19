@@ -1,6 +1,7 @@
 <template>
+
   <div>
-    <h1 v-if="état!=null">La question <strong>{{question}}</strong> est {{convetirEtatEnString(état)}}</h1>
+    <h1 v-if="état!=null">La question <strong>{{question.id}}</strong> est {{convetirEtatEnString(état)}}</h1>
   </div>
 
 </template>
@@ -27,7 +28,7 @@ export default {
           etatString="RÉUSSI"
           break;
         default:
-          etatString ="Verrs l'infini et au delà"
+          etatString ="Vers l'infini et au delà"
       }
       return etatString
     }
