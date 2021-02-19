@@ -1,4 +1,4 @@
 {
-  "/user/jdoe/categorie_toto/:id_question": "/avancement/:id_question",
-  "/user/jdoe/categorie_toto/:id_question/:id": "/tentative/:id"
+  "/user/jdoe/categorie_toto/question/:id_question": "/avancement/:id_question",
+  "/user/jdoe/categorie_toto/question/:id_question/:id": "/tentative/:id"
 }

@@ -1,7 +1,7 @@
 {
   "avancement": [
     {
-      "id":"ma_question_reussie",
+      "id":1,
       "état": 2,
       "tentative": [
         {
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "ma_question",
+      "id": 2,
       "état": 1,
       "tentative": [
         {
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "ma_question_pas_repondue",
+      "id": 3,
       "état": 0,
       "tentative": []
     }
@@ -68,7 +68,7 @@
     {
       "id": "1",
       "langage": 0,
-      "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
     },
     {
       "id": "2",
@@ -81,9 +81,14 @@
        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
     },
     {
-      "id": "3",
-      "langage": 1,
-      "code": "print(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+      "id": "4",
+      "langage": 2,
+      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+    },
+    {
+      "id": "5",
+      "langage": 2,
+      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
     }
 
   ]
