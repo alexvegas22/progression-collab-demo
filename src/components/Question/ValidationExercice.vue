@@ -46,10 +46,10 @@
     methods: {
       valider_tentative(){
         const AXIOS = require('axios');
-        new Promise((resolve, reject) => {
+        new Promise(() => {
 
           // url pattern is based on api doc example
-          let url = process.env.VUE_APP_MOCKAPIURL+"tentative?langage=" + this.language
+          let url = process.env.VUE_APP_API_URL+"/tentative?langage=" + this.language
 
           AXIOS({
             //TODO le faire avec un post, il faudra peut-être un middleware,pas si facile avec json-server
