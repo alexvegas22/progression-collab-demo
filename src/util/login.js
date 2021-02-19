@@ -7,10 +7,10 @@ const login_get_token = ( user,password ) => new Promise ((resolve, reject) => {
             localStorage.setItem('user-token', token)
             resolve(resp)
         })
-         .catch(err => {
-             localStorage.removeItem('user-token')
-             reject(err)
-         })
- })
+        .catch(err => {
+            localStorage.removeItem('user-token')
+            reject(err)
+        })
+})
 
 export default login_get_token;

@@ -1,0 +1,24 @@
+{
+    "question": {
+        "nom": "les_variables",
+        "titre": "Introduction aux variables",
+        "description": "Exercices d'introduction aux variables.",
+        "enoncé": "Déclarez une variable dont l'identifiant est «réponse» et affectez-lui la valeur 42.",
+        "type": 0,
+        "question_prog": {
+            "ébauches": [
+                "\nprint(réponse)",
+                "\nprint(AutreRéponse)"
+            ],
+            "tests": [  
+                "test"           
+            ]
+        }
+    },
+    "liens": {
+        "suivante": "https://progression.dti.crosemont.quebec/index.php?p=question_prog&ID=2792",
+        "catégorie": "https://progression.dti.crosemont.quebec/index.php?p=theme&ID=1",
+        "avancement": "incomplet",
+        "accessibilité": "https://progression.dti.crosemont.quebec/index.php?p=serie&ID=45"
+    }
+}

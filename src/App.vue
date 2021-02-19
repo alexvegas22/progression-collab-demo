@@ -1,12 +1,20 @@
 <template>
+  <div id="app">
+
+  </div>
+
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{name:'About'}">About</router-link>
+    <router-link :to="{name:'Home'}">Home</router-link> |
+    <router-link :to="{name:'About'}">About</router-link> |
+    <router-link :to="{name:'Question'}">Question</router-link> |
+    <router-link :to="{name:'Validation'}">Validation</router-link> |
+    <router-link :to="{name:'Solutions'}">Solutions</router-link>
+
   </div>
   <router-view/>
 </template>
 
-<style>
+<style src="./css/style.css">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
