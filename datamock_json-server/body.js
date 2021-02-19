@@ -13,7 +13,7 @@ server.use((req, res, next) => {
   console.log("POST request listener");
   const body = req.body;
   console.log(body);
-  if (req.method === "POST") {
+  if (req.method === "POST" && req.path==="/tentative") {
     // If the method is a POST echo back the name from request body
     res.json({
         résultats: [

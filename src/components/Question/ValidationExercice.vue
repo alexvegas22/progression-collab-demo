@@ -43,15 +43,13 @@
         testsPassent:null
       }
     },
-    //TODO: enlever le code de trop
     methods: {
       valider_tentative(){
         const AXIOS = require('axios');
-        const ENTRY_POINT = 'http://localhost:3000/'
         new Promise((resolve, reject) => {
 
           // url pattern is based on api doc example
-          let url = ENTRY_POINT+"tentative?langage=" + this.language
+          let url = process.env.VUE_APP_MOCKAPIURL+"tentative?langage=" + this.language
 
           AXIOS({
             //TODO le faire avec un post, il faudra peut-être un middleware,pas si facile avec json-server
@@ -60,17 +58,17 @@
             data: {code: this.code}
           })
               .then((response) => {
-                console.log("toto");
                 this.resultats=response.data.résultats
                 this.feedback_global=response.data.feedback
 
                 //variable qui sera a false si ce ne sont pas tous les tests qui passent
                 this.testsPassent = true;
 
-
+                //on itère à travers tous les tests pour voir s'il y en a un qui ne passent pas.
                 for(let unResultat of response.data.résultats){
                     if(unResultat.résultat==="false"){
                        this.testsPassent = false;
+                       break;
                      }
                 }
 
