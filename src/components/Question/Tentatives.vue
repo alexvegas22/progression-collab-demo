@@ -71,15 +71,15 @@
             response=>{
               this.tentativeAffichee.date_soumission = response.date_soumission
               this.tentativeAffichee.feedback = response.feedback
-              this.tentativeAffichee.solution = response.solution
-              this.afficherSolution(response.solution)
+              this.tentativeAffichee.solutions = response.solutions
+              this.afficherSolution(response.solutions)
             })
           .catch(err=>{
             this.erreurs = err;
           })
       },
 
-      afficherSolution(url_solution){  
+      afficherSolution(url_solution){
         get_api_response(url_solution)
           .then(
             response=>{

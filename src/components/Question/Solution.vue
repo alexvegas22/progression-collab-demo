@@ -10,7 +10,7 @@
     </ul>
   </div>
 
-  <div class="right-column">
+  <div class="left-column">
     <h1>Tentatives de l'utilisateur</h1>
     <div v-if="tentatives.length > 0">
       <h3>Cliquez sur une tentative pour voir la solution proposée</h3>
@@ -30,7 +30,7 @@ import Tentatives from "@/components/Question/Tentatives";
 
 
 export default {
-  name: 'SolutionsView',
+  name: 'Solution',
   components: {
     Tentatives,
     Avancement
@@ -71,6 +71,11 @@ li{
 }
 
 .left-column{
+  width: 50%;
+  float: left;
+}
+
+.right-column{
   width: 50%;
   float: left;
 }

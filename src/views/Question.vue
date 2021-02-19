@@ -2,17 +2,23 @@
   <div class="question">
     <Enonce />
 
-    <div class="division">
-      <EditeurCode />
-    </div>
-    <div class="division">
-      <Feedback />
+    <div class="editeur-container">
+      <div class="division">
+        <EditeurCode />
+      </div>
+      <div class="division">
+        <Feedback />
+      </div>
     </div>
 
     <p>Voici les ébauches disponibles :</p>
     <div class="ebauche" v-bind:key="ebauche" v-for="ebauche in ebauches">
         <p>{{ebauche}}</p>
     </div>
+
+    <Solution />
+
+    <ValidationExercice language="python"/>
   </div>
 </template>
 
@@ -21,14 +27,19 @@
 import Enonce from "@/components/Question/Énoncé.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
+import Solution from '@/components/Question/Solution.vue'
+import ValidationExercice from "@/components/Question/ValidationExercice";
+
 import get_question from '@/util/question'
 
 export default {
   name: "Question",
   components: {
     Enonce,
+    Feedback,
     EditeurCode,
-    Feedback
+    Solution,
+    ValidationExercice
   },
   data() {
      return {
@@ -50,9 +61,14 @@ export default {
 </script>
 
 <style>
+  .editeur-container {
+    height: 200px;
+    padding: 20px 0px;
+  }
+
   .division {
     width: 50%;
-    height: 300px;
+    height: 200px;
     float: left;
   }
 

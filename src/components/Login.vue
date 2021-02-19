@@ -49,9 +49,6 @@
           value="Connexion"
         />
       </div>
-      <div class="col-sm-offset-3 uk-margin">
-        <router-link :to="{name:'Question'}">Aller vers une question</router-link>
-      </div>
     </form>
     <div v-if="erreurs">
       {{ erreurs }}
