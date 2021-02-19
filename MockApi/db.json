@@ -1,0 +1,97 @@
+{
+  "avancement": [
+    {
+      "id":1,
+      "état": 2,
+      "tentative": [
+        {
+          "date_soumission": 1613069492,
+          "id": 1613069492
+        },
+        {
+          "date_soumission": 463463,
+          "id": 463463
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "état": 1,
+      "tentative": [
+        {
+          "date_soumission": 42352353253,
+          "id": 42352353253
+        },
+        {
+          "date_soumission": 4346436,
+          "id": 4346436
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "état": 0,
+      "tentative": []
+    }
+  ],
+  "tentative": [
+    {
+      "id": 1613069492,
+      "date_soumission": 1613069492,
+      "feedback": "Je suis Réussie",
+      "solution": "/solution/4",
+      "résultats": []
+    },
+    {
+      "id": 463463,
+      "date_soumission": 463463,
+      "solution": "/solution/3",
+      "résultats": [],
+      "feedback": "Je suis Réussie"
+    },
+    {
+      "id": 42352353253,
+      "date_soumission": 42352353253,
+      "feedback": "Blalalal",
+      "solution": "/solution/2",
+      "résultats": []
+    },
+    {
+      "date_soumission": 4346436,
+      "id": 4346436,
+      "feedback": "Blalalala",
+      "solution": "/solution/1",
+      "résultats": []
+    }
+  ],
+  "solution": [
+    {
+      "id": "1",
+      "langage": 0,
+      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+    },
+    {
+      "id": "2",
+      "langage": 1,
+      "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+    },
+    {
+      "id": "3",
+      "langage": 1,
+       "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+    },
+    {
+      "id": "4",
+      "langage": 2,
+      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+    },
+    {
+      "id": "5",
+      "langage": 2,
+      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+    }
+
+  ]
+
+
+}
