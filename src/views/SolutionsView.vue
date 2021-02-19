@@ -13,6 +13,7 @@
   <div class="right-column">
     <h1>Tentatives de l'utilisateur</h1>
     <div v-if="tentatives.length > 0">
+      <h3>Cliquez sur une tentative pour voir la solution proposée</h3>
       <Tentatives  v-bind:tentatives="tentatives"/>
     </div>
     <div v-else>
