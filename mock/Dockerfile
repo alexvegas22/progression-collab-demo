@@ -10,10 +10,9 @@ RUN apt-get update \
 RUN npm install -g json-server
 
 COPY ./*.json ./
+COPY ./*.js ./
 
 ENTRYPOINT ["json-server", "--host", "0.0.0.0", "db.json", "--routes", "routes.json","--middlewares","./middleware.js"]
-
-
 
 # commande to build
 #   docker build -t jsonserver .
