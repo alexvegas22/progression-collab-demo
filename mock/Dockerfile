@@ -11,7 +11,7 @@ RUN npm install -g json-server
 
 COPY ./*.json ./
 
-ENTRYPOINT ["json-server", "--port", "8080", "--host", "0.0.0.0", "db.json", "--routes", "routes.json","--middlewares","./middleware.js"]
+ENTRYPOINT ["json-server", "--host", "0.0.0.0", "db.json", "--routes", "routes.json","--middlewares","./middleware.js"]
 
 
 
@@ -19,7 +19,7 @@ ENTRYPOINT ["json-server", "--port", "8080", "--host", "0.0.0.0", "db.json", "--
 #   docker build -t jsonserver .
 
 # command to run
-#   docker run --rm -it --name jsonserver-container -p 3000:8080 jsonserver
+#   docker run --rm -it --name jsonserver-container -p 3000:3000 jsonserver
 
 # command to stop
 #   sudo docker container stop jsonserver-container
