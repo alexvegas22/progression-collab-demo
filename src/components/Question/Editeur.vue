@@ -41,8 +41,8 @@
   import 'prismjs/components/prism-python';
   import 'prismjs/components/prism-javascript';
 
+  Prism.highlightAll();
 
-  let langage = "python"
   let categorie = 'programmation_1'
   let nom = 'les_fonctions'
   let titre = 'appeler_une_fonction'
@@ -51,18 +51,25 @@
       components: {
         PrismEditor,
       },
+      props: ['question'],
+      watch: {
+        question: function () {
+          this.setEbauche();
+        }
+      },
       data: () => ({
         code: "",
-        resultats:[],
-        feedback_global:'',
-        testsPassent:null
+        resultats: [],
+        feedback_global: '',
+        testsPassent: null
       }),
       methods: {
         highlighter(code) {
-          return highlight(code, languages.python);
+          // prend le langage sélectionné par l'utilisateur et retourne les highlights
+          return highlight(code, languages['python']); 
         },
-        valider_tentative(){
-          envoyerTentative(langage, this.code).then(
+        valider_tentative() {
+          envoyerTentative(this.question.langage, this.code).then(
             tentative => {
                 this.resultats = tentative.résultats
                 this.feedback_global = tentative.feedback
@@ -85,18 +92,22 @@
             }
           )
         },
-      },
-      mounted() {
-          getEbauche(categorie, nom, titre, langage).then(
+        setEbauche() {
+          getEbauche(categorie, nom, titre, this.question.langage).then(
             ebauche => {
-                this.code = ebauche;
+              this.code = ebauche;
             }
           ).catch(
             err =>{
-                console.log(err);
-                this.code = "";
+              console.log(err);
+              this.code = "";
             }
           )
+        }
+      },
+      mounted() {
+        if (this.question.langage != undefined)
+          this.setEbauche()
       }
     };
 </script>

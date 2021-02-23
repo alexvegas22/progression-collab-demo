@@ -6,7 +6,7 @@
 
     <div class="editeur-container">
       <div class="division">
-        <EditeurCode />
+        <EditeurCode :question="question" />
       </div>
       <div class="division">
         <Feedback />

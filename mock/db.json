@@ -120,6 +120,7 @@
     "description": "Exercices d'introduction aux variables.",
     "enoncé": "Déclarez une variable dont l'identifiant est «réponse» et affectez-lui la valeur 42.",
     "type": 0,
+    "langage": "python",
     "question_prog": {
       "ébauches": [
         "\nprint(réponse)",
