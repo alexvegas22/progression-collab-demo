@@ -13,9 +13,9 @@ const getEbauche = (categorie, nom, titre, langage) => new Promise ((resolve, re
 
 // Temporairement GET parce que json server modifie le json lorsqu'un post est fait
 const getRetroaction = () => new Promise ((resolve, reject) => {
-  axios({url: '{0}/feedback'.format(process.env.VUE_APP_API_URL), data: {code: 'voici mon code'}, method: 'GET' })
+  axios({url: '{0}/retroaction'.format(process.env.VUE_APP_API_URL), data: {code: 'voici mon code'}, method: 'POST' })
   .then(resp => {
-    resolve(resp.data.data.included.attributes.feedback)
+    resolve(resp.data.included[0].attributes2.feedback)
   })
   .catch(err => {
     reject(err)
