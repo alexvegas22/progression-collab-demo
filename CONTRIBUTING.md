@@ -12,3 +12,7 @@ Hamed Tijane Mkpoumie Monfouayi
 <br>
 Julien Jacquard
 <br>
+Maryia Pashkevich
+<br>
+Hedi Ouahada
+<br>
