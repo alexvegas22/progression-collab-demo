@@ -1,6 +1,6 @@
 {
   "/api/v1/question/2?include=Tests":"/question",
-  "/question/programmation_1/les_fonctions/appeler_une_fonction/solution?langage=python":"/solution",
+  "/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche":"/solution",
   "/user/jdoe/categorie_toto/question/:id_question": "/avancement/:id_question",
   "/user/jdoe/categorie_toto/question/:id_question/:id": "/tentative/:id"
 }

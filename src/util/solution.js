@@ -32,4 +32,14 @@ const envoyerTentative = (langage,  code) => new Promise ((resolve, reject) => {
   })
 })
 
-export { getEbauche, getRetroaction, envoyerTentative };
+const getData = (lien) => new Promise ((resolve, reject) => {
+  axios({url: lien, method: 'GET' })
+  .then(reponse => {
+    resolve(reponse.data.data)
+  })
+  .catch(err => {
+    reject(err)
+  })
+})
+
+export { getEbauche, getRetroaction, envoyerTentative , getData};

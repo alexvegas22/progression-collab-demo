@@ -29,7 +29,7 @@
 
 <script>
 
-  import { getEbauche, envoyerTentative } from '@/util/solution';
+  import { getData , envoyerTentative } from '@/util/solution';
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -41,7 +41,6 @@
   import 'prismjs/components/prism-python';
   import 'prismjs/components/prism-javascript';
 
-  Prism.highlightAll();
 
   let categorie = 'programmation_1'
   let nom = 'les_fonctions'
@@ -87,19 +86,18 @@
             }
           ).catch(
             err => {
-                console.log(err);
-                this.reponse = "";
+              this.reponse = "";
             }
           )
         },
         setEbauche() {
-          getEbauche(categorie, nom, titre, this.question.langage).then(
-            ebauche => {
-              this.code = ebauche;
+          // À remplacer par `question.relationships.ébauches.links.self` quand le mock de question est fait
+          getData("http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche").then(
+            data => {
+              this.code = data.attributes.code;
             }
           ).catch(
             err =>{
-              console.log(err);
               this.code = "";
             }
           )
