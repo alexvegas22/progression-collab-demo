@@ -1,7 +1,6 @@
 <template>
   <div class="question">
-    <Enonce />
-
+    <Enonce v-bind:question="question" />
     <hr>
 
     <div class="editeur-container">
@@ -47,8 +46,17 @@ export default {
   },
   data() {
      return {
-         ebauches:[], // liste d'ébauche
-
+       
+       question: get_question().then(
+         response => {
+            this.question = response;
+         }
+       ).catch(
+         err=>{
+          console.log(err);
+         }
+       )
+       /*
          question: get_question('programmation_1', 'les_variables', 'introduction_aux_variables', 'python').then(
              response => {
                  this.question = response;
@@ -58,7 +66,7 @@ export default {
              err => {
                  console.log(err);
              }
-         )
+         )*/
      }
   }
 };

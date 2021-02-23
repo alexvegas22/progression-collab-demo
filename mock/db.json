@@ -78,40 +78,34 @@
     }
   ],
   "question_equipe_1": {
-    "data": {
-      "type": "Question",
-      "id": "question1",
-      "attributes": {
-        "titre": "Appeler une fonction paramétrée",
-        "description": "Appel d'une fonction existante recevant un paramètre",
-        "énoncé": "La fonction `salutations` affiche une salution autant de fois que la valeur reçue en paramètre. Utilisez-la pour faire afficher «Bonjour le monde!» autant de fois que le nombre reçu en entrée.",
-        "type_de_question": 3
-      },
-      "links": {
-        "0": {
-          "rel": "self",
-          "self": "https://progression.dti.crosemont.quebec/api/v1/question/"
+       "data": {
+        "type": "QuestionProg",
+        "id": "cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
+        "attributes": {
+            "nom": "appeler_une_fonction_paramétrée",
+            "titre": "Appeler une fonction paramétrée",
+            "description": "Appel d'une fonction existante recevant un paramètre",
+            "énoncé": "La fonction `salutations` affiche une salutation autant de fois que la valeur reçue en paramètre. Utilisez-la pour faire afficher «Bonjour le monde!» autant de fois que le nombre reçu en entrée."
         },
-        "self": "https://progression.dti.crosemont.quebec/Question/question1"
-      },
-      "relationships": {
-        "Tests": {
-          "links": {
-            "self": "https://progression.dti.crosemont.quebec/Question/question1/relationships/Tests",
-            "related": "https://progression.dti.crosemont.quebec/Question/question1/Tests"
-          },
-          "data": [
-            {
-              "type": "Test",
-              "id": "Test 1"
+        "links": {
+            "self": "http://localhost/question/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
+            "avancement": "http://localhost/avancement/jdoe/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
+            "catégorie": "http://localhost/catégorie/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMQ=="
+        },
+        "relationships": {
+            "Tests": {
+                "links": {
+                    "self": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/Tests",
+                    "related": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/Tests"
+                }
             },
-            {
-              "type": "Test",
-              "id": "Test 2"
+            "Solutions": {
+                "links": {
+                    "self": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/Solutions",
+                    "related": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/Solutions"
+                }
             }
-          ]
         }
-      }
     }
   },
   "question": {
