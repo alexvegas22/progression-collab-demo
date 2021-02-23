@@ -8,3 +8,5 @@ Charles-Antoine Poitras
 <br>
 Samuel Beaulieu
 <br>
+Hamed Tijane Mkpoumie Monfouayi
+<br>
