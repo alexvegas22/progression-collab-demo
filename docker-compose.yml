@@ -1,0 +1,29 @@
+version: '3.5'
+
+services: 
+  mock:
+    build: ./mock/
+    ports:
+      - 3000:3000
+  front-end:
+    build: ./
+    ports:
+      - 8080:8080
+
+
+# command to build
+#   docker-compose build
+
+# command to run
+#   docker-compose up
+
+# command to stop
+#   docker-compose stop
+# command to stop and remove container image
+#   docker-compose rm -f -s
+
+# Ajouter sudo devant chaque commande si nécessaire
+
+# url front-end => http://localhost:8080
+# url mock => http://localhost:3000
+
