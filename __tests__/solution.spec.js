@@ -5,36 +5,17 @@ import Tentatives from '../src/components/Question/Tentatives.vue'
 import Avancement from '../src/components/Question/Avancement.vue'
 import getAvancement from '../src/util/Avancement'
 
-test('solution affichage aucune donnée', async () => {
-    render(Solution)
-    
-    expect(screen.queryByText('aucune tentative à afficher')).toBeTruthy()
-})
-
-test('solution affichage aucun résultat à afficher', async () => {
-    render(Solution)
-    expect(screen.queryByText('aucune tentative à afficher')).toBeTruthy()
-    const buttons = screen.getAllByText('Voir les solutions')
-    
-    await fireEvent.click(buttons[2])
-    expect(screen.queryByText('aucune tentative à afficher')).toBeTruthy()
-})
-
-test('solution tentatives bouton un check message', async () => {
-    // succes but wrong !
-    const wrapper = mount(<Solution />);
-    const buttons = wrapper.findAll('button')
-
-    return buttons[1].trigger('click').then(data => {
-        let result = wrapper.find('h3').html()
-        expect(result).toEqual('<h3>aucune tentative à afficher</h3>')
-    })
-})
-
+// *********** TEST API METHOD
 
 test('api method avancement', () => {
     return getAvancement('/user/jdoe/categorie_toto/question/1').then((data) => {
         expect(data.état).toEqual(2)
+    })
+})
+
+test('api method avancement avec erreur 404', () => {
+    return getAvancement('/user/jdoe/categorie_toto/question/inconnu').catch((err)=>{
+        expect(err.toString()).toEqual("Error: Request failed with status code 404")
     })
 })
 
@@ -43,7 +24,6 @@ test('api method tentatives', () => {
         expect(data.tentative.length).toEqual(2)
     })
 })
-
 
 test('api method charger une tentative', () => {
     let tentative = {
@@ -95,6 +75,27 @@ test('api method charger une tentative la solution correspondante', () => {
     })
 })
 
+
+// *********** TEST COMPONENT SOLUTION
+
+test('solution affichage aucune donnée', async () => {
+    render(Solution)
+    
+    expect(screen.queryByText('aucune tentative à afficher')).toBeTruthy()
+})
+
+test('solution affichage aucun résultat à afficher', async () => {
+    render(Solution)
+    expect(screen.queryByText('aucune tentative à afficher')).toBeTruthy()
+    const buttons = screen.getAllByText('Voir les solutions')
+    
+    await fireEvent.click(buttons[2])
+    expect(screen.queryByText('aucune tentative à afficher')).toBeTruthy()
+})
+
+
+// *********** TEST COMPONENT AVANCEMENT
+
 test('Avancement component with question réussie props', async () => {
     const wrapper = mount(<Avancement />, {
             propsData: {
@@ -118,6 +119,9 @@ test('Avancement component with question non réussie props', async () => {
     expect(wrapper.props().état).toEqual(1)
     expect(wrapper.find('h1').text()).toEqual("La question est NON-RÉUSSI")
 })
+
+
+// *********** TEST COMPONENT TENTATIVE
 
 test('Tentative component with tentatives props', async () => {
     const wrapper = mount(<Tentatives />, {
@@ -187,7 +191,7 @@ test('Tentative component with solution UI', async () => {
                 }
             }
         })
-    let expectedProps = {"id": "1", "langage": 0, "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""}
+    let expectedSolutionProps = {"id": "1", "langage": 0, "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""}
 
-    expect(wrapper.props().solution).toEqual(expectedProps)
+    expect(wrapper.props().solution).toEqual(expectedSolutionProps)
 })
