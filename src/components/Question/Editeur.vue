@@ -1,6 +1,6 @@
 <template>
     <div id="question" class="container-editeur">
-        <!--prismditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></-prismditor-->
+        <prismditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismditor>
     </div>
 
     <div>
@@ -20,7 +20,7 @@
       </ul>
 
       <button @click="valider_tentative">envoie ta reponse</button>
-
+      <!-- TODO: fAIRE UN COMPOSANT SÉPARER POUR L'AFFICAHE DE LA REPONSE ET PASSER LES DONNÉES EN PROPS -->
       <h4 v-if="feedback_global">Feedback global: {{feedback_global}}</h4>
 
       <h3 v-if="testsPassent!=null">Ta reponse est {{testsPassent ? "Bonne" : "Mauvaise" }}</h3>
@@ -31,15 +31,15 @@
 
   import { getEbauche, envoyerTentative } from '@/util/solution';
 
-  //import { PrismEditor } from 'vue-prism-editor';
-  //import 'vue-prism-editor/dist/prismeditor.min.css';
-  //import { highlight, languages } from 'prismjs/components/prism-core';
-  //import 'prismjs/components/prism-clike';
-  //import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
+  import { PrismEditor } from 'vue-prism-editor';
+  import 'vue-prism-editor/dist/prismeditor.min.css';
+  import { highlight, languages } from 'prismjs/components/prism-core';
+  import 'prismjs/components/prism-clike';
+  import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
 
   // Imports des languages
-  //import 'prismjs/components/prism-python';
-  //import 'prismjs/components/prism-javascript';
+  import 'prismjs/components/prism-python';
+  import 'prismjs/components/prism-javascript';
 
 
   let langage = "python"
@@ -49,7 +49,7 @@
 
   export default {
       components: {
-        //PrismEditor,
+        PrismEditor,
       },
       data: () => ({
         code: "",

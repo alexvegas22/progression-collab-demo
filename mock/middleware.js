@@ -24,7 +24,7 @@ module.exports = function(req, res, next) {
           feedback: "Non!"
         }
       ],
-      feedback: "Feddback dependant du prof"
+      feedback: "Feedback dependant du prof"
     });
   } else {
     next();

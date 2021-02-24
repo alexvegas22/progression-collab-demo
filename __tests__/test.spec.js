@@ -8,9 +8,9 @@ describe( "Tests Solutions", ()=>{
    //     expect(res.solutions).toMatchObject(attendu)
    // })
     it("test etat question pas réussie", async ()=>{
-        const res = await get_solutions_user('ma_question')
-        expect(res.état).toBe(1)
-    })
+            const res = await get_solutions_user('ma_question')
+            expect(res.état).toBe(1)
+        })
 }
 )
 
