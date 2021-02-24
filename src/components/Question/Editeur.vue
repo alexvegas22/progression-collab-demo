@@ -1,6 +1,6 @@
 <template>
     <div id="question" class="container-editeur">
-        <prismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
+        <!--prismditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></-prismditor-->
     </div>
 
     <div>
@@ -31,15 +31,15 @@
 
   import { getEbauche, envoyerTentative } from '@/util/solution';
 
-  import { PrismEditor } from 'vue-prism-editor';
-  import 'vue-prism-editor/dist/prismeditor.min.css';
-  import { highlight, languages } from 'prismjs/components/prism-core';
-  import 'prismjs/components/prism-clike';
-  import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
+  //import { PrismEditor } from 'vue-prism-editor';
+  //import 'vue-prism-editor/dist/prismeditor.min.css';
+  //import { highlight, languages } from 'prismjs/components/prism-core';
+  //import 'prismjs/components/prism-clike';
+  //import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
 
   // Imports des languages
-  import 'prismjs/components/prism-python';
-  import 'prismjs/components/prism-javascript';
+  //import 'prismjs/components/prism-python';
+  //import 'prismjs/components/prism-javascript';
 
 
   let langage = "python"
@@ -49,7 +49,7 @@
 
   export default {
       components: {
-        PrismEditor,
+        //PrismEditor,
       },
       data: () => ({
         code: "",
