@@ -25,7 +25,7 @@
 
 <script>
 import Avancement from "@/components/Question/Avancement"
-import get_api_response from "@/util/get_api_response";
+import getAvancement from "@/util/Avancement";
 import Tentatives from "@/components/Question/Tentatives";
 
 
@@ -58,19 +58,19 @@ export default {
   },
   methods:{
     charger_tentatives(question){
-      get_api_response(question)
+      getAvancement(question)
           .then(res=>{
             this.tentatives=res.tentative
           })
     },
     charger_etat(question, i){
-      get_api_response(question)
+      getAvancement(question)
           .then(res=>{
             this.états[i]=res.état
           })
     },
     afficherTentative(tentative){
-      get_api_response("/tentative/"+tentative.date_soumission)
+      getAvancement("/tentative/"+tentative.date_soumission)
           .then(
               response=>{
                 this.tentativeAffichee.date_soumission = response.date_soumission
@@ -84,7 +84,7 @@ export default {
     },
 
     afficherSolution(url_solution){
-      get_api_response(url_solution)
+      getAvancement(url_solution)
           .then(
               response=>{
                 this.solution.langage = response.langage
