@@ -160,3 +160,34 @@ test('Tentative component with solution props', async () => {
 
     expect(wrapper.props().solution).toEqual(expectedProps)
 })
+
+test('Tentative component with solution UI', async () => {
+    // succes but not finished !
+    const wrapper = mount(<Tentatives />, {
+            propsData: {
+                tentatives: [
+                    {
+                      "date_soumission": 42352353253,
+                      "id": 42352353253
+                    },
+                    {
+                      "date_soumission": 4346436,
+                      "id": 4346436
+                    }
+                  ],
+                tentativeAffichee: {
+                    "date_soumission": 42352353253,
+                    "id": 42352353253
+                  },
+                afficherTentative: ()=>{},
+                solution: {
+                    "id": "1",
+                    "langage": 0,
+                    "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+                }
+            }
+        })
+    let expectedProps = {"id": "1", "langage": 0, "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""}
+
+    expect(wrapper.props().solution).toEqual(expectedProps)
+})
