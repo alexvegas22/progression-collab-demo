@@ -5,7 +5,7 @@
       <li v-for="(question, i ) in questions" :key="i">
         {{charger_etat(question, i)}}
         <Avancement v-on:load="charger_etat(question, i)" v-bind:question="question" v-bind:état="états[i]" />
-        <button v-on:click="charger_tentatives(question)">Voir les solutions</button>
+        <button @click="charger_tentatives(question)">Voir les solutions</button>
       </li>
     </ul>
   </div>
