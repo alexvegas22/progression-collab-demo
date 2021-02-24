@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <h1 v-if="état!=null">La question <strong>{{question.id}}</strong> est {{convetirEtatEnString(état)}}</h1>
+    <h1 v-if="état!=null">La question est {{convetirEtatEnString(état)}}</h1>
   </div>
 
 </template>
