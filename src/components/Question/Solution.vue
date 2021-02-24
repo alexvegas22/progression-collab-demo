@@ -12,8 +12,8 @@
 
   <div class="left-column">
     <h1>Tentatives de l'utilisateur</h1>
-    <div v-if="tentatives.length > 0">
-      <h3>Cliquez sur une tentative pour voir la solution proposée</h3>
+    <div v-if="tentatives.length > 0" >
+      <h3 id="solution-message">Cliquez sur une tentative pour voir la solution proposée</h3>
       <Tentatives v-bind:tentativeAffichee="tentativeAffichee" v-bind:solution="solution" v-bind:afficher-tentative="afficherTentative"  v-bind:tentatives="tentatives"/>
     </div>
     <div v-else>
