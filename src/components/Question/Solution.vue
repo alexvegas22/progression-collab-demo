@@ -14,7 +14,7 @@
     <h1>Tentatives de l'utilisateur</h1>
     <div v-if="tentatives.length > 0">
       <h3>Cliquez sur une tentative pour voir la solution proposée</h3>
-      <Tentatives  v-bind:tentatives="tentatives"/>
+      <Tentatives v-bind:tentativeAffichee="tentativeAffichee" v-bind:solution="solution" v-bind:afficher-tentative="afficherTentative"  v-bind:tentatives="tentatives"/>
     </div>
     <div v-else>
       <h3>aucune tentative à afficher</h3>
@@ -43,7 +43,17 @@ export default {
         '/user/jdoe/categorie_toto/question/1',
         '/user/jdoe/categorie_toto/question/2',
         '/user/jdoe/categorie_toto/question/3'
-        ]
+        ],
+      tentativeAffichee:{
+        feedback:"",
+        date_soumission:"",
+        solution: null
+      },
+      solution:{
+        langage:"",
+        code:""
+      }
+
     }
   },
   methods:{
@@ -58,6 +68,33 @@ export default {
           .then(res=>{
             this.états[i]=res.état
           })
+    },
+    afficherTentative(tentative){
+      get_api_response("/tentative/"+tentative.date_soumission)
+          .then(
+              response=>{
+                this.tentativeAffichee.date_soumission = response.date_soumission
+                this.tentativeAffichee.feedback = response.feedback
+                this.tentativeAffichee.solution = response.solutions
+                this.afficherSolution(response.solutions)
+              })
+          .catch(err=>{
+            this.erreurs = err;
+          })
+    },
+
+    afficherSolution(url_solution){
+      get_api_response(url_solution)
+          .then(
+              response=>{
+                this.solution.langage = response.langage
+                this.solution.code = response.code
+                console.log(this.solution)
+              })
+          .catch(err=>{
+            console.log(err)
+            this.erreurs = err;
+          });
     }
   }
 
