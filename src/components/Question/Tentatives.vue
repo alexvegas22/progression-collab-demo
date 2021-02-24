@@ -5,7 +5,7 @@
       <a v-on:click="afficherTentative(tentative)">Solution du {{convetirDateDepuisTimeStamp(tentative.date_soumission)}} </a>
     </div>
 
-    <div v-if="tentativeAffichee.solution">
+    <div v-if="tentativeAffichee && tentativeAffichee.solution">
       <h3>Détail d'une solution</h3>
       <p>Langage id: {{solution.langage}}</p>
       <p>Langage : {{convertirLangageNbrEnString(solution.langage)}}</p>
