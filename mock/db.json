@@ -78,7 +78,7 @@
     }
   ],
   "question_equipe_1": {
-       "data": {
+    "data": {
         "type": "QuestionProg",
         "id": "cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
         "attributes": {
@@ -93,16 +93,16 @@
             "catégorie": "http://localhost/catégorie/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMQ=="
         },
         "relationships": {
-            "Tests": {
+            "tests": {
                 "links": {
-                    "self": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/Tests",
-                    "related": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/Tests"
+                    "self": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/tests",
+                    "related": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/tests"
                 }
             },
-            "Solutions": {
+            "ébauches": {
                 "links": {
-                    "self": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/Solutions",
-                    "related": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/Solutions"
+                    "self": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ébauches",
+                    "related": "http://localhost//QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/ébauches"
                 }
             }
         }
