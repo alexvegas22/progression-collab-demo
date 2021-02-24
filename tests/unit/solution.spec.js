@@ -1,7 +1,7 @@
 import {render, screen, fireEvent} from '@testing-library/vue'
 import { shallowMount, mount } from '@vue/test-utils'
-import Solution from '../src/components/Question/Solution.vue'
-import getAvancement from '../src/util/Avancement'
+import Solution from '../../src/components/Question/Solution.vue'
+import getAvancement from '../../src/util/Avancement'
 
 test('solution affichage aucune donnée', async () => {
     render(Solution)
