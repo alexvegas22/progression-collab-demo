@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="question">
     <Enonce />
 
@@ -9,7 +9,8 @@
         <EditeurCode />
       </div>
       <div class="division">
-        <Feedback />
+        <Feedback v-bind:feedBack="feedBack"/>
+        <button v-on:click="obtenirRetroaction">Cliquer</button>
       </div>
     </div>
 
@@ -36,6 +37,7 @@ import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 
 import get_question from '@/util/question'
+import { getRetroaction } from '@/util/solution';
 
 export default {
   name: "Question",
@@ -48,7 +50,7 @@ export default {
   data() {
      return {
          ebauches:[], // liste d'ébauche
-
+         feedBack: null,
          question: get_question('programmation_1', 'les_variables', 'introduction_aux_variables', 'python').then(
              response => {
                  this.question = response;
@@ -60,6 +62,21 @@ export default {
              }
          )
      }
+  },
+  methods: {
+    obtenirRetroaction() {
+
+      getRetroaction().then(
+        retroaction => {
+            this.feedBack = retroaction;
+        }
+      ).catch(
+        err =>{
+            console.log(err);
+            this.feedBack = "";
+        }
+      )
+    },
   }
 };
 </script>
