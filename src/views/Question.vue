@@ -6,11 +6,11 @@
 
     <div class="editeur-container">
       <div class="division">
-        <EditeurCode />
+
       </div>
       <div class="division">
         <Feedback v-bind:feedBack="feedBack"/>
-        <button v-on:click="obtenirRetroaction">Cliquer</button>
+        <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
       </div>
     </div>
 
@@ -33,7 +33,7 @@
 // @ is an alias to /src
 import Enonce from "@/components/Question/Énoncé.vue";
 import Feedback from "@/components/Question/Feedback.vue";
-import EditeurCode from '@/components/Question/Editeur.vue'
+//import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 
 import get_question from '@/util/question'
@@ -44,7 +44,6 @@ export default {
   components: {
     Enonce,
     Feedback,
-    EditeurCode,
     Solution,
   },
   data() {
