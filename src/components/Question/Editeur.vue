@@ -1,68 +1,55 @@
 <template>
     <div id="question" class="container-editeur">
-        <prismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
+        <!--prismditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismditor-->
     </div>
+    <button @click="valider_tentative">envoie ta reponse</button>
+    <!-- TODO :Gerer le traitement d'erreur -->
+   <div v-if="resultats.length>0">
+     <AffichageValidation v-bind:résultats="resultats" v-bind:feedback_global="feedback_global" v-bind:testsPassent="testsPassent"/>
+   </div>
+  <slot></slot>
 
-    <div>
-      <ul v-for="unResultat in resultats" :key="unResultat">
-        <li>
-          resultat: {{unResultat.résultat}}
-        </li>
-        <li>
-          sortie d'erreur: {{unResultat.sortie_erreur}}
-        </li>
-        <li>
-          sortie observée: {{unResultat.sortie_observée}}
-        </li>
-        <li>
-         feedback: {{unResultat.feedback}}
-        </li>
-      </ul>
-
-      <button @click="valider_tentative">envoie ta reponse</button>
-
-      <h4 v-if="feedback_global">Feedback global: {{feedback_global}}</h4>
-
-      <h3 v-if="testsPassent!=null">Ta reponse est {{testsPassent ? "Bonne" : "Mauvaise" }}</h3>
-    </div>
 </template>
 
 <script>
 
-  import { getEbauche, envoyerTentative } from '@/util/solution';
+  import {getEbauche, envoyerTentative } from '@/util/solution';
+  import AffichageValidation from '@/components/Question/AffichageValidation';
 
-  import { PrismEditor } from 'vue-prism-editor';
-  import 'vue-prism-editor/dist/prismeditor.min.css';
-  import { highlight, languages } from 'prismjs/components/prism-core';
-  import 'prismjs/components/prism-clike';
-  import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
+  //import { PrismEditor } from 'vue-prism-editor';
+  //import 'vue-prism-editor/dist/prismeditor.min.css';
+  //import { highlight, languages } from 'prismjs/components/prism-core';
+  //import 'prismjs/components/prism-clike';
+ // import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
 
   // Imports des languages
-  import 'prismjs/components/prism-python';
-  import 'prismjs/components/prism-javascript';
+  //import 'prismjs/components/prism-python';
+  //import 'prismjs/components/prism-javascript';
 
 
   let langage = "python"
   let categorie = 'programmation_1'
   let nom = 'les_fonctions'
   let titre = 'appeler_une_fonction'
-
+  let code= 'fgrsdgfrsd'
   export default {
       components: {
-        PrismEditor,
+        //PrismEditor,
+        AffichageValidation
       },
       data: () => ({
         code: "",
         resultats:[],
         feedback_global:'',
-        testsPassent:null
+        testsPassent:false
+        //messageErreur:String
       }),
       methods: {
-        highlighter(code) {
-          return highlight(code, languages.python);
-        },
+       // highlighter(code) {
+         // return highlight(code, languages.python);
+       // },
         valider_tentative(){
-          envoyerTentative(langage, this.code).then(
+          envoyerTentative(langage, "ddd").then(
             tentative => {
                 this.resultats = tentative.résultats
                 this.feedback_global = tentative.feedback
@@ -93,8 +80,8 @@
             }
           ).catch(
             err =>{
+                this.messageErreur="Impossible de communiquer avec le super serveur de validation :("
                 console.log(err);
-                this.code = "";
             }
           )
       }

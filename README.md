@@ -26,3 +26,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Exécuter le serveur de mock json-serveur
 json-server --watch db.json -m middleware.js --routes routes.json --port 3000
+
+### Nom des variables d'environnement
+ * VUE_APP_API_URL= url de votre mock API

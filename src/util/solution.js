@@ -32,4 +32,7 @@ const envoyerTentative = (langage,  code) => new Promise ((resolve, reject) => {
   })
 })
 
+
+
+
 export { getEbauche, getRetroaction, envoyerTentative };
