@@ -1,5 +1,5 @@
 <template>
-  <div id="énoncé">
+  <div id="enonce">
     <h2>{{ enonce }}</h2>
   </div>
 </template>
@@ -7,11 +7,6 @@
 <script>
 export default {
   name: "Enonce",
-  props: ["question"],
-  data() {
-    return {
-      enonce: this.question
-    };
-  }
+  props: ["enonce"]
 };
 </script>

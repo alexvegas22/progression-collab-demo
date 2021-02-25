@@ -1,6 +1,6 @@
  <template>
   <div class="question">
-    <Enonce v-bind:question="question.attributes.énoncé" />
+    <Enonce v-bind:enonce="enonce" />
     <hr>
 
     <div class="editeur-container">
@@ -32,7 +32,7 @@
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
-//import EditeurCode from '@/components/Question/Editeur.vue'
+import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 
 import get_question from '@/util/question'
@@ -44,15 +44,17 @@ export default {
     Enonce,
     Feedback,
     Solution,
+    EditeurCode
   },
   data() {
      return {
          ebauches:[], // liste d'ébauche
          feedBack: null,
+         enonce:null,
 
-       
        question: get_question().then(
          response => {
+            this.enonce = response.attributes.énoncé;
             this.question = response;
          }
        ).catch(
@@ -60,17 +62,6 @@ export default {
           console.log(err);
          }
        )
-       /*
-         question: get_question('programmation_1', 'les_variables', 'introduction_aux_variables', 'python').then(
-             response => {
-                 this.question = response;
-                 this.ebauches = response.question_prog.ébauches;
-             }
-         ).catch(
-             err => {
-                 console.log(err);
-             }
-         )*/
      }
   },
   methods: {
