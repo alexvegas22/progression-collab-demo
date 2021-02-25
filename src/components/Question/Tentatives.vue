@@ -5,7 +5,7 @@
       <a v-on:click="afficherTentative(tentative)">Solution du {{convetirDateDepuisTimeStamp(tentative.date_soumission)}} </a>
     </div>
 
-    <div v-if="tentativeAffichee.solution">
+    <div v-if="tentativeAffichee && tentativeAffichee.solution">
       <h3>Détail d'une solution</h3>
       <p>Langage id: {{solution.langage}}</p>
       <p>Langage : {{convertirLangageNbrEnString(solution.langage)}}</p>
@@ -19,26 +19,16 @@
 
 <script>
 
-  import get_api_response from "@/util/get_api_response";
 
   export default {
     name:"Tentatives",
     props:{
       tentatives:Array,
-    },
-    data(){
-      return {
-        tentativeAffichee:{
-          feedback:"",
-          date_soumission:"",
-          solution: null
-        },
-        solution:{
-          langage:"",
-          code:""
-        }
-      }
-    },
+      tentativeAffichee:"",
+      afficherTentative:Function,
+      solution:""
+    }
+    ,
     methods:{
       // method to convert timestamp to dd/mm/yyyy hh:mm
       convetirDateDepuisTimeStamp : function (timestanp) {
@@ -63,33 +53,8 @@
             langageString = "?"
         }
         return langageString
-      },
-
-      afficherTentative(tentative){
-        get_api_response("/tentative/"+tentative.date_soumission)
-          .then(
-            response=>{
-              this.tentativeAffichee.date_soumission = response.date_soumission
-              this.tentativeAffichee.feedback = response.feedback
-              this.tentativeAffichee.solution = response.solutions
-              this.afficherSolution(response.solutions)
-            })
-          .catch(err=>{
-            this.erreurs = err;
-          })
-      },
-
-      afficherSolution(url_solution){
-        get_api_response(url_solution)
-          .then(
-            response=>{
-              this.solution.langage = response.langage
-              this.solution.code = response.code
-            })
-          .catch(err=>{
-            this.erreurs = err;
-          });
       }
+
     }
   }
 
