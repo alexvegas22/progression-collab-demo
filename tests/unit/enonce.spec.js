@@ -17,7 +17,7 @@ test("l'affichage ne correspond pas à l'énoncé", async () => {
   expect(screen.queryByText("test")).toBeFalsy();
 });
 
-describe("Tests unitaires sur le component Tentatives", () => {
+describe("Test sur le component Enonce", () => {
   let EnonceMock;
 
   beforeAll(async () => {
