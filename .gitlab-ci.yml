@@ -13,4 +13,5 @@ cache:
 test_vue:
   script:
     - npm install
+    - json-server --watch db.json -m middleware.js --routes routes.json
     - npm test
