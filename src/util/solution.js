@@ -1,5 +1,7 @@
-const axios = require('axios');
 import './commun.js'
+
+const axios = require('axios');
+const URI_BASE = process.env.VUE_APP_API_URL
 
 const getEbauche = (categorie, nom, titre, langage) => new Promise ((resolve, reject) => {
   axios({url: '{0}/question/{1}/{2}/{3}/solution?langage={4}'.format(process.env.VUE_APP_API_URL, categorie, nom, titre, langage), method: 'GET' })
@@ -23,7 +25,7 @@ const getRetroaction = () => new Promise ((resolve, reject) => {
 })
 
 const envoyerTentative = (langage,  code) => new Promise ((resolve, reject) => {
-  axios({url: '{0}/tentative?langage={1}'.format(process.env.VUE_APP_API_URL, langage), data: {code: code}, method: 'POST' })
+  axios({url: '{0}/tentative?langage={1}'.format(URI_BASE, langage), data: {code: code}, method: 'POST' })
   .then(resp => {
     resolve(resp.data)
   })

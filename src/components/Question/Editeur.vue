@@ -20,7 +20,7 @@
   //import 'vue-prism-editor/dist/prismeditor.min.css';
   //import { highlight, languages } from 'prismjs/components/prism-core';
   //import 'prismjs/components/prism-clike';
- // import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
+  //import 'prismjs/themes/prism-dark.css'; // import syntax highlighting styles } from 'vue-prism-editor';
 
   // Imports des languages
   //import 'prismjs/components/prism-python';
@@ -45,9 +45,9 @@
         //messageErreur:String
       }),
       methods: {
-       // highlighter(code) {
-         // return highlight(code, languages.python);
-       // },
+       //highlighter(code) {
+        // return highlight(code, languages.python);
+       //},
         valider_tentative(){
           envoyerTentative(langage, "ddd").then(
             tentative => {
