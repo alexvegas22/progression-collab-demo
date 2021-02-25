@@ -1,11 +1,13 @@
-import { render, fireEvent,screen } from '@testing-library/vue'
+import { render } from '@testing-library/vue'
 import Editeur from '@/components/Question/Editeur'
+import { mount } from '@vue/test-utils'
 
 test('Test#1', async () => {
-    render(Editeur)
-    expect(await screen.getByText(''))
-    const code = screen.getByLabelText(/code/i)
-    await fireEvent.update(code, 'print(\'lol\')')
-    expect(await screen.getByText('print(\'lol\')')).toBeTruthy()
+  const question = JSON.parse('{ "nom": "les_variables",  "titre": "Introduction aux variables", "description": "Exercices dintroduction aux variables.", "enoncé": "Déclarez une variable dont lidentifiant est «réponse» et affectez-lui la valeur 42.", "langage": "python"}')
 
+  const wrapper = mount(Editeur, {
+    propsData: { question: question }
   })
+
+  expect(wrapper.vm.code).toBe("")
+})

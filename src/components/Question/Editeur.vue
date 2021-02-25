@@ -1,6 +1,6 @@
 <template>
     <div id="question" class="container-editeur">
-        <prismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
+        <prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
     </div>
 
     <div>
@@ -65,7 +65,7 @@
       methods: {
         highlighter(code) {
           // prend le langage sélectionné par l'utilisateur et retourne les highlights
-          return highlight(code, languages['python']); 
+          return highlight(code, languages['python']);
         },
         valider_tentative() {
           envoyerTentative(this.question.langage, this.code).then(
@@ -104,7 +104,7 @@
         }
       },
       mounted() {
-        if (this.question.langage != undefined)
+        if (this.question != undefined && this.question.langage != undefined)
           this.setEbauche()
       }
     };
