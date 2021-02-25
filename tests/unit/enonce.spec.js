@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/vue";
 import { mount } from "@vue/test-utils";
 import Enonce from "@/components/Question/Enonce.vue";
-import Solution from "@/components/Question/Solution.vue";
 import get_question from "@/util/Question";
 
 var énoncé =
@@ -18,16 +17,47 @@ test("l'affichage ne correspond pas à l'énoncé", async () => {
   expect(screen.queryByText("test")).toBeFalsy();
 });
 
+describe("Tests unitaires sur le component Tentatives", () => {
+  let EnonceMock;
+
+  beforeAll(async () => {
+    await get_question().then(
+      (data) => (EnonceMock = data.attributes.énoncé)
+    );
+  });
+
+  it("Lien tentative affichée", async () => {
+    const wrapper = mount(Enonce, {
+      propsData: {
+        question: EnonceMock,
+      },
+    });
+    expect(wrapper.findAll("h2")[0].html()).toEqual(
+      "<h2>"+énoncé+"</h2>"
+    );
+  });
+});
+
+
 test("l'affichage  correspond  à l'énoncé", async () => {
   render(Enonce);
   expect(screen.queryByText(énoncé)).toBeTruthy();
 });
 
-test("Enonce component avec affichage de l'énoncé", async () => {
-  const wrapper = mount(<Enonce />, {
+test("Enonce component avec affichage de l'énoncé v1", async () => {
+  const wrapper = mount(Enonce, {
     propsData: {
       question: "Un énoncé",
     },
   });
   expect(wrapper.props().question).toEqual("Un énoncé");
+});
+
+test("Enonce component avec affichage de l'énoncé ", async () => {
+  const wrapper = mount(<Enonce />, {
+    propsData: {
+      question: ["Un énoncé"],
+    },
+  });
+  expect(wrapper.props().question[0]).toEqual("Un énoncé");
 });

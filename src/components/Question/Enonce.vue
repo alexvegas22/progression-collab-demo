@@ -1,13 +1,17 @@
 <template>
   <div id="énoncé">
-    <h2>{{ question.attributes.énoncé }}</h2>
+    <h2>{{ enonce }}</h2>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Enonce",
-  props: ['question']
+  props: ["question"],
+  data() {
+    return {
+      enonce: this.question
+    };
+  }
 };
 </script>
