@@ -5,7 +5,7 @@
 
     <div class="editeur-container">
       <div class="division">
-
+        <EditeurCode :question="question" />
       </div>
       <div class="division">
         <Feedback v-bind:feedBack="feedBack"/>
