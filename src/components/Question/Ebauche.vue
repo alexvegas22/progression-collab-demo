@@ -11,26 +11,10 @@
 
 <script>
 // @ is an alias to /src
-import get_question from '@/util/question'
 
 export default {
   name: 'Ebauche',
-     data() {
-        return {
-            ebauches:[], // liste d'ébauche
-
-            question: get_question('programmation_1', 'les_variables', 'introduction_aux_variables', 'python').then(
-                response => {
-                    this.question = response;
-                    this.ebauches = response.question_prog.ébauches;
-                }
-            ).catch(
-                err => {
-                    console.log(err);
-                }
-            )
-        }
-     }
+  props: {ebauches:Array}
 }
 </script>
 

@@ -14,7 +14,7 @@
     </div>
 
     <hr>
-    <Ebauche/>
+    <Ebauche v-bind:ebauches="ebauches"/>
     <hr>
 
     <div style="width: 100%">
@@ -41,6 +41,23 @@ export default {
     EditeurCode,
     Solution,
     Ebauche
+  },
+  data(){
+    return {
+      ebauches:[], // liste d'ébauche
+
+      question: get_question().then(
+          response => {
+            this.question = response;
+            this.ebauches = response.question_prog.ébauches;
+          }
+      ).catch(
+          err => {
+            console.log(err);
+          }
+      )
+
+    }
   }
 };
 </script>
