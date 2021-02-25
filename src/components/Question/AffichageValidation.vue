@@ -15,14 +15,14 @@
     </ul>
 
     <h4 v-if="feedback_global">Feedback global: {{feedback_global}}</h4>
-    <h3 v-if="message_erreur" >{{message_erreur}}</h3>
+    <h3 v-if="message_connexion_API" >{{message_connexion_API}}</h3>
     <h3 v-if="testsPassent!=null">Ta reponse est {{testsPassent ? "Bonne" : "Mauvaise" }}</h3>
 </template>
 <script>
 export default {
   name: "AffichageValidation",
   props: {
-    message_erreur:String,
+    message_connexion_API:String,
     résultats:Array,
     feedback_global:String,
     testsPassent:Boolean

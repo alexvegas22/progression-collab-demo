@@ -2,13 +2,14 @@
     <div id="question" class="container-editeur">
         <!--prismditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismditor-->
     </div>
-    <button @click="valider_tentative">envoie ta reponse</button>
+    <button :disabled="messageCnxAPI.length===34" @click="valider_tentative">envoie ta reponse</button>
     <!-- TODO :Gerer le traitement d'erreur -->
-   <div v-if="resultats.length>0">
-     <AffichageValidation v-bind:résultats="resultats" v-bind:feedback_global="feedback_global" v-bind:testsPassent="testsPassent"/>
+   <div v-if="resultats.length>0 || messageCnxAPI!=null">
+     <AffichageValidation v-bind:message_connexion_API="messageCnxAPI"
+                          v-bind:résultats="resultats"
+                          v-bind:feedback_global="feedback_global"
+                          v-bind:testsPassent="testsPassent"/>
    </div>
-  <slot></slot>
-
 </template>
 
 <script>
@@ -31,7 +32,6 @@
   let categorie = 'programmation_1'
   let nom = 'les_fonctions'
   let titre = 'appeler_une_fonction'
-  let code= 'fgrsdgfrsd'
   export default {
       components: {
         //PrismEditor,
@@ -41,16 +41,20 @@
         code: "",
         resultats:[],
         feedback_global:'',
-        testsPassent:false
-        //messageErreur:String
+        testsPassent:null,
+        messageCnxAPI: ""
       }),
       methods: {
        //highlighter(code) {
         // return highlight(code, languages.python);
        //},
         valider_tentative(){
-          envoyerTentative(langage, "ddd").then(
+          //en att la reponse, en affiche un message d'attente
+          this.messageCnxAPI="Envoie de la tentative en cours..."
+          envoyerTentative(langage, this.code).then(
             tentative => {
+              //si on recoit une reponse le message devient null, la reponse sera affichee
+                this.messageCnxAPI="";
                 this.resultats = tentative.résultats
                 this.feedback_global = tentative.feedback
 
@@ -68,7 +72,8 @@
           ).catch(
             err => {
                 console.log(err);
-                this.reponse = "";
+                //message d'erreur si on ne peut pas joindre l'API
+                this.messageCnxAPI="Impossible de communiquer avec le super serveur de validation :("
             }
           )
         },
@@ -80,8 +85,8 @@
             }
           ).catch(
             err =>{
-                this.messageErreur="Impossible de communiquer avec le super serveur de validation :("
                 console.log(err);
+                this.code = "";
             }
           )
       }
