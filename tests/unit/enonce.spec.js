@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/vue";
 import { mount } from "@vue/test-utils";
 import Enonce from "@/components/Question/Enonce.vue";
-import Solution from "@/components/Question/Solution.vue";
 import get_question from "@/util/Question";
 
 var énoncé =
