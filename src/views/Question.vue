@@ -34,7 +34,6 @@ import Enonce from "@/components/Question/Énoncé.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
-
 import get_question from '@/util/question'
 
 export default {
@@ -43,7 +42,7 @@ export default {
     Enonce,
     Feedback,
     EditeurCode,
-    Solution,
+    Solution
   },
   data() {
      return {

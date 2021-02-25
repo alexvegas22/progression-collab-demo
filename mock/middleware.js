@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
           feedback: "Non!"
         },
         {
-          résultat: "false",
+          résultat: "true",
           sortie_erreur: ":(",
           sortie_observée: "",
           feedback: "Non!"
