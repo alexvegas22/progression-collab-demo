@@ -29,7 +29,7 @@
 
 <script>
 // @ is an alias to /src
-import Enonce from "@/components/Question/Énoncé.vue";
+import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'

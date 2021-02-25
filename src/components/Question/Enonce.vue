@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: "Énoncé",
+  name: "Enonce",
   props: ['question']
 };
 </script>
