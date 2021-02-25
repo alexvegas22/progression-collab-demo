@@ -28,11 +28,6 @@
   import 'prismjs/components/prism-javascript';
 
 
-  let langage = "python"
-  let categorie = 'programmation_1'
-  let nom = 'les_fonctions'
-  let titre = 'appeler_une_fonction'
-
   export default {
       components: {
         PrismEditor,
@@ -54,7 +49,7 @@
       methods: {
         highlighter(code) {
           // prend le langage sélectionné par l'utilisateur et retourne les highlights
-          return highlight(code, languages[this.question.langage]);
+          return highlight(code, languages["python"]);
         },
         valider_tentative() {
           this.messageCnxAPI="Envoie de la tentative en cours..."

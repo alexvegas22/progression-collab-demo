@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="form-group" v-if="password_req">
-        <label id="loginTxt" class="control-label col-sm-3"
+        <label id="" class="control-label col-sm-3"
           >Mot de passe :
         </label>
         <div class="col-sm-3">

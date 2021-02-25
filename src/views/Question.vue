@@ -1,4 +1,5 @@
 <template>
+  <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
     <Enonce v-bind:enonce="enonce" />
     <hr>
@@ -14,7 +15,7 @@
     </div>
 
     <hr>
-    <Ebauche v-bind:ebauches="ebauches"/>
+    <!--Ebauche v-bind:ebauches="ebauches"/-->
     <hr>
 
     <div style="width: 100%">
@@ -29,7 +30,7 @@ import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
-import Ebauche from "@/components/Question/Ebauche";
+//import Ebauche from "@/components/Question/Ebauche";
 
 import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
@@ -40,19 +41,19 @@ export default {
     Enonce,
     Feedback,
     Solution,
-    Ebauche,
+    //Ebauche,
     EditeurCode
   },
   data() {
      return {
-         ebauches:[], // liste d'ébauche
+         //ebauches:[], // liste d'ébauche
          feedBack: null,
          enonce:null,
         question: get_question().then(
          response => {
             this.enonce = response.attributes.énoncé;
             this.question = response;
-            this.ebauches = response.question_prog.ébauches;
+           // this.ebauches = response.question_prog.ébauches;
          }
        ).catch(
          err=>{
