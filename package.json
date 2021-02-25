@@ -11,7 +11,6 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@testing-library/vue": "^6.4.0",
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
     "json-server": "^0.16.3",
@@ -26,7 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "@babel/preset-env": "^7.13.5",
-    "@testing-library/vue": "^6.3.4",
+    "@testing-library/vue": "^6.4.0",
     "@vue/cli-plugin-babel": "^4.5.11",
     "@vue/cli-plugin-eslint": "^4.5.11",
     "@vue/cli-plugin-router": "^4.5.11",
