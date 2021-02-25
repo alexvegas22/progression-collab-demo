@@ -79,39 +79,34 @@
   ],
   "question_equipe_1": {
     "data": {
-      "type": "Question",
-      "id": "question1",
-      "attributes": {
-        "titre": "Appeler une fonction paramétrée",
-        "description": "Appel d'une fonction existante recevant un paramètre",
-        "énoncé": "La fonction `salutations` affiche une salution autant de fois que la valeur reçue en paramètre. Utilisez-la pour faire afficher «Bonjour le monde!» autant de fois que le nombre reçu en entrée.",
-        "type_de_question": 3
-      },
-      "links": {
-        "0": {
-          "rel": "self",
-          "self": "https://progression.dti.crosemont.quebec/api/v1/question/"
+        "type": "QuestionProg",
+        "id": "cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
+        "attributes": {
+            "nom": "appeler_une_fonction_paramétrée",
+            "titre": "Appeler une fonction paramétrée",
+            "description": "Appel d'une fonction existante recevant un paramètre",
+            "énoncé": "La fonction `salutations` affiche une salutation autant de fois que la valeur reçue en paramètre. Utilisez-la pour faire afficher «Bonjour le monde!» autant de fois que le nombre reçu en entrée."
         },
-        "self": "https://progression.dti.crosemont.quebec/Question/question1"
-      },
-      "relationships": {
-        "Tests": {
-          "links": {
-            "self": "https://progression.dti.crosemont.quebec/Question/question1/relationships/Tests",
-            "related": "https://progression.dti.crosemont.quebec/Question/question1/Tests"
-          },
-          "data": [
-            {
-              "type": "Test",
-              "id": "Test 1"
+        "links": {
+            "self": "http://localhost:3000/question/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
+            "avancement": "http://localhost:3000/avancement/jdoe/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=",
+            "catégorie": "http://localhost:3000/catégorie/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMQ=="
+        },
+        "relationships": {
+            "tests": {
+                "links": {
+                    "self": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/tests",
+                    "related": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/tests"
+                }
             },
-            {
-              "type": "Test",
-              "id": "Test 2"
+            "ébauches": {
+              "code": "# +VISIBLE\ndef salutations( nb_répétitions ):\n    for i in range( nb_répétitions ):\n        print( \"Bonjour le monde!\" )\n\n\nnb_entré = int( input() )\n# +TODO\n\n\n# -TODO\n# -VISIBLE\n",
+                "links": {
+                    "self": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ébauches",
+                    "related": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/ébauches"
+                }
             }
-          ]
         }
-      }
     }
   },
   "question": {
@@ -120,6 +115,7 @@
     "description": "Exercices d'introduction aux variables.",
     "enoncé": "Déclarez une variable dont l'identifiant est «réponse» et affectez-lui la valeur 42.",
     "type": 0,
+    "langage": "python",
     "question_prog": {
       "ébauches": [
         "\nprint(réponse)",
@@ -131,31 +127,45 @@
     }
   },
   "solution": {
-    "Solution": {
-      "date_soumission": 1613082032,
-      "langage": "python",
-      "code": "def bonjour(nom):\n\tprint(f'Bonjour {nom}')\n\nbonjour('Patrick')",
-      "feedback": "Du feedback"
+    "data" : {
+      "type": "Solution",
+      "id": "1",
+      "attributes": {
+        "langage": 1,
+        "code": "# +VISIBLE\ndef salutations( nb_répétitions ):\n    for i in range( nb_répétitions ):\n        print( \"Bonjour le monde!\" )\n\n\nnb_entré = int( input() )\n# +TODO\n\n\n# -TODO\n# -VISIBLE\n"
+      },
+      "links": {
+        "self": "http://localhost:3000/Solution/10"
+      }
     }
   },
   "feedback": {
-    "data": {
-      "type": "Tentative",
-      "id": "1",
-      "attributes": {
-        "feedback": "Sers-toi d'un for pour itérer"
-      },
-      "included": {
-        "type": "Résultat",
+      "data": {
+        "type": "Tentative",
         "id": "1",
         "attributes": {
-          "résultat": "false",
-          "sortie_erreur": "x is not defined int the current context",
-          "sortie_observée": "",
-          "feedback": "Mmmm... il va falloir réessayer "
-        }
+          "tests_réussis": "1",
+          "feedback": "Sers-toi d'un for pour itérer"
+        },
+        "included": [{
+          "type1": "Résultat",
+          "id1": "0",
+          "attributes1": {
+            "résultat": "true",
+            "sortie_erreur": "",
+            "sortie_observée": "itération 0\n",
+            "feedback": "Bravo!"
+          },
+          "type2": "Résultat",
+          "id2": "1",
+          "attributes2": {
+            "résultat": "false",
+            "sortie_erreur": "x is not defined int the current context",
+            "sortie_observée": "",
+            "feedback": "Mmmm... il va falloir réessayer"
+          }
+        }]
       }
-    }
   },
   "avancement": [
     {

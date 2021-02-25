@@ -1,15 +1,15 @@
-<template>
+ <template>
   <div class="question">
-    <Enonce />
-
+    <Enonce v-bind:enonce="enonce" />
     <hr>
 
     <div class="editeur-container">
       <div class="division">
-        <EditeurCode />
+        <EditeurCode :question="question" />
       </div>
       <div class="division">
-        <Feedback />
+        <Feedback v-bind:feedBack="feedBack"/>
+        <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
       </div>
     </div>
 
@@ -30,36 +30,54 @@
 
 <script>
 // @ is an alias to /src
-import Enonce from "@/components/Question/Énoncé.vue";
+import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 
 import get_question from '@/util/question'
+import { getRetroaction } from '@/util/solution';
 
 export default {
   name: "Question",
   components: {
     Enonce,
     Feedback,
-    EditeurCode,
     Solution,
+    EditeurCode
   },
   data() {
      return {
          ebauches:[], // liste d'ébauche
+         feedBack: null,
+         enonce:null,
 
-         question: get_question('programmation_1', 'les_variables', 'introduction_aux_variables', 'python').then(
-             response => {
-                 this.question = response;
-                 this.ebauches = response.question_prog.ébauches;
-             }
-         ).catch(
-             err => {
-                 console.log(err);
-             }
-         )
+       question: get_question().then(
+         response => {
+            this.enonce = response.attributes.énoncé;
+            this.question = response;
+         }
+       ).catch(
+         err=>{
+          console.log(err);
+         }
+       )
      }
+  },
+  methods: {
+    obtenirRetroaction() {
+
+      getRetroaction().then(
+        retroaction => {
+            this.feedBack = retroaction;
+        }
+      ).catch(
+        err =>{
+            console.log(err);
+            this.feedBack = "";
+        }
+      )
+    },
   }
 };
 </script>

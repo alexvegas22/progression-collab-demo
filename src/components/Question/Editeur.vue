@@ -1,6 +1,6 @@
 <template>
     <div id="question" class="container-editeur">
-        <prismEditor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
+        <prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
     </div>
 
     <div>
@@ -29,7 +29,7 @@
 
 <script>
 
-  import { getEbauche, envoyerTentative } from '@/util/solution';
+  import { getData , envoyerTentative } from '@/util/solution';
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -42,7 +42,6 @@
   import 'prismjs/components/prism-javascript';
 
 
-  let langage = "python"
   let categorie = 'programmation_1'
   let nom = 'les_fonctions'
   let titre = 'appeler_une_fonction'
@@ -51,18 +50,25 @@
       components: {
         PrismEditor,
       },
+      props: ['question'],
+      watch: {
+        question: function () {
+          this.setEbauche();
+        }
+      },
       data: () => ({
         code: "",
-        resultats:[],
-        feedback_global:'',
-        testsPassent:null
+        resultats: [],
+        feedback_global: '',
+        testsPassent: null
       }),
       methods: {
         highlighter(code) {
-          return highlight(code, languages.python);
+          // prend le langage sélectionné par l'utilisateur et retourne les highlights
+          return highlight(code, languages['python']);
         },
-        valider_tentative(){
-          envoyerTentative(langage, this.code).then(
+        valider_tentative() {
+          envoyerTentative(this.question.langage, this.code).then(
             tentative => {
                 this.resultats = tentative.résultats
                 this.feedback_global = tentative.feedback
@@ -80,23 +86,26 @@
             }
           ).catch(
             err => {
-                console.log(err);
-                this.reponse = "";
+              this.reponse = "";
             }
           )
         },
-      },
-      mounted() {
-          getEbauche(categorie, nom, titre, langage).then(
-            ebauche => {
-                this.code = ebauche;
+        setEbauche() {
+          // À remplacer par `question.relationships.ébauches.links.self` quand le mock de question est fait
+          getData("http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche").then(
+            data => {
+              this.code = data.attributes.code;
             }
           ).catch(
             err =>{
-                console.log(err);
-                this.code = "";
+              this.code = "";
             }
           )
+        }
+      },
+      mounted() {
+        if (this.question != undefined && this.question.langage != undefined)
+          this.setEbauche()
       }
     };
 </script>
