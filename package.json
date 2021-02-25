@@ -5,10 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
+    "start": "vue-cli-service serve",
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@testing-library/vue": "^6.4.0",
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
     "json-server": "^0.16.3",
@@ -49,7 +52,18 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": [
     "> 1%",
