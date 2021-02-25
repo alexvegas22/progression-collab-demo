@@ -2,8 +2,12 @@ import './commun.js'
 
 const axios = require('axios');
 
-/**methode pour faire une requete GET, il faut passer le lien COMPLET
-VOIR la doc README.MD**/
+/**
+ * fait une requete GET
+ * VOIR la doc (lien dans README.MD)
+ * @param lien: le lien COMPLET de la requete
+ * @returns {Promise<unknown>}
+ */
 const getData = (lien)=> new Promise((resolve, reject)=> {
     //let token = localStorage.getItem('user-token')
     axios.get(lien)
