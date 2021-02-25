@@ -11,7 +11,7 @@ describe('Feedback.vue', () => {
             feedBack
          }
       })
-    expect(wrapper.text()).toMatch(feedBack)
+    expect(wrapper.props().feedBack).toEqual(feedBack)
     })
   })
   
