@@ -6,4 +6,5 @@ String.prototype.format = function() {
         formatted = formatted.replace("{" + arg + "}", arguments[arg]);
 
     return formatted;
+
 };

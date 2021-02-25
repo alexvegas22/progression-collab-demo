@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="question">
     <Enonce v-bind:enonce="enonce" />
     <hr>
@@ -14,12 +14,7 @@
     </div>
 
     <hr>
-
-    <p>Voici les ébauches disponibles :</p>
-    <div class="ebauche" v-bind:key="ebauche" v-for="ebauche in ebauches">
-        <p>{{ebauche}}</p>
-    </div>
-
+    <Ebauche v-bind:ebauches="ebauches"/>
     <hr>
 
     <div style="width: 100%">
@@ -34,6 +29,7 @@ import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
+import Ebauche from "@/components/Question/Ebauche";
 
 import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
@@ -44,6 +40,7 @@ export default {
     Enonce,
     Feedback,
     Solution,
+    Ebauche,
     EditeurCode
   },
   data() {
@@ -51,11 +48,11 @@ export default {
          ebauches:[], // liste d'ébauche
          feedBack: null,
          enonce:null,
-
-       question: get_question().then(
+        question: get_question().then(
          response => {
             this.enonce = response.attributes.énoncé;
             this.question = response;
+            this.ebauches = response.question_prog.ébauches;
          }
        ).catch(
          err=>{

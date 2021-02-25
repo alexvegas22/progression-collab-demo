@@ -18,13 +18,13 @@ module.exports = function(req, res, next) {
           feedback: "Non!"
         },
         {
-          résultat: "false",
+          résultat: "true",
           sortie_erreur: ":(",
           sortie_observée: "",
           feedback: "Non!"
         }
       ],
-      feedback: "Feddback dependant du prof"
+      feedback: "Feedback dependant du prof"
     });
   } 
   else if (req.method === "POST" && req.path==="/retroaction"){
