@@ -6,15 +6,16 @@ image: debian:10-slim
 cache:
   paths:
     - node_modules/
- 
-before_script:
-  - apt-get update -y
-  - apt-get install docker-ce docker-ce-cli containerd.io
-  - docker info
- 
+
 test_vue:
+  before_script:
+  - npm install json-server
+  - json-server -w db.json -r routes.json -m middleware.js >/dev/null &
+
   script:
     - npm install
-    - docker build -t jsonserver .
-    - docker run --rm -it --name jsonserver-container -p 3000:3000 jsonserver
     - npm test
+    - killall json-server >/dev/null
+
+  after_script:
+    - /bin/bash -c '/usr/bin/killall -q json-server; exit 0'
