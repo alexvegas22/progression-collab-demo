@@ -1,14 +1,15 @@
-<template>
+ <template>
   <div class="question">
     <Enonce v-bind:question="question.attributes.énoncé" />
     <hr>
 
     <div class="editeur-container">
       <div class="division">
-        <EditeurCode />
+
       </div>
       <div class="division">
-        <Feedback />
+        <Feedback v-bind:feedBack="feedBack"/>
+        <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
       </div>
     </div>
 
@@ -31,21 +32,24 @@
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
-import EditeurCode from '@/components/Question/Editeur.vue'
+//import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 
 import get_question from '@/util/question'
+import { getRetroaction } from '@/util/solution';
 
 export default {
   name: "Question",
   components: {
     Enonce,
     Feedback,
-    EditeurCode,
     Solution,
   },
   data() {
      return {
+         ebauches:[], // liste d'ébauche
+         feedBack: null,
+
        
        question: get_question().then(
          response => {
@@ -68,6 +72,21 @@ export default {
              }
          )*/
      }
+  },
+  methods: {
+    obtenirRetroaction() {
+
+      getRetroaction().then(
+        retroaction => {
+            this.feedBack = retroaction;
+        }
+      ).catch(
+        err =>{
+            console.log(err);
+            this.feedBack = "";
+        }
+      )
+    },
   }
 };
 </script>
