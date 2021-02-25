@@ -13,6 +13,6 @@ before_script:
 test_vue:
   script:
     - npm install
-    - npm test
     - docker build -t jsonserver .
     - docker run --rm -it --name jsonserver-container -p 3000:3000 jsonserver
+    - npm test
