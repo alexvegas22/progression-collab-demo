@@ -26,7 +26,7 @@ describe("Test sur le component Enonce", () => {
     );
   });
 
-  it("Lien tentative affichée", async () => {
+  it("Injection énoncé dans le prop et affichage dans une balise h2", async () => {
     const wrapper = mount(Enonce, {
       propsData: {
         question: EnonceMock,
