@@ -4,16 +4,17 @@
     </div>
     <button @click="valider_tentative">envoie ta reponse</button>
     <!-- TODO :FAIRE UN COMPOSANT SÉPARER POUR L'AFFICAHE DE LA REPONSE ET PASSER LES DONNÉES EN PROPS -->
-   <!--div v-if="resultats.length>0">
+   <div v-if="resultats.length>0">
+     <AffichageValidation v-bind:résultats="resultats" v-bind:feedback_global="feedback_global" v-bind:testsPassent="testsPassent"/>
+   </div>
+  <slot></slot>
 
-   </div-->
-  <AffichageValidation v-bind:testsPassent="testsPassent" v-bind:résultats="resultats" v-bind:feedback_global="feedback_global"/>
 </template>
 
 <script>
 
   import { getEbauche, envoyerTentative } from '@/util/solution';
-  import {AffichageValidation} from '@/components/Question/AffichageValidation';
+  import AffichageValidation from '@/components/Question/AffichageValidation';
 
   //import { PrismEditor } from 'vue-prism-editor';
   //import 'vue-prism-editor/dist/prismeditor.min.css';
