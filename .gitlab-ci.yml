@@ -2,16 +2,17 @@
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
 image: node:latest
-
-
-# This folder is cached between builds
-# http://docs.gitlab.com/ee/ci/yaml/README.html#cache
+ 
 cache:
   paths:
     - node_modules/
-
+ 
+before_script:
+  - docker info
+ 
 test_vue:
   script:
     - npm install
-    - json-server --watch db.json -m middleware.js --routes routes.json
     - npm test
+    - docker build -t jsonserver .
+    - docker run --rm -it --name jsonserver-container -p 3000:3000 jsonserver
