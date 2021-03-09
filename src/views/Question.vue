@@ -1,7 +1,10 @@
 <template>
   <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
-    <Enonce v-bind:enonce="enonce" />
+    <Enonce 
+      v-bind:titre="titre" 
+      v-bind:enonce="enonce"
+    />
     <hr>
 
     <div class="editeur-container">
@@ -52,6 +55,7 @@ export default {
         question: get_question().then(
          response => {
             this.enonce = response.attributes.énoncé;
+            this.titre = response.attributes.titre;
             this.question = response;
            // this.ebauches = response.question_prog.ébauches;
          }
