@@ -31,4 +31,4 @@ json-server --watch db.json -m middleware.js --routes routes.json --port 3000
  * VUE_APP_API_URL= url de votre mock API
 
 ### Lien DOC API progression backend
-http://progression.pages.dti.crosemont.quebec/progression_backend/api.html
+https://progression.dti.crosemont.quebec/api/v1/doc/api.htm
