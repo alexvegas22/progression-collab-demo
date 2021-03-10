@@ -23,6 +23,7 @@ const getRetroaction = () => new Promise ((resolve, reject) => {
   })
 })
 
+//TODO: envoyer le langage dans le body et non dans l'url
 const envoyerTentative = (langage,  code) => new Promise ((resolve, reject) => {
   axios({url: '{0}/tentative?langage={1}'.format(URI_BASE, langage), data: {code: code}, method: 'POST' })
   .then(resp => {
