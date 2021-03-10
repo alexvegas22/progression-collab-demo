@@ -9,3 +9,5 @@ const getQuestion = function () {
         reject(err);
     });
 }
+
+export { getQuestion }
