@@ -19,7 +19,7 @@
     <hr>
 
     <div style="width: 100%">
-      <Solution />
+      <Avancement v-bind:questionAvancement=questionAvancement />
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@
 import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
-import Solution from '@/components/Question/Solution.vue'
+import Avancement from '@/components/Question/Avancement.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 
 import get_question from '@/util/question'
@@ -40,7 +40,7 @@ export default {
   components: {
     Enonce,
     Feedback,
-    Solution,
+    Avancement,
     //Ebauche,
     EditeurCode
   },
@@ -49,6 +49,7 @@ export default {
          //ebauches:[], // liste d'ébauche
          feedBack: null,
          enonce:null,
+         questionAvancement:"/user/jdoe/categorie_toto/question/1",
         question: get_question().then(
          response => {
             this.enonce = response.attributes.énoncé;

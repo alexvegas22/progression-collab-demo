@@ -10,4 +10,13 @@ const getQuestion = function () {
     });
 }
 
-export { getQuestion }
+const getAvancementApi = function () {
+    return getData(BASE_URL).then(
+        data => { return data }
+    ).catch((err) => {
+        reject(err);
+    });
+}
+
+
+export { getQuestion, getAvancementApi }
