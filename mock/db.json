@@ -100,7 +100,6 @@
                 }
             },
             "ébauches": {
-              "code": "# +VISIBLE\ndef salutations( nb_répétitions ):\n    for i in range( nb_répétitions ):\n        print( \"Bonjour le monde!\" )\n\n\nnb_entré = int( input() )\n# +TODO\n\n\n# -TODO\n# -VISIBLE\n",
                 "links": {
                     "self": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ébauches",
                     "related": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/ébauches"

@@ -34,11 +34,6 @@
         AffichageValidation
       },
       props: ['question'],
-      watch: {
-        question: function () {
-          this.setEbauche();
-        }
-      },
       data: () => ({
         code: "",
         resultats:[],
@@ -79,22 +74,19 @@
             }
           )
         },
-        setEbauche() {
-          // À remplacer par `question.relationships.ébauches.links.self` quand le mock de question est fait
-          getData("http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche").then(
-            data => {
-              this.code = data.attributes.code;
-            }
-          ).catch(
-            err =>{
-              this.code = "";
-            }
-          )
+      },
+      computed: {
+        ebauche(){
+          return this.$store.state.ebauche
         }
       },
       mounted() {
-        if (this.question != undefined && this.question.langage != undefined)
-          this.setEbauche()
+        this.$store.dispatch('getEbauche','http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche').then(
+          response=>{
+            this.code = this.ebauche.attributes.code
+          }
+        )
+        
       }
     };
 </script>
