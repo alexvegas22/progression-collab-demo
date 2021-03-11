@@ -4,21 +4,27 @@
     <h1 style="text-align: center;">Jeu de tests</h1>
     <div v-for="test in tests">
         <div v-on:click="test.visible = !test.visible" class="container">
-            <div class ="row">
-                <div>
-                    &#10148;
+            <div class ="d-flex flex-row p-2">
+                <div class="align-content-start p-2">
+                    <span style='font-size:200%;'>
+                        &#10148;
+                    </span>
                 </div>
-                <div class ="col-md-8 row">
-                  <p>{{test.nom}}</p>
-                  <span  v-if="test.resultat">
-                    &#9989;
-                  </span>
-                  <span v-else>
-                    &#10060;
-                  </span>
+                <div class="flex-grow-1">
+                <div class ="d-flex p-2 .flex-row border">
+                    <p class="p-2">{{test.nom}}</p>
+                    <div class="ml-auto">
+                      <span v-if="test.resultat">
+                          &#9989;
+                      </span>
+                      <span v-else>
+                          &#10060;
+                      </span>
+                    </div>
                 </div>
-                <div>
-                    <button disabled>&#10148; Lancer Le test</button>
+                </div>
+                <div class="p-2 align-content-xl-end">
+                    <button class="btn btn-secondary" disabled>&#10148; Lancer Le test</button>
                 </div>
             </div>
             <div class="row">
