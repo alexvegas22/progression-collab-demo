@@ -2,6 +2,7 @@ module.exports = function(req, res, next) {
   const body = req.body;
   console.log(body);
 
+  //TODO : Mettre à jours le body de la réponse selon la doc de l'API
   if (req.method === "POST" && req.path==="/tentative") {
     res.json({
       résultats: [
@@ -12,7 +13,7 @@ module.exports = function(req, res, next) {
           feedback: "Bravo!"
         },
         {
-          résultat: "true",
+          résultat: "false",
           sortie_erreur: ":(",
           sortie_observée: "",
           feedback: "Non!"
@@ -28,6 +29,7 @@ module.exports = function(req, res, next) {
     });
   } 
   else if (req.method === "POST" && req.path==="/retroaction"){
+
     res.json({
       included: [{
         type1: "Résultat",
