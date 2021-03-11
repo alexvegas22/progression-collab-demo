@@ -11,11 +11,7 @@ const getQuestion = function () {
     });
 }
 
-const postTentative = function (unLangage, unCode) {
-    return postData(URL_VALIDER_TENTATIVE, {langage: unLangage, code: unCode }).then(
-        data => { return data }
-    ).catch((err) => {
-        reject(err);
-    });
+const postTentative = async function (unLangage, unCode) {
+    return await postData(URL_VALIDER_TENTATIVE, {langage: unLangage, code: unCode })
 }
 export { getQuestion, postTentative }

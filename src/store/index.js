@@ -4,7 +4,9 @@ import actions from './actions'
 
 export default createStore({
     state: {
-        retroactionTentative:Object
+        retroactionTentative:Object,
+        msgAPIEnvoiTentative:String,
+        envoiTentativeEnCours:false
     },
     actions,
     mutations
