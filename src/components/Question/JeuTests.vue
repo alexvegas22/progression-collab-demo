@@ -6,7 +6,7 @@
         <div v-on:click="test.visible = !test.visible" class="container">
             <div class ="d-flex flex-row p-2">
                 <div class="align-content-start p-2">
-                    <span style='font-size:200%;'>
+                    <span style="font-size:200%;">
                         &#10148;
                     </span>
                 </div>
@@ -14,10 +14,10 @@
                 <div class ="d-flex p-2 .flex-row border">
                     <p class="p-2">{{test.nom}}</p>
                     <div class="ml-auto">
-                      <span v-if="test.resultat">
+                      <span style="font-size:200%;" v-if="test.resultat">
                           &#9989;
                       </span>
-                      <span v-else>
+                      <span style="font-size:200%;" v-else>
                           &#10060;
                       </span>
                     </div>
