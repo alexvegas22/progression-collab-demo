@@ -31,6 +31,7 @@ import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 //import Ebauche from "@/components/Question/Ebauche";
+import JeuTests from '@/components/Question/JeuTests';
 
 import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
@@ -42,7 +43,8 @@ export default {
     Feedback,
     Solution,
     //Ebauche,
-    EditeurCode
+    EditeurCode,
+    JeuTests
   },
   data() {
      return {
