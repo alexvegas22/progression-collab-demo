@@ -13,6 +13,7 @@
         <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
       </div>
     </div>
+    <hr>
     <div>
        <JeuTests/>
     </div>
