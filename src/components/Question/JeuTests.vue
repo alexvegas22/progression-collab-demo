@@ -1,6 +1,7 @@
 <template>
     <div>
-        <li><Test v-bind="tests"/></li>
+        <li><Test v-bind="test"/></li>
+        {{texteTests}}
     </div>
 </template>
 <script>
@@ -16,13 +17,13 @@ export default {
     },
     watch: {
        tests: function () {
-         //this.texteFeedBack = this.tests
+         this.texteTests = this.tests[0]
     }
   },
 
   data(){
     return{
-      //TODO ajouter la methode pour obtenir les tests
+      texteTests:this.tests[0]
     }
   },
 }

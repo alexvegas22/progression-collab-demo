@@ -218,7 +218,7 @@
     "avancement": "incomplet",
     "accessibilité": "https://progression.dti.crosemont.quebec/index.php?p=serie&ID=45"
   },
-  "test":[
+  "test":
     {
       "data": [{
           "type": "test",
@@ -278,5 +278,4 @@
         }
       ]
     }
-  ]
 }

@@ -1,4 +1,4 @@
-import './commun.js'
+//import './commun.js'
 
 const axios = require('axios');
 

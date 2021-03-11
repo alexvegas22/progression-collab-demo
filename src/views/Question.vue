@@ -9,9 +9,11 @@
         <EditeurCode :question="question" />
       </div>
       <div class="division">
-        <Feedback v-bind:feedBack="feedBack"/>
-        <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
+        
       </div>
+    </div>
+    <div> 
+      <JeuTests v-bind:tests="listetests"/>
     </div>
 
     <hr>
@@ -49,7 +51,7 @@ export default {
   data() {
      return {
          //ebauches:[], // liste d'ébauche
-         feedBack: null,
+         listetests: null,
          enonce:null,
         question: get_question().then(
          response => {
@@ -64,20 +66,15 @@ export default {
        )
      }
   },
-  methods: {
-    obtenirRetroaction() {
-
-      getRetroaction().then(
-        retroaction => {
-            this.feedBack = retroaction;
-        }
-      ).catch(
-        err =>{
-            console.log(err);
-            this.feedBack = "";
-        }
+  computed:{
+    tests(){
+      return this.$store.state.tests
+    }
+  },
+  mounted() {
+      this.$store.dispatch('getTests').then(
+      response=>{this.listetests = this.tests}
       )
-    },
   }
 };
 </script>
