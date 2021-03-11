@@ -12,7 +12,7 @@
                 </div>
                 <div class="flex-grow-1">
                 <div class ="d-flex p-2 .flex-row border">
-                    <p class="p-2">{{test.nom}}</p>
+                    <p class="p-2">{{test.attributes.nom}}</p>
                     <div class="ml-auto">
                       <span style="font-size:200%;" v-if="test.resultat">
                           &#9989;
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="row">
-                <Test v-if="test.visible" v-bind="test"/>
+                <Test v-if="test.visible" v-bind:test="test"/>
             </div>
         </div>
     </div>
