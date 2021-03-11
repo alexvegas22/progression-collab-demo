@@ -1,19 +1,22 @@
-<template>
-  <h3 v-if="message_connexion_API!=null" >{{message_connexion_API}}</h3>
-  <div v-if="resultats.length>=1" >
-    <button :disabled="message_connexion_API===msg_attente_reponse_API" @click="valider_tentative">envoie ta reponse</button>
+<template class="p-4">
+  <div v-if="message_connexion_API!=null" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{message_connexion_API}}</strong>
+  </div>
+
+  <div  v-if="resultats.length>=1" >
+    <button type="button" class="btn btn-lg btn-primary" :disabled="message_connexion_API===msg_attente_reponse_API" @click="valider_tentative">envoie ta reponse</button>
     <ul v-for="unResultat in resultats" :key="unResultat">
       <li>
-        resultat: {{unResultat.résultat}}
+        resultat: {{unResultat.attributes.résultat}}
       </li>
       <li>
-        sortie d'erreur: {{unResultat.sortie_erreur}}
+        sortie d'erreur: {{unResultat.attributes.sortie_erreur}}
       </li>
       <li>
-        sortie observée: {{unResultat.sortie_observée}}
+        sortie observée: {{unResultat.attributes.sortie_observée}}
       </li>
       <li>
-        feedback: {{unResultat.feedback}}
+        feedback: {{unResultat.attributes.feedback}}
       </li>
     </ul>
 
@@ -28,7 +31,7 @@ export default {
   name: "ValidationTentative",
   data: () => ({
     msg_attente_reponse_API:"Envoie de la tentative en cours...",
-    message_connexion_API:"",
+    message_connexion_API:null,
     resultats:Array,
     feedback_global:"",
     testsPassent:null
@@ -41,22 +44,15 @@ export default {
     valider_tentative() {
       this.message_connexion_API=this.msg_attente_reponse_API
       envoyerTentative(this.langage, this.code).then(
-          tentative => {
+          reponseAPI => {
             //si on recoit une reponse le message devient null, la reponse sera affichee
             this.message_connexion_API="";
-            this.resultats = tentative.résultats
-            this.feedback_global = tentative.feedback
+            this.resultats = reponseAPI.data.included
+            this.feedback_global = reponseAPI.data.attributes.feedback
 
-            //variable qui sera a false si ce ne sont pas tous les tests qui passent
-            this.testsPassent = true;
+            //verifie si tous les tests passent
+            this.testsPassent = reponseAPI.data.attributes.tests_réussis === this.resultats.length;
 
-            //on itère à travers tous les tests pour voir s'il y en a un qui ne passent pas.
-            for(let unResultat of tentative.résultats){
-              if(unResultat.résultat === "false") {
-                this.testsPassent = false;
-                break;
-              }
-            }
           }
       ).catch(
           err => {
