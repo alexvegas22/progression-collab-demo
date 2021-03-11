@@ -7,5 +7,5 @@ export default createStore({
         retroactionTentative:Object
     },
     actions,
-    mutations,
+    mutations
 })

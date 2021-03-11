@@ -4,7 +4,7 @@
   </div>
 
   <div  v-if="resultats.length>=1" >
-    <button type="button" class="btn btn-lg btn-primary" :disabled="message_connexion_API===msg_attente_reponse_API" @click="valider_tentative">envoie ta reponse</button>
+    <button type="button" class="btn btn-lg btn-primary" :disabled="message_connexion_API===msg_attente_reponse_API" @click="validerTentative">envoie ta reponse</button>
     <ul v-for="unResultat in resultats" :key="unResultat">
       <li>
         resultat: {{unResultat.attributes.résultat}}
@@ -26,7 +26,8 @@
 
 </template>
 <script>
-import { envoyerTentative } from '@/util/solution';
+//import { envoyerTentative } from '@/util/solution';
+
 export default {
   name: "ValidationTentative",
   data: () => ({
@@ -40,9 +41,23 @@ export default {
     code:String,
     langage:String
   },
+  computed:{
+    retroactionTentative () {
+      return this.$store.state.retroactionTentative
+    }
+  },
   methods: {
-    valider_tentative() {
-      this.message_connexion_API=this.msg_attente_reponse_API
+    async validerTentative() {
+      //TODO ne pas passer le langauge en dur
+      await this.$store.dispatch('envoyerTentative', "python", this.code)
+
+      this.resultats=this.retroactionTentative.included
+      this.feedback_global=this.retroactionTentative.attributes.feedback
+
+      //verifie si tous les tests passent
+      this.testsPassent = this.retroactionTentative.attributes.tests_réussis === this.resultats.length;
+
+      /*this.message_connexion_API=this.msg_attente_reponse_API
       envoyerTentative(this.langage, this.code).then(
           reponseAPI => {
             //si on recoit une reponse le message devient null, la reponse sera affichee
@@ -60,7 +75,7 @@ export default {
             //message d'erreur si on ne peut pas joindre l'API
             this.message_connexion_API="Impossible de communiquer avec le super serveur de validation :("
           }
-      )
+      )*/
     }
   }
 }
