@@ -1,13 +1,13 @@
 <template>
 
-  <div>
-    <h1 v-if="avancement.état!=null">La question est {{convetirEtatEnString(avancement.état)}}</h1>
-
+  <div v-if="avancement.état!=null">
+    <h1>La question est {{convetirEtatEnString(avancement.état)}}</h1>
+    <div v-if="avancement.état!==0">
     <label for="avancement">Version de la solution:</label>
     <select name="avancement" id="avancement" >
       <option v-bind:key="tentative.date_soumission" v-for="tentative in tentatives" v-on:click="getTentative(lienAvancement+'/'+tentative.date_soumission)" value="{{tentative.date_soumission}}">{{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
     </select>
-
+    </div>
   </div>
 
 </template>

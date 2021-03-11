@@ -6,7 +6,7 @@ export default createStore({
     state: {
       avancement: "",
       tentative: "",
-      lienAvancement :'/user/jdoe/categorie_toto/question/1',
+      lienAvancement :'/user/jdoe/categorie_toto/question/3',
     },
     actions,
     mutations,
