@@ -150,12 +150,11 @@
         }]
       }
   },
-  "avancement": [
-    {
-      "id": 1,
+  "avancement": [{
+    "id": 1,
+    "data": {
       "état": 2,
-      "tentative": [
-        {
+      "tentative": [{
           "date_soumission": 1613069492,
           "id": 1613069492
         },
@@ -164,12 +163,13 @@
           "id": 463463
         }
       ]
-    },
-    {
-      "id": 2,
+    }
+  },
+  {
+    "id": 2,
+    "data": {
       "état": 1,
-      "tentative": [
-        {
+      "tentative": [{
           "date_soumission": 42352353253,
           "id": 42352353253
         },
@@ -178,13 +178,16 @@
           "id": 4346436
         }
       ]
-    },
-    {
-      "id": 3,
+    }
+  },
+  {
+    "id": 3,
+    "data": {
       "état": 0,
       "tentative": []
     }
-  ],
+  }
+],
   "solutions": [
     {
       "id": "1",

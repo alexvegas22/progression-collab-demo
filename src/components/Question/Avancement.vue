@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <h1 v-if="état!=null">La question est {{convetirEtatEnString(avancement.état)}}</h1>
+    <h1 v-if="avancement.état!=null">La question est {{convetirEtatEnString(avancement.état)}}</h1>
 
     <label for="avancement">Version de la solution:</label>
     <select name="avancement" id="avancement" v-bind:key="tentative.date_soumission" v-for="tentative in tentatives">
@@ -52,7 +52,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getAvancement', questionAvancement)
+    // A modifier url à recuperer dans le store après que Question l'ai chargé
+    this.$store.dispatch('getAvancement', '/user/jdoe/categorie_toto/question/1')
   }
 
 }

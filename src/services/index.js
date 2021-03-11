@@ -1,5 +1,5 @@
 import request_service, { getData } from './request_services'
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
+const BASE_URL = process.env.VUE_APP_API_URL // json-server
 
 // TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
 const getQuestion = function () {
@@ -10,8 +10,8 @@ const getQuestion = function () {
     });
 }
 
-const getAvancementApi = function () {
-    return getData(BASE_URL).then(
+const getAvancementApi = function (questionAvancement) {
+    return getData(BASE_URL + questionAvancement).then(
         data => { return data }
     ).catch((err) => {
         reject(err);

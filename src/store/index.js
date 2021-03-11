@@ -4,7 +4,7 @@ import actions from './actions'
 
 export default createStore({
     state: {
-      avancement: Object,
+      avancement: "",
       tentatives: []
     },
     actions,
