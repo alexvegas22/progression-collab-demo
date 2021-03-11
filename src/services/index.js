@@ -1,4 +1,4 @@
-import request_service, { getData } from './request_services'
+import  { getData } from './request_services'
 const BASE_URL = process.env.VUE_APP_API_URL // json-server
 
 // TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi

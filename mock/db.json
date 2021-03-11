@@ -193,40 +193,139 @@
     }
   }
 ],
+  "resultats":
+  [
+    {
+    "id": 121412,
+    "data": {
+      "numéro": 121412,
+      "sortie_observée": "sortie observée",
+      "sortie_erreur": "sortie erreur",
+      "résultat": true,
+      "feedback": "Cool"
+      }
+    },
+    {
+      "id": 121413,
+      "data": {
+        "numéro": 121413,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
+    },
+    {
+      "id": 121414,
+      "data": {
+        "numéro": 121414,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
+    },
+    {
+      "id": 31412,
+      "data": {
+        "numéro": 31412,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
+    },
+    {
+      "id": 31413,
+      "data": {
+        "numéro": 31413,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
+    },
+    {
+      "id": 31414,
+      "data": {
+        "numéro": 31414,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
+    }
+
+  ]
+  ,
   "tentativeProg": [
     {
       "id": "1",
+
       "data": {
+        "lienResultat": "/resultats/",
         "langage": 0,
-        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
+        "résultats": [
+          {"id": 121412},
+          {"id": 121413},
+          {"id": 121414}
+        ]
       }
     },
     {
       "id": "2",
       "data": {
         "langage": 1,
-        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+        "lienResultat": "/resultats/",
+        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+        "résultats": [
+          {"id": 221412},
+          {"id": 221413},
+          {"id": 221414}
+        ]
       }
     },
     {
       "id": "3",
+
       "data": {
         "langage": 1,
-        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+        "lienResultat": "/resultats/",
+        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+        "résultats": [
+          {"id": 31412},
+          {"id": 31413},
+          {"id": 31414}
+        ]
       }
     },
     {
       "id": "4",
+
       "data": {
         "langage": 2,
-        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+        "lienResultat": "/resultats/",
+        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
+        "résultats": [
+          {"id": 41412},
+          {"id": 41413},
+          {"id": 41414}
+        ]
       }
     },
     {
       "id": "5",
+
       "data": {
         "langage": 2,
-        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+        "lienResultat": "/resultats/",
+        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
+        "résultats": [
+          {"id": 51412},
+          {"id": 51413},
+          {"id": 51414}
+        ]
       }
     }
   ],

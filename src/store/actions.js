@@ -13,7 +13,15 @@ export default {
     try{
       const tentative = await getAvancementApi(avancementTentative);
       const tentativeProg = await getAvancementApi(tentative.lienTentativeProg)
-      const tentativeComplete = {tentative: tentative, tentativeProg: tentativeProg}
+      const resultatsId = tentativeProg.résultats;
+      const resultats= [];
+      resultatsId.forEach(
+          (resultat) =>  getAvancementApi(tentativeProg.lienResultat+resultat.id)
+          .then((res)=>resultats.push(res)
+          )
+      )
+
+      const tentativeComplete = {tentative: tentative, tentativeProg: tentativeProg, resultats:resultats}
       //TODO : supprimer le consoloe.log pour demo seulement affiche le composant qui est mis dans le store.
       console.log(tentativeComplete)
       commit('setTentative', tentativeComplete)
