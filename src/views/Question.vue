@@ -12,10 +12,10 @@
         
       </div>
     </div>
-    <div> 
-      <JeuTests v-bind:tests="listetests"/>
+    <hr>
+    <div>
+       <JeuTests v-bind:tests="listetests"/>
     </div>
-
     <hr>
     <!--Ebauche v-bind:ebauches="ebauches"/-->
     <hr>
@@ -34,7 +34,6 @@ import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 import JeuTests from '@/components/Question/JeuTests';
-
 import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
 
