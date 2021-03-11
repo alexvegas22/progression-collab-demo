@@ -4,8 +4,8 @@
     <h1 v-if="avancement.état!=null">La question est {{convetirEtatEnString(avancement.état)}}</h1>
 
     <label for="avancement">Version de la solution:</label>
-    <select name="avancement" id="avancement" v-bind:key="tentative.date_soumission" v-for="tentative in tentatives">
-      <option v-on:click="getTentative(tentative)" value="{{tentative.date_soumission}}">{{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
+    <select name="avancement" id="avancement" >
+      <option v-bind:key="tentative.date_soumission" v-for="tentative in tentatives" v-on:click="getTentative(lienAvancement+'/'+tentative.date_soumission)" value="{{tentative.date_soumission}}">{{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
     </select>
 
   </div>
@@ -22,6 +22,12 @@ export default {
   computed: {
     avancement () {
       return this.$store.state.avancement
+    },
+    tentatives(){
+      return this.$store.state.avancement.tentatives
+    },
+    lienAvancement(){
+      return this.$store.state.lienAvancement
     }
   },
   methods: {
@@ -53,7 +59,7 @@ export default {
   },
   mounted() {
     // A modifier url à recuperer dans le store après que Question l'ai chargé
-    this.$store.dispatch('getAvancement', '/user/jdoe/categorie_toto/question/1')
+    this.$store.dispatch('getAvancement', this.$store.state.lienAvancement)
   }
 
 }

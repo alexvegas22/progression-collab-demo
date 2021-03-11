@@ -56,10 +56,6 @@ export default {
             this.question = response;
            // this.ebauches = response.question_prog.ébauches;
          }
-       ).catch(
-         err=>{
-          console.log(err);
-         }
        )
      }
   },

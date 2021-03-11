@@ -5,7 +5,8 @@ import actions from './actions'
 export default createStore({
     state: {
       avancement: "",
-      tentatives: []
+      tentative: "",
+      lienAvancement :'/user/jdoe/categorie_toto/question/1',
     },
     actions,
     mutations,
