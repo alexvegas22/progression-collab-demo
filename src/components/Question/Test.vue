@@ -1,6 +1,7 @@
 <template>
     <div>
         <!--<ValidationTentative />-->
+        {{texteUnTest}}
     </div>
 </template>
 <script>
@@ -12,6 +13,16 @@ export default {
         test:{
             required:true
         }
+    },
+    watch:{
+        test: function(){
+            this.texteUnTest = this.test
+        }
+    },
+    data(){
+        return{
+            texteUnTest:this.test
+        }
     }
-}
+};
 </script>

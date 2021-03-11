@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <li><Test v-bind="test"/></li>
-        {{texteTests}}
+    <div id="ListeTests" v-for="t in tests" :key="t">
+        <li><Test v-bind:test="t"/></li>
     </div>
 </template>
 <script>
@@ -12,18 +11,19 @@ export default {
 
     props:{
         tests:{
-            required:true
+            required:true,
+            type:Array
         }
     },
     watch: {
        tests: function () {
-         this.texteTests = this.tests[0]
+         this.texteTests = this.tests
     }
   },
 
   data(){
     return{
-      texteTests:this.tests[0]
+      texteTests:this.tests
     }
   },
 }
