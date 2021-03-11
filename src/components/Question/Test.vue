@@ -1,12 +1,12 @@
 <template>
     <div>
-        <AffichageValidation />
+        <ValidationTentative />
     </div>
 </template>
 <script>
-import AffichageValidation from './AffichageValidation.vue'
+import ValidationTentative from './ValidationTentative.vue'
 export default {
-  components: { AffichageValidation },
+  components: { ValidationTentative },
     name:"Test",
 }
 </script>
