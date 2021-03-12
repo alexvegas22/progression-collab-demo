@@ -35,7 +35,6 @@ import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 
-import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
 
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
