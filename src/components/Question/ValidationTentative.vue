@@ -1,5 +1,5 @@
 <template class="p-4">
-  <div v-if="msgReponseApi.length>1" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div v-if="msgReponseApi!=null" class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>{{msgReponseApi}}</strong>
   </div>
 
@@ -21,15 +21,14 @@
         feedback: {{unResultat.attributes.feedback}}
       </li>
     </ul>
-
     <h4 v-if="feedback_global.length>0">Feedback global: {{feedback_global}}</h4>
     <h3 v-if="testsPassent!=null">Ta reponse est {{testsPassent ? "Bonne" : "Mauvaise" }}</h3>
   </div>
-
 </template>
 <script>
 
 export default {
+  //TODO integration avec le composant Test
   name: "ValidationTentative",
   props: {
     code:String,
