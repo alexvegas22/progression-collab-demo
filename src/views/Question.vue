@@ -9,11 +9,13 @@
         <EditeurCode :question="question" />
       </div>
       <div class="division">
-        <Feedback v-bind:feedBack="feedBack"/>
-        <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
+        
       </div>
     </div>
-
+    <hr>
+    <div>
+       <JeuTests v-bind:tests="listetests"/>
+    </div>
     <hr>
     <!--Ebauche v-bind:ebauches="ebauches"/-->
     <hr>
@@ -32,7 +34,6 @@ import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 import JeuTests from '@/components/Question/JeuTests';
-
 import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
 
@@ -49,7 +50,7 @@ export default {
   data() {
      return {
          //ebauches:[], // liste d'ébauche
-         feedBack: null,
+         listetests: null,
          enonce:null,
         question: get_question().then(
          response => {
@@ -64,20 +65,15 @@ export default {
        )
      }
   },
-  methods: {
-    obtenirRetroaction() {
-
-      getRetroaction().then(
-        retroaction => {
-            this.feedBack = retroaction;
-        }
-      ).catch(
-        err =>{
-            console.log(err);
-            this.feedBack = "";
-        }
+  computed:{
+    tests(){
+      return this.$store.state.tests
+    }
+  },
+  mounted() {
+      this.$store.dispatch('getTests').then(
+      response=>{this.listetests = this.tests}
       )
-    },
   }
 };
 </script>

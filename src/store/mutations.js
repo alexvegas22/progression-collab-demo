@@ -7,5 +7,8 @@ export const mutations = {
     },
     updateEnvoieTentativeEnCours(state, bool){
         state.envoiTentativeEnCours=bool
-    }
+    },
+    setTests(state, tests) {
+      state.tests = tests;
+    },
 }

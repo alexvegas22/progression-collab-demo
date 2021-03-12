@@ -4,6 +4,7 @@ import actions from './actions'
 
 export default createStore({
     state: {
+        tests: Promise,
         retroactionTentative:Object,
         msgAPIEnvoiTentative:String,
         envoiTentativeEnCours:false

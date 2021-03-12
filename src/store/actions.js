@@ -1,6 +1,14 @@
-import {postTentative} from '../services/index.js'
+import {postTentative, getTestsAPI} from '../services/index.js'
 
 export default {
+  async getTests({ commit }) {
+    try {
+      const tests = await getTestsAPI();
+      commit("setTests", tests);
+    } catch (error) {
+      console.log(error);
+    }
+  },
     async envoyerTentative({commit}, langage, code) {
         commit('updateEnvoieTentativeEnCours', true)
         commit('updateMsgAPIEnvoiTentative', "Envoie de la tentative en cours..")
