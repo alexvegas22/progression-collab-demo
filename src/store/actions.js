@@ -15,11 +15,9 @@ export default {
       const tentativeProg = await getAvancementApi(tentative.lienTentativeProg)
       const resultatsId = tentativeProg.résultats;
       const resultats= [];
-      resultatsId.forEach(
-          (resultat) =>  getAvancementApi(tentativeProg.lienResultat+resultat.id)
-          .then((res)=>resultats.push(res)
-          )
-      )
+      resultatsId.forEach((resultat) =>  getAvancementApi(tentativeProg.lienResultat+resultat.id)
+                          .then((res)=>resultats.push(res))
+        )
 
       const tentativeComplete = {tentative: tentative, tentativeProg: tentativeProg, resultats:resultats}
       //TODO : supprimer le consoloe.log pour demo seulement affiche le composant qui est mis dans le store.
