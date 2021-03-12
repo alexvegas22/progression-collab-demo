@@ -2,23 +2,21 @@
   <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
     <Enonce v-bind:enonce="enonce" />
-    <hr>
+    <hr />
 
     <div class="editeur-container">
       <div class="division">
         <EditeurCode :question="question" />
       </div>
-      <div class="division">
-        
-      </div>
+      <div class="division"></div>
     </div>
-    <hr>
+    <hr />
     <div>
-       <JeuTests v-bind:tests="listetests"/>
+      <JeuTests v-bind:tests="listetests" />
     </div>
-    <hr>
+    <hr />
     <!--Ebauche v-bind:ebauches="ebauches"/-->
-    <hr>
+    <hr />
 
     <div style="width: 100%">
       <Solution />
@@ -30,12 +28,11 @@
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
 import Feedback from "@/components/Question/Feedback.vue";
-import EditeurCode from '@/components/Question/Editeur.vue'
-import Solution from '@/components/Question/Solution.vue'
+import EditeurCode from "@/components/Question/Editeur.vue";
+import Solution from "@/components/Question/Solution.vue";
 //import Ebauche from "@/components/Question/Ebauche";
-import JeuTests from '@/components/Question/JeuTests';
-import get_question from '@/util/question'
-import { getRetroaction } from '@/util/solution';
+import JeuTests from "@/components/Question/JeuTests";
+import get_question from "@/util/question";
 
 export default {
   name: "Question",
@@ -45,60 +42,58 @@ export default {
     Solution,
     //Ebauche,
     EditeurCode,
-    JeuTests
+    JeuTests,
   },
   data() {
-     return {
-         //ebauches:[], // liste d'ébauche
-         listetests: null,
-         enonce:null,
-        question: get_question().then(
-         response => {
-            this.enonce = response.attributes.énoncé;
-            this.question = response;
-           // this.ebauches = response.question_prog.ébauches;
-         }
-       ).catch(
-         err=>{
+    return {
+      //ebauches:[], // liste d'ébauche
+      listetests: null,
+      enonce: null,
+      question: get_question()
+        .then((response) => {
+          this.enonce = response.attributes.énoncé;
+          this.question = response;
+          // this.ebauches = response.question_prog.ébauches;
+        })
+        .catch((err) => {
           console.log(err);
-         }
-       )
-     }
+        }),
+    };
   },
-  computed:{
-    tests(){
-      return this.$store.state.tests
-    }
+  computed: {
+    tests() {
+      return this.$store.state.tests;
+    },
   },
   mounted() {
-      this.$store.dispatch('getTests').then(
-      response=>{this.listetests = this.tests}
-      )
-  }
+    this.$store.dispatch("getTests").then((response) => {
+      this.listetests = this.tests;
+    });
+  },
 };
 </script>
 
 <style>
-  .editeur-container {
-    height: 650px;
-    padding: 20px 0px;
-  }
+.editeur-container {
+  height: 650px;
+  padding: 20px 0px;
+}
 
-  .division {
-    width: 50%;
-    height: 200px;
-    float: left;
-  }
+.division {
+  width: 50%;
+  height: 200px;
+  float: left;
+}
 
-  body {
-    font-family: "Avenir", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-  }
+body {
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
 
-  .ebauche {
-    display: flex;
-    padding: 1rem;
-    margin: 1rem;
-    background: darkgray;
-  }
+.ebauche {
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  background: darkgray;
+}
 </style>

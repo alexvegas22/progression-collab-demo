@@ -4,7 +4,7 @@ import actions from "./actions";
 
 export default createStore({
   state: {
-    tests: Promise,
+    tests: [],
   },
   actions,
   mutations,
