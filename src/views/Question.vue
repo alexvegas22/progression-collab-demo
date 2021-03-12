@@ -19,7 +19,7 @@
     <hr>
 
     <div style="width: 100%">
-      <Avancement v-bind:questionAvancement=questionAvancement />
+      <Avancement/>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
          //ebauches:[], // liste d'ébauche
          feedBack: null,
          enonce:null,
-         questionAvancement:"/user/jdoe/categorie_toto/question/1",
+
         question: get_question().then(
          response => {
             this.enonce = response.attributes.énoncé;
