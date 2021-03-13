@@ -1,12 +1,16 @@
 <template>
 
   <div v-if="avancement.état!=null">
-    <h1>La question est {{convetirEtatEnString(avancement.état)}}</h1>
-    <div v-if="avancement.état!==0">
-    <label for="avancement">Version de la solution:</label>
-    <select name="avancement" id="avancement" >
-      <option v-bind:key="tentative.date_soumission" v-for="tentative in tentatives" v-on:click="getTentative(lienAvancement+'/'+tentative.date_soumission)" value="{{tentative.date_soumission}}">{{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
-    </select>
+    <h3>La question est {{convetirEtatEnString(avancement.état)}}</h3>
+    <div v-if="avancement.état === 0">
+      <p>Aucune tentative précédente</p>
+    </div>
+    <div v-else >
+      <label for="avancement">Version de la solution:</label>
+      <select name="avancement" id="avancement" >
+        <option disabled selected>Choisir une tentative précédente</option>
+        <option v-bind:key="tentative.date_soumission" v-for="tentative in tentatives" v-on:click="getTentative(lienAvancement+'/'+tentative.date_soumission)" value="{{tentative.date_soumission}}">Tentative du {{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
+      </select>
     </div>
   </div>
 
@@ -16,9 +20,6 @@
 import {mapActions} from 'vuex'
 export default {
   name: "Avancement",
-  props: {
-    questionAvancement:String
-  },
   computed: {
     avancement () {
       return this.$store.state.avancement
@@ -58,7 +59,6 @@ export default {
     }
   },
   mounted() {
-    // A modifier url à recuperer dans le store après que Question l'ai chargé
     this.$store.dispatch('getAvancement', this.$store.state.lienAvancement)
   }
 

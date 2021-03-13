@@ -1,9 +1,9 @@
-import {getAvancementApi} from '../services'
+import {getDataFromApi} from '../services'
 
 export default {
   async getAvancement({commit}, questionAvancement) {
     try{
-      const avancement = await getAvancementApi(questionAvancement);
+      const avancement = await getDataFromApi(questionAvancement);
       commit('setAvancement', avancement)
     } catch (error){
       console.log(error)
@@ -11,16 +11,15 @@ export default {
   },
   async getTentative({commit}, avancementTentative) {
     try{
-      const tentative = await getAvancementApi(avancementTentative);
-      const tentativeProg = await getAvancementApi(tentative.lienTentativeProg)
-      const resultatsId = tentativeProg.résultats;
-      const resultats= [];
-      resultatsId.forEach((resultat) =>  getAvancementApi(tentativeProg.lienResultat+resultat.id)
+      const tentative = await getDataFromApi(avancementTentative);
+      const resultatsId = tentative.résultats;
+      let resultats= [];
+      resultatsId.forEach((resultatId) =>  getDataFromApi(tentative.lienResultat+resultatId.id)
                           .then((res)=>resultats.push(res))
         )
 
-      const tentativeComplete = {tentative: tentative, tentativeProg: tentativeProg, resultats:resultats}
-      //TODO : supprimer le consoloe.log pour demo seulement affiche le composant qui est mis dans le store.
+      const tentativeComplete = {tentative: tentative, resultats:resultats}
+      //TODO : supprimer le console.log pour demo seulement affiche le composant qui est mis dans le store.
       console.log(tentativeComplete)
       commit('setTentative', tentativeComplete)
     } catch (error){

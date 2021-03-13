@@ -10,7 +10,7 @@ const getQuestion = function () {
     });
 }
 
-const getAvancementApi = function (questionAvancement) {
+const getDataFromApi = function (questionAvancement) {
     return getData(BASE_URL + questionAvancement).then(
         data => { return data }
     ).catch((err) => {
@@ -20,4 +20,4 @@ const getAvancementApi = function (questionAvancement) {
 
 
 
-export { getQuestion, getAvancementApi }
+export { getQuestion, getDataFromApi }
