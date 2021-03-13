@@ -12,7 +12,7 @@
     </div>
     <hr />
     <div>
-      <JeuTests v-bind:tests="listetests" />
+      <JeuTests v-bind:tests="tests" />
     </div>
     <hr />
     <!--Ebauche v-bind:ebauches="ebauches"/-->
@@ -47,7 +47,6 @@ export default {
   data() {
     return {
       //ebauches:[], // liste d'ébauche
-      listetests: null,
       enonce: null,
       question: get_question()
         .then((response) => {
@@ -66,9 +65,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getTests").then((response) => {
-      this.listetests = this.tests;
-    });
+    this.$store.dispatch("getTests");
   },
 };
 </script>
