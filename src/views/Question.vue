@@ -1,11 +1,11 @@
 <template>
   <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
-    <Enonce 
-      v-bind:titre="question.attributes?.titre" 
+    <Enonce
+      v-bind:titre="question.attributes?.titre"
       v-bind:enonce="question.attributes?.énoncé"
     />
-    <hr>
+    <hr />
 
     <div class="editeur-container">
       <div class="division">
@@ -35,8 +35,7 @@ import Solution from "@/components/Question/Solution.vue";
 //import Ebauche from "@/components/Question/Ebauche";
 import JeuTests from "@/components/Question/JeuTests";
 
-
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
+const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server
 
 export default {
   name: "Question",
@@ -49,19 +48,19 @@ export default {
   },
   data() {
     return {
-       ebauches:[], // liste d'ébauche
-     }
+      ebauches: [], // liste d'ébauche
+    };
   },
   computed: {
-    question () {
-      return this.$store.state.question
+    question() {
+      return this.$store.state.question;
     },
     tests() {
       return this.$store.state.tests;
     },
   },
   mounted() {
-    this.$store.dispatch('getQuestion', BASE_URL)
+    this.$store.dispatch("getQuestion", BASE_URL);
   },
 };
 </script>

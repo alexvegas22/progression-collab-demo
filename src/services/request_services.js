@@ -12,7 +12,7 @@ const getData = (lien)=> new Promise((resolve, reject)=> {
     //let token = localStorage.getItem('user-token')
     axios.get(lien)
         .then(res=>{
-            resolve(res.data.data)
+            resolve(res.data)
         })
         .catch(error=>{
             reject(error)
