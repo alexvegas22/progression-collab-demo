@@ -1,10 +1,23 @@
-import {getDataFromApi} from '../services'
+
+import {getDataFromApi, getEbaucheApi} from '../services';
+
+
 
 export default {
   async getAvancement({commit}, questionAvancement) {
     try{
       const avancement = await getDataFromApi(questionAvancement);
       commit('setAvancement', avancement)
+    }catch (error){
+      console.log(error)
+    }
+  },
+  async getQuestion({ commit, dispatch, state }, url) {
+    try{
+      commit('setQuestion', await getQuestion(url))
+
+      await dispatch('getEbauche', state.question.relationships.ebauches.links.related);
+
     } catch (error){
       console.log(error)
     }
@@ -24,7 +37,13 @@ export default {
     } catch (error){
       console.log(error)
     }
-  }
-
+  },
+  async getEbauche({ commit }, ebaucheUrl) {
+    try {
+      commit("setEbauche", await getEbaucheApi(ebaucheUrl));
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
 }

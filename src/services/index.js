@@ -1,14 +1,17 @@
-import  { getData } from './request_services'
-const BASE_URL = process.env.VUE_APP_API_URL // json-server
+
 
 // TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
-const getQuestion = function () {
-    return getData(BASE_URL).then(
-        data => { return data }
-    ).catch((err) => {
-        reject(err);
+// TODO : Changer le nom 'getQuestion' pour 'getQuestionApi' afin de standardiser le code.
+const getQuestion = () => {
+  return getData(BASE_URL)
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      reject(err);
     });
-}
+};
+
 
 const getDataFromApi = function (questionAvancement) {
     return getData(BASE_URL + questionAvancement).then(
@@ -20,4 +23,17 @@ const getDataFromApi = function (questionAvancement) {
 
 
 
-export { getQuestion, getDataFromApi }
+
+// TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
+const getEbaucheApi = (urlEbauche) => {
+  return getData(urlEbauche)
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      reject(err);
+    });
+};
+
+export { getQuestion, getEbaucheApi, getDataFromApi };
+
