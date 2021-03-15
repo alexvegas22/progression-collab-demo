@@ -62,7 +62,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getQuestion', BASE_URL)
-    this.$store.dispatch("getTests")
   },
 };
 </script>
