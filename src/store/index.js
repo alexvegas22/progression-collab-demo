@@ -5,7 +5,9 @@ import actions from "./actions";
 export default createStore({
   state: {
     tests: [],
+    question: {}
   },
   actions,
   mutations,
 });
+

@@ -1,12 +1,13 @@
-import { getTestsAPI } from "../services/index";
+import { getQuestion, getTestsAPI } from "../services";
 
 export default {
+  async getQuestion({ dispatch, commit }, url) {
+    const question = await getQuestion(url);
+    commit("setQuestion", question);
+    await dispatch("getQuestion");
+  },
   async getTests({ commit }) {
-    try {
-      const tests = await getTestsAPI();
-      commit("setTests", tests);
-    } catch (error) {
-      console.log(error);
-    }
+    const tests = await getTestsAPI();
+    commit("setTests", tests);
   },
 };
