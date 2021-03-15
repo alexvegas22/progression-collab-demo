@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-import '../util/commun.js'
-
->>>>>>> dev
 const axios = require('axios');
 
 /**

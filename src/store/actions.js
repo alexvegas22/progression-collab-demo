@@ -1,14 +1,11 @@
 import {getQuestion} from '../services'
-<<<<<<< HEAD
 import { getEbaucheApi } from "../services/index";
-=======
->>>>>>> dev
 
 export default {
   async getQuestion({commit}, url) {
     try{
       const question = await getQuestion(url);
-<<<<<<< HEAD
+
       commit('setQuestion', await question)
     } catch (error){
       console.log(error)
@@ -26,12 +23,3 @@ export default {
     }
   }
 }
-=======
-      commit('setQuestion', question)
-    } catch (error){
-      console.log(error)
-    }
-  }
-}
-
->>>>>>> dev
