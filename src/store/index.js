@@ -5,7 +5,7 @@ import actions from "./actions";
 export default createStore({
   state: {
     question: {},
-    ebauche: "",
+    ebauche: {},
   },
   actions,
   mutations,

@@ -2,22 +2,20 @@ import {getQuestion} from '../services'
 import { getEbaucheApi } from "../services/index";
 
 export default {
-  async getQuestion({commit}, url) {
+  async getQuestion({commit, dispatch}, url) {
     try{
-      const question = await getQuestion(url);
+      commit('setQuestion', await getQuestion(url))
 
-      commit('setQuestion', await question)
+      await dispatch('getEbauche');
     } catch (error){
       console.log(error)
     }
   },
-  async getEbauche({ dispatch, commit }) {
+  async getEbauche({ commit, state }) {
     try {
-      await dispatch('getQuestion')
+      const ebaucheUrl = state.question.relationships.ebauches.links.related
 
-      //state.question
-
-      commit("setEbauche", await getEbaucheApi('http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche'));
+      commit("setEbauche", await getEbaucheApi(ebaucheUrl));
     } catch (error) {
       console.log(error);
     }
