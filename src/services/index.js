@@ -9,7 +9,10 @@ const getQuestion = () => {
       return data;
     })
     .catch((err) => {
+<<<<<<< HEAD
       console.log(err)
+=======
+>>>>>>> 821f0f161239466d66227a64e807fdda6a11daba
       reject(err);
     });
 };

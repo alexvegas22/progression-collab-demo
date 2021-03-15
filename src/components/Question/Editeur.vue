@@ -33,12 +33,15 @@
         PrismEditor,
         AffichageValidation
       },
+<<<<<<< HEAD
       watch: {
         ebauche: function () {
           this.code = this.ebauche.attributes.code;
           this.langage = this.ebauche.attributes.langage;
         }
       },
+=======
+>>>>>>> 821f0f161239466d66227a64e807fdda6a11daba
       props: ['question'],
       data: () => ({
         code: "",
@@ -83,12 +86,26 @@
         },
       },
       computed: {
+<<<<<<< HEAD
           ebauche() {
               return this.$store.state.ebauche;
           }
       },
       mounted() {
 
+=======
+        ebauche(){
+          return this.$store.state.ebauche
+        }
+      },
+      mounted() {
+        this.$store.dispatch('getEbauche','http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche').then(
+          response=>{
+            this.code = this.ebauche.attributes.code
+          }
+        )
+        
+>>>>>>> 821f0f161239466d66227a64e807fdda6a11daba
       }
     };
 </script>
