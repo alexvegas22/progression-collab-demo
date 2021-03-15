@@ -12,11 +12,13 @@
         <EditeurCode :question="question" />
       </div>
       <div class="division">
-        <Feedback v-bind:feedBack="feedBack"/>
-        <button class="valider" v-on:click="obtenirRetroaction">Cliquer</button>
+
       </div>
     </div>
-
+    <hr>
+    <div>
+       <JeuTests v-bind:tests="listetests"/>
+    </div>
     <hr>
     <!--Ebauche v-bind:ebauches="ebauches"/-->
     <hr>
@@ -30,12 +32,11 @@
 <script>
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
-import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
 import Avancement from '@/components/Question/Avancement.vue'
 //import Ebauche from "@/components/Question/Ebauche";
-
-import { getRetroaction } from '@/util/solution';
+import JeuTests from '@/components/Question/JeuTests';
+// import get_question from '@/util/question'
 
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
 
@@ -43,36 +44,24 @@ export default {
   name: "Question",
   components: {
     Enonce,
-    Feedback,
     Avancement,
     //Ebauche,
-    EditeurCode
+    EditeurCode,
+    JeuTests
   },
   data() {
      return {
          ebauches:[], // liste d'ébauche
-         feedBack: null
+         listetests: null
      }
   },
-  computed: {
+  computed:{
+    tests(){
+      return this.$store.state.tests
+    },
     question () {
       return this.$store.state.question
     }
-  },
-  methods: {
-    obtenirRetroaction() {
-
-      getRetroaction().then(
-        retroaction => {
-            this.feedBack = retroaction;
-        }
-      ).catch(
-        err =>{
-            console.log(err);
-            this.feedBack = "";
-        }
-      )
-    },
   },
   mounted() {
     this.$store.dispatch('getQuestion', BASE_URL)

@@ -1,16 +1,19 @@
-
 import { createStore } from 'vuex'
 import { mutations } from './mutations'
 import actions from './actions'
 
 export default createStore({
     state: {
-      avancement: "",
-      tentative: "",
-      question: {},
-      ebauche: {},
+        question: {},
+        ebauche: {},
+        tests: Promise,
+        retroactionTentative:Object,
+        msgAPIEnvoiTentative:null,
+        envoiTentativeEnCours:false,
+        avancement: "",
+        tentative: "",
     },
     actions,
-    mutations,
-  })
+    mutations
+})
 
