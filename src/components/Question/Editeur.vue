@@ -126,4 +126,8 @@
   .container-editeur .division#resultat {
       padding: 0px 20px;
   }
+
+  .my-editor pre {
+      color: #f6f6f6;
+  }
 </style>
