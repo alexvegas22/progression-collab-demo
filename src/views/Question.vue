@@ -1,7 +1,10 @@
 <template>
   <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
-    <Enonce v-bind:enonce="enonce" />
+    <Enonce
+      v-bind:titre="question.attributes?.titre"
+      v-bind:enonce="question.attributes?.énoncé"
+    />
     <hr>
 
     <div class="editeur-container">
@@ -32,8 +35,9 @@ import EditeurCode from '@/components/Question/Editeur.vue'
 import Solution from '@/components/Question/Solution.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 
-import get_question from '@/util/question'
 import { getRetroaction } from '@/util/solution';
+
+const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
 
 export default {
   name: "Question",
@@ -46,21 +50,14 @@ export default {
   },
   data() {
      return {
-         //ebauches:[], // liste d'ébauche
-         feedBack: null,
-         enonce:null,
-        question: get_question().then(
-         response => {
-            this.enonce = response.attributes.énoncé;
-            this.question = response;
-           // this.ebauches = response.question_prog.ébauches;
-         }
-       ).catch(
-         err=>{
-          console.log(err);
-         }
-       )
+         ebauches:[], // liste d'ébauche
+         feedBack: null
      }
+  },
+  computed: {
+    question () {
+      return this.$store.state.question
+    }
   },
   methods: {
     obtenirRetroaction() {
@@ -76,6 +73,9 @@ export default {
         }
       )
     },
+  },
+  mounted() {
+    this.$store.dispatch('getQuestion', BASE_URL)
   }
 };
 </script>
