@@ -1,7 +1,10 @@
 <template>
   <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
-    <Enonce v-bind:enonce="enonce" />
+    <Enonce
+      v-bind:titre="question.attributes?.titre"
+      v-bind:enonce="question.attributes?.énoncé"
+    />
     <hr>
 
     <div class="editeur-container">
@@ -9,7 +12,7 @@
         <EditeurCode :question="question" />
       </div>
       <div class="division">
-        
+
       </div>
     </div>
     <hr>
@@ -35,13 +38,13 @@ import Solution from '@/components/Question/Solution.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 import JeuTests from '@/components/Question/JeuTests';
 import get_question from '@/util/question'
-import { getRetroaction } from '@/util/solution';
+
+const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
 
 export default {
   name: "Question",
   components: {
     Enonce,
-    Feedback,
     Solution,
     //Ebauche,
     EditeurCode,
@@ -49,31 +52,23 @@ export default {
   },
   data() {
      return {
-         //ebauches:[], // liste d'ébauche
-         listetests: null,
-         enonce:null,
-        question: get_question().then(
-         response => {
-            this.enonce = response.attributes.énoncé;
-            this.question = response;
-           // this.ebauches = response.question_prog.ébauches;
-         }
-       ).catch(
-         err=>{
-          console.log(err);
-         }
-       )
+         ebauches:[], // liste d'ébauche
+         listetests: null
      }
   },
   computed:{
     tests(){
       return this.$store.state.tests
+    },
+    question () {
+      return this.$store.state.question
     }
   },
   mounted() {
-      this.$store.dispatch('getTests').then(
-      response=>{this.listetests = this.tests}
-      )
+    this.$store.dispatch('getTests').then(
+        //response=>{this.listetests = this.tests}
+    )
+    this.$store.dispatch('getQuestion', BASE_URL)
   }
 };
 </script>

@@ -1,4 +1,5 @@
-import {postTentative, getTestsAPI} from '../services/index.js'
+import {postTentative, getTestsAPI, getQuestion} from '../services/index.js'
+import { getEbaucheApi } from "../services/index";
 
 export default {
   async getTests({ commit }) {
@@ -9,6 +10,15 @@ export default {
       console.log(error);
     }
   },
+    async getQuestion({ commit, dispatch, state }, url) {
+        try{
+            commit('setQuestion', await getQuestion(url))
+
+            await dispatch('getEbauche', state.question.relationships.ebauches.links.related);
+        } catch (error){
+            console.log(error)
+        }
+    },
     async envoyerTentative({commit}, langage, code) {
         commit('updateEnvoieTentativeEnCours', true)
         commit('updateMsgAPIEnvoiTentative', "Envoie de la tentative en cours..")

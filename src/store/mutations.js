@@ -11,4 +11,10 @@ export const mutations = {
     setTests(state, tests) {
       state.tests = tests;
     },
+    setQuestion (state, question) {
+        state.question = question;
+    },
+    setEbauche(state, ebauche) {
+        state.ebauche = ebauche;
+    }
 }
