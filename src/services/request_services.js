@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 const axios = require('axios');
-=======
-//import "./commun.js";
 
-const axios = require("axios");
->>>>>>> 821f0f161239466d66227a64e807fdda6a11daba
 
 /**
  * fait une requete GET
@@ -44,8 +39,4 @@ const postData = (lien, body) =>
       });
   });
 
-<<<<<<< HEAD
-export {getData, postData}
-=======
 export { getData, postData };
->>>>>>> 821f0f161239466d66227a64e807fdda6a11daba
