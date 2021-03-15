@@ -1,12 +1,12 @@
 <template>
   <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
-    <Enonce 
-      v-bind:titre="question.attributes?.titre" 
+    <Enonce
+      v-bind:titre="question.attributes?.titre"
       v-bind:enonce="question.attributes?.énoncé"
     />
     <hr>
-    
+
     <div class="editeur-container">
       <div class="division">
         <EditeurCode :question="question" />

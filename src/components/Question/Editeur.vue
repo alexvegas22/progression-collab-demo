@@ -15,7 +15,7 @@
 <script>
 
   import AffichageValidation from '@/components/Question/AffichageValidation';
-  import { getData, envoyerTentative } from '@/util/solution';
+  import { envoyerTentative } from '@/util/solution';
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -33,14 +33,16 @@
         PrismEditor,
         AffichageValidation
       },
-      props: ['question'],
       watch: {
-        question: function () {
-          this.setEbauche();
+        ebauche: function () {
+          this.code = this.ebauche.attributes.code;
+          this.langage = this.ebauche.attributes.langage;
         }
       },
+      props: ['question'],
       data: () => ({
         code: "",
+        langage: "python", // Il faut une valeur par défaut. Ici la valeur par défaut est python
         resultats:[],
         feedback_global:'',
         testsPassent:null,
@@ -49,7 +51,7 @@
       methods: {
         highlighter(code) {
           // prend le langage sélectionné par l'utilisateur et retourne les highlights
-          return highlight(code, languages["python"]);
+          return highlight(code, languages[this.langage]);
         },
         valider_tentative() {
           this.messageCnxAPI="Envoie de la tentative en cours..."
@@ -79,22 +81,14 @@
             }
           )
         },
-        setEbauche() {
-          // À remplacer par `question.relationships.ébauches.links.self` quand le mock de question est fait
-          getData("http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche").then(
-            data => {
-              this.code = data.attributes.code;
-            }
-          ).catch(
-            err =>{
-              this.code = "";
-            }
-          )
-        }
+      },
+      computed: {
+          ebauche() {
+              return this.$store.state.ebauche;
+          }
       },
       mounted() {
-        if (this.question != undefined && this.question.langage != undefined)
-          this.setEbauche()
+
       }
     };
 </script>
@@ -131,5 +125,9 @@
 
   .container-editeur .division#resultat {
       padding: 0px 20px;
+  }
+
+  .my-editor pre {
+      color: #f6f6f6;
   }
 </style>
