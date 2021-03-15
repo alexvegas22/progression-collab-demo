@@ -27,7 +27,6 @@
 <script>
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
-import Feedback from "@/components/Question/Feedback.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Solution from "@/components/Question/Solution.vue";
 //import Ebauche from "@/components/Question/Ebauche";
@@ -38,7 +37,6 @@ export default {
   name: "Question",
   components: {
     Enonce,
-    Feedback,
     Solution,
     //Ebauche,
     EditeurCode,
