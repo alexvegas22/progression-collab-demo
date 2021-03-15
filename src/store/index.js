@@ -9,9 +9,6 @@ export default createStore({
       tentative: "",
       question: {},
       ebauche: {},
-      // lien avancement set ici en attente de le recuperer de composant question
-      lienAvancement :'/user/jdoe/categorie_toto/question/1',
-
     },
     actions,
     mutations,

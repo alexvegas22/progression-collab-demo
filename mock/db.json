@@ -13,7 +13,8 @@
           {"id": 121412},
           {"id": 121413},
           {"id": 121414}
-        ]
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
       }
 
     },
@@ -29,7 +30,8 @@
         "résultats": [
           {"id": 31412},
           {"id": 31413}
-        ]
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
       }
     },
     {
@@ -44,7 +46,8 @@
         "résultats": [
           {"id": 31412},
           {"id": 31413}
-        ]
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
       }
     },
     {
@@ -60,7 +63,8 @@
           {"id": 31412},
           {"id": 31413},
           {"id": 31414}
-        ]
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
       }
     }
   ],
@@ -76,7 +80,7 @@
         },
         "links": {
             "self": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ",
-            "avancement": "https://progression.dti.crosemont.quebec/api/v1/avancement/jdoe/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ"
+            "avancement": "http://localhost:3000/avancement/1"
         },
         "relationships": {
             "tests": {
@@ -156,6 +160,7 @@
   "avancement": [{
     "id": 1,
     "data": {
+      "lienTentatives": "http://localhost:3000/tentative/",
       "état": 2,
       "tentatives": [{
           "date_soumission": 1613069492,
@@ -171,6 +176,7 @@
   {
     "id": 2,
     "data": {
+      "lienTentatives": "http://localhost:3000/tentative/",
       "état": 1,
       "tentatives": [{
           "date_soumission": 42352353253,
@@ -186,6 +192,7 @@
   {
     "id": 3,
     "data": {
+      "lienTentatives": "http://localhost:3000/tentative/",
       "état": 0,
       "tentatives": []
     }
