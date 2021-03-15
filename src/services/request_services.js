@@ -1,5 +1,3 @@
-import './commun.js'
-
 const axios = require('axios');
 
 /**
