@@ -14,9 +14,8 @@ export default {
       const tentative = await getDataFromApi(avancementTentative);
       const resultatsId = tentative.résultats;
       let resultats= [];
-      resultatsId.forEach((resultatId) =>  getDataFromApi(tentative.lienResultat+resultatId.id)
-                          .then((res)=>resultats.push(res))
-        )
+      resultatsId.forEach( async (resultat) =>
+          resultats.push(await getDataFromApi(tentative.lienResultat+resultat.id)))
 
       const tentativeComplete = {tentative: tentative, resultats:resultats}
       //TODO : supprimer le console.log pour demo seulement affiche le composant qui est mis dans le store.
