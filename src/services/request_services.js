@@ -26,8 +26,7 @@ const getData = (lien) =>
  * @param body: le body COMPLET de la requete
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
-const postData = (lien, body) =>
-  new Promise((resolve, reject) => {
+const postData = (lien, body)=> new Promise((resolve, reject)=> {
     //let token = localStorage.getItem('user-token')
     axios
       .post(lien, body)

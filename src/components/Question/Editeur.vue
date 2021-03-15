@@ -2,20 +2,13 @@
     <div id="question" class="container-editeur">
         <prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
     </div>
-    <button :disabled="messageCnxAPI.length===34" @click="valider_tentative">envoie ta reponse</button>
-    <!-- TODO :Gerer le traitement d'erreur -->
-   <div v-if="resultats.length>0 || messageCnxAPI!=null">
-     <AffichageValidation v-bind:message_connexion_API="messageCnxAPI"
-                          v-bind:résultats="resultats"
-                          v-bind:feedback_global="feedback_global"
-                          v-bind:testsPassent="testsPassent"/>
-   </div>
+     <ValidationTentative v-bind:code="code" v-bind:langage="langage"/>
 </template>
 
 <script>
 
-  import AffichageValidation from '@/components/Question/AffichageValidation';
-  import { envoyerTentative } from '@/util/solution';
+  import ValidationTentative from '@/components/Question/ValidationTentative';
+
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -31,7 +24,7 @@
   export default {
       components: {
         PrismEditor,
-        AffichageValidation
+        ValidationTentative
       },
       watch: {
         ebauche: function () {
@@ -42,44 +35,12 @@
       props: ['question'],
       data: () => ({
         code: "",
-        langage: "python", // Il faut une valeur par défaut. Ici la valeur par défaut est python
-        resultats:[],
-        feedback_global:'',
-        testsPassent:null,
-        messageCnxAPI: ""
+        langage: "python"
       }),
       methods: {
         highlighter(code) {
           // prend le langage sélectionné par l'utilisateur et retourne les highlights
           return highlight(code, languages[this.langage]);
-        },
-        valider_tentative() {
-          this.messageCnxAPI="Envoie de la tentative en cours..."
-          envoyerTentative(this.question.langage, this.code).then(
-            tentative => {
-              //si on recoit une reponse le message devient null, la reponse sera affichee
-                this.messageCnxAPI="";
-                this.resultats = tentative.résultats
-                this.feedback_global = tentative.feedback
-
-                //variable qui sera a false si ce ne sont pas tous les tests qui passent
-                this.testsPassent = true;
-
-                //on itère à travers tous les tests pour voir s'il y en a un qui ne passent pas.
-                for(let unResultat of tentative.résultats){
-                  if(unResultat.résultat === "false") {
-                    this.testsPassent = false;
-                    break;
-                  }
-                }
-            }
-          ).catch(
-            err => {
-                console.log(err);
-                //message d'erreur si on ne peut pas joindre l'API
-                this.messageCnxAPI="Impossible de communiquer avec le super serveur de validation :("
-            }
-          )
         },
       },
       computed: {
