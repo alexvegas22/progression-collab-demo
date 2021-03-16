@@ -1,19 +1,41 @@
 <template>
 
-  <div>
-    <h1 v-if="état!=null">La question est {{convetirEtatEnString(état)}}</h1>
+  <div v-if="avancement.état!=null">
+    <h3>La question est {{convetirEtatEnString(avancement.état)}}</h3>
+    <div v-if="avancement.état === 0">
+      <p>Aucune tentative précédente</p>
+    </div>
+    <div v-else >
+      <label for="avancement">Version de la solution:</label>
+      <select name="avancement" id="avancement" >
+        <option disabled selected>Choisir une tentative précédente</option>
+        <option v-bind:key="tentative.date_soumission" v-for="tentative in tentatives" v-on:click="getTentative(avancement.lienTentatives+''+ tentative.date_soumission)" value="{{tentative.date_soumission}}">Tentative du {{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
+      </select>
+    </div>
   </div>
 
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "Avancement",
-  props: {
-    état:Number,
-    question:String
+  computed: {
+    avancement () {
+      return this.$store.state.avancement
+    },
+    tentatives(){
+      return this.$store.state.avancement.tentatives
+    },
   },
   methods: {
+    ...mapActions([
+      'getTentative'
+    ]),
+    convetirDateDepuisTimeStamp : function (timestanp) {
+        let date = new Date(timestanp*1000)
+        return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes()}`
+      },
     convetirEtatEnString: function (etat) {
       let etatString
       switch (etat){
@@ -32,6 +54,10 @@ export default {
       }
       return etatString
     }
+  },
+  mounted() {
+
   }
+
 }
 </script>

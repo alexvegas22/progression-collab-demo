@@ -18,7 +18,7 @@
     </div>
 
     <div style="width: 100%">
-      <Solution />
+      <Avancement/>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
   name: "Question",
   components: {
     Enonce,
-    Solution,
+    Avancement,
     //Ebauche,
     EditeurCode,
     JeuTests,

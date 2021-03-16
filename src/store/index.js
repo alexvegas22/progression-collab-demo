@@ -9,8 +9,11 @@ export default createStore({
         tests: [],
         retroactionTentative:Object,
         msgAPIEnvoiTentative:null,
-        envoiTentativeEnCours:false
+        envoiTentativeEnCours:false,
+        avancement: "",
+        tentative: "",
     },
     actions,
     mutations
 })
+

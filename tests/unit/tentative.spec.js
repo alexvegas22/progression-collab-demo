@@ -1,5 +1,12 @@
-
-import { shallowMount, mount } from '@vue/test-utils'
+/**
+ *
+ * Ces tests sont  refactoriser TODO Sprint 6
+ *
+ *
+ *
+ *
+ *
+ import { shallowMount, mount } from '@vue/test-utils'
 import Tentatives from "@/components/Question/Tentatives";
 import getAvancement from "@/util/Avancement";
 
@@ -21,3 +28,4 @@ describe("Tests unitaires sur le component Tentatives", ()=>{
         expect(wrapper.findAll('a')[1].html()).toEqual('<a>Solution du 6/1/1970 à 3:44</a>')
     })
 })
+ */

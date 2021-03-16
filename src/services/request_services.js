@@ -26,13 +26,13 @@ const getData = (lien) =>
 const postData = (lien, body)=> new Promise((resolve, reject)=> {
     //let token = localStorage.getItem('user-token')
     axios
-      .post(lien, body)
-      .then((res) => {
-        resolve(res.data.data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+        .post(lien, body)
+        .then((res) => {
+            resolve(res.data.data);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+});
 
 export { getData, postData };
