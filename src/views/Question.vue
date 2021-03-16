@@ -24,7 +24,7 @@
     <hr>
 
     <div style="width: 100%">
-      <Solution />
+      <Avancement/>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from '@/components/Question/Editeur.vue'
-import Solution from '@/components/Question/Solution.vue'
+import Avancement from '@/components/Question/Avancement.vue'
 //import Ebauche from "@/components/Question/Ebauche";
 import JeuTests from '@/components/Question/JeuTests';
 // import get_question from '@/util/question'
@@ -44,7 +44,7 @@ export default {
   name: "Question",
   components: {
     Enonce,
-    Solution,
+    Avancement,
     //Ebauche,
     EditeurCode,
     JeuTests
@@ -64,9 +64,6 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getTests').then(
-        //response=>{this.listetests = this.tests}
-    )
     this.$store.dispatch('getQuestion', BASE_URL)
   }
 };

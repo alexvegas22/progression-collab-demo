@@ -2,79 +2,70 @@
   "tentative": [
     {
       "id": 1613069492,
-      "date_soumission": 1613069492,
-      "feedback": "Je suis Réussie",
-      "solutions": "/solutions/4",
-      "résultats": []
+      "data": {
+        "date_soumission": 1613069492,
+        "feedback": "Je suis Réussie",
+        "sous-type": "tentativeProg",
+        "lienResultat": "/resultats/",
+        "langage": 0,
+        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
+        "résultats": [
+          {"id": 121412},
+          {"id": 121413},
+          {"id": 121414}
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
+      }
+
     },
     {
       "id": 463463,
-      "date_soumission": 463463,
-      "solutions": "/solutions/3",
-      "résultats": [],
-      "feedback": "Je suis Réussie"
+      "data": {
+        "date_soumission": 463463,
+        "feedback": "Je suis Réussie",
+        "sous-type": "tentativeProg",
+        "langage": 1,
+        "lienResultat": "/resultats/",
+        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+        "résultats": [
+          {"id": 31412},
+          {"id": 31413}
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
+      }
     },
     {
       "id": 42352353253,
-      "date_soumission": 42352353253,
-      "feedback": "Blalalal",
-      "solutions": "/solutions/2",
-      "résultats": []
+      "data": {
+        "date_soumission": 42352353253,
+        "feedback": "Blalalal",
+        "sous-type": "tentativeProg",
+        "langage": 1,
+        "lienResultat": "/resultats/",
+        "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
+        "résultats": [
+          {"id": 31412},
+          {"id": 31413}
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
+      }
     },
     {
-      "date_soumission": 4346436,
       "id": 4346436,
-      "feedback": "Blalalala",
-      "solutions": "/solutions/1",
-      "résultats": []
-    },
-    {
-      "code": "",
-      "id": 42352353254
-    },
-    {
-      "code": "",
-      "id": 42352353255
-    },
-    {
-      "code": "",
-      "id": 42352353256
-    },
-    {
-      "code": "",
-      "id": 42352353257
-    },
-    {
-      "code": "",
-      "id": 42352353258
-    },
-    {
-      "code": "",
-      "id": 42352353259
-    },
-    {
-      "code": "",
-      "id": 42352353260
-    },
-    {
-      "code": "ddd",
-      "id": 42352353261
-    },
-    {
-      "code": "ddd",
-      "id": 42352353262
-    },
-    {
-      "code": "",
-      "id": 42352353263
-    },
-    {
-      "code": "",
-      "id": 42352353264
-    },
-    {
-      "code": "",
-      "id": 42352353265
+      "data": {
+        "date_soumission": 4346436,
+        "feedback": "Blalalala",
+        "sous-type": "tentativeProg",
+        "langage": 2,
+        "lienResultat": "/resultats/",
+        "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
+        "résultats": [
+          {"id": 31412},
+          {"id": 31413},
+          {"id": 31414}
+        ],
+        "lienResultat": "http://localhost:3000/resultats/"
+      }
     }
   ],
   "question": {
@@ -89,7 +80,7 @@
         },
         "links": {
             "self": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ",
-            "avancement": "https://progression.dti.crosemont.quebec/api/v1/avancement/jdoe/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ"
+            "avancement": "http://localhost:3000/avancement/1"
         },
         "relationships": {
             "tests": {
@@ -166,12 +157,12 @@
         }]
       }
   },
-  "avancement": [
-    {
-      "id": 1,
+  "avancement": [{
+    "id": 1,
+    "data": {
+      "lienTentatives": "http://localhost:3000/tentative/",
       "état": 2,
-      "tentative": [
-        {
+      "tentatives": [{
           "date_soumission": 1613069492,
           "id": 1613069492
         },
@@ -180,12 +171,14 @@
           "id": 463463
         }
       ]
-    },
-    {
-      "id": 2,
+    }
+  },
+  {
+    "id": 2,
+    "data": {
+      "lienTentatives": "http://localhost:3000/tentative/",
       "état": 1,
-      "tentative": [
-        {
+      "tentatives": [{
           "date_soumission": 42352353253,
           "id": 42352353253
         },
@@ -194,40 +187,82 @@
           "id": 4346436
         }
       ]
-    },
-    {
-      "id": 3,
+    }
+  },
+  {
+    "id": 3,
+    "data": {
+      "lienTentatives": "http://localhost:3000/tentative/",
       "état": 0,
-      "tentative": []
+      "tentatives": []
     }
-  ],
-  "solutions": [
+  }
+],
+  "resultats":
+  [
     {
-      "id": "1",
-      "langage": 0,
-      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+    "id": 121412,
+    "data": {
+      "numéro": 121412,
+      "sortie_observée": "sortie observée",
+      "sortie_erreur": "sortie erreur",
+      "résultat": true,
+      "feedback": "Cool"
+      }
     },
     {
-      "id": "2",
-      "langage": 1,
-      "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+      "id": 121413,
+      "data": {
+        "numéro": 121413,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
     },
     {
-      "id": "3",
-      "langage": 1,
-      "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")"
+      "id": 121414,
+      "data": {
+        "numéro": 121414,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
     },
     {
-      "id": "4",
-      "langage": 2,
-      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+      "id": 31412,
+      "data": {
+        "numéro": 31412,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
     },
     {
-      "id": "5",
-      "langage": 2,
-      "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\""
+      "id": 31413,
+      "data": {
+        "numéro": 31413,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
+    },
+    {
+      "id": 31414,
+      "data": {
+        "numéro": 31414,
+        "sortie_observée": "sortie observée",
+        "sortie_erreur": "sortie erreur",
+        "résultat": true,
+        "feedback": "Cool"
+      }
     }
-  ],
+
+  ]
+  ,
   "liens": {
     "suivante": "https://progression.dti.crosemont.quebec/index.php?p=question_prog&ID=2792",
     "catégorie": "https://progression.dti.crosemont.quebec/index.php?p=theme&ID=1",

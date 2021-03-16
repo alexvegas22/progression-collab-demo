@@ -1,3 +1,11 @@
+/**
+ *
+ * Ces tests sont  refactoriser TODO Sprint 6
+ *
+ *
+ *
+ *
+ *
 import {render, screen, fireEvent} from '@testing-library/vue'
 import { mount } from '@vue/test-utils'
 import Solution from '@/components/Question/Solution.vue'
@@ -168,3 +176,5 @@ describe('Tests sur le composant Solution', function () {
     })
 
 });
+
+ */

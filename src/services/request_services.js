@@ -8,17 +8,17 @@ const axios = require('axios');
  * @returns {Promise<unknown>}
  */
 const getData = (lien) =>
-  new Promise((resolve, reject) => {
-    //let token = localStorage.getItem('user-token')
-    axios
-      .get(lien)
-      .then((res) => {
-        resolve(res.data.data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+    new Promise((resolve, reject) => {
+        //let token = localStorage.getItem('user-token')
+        axios
+            .get(lien)
+            .then((res) => {
+                resolve(res.data.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
 
 /**
  * Fait une requete Post a l'api
@@ -29,13 +29,13 @@ const getData = (lien) =>
 const postData = (lien, body)=> new Promise((resolve, reject)=> {
     //let token = localStorage.getItem('user-token')
     axios
-      .post(lien, body)
-      .then((res) => {
-        resolve(res.data.data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+        .post(lien, body)
+        .then((res) => {
+            resolve(res.data.data);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+});
 
 export { getData, postData };
