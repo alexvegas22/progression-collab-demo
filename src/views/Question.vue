@@ -18,7 +18,7 @@
     </div>
 
     <div style="width: 100%">
-      <Avancement/>
+      <Avancement />
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
-import Solution from "@/components/Question/Solution.vue";
+import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
 
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server
