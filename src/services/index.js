@@ -1,13 +1,16 @@
-import request_service, { getData } from './request_services'
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
+import  { getData, postData } from "./request_services";
+const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server
+const URL_VALIDER_TENTATIVE=process.env.VUE_APP_API_URL_VALIDATION_TENTATIVE
 const URL_MOCK = process.env.VUE_APP_API_URL
-
 // TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
-const getQuestion = function () {
-    return getData(BASE_URL).then(
-        data => { return data }
-    ).catch((err) => {
-        reject(err);
+// TODO : Changer le nom 'getQuestion' pour 'getQuestionApi' afin de standardiser le code.
+const getQuestion = () => {
+  return getData(BASE_URL)
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      reject(err);
     });
 }
 
@@ -18,4 +21,19 @@ const getTestsAPI = (urlTests)=>{
         reject(err);
     });
 }
-export { getQuestion, getTestsAPI }
+
+// TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
+const getEbaucheApi = (urlEbauche) => {
+  return getData(urlEbauche)
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      reject(err);
+    });
+}
+
+const postTentative = async function (unLangage, unCode) {
+    return await postData(URL_VALIDER_TENTATIVE, {langage: unLangage, code: unCode })
+}
+export { getQuestion, getEbaucheApi, postTentative, getTestsAPI  };

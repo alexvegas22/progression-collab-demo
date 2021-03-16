@@ -1,5 +1,4 @@
 <template>
-  <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
     <Enonce
       v-bind:titre="question.attributes?.titre"
@@ -17,9 +16,6 @@
     <div>
       <JeuTests v-bind:tests="tests" />
     </div>
-    <hr />
-    <!--Ebauche v-bind:ebauches="ebauches"/-->
-    <hr />
 
     <div style="width: 100%">
       <Solution />
@@ -32,7 +28,6 @@
 import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Solution from "@/components/Question/Solution.vue";
-//import Ebauche from "@/components/Question/Ebauche";
 import JeuTests from "@/components/Question/JeuTests";
 
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server

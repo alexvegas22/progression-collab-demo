@@ -2,13 +2,13 @@
     <div id="question" class="container-editeur">
         <prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prismEditor>
     </div>
-     <ValidationTentative v-bind:code="code" v-bind:langage="question.langage"/>
+     <ValidationTentative v-bind:code="code" v-bind:langage="langage"/>
 </template>
 
 <script>
 
   import ValidationTentative from '@/components/Question/ValidationTentative';
-  import { getData } from '@/util/solution';
+
 
   import { PrismEditor } from 'vue-prism-editor';
   import 'vue-prism-editor/dist/prismeditor.min.css';
@@ -26,36 +26,30 @@
         PrismEditor,
         ValidationTentative
       },
-      props: ['question'],
       watch: {
-        question: function () {
-          this.setEbauche();
+        ebauche: function () {
+          this.code = this.ebauche.attributes.code;
+          this.langage = this.ebauche.attributes.langage;
         }
       },
+      props: ['question'],
       data: () => ({
-        code: ""
+        code: "",
+        langage: "python"
       }),
       methods: {
         highlighter(code) {
           // prend le langage sélectionné par l'utilisateur et retourne les highlights
-          return highlight(code, languages["python"]);
+          return highlight(code, languages[this.langage]);
         },
-        setEbauche() {
-          // À remplacer par `question.relationships.ébauches.links.self` quand le mock de question est fait
-          getData("http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche").then(
-            data => {
-              this.code = data.attributes.code;
-            }
-          ).catch(
-            err =>{
-              this.code = "";
-            }
-          )
-        }
+      },
+      computed: {
+          ebauche() {
+              return this.$store.state.ebauche;
+          }
       },
       mounted() {
-        if (this.question != undefined && this.question.langage != undefined)
-          this.setEbauche()
+
       }
     };
 </script>
@@ -92,5 +86,9 @@
 
   .container-editeur .division#resultat {
       padding: 0px 20px;
+  }
+
+  .my-editor pre {
+      color: #f6f6f6;
   }
 </style>

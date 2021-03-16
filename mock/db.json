@@ -111,11 +111,11 @@
             "related": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/tests"
           }
         },
-        "ébauches": {
+        "ebauches": {
           "code": "# +VISIBLE\ndef salutations( nb_répétitions ):\n    for i in range( nb_répétitions ):\n        print( \"Bonjour le monde!\" )\n\n\nnb_entré = int( input() )\n# +TODO\n\n\n# -TODO\n# -VISIBLE\n",
           "links": {
             "self": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ébauches",
-            "related": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/ébauches"
+            "related": "http://localhost:3000/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche"
           }
         }
       }
@@ -131,8 +131,8 @@
           "sortie_attendue": "Bonjour le monde!"
         },
         "links": {
-          "self": "https://progression.dti.crosemont.quebec/api/v1/test/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/0",
-          "related": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ"
+          "self": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ",
+          "avancement": "http://localhost:3000/avancement/1"
         }
       },
       {
@@ -184,7 +184,7 @@
       "type": "Solution",
       "id": "1",
       "attributes": {
-        "langage": 1,
+        "langage": "python",
         "code": "# +VISIBLE\ndef salutations( nb_répétitions ):\n    for i in range( nb_répétitions ):\n        print( \"Bonjour le monde!\" )\n\n\nnb_entré = int( input() )\n# +TODO\n\n\n# -TODO\n# -VISIBLE\n"
       },
       "links": {

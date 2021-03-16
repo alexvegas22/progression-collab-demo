@@ -28,8 +28,8 @@
           </div>
         </div>
         <div v-if="test.visible">
-          {{ texteUnTest }}
-          <!--<ValidationTentative />-->
+          <Resultat 
+          v-bind:test="test" />
         </div>
       </div>
     </div>
@@ -37,8 +37,9 @@
 </template>
 <script>
 import ValidationTentative from "./ValidationTentative.vue";
+import Resultat from './Resultat.vue'
 export default {
-  components: { ValidationTentative },
+  components: { ValidationTentative ,Resultat},
   name: "Test",
   props: {
     test: {
