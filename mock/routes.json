@@ -3,6 +3,6 @@
   "/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/relationships/ebauche":"/solution",
   "/user/jdoe/categorie_toto/question/:id_question": "/avancement/:id_question",
   "/user/jdoe/categorie_toto/question/:id_question/:id": "/tentative/:id",
-
+  "/QuestionProg/cHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbcOpdHLDqWU=/tests":"/test",
   "/user/jdoe/categorie_toto/question/1/1613069492/:id_resultat": "/resultats/:id_resultat"
 }

@@ -1,30 +1,24 @@
 <template>
-  <!--TODO: s'entendre sur le composant ébauche, fusionner les deux ou prendre un seul.-->
   <div class="question">
     <Enonce
       v-bind:titre="question.attributes?.titre"
       v-bind:enonce="question.attributes?.énoncé"
     />
-    <hr>
+    <hr />
 
     <div class="editeur-container">
       <div class="division">
         <EditeurCode :question="question" />
       </div>
-      <div class="division">
-
-      </div>
+      <div class="division"></div>
     </div>
-    <hr>
+    <hr />
     <div>
-       <JeuTests v-bind:tests="listetests"/>
+      <JeuTests v-bind:tests="tests" />
     </div>
-    <hr>
-    <!--Ebauche v-bind:ebauches="ebauches"/-->
-    <hr>
 
     <div style="width: 100%">
-      <Avancement/>
+      <Avancement />
     </div>
   </div>
 </template>
@@ -32,13 +26,11 @@
 <script>
 // @ is an alias to /src
 import Enonce from "@/components/Question/Enonce.vue";
-import EditeurCode from '@/components/Question/Editeur.vue'
-import Avancement from '@/components/Question/Avancement.vue'
-//import Ebauche from "@/components/Question/Ebauche";
-import JeuTests from '@/components/Question/JeuTests';
-// import get_question from '@/util/question'
+import EditeurCode from "@/components/Question/Editeur.vue";
+import Avancement from "@/components/Question/Avancement.vue";
+import JeuTests from "@/components/Question/JeuTests";
 
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION // json-server
+const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server
 
 export default {
   name: "Question",
@@ -47,49 +39,48 @@ export default {
     Avancement,
     //Ebauche,
     EditeurCode,
-    JeuTests
+    JeuTests,
   },
   data() {
-     return {
-         ebauches:[], // liste d'ébauche
-         listetests: null
-     }
+    return {
+      ebauches: [], // liste d'ébauche
+    };
   },
-  computed:{
-    tests(){
-      return this.$store.state.tests
+  computed: {
+    question() {
+      return this.$store.state.question;
     },
-    question () {
-      return this.$store.state.question
-    }
+    tests() {
+      return this.$store.state.tests;
+    },
   },
   mounted() {
-    this.$store.dispatch('getQuestion', BASE_URL)
-  }
+    this.$store.dispatch("getQuestion", BASE_URL);
+  },
 };
 </script>
 
 <style>
-  .editeur-container {
-    height: 650px;
-    padding: 20px 0px;
-  }
+.editeur-container {
+  height: 650px;
+  padding: 20px 0px;
+}
 
-  .division {
-    width: 50%;
-    height: 200px;
-    float: left;
-  }
+.division {
+  width: 50%;
+  height: 200px;
+  float: left;
+}
 
-  body {
-    font-family: "Avenir", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-  }
+body {
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
 
-  .ebauche {
-    display: flex;
-    padding: 1rem;
-    margin: 1rem;
-    background: darkgray;
-  }
+.ebauche {
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  background: darkgray;
+}
 </style>

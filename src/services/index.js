@@ -16,8 +16,8 @@ const getQuestion = () => {
         });
 }
 
-const getTestsAPI = function(){
-    return getData(URL_MOCK+"/test").then(
+const getTestsAPI = (urlTests)=>{
+    return getData(urlTests).then(
         data => { return data }
     ).catch((err) => {
         reject(err);

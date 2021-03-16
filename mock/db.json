@@ -114,7 +114,65 @@
                 }
             }
         }
-      }
+      },
+      "included": [
+        {
+          "type": "test",
+          "id": "aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/0",
+          "attributes": {
+            "numéro": 0,
+            "nom": "Une salutation",
+            "entrée": 1,
+            "sortie_attendue": "Bonjour le monde!"
+          },
+          "links": {
+            "self": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ",
+            "avancement": "http://localhost:3000/avancement/1"
+          }
+        },
+        {
+          "type": "test",
+          "id": "aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/1",
+          "attributes": {
+            "numéro": 1,
+            "nom": "10 salutations",
+            "entrée": 10,
+            "sortie_attendue": "Bonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\n"
+          },
+          "links": {
+            "self": "https://progression.dti.crosemont.quebec/api/v1/test/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/1",
+            "related": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ"
+          }
+        },
+        {
+          "type": "test",
+          "id": "aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/2",
+          "attributes": {
+            "numéro": 2,
+            "nom": "100 salutations",
+            "entrée": 100,
+            "sortie_attendue": "Bonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\nBonjour le monde!\n"
+          },
+          "links": {
+            "self": "https://progression.dti.crosemont.quebec/api/v1/test/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/2",
+            "related": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ"
+          }
+        },
+        {
+          "type": "test",
+          "id": "aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/3",
+          "attributes": {
+            "numéro": 3,
+            "nom": "Aucune salutation",
+            "entrée": 0,
+            "sortie_attendue": ""
+          },
+          "links": {
+            "self": "https://progression.dti.crosemont.quebec/api/v1/test/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ/3",
+            "related": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ"
+          }
+        }
+      ]  
   },
   "solution": {
     "data" : {

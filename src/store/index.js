@@ -6,7 +6,7 @@ export default createStore({
     state: {
         question: {},
         ebauche: {},
-        tests: Promise,
+        tests: [],
         retroactionTentative:Object,
         msgAPIEnvoiTentative:null,
         envoiTentativeEnCours:false,

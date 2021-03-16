@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-
 /**
  * fait une requete GET
  * VOIR la doc (lien dans README.MD)
@@ -8,17 +7,15 @@ const axios = require('axios');
  * @returns {Promise<unknown>}
  */
 const getData = (lien) =>
-    new Promise((resolve, reject) => {
-        //let token = localStorage.getItem('user-token')
-        axios
-            .get(lien)
-            .then((res) => {
-                resolve(res.data.data);
-            })
-            .catch((error) => {
-                reject(error);
-            });
-    });
+  new Promise((resolve, reject) => {
+    axios.get(lien)
+        .then(res=>{
+            resolve(res.data)
+        })
+        .catch(error=>{
+            reject(error)
+        })
+})
 
 /**
  * Fait une requete Post a l'api
