@@ -8,10 +8,7 @@ export default {
       commit("setQuestion", question.data);
       commit("setTests", question.included);
       await dispatch('getAvancement', question.data.links.avancement)
-      await dispatch(
-        "getEbauche",
-        question.data.relationships.ebauches.links.related
-      );
+      await dispatch("getEbauche", question.data.relationships.ebauches.links.related);
     } catch (error) {
       console.log(error);
     }
@@ -29,10 +26,10 @@ export default {
       try{
           const tentative = await getData(avancementTentative);
           console.log(avancementTentative)
-          const resultatsId = tentative.résultats;
+          const resultatsId = tentative.data.résultats;
           let resultats= [];
           resultatsId.forEach( async (resultat) =>
-              resultats.push(await getData(tentative.lienResultat+resultat.id)))
+              resultats.push(await getData(tentative.data.lienResultat+resultat.id)))
 
           const tentativeComplete = {tentative: tentative, resultats:resultats}
           //TODO : supprimer le console.log pour demo seulement affiche le composant qui est mis dans le store.
