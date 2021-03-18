@@ -5,7 +5,7 @@
   />
   <h1 style="text-align: center;">Jeu de tests</h1>
   <div v-for="test in tests" :key="test">
-      <Test v-bind:test="test" />
+    <Test v-bind:test="test" />
   </div>
 </template>
 <script>

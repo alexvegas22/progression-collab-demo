@@ -4,22 +4,29 @@
       v-bind:titre="question.attributes?.titre"
       v-bind:enonce="question.attributes?.énoncé"
     />
-    <hr />
-
     <div class="editeur-container">
       <div class="division">
         <EditeurCode :question="question" />
+        <button
+          type="button"
+          class="btn btn-success btn-valider p-3"
+          style="margin-top:15px;width:100%;"
+          :disabled="envoiEnCours"
+          @click="validerTentative"
+        >
+          Valider
+        </button>
       </div>
-      <div class="division"></div>
+      <div class="division retroaction-container d-none" id="retroaction">
+        <ValidationTentative v-bind:code="code" v-bind:langage="langage" />
+      </div>
     </div>
-    <hr />
-    <div>
-      <JeuTests v-bind:tests="tests" />
-    </div>
-
-    <div style="width: 100%">
-      <Avancement />
-    </div>
+  </div>
+  <div>
+    <JeuTests v-bind:tests="tests" />
+  </div>
+  <div>
+    <Avancement />
   </div>
 </template>
 
@@ -29,6 +36,7 @@ import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
+import ValidationTentative from "@/components/Question/ValidationTentative";
 
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server
 
@@ -40,6 +48,7 @@ export default {
     //Ebauche,
     EditeurCode,
     JeuTests,
+    ValidationTentative,
   },
   data() {
     return {
@@ -57,19 +66,32 @@ export default {
   mounted() {
     this.$store.dispatch("getQuestion", BASE_URL);
   },
+  methods: {
+    validerTentative() {
+      //TODO ne pas passer le langage en dur
+      this.$store.dispatch("envoyerTentative", "python", this.code);
+      var element = document.getElementById("retroaction");
+      element.classList.remove("d-none");
+    },
+  },
 };
 </script>
 
 <style>
 .editeur-container {
-  height: 650px;
-  padding: 20px 0px;
+  display: flex;
+  height: auto;
+  padding: 20px;
+  padding-top: 0px;
+  flex-direction: row;
 }
 
 .division {
   width: 50%;
-  height: 200px;
+  height: auto;
   float: left;
+  margin: 0px 20px;
+  flex-grow: 1;
 }
 
 body {
@@ -77,10 +99,17 @@ body {
   font-size: 16px;
 }
 
+.btn-valider {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
 .ebauche {
   display: flex;
   padding: 1rem;
   margin: 1rem;
   background: darkgray;
+}
+.retroaction-container {
+  border: solid 1px black;
+  border-radius: 4px;
 }
 </style>
