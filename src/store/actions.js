@@ -25,7 +25,6 @@ export default {
 
       try{
           const tentative = await getData(avancementTentative);
-          console.log(avancementTentative)
           const resultatsId = tentative.data.résultats;
           let resultats= [];
           resultatsId.forEach( async (resultat) =>
@@ -67,4 +66,4 @@ export default {
     }
 },
 
-};
+}
