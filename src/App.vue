@@ -1,28 +1,51 @@
 <template>
-	<div id="app">
-    <Login password_req="true" domaine_mail="crosemont.qc.ca" />
-  </div>
+  <div id="app"></div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <router-link :to="{ name: 'Home' }" class="navbar-brand text-light">
+      <span class="text-info"> Prog</span>ression
+    </router-link>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <router-link :to="{ name: 'Question' }" class="text-light">
+            Question
+          </router-link>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <router-view />
 </template>
-
-<script>
-import Login from './components/Login.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Login
-  }
-}
-</script>
-
 <style src="./css/style.css">
-<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
