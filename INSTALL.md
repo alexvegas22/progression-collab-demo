@@ -7,7 +7,7 @@
 - [npm](https://github.com/nodesource/distributions)
 - [vue-cli](https://cli.vuejs.org/guide/installation.html) (v4.x recommandé) *«facultatif»*
 - [docker](https://www.docker.com/) *«facultatif»*
-- Un éditeur de code ( [Visual Studio Code](https://code.visualstudio.com/download) recommandé)
+- Un éditeur de code ([Visual Studio Code](https://code.visualstudio.com/download) recommandé)
 
 ## 2. Installation & Configuration 
 ### 2.1 Obtenir le code source
