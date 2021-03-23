@@ -1,4 +1,4 @@
-# progression_frontend
+# Progression frontend
 
 ## Project setup
 ```
