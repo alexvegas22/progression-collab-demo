@@ -1,12 +1,15 @@
-import { postTentative, getQuestion } from "../services/index.js";
+import { postTentative, /*getQuestion*/ getQuestionApi } from "../services/index.js";
 import {getData} from '../services/request_services';
 
 export default {
   async getQuestion({ commit, dispatch, state }, url) {
     try {
-      const question = await getQuestion(url);
+      //const question = await getQuestionApi(url);
+      // TODO: Modification tijane... La fonction ci dessous n'a pas besoin de paramètres
+      const question = await getQuestionApi();
       commit("setQuestion", question.data);
       commit("setTests", question.included);
+      // Possibilité de s'en débarrasser (ci-dessous)
       await dispatch('getAvancement', question.data.links.avancement)
       await dispatch("getEbauche", question.data.relationships.ebauches.links.related);
     } catch (error) {

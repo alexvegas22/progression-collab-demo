@@ -6,7 +6,17 @@ const URL_MOCK = process.env.VUE_APP_API_URL
 
 // TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
 // TODO : Changer le nom 'getQuestion' pour 'getQuestionApi' afin de standardiser le code.
-const getQuestion = () => {
+const getQuestionApi = async () => {
+    try {
+        console.log("Ici.......... data == "+data)
+        const data = await getData(BASE_URL);
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+/*const getQuestion = () => {
     return getData(BASE_URL)
         .then((data) => {
             return data;
@@ -14,7 +24,7 @@ const getQuestion = () => {
         .catch((err) => {
             reject(err);
         });
-}
+}*/
 
 const getTestsAPI = (urlTests)=>{
     return getData(urlTests).then(
@@ -40,6 +50,6 @@ const getEbaucheApi = (urlEbauche) => {
 const postTentative = async function (unLangage, unCode) {
     return await postData(URL_VALIDER_TENTATIVE, {langage: unLangage, code: unCode })
 }
-export { getQuestion, getEbaucheApi, postTentative, getTestsAPI };
+export { getQuestionApi, getEbaucheApi, postTentative, getTestsAPI };
 
 
