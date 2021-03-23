@@ -1,17 +1,17 @@
 # Progression frontend
 
 ## 1. Pré-requis
-- [Système d'exploitation](https://www.techspot.com/downloads/operating-systems/)Windows, Linux ou Mac
+- Système d'exploitation [Windows](https://www.microsoft.com/en-us/software-download/), [Linux](https://www.linux.org/pages/download/), ou [Mac](https://support.apple.com/downloads/macos)
 - [git](https://git-scm.com/downloads)
 - [nodejs](https://nodejs.org/en/) (v10+ recommandé)
 - [npm](https://github.com/nodesource/distributions)
-- [vue-cli](https://cli.vuejs.org/guide/installation.html) (v4.x recommandé)«facultatif»
-- [docker](https://www.docker.com/) «facultatif»
-- Un éditeur de code comme [Visual Studio Code](https://code.visualstudio.com/download) par-exemple
+- [vue-cli](https://cli.vuejs.org/guide/installation.html) (v4.x recommandé) *«facultatif»*
+- [docker](https://www.docker.com/) *«facultatif»*
+- Un éditeur de code ( [Visual Studio Code](https://code.visualstudio.com/download) recommandé)
 
 ## 2. Installation & Configuration 
 ### 2.1 Obtenir le code source
-La suite des opérations devra se faire à partir d'un interpréteur de commande. [Cliquer ici](http://codeur-pro.fr/invite-de-commande-et-terminal/) pour savoir comment en ouvrir un sous Windows, Linux ou Mac.
+La suite des opérations devra se faire à partir d'un interpréteur de commande. Pour savoir comment en ouvrir un sous Windows, Linux ou Mac, [Cliquer ici](http://codeur-pro.fr/invite-de-commande-et-terminal/)
 
 - Cloner le projet
 ```
