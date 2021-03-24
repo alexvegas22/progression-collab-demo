@@ -36,5 +36,5 @@ export default {
   text-align: center;
   color: white;
   font-weight: bold;
-}</style
->>
+}
+</style>
