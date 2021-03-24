@@ -43,14 +43,16 @@ VUE_APP_API_URL_QUESTION=votre-url-api-vers-question
 VUE_APP_API_URL_VALIDATION_TENTATIVE=votre-url-api-vers-tentative
 ```
 
-### 2.2 Installer les dépendances du projet
+
+## 3. Exécution du programme
+### 3.1 Éxécution sans le principe de conteneurisation
+
+#### 3.1.1 Installer les dépendances du projet
 - Dans votre interpréteur de commande, exécuter la commande suivante
 ```
 npm install
 ```
-
-## 3. Exécution du programme
-### 3.1 Lancer le mock-api
+#### 3.1.2 Lancer le mock-api
 - Ouvrir le repertoire du mock
 ```
 cd mock
@@ -62,11 +64,33 @@ json-server --watch db.json -m middleware.js --routes routes.json --port 3000
 Le mock sera accéssible à l'adresse :
 - http://localhost:3000/
 
-### 3.2 Lancer l'application VueJS
+### 3.1.3 Lancer l'application VueJS
 - Ouvrir un nouveau terminal à la racine de «progression_frontend»
 - Exécuter le programme VueJS à l'aide de la commande
 ```
 npm run serve
 ```
+
+
+### 3.2 Éxécution avec le principe de conteneurisation (docker)
+#### 3.2.1 Installer docker-compose
+Bien que vous ayez installé «docker», il est possible que vous n'ayez pas également «docker-compose». Pour ce faire, [lisez la documentation ici](https://docs.docker.com/compose/install/)
+
+***Pour les commandes suivantes, ajouter «sudo» devant chaque commande si nécessaire...***
+
+#### 3.2.2 Construire les images de «progression-frontend» et du «mock-api»
+- Dans votre interpréteur de commande, exécuter la commande suivante
+```
+docker-compose build
+```
+
+#### 3.2.3 Exécuter les container
+- Dans votre interpréteur de commande, exécuter la commande suivante
+```
+docker-compose up
+```
+
 L'application sera accéssible à l'adresse :
 - http://localhost:8080/
+Le mock api sera accéssible à l'adresse :
+- http://0.0.0.0:3000/
