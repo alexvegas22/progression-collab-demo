@@ -91,4 +91,4 @@ L'application sera accéssible à l'adresse :
 - http://localhost:8080/
 
 Le mock api sera accéssible à l'adresse :
-- http://0.0.0.0:3000/
+- http://localhost:3000/
