@@ -5,9 +5,9 @@
 - [git](https://git-scm.com/downloads)
 - [nodejs](https://nodejs.org/en/) (v10+ recommandé)
 - [npm](https://github.com/nodesource/distributions)
-- [vue-cli](https://cli.vuejs.org/guide/installation.html) (v4.x recommandé) *«facultatif»*
+- [vue-cli](https://cli.vuejs.org/guide/installation.html) (v4.x recommandé) *facultatif, pour le développement seulement*
 - [docker](https://www.docker.com/) *«facultatif»*
-- Un éditeur de code ([Visual Studio Code](https://code.visualstudio.com/download) recommandé)
+- Un éditeur de texte (nano, vim, vscode, etc.)
 
 &nbsp;
 
@@ -29,23 +29,16 @@ cd progression_frontend
 ### 2.2 Créer et configurer le fichier d'environnement local
 - Exécuter la commande suivante pour créer le fichier des variables d'environnement
 ```
-touch .env.local
+cp .env.exemple .env.local
 ```
-- Ouvrir le fichier des variables d'environnement avec l'éditeur de votre choix *(VS Code recommandé)*
+- Ouvrir le fichier des variables d'environnement avec l'éditeur de votre choix.
 ```
-code .env.local
+$EDITOR .env.local
 ```
 - Ajouter les variables d'environnement suivantes *(contacter admin pour les valeurs réelles)*
 ```
 VUE_APP_API_URL=votre-url-api-de-base
 ```
-```
-VUE_APP_API_URL_QUESTION=votre-url-api-vers-question
-```
-```
-VUE_APP_API_URL_VALIDATION_TENTATIVE=votre-url-api-vers-tentative
-```
-&nbsp;
 
 ## 3. Exécution du programme
 ### 3.1 Éxécution sans le principe de conteneurisation
@@ -56,7 +49,7 @@ VUE_APP_API_URL_VALIDATION_TENTATIVE=votre-url-api-vers-tentative
 npm install
 ```
 
-#### 3.1.2 Lancer le mock-api
+#### 3.1.2 Lancer le mock-api (facultatif)
 - Ouvrir le repertoire du mock
 ```
 cd mock
@@ -82,15 +75,13 @@ L'application sera accéssible à l'adresse :
 #### 3.2.1 Installer docker-compose
 Bien que vous ayez installé «docker», il est possible que vous n'ayez pas également «docker-compose». Pour ce faire, [lisez la documentation ici](https://docs.docker.com/compose/install/)
 
-***Pour les commandes suivantes, ajouter «sudo» devant chaque commande si nécessaire...***
-
 #### 3.2.2 Construire les images de «progression-frontend» et du «mock-api»
 - Dans votre interpréteur de commande, exécuter la commande suivante
 ```
 docker-compose build
 ```
 
-#### 3.2.3 Exécuter les container
+#### 3.2.3 Exécuter les conteneurs
 - Dans votre interpréteur de commande, exécuter la commande suivante
 ```
 docker-compose up
