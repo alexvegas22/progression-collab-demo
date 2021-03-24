@@ -31,28 +31,27 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// @ est un alias de /src
 import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
 import ValidationTentative from "@/components/Question/ValidationTentative";
 
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION; // json-server
+const BASE_URL = process.env.VUE_APP_API_URL_QUESTION;
 
 export default {
   name: "Question",
   components: {
     Enonce,
     Avancement,
-    //Ebauche,
     EditeurCode,
     JeuTests,
     ValidationTentative,
   },
   data() {
     return {
-      ebauches: [], // liste d'ébauche
+      ebauches: [], // la liste d'ébauches
     };
   },
   computed: {
@@ -68,7 +67,6 @@ export default {
   },
   methods: {
     validerTentative() {
-      //TODO ne pas passer le langage en dur
       this.$store.dispatch("envoyerTentative", "python", this.code);
       var element = document.getElementById("retroaction");
       element.classList.remove("d-none");
