@@ -4,7 +4,7 @@ import { getData } from '../services/request_services';
 export default {
   async getQuestion({ commit, dispatch }) {
     try {
-      const question = await getQuestionApi();
+      const question = await getQuestionApi(); // Retourner ici l'objet «question» directement
       commit("setQuestion", question.data);
       commit("setTests", question.included);
       // Les lignes (ci-dessous) seront peut-être à supprimer ou changer plus tard
