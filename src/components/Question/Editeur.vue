@@ -5,8 +5,8 @@
       class="my-editor"
       v-model="code"
       :highlight="highlighter"
-      line-numbers
-    ></prismEditor>
+      line-numbers>
+    </prismEditor>
   </div>
 </template>
 
@@ -28,6 +28,7 @@ export default {
     PrismEditor,
     ValidationTentative,
   },
+  // À chaque fois que l'ébauche change, on met à jour le code et le langage
   watch: {
     ebauche: function() {
       this.code = this.ebauche.attributes.code;

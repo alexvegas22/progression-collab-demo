@@ -1,6 +1,6 @@
 <template>
   <div class="pb-5">
-    <div v-on:click="test.visible = !test.visible">
+    <div v-on:click="toggleVisibilite">
       <div class="row w-100 m-0">
         <div class="col-md text-right">
           <span style="font-size:200%;">
@@ -39,8 +39,8 @@
   </div>
 </template>
 <script>
-import ValidationTentative from "./ValidationTentative.vue";
-import Resultat from "./Resultat.vue";
+import ValidationTentative from "@/components/Question/ValidationTentative.vue";
+import Resultat from "@/components/Question/Resultat.vue";
 export default {
   components: { ValidationTentative, Resultat },
   name: "Test",
@@ -58,6 +58,11 @@ export default {
     return {
       texteUnTest: this.test,
     };
+  },
+  methods: {
+    toggleVisibilite() {
+      this.test.visible = !this.test.visible
+    },
   },
 };
 </script>

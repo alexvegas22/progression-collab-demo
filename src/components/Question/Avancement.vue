@@ -1,6 +1,5 @@
 <template>
-
-  <div v-if="avancement.état!=null">
+  <div v-if="avancement.état">
     <h3>La question est {{convetirEtatEnString(avancement.état)}}</h3>
     <div v-if="avancement.état === 0">
       <p>Aucune tentative précédente</p>
@@ -13,7 +12,6 @@
       </select>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -58,6 +56,5 @@ export default {
   mounted() {
 
   }
-
 }
 </script>
