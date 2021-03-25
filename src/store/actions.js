@@ -1,14 +1,14 @@
-import { postTentative, getQuestion } from "../services/index.js";
+import { postTentative, getQuestionAPI } from "../services/index.js";
 import {getData} from '../services/request_services';
 
 export default {
   async getQuestion({ commit, dispatch, state }, url) {
     try {
-      const question = await getQuestion(url);
-      commit("setQuestion", question.data);
-      commit("setTests", question.included);
-      await dispatch('getAvancement', question.data.links.avancement)
-      await dispatch("getEbauche", question.data.relationships.ebauches.links.related);
+		const objets = await getQuestionAPI(url);
+		commit("setQuestion", objets.question);
+		commit("setTests", objets.tests);
+        commit("setEbauche", objets.ebauches);
+
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +60,7 @@ export default {
   async getEbauche({ commit }, ebaucheUrl) {
     try {
         const ebauche = await getData(ebaucheUrl);
-        commit("setEbauche", ebauche.data);
+
     } catch (error) {
         console.log(error);
     }
