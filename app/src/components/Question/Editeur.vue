@@ -30,8 +30,8 @@ export default {
   },
   watch: {
     ebauche: function() {
-      this.code = this.ebauche.attributes.code;
-      this.langage = this.ebauche.attributes.langage;
+      this.code = this.ebauches[0].code;
+      this.langage = this.ebauches[0].langage;
     },
   },
   props: ["question"],

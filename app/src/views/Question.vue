@@ -1,8 +1,8 @@
 <template>
   <div class="question">
     <Enonce
-      v-bind:titre="question.attributes?.titre"
-      v-bind:enonce="question.attributes?.énoncé"
+      v-bind:titre="question.titre"
+      v-bind:enonce="question.énoncé"
     />
     <div class="editeur-container">
       <div class="division">
@@ -51,9 +51,6 @@ export default {
     ValidationTentative,
   },
   data() {
-    return {
-      ebauches: [], // liste d'ébauche
-    };
   },
   computed: {
     question() {
@@ -62,6 +59,9 @@ export default {
     tests() {
       return this.$store.state.tests;
     },
+	  ebauches() {
+		  return this.$store.state.ebauches;
+	  }
   },
   mounted() {
     this.$store.dispatch("getQuestion", BASE_URL);
@@ -69,7 +69,7 @@ export default {
   methods: {
     validerTentative() {
       //TODO ne pas passer le langage en dur
-      this.$store.dispatch("envoyerTentative", "python", this.code);
+		this.$store.dispatch("envoyerTentative", "python", this.code);
       var element = document.getElementById("retroaction");
       element.classList.remove("d-none");
     },

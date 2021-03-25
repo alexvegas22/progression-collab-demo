@@ -6,9 +6,15 @@ const axios = require('axios');
  * @param lien: le lien COMPLET de la requete
  * @returns {Promise<unknown>}
  */
+const config = {
+	headers: {
+		"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiamRvZSIsInJcdTAwZjRsZSI6MH0sImN1cnJlbnQiOjE2MTY2MzM3NTUsImV4cGlyZWQiOjE2MTY3MjAxNTV9.ul3pXIfnAYuwtXS5YYaPBmfUwt-I7apepfOiAbY65iM"
+	},
+};
+
 const getData = (lien) =>
-  new Promise((resolve, reject) => {
-    axios.get(lien)
+	new Promise((resolve, reject) => {
+		axios.get(lien, config)
         .then(res=>{
             resolve(res.data)
         })

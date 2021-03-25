@@ -14,15 +14,15 @@ const getQuestionAPI = () => {
         .catch((err) => {
             reject(err);
         });
-}*/
+}
 
 const créerObjetsQuestion = (data) => {
-	question = data.data.attributes;
-	tests = [];
-	ebauches = [];
-	data.included.foreach( (item,index) => {
-		if(item.type == "test") tests.append(item);
-		if(item.type == "ebauche") ebauches.append(item);
+	var question = data.data.attributes;
+	var tests = [];
+	var ebauches = [];
+	data.included.forEach( (item,index) => {
+		if(item.type == "test") tests.push(item.attributes);
+		if(item.type == "ebauche") ebauches.push(item.attributes);
 	});
 
 	return { "question" : question,

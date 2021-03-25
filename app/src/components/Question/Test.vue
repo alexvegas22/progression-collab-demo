@@ -11,7 +11,7 @@
         <div class="col-md-8">
           <div class="p-2 border">
             <div class="float-left">
-              <p class="p-0 m-0">{{ test.attributes.nom }}</p>
+              <p class="p-0 m-0">{{ test.nom }}</p>
             </div>
             <div class="float-right">
               <span style="font-size:200%;" v-if="test.resultat">

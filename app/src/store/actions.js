@@ -7,7 +7,7 @@ export default {
 		const objets = await getQuestionAPI(url);
 		commit("setQuestion", objets.question);
 		commit("setTests", objets.tests);
-        commit("setEbauche", objets.ebauches);
+        commit("setEbauches", objets.ebauches);
 
     } catch (error) {
       console.log(error);
@@ -57,7 +57,7 @@ export default {
       console.log(error);
     }
   },
-  async getEbauche({ commit }, ebaucheUrl) {
+  async getEbauches({ commit }, ebaucheUrl) {
     try {
         const ebauche = await getData(ebaucheUrl);
 

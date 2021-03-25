@@ -5,7 +5,7 @@ import actions from './actions'
 export default createStore({
     state: {
         question: {},
-        ebauche: {},
+        ebauches: {},
         tests: [],
         retroactionTentative:Object,
         msgAPIEnvoiTentative:null,
