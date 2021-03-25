@@ -6,8 +6,8 @@
   >
     <strong>{{ msgReponseApi }}</strong>
   </div>
-  <div v-if="resultats.length >= 1" class="p-2">
-    <h3 v-if="testsPassent != null && testsPassent">
+  <div v-if="resultats.length > 0" class="p-2">
+    <h3 v-if="testsPassent">
       <span style="color:green">Bonne réponse</span> 👍
     </h3>
     <h3 v-else><span style="color:red">Mauvaise réponse</span> 😢</h3>
@@ -17,14 +17,14 @@
       <li>Sortie observée : {{ unResultat.attributes.sortie_observée }}</li>
       <li>Rétroaction : {{ unResultat.attributes.feedback }}</li>
     </ul>
-    <h4 v-if="feedback_global.length > 0">
+    <h4 v-if="feedback_global">
       💡 Conseil : {{ feedback_global }}
     </h4>
   </div>
 </template>
+
 <script>
 export default {
-  //TODO integration avec le composant Test
   name: "ValidationTentative",
   props: {
     code: String,
@@ -35,16 +35,15 @@ export default {
       return this.$store.state.retroactionTentative;
     },
     resultats() {
-      return this.$store.state.retroactionTentative.included ?? [];
+      return this.retroactionTentative.included ?? []
     },
     feedback_global() {
-      return this.$store.state.retroactionTentative.attributes.feedback;
+      return this.retroactionTentative.attributes.feedback;
     },
+    // Vérifie si tous les tests passent en comparant la valeur de l'attribut «tests_reussis» avec le nombre de tests associés la question
     testsPassent() {
-      //verifie si tous les tests passent
       return (
-        this.$store.state.retroactionTentative.attributes.tests_réussis ===
-        this.$store.state.retroactionTentative.included.length
+        this.retroactionTentative.attributes.tests_réussis === this.retroactionTentative.included.length
       );
     },
     msgReponseApi() {

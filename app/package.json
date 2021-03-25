@@ -6,7 +6,7 @@
     "start": "vue-cli-service serve",
     "test": "vue-cli-service test:unit",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode development",
+    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "jest": "jest --watch"

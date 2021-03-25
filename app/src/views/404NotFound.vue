@@ -6,7 +6,7 @@
     <i class="far fa-question-circle fa-spin"></i>
     <div class="err2">4</div>
     <div class="msg">
-      <h3>Peut être que cette page n'existe pas? Supprimée par accident? Possiblement en quarantaine? Allons à la <a href="#">Page d'accueil</a> </h3>
+      <h3>Il est possible que la page recherchée n'existe pas? Retourner à la <a href="#">Page d'accueil</a> </h3>
     </div>
   </div>
 
@@ -52,6 +52,7 @@ export default {
   left: 16%;
   top: 45%;
   width: 75%;
+  margin: auto !important;
 }
 
 a {

@@ -8,8 +8,9 @@
     <Test v-bind:test="test" />
   </div>
 </template>
+
 <script>
-import Test from "./Test.vue";
+import Test from "@/components/Question/Test.vue";
 export default {
   components: { Test },
   name: "JeuTests",
