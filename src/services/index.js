@@ -14,7 +14,7 @@ const getQuestionAPI = () => {
         .catch((err) => {
             reject(err);
         });
-}
+}*/
 
 const créerObjetsQuestion = (data) => {
 	question = data.data.attributes;

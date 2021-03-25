@@ -19,16 +19,16 @@ module.exports = function(req, res, next) {
             feedback: "Bravo!"
           }
         },
-          {
-            type: "Résultat",
-            id: 1,
-            attributes: {
-              résultat: "false",
-              sortie_erreur: "x is not defined int the current context",
-              sortie_observée: "",
-              feedback: "Mmmm... il va falloir réessayer"
-            }
+        {
+          type: "Résultat",
+          id: 1,
+          attributes: {
+            résultat: "false",
+            sortie_erreur: "x is not defined int the current context",
+            sortie_observée: "",
+            feedback: "Mmmm... il va falloir réessayer"
           }
+        }
         ]
       }
     });
