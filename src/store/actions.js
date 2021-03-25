@@ -1,5 +1,5 @@
-import { postTentative, /*getQuestion*/ getQuestionApi } from "../services/index.js";
-import {getData} from '../services/request_services';
+import { postTentative, getQuestionApi } from "../services/index.js";
+import { getData } from '../services/request_services';
 
 export default {
   async getQuestion({ commit, dispatch, state }, url) {
@@ -16,30 +16,30 @@ export default {
       console.log(error);
     }
   },
-  async getAvancement({commit}, urlAvancement) {
-    try{
-        const avancement = await getData(urlAvancement);
-        commit('setAvancement', avancement.data)
-    }catch (error){
-        console.log(error)
+  async getAvancement({ commit }, urlAvancement) {
+    try {
+      const avancement = await getData(urlAvancement);
+      commit('setAvancement', avancement.data)
+    } catch (error) {
+      console.log(error)
     }
-},
-  async getTentative({commit}, avancementTentative) {
+  },
+  async getTentative({ commit }, avancementTentative) {
 
-      try{
-          const tentative = await getData(avancementTentative);
-          const resultatsId = tentative.data.résultats;
-          let resultats = [];
-          for (const resultat of resultatsId) {
-              resultats.push(await getData(tentative.data.lienResultat + resultat.id));
-          }
-
-
-          const tentativeComplete = {tentative: tentative, resultats:resultats}
-          commit('setTentative', tentativeComplete)
-      } catch (error){
-          console.log(error)
+    try {
+      const tentative = await getData(avancementTentative);
+      const resultatsId = tentative.data.résultats;
+      let resultats = [];
+      for (const resultat of resultatsId) {
+        resultats.push(await getData(tentative.data.lienResultat + resultat.id));
       }
+
+
+      const tentativeComplete = { tentative: tentative, resultats: resultats }
+      commit('setTentative', tentativeComplete)
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   async envoyerTentative({ commit }, langage, code) {
@@ -62,11 +62,11 @@ export default {
   },
   async getEbauche({ commit }, ebaucheUrl) {
     try {
-        const ebauche = await getData(ebaucheUrl);
-        commit("setEbauche", ebauche.data);
+      const ebauche = await getData(ebaucheUrl);
+      commit("setEbauche", ebauche.data);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-},
+  },
 
 }
