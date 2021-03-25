@@ -3,12 +3,8 @@ import  { getData, postData } from "./request_services";
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION;
 const URL_VALIDER_TENTATIVE=process.env.VUE_APP_API_URL_VALIDATION_TENTATIVE
 
-
-// TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
-// TODO : Changer le nom 'getQuestion' pour 'getQuestionApi' afin de standardiser le code.
 const getQuestionApi = async () => {
     try {
-        console.log("Ici.......... data == "+data)
         const data = await getData(BASE_URL);
         return data;
     } catch (err) {
@@ -16,40 +12,32 @@ const getQuestionApi = async () => {
     }
 }
 
-/*const getQuestion = () => {
-    return getData(BASE_URL)
-        .then((data) => {
-            return data;
-        })
-        .catch((err) => {
-            reject(err);
-        });
-}*/
-
-const getTestsAPI = (urlTests)=>{
-    return getData(urlTests).then(
-        data => { return data }
-    ).catch((err) => {
-        reject(err);
-    });
+const getTestsAPI = async (urlTests)=>{
+    try {
+        const data = await getData(urlTests);
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
 }
 
-
-
-// TODO : Vérifier si on laisse le catch ici (s'il est utile) puisqu'on le placera dans Actions.js aussi
-const getEbaucheApi = (urlEbauche) => {
-    return getData(urlEbauche)
-        .then((data) => {
-            return data;
-        })
-        .catch((err) => {
-            reject(err);
-        });
+const getEbaucheApi = async (urlEbauche) => {
+    try {
+        const data = await getData(urlEbauche);
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-const postTentative = async function (unLangage, unCode) {
-    return await postData(URL_VALIDER_TENTATIVE, {langage: unLangage, code: unCode })
+const postTentative = async (unLangage, unCode) => {
+    try {
+        return await postData(URL_VALIDER_TENTATIVE, {langage: unLangage, code: unCode })
+    } catch (err) {
+        console.log(err);
+    }
 }
-export { getQuestionApi, getEbaucheApi, postTentative, getTestsAPI };
+
+export { getQuestionApi, getTestsAPI, getEbaucheApi, postTentative };
 
 
