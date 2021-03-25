@@ -39,8 +39,6 @@ import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
 import ValidationTentative from "@/components/Question/ValidationTentative";
 
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION;
-
 export default {
   name: "Question",
   components: {
@@ -64,7 +62,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getQuestion", BASE_URL);
+    this.$store.dispatch("getQuestion");
   },
   methods: {
     validerTentative() {

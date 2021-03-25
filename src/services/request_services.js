@@ -2,7 +2,6 @@ const axios = require('axios');
 
 /**
  * fait une requete GET
- * VOIR la doc (lien dans README.MD)
  * @param lien: le lien COMPLET de la requete
  * @returns {Promise<unknown>}
  */
