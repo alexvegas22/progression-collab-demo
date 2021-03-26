@@ -1,27 +1,25 @@
-import { getQuestionApi, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative } from "@/services/index.js";
+import { getQuestionApi, getTestsAPI, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative } from "@/services/index.js";
 
 export default {
   async getQuestion({ commit, dispatch }) {
     try {
       const question = await getQuestionApi();
-      console.log("AAAAAAAAAAA..AAA  "+question.contenu.titre)
       commit("setQuestion", question.contenu);
       commit("setTests", question.tests);
-      // Les lignes (ci-dessous) seront peut-être à supprimer ou changer plus tard
-      //await dispatch('getAvancement', question.data.links.avancement)
       commit("setEbauches", question.ebauches);
+      commit("setAvancement", question.avancement);
     } catch (error) {
       console.log(error);
     }
   },
-  async getAvancement({ commit }, urlAvancement) {
+  /*async getAvancement({ commit }, urlAvancement) {
     try {
       const avancement = await getAvancementAPI(urlAvancement);
       commit('setAvancement', avancement)
     } catch (error) {
       console.log(error)
     }
-  },
+  },*/
   /*async getEbauche({ commit }, ebaucheUrl) {
     try {
       const ebauche = await getEbaucheApi(ebaucheUrl);

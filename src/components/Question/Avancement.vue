@@ -8,7 +8,12 @@
       <label for="avancement">Version de la solution:</label>
       <select name="avancement" id="avancement" >
         <option disabled selected>Choisir une tentative précédente</option>
-        <option v-bind:key="tentative.date_soumission" v-for="tentative in tentatives" v-on:click="getTentative(avancement.lienTentatives+''+ tentative.date_soumission)" value="{{tentative.date_soumission}}">Tentative du {{convetirDateDepuisTimeStamp(tentative.date_soumission)}}</option>
+        <option v-bind:key="tentative.date_soumission" 
+                v-for="tentative in tentatives" 
+                v-on:click="getTentative(avancement.lienTentatives+''+ tentative.date_soumission)" 
+                value="{{tentative.date_soumission}}">
+            Tentative du {{convetirDateDepuisTimeStamp(tentative.date_soumission)}}
+        </option>
       </select>
     </div>
   </div>
@@ -53,8 +58,5 @@ export default {
       return etatString
     }
   },
-  mounted() {
-
-  }
 }
 </script>

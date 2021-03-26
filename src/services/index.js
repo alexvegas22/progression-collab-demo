@@ -7,17 +7,17 @@ const getQuestionApi = async () => {
     const question = {
         contenu: null,
         tests: [],
-        ebauches: []
+        ebauches: [],
+        avancement:null
     }
     try {
         const data = await getData(BASE_URL);
         question.contenu = data.data.attributes
         data.included.forEach( (item) => {
             question.tests.push(item.attributes);
-            /*if(item.type == "test") question.tests.push(item.attributes);
-            if(item.type == "ebauche") question.ebauches.push(item.attributes);*/
         });
         question.ebauches[0] = await getEbaucheApi(data.data.relationships.ebauches.links.related)
+        question.avancement = await getAvancementAPI(data.data.links.avancement)
         return question;
     } catch (err) {
         console.log(err);
@@ -57,7 +57,7 @@ const getTentativeApi = async (urlTentative) => {
         }
 
         const tentativeComplete = {
-            tentative: tentative,
+            tentative: tentative.data,
             resultats: resultats
         }
         return tentativeComplete;

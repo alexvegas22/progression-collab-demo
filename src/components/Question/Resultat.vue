@@ -62,14 +62,14 @@ export default {
   },
   data() {
     return{
-      sortie_attendue: this.test.attributes.sortie_attendue,
-      entree: this.test.attributes.entrée
+      sortie_attendue: this.test.sortie_attendue,
+      entree: this.test.entrée
     }
   },
   watch:{
     ebaucheTest: function(){
-      this.sortie_attendue =this.test.attributes.sortie_attendue;
-      this.entree = this.test.attributes.entrée;
+      this.sortie_attendue =this.test.sortie_attendue;
+      this.entree = this.test.entrée;
     }
   }
 }
