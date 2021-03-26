@@ -6,7 +6,7 @@
     />
     <div class="editeur-container">
       <div class="division">
-        <EditeurCode v-bind:question="question" />
+        <EditeurCode />
         <button
           type="button"
           class="btn btn-success btn-valider p-3"
@@ -18,7 +18,7 @@
         </button>
       </div>
       <div class="division retroaction-container d-none" id="retroaction">
-        <ValidationTentative v-bind:code="code" v-bind:langage="langage" />
+        <ValidationTentative />
       </div>
     </div>
   </div>
@@ -47,17 +47,15 @@ export default {
     JeuTests,
     ValidationTentative,
   },
-  data() {
-    return {
-      ebauches: [], // la liste d'ébauches
-    };
-  },
   computed: {
     question() {
       return this.$store.state.question;
     },
     tests() {
       return this.$store.state.tests;
+    },
+    envoiEnCours() {
+      return this.$store.state.envoiTentativeEnCours;
     },
   },
   mounted() {
