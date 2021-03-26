@@ -17,7 +17,7 @@ import { PrismEditor } from "vue-prism-editor";
 import "vue-prism-editor/dist/prismeditor.min.css";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
-import "prismjs/themes/prism-dark.css"; // import syntax highlighting styles } from 'vue-prism-editor';
+import "prismjs/themes/prism-dark.css";
 
 // Imports des languages
 import "prismjs/components/prism-python";
