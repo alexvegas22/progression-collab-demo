@@ -3,13 +3,22 @@ import { getData, postData } from "@/services/request_services";
 const BASE_URL = process.env.VUE_APP_API_URL_QUESTION;
 const URL_VALIDER_TENTATIVE = process.env.VUE_APP_API_URL_VALIDATION_TENTATIVE
 
-// Cette méthode va chercher les données de la question et les traiter pour créer des objets dont on aura besoin dans l'appli
-// Le serveur retourne question avec les tests et les ébauches incluses dans l'objet question «question.tests» | question.ebauches
-// On va donc créer ici un objet question avec un tableau de tests un tableau d'ébauches
 const getQuestionApi = async () => {
+    const question = {
+        contenu: null,
+        tests: [],
+        ebauches: []
+    }
     try {
         const data = await getData(BASE_URL);
-        return data;
+        question.contenu = data.data.attributes
+        data.included.forEach( (item) => {
+            question.tests.push(item.attributes);
+            /*if(item.type == "test") question.tests.push(item.attributes);
+            if(item.type == "ebauche") question.ebauches.push(item.attributes);*/
+        });
+        question.ebauches[0] = await getEbaucheApi(data.data.relationships.ebauches.links.related)
+        return question;
     } catch (err) {
         console.log(err);
     }
@@ -33,7 +42,7 @@ const getAvancementAPI = async (urlAvancement) => {
 const getEbaucheApi = async (urlEbauche) => {
     try {
         const ebauche = await getData(urlEbauche);
-        return ebauche.data;
+        return ebauche.data.attributes;
     } catch (err) {
         console.log(err);
     }
@@ -47,9 +56,9 @@ const getTentativeApi = async (urlTentative) => {
             resultats.push(await getData(tentative.data.lienResultat + resultat.id));
         }
 
-        const tentativeComplete = { 
-            tentative: tentative, 
-            resultats: resultats 
+        const tentativeComplete = {
+            tentative: tentative,
+            resultats: resultats
         }
         return tentativeComplete;
     } catch (err) {

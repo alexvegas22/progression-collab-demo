@@ -1,14 +1,15 @@
-import { getQuestionApi, getTestsAPI, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative } from "../services/index.js";
+import { getQuestionApi, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative } from "@/services/index.js";
 
 export default {
   async getQuestion({ commit, dispatch }) {
     try {
-      const question = await getQuestionApi(); // Retourner ici l'objet «question» directement
-      commit("setQuestion", question.data);
-      commit("setTests", question.included);
+      const question = await getQuestionApi();
+      console.log("AAAAAAAAAAA..AAA  "+question.contenu.titre)
+      commit("setQuestion", question.contenu);
+      commit("setTests", question.tests);
       // Les lignes (ci-dessous) seront peut-être à supprimer ou changer plus tard
-      await dispatch('getAvancement', question.data.links.avancement)
-      await dispatch("getEbauche", question.data.relationships.ebauches.links.related);
+      //await dispatch('getAvancement', question.data.links.avancement)
+      commit("setEbauches", question.ebauches);
     } catch (error) {
       console.log(error);
     }
@@ -21,14 +22,14 @@ export default {
       console.log(error)
     }
   },
-  async getEbauche({ commit }, ebaucheUrl) {
+  /*async getEbauche({ commit }, ebaucheUrl) {
     try {
       const ebauche = await getEbaucheApi(ebaucheUrl);
-      commit("setEbauche", ebauche);
+      commit("setEbauches", ebauche);
     } catch (error) {
       console.log(error);
     }
-  },
+  },*/
   async getTentative({ commit }, urlTentative) {
     try {
       const tentative = await getTentativeApi(urlTentative);

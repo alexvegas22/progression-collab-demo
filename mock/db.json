@@ -19,8 +19,7 @@
           {
             "id": 121414
           }
-        ],
-        "lienResultat": "http://localhost:3000/resultats/"
+        ]
       }
     },
     {
@@ -39,8 +38,7 @@
           {
             "id": 31413
           }
-        ],
-        "lienResultat": "http://localhost:3000/resultats/"
+        ]
       }
     },
     {
@@ -59,8 +57,7 @@
           {
             "id": 31413
           }
-        ],
-        "lienResultat": "http://localhost:3000/resultats/"
+        ]
       }
     },
     {
@@ -82,12 +79,11 @@
           {
             "id": 31414
           }
-        ],
-        "lienResultat": "http://localhost:3000/resultats/"
+        ]
       }
     }
   ],
-  
+
   "question": {
     "data": {
       "type": "question",
@@ -147,6 +143,7 @@
         },
         "links": {
           "self": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ",
+          "related": "https://progression.dti.crosemont.quebec/api/v1/question/aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ",
           "avancement": "http://localhost:3000/avancement/1"
         }
       },

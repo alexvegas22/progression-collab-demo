@@ -1,8 +1,8 @@
 <template>
   <div class="question">
     <Enonce
-      v-bind:titre="question.attributes?.titre"
-      v-bind:enonce="question.attributes?.énoncé"
+      v-bind:titre="question.titre"
+      v-bind:enonce="question.énoncé"
     />
     <div class="editeur-container">
       <div class="division">
