@@ -1,8 +1,8 @@
 <template>
   <div class="question">
     <Enonce
-      v-bind:titre="question.attributes?.titre"
-      v-bind:enonce="question.attributes?.énoncé"
+      v-bind:titre="question.titre"
+      v-bind:enonce="question.énoncé"
     />
     <div class="editeur-container">
       <div class="division">
@@ -38,8 +38,6 @@ import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
 import ValidationTentative from "@/components/Question/ValidationTentative";
 
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION;
-
 export default {
   name: "Question",
   components: {
@@ -63,11 +61,11 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getQuestion", BASE_URL);
+    this.$store.dispatch("getQuestion");
   },
   methods: {
     validerTentative() {
-      this.$store.dispatch("envoyerTentative", this.langage, this.code);
+      this.$store.dispatch("soumettreTentative", this.langage, this.code);
       var element = document.getElementById("retroaction");
       element.classList.remove("d-none");
     },

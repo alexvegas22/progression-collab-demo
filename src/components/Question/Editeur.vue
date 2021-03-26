@@ -17,7 +17,7 @@ import { PrismEditor } from "vue-prism-editor";
 import "vue-prism-editor/dist/prismeditor.min.css";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
-import "prismjs/themes/prism-dark.css"; // import syntax highlighting styles } from 'vue-prism-editor';
+import "prismjs/themes/prism-dark.css";
 
 // Imports des languages
 import "prismjs/components/prism-python";
@@ -30,9 +30,9 @@ export default {
   },
   // À chaque fois que l'ébauche change, on met à jour le code et le langage
   watch: {
-    ebauche: function() {
-      this.code = this.ebauche.attributes.code;
-      this.langage = this.ebauche.attributes.langage;
+    ebauches: function() {
+      this.code = this.ebauches[0].code;
+      this.langage = this.ebauches[0].langage;
     },
   },
   props: ["question"],
@@ -47,11 +47,13 @@ export default {
     },
   },
   computed: {
-    ebauche() {
-      return this.$store.state.ebauche;
+    ebauches() {
+      return this.$store.state.ebauches;
     },
   },
-  mounted() {},
+  mounted() {
+    
+  },
 };
 </script>
 
