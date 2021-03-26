@@ -18,7 +18,6 @@
         </button>
       </div>
       <div class="division retroaction-container d-none" id="retroaction">
-        <!--Je prends pour acquis que «"code"» et «"langage"» viennent de Editeur.vue-->
         <ValidationTentative v-bind:code="code" v-bind:langage="langage" />
       </div>
     </div>
@@ -68,7 +67,6 @@ export default {
   },
   methods: {
     validerTentative() {
-      // Je pense après avoir remplacé «"python"» en dur par «this.langage» que ce dernier de même que «this.code» viennent de Editeur.vue
       this.$store.dispatch("envoyerTentative", this.langage, this.code);
       var element = document.getElementById("retroaction");
       element.classList.remove("d-none");
