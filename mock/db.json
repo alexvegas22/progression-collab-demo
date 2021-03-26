@@ -6,7 +6,7 @@
         "date_soumission": 1613069492,
         "feedback": "Je suis Réussie",
         "sous-type": "tentativeProg",
-        "lienResultat": "/resultats/",
+        "lienResultat": "http://localhost:3000/resultats/",
         "langage": 0,
         "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
         "résultats": [
@@ -29,7 +29,7 @@
         "feedback": "Je suis Réussie",
         "sous-type": "tentativeProg",
         "langage": 1,
-        "lienResultat": "/resultats/",
+        "lienResultat": "http://localhost:3000/resultats/",
         "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
         "résultats": [
           {
@@ -48,7 +48,7 @@
         "feedback": "Blalalal",
         "sous-type": "tentativeProg",
         "langage": 1,
-        "lienResultat": "/resultats/",
+        "lienResultat": "http://localhost:3000/resultats/",
         "code": "System.out.println(\"Ayoye, cest pas facile de mettre un quote la dedans\")",
         "résultats": [
           {
@@ -67,7 +67,7 @@
         "feedback": "Blalalala",
         "sous-type": "tentativeProg",
         "langage": 2,
-        "lienResultat": "/resultats/",
+        "lienResultat": "http://localhost:3000/resultats/",
         "code": "print \"Ayoye, cest pas facile de mettre un quote la dedans\"",
         "résultats": [
           {

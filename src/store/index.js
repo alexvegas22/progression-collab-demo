@@ -10,7 +10,7 @@ export default createStore({
         retroactionTentative:Object,
         msgAPIEnvoiTentative:null,
         envoiTentativeEnCours:false,
-        avancement: "",
+        avancement: {},
         //tentative: "",
         tentative: {},
     },
