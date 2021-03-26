@@ -1,5 +1,4 @@
-import { postTentative, getQuestionApi } from "../services/index.js";
-import { getData } from '../services/request_services';
+import { getQuestionApi, getTestsAPI, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative } from "../services/index.js";
 
 export default {
   async getQuestion({ commit, dispatch }) {
@@ -16,55 +15,40 @@ export default {
   },
   async getAvancement({ commit }, urlAvancement) {
     try {
-      const avancement = await getData(urlAvancement);
-      commit('setAvancement', avancement.data)
+      const avancement = await getAvancementAPI(urlAvancement);
+      commit('setAvancement', avancement)
     } catch (error) {
       console.log(error)
-    }
-  },
-  async getTentative({ commit }, avancementTentative) {
-
-    try {
-      const tentative = await getData(avancementTentative);
-      const resultatsId = tentative.data.résultats;
-      let resultats = [];
-      for (const resultat of resultatsId) {
-        resultats.push(await getData(tentative.data.lienResultat + resultat.id));
-      }
-
-
-      const tentativeComplete = { tentative: tentative, resultats: resultats }
-      commit('setTentative', tentativeComplete)
-    } catch (error) {
-      console.log(error)
-    }
-  },
-
-  async envoyerTentative({ commit }, langage, code) {
-    commit("updateEnvoieTentativeEnCours", true);
-    commit("updateMsgAPIEnvoiTentative", "Envoie de la tentative en cours..");
-    try {
-      //const retroactionTentative = await postTentative({langage}, {code});
-      var reponseAPI = await postTentative({ langage }, { code });
-      commit("updateRetroaction", reponseAPI);
-      commit("updateMsgAPIEnvoiTentative", null);
-      commit("updateEnvoieTentativeEnCours", false);
-    } catch (error) {
-      commit(
-        "updateMsgAPIEnvoiTentative",
-        "Impossible de comminuquer avec le super server"
-      );
-      commit("updateEnvoieTentativeEnCours", false);
-      console.log(error);
     }
   },
   async getEbauche({ commit }, ebaucheUrl) {
     try {
-      const ebauche = await getData(ebaucheUrl);
-      commit("setEbauche", ebauche.data);
+      const ebauche = await getEbaucheApi(ebaucheUrl);
+      commit("setEbauche", ebauche);
     } catch (error) {
       console.log(error);
     }
   },
-
+  async getTentative({ commit }, urlTentative) {
+    try {
+      const tentative = await getTentativeApi(urlTentative);
+      commit('setTentative', tentative)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  async soumettreTentative({ commit }, langage, code) {
+    commit("updateEnvoieTentativeEnCours", true);
+    commit("updateMsgAPIEnvoiTentative", "Envoie de la tentative en cours..");
+    try {
+      var retroactionTentative = await postTentative({ langage }, { code });
+      commit("updateRetroaction", retroactionTentative);
+      commit("updateMsgAPIEnvoiTentative", null);
+      commit("updateEnvoieTentativeEnCours", false);
+    } catch (error) {
+      commit("updateMsgAPIEnvoiTentative", "Impossible de comminuquer avec le super server");
+      commit("updateEnvoieTentativeEnCours", false);
+      console.log(error);
+    }
+  },
 }
