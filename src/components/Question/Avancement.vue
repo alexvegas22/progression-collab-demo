@@ -27,7 +27,6 @@
 </template>
 
 <script>
-//import {mapActions} from 'vuex'
 export default {
   name: "Avancement",
   computed: {
@@ -39,9 +38,6 @@ export default {
     },
   },
   methods: {
-    /*...mapActions([
-      'getTentative'
-    ]),*/
     chargerTentative: function (lien) {
       this.$store.dispatch("getTentative", lien)
     },

@@ -1,19 +1,12 @@
 export const mutations = {
-
-
     setAvancement (state, avancement) {
         state.avancement = avancement
     },
     setTentative (state, {tentative, resultats}) {
-        //state.tentativeAffiche = {tentative, resultats}
-        state.tentative = {tentative, resultats}
-        //Le langage "python" est codé en dur pour le moment car le composant éditeur ne gère pas d'autres langages
-        //TODO
-        //state.ebauches = [{code: tentative.code, langage: tentative.langage}]
         state.ebauches = [{code: tentative.code, langage: "python"}]
         let resultatsConvert = []
         resultats.forEach((resultat)=>resultatsConvert.push({id:resultat.id, attributes:resultat.data}))
-        state.retroactionTentative = {attributes:{feedback:"N/A", tests_réussis:1}, included: resultatsConvert }
+        state.retroactionTentative = {attributes:{feedback:tentative.feedback, tests_réussis:tentative.tests_réussis}, included: resultatsConvert }
     },
     updateRetroaction (state, retroactionTentative) {
         console.log(retroactionTentative)

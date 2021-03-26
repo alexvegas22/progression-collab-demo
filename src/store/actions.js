@@ -1,4 +1,4 @@
-import { getQuestionApi, getTestsAPI, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative } from "@/services/index.js";
+import { getQuestionApi, getTentativeApi, postTentative } from "@/services/index.js";
 
 export default {
   async getQuestion({ commit, dispatch }) {
@@ -12,22 +12,6 @@ export default {
       console.log(error);
     }
   },
-  /*async getAvancement({ commit }, urlAvancement) {
-    try {
-      const avancement = await getAvancementAPI(urlAvancement);
-      commit('setAvancement', avancement)
-    } catch (error) {
-      console.log(error)
-    }
-  },*/
-  /*async getEbauche({ commit }, ebaucheUrl) {
-    try {
-      const ebauche = await getEbaucheApi(ebaucheUrl);
-      commit("setEbauches", ebauche);
-    } catch (error) {
-      console.log(error);
-    }
-  },*/
   async getTentative({ commit }, urlTentative) {
     try {
       const tentative = await getTentativeApi(urlTentative);

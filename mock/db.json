@@ -4,6 +4,7 @@
       "id": 1613069492,
       "data": {
         "date_soumission": 1613069492,
+        "tests_réussis": 3,
         "feedback": "Je suis Réussie",
         "sous-type": "tentativeProg",
         "lienResultat": "http://localhost:3000/resultats/",
@@ -26,7 +27,8 @@
       "id": 463463,
       "data": {
         "date_soumission": 463463,
-        "feedback": "Je suis Réussie",
+        "tests_réussis": 1,
+        "feedback": "Je suis à moitié réussie",
         "sous-type": "tentativeProg",
         "langage": 1,
         "lienResultat": "http://localhost:3000/resultats/",
@@ -45,6 +47,7 @@
       "id": 42352353253,
       "data": {
         "date_soumission": 42352353253,
+        "tests_réussis": 1,
         "feedback": "Blalalal",
         "sous-type": "tentativeProg",
         "langage": 1,
@@ -64,6 +67,7 @@
       "id": 4346436,
       "data": {
         "date_soumission": 4346436,
+        "tests_réussis": 2,
         "feedback": "Blalalala",
         "sous-type": "tentativeProg",
         "langage": 2,

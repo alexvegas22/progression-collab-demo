@@ -23,14 +23,6 @@ const getQuestionApi = async () => {
         console.log(err);
     }
 }
-const getTestsAPI = async (urlTests) => {
-    try {
-        const data = await getData(urlTests);
-        return data;
-    } catch (err) {
-        console.log(err);
-    }
-}
 const getAvancementAPI = async (urlAvancement) => {
     try {
         const avancement = await getData(urlAvancement);
@@ -73,6 +65,6 @@ const postTentative = async (unLangage, unCode) => {
     }
 }
 
-export { getQuestionApi, getTestsAPI, getAvancementAPI, getEbaucheApi, getTentativeApi, postTentative };
+export { getQuestionApi, getTentativeApi, postTentative };
 
 
