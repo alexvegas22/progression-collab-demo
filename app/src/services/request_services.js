@@ -2,7 +2,6 @@ const axios = require('axios');
 
 /**
  * fait une requete GET
- * VOIR la doc (lien dans README.MD)
  * @param lien: le lien COMPLET de la requete
  * @returns {Promise<unknown>}
  */
@@ -12,16 +11,14 @@ const config = {
 	},
 };
 
-const getData = (lien) =>
-	new Promise((resolve, reject) => {
-		axios.get(lien, config)
-        .then(res=>{
-            resolve(res.data)
-        })
-        .catch(error=>{
-            reject(error)
-        })
-})
+const getData = async (lien) => {
+    try {
+        const res = await axios.get(lien)
+        return res.data
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 /**
  * Fait une requete Post a l'api
@@ -29,16 +26,14 @@ const getData = (lien) =>
  * @param body: le body COMPLET de la requete
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
-const postData = (lien, body)=> new Promise((resolve, reject)=> {
+const postData = async (lien, body) => {
     //let token = localStorage.getItem('user-token')
-    axios
-        .post(lien, body)
-        .then((res) => {
-            resolve(res.data.data);
-        })
-        .catch((error) => {
-            reject(error);
-        });
-});
+    try {
+        const res = await axios.post(lien, body)
+        return res.data.data
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 export { getData, postData };

@@ -1,5 +1,4 @@
 module.exports = function(req, res, next) {
-  //TODO : Mettre à jours le body de la réponse selon la doc de l'API
   if (req.method === "POST" && req.path==="/tentative") {
     res.json({
       data: {

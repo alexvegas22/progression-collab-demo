@@ -26,10 +26,6 @@
 <script>
 export default {
   name: "ValidationTentative",
-  props: {
-    code: String,
-    langage: String,
-  },
   computed: {
     retroactionTentative() {
       return this.$store.state.retroactionTentative;
@@ -48,9 +44,6 @@ export default {
     },
     msgReponseApi() {
       return this.$store.state.msgAPIEnvoiTentative;
-    },
-    envoiEnCours() {
-      return this.$store.state.envoiTentativeEnCours;
     },
   },
 };

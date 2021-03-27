@@ -6,7 +6,7 @@
     />
     <div class="editeur-container">
       <div class="division">
-        <EditeurCode v-bind:question="question" />
+        <EditeurCode />
         <button
           type="button"
           class="btn btn-success btn-valider p-3"
@@ -18,7 +18,7 @@
         </button>
       </div>
       <div class="division retroaction-container d-none" id="retroaction">
-        <ValidationTentative v-bind:code="code" v-bind:langage="langage" />
+        <ValidationTentative />
       </div>
     </div>
   </div>
@@ -38,8 +38,6 @@ import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
 import ValidationTentative from "@/components/Question/ValidationTentative";
 
-const BASE_URL = process.env.VUE_APP_API_URL_QUESTION;
-
 export default {
   name: "Question",
   components: {
@@ -49,8 +47,6 @@ export default {
     JeuTests,
     ValidationTentative,
   },
-  data() {
-  },
   computed: {
     question() {
       return this.$store.state.question;
@@ -58,16 +54,22 @@ export default {
     tests() {
       return this.$store.state.tests;
     },
+
 	  ebauches() {
 		  return this.$store.state.ebauches;
 	  }
+,
+    envoiEnCours() {
+      return this.$store.state.envoiTentativeEnCours;
+    }
+
   },
   mounted() {
-    this.$store.dispatch("getQuestion", BASE_URL);
+    this.$store.dispatch("getQuestion");
   },
   methods: {
     validerTentative() {
-      this.$store.dispatch("envoyerTentative", this.langage, this.code);
+      this.$store.dispatch("soumettreTentative", this.langage, this.code);
       var element = document.getElementById("retroaction");
       element.classList.remove("d-none");
     },

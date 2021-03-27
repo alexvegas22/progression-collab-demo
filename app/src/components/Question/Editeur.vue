@@ -5,19 +5,18 @@
       class="my-editor"
       v-model="code"
       :highlight="highlighter"
-      line-numbers>
+      line-numbers
+    >
     </prismEditor>
   </div>
 </template>
 
 <script>
-import ValidationTentative from "@/components/Question/ValidationTentative";
-
 import { PrismEditor } from "vue-prism-editor";
 import "vue-prism-editor/dist/prismeditor.min.css";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
-import "prismjs/themes/prism-dark.css"; // import syntax highlighting styles } from 'vue-prism-editor';
+import "prismjs/themes/prism-dark.css";
 
 // Imports des languages
 import "prismjs/components/prism-python";
@@ -26,7 +25,6 @@ import "prismjs/components/prism-javascript";
 export default {
   components: {
     PrismEditor,
-    ValidationTentative,
   },
   // À chaque fois que l'ébauche change, on met à jour le code et le langage
   watch: {
@@ -35,7 +33,6 @@ export default {
       this.langage = this.ebauches[0].langage;
     },
   },
-  props: ["question"],
   data: () => ({
     code: "",
     langage: "python",
@@ -47,11 +44,10 @@ export default {
     },
   },
   computed: {
-    ebauche() {
-      return this.$store.state.ebauche;
-    },
-  },
-  mounted() {},
+    ebauches(){
+      return this.$store.state.ebauches;
+    }
+  }
 };
 </script>
 
