@@ -16,7 +16,7 @@ const getQuestionApi = async () => {
         data.included.forEach( (item) => {
             question.tests.push(item.attributes);
         });
-        question.ebauches[0] = await getEbaucheApi(data.data.relationships.ebauches.links.related)
+        question.ebauches = await getEbaucheApi(data.data.relationships.ebauches.links.related)
         question.avancement = await getAvancementAPI(data.data.links.avancement)
         return question;
     } catch (err) {
@@ -33,8 +33,10 @@ const getAvancementAPI = async (urlAvancement) => {
 }
 const getEbaucheApi = async (urlEbauche) => {
     try {
+        let listeEbauches = []
         const ebauche = await getData(urlEbauche);
-        return ebauche.data.attributes;
+        listeEbauches[""+ebauche.data.attributes.langage+""] = ebauche.data.attributes;
+        return listeEbauches;
     } catch (err) {
         console.log(err);
     }
