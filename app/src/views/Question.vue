@@ -28,7 +28,6 @@
 </template>
 
 <script>
-// @ est un alias de /src
 import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Avancement from "@/components/Question/Avancement.vue";
@@ -48,7 +47,7 @@ export default {
     question() {
       return this.$store.state.question;
     },
-      tests() {
+    tests() {
       return this.$store.state.question.tests;
     },
     envoiEnCours() {

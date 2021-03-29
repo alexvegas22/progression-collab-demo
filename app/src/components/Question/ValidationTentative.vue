@@ -12,10 +12,10 @@
     </h3>
     <h3 v-else><span style="color:red">Mauvaise réponse</span> 😢</h3>
     <ul v-for="unResultat in resultats" :key="unResultat">
-      <li>Résultat : {{ unResultat.attributes.résultat }}</li>
-      <li>Sortie d'erreur : {{ unResultat.attributes.sortie_erreur }}</li>
-      <li>Sortie observée : {{ unResultat.attributes.sortie_observée }}</li>
-      <li>Rétroaction : {{ unResultat.attributes.feedback }}</li>
+      <li>Résultat : {{ unResultat.résultat }}</li>
+      <li>Sortie d'erreur : {{ unResultat.sortie_erreur }}</li>
+      <li>Sortie observée : {{ unResultat.sortie_observée }}</li>
+      <li>Rétroaction : {{ unResultat.feedback }}</li>
     </ul>
     <h4 v-if="feedback_global">
       💡 Conseil : {{ feedback_global }}
@@ -31,15 +31,15 @@ export default {
       return this.$store.state.retroactionTentative;
     },
     resultats() {
-      return this.retroactionTentative.included ?? []
+      return this.retroactionTentative.resultats ?? []
     },
     feedback_global() {
-      return this.retroactionTentative.attributes.feedback;
+      return this.retroactionTentative.feedback_global;
     },
     // Vérifie si tous les tests passent en comparant la valeur de l'attribut «tests_reussis» avec le nombre de tests associés la question
     testsPassent() {
       return (
-        this.retroactionTentative.attributes.tests_réussis === this.retroactionTentative.included.length
+        this.retroactionTentative.tests_réussis === this.retroactionTentative.resultats.length
       );
     },
     msgReponseApi() {

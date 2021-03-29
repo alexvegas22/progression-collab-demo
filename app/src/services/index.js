@@ -20,7 +20,7 @@ const getQuestionApi = async (urlQuestion) => {
 			if(item.type=="test")
 				question.tests.push(item.attributes);
 			if(item.type=="ebauche")
-				question.ebauches.push(item.attributes);
+				question.ebauches[item.attributes.langage] = item.attributes;
 			
 		});
         return question;
@@ -66,10 +66,20 @@ const getTentativeApi = async (urlTentative) => {
         console.log(err);
     }
 }
-
 const postTentative = async (unLangage, unCode) => {
     try {
-        return await postData(URL_VALIDER_TENTATIVE, "langage="+unLangage+"&code="+unCode )
+        const retroaction = await postData(URL_VALIDER_TENTATIVE, { langage: unLangage, code: unCode })
+        const maRetroaction = {
+            tests_réussis: false,
+            feedback_global: "",
+            resultats: []
+        }
+        maRetroaction.tests_réussis = retroaction.attributes.tests_réussis
+        maRetroaction.feedback_global = retroaction.attributes.feedback
+        retroaction.included.forEach( (item) => {
+            maRetroaction.resultats.push(item.attributes);
+        });
+        return maRetroaction;
     } catch (err) {
         console.log(err);
     }

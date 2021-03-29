@@ -28,9 +28,9 @@ export default {
   },
   // À chaque fois que l'ébauche change, on met à jour le code et le langage
   watch: {
-    ebauches: function() {
-      this.code = this.ebauches[0].code;
-      this.langage = this.ebauches[0].langage;
+    ebauches: function() { 
+      this.code = this.ebauches["python"].code
+      this.langage = this.ebauches["python"].langage
     },
   },
   data: () => ({

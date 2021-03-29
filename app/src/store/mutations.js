@@ -6,10 +6,13 @@ export const mutations = {
         state.avancement = avancement
     },
     setTentative (state, {tentative, resultats}) {
-        state.ebauches = [{code: tentative.code, langage: "python"}]
+        let listeEbauches = []
+        const ebauche = {code: tentative.code, langage: "python"}
+        listeEbauches[ebauche.langage] = ebauche
+        state.question.ebauches = listeEbauches
         let resultatsConvert = []
-        resultats.forEach((resultat)=>resultatsConvert.push({id:resultat.id, attributes:resultat.data}))
-        state.retroactionTentative = {attributes:{feedback:tentative.feedback, tests_réussis:tentative.tests_réussis}, included: resultatsConvert }
+        resultats.forEach((resultat)=>resultatsConvert.push(resultat.data))
+        state.retroactionTentative = {tests_réussis:tentative.tests_réussis, feedback_global:tentative.feedback, resultats:resultatsConvert }
     },
     updateRetroaction (state, retroactionTentative) {
         console.log(retroactionTentative)
@@ -22,12 +25,12 @@ export const mutations = {
         state.envoiTentativeEnCours=bool
     },
     setTests(state, tests) {
-        state.tests = tests;
+        state.question.tests = tests;
     },
     setQuestion (state, question) {
         state.question = question;
     },
     setEbauches(state, ebauches) {
-        state.ebauches = ebauches;
+        state.question.ebauches = ebauches
     },
 }

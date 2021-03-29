@@ -8,15 +8,15 @@ import {
 export default {
   async getUser({ commit }) {
     try {
-		const user = await getUserApi();
-		commit("setUser", user);
+      const user = await getUserApi();
+      commit("setUser", user);
     } catch (error) {
       console.log(error);
     }
   },
 
-	async getQuestion({ commit }, urlQuestion) {
-		try {
+  async getQuestion({ commit }, urlQuestion) {
+    try {
       const question = await getQuestionApi(urlQuestion);
       commit("setQuestion", question);
       commit("setTests", question.tests);
@@ -26,10 +26,10 @@ export default {
     }
   },
 
-  async getAvancement({ commit }, {username, urlQuestion}) {
+  async getAvancement({ commit }, { username, urlQuestion }) {
     try {
-		const avancement = await getAvancementApi(username, urlQuestion);
-		commit("setAvancement", avancement);
+      const avancement = await getAvancementApi(username, urlQuestion);
+      commit("setAvancement", avancement);
     } catch (error) {
       console.log(error);
     }
@@ -47,10 +47,14 @@ export default {
     commit("updateEnvoieTentativeEnCours", true);
     commit("updateMsgAPIEnvoiTentative", "Envoie de la tentative en cours..");
     try {
-      var retroactionTentative = await postTentative( langage,  code );
+      var retroactionTentative = await postTentative(langage, code);
       commit("updateRetroaction", retroactionTentative);
       commit("updateMsgAPIEnvoiTentative", null);
       commit("updateEnvoieTentativeEnCours", false);
+      commit(
+        "updateMsgAPIEnvoiTentative",
+        "Impossible de communiquer avec le serveur"
+      );
     } catch (error) {
       commit(
         "updateMsgAPIEnvoiTentative",

@@ -10,7 +10,6 @@ export default createStore({
         msgAPIEnvoiTentative:null,
         envoiTentativeEnCours:false,
         avancement: {},
-        tentative: {},
     },
     actions,
     mutations
