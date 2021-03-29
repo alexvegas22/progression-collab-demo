@@ -41,7 +41,7 @@ export default {
     chargerTentative: function (lien) {
       this.$store.dispatch("getTentative", lien)
     },
-    convetirDateDepuisTimeStamp: function (timestanp) {
+    convetirDateDepuisTimeStamp: function (timestamp) {
       let date = new Date(timestanp * 1000);
       return `${date.getDate()}/${
         date.getMonth() + 1
