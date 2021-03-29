@@ -61,7 +61,18 @@ const getTentativeApi = async (urlTentative) => {
 }
 const postTentative = async (unLangage, unCode) => {
     try {
-        return await postData(URL_VALIDER_TENTATIVE, { langage: unLangage, code: unCode })
+        const retroaction = await postData(URL_VALIDER_TENTATIVE, { langage: unLangage, code: unCode })
+        const maRetroaction = {
+            tests_réussis: false,
+            feedback_global: "",
+            resultats: []
+        }
+        maRetroaction.tests_réussis = retroaction.attributes.tests_réussis
+        maRetroaction.feedback_global = retroaction.attributes.feedback
+        retroaction.included.forEach( (item) => {
+            maRetroaction.resultats.push(item.attributes);
+        });
+        return maRetroaction;
     } catch (err) {
         console.log(err);
     }

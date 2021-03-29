@@ -8,8 +8,8 @@ export const mutations = {
         listeEbauches[ebauche.langage] = ebauche
         state.ebauches = listeEbauches
         let resultatsConvert = []
-        resultats.forEach((resultat)=>resultatsConvert.push({id:resultat.id, attributes:resultat.data}))
-        state.retroactionTentative = {attributes:{feedback:tentative.feedback, tests_réussis:tentative.tests_réussis}, included: resultatsConvert }
+        resultats.forEach((resultat)=>resultatsConvert.push(resultat.data))
+        state.retroactionTentative = {tests_réussis:tentative.tests_réussis, feedback_global:tentative.feedback, resultats:resultatsConvert }
     },
     updateRetroaction (state, retroactionTentative) {
         console.log(retroactionTentative)
