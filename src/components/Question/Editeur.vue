@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     ebauches(){
-      return this.$store.state.ebauches;
+      return this.$store.state.question.ebauches;
     }
   }
 };

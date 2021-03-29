@@ -52,7 +52,7 @@ export default {
       return this.$store.state.question;
     },
     tests() {
-      return this.$store.state.tests;
+      return this.$store.state.question.tests;
     },
     envoiEnCours() {
       return this.$store.state.envoiTentativeEnCours;
