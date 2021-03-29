@@ -1,6 +1,6 @@
 <template>
   <div v-if="avancement.état">
-    <h3>La question est {{ convetirEtatEnString(avancement.état) }}</h3>
+    <h3>{{ convetirEtatEnString(avancement.état) }}</h3>
     <div v-if="avancement.état === 0">
       <p>Aucune tentative précédente</p>
     </div>
@@ -49,16 +49,16 @@ export default {
       let etatString;
       switch (etat) {
         case 0:
-          etatString = "DÉBUT";
+          etatString = "Vous en êtes à votre première tentative !";
           break;
         case 1:
-          etatString = "NON-RÉUSSI";
+          etatString = "La question n'a pas encore été résolue !";
           break;
         case 2:
-          etatString = "RÉUSSI";
+          etatString = "La question a déjà été correctement résolue !";
           break;
         default:
-          etatString = "Vers l'infini et au delà";
+          etatString = "La question est indéterminée !";
       }
       return etatString;
     },
