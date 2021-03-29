@@ -1,23 +1,20 @@
 <template>
   <div class="question">
-    <Enonce
-      v-bind:titre="question.titre"
-      v-bind:enonce="question.énoncé"
-    />
+    <Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
     <div class="editeur-container">
       <div class="division">
         <EditeurCode />
         <button
           type="button"
           class="btn btn-success btn-valider p-3"
-          style="margin-top:15px;width:100%;"
+          style="margin-top: 15px; width: 100%"
           :disabled="envoiEnCours"
           @click="validerTentative"
         >
           Valider
         </button>
       </div>
-      <div class="division retroaction-container d-none" id="retroaction">
+.      <div class="division retroaction-container d-none" id="retroaction">
         <ValidationTentative />
       </div>
     </div>
@@ -51,30 +48,28 @@ export default {
     question() {
       return this.$store.state.question;
     },
-    tests() {
-      return this.$store.state.tests;
+      tests() {
+      return this.$store.state.question.tests;
     },
-
-	  ebauches() {
-		  return this.$store.state.ebauches;
-	  }
-,
     envoiEnCours() {
       return this.$store.state.envoiTentativeEnCours;
-    }
-
+    },
   },
-  mounted() {
-    this.$store.dispatch("getQuestion");
+	 mounted() {
+		 const urlQuestion = this.$route.query.uri;
+		 const username = this.$route.query.username;
+
+		 this.$store.dispatch("getQuestion", urlQuestion);
+		 this.$store.dispatch("getAvancement", {username, urlQuestion});
   },
   methods: {
     validerTentative() {
-      this.$store.dispatch("soumettreTentative", this.langage, this.code);
+      this.$store.dispatch("soumettreTentative", this.langage, this.code );
       var element = document.getElementById("retroaction");
       element.classList.remove("d-none");
-    },
-  },
-};
+     },
+ },
+ };
 </script>
 
 <style>

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import login_get_token from "../util/login";
+import login_get_token from "@/util/login";
 
 export default {
   name: "Login",

@@ -2,7 +2,7 @@
 # docker build -t "progression" .
 # docker run -d -p 8080:8080 progression
 
-FROM node:lts-alpine
+FROM node:lts-alpine as build-stage
 
 
 
@@ -27,9 +27,15 @@ RUN npm install
 COPY app/ /app
 
 # build app for production with minification
-#RUN npm run build 
+#RUN npm run build
 
-
-
+# Développement
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+CMD [ "npm", "run", "serve" ]
+
+
+# Production 
+# FROM nginx:stable-alpine as production-stage
+# COPY --from=build-stage /app/dist /usr/share/nginx/html
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]

@@ -28,7 +28,7 @@ export default {
   },
   // À chaque fois que l'ébauche change, on met à jour le code et le langage
   watch: {
-    ebauche: function() {
+    ebauches: function() {
       this.code = this.ebauches[0].code;
       this.langage = this.ebauches[0].langage;
     },
@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     ebauches(){
-      return this.$store.state.ebauches;
+      return this.$store.state.question.ebauches;
     }
   }
 };

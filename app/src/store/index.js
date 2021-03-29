@@ -4,9 +4,8 @@ import actions from './actions'
 
 export default createStore({
     state: {
+		user: {},
         question: {},
-        ebauches: [],
-        tests: [],
         retroactionTentative:Object,
         msgAPIEnvoiTentative:null,
         envoiTentativeEnCours:false,

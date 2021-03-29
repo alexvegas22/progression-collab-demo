@@ -7,13 +7,13 @@ const axios = require('axios');
  */
 const config = {
 	headers: {
-		"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiamRvZSIsInJcdTAwZjRsZSI6MH0sImN1cnJlbnQiOjE2MTY2MzM3NTUsImV4cGlyZWQiOjE2MTY3MjAxNTV9.ul3pXIfnAYuwtXS5YYaPBmfUwt-I7apepfOiAbY65iM"
+		"Authorization": "Bearer <TOKEN>"
 	},
 };
 
 const getData = async (lien) => {
     try {
-        const res = await axios.get(lien)
+        const res = await axios.get(lien, config)
         return res.data
     } catch (err) {
         console.log(err);

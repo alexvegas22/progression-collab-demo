@@ -1,4 +1,7 @@
 export const mutations = {
+    setUser (state, user) {
+        state.user = user
+    },
     setAvancement (state, avancement) {
         state.avancement = avancement
     },
