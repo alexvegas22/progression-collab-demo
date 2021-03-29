@@ -41,11 +41,9 @@ export default {
     chargerTentative: function (lien) {
       this.$store.dispatch("getTentative", lien)
     },
-    convetirDateDepuisTimeStamp: function (timestanp) {
-      let date = new Date(timestanp * 1000);
-      return `${date.getDate()}/${
-        date.getMonth() + 1
-      }/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes()}`;
+    convetirDateDepuisTimeStamp: function (timestamp) {
+      let date = new Date(timestamp * 1000);
+      return date.toLocaleString("fr-CA");
     },
     convetirEtatEnString: function (etat) {
       let etatString;
