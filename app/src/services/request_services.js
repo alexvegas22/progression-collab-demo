@@ -7,7 +7,7 @@ const axios = require('axios');
  */
 const config = {
 	headers: {
-		"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiQm9iIiwiclx1MDBmNGxlIjowLCJhdmFuY2VtZW50cyI6W119LCJjdXJyZW50IjoxNjE3MTIwODg1LCJleHBpcmVkIjoxNjE3MjA3Mjg1fQ.1Ff8PgbYoCETBsYQ6axrnZFMSM1NF10FvIEU3ywg61s"
+		"Authorization": "Bearer <TOKEN>"
 	},
 };
 
