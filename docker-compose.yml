@@ -9,7 +9,7 @@ services:
     build: ./
     ports:
       - 8080:8080
-    #Pour le développement  
+	#Pour le développement  
     volumes:
       - "./app/src:/app/src"
     networks:
