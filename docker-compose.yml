@@ -9,9 +9,12 @@ services:
     build: ./
     ports:
       - 8080:8080
-	#Pour le développement  
+    #Pour le développement  
     volumes:
       - "./app/src:/app/src"
+    networks:
+      default:
+        ipv4_address: 172.20.0.6
 
 networks:
   default:
