@@ -9,12 +9,14 @@ const getQuestionApi = async (urlQuestion) => {
         titre: null,
         tests: [],
         ebauches: [],
+        // TODO: On définit cette propriété dans question mais reste non setté (À éclaircir)
         avancement: null
     }
     try {
         const data = await getData(BASE_URL + "/question/" + urlQuestion + "?include=tests,ebauches");
         question.énoncé = data.data.attributes.énoncé;
         question.titre = data.data.attributes.titre;
+        // TODO: On ne voit pourtant pas la propriété «liens» dans la définition de question (À éclaircir)
         question.liens = [data.data.links];
         data.included.forEach((item) => {
             if (item.type == "test")
@@ -38,7 +40,9 @@ const getAvancementApi = async (username, urlQuestion) => {
     try {
         const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
         avancement.état = data.data.attributes.état;
-        avancement.type = data.data.attributes.type;
+        avancement.type = data.data.attributes.type; // D'après ce que je vois dans l'api, ce serait plutôt «data.data.type»
+        /*console.log("data.data.attributes.type = "+data.data.attributes.type)
+        console.log("data.data.type = "+data.data.type)*/
         if (data.included) {
             data.included.forEach((item) => {
                 var tentative = {};

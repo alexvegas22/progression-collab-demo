@@ -1,8 +1,7 @@
 <template>
-<div class="question">
-  <Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
-  <div>
-			</div>
+	<div class="question">
+		<Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
+		<div></div>
 		<div class="editeur-container">
 			<div class="division">
 				<EditeurCode />
@@ -13,7 +12,7 @@
 					:disabled="envoiEnCours"
 					@click="validerTentative"
 				>
-				  Valider
+					Valider
 				</button>
 			</div>
 			<div class="division retroaction-container d-none" id="retroaction">
@@ -38,10 +37,7 @@ import ValidationTentative from "@/components/Question/ValidationTentative";
 
 export default {
 	name: "Question",
-	props: [
-		'uri',
-		'username'
-	],
+	props: ["uri", "username"],
 	components: {
 		Enonce,
 		Avancement,
@@ -62,11 +58,11 @@ export default {
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);
-		this.$store.dispatch("getAvancement", {username: this.username, uri: this.uri} );
+		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
 	},
 	methods: {
 		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {langage: this.langage, code: this.code} );
+			this.$store.dispatch("soumettreTentative", { langage: this.langage, code: this.code });
 			var element = document.getElementById("retroaction");
 			element.classList.remove("d-none");
 		},

@@ -14,6 +14,7 @@
               <p class="p-0 m-0">{{ test.nom }}</p>
             </div>
             <div class="float-right">
+              <!--Il n'y a pas de «resultat» dans un objet «test» selon l'api. Il faudrait investiguer là dessus -->
               <span style="font-size:200%;" v-if="test.resultat">
                 &#9989;
               </span>
@@ -31,7 +32,7 @@
           </button>
         </div>
       </div>
-
+      <!--Il n'y a pas d'attribut «visible» dans un objet «test» selon l'api. Il faudrait investiguer là dessus aussi -->
       <div class="col-md-12" v-if="test.visible">
         <Resultat v-bind:test="test" />
       </div>
