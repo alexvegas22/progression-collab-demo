@@ -13,7 +13,7 @@
           v-for="tentative in tentatives"
           v-on:click="
             chargerTentative(
-              avancement.lienTentatives + '' + tentative.date_soumission
+              tentative.liens.self
             )
           "
           value="{{tentative.date_soumission}}"

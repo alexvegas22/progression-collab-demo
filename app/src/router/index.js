@@ -7,9 +7,10 @@ const routes = [
     component: () => import('@/views/Home.vue')
   },
   {
-    path: '/question',
+    path: '/question/:username/:uri',
     name: 'Question',
-    component: () => import('@/views/Question.vue')
+    component: () => import('@/views/Question.vue'),
+    props: true
   },
   {
     path: '/:catchAll(.*)',

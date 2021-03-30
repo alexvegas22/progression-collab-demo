@@ -40,7 +40,10 @@ const getAvancementApi = async (username, urlQuestion) => {
 		avancement.état = data.data.attributes.état;
 		avancement.type = data.data.attributes.type;
 		data.included.forEach( (item) => {
-			avancement.tentatives.push( item.attributes );
+			var tentative = {};
+			tentative = item.attributes;
+			tentative.liens = item.links;
+			avancement.tentatives.push( tentative );
 		});
         return avancement;
     } catch (err) {

@@ -18,8 +18,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <router-link :to="{ name: 'Question' }" class="text-light">
-            Question
+			<router-link :to="{ name: 'Question', params: {uri: uri, username: username} }" class="text-light">
+            Question 
           </router-link>
         </li>
       </ul>
@@ -27,7 +27,23 @@
   </nav>
   <router-view />
 </template>
+
+<script>
+ export default {
+	 name: "App",
+	 computed: {
+		 uri() {
+			 return 'aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9wYXJhbSVDMyVBOXRyJUMzJUE5ZQ';
+		 },
+		 username() {
+			 return 'jdoe';
+		 }
+	 }
+ }
+</script>
+
 <style src="./css/style.css">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
