@@ -15,7 +15,6 @@ export const mutations = {
         state.retroactionTentative = {tests_réussis:tentative.tests_réussis, feedback_global:tentative.feedback, resultats:resultatsConvert }
     },
     updateRetroaction (state, retroactionTentative) {
-        console.log(retroactionTentative)
         state.retroactionTentative = retroactionTentative;
     },
     updateMsgAPIEnvoiTentative(state, msg){

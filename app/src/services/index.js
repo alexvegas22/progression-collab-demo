@@ -1,7 +1,6 @@
 import { getData, postData } from "@/services/request_services";
 
 const BASE_URL = process.env.VUE_APP_API_URL;
-const URL_VALIDER_TENTATIVE = process.env.VUE_APP_API_URL_VALIDATION_TENTATIVE
 
 const getQuestionApi = async (urlQuestion) => {
     const question = {
@@ -59,10 +58,12 @@ const getAvancementApi = async (username, urlQuestion) => {
 
 const getTentativeApi = async (urlTentative) => {
     try {
+        // TODO: Actuellement, même à partir de postman, impossible de récupérer une tentative. N'y a t-il pas encore de routes pour ça?
         const tentative = await getData(urlTentative);
         const resultatsId = tentative.data.résultats;
         let resultats = [];
         for (const resultat of resultatsId) {
+            // TODO: S'assurer ici que dans «lienResultat» il y ait bien un «/» à la fin dans la réponse de l'API, sinon, l'ajouter ci dessous. 
             resultats.push(await getData(tentative.data.lienResultat + resultat.id));
         }
 
@@ -75,17 +76,21 @@ const getTentativeApi = async (urlTentative) => {
         console.log(err);
     }
 }
-const postTentative = async (unLangage, unCode) => {
+const postTentative = async (params) => {
     try {
-        const retroaction = await postData(URL_VALIDER_TENTATIVE, { langage: unLangage, code: unCode })
+        const retroactionTentative = await postData(
+            BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats", 
+            { langage: params.langage, code: params.code }
+        )
         const maRetroaction = {
-            tests_réussis: false,
+            tests_réussis: 0,
             feedback_global: "",
             resultats: []
         }
-        maRetroaction.tests_réussis = retroaction.attributes.tests_réussis
-        maRetroaction.feedback_global = retroaction.attributes.feedback
-        retroaction.included.forEach((item) => {
+        maRetroaction.tests_réussis = retroactionTentative.attributes.tests_réussis
+        // TODO: À chaque post de tentative que je fais dans postman, je reçois «null» comme feedback. Est-ce normal?
+        maRetroaction.feedback_global = retroactionTentative.attributes.feedback
+        retroactionTentative.included.forEach((item) => {
             maRetroaction.resultats.push(item.attributes);
         });
         return maRetroaction;

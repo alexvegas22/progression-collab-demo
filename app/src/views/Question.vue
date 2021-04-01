@@ -62,7 +62,7 @@ export default {
 	},
 	methods: {
 		validerTentative() {
-			this.$store.dispatch("soumettreTentative", { langage: this.langage, code: this.code });
+			this.$store.dispatch("soumettreTentative", { langage: this.langage, code: this.code, username: this.username, uri: this.uri });
 			var element = document.getElementById("retroaction");
 			element.classList.remove("d-none");
 		},
