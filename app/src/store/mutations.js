@@ -7,12 +7,15 @@ export const mutations = {
     },
     setTentative (state, {tentative, resultats}) {
         let listeEbauches = []
-        const ebauche = {code: tentative.code, langage: "python"}
+        const ebauche = {code: tentative.code, langage: tentative.langage}
         listeEbauches[ebauche.langage] = ebauche
         state.question.ebauches = listeEbauches
-        let resultatsConvert = []
-        resultats.forEach((resultat)=>resultatsConvert.push(resultat.data))
-        state.retroactionTentative = {tests_réussis:tentative.tests_réussis, feedback_global:tentative.feedback, resultats:resultatsConvert }
+        state.retroactionTentative = {
+            feedback_global: tentative.feedback, 
+            tentative_reussie: tentative.réussi,
+            tests_réussis: tentative.tests_réussis, 
+            resultats: resultats
+        }
     },
     updateRetroaction (state, retroactionTentative) {
         state.retroactionTentative = retroactionTentative;

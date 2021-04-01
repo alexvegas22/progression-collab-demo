@@ -17,7 +17,7 @@
 						</div>
 						<!--div class="float-right"-->
 							<!--Il n'y a pas de «resultat» dans un objet «test» selon l'api. Il faudrait investiguer là dessus -->
-							<!--span style="font-size: 200%" v-if="test.resultat"> &#9989; </span>
+							<!--span style="font-size: 200%" v-if="resultat_test.resultat.resultat"> &#9989; </span>
 							<span v-else> &#10060; </span>
 						</div-->
 						<div style="clear: both"></div>

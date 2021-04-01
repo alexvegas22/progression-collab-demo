@@ -60,15 +60,15 @@ const getTentativeApi = async (urlTentative) => {
     try {
         // TODO: Actuellement, même à partir de postman, impossible de récupérer une tentative. N'y a t-il pas encore de routes pour ça?
         const tentative = await getData(urlTentative);
-        const resultatsId = tentative.data.résultats;
+        //const resultatsId = tentative.data.résultats;
         let resultats = [];
-        for (const resultat of resultatsId) {
+        /*for (const resultat of resultatsId) {
             // TODO: S'assurer ici que dans «lienResultat» il y ait bien un «/» à la fin dans la réponse de l'API, sinon, l'ajouter ci dessous. 
             resultats.push(await getData(tentative.data.lienResultat + resultat.id));
-        }
+        }*/
 
         const tentativeComplete = {
-            tentative: tentative.data,
+            tentative: tentative.data.attributes,
             resultats: resultats
         }
         return tentativeComplete;
