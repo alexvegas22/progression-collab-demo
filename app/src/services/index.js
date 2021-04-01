@@ -78,18 +78,18 @@ const getTentativeApi = async (urlTentative) => {
 }
 const postTentative = async (params) => {
     try {
-        const retroactionTentative = await postData(
-            BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats", 
-            { langage: params.langage, code: params.code }
-        )
+        //const body = { langage: params.langage, code: params.code }
+        const body = { langage: "python", code: "# +TODO\nprint(1)\n# -TODO\nprint(2)\n# +TODO\nprint(3)\n# -TODO\nprint(4)" }
+        const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
+        const retroactionTentative = await postData(urlRequete, body)
         const maRetroaction = {
             tests_réussis: 0,
             feedback_global: "",
             resultats: []
         }
-        maRetroaction.tests_réussis = retroactionTentative.attributes.tests_réussis
+        maRetroaction.tests_réussis = retroactionTentative.data.attributes.tests_réussis
         // TODO: À chaque post de tentative que je fais dans postman, je reçois «null» comme feedback. Est-ce normal?
-        maRetroaction.feedback_global = retroactionTentative.attributes.feedback
+        maRetroaction.feedback_global = retroactionTentative.data.attributes.feedback
         retroactionTentative.included.forEach((item) => {
             maRetroaction.resultats.push(item.attributes);
         });
