@@ -8,7 +8,7 @@ const getQuestionApi = async (urlQuestion) => {
         titre: null,
         tests: [],
         ebauches: [],
-        // TODO: On définit cette propriété dans question mais reste non setté (À éclaircir)
+        // TODO: On définit cette propriété dans question mais elle reste non settée (À éclaircir)
         avancement: null
     }
     try {
@@ -39,9 +39,9 @@ const getAvancementApi = async (username, urlQuestion) => {
     try {
         const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
         avancement.état = data.data.attributes.état;
-        avancement.type = data.data.attributes.type; // D'après ce que je vois dans l'api, ce serait plutôt «data.data.type»
-        /*console.log("data.data.attributes.type = "+data.data.attributes.type)
-        console.log("data.data.type = "+data.data.type)*/
+        avancement.type = data.data.attributes.type; // D'après ce que je vois dans l'api, ce serait plutôt «data.data.type» (Prouvé par les console.log ci dessous)
+        /*console.log("data.data.attributes.type = "+data.data.attributes.type) ==>"undefined"
+        console.log("data.data.type = "+data.data.type) ==>"avancement" */
         if (data.included) {
             data.included.forEach((item) => {
                 var tentative = {};
