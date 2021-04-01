@@ -70,7 +70,7 @@ export default {
       entree: this.resultat_test.test.entrée,
       sortie_erreur: this.resultat_test.resultat.sortie_erreur ?? "Pas de sortie d'erreur",
       sortie_console: this.resultat_test.resultat.sortie_observée ?? "Pas de sortie console",
-      feedback: this.resultat_test.resultat.feedback ?? "Aucun feedback pour la question",
+      feedback: this.resultat_test.resultat.feedback ?? "Aucun feedback pour ce test",
     }
   },
   /*methods: {

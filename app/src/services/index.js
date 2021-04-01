@@ -82,13 +82,15 @@ const postTentative = async (params) => {
         const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
         const retroactionTentative = await postData(urlRequete, body)
         const maRetroaction = {
-            tests_réussis: 0,
             feedback_global: "",
+            tentative_reussie: false,
+            tests_réussis: 0,
             resultats: []
         }
-        maRetroaction.tests_réussis = retroactionTentative.data.attributes.tests_réussis
         // TODO: À chaque post de tentative que je fais, je reçois «null» comme feedback. Est-ce normal?
         maRetroaction.feedback_global = retroactionTentative.data.attributes.feedback
+        maRetroaction.tentative_reussie = retroactionTentative.data.attributes.réussi
+        maRetroaction.tests_réussis = retroactionTentative.data.attributes.tests_réussis
         retroactionTentative.included.forEach((item) => {
             maRetroaction.resultats.push(item.attributes);
         });
