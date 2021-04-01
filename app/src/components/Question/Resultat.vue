@@ -68,9 +68,9 @@ export default {
     return{
       sortie_attendue: this.resultat_test.test.sortie_attendue,
       entree: this.resultat_test.test.entrée,
-      sortie_erreur: this.resultat_test.resultat.sortie_erreur ?? "",
-      sortie_console: this.resultat_test.resultat.sortie_observée ?? "",
-      feedback: this.resultat_test.resultat.feedback ?? "",
+      sortie_erreur: this.resultat_test.resultat.sortie_erreur ?? "Pas de sortie d'erreur",
+      sortie_console: this.resultat_test.resultat.sortie_observée ?? "Pas de sortie console",
+      feedback: this.resultat_test.resultat.feedback ?? "Aucun feedback pour la question",
     }
   },
   /*methods: {

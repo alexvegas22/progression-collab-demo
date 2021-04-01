@@ -1,7 +1,7 @@
 <template>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<h1 style="text-align: center">Jeu de tests</h1>
-	<div v-for="elem in resultatsTests" :key="elem">
+	<div v-for="elem in this.resultatsTests" :key="elem">
 		<Test v-bind:resultat_test="elem" />
 	</div>
   <!--div v-for="test in tests" :key="test">
