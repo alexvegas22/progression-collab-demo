@@ -3,21 +3,7 @@
 		<Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
 		<div></div>
 		<div class="editeur-container">
-			<div class="division">
 				<EditeurCode v-bind:uri="this.uri" v-bind:username="this.username" />
-				<!--button
-					type="button"
-					class="btn btn-success btn-valider p-3"
-					style="margin-top: 15px; width: 100%"
-					:disabled="envoiEnCours"
-					@click="validerTentative"
-				>
-					Valider
-				</button-->
-			</div>
-			<!--div class="division retroaction-container d-none" id="retroaction">
-				<ValidationTentative />
-			</div-->
 		</div>
 	</div>
 	<div>
@@ -33,7 +19,6 @@ import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
-//import ValidationTentative from "@/components/Question/ValidationTentative";
 
 export default {
 	name: "Question",
@@ -43,7 +28,6 @@ export default {
 		Avancement,
 		EditeurCode,
 		JeuTests,
-		//ValidationTentative,
 	},
 	computed: {
 		question() {
@@ -52,20 +36,13 @@ export default {
 		tests() {
 			return this.$store.state.question.tests;
 		},
-		/*envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
-		},*/
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);
 		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
 	},
 	methods: {
-		/*validerTentative() {
-			this.$store.dispatch("soumettreTentative", { langage: this.langage, code: this.code, username: this.username, uri: this.uri });
-			var element = document.getElementById("retroaction");
-			element.classList.remove("d-none");
-		},*/
+		
 	},
 };
 </script>

@@ -1,16 +1,18 @@
 <template>
-	<div>
-		<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
+	<div class="division">
+		<div>
+			<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
+		</div>
+		<button
+			type="button"
+			class="btn btn-success btn-valider p-3"
+			style="margin-top: 15px; width: 100%"
+			:disabled="envoiEnCours"
+			@click="validerTentative"
+		>
+			Valider
+		</button>
 	</div>
-	<button
-		type="button"
-		class="btn btn-success btn-valider p-3"
-		style="margin-top: 15px; width: 100%"
-		:disabled="envoiEnCours"
-		@click="validerTentative"
-	>
-		Valider
-	</button>
 	<div class="division retroaction-container d-none" id="retroaction">
 		<ValidationTentative />
 	</div>
@@ -32,7 +34,7 @@ import ValidationTentative from "@/components/Question/ValidationTentative";
 export default {
 	props: ["uri", "username"],
 	components: {
-    ValidationTentative,
+		ValidationTentative,
 		PrismEditor,
 	},
 	// À chaque fois que l'ébauche change, on met à jour le code et le langage
@@ -53,7 +55,12 @@ export default {
 			return highlight(code, languages[this.langage]);
 		},
 		validerTentative() {
-			this.$store.dispatch("soumettreTentative", { langage: this.langage, code: this.code, username: this.username, uri: this.uri });
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.langage,
+				code: this.code,
+				username: this.username,
+				uri: this.uri,
+			});
 			var element = document.getElementById("retroaction");
 			element.classList.remove("d-none");
 		},

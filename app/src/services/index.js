@@ -79,7 +79,6 @@ const getTentativeApi = async (urlTentative) => {
 const postTentative = async (params) => {
     try {
         const body = { langage: params.langage, code: params.code }
-        //const body = { langage: "python", code: "# +TODO\nprint(1)\n# -TODO\nprint(2)\n# +TODO\nprint(3)\n# -TODO\nprint(4)" }
         const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
         const retroactionTentative = await postData(urlRequete, body)
         const maRetroaction = {
