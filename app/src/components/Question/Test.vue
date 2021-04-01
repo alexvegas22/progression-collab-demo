@@ -12,7 +12,8 @@
 				<div class="col-md-8">
 					<div class="p-2 border">
 						<div class="float-left">
-							<p class="p-0 m-0">{{ test.nom }}</p>
+							<!--p class="p-0 m-0">{{ test.nom }}</p-->
+              <p class="p-0 m-0">{{ resultat_test.test.nom }}</p>
 						</div>
 						<!--div class="float-right"-->
 							<!--Il n'y a pas de «resultat» dans un objet «test» selon l'api. Il faudrait investiguer là dessus -->
@@ -28,7 +29,8 @@
 				</div>
 			</div>
 			<div class="col-md-12" v-if="this.visible">
-				<Resultat v-bind:test="test" v-bind:resultat="resultat" />
+				<!--Resultat v-bind:test="test" v-bind:resultat="resultat" /-->
+        <Resultat v-bind:resultat_test="resultat_test" />
 			</div>
 		</div>
 	</div>
@@ -42,12 +44,12 @@ export default {
 	components: { /*ValidationTentative,*/ Resultat },
 	name: "Test",
 	props: {
-		test: {
+		/*test*/resultat_test: {
 			required: true,
 		},
-    resultat: {
+    /*resultat: {
 			required: true,
-		},
+		},*/
 	},
 	/*watch: {
 		test: function () {

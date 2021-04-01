@@ -57,22 +57,29 @@
 export default {
   name: "Resultat",
   props: {
-    test:{
+    /*test*/resultat_test:{
       required:true,
     },
-    resultat: {
+    /*resultat: {
 			required: true,
-		},
+		},*/
   },
   data() {
     return{
-      sortie_attendue: this.test.sortie_attendue,
-      entree: this.test.entrée,
-      sortie_erreur: this.resultat.sortie_erreur ?? "",
-      sortie_console: this.resultat.sortie_observée ?? "",
-      feedback: this.resultat.feedback ?? "",
+      sortie_attendue: this.resultat_test.test.sortie_attendue,
+      entree: this.resultat_test.test.entrée,
+      sortie_erreur: this.resultat_test.resultat.sortie_erreur ?? "",
+      sortie_console: this.resultat_test.resultat.sortie_observée ?? "",
+      feedback: this.resultat_test.resultat.feedback ?? "",
     }
   },
+  /*methods: {
+		updateSortieErreur() {
+      if(this.resultat_test.resultat){
+        this.sortie_erreur: this.resultat_test.resultat.sortie_erreur
+      }
+		},
+	},*/
   /*watch:{
     ebaucheTest: function(){
       this.sortie_attendue =this.test.sortie_attendue;
@@ -80,4 +87,4 @@ export default {
     }
   }*/
 }
-</script>>
+</script>

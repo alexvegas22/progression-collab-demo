@@ -1,10 +1,16 @@
 <template>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<h1 style="text-align: center">Jeu de tests</h1>
-	<!--div v-for="test in tests" :key="test">
+	<div v-for="elem in resultatsTests" :key="elem">
+		<Test v-bind:resultat_test="elem" />
+	</div>
+  <!--div v-for="test in tests" :key="test">
 		<Test v-bind:test="test" />
 	</div-->
-	<div v-if="resultats.length > 0">
+	<!--div v-for="i in tests.length" :key="i">
+		<Test v-bind:test="tests[i]" />
+	</div-->
+	<!--div v-if="resultats.length > 0">
 		<div v-for="i in tests.length" :key="i">
 			<Test v-bind:test="tests[i]" v-bind:resultat="resultats[i]" />
 		</div>
@@ -13,7 +19,7 @@
     <div v-for="i in tests.length" :key="i">
 			<Test v-bind:test="tests[i]" v-bind:resultat="null" />
 		</div>
-  </div>
+  </div-->
 </template>
 
 <script>
@@ -23,23 +29,57 @@ export default {
 	components: { Test },
 	name: "JeuTests",
 
-	props: {
+	/*props: {
 		tests: {
 			required: true,
 		},
 		resultats: {
 			required: true,
 		},
-	},
-	/*watch: {
-		tests: function () {
-			this.texteTests = this.tests;
+	},*/
+	computed: {
+		tests() {
+			//console.log("this.$store.state.question.tests = "+this.$store.state.question.tests.length)
+			return this.$store.state.question.tests;
+		},
+		resultats() {
+			return this.$store.state.retroactionTentative.resultats ?? [];
 		},
 	},
 	data() {
 		return {
-			texteTests: this.tests,
+			/*resultatsTests: {
+        lesResultats: [],
+				lesTests: this.tests,
+      },*/
+			resultatsTests: [],
 		};
-	},*/
+	},
+	methods: {
+		construireResultatsTests() {
+      const listeResultatsTests = []
+			let i = 0;
+			this.tests.forEach((unTest) => {
+				const objet = {
+					resultat: {},
+					test: unTest,
+				};
+        if (this.resultats[i]) {
+					objet.resultat = this.resultats[i];
+				}
+				listeResultatsTests.push(objet);
+				i++;
+			});
+			return listeResultatsTests;
+		},
+	},
+	watch: {
+    tests: function () {
+			this.resultatsTests = this.construireResultatsTests();
+		},
+		resultats: function () {
+			this.resultatsTests = this.construireResultatsTests();
+		},
+	},
 };
 </script>
