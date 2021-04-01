@@ -26,7 +26,7 @@
           <h5 class="text-danger font-weight-bold text-center card-title">
             Sortie erreur
           </h5>
-          <p class="card-text">x is not defined in the current context</p>
+          <p class="card-text">{{sortie_erreur}}</p>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
           <h5 class="text-black-50 font-weight-bold text-center card-title">
             Sortie console
           </h5>
-          <p class="card-text">Salutation salutation</p>
+          <p class="card-text">{{sortie_console}}</p>
         </div>
       </div>
     </div>
@@ -46,12 +46,13 @@
           <h5 class="text-black-50 font-weight-bold text-center card-title">
             Feedback
           </h5>
-          <p class="card-text">Salutation salutation</p>
+          <p class="card-text">{{feedback}}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: "Resultat",
@@ -59,18 +60,24 @@ export default {
     test:{
       required:true,
     },
+    resultat: {
+			required: true,
+		},
   },
   data() {
     return{
       sortie_attendue: this.test.sortie_attendue,
-      entree: this.test.entrée
+      entree: this.test.entrée,
+      sortie_erreur: this.resultat.sortie_erreur ?? "",
+      sortie_console: this.resultat.sortie_observée ?? "",
+      feedback: this.resultat.feedback ?? "",
     }
   },
-  watch:{
+  /*watch:{
     ebaucheTest: function(){
       this.sortie_attendue =this.test.sortie_attendue;
       this.entree = this.test.entrée;
     }
-  }
+  }*/
 }
 </script>>

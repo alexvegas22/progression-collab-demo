@@ -3,11 +3,11 @@
 		<Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
 		<div></div>
 		<div class="editeur-container">
-				<EditeurCode v-bind:uri="this.uri" v-bind:username="this.username" />
+			<EditeurCode v-bind:uri="this.uri" v-bind:username="this.username" />
 		</div>
 	</div>
 	<div>
-		<JeuTests v-bind:tests="tests" />
+		<JeuTests v-bind:tests="tests" v-bind:resultats="resultats" />
 	</div>
 	<div>
 		<Avancement />
@@ -31,19 +31,23 @@ export default {
 	},
 	computed: {
 		question() {
-			return this.$store.state.question;
+			return this.$store.state.question
 		},
 		tests() {
-			return this.$store.state.question.tests;
+			return this.$store.state.question.tests
+		},
+		resultats() {
+			if(this.retroactionTentative){
+				return this.retroactionTentative.resultats ?? []
+			}
+			return []
 		},
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);
 		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
 	},
-	methods: {
-		
-	},
+	methods: {},
 };
 </script>
 
