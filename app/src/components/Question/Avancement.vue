@@ -13,9 +13,6 @@
           v-for="tentative in tentatives"
           v-on:click="
             chargerTentative(
-              // TODO: Ne voudrait - on pas justement se débarrasser des spécifications tels que le «self»
-              // TODO: Ceci m'emmène vers une autre question à savoir, quelles est la différence entre le «self» et le «related»
-              // TODO: Ce lien dans l'API renvoie vers le domaine «example.com»
               tentative.liens.self
             )
           "
