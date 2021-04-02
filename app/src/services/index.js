@@ -8,7 +8,7 @@ const getQuestionApi = async (urlQuestion) => {
         titre: null,
         tests: [],
         ebauches: [],
-        liens
+        liens: []
     }
     try {
         const data = await getData(BASE_URL + "/question/" + urlQuestion + "?include=tests,ebauches");
