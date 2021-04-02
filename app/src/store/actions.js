@@ -43,23 +43,16 @@ export default {
       console.log(error);
     }
   },
-  async soumettreTentative({ commit }, langage, code) {
+  async soumettreTentative({ commit }, params) {
     commit("updateEnvoieTentativeEnCours", true);
     commit("updateMsgAPIEnvoiTentative", "Envoie de la tentative en cours..");
     try {
-      var retroactionTentative = await postTentative(langage, code);
+      var retroactionTentative = await postTentative(params);
       commit("updateRetroaction", retroactionTentative);
       commit("updateMsgAPIEnvoiTentative", null);
       commit("updateEnvoieTentativeEnCours", false);
-      commit(
-        "updateMsgAPIEnvoiTentative",
-        "Impossible de communiquer avec le serveur"
-      );
     } catch (error) {
-      commit(
-        "updateMsgAPIEnvoiTentative",
-        "Impossible de comminuquer avec le super server"
-      );
+      commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
       commit("updateEnvoieTentativeEnCours", false);
       console.log(error);
     }

@@ -30,7 +30,7 @@ const postData = async (lien, body) => {
     //let token = localStorage.getItem('user-token')
     try {
         const res = await axios.post(lien, body)
-        return res.data.data
+        return res.data
     } catch (err) {
         console.log(err);
     }

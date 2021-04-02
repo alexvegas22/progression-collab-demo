@@ -31,7 +31,6 @@
           </button>
         </div>
       </div>
-
       <div class="col-md-12" v-if="test.visible">
         <Resultat v-bind:test="test" />
       </div>

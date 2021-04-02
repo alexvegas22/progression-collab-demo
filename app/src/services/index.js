@@ -1,7 +1,6 @@
 import { getData, postData } from "@/services/request_services";
 
 const BASE_URL = process.env.VUE_APP_API_URL;
-const URL_VALIDER_TENTATIVE = process.env.VUE_APP_API_URL_VALIDATION_TENTATIVE
 
 const getQuestionApi = async (urlQuestion) => {
     const question = {
@@ -9,7 +8,7 @@ const getQuestionApi = async (urlQuestion) => {
         titre: null,
         tests: [],
         ebauches: [],
-        avancement: null
+        liens: []
     }
     try {
         const data = await getData(BASE_URL + "/question/" + urlQuestion + "?include=tests,ebauches");
@@ -38,7 +37,6 @@ const getAvancementApi = async (username, urlQuestion) => {
     try {
         const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
         avancement.état = data.data.attributes.état;
-        avancement.type = data.data.attributes.type;
         if (data.included) {
             data.included.forEach((item) => {
                 var tentative = {};
@@ -56,35 +54,32 @@ const getAvancementApi = async (username, urlQuestion) => {
 const getTentativeApi = async (urlTentative) => {
     try {
         const tentative = await getData(urlTentative);
-        const resultatsId = tentative.data.résultats;
-        let resultats = [];
-        for (const resultat of resultatsId) {
-            resultats.push(await getData(tentative.data.lienResultat + resultat.id));
-        }
 
         const tentativeComplete = {
             tentative: tentative.data,
-            resultats: resultats
+            resultats: []
         }
         return tentativeComplete;
     } catch (err) {
         console.log(err);
     }
 }
-const postTentative = async (unLangage, unCode) => {
+const postTentative = async (params) => {
     try {
-        const retroaction = await postData(URL_VALIDER_TENTATIVE, { langage: unLangage, code: unCode })
-        const maRetroaction = {
-            tests_réussis: false,
+        const body = { langage: params.langage, code: params.code }
+        const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
+        const reponseApi = await postData(urlRequete, body)
+        const retroactionTentative = {
+            tests_réussis: 0,
             feedback_global: "",
             resultats: []
         }
-        maRetroaction.tests_réussis = retroaction.attributes.tests_réussis
-        maRetroaction.feedback_global = retroaction.attributes.feedback
-        retroaction.included.forEach((item) => {
-            maRetroaction.resultats.push(item.attributes);
+        retroactionTentative.tests_réussis = reponseApi.data.attributes.tests_réussis
+        retroactionTentative.feedback_global = reponseApi.data.attributes.feedback
+        reponseApi.included.forEach((item) => {
+            retroactionTentative.resultats.push(item.attributes);
         });
-        return maRetroaction;
+        return retroactionTentative;
     } catch (err) {
         console.log(err);
     }

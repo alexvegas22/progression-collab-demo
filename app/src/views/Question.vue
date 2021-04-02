@@ -1,24 +1,9 @@
 <template>
-<div class="question">
-  <Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
-  <div>
-			</div>
+	<div class="question">
+		<Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
+		<div></div>
 		<div class="editeur-container">
-			<div class="division">
-				<EditeurCode />
-				<button
-					type="button"
-					class="btn btn-success btn-valider p-3"
-					style="margin-top: 15px; width: 100%"
-					:disabled="envoiEnCours"
-					@click="validerTentative"
-				>
-				  Valider
-				</button>
-			</div>
-			<div class="division retroaction-container d-none" id="retroaction">
-				<ValidationTentative />
-			</div>
+				<EditeurCode v-bind:uri="this.uri" v-bind:username="this.username" />
 		</div>
 	</div>
 	<div>
@@ -34,20 +19,15 @@ import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
-import ValidationTentative from "@/components/Question/ValidationTentative";
 
 export default {
 	name: "Question",
-	props: [
-		'uri',
-		'username'
-	],
+	props: ["uri", "username"],
 	components: {
 		Enonce,
 		Avancement,
 		EditeurCode,
 		JeuTests,
-		ValidationTentative,
 	},
 	computed: {
 		question() {
@@ -56,20 +36,13 @@ export default {
 		tests() {
 			return this.$store.state.question.tests;
 		},
-		envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
-		},
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);
-		this.$store.dispatch("getAvancement", {username: this.username, uri: this.uri} );
+		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
 	},
 	methods: {
-		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {langage: this.langage, code: this.code} );
-			var element = document.getElementById("retroaction");
-			element.classList.remove("d-none");
-		},
+		
 	},
 };
 </script>
@@ -82,7 +55,6 @@ export default {
 	padding-top: 0px;
 	flex-direction: row;
 }
-
 .division {
 	width: 50%;
 	height: auto;
@@ -90,23 +62,14 @@ export default {
 	margin: 0px 20px;
 	flex-grow: 1;
 }
-
 body {
 	font-family: "Avenir", Arial, Helvetica, sans-serif;
 	font-size: 16px;
-}
-
-.btn-valider {
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 .ebauche {
 	display: flex;
 	padding: 1rem;
 	margin: 1rem;
 	background: darkgray;
-}
-.retroaction-container {
-	border: solid 1px black;
-	border-radius: 4px;
 }
 </style>
