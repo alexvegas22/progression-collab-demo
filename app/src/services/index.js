@@ -37,7 +37,6 @@ const getAvancementApi = async (username, urlQuestion) => {
     try {
         const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
         avancement.état = data.data.attributes.état;
-        avancement.type = data.data.type;
         if (data.included) {
             data.included.forEach((item) => {
                 var tentative = {};
