@@ -7,7 +7,6 @@
 		</div>
 	</div>
 	<div>
-		<!--JeuTests v-bind:tests="tests" v-bind:resultats="resultats" /-->
 		<JeuTests />
 	</div>
 	<div>
@@ -34,17 +33,6 @@ export default {
 		question() {
 			return this.$store.state.question
 		},
-		/*tests() {
-			//console.log("this.$store.state.question.tests = "+this.$store.state.question.tests.length)
-			return this.$store.state.question.tests
-		},*/
-		/*resultats() {
-			if(this.retroactionTentative){
-				return this.retroactionTentative.resultats ?? []
-				//return this.retroactionTentative.resultats ?? []
-			}
-			return []
-		},*/
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);

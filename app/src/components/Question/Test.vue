@@ -12,14 +12,8 @@
 				<div class="col-md-8">
 					<div class="p-2 border">
 						<div class="float-left">
-							<!--p class="p-0 m-0">{{ test.nom }}</p-->
               <p class="p-0 m-0">{{ resultat_test.test.nom }}</p>
 						</div>
-						<!--div class="float-right"-->
-							<!--Il n'y a pas de «resultat» dans un objet «test» selon l'api. Il faudrait investiguer là dessus -->
-							<!--span style="font-size: 200%" v-if="resultat_test.resultat.resultat"> &#9989; </span>
-							<span v-else> &#10060; </span>
-						</div-->
 						<div style="clear: both"></div>
 					</div>
 				</div>
@@ -29,7 +23,6 @@
 				</div>
 			</div>
 			<div class="col-md-12" v-if="this.visible">
-				<!--Resultat v-bind:test="test" v-bind:resultat="resultat" /-->
         <Resultat v-bind:resultat_test="resultat_test" />
 			</div>
 		</div>
@@ -37,25 +30,16 @@
 </template>
 
 <script>
-//import ValidationTentative from "@/components/Question/ValidationTentative.vue";
 import Resultat from "@/components/Question/Resultat.vue";
 
 export default {
-	components: { /*ValidationTentative,*/ Resultat },
+	components: { Resultat },
 	name: "Test",
 	props: {
-		/*test*/resultat_test: {
+		resultat_test: {
 			required: true,
 		},
-    /*resultat: {
-			required: true,
-		},*/
 	},
-	/*watch: {
-		test: function () {
-			this.texteUnTest = this.test;
-		},
-	},*/
 	data() {
 		return {
 			visible: false,

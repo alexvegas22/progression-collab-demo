@@ -4,22 +4,6 @@
 	<div v-for="elem in this.resultatsTests" :key="elem">
 		<Test v-bind:resultat_test="elem" />
 	</div>
-  <!--div v-for="test in tests" :key="test">
-		<Test v-bind:test="test" />
-	</div-->
-	<!--div v-for="i in tests.length" :key="i">
-		<Test v-bind:test="tests[i]" />
-	</div-->
-	<!--div v-if="resultats.length > 0">
-		<div v-for="i in tests.length" :key="i">
-			<Test v-bind:test="tests[i]" v-bind:resultat="resultats[i]" />
-		</div>
-	</div>
-  <div v-else>
-    <div v-for="i in tests.length" :key="i">
-			<Test v-bind:test="tests[i]" v-bind:resultat="null" />
-		</div>
-  </div-->
 </template>
 
 <script>
@@ -28,18 +12,8 @@ import Test from "@/components/Question/Test.vue";
 export default {
 	components: { Test },
 	name: "JeuTests",
-
-	/*props: {
-		tests: {
-			required: true,
-		},
-		resultats: {
-			required: true,
-		},
-	},*/
 	computed: {
 		tests() {
-			//console.log("this.$store.state.question.tests = "+this.$store.state.question.tests.length)
 			return this.$store.state.question.tests;
 		},
 		resultats() {
@@ -48,10 +22,6 @@ export default {
 	},
 	data() {
 		return {
-			/*resultatsTests: {
-        lesResultats: [],
-				lesTests: this.tests,
-      },*/
 			resultatsTests: [],
 		};
 	},

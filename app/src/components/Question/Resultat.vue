@@ -57,12 +57,9 @@
 export default {
   name: "Resultat",
   props: {
-    /*test*/resultat_test:{
+    resultat_test:{
       required:true,
     },
-    /*resultat: {
-			required: true,
-		},*/
   },
   data() {
     return{
@@ -73,18 +70,5 @@ export default {
       feedback: this.resultat_test.resultat.feedback ?? "Aucun feedback pour ce test",
     }
   },
-  /*methods: {
-		updateSortieErreur() {
-      if(this.resultat_test.resultat){
-        this.sortie_erreur: this.resultat_test.resultat.sortie_erreur
-      }
-		},
-	},*/
-  /*watch:{
-    ebaucheTest: function(){
-      this.sortie_attendue =this.test.sortie_attendue;
-      this.entree = this.test.entrée;
-    }
-  }*/
 }
 </script>

@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <div class="err">4</div>
-    <!-- purple x moss 2020 -->
-    <!--source: https://codepen.io/purplexmoss-->
     <i class="far fa-question-circle fa-spin"></i>
     <div class="err2">4</div>
     <div class="msg">

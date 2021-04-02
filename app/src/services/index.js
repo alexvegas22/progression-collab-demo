@@ -8,14 +8,12 @@ const getQuestionApi = async (urlQuestion) => {
         titre: null,
         tests: [],
         ebauches: [],
-        // TODO: On définit cette propriété dans question mais reste non setté (À éclaircir)
-        avancement: null
+        liens: []
     }
     try {
         const data = await getData(BASE_URL + "/question/" + urlQuestion + "?include=tests,ebauches");
         question.énoncé = data.data.attributes.énoncé;
         question.titre = data.data.attributes.titre;
-        // TODO: On ne voit pourtant pas la propriété «liens» dans la définition de question (À éclaircir)
         question.liens = [data.data.links];
         data.included.forEach((item) => {
             if (item.type == "test")
@@ -39,9 +37,7 @@ const getAvancementApi = async (username, urlQuestion) => {
     try {
         const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
         avancement.état = data.data.attributes.état;
-        avancement.type = data.data.attributes.type; // D'après ce que je vois dans l'api, ce serait plutôt «data.data.type»
-        /*console.log("data.data.attributes.type = "+data.data.attributes.type)
-        console.log("data.data.type = "+data.data.type)*/
+        avancement.type = data.data.type;
         if (data.included) {
             data.included.forEach((item) => {
                 var tentative = {};
@@ -58,18 +54,11 @@ const getAvancementApi = async (username, urlQuestion) => {
 
 const getTentativeApi = async (urlTentative) => {
     try {
-        // TODO: Actuellement, même à partir de postman, impossible de récupérer une tentative. N'y a t-il pas encore de routes pour ça?
         const tentative = await getData(urlTentative);
-        //const resultatsId = tentative.data.résultats;
-        let resultats = [];
-        /*for (const resultat of resultatsId) {
-            // TODO: S'assurer ici que dans «lienResultat» il y ait bien un «/» à la fin dans la réponse de l'API, sinon, l'ajouter ci dessous. 
-            resultats.push(await getData(tentative.data.lienResultat + resultat.id));
-        }*/
 
         const tentativeComplete = {
             tentative: tentative.data.attributes,
-            resultats: resultats
+            resultats: []
         }
         return tentativeComplete;
     } catch (err) {
@@ -80,21 +69,20 @@ const postTentative = async (params) => {
     try {
         const body = { langage: params.langage, code: params.code }
         const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
-        const retroactionTentative = await postData(urlRequete, body)
-        const maRetroaction = {
+        const reponseApi = await postData(urlRequete, body)
+        const retroactionTentative = {
             feedback_global: "",
             tentative_reussie: false,
             tests_réussis: 0,
             resultats: []
         }
-        // TODO: À chaque post de tentative que je fais, je reçois «null» comme feedback. Est-ce normal?
-        maRetroaction.feedback_global = retroactionTentative.data.attributes.feedback
-        maRetroaction.tentative_reussie = retroactionTentative.data.attributes.réussi
-        maRetroaction.tests_réussis = retroactionTentative.data.attributes.tests_réussis
-        retroactionTentative.included.forEach((item) => {
-            maRetroaction.resultats.push(item.attributes);
+        retroactionTentative.feedback_global = reponseApi.data.attributes.feedback
+        retroactionTentative.tentative_reussie = reponseApi.data.attributes.réussi
+        retroactionTentative.tests_réussis = reponseApi.data.attributes.tests_réussis
+        reponseApi.included.forEach((item) => {
+            retroactionTentative.resultats.push(item.attributes);
         });
-        return maRetroaction;
+        return retroactionTentative;
     } catch (err) {
         console.log(err);
     }

@@ -49,9 +49,11 @@ export default {
 		langage: "python",
 	}),
 	methods: {
-		// Dans cette fonction, la valeur du code et celle du langage sont mise à jour instantanéiment à chaque modification dans l'éditeur
+		/**
+		 * Dans cette fonction, la valeur du code et celle du langage sont mise à jour instantanéiment à chaque modification dans l'éditeur
+		 * Ensuite, elle prend le langage sélectionné par l'utilisateur et retourne les highlights
+		 */
 		highlighter(code) {
-			// prend le langage sélectionné par l'utilisateur et retourne les highlights
 			return highlight(code, languages[this.langage]);
 		},
 		validerTentative() {
@@ -62,6 +64,7 @@ export default {
 				uri: this.uri,
 			});
 			var element = document.getElementById("retroaction");
+			// Cette ligne permet de démasquer la zone du composant «ValidationTentative»
 			element.classList.remove("d-none");
 		},
 	},
