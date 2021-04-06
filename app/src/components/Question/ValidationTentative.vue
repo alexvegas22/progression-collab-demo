@@ -2,7 +2,7 @@
 	<div v-if="msgReponseApi != null" class="alert alert-warning alert-dismissible fade show" role="alert">
 		<strong>{{ msgReponseApi }}</strong>
 	</div>
-	<div v-if="resultats.length > 0 || retroactionTentative" class="p-2">
+	<div v-if="!tentativeEnCoursDeSoumission && msgReponseApi == null" class="p-2">
 		<h3 v-if="testsPassent"><span style="color: green">Bonne réponse</span> 👍</h3>
 		&nbsp;
 		<h3 v-else><span style="color: red">Mauvaise réponse</span> 😢</h3>
@@ -31,7 +31,7 @@ export default {
 			return this.retroactionTentative.resultats ?? [];
 		},
 		feedback_global() {
-			return this.retroactionTentative.feedback_global ?? "Aucun Feedback pour cette question !";
+			return this.retroactionTentative.feedback_global ?? "Aucun Feedback...";
 		},
 		testsPassent() {
 			return this.retroactionTentative.tentative_reussie;
@@ -42,6 +42,9 @@ export default {
 		msgReponseApi() {
 			return this.$store.state.msgAPIEnvoiTentative;
 		},
+		tentativeEnCoursDeSoumission(){
+			return this.$store.state.envoiTentativeEnCours;
+		}
 	},
 };
 </script>
