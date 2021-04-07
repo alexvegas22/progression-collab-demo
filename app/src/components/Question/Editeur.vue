@@ -1,7 +1,7 @@
 <template>
-		<div>
-			<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
-		</div>
+	<div>
+		<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
+	</div>
 </template>
 
 <script>
@@ -36,10 +36,9 @@ export default {
 		 * Ensuite, elle prend le langage sélectionné par l'utilisateur et retourne les highlights
 		 */
 		highlighter(code) {
-			this.$store.dispatch("raffraichirValeursEbauches", 
-			{
-				code: code, 
-				langage: this.langage
+			this.$store.dispatch("raffraichirValeursEbauches", {
+				code: code,
+				langage: this.langage,
 			});
 			return highlight(code, languages[this.langage]);
 		},
