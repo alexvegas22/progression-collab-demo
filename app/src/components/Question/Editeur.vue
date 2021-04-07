@@ -14,7 +14,7 @@
 		</button>
 	</div>
 	<div class="division retroaction-container d-none" id="retroaction">
-		<ValidationTentative />
+		<RetroactionTentative />
 	</div>
 </template>
 
@@ -29,12 +29,12 @@ import "prismjs/themes/prism-dark.css";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-javascript";
 
-import ValidationTentative from "@/components/Question/ValidationTentative";
+import RetroactionTentative from "@/components/Question/RetroactionTentative";
 
 export default {
 	props: ["uri", "username"],
 	components: {
-		ValidationTentative,
+		RetroactionTentative,
 		PrismEditor,
 	},
 	// À chaque fois que l'ébauche change, on met à jour le code et le langage
@@ -64,7 +64,7 @@ export default {
 				uri: this.uri,
 			});
 			var element = document.getElementById("retroaction");
-			// Cette ligne permet de démasquer la zone du composant «ValidationTentative»
+			// Cette ligne permet de démasquer la zone du composant «RetroactionTentative»
 			element.classList.remove("d-none");
 		},
 	},
