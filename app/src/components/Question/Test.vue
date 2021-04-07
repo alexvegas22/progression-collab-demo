@@ -22,17 +22,17 @@
 				</div>
 			</div>
 			<div class="col-md-12" v-if="this.visible">
-				<Resultat v-bind:resultat_test="resultat_test" />
+				<ResultatTest v-bind:resultat_test="resultat_test" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import Resultat from "@/components/Question/Resultat.vue";
+import ResultatTest from "@/components/Question/ResultatTest.vue";
 
 export default {
-	components: { Resultat },
+	components: { ResultatTest },
 	name: "Test",
 	props: {
 		resultat_test: {
