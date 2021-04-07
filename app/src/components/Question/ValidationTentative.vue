@@ -31,7 +31,7 @@ export default {
 			return this.retroactionTentative.resultats ?? [];
 		},
 		feedback_global() {
-			return this.retroactionTentative.feedback_global ?? "Aucun Feedback...";
+			return this.retroactionTentative.feedback_global;
 		},
 		testsPassent() {
 			return this.retroactionTentative.tentative_reussie;
