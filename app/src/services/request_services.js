@@ -1,3 +1,5 @@
+import { TOKEN } from "@/services/token";
+
 const axios = require('axios');
 
 /**
@@ -7,7 +9,7 @@ const axios = require('axios');
  */
 const config = {
 	headers: {
-		"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiamRvZSIsInJcdTAwZjRsZSI6MCwiYXZhbmNlbWVudHMiOnsiaHR0cHM6XC9cL3Byb2dyZXNzaW9uLnBhZ2VzLmR0aS5jcm9zZW1vbnQucXVlYmVjXC9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW9cL2xlc19mb25jdGlvbnNfMDFcL2FwcGVsZXJfdW5lX2ZvbmN0aW9uX3BhcmFtJUMzJUE5dHIlQzMlQTllIjp7ImV0YXQiOjEsInR5cGUiOjMsInRlbnRhdGl2ZXMiOltdfX19LCJjdXJyZW50IjoxNjE3NzMwNjg1LCJleHBpcmVkIjoxLjAwMDAwMDAwMDAwMTYxNzdlKzIxfQ.0dNGuQU4CnOPaBQyNOmFTI3vYCVqHn0DVRraAOF1Wk4"
+		"Authorization": "Bearer "+TOKEN
 	},
 };
 

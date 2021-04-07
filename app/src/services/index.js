@@ -31,13 +31,11 @@ const getQuestionApi = async (urlQuestion) => {
 const getAvancementApi = async (username, urlQuestion) => {
     const avancement = {
         état: false,
-        type: 0,
         tentatives: []
     }
     try {
         const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
         avancement.état = data.data.attributes.état;
-        avancement.type = data.data.type;
         if (data.included) {
             data.included.forEach((item) => {
                 var tentative = {};
