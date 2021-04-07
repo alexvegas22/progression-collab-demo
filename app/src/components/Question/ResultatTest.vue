@@ -45,7 +45,7 @@
 
 <script>
 export default {
-	name: "Resultat",
+	name: "ResultatTest",
 	props: {
 		resultat_test: {
 			required: true,
