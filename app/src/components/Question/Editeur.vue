@@ -3,17 +3,9 @@
 		<div>
 			<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
 		</div>
-		<button
-			type="button"
-			class="btn btn-success btn-valider p-3"
-			style="margin-top: 15px; width: 100%"
-			:disabled="envoiEnCours"
-			@click="validerTentative"
-		>
-			Valider
-		</button>
+		<ValidationTentative v-bind:uri="this.uri" v-bind:username="this.username" />
 	</div>
-	<div class="division retroaction-container d-none" id="retroaction">
+	<div v-if="afficherRetroaction" class="division retroaction-container" id="retroaction">
 		<RetroactionTentative />
 	</div>
 </template>
@@ -30,11 +22,13 @@ import "prismjs/components/prism-python";
 import "prismjs/components/prism-javascript";
 
 import RetroactionTentative from "@/components/Question/RetroactionTentative";
+import ValidationTentative from "@/components/Question/ValidationTentative";
 
 export default {
 	props: ["uri", "username"],
 	components: {
 		RetroactionTentative,
+		ValidationTentative,
 		PrismEditor,
 	},
 	// À chaque fois que l'ébauche change, on met à jour le code et le langage
@@ -54,27 +48,21 @@ export default {
 		 * Ensuite, elle prend le langage sélectionné par l'utilisateur et retourne les highlights
 		 */
 		highlighter(code) {
-			return highlight(code, languages[this.langage]);
-		},
-		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {
-				langage: this.langage,
-				code: this.code,
-				username: this.username,
-				uri: this.uri,
+			this.$store.dispatch("raffraichirValeursEbauches", 
+			{
+				code: code, 
+				langage: this.langage
 			});
-			var element = document.getElementById("retroaction");
-			// Cette ligne permet de démasquer la zone du composant «RetroactionTentative»
-			element.classList.remove("d-none");
+			return highlight(code, languages[this.langage]);
 		},
 	},
 	computed: {
 		ebauches() {
 			return this.$store.state.question.ebauches;
 		},
-		envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
-		},
+		afficherRetroaction(){
+			return this.$store.state.afficherRetroaction;
+		}
 	},
 };
 </script>
@@ -98,9 +86,9 @@ export default {
 	margin: 0px 20px;
 	flex-grow: 1;
 }
-.btn-valider {
+/*.btn-valider {
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
+}*/
 .retroaction-container {
 	border: solid 1px black;
 	border-radius: 4px;

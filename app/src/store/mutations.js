@@ -26,6 +26,10 @@ export const mutations = {
     updateEnvoieTentativeEnCours(state, bool){
         state.envoiTentativeEnCours=bool
     },
+    updateCodeEtLangageTentative(state, data){
+        state.codeTentative = data.code
+        state.langageTentative = data.langage
+    },
     setTests(state, tests) {
         state.question.tests = tests;
     },
@@ -35,4 +39,7 @@ export const mutations = {
     setEbauches(state, ebauches) {
         state.question.ebauches = ebauches
     },
+    setAfficherRetroaction(state, boolValue){
+        state.afficherRetroaction = boolValue
+    }
 }
