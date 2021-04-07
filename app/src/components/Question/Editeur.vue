@@ -1,13 +1,7 @@
 <template>
-	<div class="division">
 		<div>
 			<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
 		</div>
-		<ValidationTentative v-bind:uri="this.uri" v-bind:username="this.username" />
-	</div>
-	<div v-if="afficherRetroaction" class="division retroaction-container" id="retroaction">
-		<RetroactionTentative />
-	</div>
 </template>
 
 <script>
@@ -21,14 +15,8 @@ import "prismjs/themes/prism-dark.css";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-javascript";
 
-import RetroactionTentative from "@/components/Question/RetroactionTentative";
-import ValidationTentative from "@/components/Question/ValidationTentative";
-
 export default {
-	props: ["uri", "username"],
 	components: {
-		RetroactionTentative,
-		ValidationTentative,
 		PrismEditor,
 	},
 	// À chaque fois que l'ébauche change, on met à jour le code et le langage
@@ -60,9 +48,6 @@ export default {
 		ebauches() {
 			return this.$store.state.question.ebauches;
 		},
-		afficherRetroaction(){
-			return this.$store.state.afficherRetroaction;
-		}
 	},
 };
 </script>
@@ -78,20 +63,6 @@ export default {
 	font-size: 14px;
 	line-height: 1.5;
 	padding: 5px;
-}
-.division {
-	width: 50%;
-	height: auto;
-	float: left;
-	margin: 0px 20px;
-	flex-grow: 1;
-}
-/*.btn-valider {
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}*/
-.retroaction-container {
-	border: solid 1px black;
-	border-radius: 4px;
 }
 /* optional class for removing the outline */
 .prism-editor__textarea:focus {
