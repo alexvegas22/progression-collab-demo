@@ -42,9 +42,9 @@ export default {
 		msgReponseApi() {
 			return this.$store.state.msgAPIEnvoiTentative;
 		},
-		tentativeEnCoursDeSoumission(){
+		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;
-		}
+		},
 	},
 };
 </script>

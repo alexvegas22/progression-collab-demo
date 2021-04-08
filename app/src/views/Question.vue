@@ -43,9 +43,9 @@ export default {
 		question() {
 			return this.$store.state.question;
 		},
-		afficherRetroaction(){
+		afficherRetroaction() {
 			return this.$store.state.afficherRetroaction;
-		}
+		},
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);

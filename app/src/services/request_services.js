@@ -8,9 +8,9 @@ const axios = require('axios');
  * @returns {Promise<unknown>}
  */
 const config = {
-	headers: {
-		"Authorization": "Bearer "+TOKEN
-	},
+    headers: {
+        "Authorization": "Bearer " + TOKEN
+    },
 };
 
 const getData = async (lien) => {

@@ -33,7 +33,7 @@ describe("Test sur le component Enonce", () => {
       },
     });
     expect(wrapper.findAll("h2")[0].html()).toEqual(
-      "<h2>"+enonce+"</h2>"
+      "<h2>" + enonce + "</h2>"
     );
   });
 });

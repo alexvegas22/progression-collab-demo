@@ -1,45 +1,45 @@
 export const mutations = {
-    setUser (state, user) {
+    setUser(state, user) {
         state.user = user
     },
-    setAvancement (state, avancement) {
+    setAvancement(state, avancement) {
         state.avancement = avancement
     },
-    setTentative (state, {tentative, resultats}) {
+    setTentative(state, tentative) {
         let listeEbauches = []
-        const ebauche = {code: tentative.code, langage: tentative.langage}
+        const ebauche = { code: tentative.code, langage: tentative.langage }
         listeEbauches[ebauche.langage] = ebauche
         state.question.ebauches = listeEbauches
         state.retroactionTentative = {
-            feedback_global: tentative.feedback, 
+            feedback_global: tentative.feedback,
             tentative_reussie: tentative.réussi,
-            tests_réussis: tentative.tests_réussis, 
-            resultats: resultats
+            tests_réussis: tentative.tests_réussis,
+            resultats: tentative.resultats
         }
     },
-    updateRetroaction (state, retroactionTentative) {
+    updateRetroaction(state, retroactionTentative) {
         state.retroactionTentative = retroactionTentative;
     },
-    updateMsgAPIEnvoiTentative(state, msg){
-        state.msgAPIEnvoiTentative= msg
+    updateMsgAPIEnvoiTentative(state, msg) {
+        state.msgAPIEnvoiTentative = msg
     },
-    updateEnvoieTentativeEnCours(state, bool){
-        state.envoiTentativeEnCours=bool
+    updateEnvoieTentativeEnCours(state, bool) {
+        state.envoiTentativeEnCours = bool
     },
-    updateCodeEtLangageTentative(state, data){
+    updateCodeEtLangageTentative(state, data) {
         state.codeTentative = data.code
         state.langageTentative = data.langage
     },
     setTests(state, tests) {
         state.question.tests = tests;
     },
-    setQuestion (state, question) {
+    setQuestion(state, question) {
         state.question = question;
     },
     setEbauches(state, ebauches) {
         state.question.ebauches = ebauches
     },
-    setAfficherRetroaction(state, boolValue){
+    setAfficherRetroaction(state, boolValue) {
         state.afficherRetroaction = boolValue
     }
 }

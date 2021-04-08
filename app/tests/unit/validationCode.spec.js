@@ -1,46 +1,46 @@
-import {render, screen, fireEvent} from '@testing-library/vue'
-import  {envoyerTentative} from '@/util/solution'
-import {describe} from '@vue/test-utils'
+import { render, screen, fireEvent } from '@testing-library/vue'
+import { envoyerTentative } from '@/util/solution'
+import { describe } from '@vue/test-utils'
 import Editeur from '@/components/Question/Editeur.vue';
 import AffichageValidation from '@/components/Question/AffichageValidation';
 import { mount } from '@vue/test-utils'
 
-    it('test la reception de la reponse API apres lenvoie', async () => {
-        return envoyerTentative('python', 'un petit code').then((data) => {
-            expect(data.résultats.length).toBeGreaterThan(0)
-        })
-    });
+it('test la reception de la reponse API apres lenvoie', async () => {
+    return envoyerTentative('python', 'un petit code').then((data) => {
+        expect(data.résultats.length).toBeGreaterThan(0)
+    })
+});
 
-        test('Test props composant AffichageValidation', async () => {
-        const wrapper = mount(<AffichageValidation />, {
+test('Test props composant AffichageValidation', async () => {
+    const wrapper = mount(<AffichageValidation />, {
         propsData: {
-        résultats: [
-            {
-        résultat: "true",
-            sortie_erreur: "",
-                sortie_observée: "itération 0\n",
-                feedback: "Bravo!"
-        },
-            {
-        résultat: "true",
-            sortie_erreur: ":(",
-                sortie_observée: "",
-                feedback: "Non!"
-            },
-            {
-        résultat: "false",
-            sortie_erreur: ":(",
-                sortie_observée: "",
-                feedback: "Non!"
-            }
-        ],
+            résultats: [
+                {
+                    résultat: "true",
+                    sortie_erreur: "",
+                    sortie_observée: "itération 0\n",
+                    feedback: "Bravo!"
+                },
+                {
+                    résultat: "true",
+                    sortie_erreur: ":(",
+                    sortie_observée: "",
+                    feedback: "Non!"
+                },
+                {
+                    résultat: "false",
+                    sortie_erreur: ":(",
+                    sortie_observée: "",
+                    feedback: "Non!"
+                }
+            ],
             feedback: "Feddback dependant du prof"
         }
-        })
-            expect(wrapper.props().résultats[0].feedback).toEqual("Bravo!")
-        // ici tu peux tester d'autre propriété
-        // ici tu peux chercher un element dans ton dom et vérifié qu'il affiche la bonne chose
-        })
+    })
+    expect(wrapper.props().résultats[0].feedback).toEqual("Bravo!")
+    // ici tu peux tester d'autre propriété
+    // ici tu peux chercher un element dans ton dom et vérifié qu'il affiche la bonne chose
+})
 
 
 

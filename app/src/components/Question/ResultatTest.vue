@@ -27,7 +27,7 @@
 			<div class="bg-light col card device-card">
 				<div class="card-body">
 					<h5 class="text-black-50 font-weight-bold text-center card-title">Sortie console</h5>
-          <p class="card-text">{{ sortie_console }}</p>
+					<p class="card-text">{{ sortie_console }}</p>
 				</div>
 			</div>
 		</div>
