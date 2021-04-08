@@ -18,6 +18,7 @@ export default {
 	methods: {
 		validerTentative() {
 			this.$store.dispatch("soumettreTentative", {
+				urlTentative: this.$store.state.avancement.liens["tentative"],
 				langage: this.$store.state.langageTentative,
 				code: this.$store.state.codeTentative,
 				username: this.username,

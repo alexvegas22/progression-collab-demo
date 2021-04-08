@@ -51,11 +51,7 @@
 	 },
 	 mounted() {
 		 this.$store.dispatch("getQuestion", API_URL + this.uri);
-		 this.$store.commit(
-			 "setAvancement",
-			 this.$store.state.user.avancements[this.$store.state.user.username + "/" + this.uri]
-		 );
-
+		 this.$store.dispatch("getAvancement", this.$store.state.user.avancements[this.$store.state.user.username + "/" + this.uri].liens.self);
 	 },
  };
 </script>

@@ -47,7 +47,7 @@ export default {
   async soumettreTentative({ commit }, params) {
     commit("setAfficherRetroaction", true);
     commit("updateEnvoieTentativeEnCours", true);
-    commit("updateMsgAPIEnvoiTentative", "Envoie de la tentative en cours..");
+    commit("updateMsgAPIEnvoiTentative", "Traitement de la tentative en cours...");
     try {
       var retroactionTentative = await postTentative(params);
       commit("updateRetroaction", retroactionTentative);

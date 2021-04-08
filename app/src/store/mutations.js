@@ -10,12 +10,7 @@ export const mutations = {
         const ebauche = { code: tentative.code, langage: tentative.langage }
         listeEbauches[ebauche.langage] = ebauche
         state.question.ebauches = listeEbauches
-        state.retroactionTentative = {
-            feedback_global: tentative.feedback,
-            tentative_reussie: tentative.réussi,
-            tests_réussis: tentative.tests_réussis,
-            resultats: tentative.resultats
-        }
+        state.retroactionTentative = tentative
     },
     updateRetroaction(state, retroactionTentative) {
         state.retroactionTentative = retroactionTentative;
