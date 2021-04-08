@@ -27,7 +27,6 @@ const getData = async (lien) => {
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
 const postData = async (lien, body) => {
-    //let token = localStorage.getItem('user-token')
     try {
         const res = await axios.post(lien, body, config)
         return res.data
