@@ -36,6 +36,7 @@ export default {
 	methods: {
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
+			this.$store.commit("setAfficherRetroaction", true);
 		},
 		convetirDateDepuisTimeStamp: function (timestamp) {
 			let date = new Date(timestamp * 1000);
