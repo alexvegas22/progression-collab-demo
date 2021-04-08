@@ -1,4 +1,5 @@
 import {
+  getUserApi,
   getQuestionApi,
   getTentativeApi,
   getAvancementApi,
@@ -6,9 +7,9 @@ import {
 } from "@/services/index.js";
 
 export default {
-  async getUser({ commit }) {
+  async getUser({ commit }, urlUser) {
     try {
-      const user = await getUserApi();
+      const user = await getUserApi(urlUser);
       commit("setUser", user);
     } catch (error) {
       console.log(error);
@@ -26,9 +27,9 @@ export default {
     }
   },
 
-  async getAvancement({ commit }, params) {
+  async getAvancement({ commit }, urlAvancement) {
     try {
-      const avancement = await getAvancementApi(params.username, params.uri);
+      const avancement = await getAvancementApi(urlAvancement);
       commit("setAvancement", avancement);
     } catch (error) {
       console.log(error);
@@ -53,7 +54,10 @@ export default {
       commit("updateMsgAPIEnvoiTentative", null);
       commit("updateEnvoieTentativeEnCours", false);
     } catch (error) {
-      commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
+      commit(
+        "updateMsgAPIEnvoiTentative",
+        "Impossible de communiquer avec le serveur"
+      );
       commit("updateEnvoieTentativeEnCours", false);
       console.log(error);
     }

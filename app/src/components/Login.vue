@@ -45,7 +45,6 @@ export default {
 			username: "",
 			password: "",
 			logué: "",
-			token: "",
 			erreurs: "",
 		};
 	},
@@ -55,7 +54,7 @@ export default {
 			login_get_token(username, password)
 				.then((token) => {
 					this.logué = "true";
-					this.token = token;
+					this.$store.dispatch("getUser", "http://rocinante.lamancha:81/user/"+username);
 					this.erreurs = "";
 				})
 				.catch((err) => {
