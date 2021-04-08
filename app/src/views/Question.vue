@@ -21,37 +21,39 @@
 </template>
 
 <script>
-import Enonce from "@/components/Question/Enonce.vue";
-import EditeurCode from "@/components/Question/Editeur.vue";
-import Avancement from "@/components/Question/Avancement.vue";
-import JeuTests from "@/components/Question/JeuTests";
-import RetroactionTentative from "@/components/Question/RetroactionTentative";
-import ValidationTentative from "@/components/Question/ValidationTentative";
+ import Enonce from "@/components/Question/Enonce.vue";
+ import EditeurCode from "@/components/Question/Editeur.vue";
+ import Avancement from "@/components/Question/Avancement.vue";
+ import JeuTests from "@/components/Question/JeuTests";
+ import RetroactionTentative from "@/components/Question/RetroactionTentative";
+ import ValidationTentative from "@/components/Question/ValidationTentative";
 
-export default {
-	name: "Question",
-	props: ["uri", "username"],
-	components: {
-		Enonce,
-		Avancement,
-		EditeurCode,
-		JeuTests,
-		RetroactionTentative,
-		ValidationTentative,
-	},
-	computed: {
-		question() {
-			return this.$store.state.question;
-		},
-		afficherRetroaction() {
-			return this.$store.state.afficherRetroaction;
-		},
-	},
-	mounted() {
-		this.$store.dispatch("getQuestion", this.uri);
-		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
-	},
-};
+ const API_URL = process.env.VUE_APP_API_URL + "/question/";
+
+ export default {
+	 name: "Question",
+	 props: ["uri", "username"],
+	 components: {
+		 Enonce,
+		 Avancement,
+		 EditeurCode,
+		 JeuTests,
+		 RetroactionTentative,
+		 ValidationTentative,
+	 },
+	 computed: {
+		 question() {
+			 return this.$store.state.question;
+		 },
+		 afficherRetroaction() {
+			 return this.$store.state.afficherRetroaction;
+		 },
+	 },
+	 mounted() {
+		 this.$store.dispatch("getQuestion", API_URL + this.uri);
+		 this.$store.dispatch("getAvancement", this.$store.state.user.avancements[this.$store.state.user.username + "/" + this.uri].liens.self);
+	 },
+ };
 </script>
 
 <style>

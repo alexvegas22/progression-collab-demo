@@ -34,6 +34,8 @@
 <script>
 import login_get_token from "@/util/login";
 
+const API_URL = process.env.VUE_APP_API_URL;
+ 
 export default {
 	name: "Login",
 	props: {
@@ -45,7 +47,6 @@ export default {
 			username: "",
 			password: "",
 			logué: "",
-			token: "",
 			erreurs: "",
 		};
 	},
@@ -55,7 +56,7 @@ export default {
 			login_get_token(username, password)
 				.then((token) => {
 					this.logué = "true";
-					this.token = token;
+					this.$store.dispatch("getUser", API_URL + "/user/" + username);
 					this.erreurs = "";
 				})
 				.catch((err) => {

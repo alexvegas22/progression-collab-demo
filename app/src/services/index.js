@@ -1,89 +1,102 @@
 import { getData, postData } from "@/services/request_services";
 
-const BASE_URL = process.env.VUE_APP_API_URL;
-
-const getQuestionApi = async (urlQuestion) => {
-    const question = {
-        énoncé: null,
-        titre: null,
-        tests: [],
-        ebauches: [],
-        liens: []
-    }
-    try {
-        const data = await getData(BASE_URL + "/question/" + urlQuestion + "?include=tests,ebauches");
-        question.énoncé = data.data.attributes.énoncé;
-        question.titre = data.data.attributes.titre;
-        question.liens = [data.data.links];
-        data.included.forEach((item) => {
-            if (item.type == "test")
-                question.tests.push(item.attributes);
-            if (item.type == "ebauche")
-                question.ebauches[item.attributes.langage] = item.attributes;
-
-        });
-        return question;
-    } catch (err) {
-        console.log(err);
-    }
+const getUserApi = async (urlUser) => {
+	try{
+		const data = await getData(urlUser + "?include=avancements");
+		var user = data.data.attributes;
+		user.liens = data.data.links;
+		user.avancements = [];
+		if(data.included){
+			data.included.forEach((item) => {
+				var avancement = item.attributes;
+				avancement.liens = item.links;
+				user.avancements[item.id] = avancement;
+			});
+		}
+		return user;
+	}
+	catch (err) {
+		console.log(err);
+	}
 }
 
-const getAvancementApi = async (username, urlQuestion) => {
-    const avancement = {
-        état: false,
-        tentatives: []
-    }
+const getQuestionApi = async (urlQuestion) => {
     try {
-        const data = await getData(BASE_URL + "/avancement/" + username + "/" + urlQuestion + "?include=tentatives");
-        avancement.état = data.data.attributes.état;
-        if (data.included) {
-            data.included.forEach((item) => {
-                var tentative = {};
-                tentative = item.attributes;
-                tentative.liens = item.links;
-                avancement.tentatives.push(tentative);
-            });
-        }
-        return avancement;
-    } catch (err) {
-        console.log(err);
-    }
+        const data = await getData(urlQuestion + "?include=tests,ebauches");
+		var question = data.data.attributes;
+        question.liens = data.data.links;
+		question.tests = [];
+		question.ebauches = [];
+		if(data.included){
+			data.included.forEach((item) => {
+				if (item.type == "test"){
+					var test = item.attributes;
+					test.liens = item.links;
+					question.tests.push(test);
+				}
+				else if (item.type == "ebauche"){
+					var ebauche = item.attributes;
+					ebauche.liens = item.links;
+					question.ebauches[ebauche.langage] = ebauche;
+			}});
+		}
+		return question;
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+const getAvancementApi = async (urlAvancement) => {
+	try {
+		const data = await getData(urlAvancement + "?include=tentatives");
+		var avancement = data.data.attributes;
+		avancement.liens = data.data.links;
+		avancement.tentatives = [];
+		if (data.included) {
+			data.included.forEach((item) => {
+				var tentative = item.attributes;
+				tentative.liens = item.links;
+				avancement.tentatives.push(tentative);
+			});
+		}
+		return avancement;
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 const getTentativeApi = async (urlTentative) => {
-    try {
-        const tentative = await getData(urlTentative);
-        const tentativeComplete = tentative.data.attributes;
-        tentativeComplete.resultats = [];
+	try {
+		const data = await getData(urlTentative);
+		const tentative = data.data.attributes;
+		tentative.liens = data.data.links;
+		tentative.resultats = [];
 
-        return tentativeComplete;
-    } catch (err) {
-        console.log(err);
-    }
+		return tentative;
+	} catch (err) {
+		console.log(err);
+	}
 }
 const postTentative = async (params) => {
-    try {
-        const body = { langage: params.langage, code: params.code }
-        const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
-        const reponseApi = await postData(urlRequete, body)
-        const retroactionTentative = {
-            feedback_global: "",
-            tentative_reussie: false,
-            tests_réussis: 0,
-            resultats: []
-        }
-        retroactionTentative.feedback_global = reponseApi.data.attributes.feedback
-        retroactionTentative.tentative_reussie = reponseApi.data.attributes.réussi
-        retroactionTentative.tests_réussis = reponseApi.data.attributes.tests_réussis
-        reponseApi.included.forEach((item) => {
-            retroactionTentative.resultats.push(item.attributes);
-        });
-        return retroactionTentative;
-    } catch (err) {
-        console.log(err);
-    }
+	try {
+		const body = { langage: params.langage, code: params.code }
+		const urlRequete = params.urlTentative + "?include=resultats"
+		const data = await postData(urlRequete, body)
+
+		var tentative = data.data.attributes;
+		tentative.liens = data.data.links;
+		tentative.resultats = [];
+		if(data.included){
+			data.included.forEach((item) => {
+				var resultat = item.attributes;
+				resultat.liens = item.links
+				tentative.resultats.push(resultat);
+			});
+		}
+		return tentative;
+	} catch (err) {
+		console.log(err);
+	}
 }
 
-export { getQuestionApi, getTentativeApi, getAvancementApi, postTentative };
-
-
+export { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative };
