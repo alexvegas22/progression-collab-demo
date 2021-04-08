@@ -51,7 +51,6 @@ export default {
 		this.$store.dispatch("getQuestion", this.uri);
 		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
 	},
-	methods: {},
 };
 </script>
 
