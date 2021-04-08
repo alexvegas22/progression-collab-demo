@@ -1,67 +1,52 @@
 <template>
-  <div class="pb-5">
-    <div v-on:click="toggleVisibilite">
-      <div class="row w-100 m-0">
-        <div class="col-md text-right">
-          <span style="font-size:200%;">
-            &#10148;
-          </span>
-        </div>
+	<div class="pb-5">
+		<div v-on:click="toggleVisibilite">
+			<div class="row w-100 m-0">
+				<div class="col-md text-right" v-if="this.visible">
+					<span style="font-size: 200%"> &#11167; </span>
+				</div>
+				<div class="col-md text-right" v-else>
+					<span style="font-size: 200%"> &#10148; </span>
+				</div>
 
-        <div class="col-md-8">
-          <div class="p-2 border">
-            <div class="float-left">
-              <p class="p-0 m-0">{{ test.nom }}</p>
-            </div>
-            <div class="float-right">
-              <span style="font-size:200%;" v-if="test.resultat">
-                &#9989;
-              </span>
-              <span v-else>
-                &#10060;
-              </span>
-            </div>
-            <div style="clear:both"></div>
-          </div>
-        </div>
+				<div class="col-md-8">
+					<div class="p-2 border">
+						<div class="float-left">
+							<p class="p-0 m-0">{{ resultat_test.test.nom }}</p>
+						</div>
+						<div style="clear: both"></div>
+					</div>
+				</div>
 
-        <div class="col-md align-right">
-          <button class="btn btn-secondary" disabled>
-            &#10148; Lancer Le test
-          </button>
-        </div>
-      </div>
-      <div class="col-md-12" v-if="test.visible">
-        <Resultat v-bind:test="test" />
-      </div>
-    </div>
-  </div>
+				<div class="col-md align-right"></div>
+			</div>
+			<div class="col-md-12" v-if="this.visible">
+				<ResultatTest v-bind:resultat_test="resultat_test" />
+			</div>
+		</div>
+	</div>
 </template>
+
 <script>
-import ValidationTentative from "@/components/Question/ValidationTentative.vue";
-import Resultat from "@/components/Question/Resultat.vue";
+import ResultatTest from "@/components/Question/ResultatTest.vue";
+
 export default {
-  components: { ValidationTentative, Resultat },
-  name: "Test",
-  props: {
-    test: {
-      required: true,
-    },
-  },
-  watch: {
-    test: function() {
-      this.texteUnTest = this.test;
-    },
-  },
-  data() {
-    return {
-      texteUnTest: this.test,
-    };
-  },
-  methods: {
-    toggleVisibilite() {
-      this.test.visible = !this.test.visible
-    },
-  },
+	components: { ResultatTest },
+	name: "Test",
+	props: {
+		resultat_test: {
+			required: true,
+		},
+	},
+	data() {
+		return {
+			visible: false,
+		};
+	},
+	methods: {
+		toggleVisibilite() {
+			this.visible = !this.visible;
+		},
+	},
 };
 </script>

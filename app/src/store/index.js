@@ -4,12 +4,15 @@ import actions from './actions'
 
 export default createStore({
     state: {
-		user: {},
+        user: {},
         question: {},
-        retroactionTentative:Object,
-        msgAPIEnvoiTentative:null,
-        envoiTentativeEnCours:false,
+        retroactionTentative: Object,
+        msgAPIEnvoiTentative: null,
+        envoiTentativeEnCours: false,
         avancement: {},
+        langageTentative: null,
+        codeTentative: null,
+        afficherRetroaction: false,
     },
     actions,
     mutations

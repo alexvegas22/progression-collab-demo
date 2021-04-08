@@ -1,20 +1,6 @@
 <template>
-	<div class="division">
-		<div>
-			<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
-		</div>
-		<button
-			type="button"
-			class="btn btn-success btn-valider p-3"
-			style="margin-top: 15px; width: 100%"
-			:disabled="envoiEnCours"
-			@click="validerTentative"
-		>
-			Valider
-		</button>
-	</div>
-	<div class="division retroaction-container d-none" id="retroaction">
-		<ValidationTentative />
+	<div>
+		<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
 	</div>
 </template>
 
@@ -29,12 +15,8 @@ import "prismjs/themes/prism-dark.css";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-javascript";
 
-import ValidationTentative from "@/components/Question/ValidationTentative";
-
 export default {
-	props: ["uri", "username"],
 	components: {
-		ValidationTentative,
 		PrismEditor,
 	},
 	// À chaque fois que l'ébauche change, on met à jour le code et le langage
@@ -54,26 +36,16 @@ export default {
 		 * Ensuite, elle prend le langage sélectionné par l'utilisateur et retourne les highlights
 		 */
 		highlighter(code) {
-			return highlight(code, languages[this.langage]);
-		},
-		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {
+			this.$store.dispatch("raffraichirValeursEbauches", {
+				code: code,
 				langage: this.langage,
-				code: this.code,
-				username: this.username,
-				uri: this.uri,
 			});
-			var element = document.getElementById("retroaction");
-			// Cette ligne permet de démasquer la zone du composant «ValidationTentative»
-			element.classList.remove("d-none");
+			return highlight(code, languages[this.langage]);
 		},
 	},
 	computed: {
 		ebauches() {
 			return this.$store.state.question.ebauches;
-		},
-		envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
 		},
 	},
 };
@@ -90,20 +62,6 @@ export default {
 	font-size: 14px;
 	line-height: 1.5;
 	padding: 5px;
-}
-.division {
-	width: 50%;
-	height: auto;
-	float: left;
-	margin: 0px 20px;
-	flex-grow: 1;
-}
-.btn-valider {
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
-.retroaction-container {
-	border: solid 1px black;
-	border-radius: 4px;
 }
 /* optional class for removing the outline */
 .prism-editor__textarea:focus {

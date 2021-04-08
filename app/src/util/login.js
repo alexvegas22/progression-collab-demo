@@ -1,11 +1,11 @@
 const axios = require('axios');
 
-// TODO : transporter vers services/index.js
 const login_get_token = (user, password) => new Promise((resolve, reject) => {
-    axios({ url: process.env.VUE_APP_API_URL + '/auth', auth: { username: user, password: password }, method: 'POST' })
+    axios.post(process.env.VUE_APP_API_URL + '/auth', { username: user, password: password })
         .then(resp => {
-            const token = resp.data.auth_token
+            const token = resp.data.Token
             localStorage.setItem('user-token', token)
+            localStorage.setItem('user-name', user)
             resolve(resp)
         })
         .catch(err => {

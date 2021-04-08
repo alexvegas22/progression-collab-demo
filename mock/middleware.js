@@ -1,5 +1,5 @@
-module.exports = function(req, res, next) {
-  if (req.method === "POST" && req.path==="/tentative") {
+module.exports = function (req, res, next) {
+  if (req.method === "POST" && req.path === "/tentative") {
     res.json({
       data: {
         type: "Tentative",

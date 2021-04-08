@@ -31,7 +31,6 @@ const getQuestionApi = async (urlQuestion) => {
 const getAvancementApi = async (username, urlQuestion) => {
     const avancement = {
         état: false,
-        type: 0,
         tentatives: []
     }
     try {
@@ -54,11 +53,9 @@ const getAvancementApi = async (username, urlQuestion) => {
 const getTentativeApi = async (urlTentative) => {
     try {
         const tentative = await getData(urlTentative);
+        const tentativeComplete = tentative.data.attributes;
+        tentativeComplete.resultats = [];
 
-        const tentativeComplete = {
-            tentative: tentative.data,
-            resultats: []
-        }
         return tentativeComplete;
     } catch (err) {
         console.log(err);
@@ -70,12 +67,14 @@ const postTentative = async (params) => {
         const urlRequete = BASE_URL + "/tentative/" + params.username + "/" + params.uri + "?include=resultats"
         const reponseApi = await postData(urlRequete, body)
         const retroactionTentative = {
-            tests_réussis: 0,
             feedback_global: "",
+            tentative_reussie: false,
+            tests_réussis: 0,
             resultats: []
         }
-        retroactionTentative.tests_réussis = reponseApi.data.attributes.tests_réussis
         retroactionTentative.feedback_global = reponseApi.data.attributes.feedback
+        retroactionTentative.tentative_reussie = reponseApi.data.attributes.réussi
+        retroactionTentative.tests_réussis = reponseApi.data.attributes.tests_réussis
         reponseApi.included.forEach((item) => {
             retroactionTentative.resultats.push(item.attributes);
         });

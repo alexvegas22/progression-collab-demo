@@ -3,11 +3,17 @@
 		<Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
 		<div></div>
 		<div class="editeur-container">
-				<EditeurCode v-bind:uri="this.uri" v-bind:username="this.username" />
+			<div class="division">
+				<EditeurCode />
+				<ValidationTentative v-bind:uri="this.uri" v-bind:username="this.username" />
+			</div>
+			<div v-if="afficherRetroaction" class="division retroaction-container" id="retroaction">
+				<RetroactionTentative />
+			</div>
 		</div>
 	</div>
 	<div>
-		<JeuTests v-bind:tests="tests" />
+		<JeuTests />
 	</div>
 	<div>
 		<Avancement />
@@ -19,6 +25,8 @@ import Enonce from "@/components/Question/Enonce.vue";
 import EditeurCode from "@/components/Question/Editeur.vue";
 import Avancement from "@/components/Question/Avancement.vue";
 import JeuTests from "@/components/Question/JeuTests";
+import RetroactionTentative from "@/components/Question/RetroactionTentative";
+import ValidationTentative from "@/components/Question/ValidationTentative";
 
 export default {
 	name: "Question",
@@ -28,21 +36,20 @@ export default {
 		Avancement,
 		EditeurCode,
 		JeuTests,
+		RetroactionTentative,
+		ValidationTentative,
 	},
 	computed: {
 		question() {
 			return this.$store.state.question;
 		},
-		tests() {
-			return this.$store.state.question.tests;
+		afficherRetroaction() {
+			return this.$store.state.afficherRetroaction;
 		},
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", this.uri);
 		this.$store.dispatch("getAvancement", { username: this.username, uri: this.uri });
-	},
-	methods: {
-		
 	},
 };
 </script>
@@ -71,5 +78,9 @@ body {
 	padding: 1rem;
 	margin: 1rem;
 	background: darkgray;
+}
+.retroaction-container {
+	border: solid 1px black;
+	border-radius: 4px;
 }
 </style>
