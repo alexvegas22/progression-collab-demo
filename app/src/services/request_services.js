@@ -1,6 +1,3 @@
-//import { TOKEN } from "@/services/token";
-
-//const token = localStorage.getItem('user-token')
 const axios = require('axios');
 
 /**
@@ -10,7 +7,6 @@ const axios = require('axios');
  */
 const config = {
 	headers: {
-		//"Authorization": "Bearer "+TOKEN
         "Authorization": "Bearer "+localStorage.getItem('user-token')
 	},
 };

@@ -26,7 +26,7 @@ export default {
     }
   },
 
-  async getAvancement({ commit }, params ) {
+  async getAvancement({ commit }, params) {
     try {
       const avancement = await getAvancementApi(params.username, params.uri);
       commit("setAvancement", avancement);
