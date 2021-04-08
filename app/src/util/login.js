@@ -5,6 +5,7 @@ const login_get_token = (user, password) => new Promise((resolve, reject) => {
         .then(resp => {
             const token = resp.data.Token
             localStorage.setItem('user-token', token)
+            localStorage.setItem('user-name', user)
             resolve(resp)
         })
         .catch(err => {
