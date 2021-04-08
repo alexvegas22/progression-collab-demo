@@ -1,5 +1,3 @@
-import { TOKEN } from "@/services/token";
-
 const axios = require('axios');
 
 /**
@@ -8,9 +6,9 @@ const axios = require('axios');
  * @returns {Promise<unknown>}
  */
 const config = {
-    headers: {
-        "Authorization": "Bearer " + TOKEN
-    },
+	headers: {
+        "Authorization": "Bearer "+localStorage.getItem('user-token')
+	},
 };
 
 const getData = async (lien) => {
