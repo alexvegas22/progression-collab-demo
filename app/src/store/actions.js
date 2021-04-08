@@ -44,6 +44,7 @@ export default {
     }
   },
   async soumettreTentative({ commit }, params) {
+    commit("setAfficherRetroaction", true);
     commit("updateEnvoieTentativeEnCours", true);
     commit("updateMsgAPIEnvoiTentative", "Envoie de la tentative en cours..");
     try {
@@ -56,5 +57,8 @@ export default {
       commit("updateEnvoieTentativeEnCours", false);
       console.log(error);
     }
+  },
+  raffraichirValeursEbauches({ commit }, data) {
+    commit("updateCodeEtLangageTentative", data);
   },
 };

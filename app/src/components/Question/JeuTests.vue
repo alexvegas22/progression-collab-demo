@@ -1,5 +1,4 @@
 <template>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<h1 style="text-align: center">Jeu de tests</h1>
 	<div v-for="elem in this.resultatsTests" :key="elem">
 		<Test v-bind:resultat_test="elem" />
@@ -27,14 +26,14 @@ export default {
 	},
 	methods: {
 		construireResultatsTests() {
-      const listeResultatsTests = []
+			const listeResultatsTests = [];
 			let i = 0;
 			this.tests.forEach((unTest) => {
 				const objet = {
 					resultat: {},
 					test: unTest,
 				};
-        if (this.resultats[i]) {
+				if (this.resultats[i]) {
 					objet.resultat = this.resultats[i];
 				}
 				listeResultatsTests.push(objet);
@@ -44,7 +43,7 @@ export default {
 		},
 	},
 	watch: {
-    tests: function () {
+		tests: function () {
 			this.resultatsTests = this.construireResultatsTests();
 		},
 		resultats: function () {

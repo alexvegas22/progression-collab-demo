@@ -1,50 +1,40 @@
-<template class="p-4">
-	<div v-if="msgReponseApi != null" class="alert alert-warning alert-dismissible fade show" role="alert">
-		<strong>{{ msgReponseApi }}</strong>
-	</div>
-	<div v-if="!tentativeEnCoursDeSoumission && msgReponseApi == null" class="p-2">
-		<h3 v-if="testsPassent"><span style="color: green">Bonne réponse</span> 👍</h3>
-		&nbsp;
-		<h3 v-else><span style="color: red">Mauvaise réponse</span> 😢</h3>
-		&nbsp;
-		<h4>
-			💡 Nombre de tests validés :
-			<span style="color: green">
-				<strong>{{ nbTestsReussis }} </strong>
-			</span>
-		</h4>
-		&nbsp;
-		<h4 v-if="feedback_global">
-			💡 Conseil : <span style="color: orange">{{ feedback_global }}</span>
-		</h4>
-	</div>
+<template>
+	<button
+		type="button"
+		class="btn btn-success btn-valider p-3"
+		style="margin-top: 15px; width: 100%"
+		:disabled="envoiEnCours"
+		@click="validerTentative"
+	>
+		Valider
+	</button>
 </template>
 
 <script>
 export default {
 	name: "ValidationTentative",
+	props: ["uri", "username"],
+	components: {},
+	methods: {
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.$store.state.langageTentative,
+				code: this.$store.state.codeTentative,
+				username: this.username,
+				uri: this.uri,
+			});
+		},
+	},
 	computed: {
-		retroactionTentative() {
-			return this.$store.state.retroactionTentative;
-		},
-		resultats() {
-			return this.retroactionTentative.resultats ?? [];
-		},
-		feedback_global() {
-			return this.retroactionTentative.feedback_global;
-		},
-		testsPassent() {
-			return this.retroactionTentative.tentative_reussie;
-		},
-		nbTestsReussis() {
-			return this.retroactionTentative.tests_réussis;
-		},
-		msgReponseApi() {
-			return this.$store.state.msgAPIEnvoiTentative;
-		},
-		tentativeEnCoursDeSoumission(){
+		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
-		}
+		},
 	},
 };
 </script>
+
+<style>
+.btn-valider {
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+</style>

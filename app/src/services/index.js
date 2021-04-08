@@ -53,11 +53,9 @@ const getAvancementApi = async (username, urlQuestion) => {
 const getTentativeApi = async (urlTentative) => {
     try {
         const tentative = await getData(urlTentative);
+        const tentativeComplete = tentative.data.attributes;
+        tentativeComplete.resultats = [];
 
-        const tentativeComplete = {
-            tentative: tentative.data.attributes,
-            resultats: []
-        }
         return tentativeComplete;
     } catch (err) {
         console.log(err);
