@@ -34,7 +34,7 @@
 <script>
 import login_get_token from "@/util/login";
 
-const BASE_URL = process.env.VUE_APP_API_URL;
+const API_URL = process.env.VUE_APP_API_URL;
  
 export default {
 	name: "Login",
