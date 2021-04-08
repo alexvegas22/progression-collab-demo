@@ -1,0 +1,20 @@
+Simon Roy
+<br>
+Danny Villeda
+<br>
+Guillaume Langlois
+<br>
+Charles-Antoine Poitras
+<br>
+Samuel Beaulieu
+<br>
+Hamed Tijane Mkpoumie Monfouayi
+<br>
+Julien Jacquard
+<br>
+Maryia Pashkevich
+<br>
+Hedi Ouahada
+<br>
+Alexandre Dinh
+<br>
