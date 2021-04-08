@@ -28,6 +28,8 @@
  import RetroactionTentative from "@/components/Question/RetroactionTentative";
  import ValidationTentative from "@/components/Question/ValidationTentative";
 
+ const API_URL = process.env.VUE_APP_API_URL + "/question/";
+
  export default {
 	 name: "Question",
 	 props: ["uri", "username"],
@@ -48,7 +50,7 @@
 		 },
 	 },
 	 mounted() {
-		 this.$store.dispatch("getQuestion", "http://rocinante.lamancha:81/question/"+this.uri);
+		 this.$store.dispatch("getQuestion", API_URL + this.uri);
 		 this.$store.commit(
 			 "setAvancement",
 			 this.$store.state.user.avancements[this.$store.state.user.username + "/" + this.uri]

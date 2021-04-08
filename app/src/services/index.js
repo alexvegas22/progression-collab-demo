@@ -1,7 +1,5 @@
 import { getData, postData } from "@/services/request_services";
 
-const BASE_URL = process.env.VUE_APP_API_URL;
-
 const getUserApi = async (urlUser) => {
 	const user = {
 		username: null,
