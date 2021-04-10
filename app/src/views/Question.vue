@@ -50,7 +50,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.$store.dispatch("getQuestion", API_URL +"/question/"+ this.uri);
+		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri))
 			this.$store.dispatch(
 				"getAvancement",
