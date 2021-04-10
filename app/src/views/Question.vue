@@ -28,7 +28,7 @@ import JeuTests from "@/components/Question/JeuTests";
 import RetroactionTentative from "@/components/Question/RetroactionTentative";
 import ValidationTentative from "@/components/Question/ValidationTentative";
 
-const API_URL = process.env.VUE_APP_API_URL + "/question/";
+const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
 	name: "Question",
@@ -50,7 +50,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.$store.dispatch("getQuestion", API_URL + this.uri);
+		this.$store.dispatch("getQuestion", API_URL +"/question/"+ this.uri);
 		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri))
 			this.$store.dispatch(
 				"getAvancement",
