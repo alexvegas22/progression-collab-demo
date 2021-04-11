@@ -1,5 +1,5 @@
 <template>
-	<div v-if="avancement.état === 0 | avancement.état">
+	<div v-if="(avancement.état === 0) | avancement.état">
 		<h3>{{ convetirEtatEnString(avancement.état) }}</h3>
 		<div v-if="avancement.état === 0">
 			<p>Aucune tentative précédente</p>
@@ -12,7 +12,7 @@
 				</option>
 				<option v-else disabled>Choisir une tentative précédente</option>
 				<option
-					v-for="tentative in tentatives"
+					v-for="tentative in this.tentativesSaufDerniere"
 					v-bind:key="tentative.date_soumission"
 					v-on:click="chargerTentative(tentative.liens.self)"
 					value="{{tentative.date_soumission}}"
@@ -38,6 +38,7 @@ export default {
 	data() {
 		return {
 			derniereTentative: null,
+			tentativesSaufDerniere: [],
 		};
 	},
 	computed: {
@@ -51,15 +52,16 @@ export default {
 	watch: {
 		tentatives: function () {
 			if (this.tentatives.length > 0) {
-				this.derniereTentative = this.tentatives[this.tentatives.length - 1];
-				this.tentatives.pop();
+				this.tentatives.forEach((elem) => {
+					this.tentativesSaufDerniere.push(elem);
+				});
+				this.derniereTentative = this.tentativesSaufDerniere.pop();
 			}
 		},
 	},
 	methods: {
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
-			this.$store.commit("setAfficherRetroaction", true);
 		},
 		convetirDateDepuisTimeStamp: function (timestamp) {
 			let date = new Date(timestamp * 1000);

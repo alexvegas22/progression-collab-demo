@@ -22,6 +22,8 @@ export default {
       commit("setQuestion", question);
       commit("setTests", question.tests);
       commit("setEbauches", question.ebauches);
+      commit("setAfficherTentative", false);
+      commit("setAfficherRetroaction", false);
     } catch (error) {
       console.log(error);
     }
@@ -40,6 +42,8 @@ export default {
     try {
       const tentative = await getTentativeApi(urlTentative);
       commit("setTentative", tentative);
+      commit("setAfficherTentative", true);
+      commit("setAfficherRetroaction", true);
     } catch (error) {
       console.log(error);
     }

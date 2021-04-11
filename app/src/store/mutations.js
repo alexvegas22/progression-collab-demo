@@ -36,5 +36,8 @@ export const mutations = {
     },
     setAfficherRetroaction(state, boolValue) {
         state.afficherRetroaction = boolValue
-    }
+    },
+    setAfficherTentative(state, boolValue) {
+        state.afficherTentative = boolValue
+    },
 }
