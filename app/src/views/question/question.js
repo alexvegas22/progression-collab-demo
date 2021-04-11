@@ -5,7 +5,7 @@ import JeuTests from "@/components/question/jeu_tests.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative.vue";
 import ValidationTentative from "@/components/question/validation_tentative.vue";
 
-const API_URL = process.env.VUE_APP_API_URL + "/question/";
+const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
 	name: "Question",
@@ -27,7 +27,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.$store.dispatch("getQuestion", API_URL + this.uri);
+		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri))
 			this.$store.dispatch(
 				"getAvancement",
@@ -36,7 +36,7 @@ export default {
 		else {
 			this.$store.dispatch(
 				"getAvancement",
-				"http://rocinante.lamancha:81/avancement/" + this.$store.state.user.username + "/" + this.uri
+				API_URL + "/avancement/" + this.$store.state.user.username + "/" + this.uri
 			);
 		}
 	},

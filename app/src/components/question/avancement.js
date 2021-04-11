@@ -1,5 +1,11 @@
 export default {
 	name: "Avancement",
+	data() {
+		return {
+			derniereTentative: null,
+			tentativesSaufDerniere: [],
+		};
+	},
 	computed: {
 		avancement() {
 			return this.$store.state.avancement;
@@ -8,10 +14,19 @@ export default {
 			return this.$store.state.avancement.tentatives;
 		},
 	},
+	watch: {
+		tentatives: function () {
+			if (this.tentatives.length > 0) {
+				this.tentatives.forEach((elem) => {
+					this.tentativesSaufDerniere.push(elem);
+				});
+				this.derniereTentative = this.tentativesSaufDerniere.pop();
+			}
+		},
+	},
 	methods: {
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
-			this.$store.commit("setAfficherRetroaction", true);
 		},
 		convetirDateDepuisTimeStamp: function (timestamp) {
 			let date = new Date(timestamp * 1000);

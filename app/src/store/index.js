@@ -13,6 +13,7 @@ export default createStore({
 		langageTentative: null,
 		codeTentative: null,
 		afficherRetroaction: false,
+		afficherTentative: false,
 	},
 	actions,
 	mutations,
