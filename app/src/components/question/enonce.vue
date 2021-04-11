@@ -15,26 +15,6 @@
 	</div>
 </template>
 
-<script>
-export default {
-	name: "Enonce",
-	props: ["titre", "enonce"],
-};
-</script>
+<script src="./enonce.js"></script>
 
-<style>
-.text-question {
-	font-weight: bold;
-}
-.enonce {
-	font-style: italic;
-	font-size: 1.7em;
-}
-
-.titre {
-	font-size: 3em;
-	text-align: center;
-	color: white;
-	font-weight: bold;
-}
-</style>
+<style src="./enonce.css"></style>

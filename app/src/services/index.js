@@ -1,12 +1,12 @@
 import { getData, postData } from "@/services/request_services";
 
 const getUserApi = async (urlUser) => {
-	try{
+	try {
 		const data = await getData(urlUser + "?include=avancements");
 		var user = data.data.attributes;
 		user.liens = data.data.links;
 		user.avancements = [];
-		if(data.included){
+		if (data.included) {
 			data.included.forEach((item) => {
 				var avancement = item.attributes;
 				avancement.liens = item.links;
@@ -14,37 +14,36 @@ const getUserApi = async (urlUser) => {
 			});
 		}
 		return user;
-	}
-	catch (err) {
+	} catch (err) {
 		console.log(err);
 	}
-}
+};
 
 const getQuestionApi = async (urlQuestion) => {
-    try {
-        const data = await getData(urlQuestion + "?include=tests,ebauches");
+	try {
+		const data = await getData(urlQuestion + "?include=tests,ebauches");
 		var question = data.data.attributes;
-        question.liens = data.data.links;
+		question.liens = data.data.links;
 		question.tests = [];
 		question.ebauches = [];
-		if(data.included){
+		if (data.included) {
 			data.included.forEach((item) => {
-				if (item.type == "test"){
+				if (item.type == "test") {
 					var test = item.attributes;
 					test.liens = item.links;
 					question.tests.push(test);
-				}
-				else if (item.type == "ebauche"){
+				} else if (item.type == "ebauche") {
 					var ebauche = item.attributes;
 					ebauche.liens = item.links;
 					question.ebauches[ebauche.langage] = ebauche;
-			}});
+				}
+			});
 		}
 		return question;
 	} catch (err) {
 		console.log(err);
 	}
-}
+};
 
 const getAvancementApi = async (urlAvancement) => {
 	try {
@@ -63,7 +62,7 @@ const getAvancementApi = async (urlAvancement) => {
 	} catch (err) {
 		console.log(err);
 	}
-}
+};
 
 const getTentativeApi = async (urlTentative) => {
 	try {
@@ -76,20 +75,20 @@ const getTentativeApi = async (urlTentative) => {
 	} catch (err) {
 		console.log(err);
 	}
-}
+};
 const postTentative = async (params) => {
 	try {
-		const body = { langage: params.langage, code: params.code }
-		const urlRequete = params.urlTentative + "?include=resultats"
-		const data = await postData(urlRequete, body)
+		const body = { langage: params.langage, code: params.code };
+		const urlRequete = params.urlTentative + "?include=resultats";
+		const data = await postData(urlRequete, body);
 
 		var tentative = data.data.attributes;
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
-		if(data.included){
+		if (data.included) {
 			data.included.forEach((item) => {
 				var resultat = item.attributes;
-				resultat.liens = item.links
+				resultat.liens = item.links;
 				tentative.resultats.push(resultat);
 			});
 		}
@@ -97,6 +96,6 @@ const postTentative = async (params) => {
 	} catch (err) {
 		console.log(err);
 	}
-}
+};
 
 export { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative };
