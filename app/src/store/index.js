@@ -18,3 +18,4 @@ export default createStore({
 	actions,
 	mutations,
 });
+export {default} from "./store.js";
