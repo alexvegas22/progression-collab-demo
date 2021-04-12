@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require("axios");
 
 /**
  * fait une requete GET
@@ -7,18 +7,18 @@ const axios = require('axios');
  */
 const config = {
 	headers: {
-        "Authorization": "Bearer "+localStorage.getItem('user-token')
+		Authorization: "Bearer " + localStorage.getItem("user-token"),
 	},
 };
 
 const getData = async (lien) => {
-    try {
-        const res = await axios.get(lien, config)
-        return res.data
-    } catch (err) {
-        console.log(err);
-    }
-}
+	try {
+		const res = await axios.get(lien, config);
+		return res.data;
+	} catch (err) {
+		console.log(err);
+	}
+};
 
 /**
  * Fait une requete Post a l'api
@@ -27,12 +27,12 @@ const getData = async (lien) => {
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
 const postData = async (lien, body) => {
-    try {
-        const res = await axios.post(lien, body, config)
-        return res.data
-    } catch (err) {
-        console.log(err);
-    }
-}
+	try {
+		const res = await axios.post(lien, body, config);
+		return res.data;
+	} catch (err) {
+		console.log(err);
+	}
+};
 
 export { getData, postData };

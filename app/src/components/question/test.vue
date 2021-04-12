@@ -27,26 +27,4 @@
 	</div>
 </template>
 
-<script>
-import ResultatTest from "@/components/Question/ResultatTest.vue";
-
-export default {
-	components: { ResultatTest },
-	name: "Test",
-	props: {
-		resultat_test: {
-			required: true,
-		},
-	},
-	data() {
-		return {
-			visible: false,
-		};
-	},
-	methods: {
-		toggleVisibilite() {
-			this.visible = !this.visible;
-		},
-	},
-};
-</script>
+<script src="./test.js"></script>

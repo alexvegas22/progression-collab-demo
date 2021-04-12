@@ -5,7 +5,7 @@ export const mutations = {
     setAvancement(state, avancement) {
         state.avancement = avancement
     },
-    ajouterTentativeAvancement(state, tentative){
+    ajouterTentativeAvancement(state, tentative) {
         state.avancement.tentatives.push(tentative)
     },
     setTentative(state, tentative) {

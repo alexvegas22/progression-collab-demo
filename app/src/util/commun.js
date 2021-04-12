@@ -1,10 +1,8 @@
 // Format la chaine de caractères
 String.prototype.format = function () {
-    let formatted = this;
+	let formatted = this;
 
-    for (let arg in arguments)
-        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+	for (let arg in arguments) formatted = formatted.replace("{" + arg + "}", arguments[arg]);
 
-    return formatted;
-
+	return formatted;
 };
