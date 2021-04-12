@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<prismEditor id="editor" class="my-editor" v-model="code" :highlight="highlighter" line-numbers> </prismEditor>
+		<prismEditor id="editor" class="my-editor" v-model="this.code" :highlight="highlighter" line-numbers> </prismEditor>
 	</div>
 </template>
 
