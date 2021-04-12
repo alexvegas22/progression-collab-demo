@@ -57,6 +57,9 @@ export default {
       commit("updateRetroaction", retroactionTentative);
       commit("updateMsgAPIEnvoiTentative", null);
       commit("updateEnvoieTentativeEnCours", false);
+
+      var tentative = retroactionTentative;
+      commit("ajouterTentativeAvancement", tentative);
     } catch (error) {
       commit(
         "updateMsgAPIEnvoiTentative",

@@ -56,6 +56,7 @@ export default {
 					this.tentativesSaufDerniere.push(elem);
 				});
 				this.derniereTentative = this.tentativesSaufDerniere.pop();
+				console.log("J'écoute !")
 			}
 		},
 	},

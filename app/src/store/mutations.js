@@ -5,6 +5,9 @@ export const mutations = {
     setAvancement(state, avancement) {
         state.avancement = avancement
     },
+    ajouterTentativeAvancement(state, tentative){
+        state.avancement.tentatives.push(tentative)
+    },
     setTentative(state, tentative) {
         let listeEbauches = []
         const ebauche = { code: tentative.code, langage: tentative.langage }
