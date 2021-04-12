@@ -50,7 +50,7 @@ export default {
 			commit("updateRetroaction", retroactionTentative);
 			commit("updateMsgAPIEnvoiTentative", null);
 			commit("updateEnvoieTentativeEnCours", false);
-			commit("updateAvancement", retroactionTentative);
+			//commit("updateAvancement", retroactionTentative);
 		} catch (error) {
 			commit(
 				"updateMsgAPIEnvoiTentative",

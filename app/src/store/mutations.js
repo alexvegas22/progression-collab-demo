@@ -28,14 +28,18 @@ export const mutations = {
         state.codeTentative = data.code
         state.langageTentative = data.langage
     },
-    updateAvancement(state, retroactionTentative) {
+    /*updateAvancement(state, retroactionTentative) {
+        console.log("Nb Tentatives avant = "+state.avancement.tentatives.length)
         const newAvancement = state.avancement
+        retroactionTentative.resultats = []
         newAvancement.tentatives.push(retroactionTentative)
         if (newAvancement.état != 2) {
             newAvancement.état = (retroactionTentative.réussi) ? 2 : 1
         }
+
         state.avancement = newAvancement
-    },
+        console.log("Nb Tentatives après = "+state.avancement.tentatives.length)
+    },*/
     setTests(state, tests) {
         state.question.tests = tests;
     },
