@@ -5,9 +5,9 @@ export const mutations = {
     setAvancement(state, avancement) {
         state.avancement = avancement
     },
-    ajouterTentativeAvancement(state, tentative) {
+    /*ajouterTentativeAvancement(state, tentative) {
         state.avancement.tentatives.push(tentative)
-    },
+    },*/
     setTentative(state, tentative) {
         let listeEbauches = []
         const ebauche = { code: tentative.code, langage: tentative.langage }
@@ -27,6 +27,14 @@ export const mutations = {
     updateCodeEtLangageTentative(state, data) {
         state.codeTentative = data.code
         state.langageTentative = data.langage
+    },
+    updateAvancement(state, retroactionTentative) {
+        const newAvancement = state.avancement
+        newAvancement.tentatives.push(retroactionTentative)
+        if (newAvancement.état != 2) {
+            newAvancement.état = (retroactionTentative.réussi) ? 2 : 1
+        }
+        state.avancement = newAvancement
     },
     setTests(state, tests) {
         state.question.tests = tests;
