@@ -1,3 +1,4 @@
+
 import { getData, postData } from "@/services/request_services";
 
 const getUserApi = async (urlUser) => {
@@ -55,7 +56,7 @@ const getAvancementApi = async (urlAvancement) => {
 			data.included.forEach((item) => {
 				var tentative = item.attributes;
 				tentative.liens = item.links;
-				avancement.tentatives.push(tentative);
+				avancement.tentatives.unshift(tentative);
 			});
 		}
 		return avancement;

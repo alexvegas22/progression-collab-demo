@@ -4,13 +4,12 @@ export const mutations = {
 	},
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
+		if(avancement.tentatives.length>0){
+			state.tentative = avancement.tentatives[0];
+		}
 	},
 	setTentative(state, tentative) {
-		let listeEbauches = [];
-		const ebauche = { code: tentative.code, langage: tentative.langage };
-		listeEbauches[ebauche.langage] = ebauche;
-		state.question.ebauches = listeEbauches;
-		state.retroactionTentative = tentative;
+		state.tentative = tentative;
 	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;

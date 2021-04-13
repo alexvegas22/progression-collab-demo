@@ -1,6 +1,12 @@
 <template>
 	<div>
-		<prismEditor id="editor" class="my-editor" v-model="this.code" :highlight="highlighter" line-numbers> </prismEditor>
+		<v-ace-editor
+			v-model:value="code"
+			style="height: 300px"
+			@init="editorInit" 
+			lang="python" 
+			theme="monokai"
+		/>
 	</div>
 </template>
 
