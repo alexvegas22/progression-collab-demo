@@ -16,7 +16,7 @@ export default {
 	},
 	watch: {
 		avancement: function () {
-			
+			console.log("avancement changed")
 		},
 		tentatives: function () {
 			if (this.tentatives.length > 0) {
@@ -25,6 +25,7 @@ export default {
 				});
 				this.derniereTentative = this.tentativesSaufDerniere.pop();
 			}
+			console.log("Tentatives changed")
 		},
 	},
 	methods: {

@@ -1,3 +1,5 @@
+const API_URL = process.env.VUE_APP_API_URL;
+
 export default {
 	name: "ValidationTentative",
 	props: ["uri", "username"],
@@ -11,14 +13,17 @@ export default {
 				username: this.username,
 				uri: this.uri,
 			});
-			const avancement = this.$store.state.avancement
+			//this.$store.dispatch("getAvancement", API_URL + "/avancement/" + this.$store.state.user.username + "/" + this.uri);
+			/*const avancement = this.$store.state.avancement
 			const derniereTentative = this.$store.state.retroactionTentative
+			console.log("derniereTentative ===> "+derniereTentative)
 			derniereTentative.resultats = []
 			avancement.tentatives.push(derniereTentative)
 			if (avancement.état != 2) {
 				avancement.état = (derniereTentative.réussi) ? 2 : 1
 			}
-			this.$store.commit("setAvancement", avancement);
+			this.$store.dispatch("rafraichirAvancement", avancement);*/
+			//this.$store.dispatch("rafraichirAvancement", derniereTentative);
 		},
 	},
 	computed: {

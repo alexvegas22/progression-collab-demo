@@ -48,14 +48,11 @@ export default {
 		try {
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
+
 			commit("updateMsgAPIEnvoiTentative", null);
 			commit("updateEnvoieTentativeEnCours", false);
-			//commit("updateAvancement", retroactionTentative);
 		} catch (error) {
-			commit(
-				"updateMsgAPIEnvoiTentative",
-				"Impossible de communiquer avec le serveur"
-			);
+			commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
 			commit("updateEnvoieTentativeEnCours", false);
 			console.log(error);
 		}
@@ -63,4 +60,8 @@ export default {
 	raffraichirValeursEbauches({ commit }, data) {
 		commit("updateCodeEtLangageTentative", data);
 	},
+	/*rafraichirAvancement({ commit }, data) {
+		commit("updateAvancement", data);
+		//commit("setAvancement", avancement);
+	},*/
 };

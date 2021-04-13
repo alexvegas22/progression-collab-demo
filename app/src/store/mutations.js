@@ -15,21 +15,37 @@ export const mutations = {
         state.question.ebauches = listeEbauches
         state.retroactionTentative = tentative
     },
-    updateRetroaction(state, retroactionTentative) {
-        state.retroactionTentative = retroactionTentative;
+    updateRetroaction(state, retroaction) {
+        let a = state.avancement
+        let b = state.avancement.tentatives
+        let c = state.avancement.état
+        state.retroactionTentative = retroaction
+        retroaction.resultats = []
+        /*let tentatives = []
+        tentatives = state.avancement.tentatives
+        tentatives.push(retroaction)*/
+        state.avancement.tentatives.push(retroaction)
+        //state.avancement.tentatives = tentatives
+
+        //let avancementActuel = state.avancement
+        //retroaction.resultats = []
+        //avancementActuel.tentatives.push(retroaction)
+        if (state.avancement.état != 2) {
+            state.avancement.état = (retroaction.réussi) ? 2 : 1
+        }
+        //state.avancement = avancementActuel
+        //state.avancement.tentatives = avancementActuel.tentatives
+        console.log("nb tentative avant VS après  "+b.length +" | " +state.avancement.tentatives.length)
+        console.log("state.avancement est comme avant  "+ (state.avancement == a))
+        console.log("state.avancement.tentatives est comme avant  "+ (state.avancement.tentatives == b))
+        console.log("state.avancement.état est comme avant  "+ (state.avancement.état == c))
+        console.log("juste pour vérifier (avancement === tentatives)?   "+ (b == a))
     },
-    updateMsgAPIEnvoiTentative(state, msg) {
-        state.msgAPIEnvoiTentative = msg
-    },
-    updateEnvoieTentativeEnCours(state, bool) {
-        state.envoiTentativeEnCours = bool
-    },
-    updateCodeEtLangageTentative(state, data) {
-        state.codeTentative = data.code
-        state.langageTentative = data.langage
-    },
-    /*updateAvancement(state, retroactionTentative) {
-        console.log("Nb Tentatives avant = "+state.avancement.tentatives.length)
+    /*updateAvancement(state, data) {
+        let a = state.avancement
+        state.avancement = data
+        console.log("state.avancement est comme avant  : "+ (state.avancement == a))
+        /*console.log("Nb Tentatives avant = "+state.avancement.tentatives.length)
         const newAvancement = state.avancement
         retroactionTentative.resultats = []
         newAvancement.tentatives.push(retroactionTentative)
@@ -40,6 +56,16 @@ export const mutations = {
         state.avancement = newAvancement
         console.log("Nb Tentatives après = "+state.avancement.tentatives.length)
     },*/
+    updateMsgAPIEnvoiTentative(state, msg) {
+        state.msgAPIEnvoiTentative = msg
+    },
+    updateEnvoieTentativeEnCours(state, bool) {
+        state.envoiTentativeEnCours = bool
+    },
+    updateCodeEtLangageTentative(state, data) {
+        state.codeTentative = data.code
+        state.langageTentative = data.langage
+    },
     setTests(state, tests) {
         state.question.tests = tests;
     },
