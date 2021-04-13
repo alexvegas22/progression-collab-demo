@@ -7,17 +7,16 @@
 		<div>
 			<label for="avancement">Version de la solution:</label>
 			<select name="avancement" id="avancement">
-				<option v-if="(tentatives.length === 0) && !this.derniereTentative" disabled selected>
+				<option v-if="(this.tentatives.length === 0) && !this.derniereTentative" disabled selected>
 					Choisir une tentative précédente
 				</option>
 				<option v-else disabled>Choisir une tentative précédente</option>
 
 				<option
-					v-for="tentative in tentativesSaufDerniere"
+					v-for="tentative in this.tentativesSaufDerniere"
 					v-bind:key="tentative.date_soumission"
 					v-on:click="chargerTentative(tentative.liens.self)"
 					value="{{tentative.date_soumission}}"
-					
 				>
 					Tentative du
 					{{ convetirDateDepuisTimeStamp(tentative.date_soumission) }}

@@ -38,7 +38,7 @@ export default {
 				this.derniereTentative = this.tentativesSaufDerniere.pop();
 			}
 			console.log("this.tentativesSaufDerniere#1 = "+this.tentativesSaufDerniere.length)
-			console.log("this.derniereTentative = "+this.convetirDateDepuisTimeStamp(this.derniereTentative.date_soumission))
+			//console.log("this.derniereTentative = "+this.convetirDateDepuisTimeStamp(this.derniereTentative.date_soumission))
 			console.log("Tentatives changed")
 		},
 	},
