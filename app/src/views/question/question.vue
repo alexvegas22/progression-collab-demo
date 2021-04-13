@@ -5,7 +5,8 @@
 		<div class="editeur-container">
 			<div class="division">
 				<EditeurCode />
-				<ValidationTentative v-bind:uri="this.uri" v-bind:username="this.username" />
+				<!--ValidationTentative v-bind:uri="this.uri" v-bind:username="this.username" /-->
+				<ValidationTentative />
 			</div>
 			<div v-if="afficherRetroaction" class="division retroaction-container" id="retroaction">
 				<RetroactionTentative />

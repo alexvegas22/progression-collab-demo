@@ -4,6 +4,9 @@ export const mutations = {
     },
     setAvancement(state, avancement) {
         state.avancement = avancement
+        /*avancement.tentatives.forEach((item) => {
+            state.avancement.tentatives.push(item);
+        });*/
     },
     /*ajouterTentativeAvancement(state, tentative) {
         state.avancement.tentatives.push(tentative)
@@ -16,30 +19,30 @@ export const mutations = {
         state.retroactionTentative = tentative
     },
     updateRetroaction(state, retroaction) {
-        let a = state.avancement
-        let b = state.avancement.tentatives
-        let c = state.avancement.état
+        /* let a = state.avancement
+         let b = state.avancement.tentatives
+         let c = state.avancement.état*/
         state.retroactionTentative = retroaction
-        retroaction.resultats = []
+        //retroaction.resultats = []
         /*let tentatives = []
         tentatives = state.avancement.tentatives
         tentatives.push(retroaction)*/
-        state.avancement.tentatives.push(retroaction)
+        //state.avancement.tentatives.push(retroaction)
         //state.avancement.tentatives = tentatives
 
         //let avancementActuel = state.avancement
         //retroaction.resultats = []
         //avancementActuel.tentatives.push(retroaction)
-        if (state.avancement.état != 2) {
+        /*if (state.avancement.état != 2) {
             state.avancement.état = (retroaction.réussi) ? 2 : 1
-        }
+        }*/
         //state.avancement = avancementActuel
         //state.avancement.tentatives = avancementActuel.tentatives
-        console.log("nb tentative avant VS après  "+b.length +" | " +state.avancement.tentatives.length)
+        /*console.log("nb tentative avant VS après  "+b.length +" | " +state.avancement.tentatives.length)
         console.log("state.avancement est comme avant  "+ (state.avancement == a))
         console.log("state.avancement.tentatives est comme avant  "+ (state.avancement.tentatives == b))
         console.log("state.avancement.état est comme avant  "+ (state.avancement.état == c))
-        console.log("juste pour vérifier (avancement === tentatives)?   "+ (b == a))
+        console.log("juste pour vérifier (avancement === tentatives)?   "+ (b == a))*/
     },
     /*updateAvancement(state, data) {
         let a = state.avancement

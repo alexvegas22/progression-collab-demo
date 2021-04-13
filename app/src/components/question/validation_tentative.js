@@ -2,7 +2,7 @@ const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
 	name: "ValidationTentative",
-	props: ["uri", "username"],
+	//props: ["uri", "username"],
 	components: {},
 	methods: {
 		validerTentative() {
@@ -10,9 +10,13 @@ export default {
 				urlTentative: this.$store.state.avancement.liens["tentative"],
 				langage: this.$store.state.langageTentative,
 				code: this.$store.state.codeTentative,
-				username: this.username,
-				uri: this.uri,
+				/*username: this.username,
+				uri: this.uri,*/
+				//avancementActuel: this.$store.state.avancement
 			});
+			/*if(this.$store.state.retroactionTentative){
+				this.$store.dispatch("getAvancement", this.$store.state.avancement.liens["self"]);
+			}*/
 			//this.$store.dispatch("getAvancement", API_URL + "/avancement/" + this.$store.state.user.username + "/" + this.uri);
 			/*const avancement = this.$store.state.avancement
 			const derniereTentative = this.$store.state.retroactionTentative

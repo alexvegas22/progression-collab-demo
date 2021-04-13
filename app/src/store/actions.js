@@ -34,8 +34,8 @@ export default {
 	async getTentative({ commit }, urlTentative) {
 		try {
 			const tentative = await getTentativeApi(urlTentative);
-			commit("setTentative", tentative);
 			commit("setAfficherTentative", true);
+			commit("setTentative", tentative);
 			commit("setAfficherRetroaction", true);
 		} catch (error) {
 			console.log(error);
@@ -48,6 +48,15 @@ export default {
 		try {
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
+
+			/*if (retroactionTentative) {
+				//retroactionTentative.resultats = []
+				params.avancementActuel.tentatives.push(retroactionTentative)
+				if (params.avancementActuel.état != 2) {
+					params.avancementActuel.état = (retroactionTentative.réussi) ? 2 : 1
+				}
+				commit("setAvancement", params.avancementActuel);
+			}*/
 
 			commit("updateMsgAPIEnvoiTentative", null);
 			commit("updateEnvoieTentativeEnCours", false);
