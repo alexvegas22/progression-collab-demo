@@ -15,7 +15,7 @@
 		</h4>
 		&nbsp;
 		<h4 v-if="feedback_global">
-			💡 Conseil : <span style="color: orange">{{ feedback_global }}</span>
+			💡 Conseil : <span style="color: orange" v-html="feedback_global"></span>
 		</h4>
 	</div>
 </template>

@@ -1,3 +1,5 @@
+import parseMD from "@/util/parse";
+
 export default {
 	name: "RetroactionTentative",
 	computed: {
@@ -8,7 +10,7 @@ export default {
 			return this.retroactionTentative.resultats ?? [];
 		},
 		feedback_global() {
-			return this.retroactionTentative.feedback;
+			return parseMD(this.retroactionTentative.feedback);
 		},
 		testsPassent() {
 			return this.retroactionTentative.réussi;
