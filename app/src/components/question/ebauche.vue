@@ -7,18 +7,6 @@
 	</div>
 </template>
 
-<script>
-export default {
-	name: "Ebauche",
-	props: { ebauches: Array },
-};
-</script>
+<script src="./ebauche.js"></script>
 
-<style>
-.ebauche {
-	display: flex;
-	padding: 1rem;
-	margin: 1rem;
-	background: darkgray;
-}
-</style>
+<style src="./ebauche.css"></style>
