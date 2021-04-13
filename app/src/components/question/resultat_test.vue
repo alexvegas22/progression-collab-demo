@@ -36,7 +36,7 @@
 			<div v-if="feedback" class="bg-light col card device-card">
 				<div class="card-body">
 					<h5 class="text-black-50 font-weight-bold text-center card-title">Feedback</h5>
-					<p class="card-text">{{ feedback }}</p>
+					<p class="card-text" v-html="feedback"></p>
 				</div>
 			</div>
 		</div>

@@ -1,3 +1,5 @@
+import parseMD from "@/util/parse";
+
 export default {
 	name: "ResultatTest",
 	props: {
@@ -11,7 +13,7 @@ export default {
 			entree: this.resultat_test.test.entrée,
 			sortie_erreur: this.resultat_test.resultat.sortie_erreur,
 			sortie_console: this.resultat_test.resultat.sortie_observée,
-			feedback: this.resultat_test.resultat.feedback,
+			feedback: parseMD(this.resultat_test.resultat.feedback),
 		};
 	},
 };
