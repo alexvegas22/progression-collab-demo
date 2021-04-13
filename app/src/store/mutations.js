@@ -20,9 +20,11 @@ export const mutations = {
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
-	updateCodeEtLangageTentative(state, data) {
-		state.codeTentative = data.code;
-		state.langageTentative = data.langage;
+	updateCodeTentative(state, code) {
+		state.tentative.code = code;
+	},
+	updateLangageTentative(state, langage) {
+		state.tentative.langage = langage;
 	},
 	setTests(state, tests) {
 		state.question.tests = tests;
