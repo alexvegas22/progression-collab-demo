@@ -38,6 +38,7 @@ export default {
 			commit("setTentative", tentative);
 			commit("setAfficherTentative", true);
 			commit("setAfficherRetroaction", true);
+			commit("updateRetroaction", tentative);
 		} catch (error) {
 			console.log(error);
 		}
@@ -50,14 +51,10 @@ export default {
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
 			commit("updateMsgAPIEnvoiTentative", null);
-			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
 			commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
-			commit("updateEnvoieTentativeEnCours", false);
 			console.log(error);
 		}
-	},
-	raffraichirValeursEbauches({ commit }, data) {
-		commit("updateCodeEtLangageTentative", data);
+		commit("updateEnvoieTentativeEnCours", false);
 	},
 };
