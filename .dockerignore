@@ -1,0 +1,10 @@
+# Fichiers liés à Docker
+Dockerfile
+.dockerignore
+
+# Fichiers liés à Git
+.git
+.gitignore
+
+# Dossier de mock
+mock/

@@ -1,24 +1,5 @@
-# frontend
+### Lien DOC «INITIALE» API progression backend
+https://progression.dti.crosemont.quebec/api/v1/doc/api.html
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Lien DOC «VERSION PLUS À JOUR» API progression backend
+https://progression.pages.dti.crosemont.quebec/progression_backend/api.html
