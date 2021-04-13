@@ -1,12 +1,4 @@
-<template>
-	<h1 style="text-align: center">Jeu de tests</h1>
-	<div v-for="elem in this.resultatsTests" :key="elem">
-		<Test v-bind:resultat_test="elem" />
-	</div>
-</template>
-
-<script>
-import Test from "@/components/Question/Test.vue";
+import Test from "@/components/question/test.vue";
 
 export default {
 	components: { Test },
@@ -51,4 +43,3 @@ export default {
 		},
 	},
 };
-</script>
