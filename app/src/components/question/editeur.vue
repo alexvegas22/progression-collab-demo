@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-ace-editor
-			v-model:value="code"
+			v-model:value="this.code"
 			style="height: 300px"
 			@init="editorInit" 
 			lang="python" 
