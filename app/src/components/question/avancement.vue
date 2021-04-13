@@ -7,9 +7,7 @@
 		<div>
 			<label for="avancement">Version de la solution:</label>
 			<select name="avancement" id="avancement" v-model="selected">
-				<option>
-					Choisir une tentative précédente
-				</option>
+				<option selected disabled hidden>Choisir une tentative précédente</option>
 				<option
 					v-for="tentative in tentatives"
 					v-bind:value="tentative.date_soumission"
