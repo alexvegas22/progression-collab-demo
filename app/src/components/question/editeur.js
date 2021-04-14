@@ -8,11 +8,13 @@ export default {
 		VAceEditor
 	},
 	computed: {
-		code() {
-			if (this.$store.state.question.ebauches) {
-				return this.$store.state.question.ebauches["python"].code;
+		code: {
+			get: function() {
+				return this.$store.state.tentative.code;
+			},
+			set: function(texte) {
+				this.$store.commit("updateCodeTentative", texte);
 			}
-			return this.$store.state.tentative.code;
 		},
 		langage() {
 			return this.$store.state.tentative.langage;
