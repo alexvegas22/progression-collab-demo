@@ -5,7 +5,8 @@ export const mutations = {
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
 		if(avancement.tentatives.length>0){
-			state.tentative = avancement.tentatives[0];
+			//state.tentative = avancement.tentatives[0];
+			state.tentative = avancement.tentatives[avancement.tentatives.length - 1];
 		}
 	},
 	setTentative(state, tentative) {

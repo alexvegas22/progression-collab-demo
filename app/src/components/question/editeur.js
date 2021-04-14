@@ -9,10 +9,20 @@ export default {
   },
   computed: {
     code() {
-      return this.$store.state.tentative.code;
+      //return this.$store.state.tentative.code;
+      if(this.$store.state.tentative){
+        return this.$store.state.tentative.code;
+      } else{
+        return /*this.$store.state.question.ebauches["python"].code*/ "Mon code"
+      }
     },
     langage() {
-      return this.$store.state.tentative.langage;
+      //return this.$store.state.tentative.langage;
+      if(this.$store.state.tentative){
+        return this.$store.state.tentative.langage;
+      } else{
+        return /*this.$store.state.question.ebauches["python"].langage*/ "python"
+      }
     },
   },
   methods: {
