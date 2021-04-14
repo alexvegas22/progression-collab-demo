@@ -16,7 +16,7 @@ export default {
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
-		ValidationTentative,
+		ValidationTentative
 	},
 	computed: {
 		question() {
@@ -24,11 +24,11 @@ export default {
 		},
 		afficherRetroaction() {
 			return this.$store.state.afficherRetroaction;
-		},
+		}
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
-		
+
 		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri))
 			this.$store.dispatch(
 				"getAvancement",
@@ -40,5 +40,5 @@ export default {
 				API_URL + "/avancement/" + this.$store.state.user.username + "/" + this.uri
 			);
 		}
-	},
+	}
 };

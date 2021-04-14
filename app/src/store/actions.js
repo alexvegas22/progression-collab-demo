@@ -37,6 +37,7 @@ export default {
 			commit("setAfficherTentative", true);
 			commit("setTentative", tentative);
 			commit("setAfficherRetroaction", true);
+			commit("updateRetroaction", tentative);
 		} catch (error) {
 			console.log(error);
 		}
@@ -59,15 +60,11 @@ export default {
 			}*/
 
 			commit("updateMsgAPIEnvoiTentative", null);
-			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
 			commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
-			commit("updateEnvoieTentativeEnCours", false);
 			console.log(error);
 		}
-	},
-	raffraichirValeursEbauches({ commit }, data) {
-		commit("updateCodeEtLangageTentative", data);
+		commit("updateEnvoieTentativeEnCours", false);
 	},
 	/*rafraichirAvancement({ commit }, data) {
 		commit("updateAvancement", data);

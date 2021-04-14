@@ -1,13 +1,13 @@
 import { getData, postData } from "@/services/request_services";
 
-const getUserApi = async (urlUser) => {
+const getUserApi = async urlUser => {
 	try {
 		const data = await getData(urlUser + "?include=avancements");
 		var user = data.data.attributes;
 		user.liens = data.data.links;
 		user.avancements = [];
 		if (data.included) {
-			data.included.forEach((item) => {
+			data.included.forEach(item => {
 				var avancement = item.attributes;
 				avancement.liens = item.links;
 				user.avancements[item.id] = avancement;
@@ -19,7 +19,7 @@ const getUserApi = async (urlUser) => {
 	}
 };
 
-const getQuestionApi = async (urlQuestion) => {
+const getQuestionApi = async urlQuestion => {
 	try {
 		const data = await getData(urlQuestion + "?include=tests,ebauches");
 		var question = data.data.attributes;
@@ -27,7 +27,7 @@ const getQuestionApi = async (urlQuestion) => {
 		question.tests = [];
 		question.ebauches = [];
 		if (data.included) {
-			data.included.forEach((item) => {
+			data.included.forEach(item => {
 				if (item.type == "test") {
 					var test = item.attributes;
 					test.liens = item.links;
@@ -45,17 +45,17 @@ const getQuestionApi = async (urlQuestion) => {
 	}
 };
 
-const getAvancementApi = async (urlAvancement) => {
+const getAvancementApi = async urlAvancement => {
 	try {
 		const data = await getData(urlAvancement + "?include=tentatives");
 		var avancement = data.data.attributes;
 		avancement.liens = data.data.links;
 		avancement.tentatives = [];
 		if (data.included) {
-			data.included.forEach((item) => {
+			data.included.forEach(item => {
 				var tentative = item.attributes;
 				tentative.liens = item.links;
-				avancement.tentatives.push(tentative);
+				avancement.tentatives.unshift(tentative);
 			});
 		}
 		return avancement;
@@ -64,7 +64,7 @@ const getAvancementApi = async (urlAvancement) => {
 	}
 };
 
-const getTentativeApi = async (urlTentative) => {
+const getTentativeApi = async urlTentative => {
 	try {
 		const data = await getData(urlTentative);
 		const tentative = data.data.attributes;
@@ -76,7 +76,7 @@ const getTentativeApi = async (urlTentative) => {
 		console.log(err);
 	}
 };
-const postTentative = async (params) => {
+const postTentative = async params => {
 	try {
 		const body = { langage: params.langage, code: params.code };
 		const urlRequete = params.urlTentative + "?include=resultats";
@@ -86,7 +86,7 @@ const postTentative = async (params) => {
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
 		if (data.included) {
-			data.included.forEach((item) => {
+			data.included.forEach(item => {
 				var resultat = item.attributes;
 				resultat.liens = item.links;
 				tentative.resultats.push(resultat);
