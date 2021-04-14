@@ -8,23 +8,22 @@ export default {
 			return this.$store.state.avancement.tentatives;
 		},
 		selected() {
-			if (this.tentatives.length > 0){
+			if (this.tentatives.length > 0) {
 				return this.tentatives[0].date_soumission;
-			}
-			else{
-				return "";
+			} else {
+				return "Choisir une tentative précédente";
 			}
 		}
 	},
 	methods: {
-		chargerTentative: function (lien) {
+		chargerTentative: function(lien) {
 			this.$store.dispatch("getTentative", lien);
 		},
-		convetirDateDepuisTimeStamp: function (timestamp) {
+		convetirDateDepuisTimeStamp: function(timestamp) {
 			let date = new Date(timestamp * 1000);
 			return date.toLocaleString("fr-CA");
 		},
-		convetirEtatEnString: function (etat) {
+		convetirEtatEnString: function(etat) {
 			let etatString;
 			switch (etat) {
 				case 0:
@@ -40,6 +39,6 @@ export default {
 					etatString = "La question est indéterminée !";
 			}
 			return etatString;
-		},
-	},
+		}
+	}
 };

@@ -6,8 +6,8 @@ export default {
 		validerTentative() {
 			this.$store.dispatch("soumettreTentative", {
 				urlTentative: this.$store.state.avancement.liens["tentative"],
-				langage: this.$store.state.langageTentative,
-				code: this.$store.state.codeTentative,
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
 				username: this.username,
 				uri: this.uri,
 			});
