@@ -7,7 +7,7 @@
 		</div>
 		<form v-if="!logué" name="login" class="form-horizontal" @submit.prevent="login">
 			<div class="form-group">
-				<label id="loginTxt" class="control-label col-sm-3">Courriel : </label>
+				<label id="loginTxt" class="control-label col-sm-3">{{ $t('connexionCourriel') }} : </label>
 				<div class="col-sm-3">
 					<input class="form-control" type="text" name="username" autofocus v-model="username" />
 				</div>
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="form-group" v-if="password_req">
-				<label id="" class="control-label col-sm-3">Mot de passe : </label>
+				<label id="" class="control-label col-sm-3">{{ $t('connexionMotDePasse') }} : </label>
 				<div class="col-sm-3">
 					<input class="form-control" name="passwd" type="password" v-model="password" />
 				</div>
