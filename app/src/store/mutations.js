@@ -4,7 +4,7 @@ export const mutations = {
 	},
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
-		if(avancement.tentatives.length>0){
+		if (avancement.tentatives.length > 0) {
 			state.tentative = avancement.tentatives[0];
 		}
 	},
@@ -34,11 +34,14 @@ export const mutations = {
 	},
 	setEbauches(state, ebauches) {
 		state.question.ebauches = ebauches;
+		if (Object.keys(state.tentative).length == 0) {
+			state.tentative = state.question.ebauches["python"];
+		}
 	},
 	setAfficherRetroaction(state, boolValue) {
 		state.afficherRetroaction = boolValue;
 	},
 	setAfficherTentative(state, boolValue) {
 		state.afficherTentative = boolValue;
-	},
+	}
 };
