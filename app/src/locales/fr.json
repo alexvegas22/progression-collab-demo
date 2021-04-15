@@ -1,0 +1,37 @@
+{
+	"login": {
+		"courriel": "Courriel : ",
+		"motDePasse": "Mot de passe : ",
+		"boutonConnexion": "Connexion"
+	},
+
+	"validation_tentative": {
+		"boutonValider": "Valider"
+	},
+	
+	"jeu_tests": {
+		"jeuTests": "Jeu de tests"
+	},
+
+	"retroaction_tentative": {
+		"bonneRéponse": "Bonne réponse",
+		"mauvaiseRéponse": "Mauvaise réponse",
+		"nbTestsValidés": "💡 Nombre de tests validés : ",
+		"conseil": "💡 Conseil : "
+	},
+
+	"resultat_test": {
+		"entrée": "Entrée",
+		"sortieAttendue": "Sortie attendue",
+		"sortieErreur": "Sortie erreur",
+		"sortieConsole": "Sorite console",
+		"rétroaction": "Rétroaction"
+	},
+
+	"avancement": {
+		"aucuneTentative": "Aucune tentative précédente",
+		"versionTentative": "Version de la tentative : ",
+		"choisirTentative": "Choisir une tentative précédente",
+		"dateTentative": "Tentative du "
+	}
+}

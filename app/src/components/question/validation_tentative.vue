@@ -6,7 +6,7 @@
 		:disabled="envoiEnCours"
 		@click="validerTentative"
 	>
-		Valider
+	{{ $t('validation_tentative.boutonValider') }}
 	</button>
 </template>
 

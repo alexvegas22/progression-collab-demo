@@ -1,0 +1,37 @@
+{
+	"login": {
+		"courriel": "Email : ",
+		"motDePasse": "Password : ",
+		"boutonConnexion": "Log in"
+	},
+
+	"validation_tentative": {
+		"boutonValider": "Validate"
+	},
+
+	"jeu_tests": {
+		"jeuTests": "Test cases"
+	},
+
+	"retroaction_tentative": {
+		"bonneRéponse": "Right answer",
+		"mauvaiseRéponse": "Wrong answer",
+		"nbTestsValidés": "💡 Number of validated tests : ",
+		"conseil": "💡 Advice : "
+	},
+	
+	"resultat_test": {
+		"entrée": "Input",
+		"sortieAttendue": "Expected output",
+		"sortieErreur": "Error output",
+		"sortieConsole": "Console output",
+		"rétroaction": "FeedBack"
+	},
+
+	"avancement": {
+		"aucuneTentative": "No previous attempt",
+		"versionTentative": "Version of the attempt : ",
+		"choisirTentative": "Choose a previous attempt",
+		"dateTentative": "Attempt of "
+	}
+}
