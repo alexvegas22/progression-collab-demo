@@ -4,26 +4,18 @@
 		<div v-if="avancement.état === 0">
 			<p>Aucune tentative précédente</p>
 		</div>
-		<div>
+		<div id="avancementDiv">
 			<label for="avancement">Version de la solution:</label>
 			<select name="avancement" id="avancement">
-				<option v-if="(this.tentatives.length === 0) && !this.derniereTentative" disabled selected>
+				<option v-if="this.tentatives.length === 0" disabled selected>
 					Choisir une tentative précédente
 				</option>
 				<option v-else disabled>Choisir une tentative précédente</option>
 				<option
-					v-if="this.derniereTentative"
-					v-on:click="chargerTentative(this.derniereTentative.liens.self)"
-					value="{{this.derniereTentative.date_soumission}}"
-					
-				>
-					Tentative du
-					{{ convetirDateDepuisTimeStamp(this.derniereTentative.date_soumission) }}
-				</option>
-				<option
-					v-for="tentative in this.chargerTentativesSaufPlusRecnte()"
+					v-for="tentative in this.tentatives"
 					v-bind:key="tentative.date_soumission"
 					v-on:click="chargerTentative(tentative.liens.self)"
+					id="{{tentative.date_soumission}}"
 					value="{{tentative.date_soumission}}"
 				>
 					Tentative du

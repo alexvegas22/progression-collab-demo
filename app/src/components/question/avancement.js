@@ -7,21 +7,23 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
-		derniereTentative() {
-			return this.$store.state.avancement.tentatives[0];
-			//return this.$store.state.tentative;
+		nombreTentatives() {
+			return (this.$store.state.avancement.tentatives) ? this.$store.state.avancement.tentatives.length : 0;
+		},
+	},
+	watch: {
+		nombreTentatives: function () {
+			if (this.nombreTentatives > 0) {
+				this.rafraichirSelectionTentative()
+			}
 		},
 	},
 	methods: {
-		chargerTentativesSaufPlusRecnte: function(){
-			const tab = []
-			if(this.tentatives.length > 1){
-				this.tentatives.forEach((elem) => {
-					tab.push(elem);
-				});
-				tab.shift();
-			}
-			return tab
+		rafraichirSelectionTentative: function () {
+			setTimeout(() => {
+				var select = document.getElementById("avancement")
+				select.children[1].selected = true
+			}, 1000);
 		},
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);

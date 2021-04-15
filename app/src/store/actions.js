@@ -29,13 +29,6 @@ export default {
 			console.log(error);
 		}
 	},
-	/*rafraichirAvancement({ commit }, avancement) {
-		try {
-			commit("setAvancement", avancement);
-		} catch (error) {
-			console.log(error);
-		}
-	},*/
 	async getTentative({ commit }, urlTentative) {
 		try {
 			const tentative = await getTentativeApi(urlTentative);
@@ -55,7 +48,6 @@ export default {
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
 			const derniereTentative = retroactionTentative
-			//derniereTentative.resultats = []
 			params.avancementActuel.tentatives.unshift(derniereTentative)
 			if (params.avancementActuel.état != 2) {
 				params.avancementActuel.état = (derniereTentative.réussi) ? 2 : 1
