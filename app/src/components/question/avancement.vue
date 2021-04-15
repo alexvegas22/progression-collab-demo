@@ -11,11 +11,20 @@
 					Choisir une tentative précédente
 				</option>
 				<option v-else disabled>Choisir une tentative précédente</option>
-
 				<option
-					v-for="tentative in this.tentativesSaufDerniere"
+					v-if="this.derniereTentative"
+					v-on:click="chargerTentative(this.derniereTentative.liens.self)"
+					value="{{this.derniereTentative.date_soumission}}"
+					
+				>
+					Tentative du
+					{{ convetirDateDepuisTimeStamp(this.derniereTentative.date_soumission) }}
+				</option>
+				<option
+					v-for="tentative in this.chargerTentativesSaufPlusRecnte()"
 					v-bind:key="tentative.date_soumission"
 					v-on:click="chargerTentative(tentative.liens.self)"
+					value="{{tentative.date_soumission}}"
 				>
 					Tentative du
 					{{ convetirDateDepuisTimeStamp(tentative.date_soumission) }}

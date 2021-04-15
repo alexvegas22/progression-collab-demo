@@ -9,20 +9,18 @@ export default {
 			console.log(error);
 		}
 	},
-
 	async getQuestion({ commit }, urlQuestion) {
 		try {
+			commit("setAfficherTentative", false);
+			commit("setAfficherRetroaction", false);
 			const question = await getQuestionApi(urlQuestion);
 			commit("setQuestion", question);
 			commit("setTests", question.tests);
 			commit("setEbauches", question.ebauches);
-			commit("setAfficherTentative", false);
-			commit("setAfficherRetroaction", false);
 		} catch (error) {
 			console.log(error);
 		}
 	},
-
 	async getAvancement({ commit }, urlAvancement) {
 		try {
 			const avancement = await getAvancementApi(urlAvancement);
@@ -31,6 +29,13 @@ export default {
 			console.log(error);
 		}
 	},
+	/*rafraichirAvancement({ commit }, avancement) {
+		try {
+			commit("setAvancement", avancement);
+		} catch (error) {
+			console.log(error);
+		}
+	},*/
 	async getTentative({ commit }, urlTentative) {
 		try {
 			const tentative = await getTentativeApi(urlTentative);
@@ -49,25 +54,18 @@ export default {
 		try {
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
-
-			/*if (retroactionTentative) {
-				//retroactionTentative.resultats = []
-				params.avancementActuel.tentatives.push(retroactionTentative)
-				if (params.avancementActuel.état != 2) {
-					params.avancementActuel.état = (retroactionTentative.réussi) ? 2 : 1
-				}
-				commit("setAvancement", params.avancementActuel);
-			}*/
-
+			const derniereTentative = retroactionTentative
+			//derniereTentative.resultats = []
+			params.avancementActuel.tentatives.unshift(derniereTentative)
+			if (params.avancementActuel.état != 2) {
+				params.avancementActuel.état = (derniereTentative.réussi) ? 2 : 1
+			}
+			commit("setAvancement", params.avancementActuel);
 			commit("updateMsgAPIEnvoiTentative", null);
+			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
 			commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
 			console.log(error);
 		}
-		commit("updateEnvoieTentativeEnCours", false);
 	},
-	/*rafraichirAvancement({ commit }, data) {
-		commit("updateAvancement", data);
-		//commit("setAvancement", avancement);
-	},*/
 };

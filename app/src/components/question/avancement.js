@@ -7,26 +7,22 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
-		/*retroactionTentative() {
-			return this.$store.state.retroactionTentative;
-		},*/
-	},
-	watch: {
-		/*retroactionTentative: function () {
-			console.log("retroaction changed")
-			if (this.$store.state.afficherTentative === false) {
-				console.log("ce changement n'est pas pour visualiser une tentative")
-				this.$store.dispatch("getAvancement", this.$store.state.avancement.liens["self"]);
-			}
-		},*/
-		avancement: function () {
-			console.log("avancement changed")
+		derniereTentative() {
+			return this.$store.state.avancement.tentatives[0];
+			//return this.$store.state.tentative;
 		},
-		/*tentatives: function () {
-			this.tentativesSaufDerniere = []
-		}*/
 	},
 	methods: {
+		chargerTentativesSaufPlusRecnte: function(){
+			const tab = []
+			if(this.tentatives.length > 1){
+				this.tentatives.forEach((elem) => {
+					tab.push(elem);
+				});
+				tab.shift();
+			}
+			return tab
+		},
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
 		},
