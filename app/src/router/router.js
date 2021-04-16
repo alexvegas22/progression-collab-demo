@@ -4,7 +4,7 @@ const routes = [
 	{
 		path: "/",
 		name: "Home",
-		component: () => import("@/views/home.vue"),
+		component: () => import("@/views/home/home.vue"),
 	},
 	{
 		path: "/question/:username/:uri",
@@ -15,7 +15,7 @@ const routes = [
 	{
 		path: "/:catchAll(.*)",
 		name: "NotFound",
-		component: () => import("@/views/404NotFound.vue"),
+		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
 ];
 
