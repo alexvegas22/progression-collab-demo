@@ -16,3 +16,8 @@
 .my-editor pre {
 	color: #f6f6f6;
 }
+.btn-reset {
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	margin-right: 15px;
+	width: calc(30% - 15px);
+}

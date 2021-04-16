@@ -13,7 +13,7 @@ export default {
 				return this.$store.state.tentative.code;
 			},
 			set: function(texte) {
-				this.$store.commit("updateCodeTentative", texte);
+				this.$store.dispatch("mettreAjourCode", texte);
 			}
 		},
 		langage() {
@@ -27,6 +27,10 @@ export default {
 			require("brace/mode/python");
 			require("brace/mode/less");
 			require("brace/theme/monokai");
-		}
+		},
+		reinitialiserCodeEditeur() {
+			const codeEbauche = this.$store.state.question.ebauches[this.langage].code
+			this.$store.dispatch("mettreAjourCode", codeEbauche);
+		},
 	}
 };
