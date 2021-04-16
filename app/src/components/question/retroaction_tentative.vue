@@ -14,8 +14,9 @@
 			</span>
 		</h4>
 		&nbsp;
-		<h4 v-if="feedback_global">
-			💡 Conseil : <span style="color: orange" v-html="feedback_global"></span>
+		{{formatageFeedback}}
+		<h4 v-if="retroactionTentative.feedback">
+			💡 Conseil : <span style="color: orange" v-html="retroactionTentative.feedback"></span>
 		</h4>
 	</div>
 </template>

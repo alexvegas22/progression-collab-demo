@@ -1,6 +1,6 @@
 <template>
 	<div class="question">
-		<Enonce v-bind:titre="question.titre" v-bind:enonce="question.énoncé" />
+		<Enonce v-bind:question="question" />
 		<div></div>
 		<div class="editeur-container">
 			<div class="division">

@@ -9,8 +9,8 @@ export default {
 		resultats() {
 			return this.retroactionTentative.resultats ?? [];
 		},
-		feedback_global() {
-			return parseMD(this.retroactionTentative.feedback);
+		formatageFeedback() {
+			this.retroactionTentative.feedback = parseMD(this.retroactionTentative.feedback);
 		},
 		testsPassent() {
 			return this.retroactionTentative.réussi;
@@ -23,6 +23,6 @@ export default {
 		},
 		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;
-		},
-	},
+		}
+	}
 };

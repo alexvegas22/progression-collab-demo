@@ -2,10 +2,10 @@ import parseMD from "@/util/parse";
 
 export default {
 	name: "Enonce",
-	props: ["titre", "enonce"],
+	props: ["question"],
 	computed: {
-		formatageMarkdown() {
-			return parseMD(this.enonce);
-		},
-	},
+		enonce() {
+			return parseMD(this.question.énoncé);
+		}
+	}
 };
