@@ -4,7 +4,7 @@
 		<div v-if="avancement.état === 0">
 			<p>Aucune tentative précédente</p>
 		</div>
-		<div id="avancementDiv">
+		<div>
 			<label for="avancement">Version de la solution:</label>
 			<select name="avancement" id="avancement">
 				<option v-if="this.tentatives.length === 0" disabled selected>
