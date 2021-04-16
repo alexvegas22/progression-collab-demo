@@ -14,7 +14,7 @@ function loadLocaleMessages() {
 }
 
 const i18n = new createI18n({
-	locale: navigator.language.split("-")[0] || process.env.VUE_APP_I18N_LOCALE,
+	locale: navigator.language.split("-")[0],
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE,
 	messages: loadLocaleMessages()
 });

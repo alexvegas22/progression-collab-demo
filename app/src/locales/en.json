@@ -17,7 +17,9 @@
 		"bonneRéponse": "Right answer",
 		"mauvaiseRéponse": "Wrong answer",
 		"nbTestsValidés": "💡 Number of validated tests : ",
-		"conseil": "💡 Advice : "
+		"conseil": "💡 Advice : ",
+		"traitementEnCours": "Processing of the current attempt...",
+		"erreurServeur": "Unable to communicate with the server"
 	},
 	
 	"resultat_test": {
@@ -29,7 +31,10 @@
 	},
 
 	"avancement": {
-		"aucuneTentative": "No previous attempt",
+		"premièreTentative": "This is your first attempt !",
+		"questionNonRésolue": "This question hasn't been solved !",
+		"questionRésolue": "This question has already been solved !",
+		"questionIndéterminée": "This question is undetermined !",
 		"versionTentative": "Version of the attempt : ",
 		"choisirTentative": "Choose a previous attempt",
 		"dateTentative": "Attempt of "

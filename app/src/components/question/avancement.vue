@@ -1,9 +1,6 @@
 <template>
 	<div v-if="avancement.état >= 0">
-		<h3>{{ convetirEtatEnString(avancement.état) }}</h3>
-		<div v-if="avancement.état === 0">
-			<p>{{$t('avancement.aucuneTentative')}}</p>
-		</div>
+		<h3>{{ $t("avancement." + convetirEtatEnString(avancement.état)).toString() }}</h3>
 		<div>
 			<label for="avancement">{{$t('avancement.versionTentative')}}</label>
 			<select name="avancement" id="avancement" v-model="selected">

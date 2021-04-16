@@ -17,7 +17,9 @@
 		"bonneRéponse": "Bonne réponse",
 		"mauvaiseRéponse": "Mauvaise réponse",
 		"nbTestsValidés": "💡 Nombre de tests validés : ",
-		"conseil": "💡 Conseil : "
+		"conseil": "💡 Conseil : ",
+		"traitementEnCours": "Traitement de la tentative en cours...",
+		"erreurServeur": "Impossible de communiquer avec le serveur"
 	},
 
 	"resultat_test": {
@@ -29,7 +31,10 @@
 	},
 
 	"avancement": {
-		"aucuneTentative": "Aucune tentative précédente",
+		"premièreTentative": "Vous en êtes à votre première tentative !",
+		"questionNonRésolue": "La question n'a pas encore été résolue !",
+		"questionRésolue": "La question a déjà été correctement résolue !",
+		"questionIndéterminée": "La question est indéterminée !",
 		"versionTentative": "Version de la tentative : ",
 		"choisirTentative": "Choisir une tentative précédente",
 		"dateTentative": "Tentative du "

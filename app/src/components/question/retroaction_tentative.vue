@@ -1,6 +1,6 @@
 <template class="p-4">
 	<div v-if="msgReponseApi != null" class="alert alert-warning alert-dismissible fade show" role="alert">
-		<strong>{{ msgReponseApi }}</strong>
+		<strong>{{ $t("retroaction_tentative."+msgReponseApi) }}</strong>
 	</div>
 	<div v-if="!tentativeEnCoursDeSoumission && msgReponseApi == null" class="p-2">
 		<h3 v-if="testsPassent"><span style="color: green">{{$t('retroaction_tentative.bonneRéponse')}}</span> 👍</h3>
