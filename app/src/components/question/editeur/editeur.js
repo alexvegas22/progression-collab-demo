@@ -22,13 +22,19 @@ export default {
 		ebauches() {
 			return this.$store.state.question.ebauches ?? []
 		},
+		tentative() {
+			return this.$store.state.tentative
+		},
 	},
 	watch: {
-		langage: function () {
+		tentative: function () {
+			console.log("tentative update ------------")
 			var select = document.getElementById("langages")
 			const existe = (elem) => elem == this.langage;
 			const indexLangageActuel = Object.keys(this.ebauches).findIndex(existe)
-			select.children[indexLangageActuel + 1].selected = true
+			if(select.children.length >= Object.keys(this.ebauches).length){
+				select.children[indexLangageActuel + 1].selected = true
+			}
 		},
 	},
 	methods: {
@@ -43,8 +49,8 @@ export default {
 			const codeEbauche = this.$store.state.question.ebauches[this.langage].code
 			this.$store.dispatch("mettreAjourCode", codeEbauche)
 		},
-		chargerEbaucheParLangage(langage) {
-			this.$store.dispatch("mettreAjourLangageSelectionne", langage)
+		chargerEbaucheParLangage(unLangage) {
+			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage)
 			this.reinitialiserCodeEditeur()
 		},
 	}
