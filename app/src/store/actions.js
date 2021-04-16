@@ -62,5 +62,8 @@ export default {
 	},
 	mettreAjourCode({ commit }, data){
 		commit("updateCodeTentative", data);
-	}
+	},
+	mettreAjourLangageSelectionne({ commit }, data){
+		commit("updateLangageTentative", data);
+	},
 };
