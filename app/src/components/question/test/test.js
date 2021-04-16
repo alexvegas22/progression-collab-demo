@@ -1,4 +1,4 @@
-import ResultatTest from "@/components/question/resultat_test.vue";
+import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
 
 export default {
 	components: { ResultatTest },
