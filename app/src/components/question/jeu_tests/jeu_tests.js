@@ -1,4 +1,4 @@
-import Test from "@/components/question/test.vue";
+import Test from "@/components/question/test/test.vue";
 
 export default {
 	components: { Test },
