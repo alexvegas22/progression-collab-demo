@@ -22,9 +22,6 @@ export default {
 		question() {
 			return this.$store.state.question;
 		},
-		afficherRetroaction() {
-			return this.$store.state.afficherRetroaction;
-		},
 	},
 	mounted() {
 		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);

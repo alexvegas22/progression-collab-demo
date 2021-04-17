@@ -21,8 +21,7 @@ export default {
 			this.$store.dispatch("getTentative", lien);
 		},
 		convetirDateDepuisTimeStamp: function (timestamp) {
-			let date = new Date(timestamp * 1000);
-			return date.toLocaleString("fr-CA");
+			return new Date(timestamp * 1000).toLocaleString("fr-CA");
 		},
 		convetirEtatEnString: function (etat) {
 			let etatString;

@@ -4,13 +4,13 @@ import actions from "./actions";
 
 export default createStore({
 	state: {
-		user: {},
-		question: {},
-		tentative: {},
-		retroactionTentative: Object,
+		user: null,
+		question: null,
+		tentative: null,
+		retroactionTentative: null,
 		msgAPIEnvoiTentative: null,
 		envoiTentativeEnCours: false,
-		avancement: {},
+		avancement: null,
 		afficherRetroaction: false,
 		afficherTentative: false,
 	},

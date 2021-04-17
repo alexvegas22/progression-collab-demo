@@ -7,8 +7,7 @@
 		<div class="row">
 			<div
 				class="enonce col-xs-12 col-sm-6 col-md-6 mx-auto bg-light text-info border border-dark"
-				style="font-weight: bold"
-				v-html="enonce"
+				v-html="question.énoncé"
 			>
 			</div>
 		</div>

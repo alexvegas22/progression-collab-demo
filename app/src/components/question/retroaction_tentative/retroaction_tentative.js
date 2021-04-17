@@ -4,19 +4,16 @@ export default {
 	name: "RetroactionTentative",
 	computed: {
 		retroactionTentative() {
-			return this.$store.state.retroactionTentative;
-		},
-		resultats() {
-			return this.retroactionTentative.resultats ?? [];
-		},
-		formatageFeedback() {
-			this.retroactionTentative.feedback = parseMD(this.retroactionTentative.feedback);
-		},
-		testsPassent() {
-			return this.retroactionTentative.réussi;
-		},
-		nbTestsReussis() {
-			return this.retroactionTentative.tests_réussis;
+			let tentative = this.$store.state.retroactionTentative;
+			
+			return tentative ?
+				   new Proxy(tentative, {
+					   get: function( obj, prop ){
+						   return prop == 'feedback' ? parseMD(obj[prop]) : obj[prop]; 
+					   }
+				   })
+		  :
+				   null;
 		},
 		msgReponseApi() {
 			return this.$store.state.msgAPIEnvoiTentative;

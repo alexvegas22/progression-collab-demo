@@ -48,6 +48,7 @@ export default {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("updateMsgAPIEnvoiTentative", "Traitement de la tentative en cours...");
 		try {
+			params.urlTentative = this.state.avancement.liens.tentative;
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
 			commit("updateMsgAPIEnvoiTentative", null);

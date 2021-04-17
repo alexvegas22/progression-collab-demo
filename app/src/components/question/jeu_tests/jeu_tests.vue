@@ -1,7 +1,7 @@
 <template>
 	<h1 style="text-align: center">Jeu de tests</h1>
-	<div v-for="elem in this.resultatsTests" :key="elem">
-		<Test v-bind:resultat_test="elem" />
+	<div v-for="(test, index) in tests" :key="index">
+		<Test v-bind:test="test" v-bind:resultat="resultats[index]" />
 	</div>
 </template>
 
