@@ -34,7 +34,7 @@ export const mutations = {
 	},
 	setEbauches(state, ebauches) {
 		state.question.ebauches = ebauches;
-		if (Object.keys(state.tentative).length == 0) {
+		if (!state.tentative) {
 			state.tentative = state.question.ebauches[Object.keys(state.question.ebauches)[0]];
 		}
 	},

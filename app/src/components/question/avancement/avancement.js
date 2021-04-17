@@ -10,7 +10,7 @@ export default {
 	},
 	watch: {
 		tentatives: function () {
-			if (this.tentatives) {
+			if (this.tentatives.length > 0) {
 				this.rafraichirSelectionTentative()
 			}
 		},
