@@ -46,8 +46,10 @@ export default {
 			require("brace/theme/monokai")
 		},
 		reinitialiserCodeEditeur() {
-			const codeEbauche = this.$store.state.question.ebauches[this.langage].code
-			this.$store.dispatch("mettreAjourCode", codeEbauche)
+			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?"
+			if (confirm(msgAvertissement) == true) {
+				this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+			}
 		},
 		chargerEbaucheParLangage(unLangage) {
 			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage)
