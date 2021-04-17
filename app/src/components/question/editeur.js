@@ -9,10 +9,10 @@ export default {
 	},
 	computed: {
 		code: {
-			get: function() {
+			get: function () {
 				return this.$store.state.tentative.code;
 			},
-			set: function(texte) {
+			set: function (texte) {
 				this.$store.dispatch("mettreAjourCode", texte);
 			}
 		},
@@ -21,7 +21,7 @@ export default {
 		}
 	},
 	methods: {
-		editorInit: function() {
+		editorInit: function () {
 			require("brace/ext/language_tools");
 			require("brace/mode/html");
 			require("brace/mode/python");
@@ -29,7 +29,10 @@ export default {
 			require("brace/theme/monokai");
 		},
 		reinitialiserCodeEditeur() {
-			this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?"
+			if (confirm(msgAvertissement) == true) {
+				this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+			}
 		},
 	}
 };
