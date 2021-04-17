@@ -16,7 +16,7 @@ export default {
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
-		ValidationTentative
+		ValidationTentative,
 	},
 	computed: {
 		question() {
@@ -37,5 +37,5 @@ export default {
 				API_URL + "/avancement/" + this.$store.state.user.username + "/" + this.uri
 			);
 		}
-	}
+	},
 };

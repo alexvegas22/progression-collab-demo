@@ -43,5 +43,5 @@ export const mutations = {
 	},
 	setAfficherTentative(state, boolValue) {
 		state.afficherTentative = boolValue;
-	}
+	},
 };

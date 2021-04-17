@@ -48,10 +48,10 @@ export default {
 			params.urlTentative = this.state.avancement.liens.tentative;
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
-			const derniereTentative = retroactionTentative
-			this.state.avancement.tentatives.unshift(derniereTentative)
+			const derniereTentative = retroactionTentative;
+			this.state.avancement.tentatives.unshift(derniereTentative);
 			if (this.state.avancement.état != 2) {
-				this.state.avancement.état = (derniereTentative.réussi) ? 2 : 1
+				this.state.avancement.état = derniereTentative.réussi ? 2 : 1;
 			}
 			commit("setAvancement", this.state.avancement);
 			commit("updateMsgAPIEnvoiTentative", null);

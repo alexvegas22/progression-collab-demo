@@ -11,15 +11,15 @@ export default {
 	watch: {
 		tentatives: function () {
 			if (this.tentatives.length > 0) {
-				this.rafraichirSelectionTentative()
+				this.rafraichirSelectionTentative();
 			}
 		},
 	},
 	methods: {
 		rafraichirSelectionTentative: function () {
 			setTimeout(() => {
-				var select = document.getElementById("avancement")
-				select.children[1].selected = true
+				var select = document.getElementById("avancement");
+				select.children[1].selected = true;
 			}, 1000);
 		},
 		chargerTentative: function (lien) {
@@ -44,6 +44,6 @@ export default {
 					etatString = "La question est indéterminée !";
 			}
 			return etatString;
-		}
-	}
+		},
+	},
 };

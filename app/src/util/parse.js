@@ -1,4 +1,4 @@
-const MarkDown = require('markdown-it')();
+const MarkDown = require("markdown-it")();
 
 const parseMD = (data) => {
 	if (!data) {

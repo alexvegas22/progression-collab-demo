@@ -5,7 +5,7 @@ export default {
 	name: "Test",
 	props: {
 		test: null,
-		resultat: null
+		resultat: null,
 	},
 	data() {
 		return {

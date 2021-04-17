@@ -4,10 +4,10 @@ export default {
 	components: { Test },
 	name: "JeuTests",
 	computed: {
-		tests(){
+		tests() {
 			return this.$store.state.question.tests;
 		},
-		resultats(){
+		resultats() {
 			return this.$store.state.retroactionTentative ? this.$store.state.retroactionTentative.resultats : [];
 		},
 	},
