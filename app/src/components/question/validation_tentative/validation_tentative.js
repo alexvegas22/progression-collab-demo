@@ -1,9 +1,7 @@
+const API_URL = process.env.VUE_APP_API_URL;
+
 export default {
 	name: "ValidationTentative",
-	props: [
-		"uri",
-		"username"
-	],
 	components: {},
 	methods: {
 		validerTentative() {

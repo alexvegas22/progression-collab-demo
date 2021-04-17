@@ -7,16 +7,21 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
-		selected() {
-			if (this.tentatives.length > 0){
-				return this.tentatives[0].date_soumission;
+	},
+	watch: {
+		tentatives: function () {
+			if (this.tentatives) {
+				this.rafraichirSelectionTentative()
 			}
-			else{
-				return "";
-			}
-		}
+		},
 	},
 	methods: {
+		rafraichirSelectionTentative: function () {
+			setTimeout(() => {
+				var select = document.getElementById("avancement")
+				select.children[1].selected = true
+			}, 1000);
+		},
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
 		},
@@ -39,6 +44,6 @@ export default {
 					etatString = "La question est indéterminée !";
 			}
 			return etatString;
-		},
-	},
+		}
+	}
 };

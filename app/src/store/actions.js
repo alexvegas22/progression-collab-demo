@@ -9,20 +9,18 @@ export default {
 			console.log(error);
 		}
 	},
-
 	async getQuestion({ commit }, urlQuestion) {
 		try {
+			commit("setAfficherTentative", false);
+			commit("setAfficherRetroaction", false);
 			const question = await getQuestionApi(urlQuestion);
 			commit("setQuestion", question);
 			commit("setTests", question.tests);
 			commit("setEbauches", question.ebauches);
-			commit("setAfficherTentative", false);
-			commit("setAfficherRetroaction", false);
 		} catch (error) {
 			console.log(error);
 		}
 	},
-
 	async getAvancement({ commit }, urlAvancement) {
 		try {
 			const avancement = await getAvancementApi(urlAvancement);
@@ -31,12 +29,11 @@ export default {
 			console.log(error);
 		}
 	},
-
 	async getTentative({ commit }, urlTentative) {
 		try {
 			const tentative = await getTentativeApi(urlTentative);
-			commit("setTentative", tentative);
 			commit("setAfficherTentative", true);
+			commit("setTentative", tentative);
 			commit("setAfficherRetroaction", true);
 			commit("updateRetroaction", tentative);
 		} catch (error) {
@@ -51,11 +48,17 @@ export default {
 			params.urlTentative = this.state.avancement.liens.tentative;
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
+			const derniereTentative = retroactionTentative
+			this.avancement.tentatives.unshift(derniereTentative)
+			if (this.avancement.état != 2) {
+				this.avancement.état = (derniereTentative.réussi) ? 2 : 1
+			}
+			commit("setAvancement", this.avancement);
 			commit("updateMsgAPIEnvoiTentative", null);
+			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
 			commit("updateMsgAPIEnvoiTentative", "Impossible de communiquer avec le serveur");
 			console.log(error);
 		}
-		commit("updateEnvoieTentativeEnCours", false);
 	},
 };

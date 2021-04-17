@@ -12,8 +12,8 @@ export default createStore({
 		envoiTentativeEnCours: false,
 		avancement: null,
 		afficherRetroaction: false,
-		afficherTentative: false,
+		afficherTentative: false
 	},
 	actions,
-	mutations,
+	mutations
 });

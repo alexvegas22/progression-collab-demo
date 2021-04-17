@@ -6,7 +6,7 @@
 			<div class="editeur-container">
 				<div class="division">
 					<EditeurCode />
-					<ValidationTentative v-bind:uri="this.uri" v-bind:username="this.username" />
+					<ValidationTentative />
 				</div>
 				<div class="division retroaction-container" id="retroaction">
 					<RetroactionTentative />
