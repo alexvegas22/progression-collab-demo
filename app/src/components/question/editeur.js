@@ -29,8 +29,7 @@ export default {
 			require("brace/theme/monokai");
 		},
 		reinitialiserCodeEditeur() {
-			const codeEbauche = this.$store.state.question.ebauches[this.langage].code
-			this.$store.dispatch("mettreAjourCode", codeEbauche);
+			this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
 		},
 	}
 };
