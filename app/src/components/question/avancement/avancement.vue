@@ -3,19 +3,22 @@
 	<div v-if="this.tentatives.length > 0">
 		<label for="avancement">Version de la solution:</label>
 		<select name="avancement" id="avancement">
-			<option disabled>
-				Choisir une tentative précédente
-			</option>
-			<option
-				v-for="elem in this.tentatives"
-				v-bind:value="elem.date_soumission"
-				v-on:click="this.chargerTentative(elem.liens.self)"
-				id="{{elem.date_soumission}}"
-				value="{{elem.date_soumission}}"
-				
+			<option disabled>Choisir une tentative précédente</option>
+			<optgroup 
+				v-for="langage in Object.keys(this.ebauches)"
+				v-bind:key="langage"
+				:label="langage"
 			>
-				{{ this.convetirDateDepuisTimeStamp(elem.date_soumission) }} [{{elem.langage}}] {{(elem.réussi)?"  &#9989;": "  &#10060;"}}
-			</option>
+				<option
+					v-for="elem in this.trierTentativesParLangage(langage)"
+					v-bind:value="elem.date_soumission"
+					v-on:click="this.chargerTentative(elem.liens.self)"
+					id="{{elem.date_soumission}}"
+					value="{{elem.date_soumission}}"
+				>
+					{{ this.convetirDateDepuisTimeStamp(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
+				</option>
+			</optgroup>
 		</select>
 	</div>
 </template>

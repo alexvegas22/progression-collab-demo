@@ -10,7 +10,9 @@ export default {
 		nombreTentatives() {
 			return (this.$store.state.avancement.tentatives) ? this.$store.state.avancement.tentatives.length : 0;
 		},
-
+		ebauches() {
+			return this.$store.state.question.ebauches ?? []
+		},
 	},
 	watch: {
 		nombreTentatives: function () {
@@ -20,6 +22,15 @@ export default {
 		},
 	},
 	methods: {
+		trierTentativesParLangage: function (langage) {
+			const liste = []
+			this.tentatives.forEach((item) => {
+				if(item.langage == langage){
+					liste.push(item)
+				}
+			});
+			return liste
+		},
 		rafraichirSelectionTentative: function () {
 			setTimeout(() => {
 				var select = document.getElementById("avancement");
