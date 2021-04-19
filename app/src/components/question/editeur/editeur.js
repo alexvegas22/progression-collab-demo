@@ -25,13 +25,16 @@ export default {
 		tentative() {
 			return this.$store.state.tentative
 		},
+		tentatives() {
+			return this.$store.state.avancement.tentatives ?? [];
+		},
 	},
 	watch: {
 		tentative: function () {
 			var select = document.getElementById("langages")
 			const existe = (elem) => elem == this.langage;
 			const indexLangageActuel = Object.keys(this.ebauches).findIndex(existe)
-			if(select.children.length >= Object.keys(this.ebauches).length){
+			if (select.children.length >= Object.keys(this.ebauches).length) {
 				select.children[indexLangageActuel + 1].selected = true
 			}
 		},
@@ -52,7 +55,18 @@ export default {
 		},
 		chargerEbaucheParLangage(unLangage) {
 			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage)
-			this.reinitialiserCodeEditeur()
+			var tentativeExiste = false
+			if (this.tentatives.length > 0) {
+				this.tentatives.forEach((uneTentative) => {
+					if (!tentativeExiste && (uneTentative.langage == unLangage)) {
+						this.$store.dispatch("mettreAjourCode", uneTentative.code);
+						tentativeExiste = true
+					}
+				});
+			}
+			if (!tentativeExiste) {
+				this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+			}
 		},
 	}
 };

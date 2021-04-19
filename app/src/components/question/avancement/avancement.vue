@@ -7,14 +7,14 @@
 				Choisir une tentative précédente
 			</option>
 			<option
-				v-for="tentative in tentatives"
-				v-bind:value="tentative.date_soumission"
-				v-on:click="chargerTentative(tentative.liens.self)"
-				id="{{tentative.date_soumission}}"
-				value="{{tentative.date_soumission}}"
+				v-for="elem in tentatives"
+				v-bind:value="elem.date_soumission"
+				v-on:click="chargerTentative(elem.liens.self)"
+				id="{{elem.date_soumission}}"
+				value="{{elem.date_soumission}}"
 				
 			>
-				{{ convetirDateDepuisTimeStamp(tentative.date_soumission) }} [{{tentative.langage}}]
+				{{ convetirDateDepuisTimeStamp(elem.date_soumission) }} [{{elem.langage}}]
 			</option>
 		</select>
 	</div>
