@@ -48,8 +48,16 @@ export default {
 			params.urlTentative = this.state.avancement.liens.tentative;
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
-			
-			const derniereTentative = retroactionTentative;
+
+			const derniereTentative = {
+				date_soumission: retroactionTentative.date_soumission,
+				feedback: retroactionTentative.feedback,
+				réussi: retroactionTentative.réussi,
+				langage: retroactionTentative.langage,
+				code: retroactionTentative.code,
+				tests_réussis: retroactionTentative.tests_réussis,
+				liens: retroactionTentative.liens,
+			}
 			this.state.avancement.tentatives.unshift(derniereTentative);
 			if (this.state.avancement.état != 2) {
 				this.state.avancement.état = derniereTentative.réussi ? 2 : 1;
@@ -62,10 +70,10 @@ export default {
 			console.log(error);
 		}
 	},
-	mettreAjourCode({ commit }, code){
+	mettreAjourCode({ commit }, code) {
 		commit("updateCodeTentative", code);
 	},
-	mettreAjourLangageSelectionne({ commit }, langage){
+	mettreAjourLangageSelectionne({ commit }, langage) {
 		commit("updateLangageTentative", langage);
 	},
 };
