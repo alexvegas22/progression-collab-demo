@@ -11,21 +11,6 @@ export const mutations = {
 	setTentative(state, tentative) {
 		state.tentative = tentative;
 	},
-	updateRetroaction(state, retroactionTentative) {
-		state.retroactionTentative = retroactionTentative;
-	},
-	updateMsgAPIEnvoiTentative(state, msg) {
-		state.msgAPIEnvoiTentative = msg;
-	},
-	updateEnvoieTentativeEnCours(state, bool) {
-		state.envoiTentativeEnCours = bool;
-	},
-	updateCodeTentative(state, code) {
-		state.tentative.code = code;
-	},
-	updateLangageTentative(state, langage) {
-		state.tentative.langage = langage;
-	},
 	setTests(state, tests) {
 		state.question.tests = tests;
 	},
@@ -43,5 +28,20 @@ export const mutations = {
 	},
 	setAfficherTentative(state, boolValue) {
 		state.afficherTentative = boolValue;
+	},
+	updateRetroaction(state, retroactionTentative) {
+		state.retroactionTentative = retroactionTentative;
+	},
+	updateCodeTentative(state, code) {
+		state.tentative.code = code;
+	},
+	updateLangageTentative(state, langage) {
+		state.tentative.langage = langage;
+	},
+	updateMsgAPIEnvoiTentative(state, msg) {
+		state.msgAPIEnvoiTentative = msg;
+	},
+	updateEnvoieTentativeEnCours(state, bool) {
+		state.envoiTentativeEnCours = bool;
 	},
 };

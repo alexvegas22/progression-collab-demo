@@ -2,7 +2,7 @@
 	<button
 		type="button"
 		class="btn btn-success btn-valider p-3"
-		style="margin-top: 15px; width: 100%"
+		style="margin-top: 15px;"
 		:disabled="envoiEnCours"
 		@click="validerTentative"
 	>
