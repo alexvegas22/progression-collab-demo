@@ -7,11 +7,15 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
+		nombreTentatives() {
+			return (this.$store.state.avancement.tentatives) ? this.$store.state.avancement.tentatives.length : 0;
+		},
+
 	},
 	watch: {
-		tentatives: function () {
-			if (this.tentatives.length > 0) {
-				this.rafraichirSelectionTentative();
+		nombreTentatives: function () {
+			if (this.nombreTentatives > 0) {
+				this.rafraichirSelectionTentative()
 			}
 		},
 	},
