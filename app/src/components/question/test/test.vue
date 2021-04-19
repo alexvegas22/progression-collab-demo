@@ -3,7 +3,7 @@
 		<div v-on:click="toggleVisibilite">
 			<div class="row w-100 m-0">
 				<div class="col-md text-right" v-if="this.visible">
-					<span style="font-size: 200%"> &#11167; </span>
+					<span style="font-size: 200%"> &#9660; </span>
 				</div>
 				<div class="col-md text-right" v-else>
 					<span style="font-size: 200%"> &#10148; </span>
