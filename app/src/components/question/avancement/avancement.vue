@@ -14,7 +14,7 @@
 				value="{{elem.date_soumission}}"
 				
 			>
-				{{ this.convetirDateDepuisTimeStamp(elem.date_soumission) }} [{{elem.langage}}]
+				{{ this.convetirDateDepuisTimeStamp(elem.date_soumission) }} [{{elem.langage}}] {{(elem.réussi)?"  &#9989;": "  &#10060;"}}
 			</option>
 		</select>
 	</div>
