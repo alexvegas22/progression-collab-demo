@@ -9,6 +9,7 @@ export const mutations = {
 				code:avancement.tentatives[0].code,
 				langage:avancement.tentatives[0].langage
 			}
+			state.langageDerniereTentative = avancement.tentatives[0].langage
 		}
 	},
 	setTentative(state, tentative) {

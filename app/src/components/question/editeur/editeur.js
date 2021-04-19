@@ -28,15 +28,22 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
+		langageDerniereTentative() {
+			return this.$store.state.langageDerniereTentative;
+		},
 	},
 	watch: {
 		tentative: function () {
+			console.log("Tentative a changé")
 			var select = document.getElementById("langages")
 			const existe = (elem) => elem == this.langage;
 			const indexLangageActuel = Object.keys(this.ebauches).findIndex(existe)
 			if (select.children.length >= Object.keys(this.ebauches).length) {
 				select.children[indexLangageActuel + 1].selected = true
 			}
+		},
+		langageDerniereTentative: function () {
+			console.log("langageDerniereTentative a changé")
 		},
 	},
 	methods: {
@@ -66,6 +73,11 @@ export default {
 			}
 			if (!tentativeExiste) {
 				this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+			}
+		},
+		test(){
+			if(1 === 0){
+				return "AAA"
 			}
 		},
 	}
