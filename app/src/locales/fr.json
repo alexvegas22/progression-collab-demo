@@ -18,23 +18,23 @@
 		"mauvaiseRéponse": "Mauvaise réponse",
 		"nbTestsValidés": "💡 Nombre de tests validés : ",
 		"conseil": "💡 Conseil : ",
-		"traitementEnCours": "Traitement de la tentative en cours...",
-		"erreurServeur": "Impossible de communiquer avec le serveur"
+		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
 	},
 
 	"resultat_test": {
 		"entrée": "Entrée",
 		"sortieAttendue": "Sortie attendue",
 		"sortieErreur": "Sortie erreur",
-		"sortieConsole": "Sorite console",
+		"sortieConsole": "Sortie observée",
 		"rétroaction": "Rétroaction"
 	},
 
 	"avancement": {
-		"premièreTentative": "Vous en êtes à votre première tentative !",
-		"questionNonRésolue": "La question n'a pas encore été résolue !",
-		"questionRésolue": "La question a déjà été correctement résolue !",
-		"questionIndéterminée": "La question est indéterminée !",
+		"premièreTentative": "Vous en êtes à votre première tentative. Vous pouvez le faire!",
+		"questionNonRésolue": "L'exercice n'a pas encore été résolu. Ne vous découragez pas!",
+		"questionRésolue": "L'exercice a déjà été correctement résolue. Bravo!",
+		"questionIndéterminée": "L'exercice est... */»(-)+«+(!... un skidoo, tu peux-tu laisser ça d'ans cours?",
 		"versionTentative": "Version de la tentative : ",
 		"choisirTentative": "Choisir une tentative précédente",
 		"dateTentative": "Tentative du "
