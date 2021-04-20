@@ -32,8 +32,8 @@
 
 	"avancement": {
 		"premièreTentative": "Vous en êtes à votre première tentative. Vous pouvez le faire!",
-		"questionNonRésolue": "L'exercice n'a pas encore été résolu. Ne vous découragez pas!",
-		"questionRésolue": "L'exercice a déjà été correctement résolue. Bravo!",
+		"questionNonRésolue": "Pas encore résolu. Essayez encore!",
+		"questionRésolue": "Correctement résolu! Bravo!",
 		"questionIndéterminée": "L'exercice est... */»(-)+«+(!... un skidoo, tu peux-tu laisser ça d'ans cours?",
 		"versionTentative": "Version de la tentative : ",
 		"choisirTentative": "Choisir une tentative précédente",
