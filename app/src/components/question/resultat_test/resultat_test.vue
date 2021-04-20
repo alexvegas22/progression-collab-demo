@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-<		<div v-if="resultat">
+		<div v-if="resultat">
 			<div class="row">
 				<div v-if="resultat.sortie_erreur" class="bg-light col card device-card">
 					<div class="card-body">
