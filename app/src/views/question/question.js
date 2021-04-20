@@ -19,6 +19,9 @@ export default {
 		ValidationTentative,
 	},
 	computed: {
+		avancement() {
+			return this.$store.state.avancement;
+		},
 		question() {
 			return this.$store.state.question;
 		},

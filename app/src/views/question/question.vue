@@ -16,7 +16,7 @@
 		<div>
 			<JeuTests />
 		</div>
-		<div>
+		<div v-if="avancement">
 			<Avancement />
 		</div>
 	</div>
