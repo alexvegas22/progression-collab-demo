@@ -7,8 +7,14 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
+		langages() {
+			return Object.keys(this.$store.state.question.ebauches);
+		},
 	},
 	methods: {
+		filtrerTentativesParLangage: function (langage) {
+			return this.tentatives.filter((item) => item.langage == langage);
+		},
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
 		},

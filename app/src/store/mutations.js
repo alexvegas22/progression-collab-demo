@@ -6,9 +6,9 @@ export const mutations = {
 		state.avancement = avancement;
 		if (avancement.tentatives.length > 0) {
 			state.tentative = {
-				code:avancement.tentatives[0].code,
-				langage:avancement.tentatives[0].langage,
-			}
+				code: avancement.tentatives[0].code,
+				langage: avancement.tentatives[0].langage,
+			};
 			state.retroactionTentative = avancement.tentatives[0];
 		}
 	},

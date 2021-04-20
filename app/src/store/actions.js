@@ -46,7 +46,7 @@ export default {
 			if (this.state.avancement.état != 2) {
 				this.state.avancement.état = derniereTentative.réussi ? 2 : 1;
 			}
-			
+
 			commit("updateMsgAPIEnvoiTentative", null);
 			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
@@ -60,8 +60,8 @@ export default {
 	mettreAjourLangageSelectionne({ commit }, langage) {
 		commit("updateLangageTentative", langage);
 	},
-	réinitialiser({commit}, langage){
-		commit("updateCodeTentative", this.state.question.ebauches[ langage ].code);
+	réinitialiser({ commit }, langage) {
+		commit("updateCodeTentative", this.state.question.ebauches[langage].code);
 		commit("updateLangageTentative", langage);
 	},
 };

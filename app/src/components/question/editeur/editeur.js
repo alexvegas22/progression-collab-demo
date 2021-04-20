@@ -5,27 +5,27 @@ import "brace/theme/monokai";
 
 export default {
 	components: {
-		VAceEditor
+		VAceEditor,
 	},
-	data(){
+	data() {
 		return {
 			selected: 0,
-		}
+		};
 	},
 	computed: {
 		code: {
 			get: function () {
-				return this.$store.state.tentative.code
+				return this.$store.state.tentative.code;
 			},
 			set: function (texte) {
-				this.$store.dispatch("mettreAjourCode", texte)
-			}
+				this.$store.dispatch("mettreAjourCode", texte);
+			},
 		},
 		ebauches() {
-			return this.$store.state.question.ebauches ?? []
+			return this.$store.state.question.ebauches ?? [];
 		},
 		tentative() {
-			return this.$store.state.tentative
+			return this.$store.state.tentative;
 		},
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
@@ -43,24 +43,24 @@ export default {
 	},
 	methods: {
 		editorInit: function () {
-			require("brace/ext/language_tools")
-			require("brace/mode/html")
-			require("brace/mode/python")
-			require("brace/mode/less")
-			require("brace/theme/monokai")
+			require("brace/ext/language_tools");
+			require("brace/mode/html");
+			require("brace/mode/python");
+			require("brace/mode/less");
+			require("brace/theme/monokai");
 		},
 		reinitialiserCodeEditeur() {
-			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?"
+			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?";
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
 		},
 		chargerEbaucheParLangage(unLangage) {
-			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage)
-			var tentativeExiste = false
+			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage);
+			var tentativeExiste = false;
 			if (this.tentatives.length > 0) {
 				this.tentatives.forEach((uneTentative) => {
-					if (!tentativeExiste && (uneTentative.langage == unLangage)) {
+					if (!tentativeExiste && uneTentative.langage == unLangage) {
 						this.$store.dispatch("mettreAjourCode", uneTentative.code);
 						tentativeExiste = true;
 						return; //break le forEach
@@ -71,5 +71,5 @@ export default {
 				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
 		},
-	}
+	},
 };
