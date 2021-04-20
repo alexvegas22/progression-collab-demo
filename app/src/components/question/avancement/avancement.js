@@ -25,16 +25,16 @@ export default {
 			let etatString;
 			switch (etat) {
 				case 0:
-					etatString = "Vous en êtes à votre première tentative !";
+					etatString = "premièreTentative";
 					break;
 				case 1:
-					etatString = "La question n'a pas encore été résolue !";
+					etatString = "questionNonRésolue";
 					break;
 				case 2:
-					etatString = "La question a déjà été correctement résolue !";
+					etatString = "questionRésolue";
 					break;
 				default:
-					etatString = "La question est indéterminée !";
+					etatString = "questionIndéterminée";
 			}
 			return etatString;
 		},

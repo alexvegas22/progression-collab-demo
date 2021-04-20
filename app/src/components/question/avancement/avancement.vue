@@ -1,9 +1,9 @@
 <template>
 	<h3>{{ convetirEtatEnString(avancement.état) }}</h3>
 	<div v-if="this.tentatives.length > 0">
-		<label for="avancement">Version de la solution:</label>
+		<label for="avancement">{{$t('avancement.versionTentative')}}</label>
 		<select name="avancement" id="avancement">
-			<option disabled>Choisir une tentative précédente</option>
+			<option disabled>{{$t('avancement.choisirTentative')}}</option>
 			<optgroup 
 				v-for="langage in this.langages"
 				v-bind:key="langage"
