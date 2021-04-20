@@ -4,9 +4,8 @@ export default {
 	components: { ResultatTest },
 	name: "Test",
 	props: {
-		resultat_test: {
-			required: true,
-		},
+		test: null,
+		resultat: null,
 	},
 	data() {
 		return {

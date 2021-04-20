@@ -1,22 +1,25 @@
 <template>
-	<div v-if="avancement.état >= 0">
-		<h3>{{ $t("avancement." + convetirEtatEnString(avancement.état)).toString() }}</h3>
-		<div>
-			<label for="avancement">{{$t('avancement.versionTentative')}}</label>
-			<select name="avancement" id="avancement" v-model="selected">
-				<option>
-					{{$t('avancement.choisirTentative')}}
-				</option>
+	<h3>{{ convetirEtatEnString(avancement.état) }}</h3>
+	<div v-if="this.tentatives.length > 0">
+		<label for="avancement">{{$t('avancement.versionTentative')}}</label>
+		<select name="avancement" id="avancement">
+			<option disabled>{{$t('avancement.choisirTentative')}}</option>
+			<optgroup 
+				v-for="langage in this.langages"
+				v-bind:key="langage"
+				:label="langage"
+			>
 				<option
-					v-for="tentative in tentatives"
-					v-bind:value="tentative.date_soumission"
-					v-on:click="chargerTentative(tentative.liens.self)"
+					v-for="elem in this.filtrerTentativesParLangage(langage)"
+					v-bind:value="elem.date_soumission"
+					v-on:click="this.chargerTentative(elem.liens.self)"
+					id="{{elem.date_soumission}}"
+					value="{{elem.date_soumission}}"
 				>
-					{{$t('avancement.dateTentative')}}
-					{{ convetirDateDepuisTimeStamp(tentative.date_soumission) }}
+					{{ this.convetirDateDepuisTimeStamp(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
 				</option>
-			</select>
-		</div>
+			</optgroup>
+		</select>
 	</div>
 </template>
 

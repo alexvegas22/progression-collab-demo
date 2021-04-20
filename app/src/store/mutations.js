@@ -4,21 +4,28 @@ export const mutations = {
 	},
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
-		if(avancement.tentatives.length>0){
-			state.tentative = avancement.tentatives[0];
+		if (avancement.tentatives.length > 0) {
+			state.tentative = {
+				code: avancement.tentatives[0].code,
+				langage: avancement.tentatives[0].langage,
+			};
+			state.retroactionTentative = avancement.tentatives[0];
 		}
 	},
 	setTentative(state, tentative) {
 		state.tentative = tentative;
 	},
+	setQuestion(state, question) {
+		if (!state.tentative) {
+			state.tentative = {
+				code: question.ebauches[Object.keys(question.ebauches)[0]].code,
+				langage: question.ebauches[Object.keys(question.ebauches)[0]].langage,
+			};
+		}
+		state.question = question;
+	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;
-	},
-	updateMsgAPIEnvoiTentative(state, msg) {
-		state.msgAPIEnvoiTentative = msg;
-	},
-	updateEnvoieTentativeEnCours(state, bool) {
-		state.envoiTentativeEnCours = bool;
 	},
 	updateCodeTentative(state, code) {
 		state.tentative.code = code;
@@ -26,19 +33,10 @@ export const mutations = {
 	updateLangageTentative(state, langage) {
 		state.tentative.langage = langage;
 	},
-	setTests(state, tests) {
-		state.question.tests = tests;
+	updateMsgAPIEnvoiTentative(state, msg) {
+		state.msgAPIEnvoiTentative = msg;
 	},
-	setQuestion(state, question) {
-		state.question = question;
-	},
-	setEbauches(state, ebauches) {
-		state.question.ebauches = ebauches;
-	},
-	setAfficherRetroaction(state, boolValue) {
-		state.afficherRetroaction = boolValue;
-	},
-	setAfficherTentative(state, boolValue) {
-		state.afficherTentative = boolValue;
+	updateEnvoieTentativeEnCours(state, bool) {
+		state.envoiTentativeEnCours = bool;
 	},
 };

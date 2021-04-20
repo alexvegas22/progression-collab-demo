@@ -1,17 +1,20 @@
+import parseMD from "@/util/parse";
+
 export default {
 	name: "ResultatTest",
 	props: {
-		resultat_test: {
-			required: true,
-		},
+		test: null,
+		resultat_p: null,
 	},
-	data() {
-		return {
-			sortie_attendue: this.resultat_test.test.sortie_attendue,
-			entree: this.resultat_test.test.entrée,
-			sortie_erreur: this.resultat_test.resultat.sortie_erreur,
-			sortie_console: this.resultat_test.resultat.sortie_observée,
-			feedback: this.resultat_test.resultat.feedback,
-		};
+	computed: {
+		resultat() {
+			return this.resultat_p
+				? new Proxy(this.resultat_p, {
+						get: function (obj, prop) {
+							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+						},
+				  })
+				: null;
+		},
 	},
 };
