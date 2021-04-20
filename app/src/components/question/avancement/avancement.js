@@ -18,10 +18,10 @@ export default {
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
 		},
-		convetirDateDepuisTimeStamp: function (timestamp) {
+		timestampVersDate: function (timestamp) {
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");
 		},
-		convetirEtatEnString: function (etat) {
+		étatVersChaîne: function (etat) {
 			let etatString;
 			switch (etat) {
 				case 0:
