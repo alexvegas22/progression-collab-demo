@@ -44,7 +44,7 @@ export default {
 
 			this.state.avancement.tentatives.unshift(retroactionTentative);
 			if (this.state.avancement.état != 2) {
-				this.state.avancement.état = derniereTentative.réussi ? 2 : 1;
+				this.state.avancement.état = retroactionTentative.réussi ? 2 : 1;
 			}
 
 			commit("updateMsgAPIEnvoiTentative", null);

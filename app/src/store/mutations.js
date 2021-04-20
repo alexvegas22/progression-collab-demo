@@ -16,6 +16,12 @@ export const mutations = {
 		state.tentative = tentative;
 	},
 	setQuestion(state, question) {
+		if (!state.tentative) {
+			state.tentative = {
+				code: question.ebauches[Object.keys(question.ebauches)[0]].code,
+				langage: question.ebauches[Object.keys(question.ebauches)[0]].langage,
+			};
+		}
 		state.question = question;
 	},
 	updateRetroaction(state, retroactionTentative) {
