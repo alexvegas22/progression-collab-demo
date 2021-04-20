@@ -14,29 +14,29 @@
 	},
 
 	"retroaction_tentative": {
-		"bonneRéponse": "Right answer",
-		"mauvaiseRéponse": "Wrong answer",
+		"bonneRéponse": "Correct",
+		"mauvaiseRéponse": "Incorrect",
 		"nbTestsValidés": "💡 Number of validated tests : ",
-		"conseil": "💡 Advice : ",
-		"traitementEnCours": "Processing of the current attempt...",
-		"erreurServeur": "Unable to communicate with the server"
+		"conseil": "💡 Tip : ",
+		"traitementEnCours": "Your answer is being tested...",
+		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
 	},
 	
 	"resultat_test": {
 		"entrée": "Input",
 		"sortieAttendue": "Expected output",
 		"sortieErreur": "Error output",
-		"sortieConsole": "Console output",
-		"rétroaction": "FeedBack"
+		"sortieConsole": "Actual output",
+		"rétroaction": "Feedback"
 	},
 
 	"avancement": {
-		"premièreTentative": "This is your first attempt !",
-		"questionNonRésolue": "This question hasn't been solved !",
-		"questionRésolue": "This question has already been solved !",
-		"questionIndéterminée": "This question is undetermined !",
-		"versionTentative": "Version of the attempt : ",
+		"premièreTentative": "This is your first attempt. You can do it!",
+		"questionNonRésolue": "Not solved yet. Keep trying.",
+		"questionRésolue": "Solved! Good job!",
+		"questionIndéterminée": "This exercice is... -/+@-/*»!... I can't hear you, I'm using the scrambler!",
+		"versionTentative": "Previous attempts : ",
 		"choisirTentative": "Choose a previous attempt",
-		"dateTentative": "Attempt of "
+		"dateTentative": "Attempt from "
 	}
 }
