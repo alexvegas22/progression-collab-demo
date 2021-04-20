@@ -7,25 +7,8 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
-		nombreTentatives() {
-			return (this.$store.state.avancement.tentatives) ? this.$store.state.avancement.tentatives.length : 0;
-		},
-
-	},
-	watch: {
-		nombreTentatives: function () {
-			if (this.nombreTentatives > 0) {
-				this.rafraichirSelectionTentative()
-			}
-		},
 	},
 	methods: {
-		rafraichirSelectionTentative: function () {
-			setTimeout(() => {
-				var select = document.getElementById("avancement");
-				select.children[1].selected = true;
-			}, 1000);
-		},
 		chargerTentative: function (lien) {
 			this.$store.dispatch("getTentative", lien);
 		},

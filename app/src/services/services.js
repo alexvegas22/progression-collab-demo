@@ -55,6 +55,7 @@ const getAvancementApi = async (urlAvancement) => {
 			data.included.forEach((item) => {
 				var tentative = item.attributes;
 				tentative.liens = item.links;
+				tentative.resultats=[];
 				avancement.tentatives.unshift(tentative);
 			});
 		}

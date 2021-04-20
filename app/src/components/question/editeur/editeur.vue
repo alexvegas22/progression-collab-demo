@@ -1,14 +1,12 @@
 <template>
 	<label for="langages">Langage de l'ébauche : </label>
-	<select name="langages" id="langages" style="margin-left: 10px; width: 250px; text-align: center">
+	<select name="langages" id="langages" style="margin-left: 10px; width: 250px; text-align: center" v-model="selected">
 		<option v-if="Object.keys(this.ebauches).length === 0" disabled selected>-- Choisis ton langage --</option>
 		<option v-else disabled>-- Choisis ton langage --</option>
 		<option
 			v-for="langage in Object.keys(this.ebauches)"
 			v-bind:key="langage"
 			v-on:click="this.chargerEbaucheParLangage(langage)"
-			id="{{langage}}"
-			value="{{langage}}"
 		>
 			{{ langage }}
 		</option>

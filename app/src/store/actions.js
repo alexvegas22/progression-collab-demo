@@ -11,12 +11,8 @@ export default {
 	},
 	async getQuestion({ commit }, urlQuestion) {
 		try {
-			commit("setAfficherTentative", false);
-			commit("setAfficherRetroaction", false);
 			const question = await getQuestionApi(urlQuestion);
 			commit("setQuestion", question);
-			commit("setTests", question.tests);
-			commit("setEbauches", question.ebauches);
 		} catch (error) {
 			console.log(error);
 		}
@@ -32,16 +28,13 @@ export default {
 	async getTentative({ commit }, urlTentative) {
 		try {
 			const tentative = await getTentativeApi(urlTentative);
-			commit("setAfficherTentative", true);
 			commit("setTentative", tentative);
-			commit("setAfficherRetroaction", true);
 			commit("updateRetroaction", tentative);
 		} catch (error) {
 			console.log(error);
 		}
 	},
 	async soumettreTentative({ commit }, params) {
-		commit("setAfficherRetroaction", true);
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("updateMsgAPIEnvoiTentative", "Traitement de la tentative en cours...");
 		try {
@@ -49,20 +42,11 @@ export default {
 			var retroactionTentative = await postTentative(params);
 			commit("updateRetroaction", retroactionTentative);
 
-			const derniereTentative = {
-				date_soumission: retroactionTentative.date_soumission,
-				feedback: retroactionTentative.feedback,
-				réussi: retroactionTentative.réussi,
-				langage: retroactionTentative.langage,
-				code: retroactionTentative.code,
-				tests_réussis: retroactionTentative.tests_réussis,
-				liens: retroactionTentative.liens,
-			}
-			this.state.avancement.tentatives.unshift(derniereTentative);
+			this.state.avancement.tentatives.unshift(retroactionTentative);
 			if (this.state.avancement.état != 2) {
 				this.state.avancement.état = derniereTentative.réussi ? 2 : 1;
 			}
-			commit("setAvancement", this.state.avancement);
+			
 			commit("updateMsgAPIEnvoiTentative", null);
 			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
@@ -74,6 +58,10 @@ export default {
 		commit("updateCodeTentative", code);
 	},
 	mettreAjourLangageSelectionne({ commit }, langage) {
+		commit("updateLangageTentative", langage);
+	},
+	réinitialiser({commit}, langage){
+		commit("updateCodeTentative", this.state.question.ebauches[ langage ].code);
 		commit("updateLangageTentative", langage);
 	},
 };

@@ -7,6 +7,11 @@ export default {
 	components: {
 		VAceEditor
 	},
+	data(){
+		return {
+			selected: 0,
+		}
+	},
 	computed: {
 		code: {
 			get: function () {
@@ -15,9 +20,6 @@ export default {
 			set: function (texte) {
 				this.$store.dispatch("mettreAjourCode", texte)
 			}
-		},
-		langage() {
-			return this.$store.state.tentative.langage
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? []
@@ -28,28 +30,15 @@ export default {
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
-		langageDerniereTentative() {
-			return this.$store.state.langageDerniereTentative;
-		},
 	},
 	mounted() {
-		var select = document.getElementById("langages")
-		if (this.langageDerniereTentative) {
-			const existe = (elem) => elem == this.langageDerniereTentative;
-			const indexLangageActuel = Object.keys(this.ebauches).findIndex(existe)
-			if (select.children.length >= Object.keys(this.ebauches).length) {
-				select.children[indexLangageActuel + 1].selected = true
-			}
+		if (this.tentative) {
+			this.selected = this.tentative.langage;
 		}
 	},
 	watch: {
 		tentative: function () {
-			var select = document.getElementById("langages")
-			const existe = (elem) => elem == this.langage;
-			const indexLangageActuel = Object.keys(this.ebauches).findIndex(existe)
-			if (select.children.length >= Object.keys(this.ebauches).length) {
-				select.children[indexLangageActuel + 1].selected = true
-			}
+			this.selected = this.tentative.langage;
 		},
 	},
 	methods: {
@@ -63,7 +52,7 @@ export default {
 		reinitialiserCodeEditeur() {
 			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?"
 			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
 		},
 		chargerEbaucheParLangage(unLangage) {
@@ -73,12 +62,13 @@ export default {
 				this.tentatives.forEach((uneTentative) => {
 					if (!tentativeExiste && (uneTentative.langage == unLangage)) {
 						this.$store.dispatch("mettreAjourCode", uneTentative.code);
-						tentativeExiste = true
+						tentativeExiste = true;
+						return; //break le forEach
 					}
 				});
 			}
 			if (!tentativeExiste) {
-				this.$store.dispatch("mettreAjourCode", this.$store.state.question.ebauches[this.langage].code);
+				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
 		},
 	}
