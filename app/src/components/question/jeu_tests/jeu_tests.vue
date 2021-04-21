@@ -1,6 +1,6 @@
 <template>
 	<h1 style="text-align: center">{{ $t("jeu_tests.jeuTests") }}</h1>
-	<div class="text-center">
+	<div v-if="resultats[0]" class="text-center">
 		<label class="label">
 			<div class="label-text" style="margin-right: 10px">Normal</div>
 			<div class="toggle">
