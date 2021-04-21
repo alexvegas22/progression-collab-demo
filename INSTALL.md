@@ -29,15 +29,15 @@ cd progression_frontend
 ### 2.2 Créer et configurer le fichier d'environnement local
 - Exécuter la commande suivante pour créer le fichier des variables d'environnement
 ```
-cp .env.exemple .env.local
+cp app/.env.exemple app/.env.local
 ```
 - Ouvrir le fichier des variables d'environnement avec l'éditeur de votre choix.
 ```
-$EDITOR .env.local
+$EDITOR app/.env.local
 ```
 - Ajouter les variables d'environnement suivantes *(contacter admin pour les valeurs réelles)*
 ```
-VUE_APP_API_URL=votre-url-api-de-base
+VUE_APP_API_URL=http://com.exemple/api/v1
 ```
 
 ## 3. Exécution du programme
