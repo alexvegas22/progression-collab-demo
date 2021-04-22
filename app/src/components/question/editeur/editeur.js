@@ -1,10 +1,12 @@
-import EditeurDemo from "./editeurDemo";
+import { VAceEditor } from "./VAceEditorModifié";
 
 export default {
+	components: {
+		VAceEditor
+	},
 	data() {
 		return {
-			selected: 0,
-			editeur: new EditeurDemo()
+			selected: "text"
 		};
 	},
 	computed: {
@@ -27,8 +29,6 @@ export default {
 		}
 	},
 	mounted() {
-		this.editeur.initEditeur("editeur", this.tentative.langage);
-
 		if (this.tentative) {
 			this.selected = this.tentative.langage;
 		}

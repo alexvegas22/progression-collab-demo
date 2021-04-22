@@ -11,7 +11,16 @@
 			{{ langage }}
 		</option>
 	</select>
-	<div id="editeur"> {{this.code}} </div>
+	<div>
+		<v-ace-editor
+			id="editor"
+			name="editor"
+			:value="this.code"
+			style="height: 300px"
+			:lang="selected"
+			theme="monokai"
+		/>
+	</div>
 	<button type="button" class="btn btn-info btn-reset p-3" style="margin-top: 15px" @click="this.reinitialiserCodeEditeur()">
 		Réinitialiser
 	</button>
