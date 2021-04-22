@@ -31,7 +31,6 @@ export default {
 			return chaîne;
 		},
 		changerModeComparaison() {
-			this.modeVisuel = !this.modeVisuel;
 			for (let i = 0; i < this.resultats.length; i++) {
 				this.resultats[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
 				this.tests[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
