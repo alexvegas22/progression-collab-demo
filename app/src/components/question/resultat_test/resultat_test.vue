@@ -14,7 +14,7 @@
 						{{ $t("resultat_test.sortieAttendue") }}
 					</h5>
 					<pre v-if="test.sortie_attendue == ''">
-						<p class="card-text resultat vide">[vide]</p>
+						<p class="card-text sortie vide">[vide]</p>
 					</pre>
 					<pre v-else>
 						<p class="card-text" v-html="test.sortie_attendue"></p>
@@ -40,7 +40,7 @@
 							{{ $t("resultat_test.sortieConsole") }}
 						</h5>
 						<pre v-if="resultat.sortie_observée == ''">
-							<p class="card-text resultat vide">[vide]</p>
+							<p class="card-text sortie vide">[vide]</p>
 						</pre>
 						<pre v-else>
 							<p class="card-text" v-html="resultat.sortie_observée"></p>
