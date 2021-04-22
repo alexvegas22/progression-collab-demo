@@ -15,6 +15,12 @@
 		"modeVisuel": "Visual mode"
 	},
 
+	"editeur": {
+		"langageÉbauche": "Language template : ",
+		"choixLangage": "-- Pick a language --",
+		"réinitialiser": "Reset"
+	},
+
 	"retroaction_tentative": {
 		"bonneRéponse": "Correct",
 		"mauvaiseRéponse": "Incorrect",

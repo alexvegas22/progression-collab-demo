@@ -15,7 +15,10 @@
 					<h5 class="text-black-50 font-weight-bold text-center card-title">
 						{{ $t("resultat_test.sortieAttendue") }}
 					</h5>
-					<pre>
+					<pre v-if="test.sortie_attendue == ''">
+						<p class="card-text sortie vide">[vide]</p>
+					</pre>
+					<pre v-else>
 						<p class="card-text" v-html="test.sortie_attendue"></p>
 					</pre>
 				</div>
@@ -24,9 +27,7 @@
 			<div v-if="resultat">
 				<div class="bg-light col card device-card">
 					<div class="card-body">
-						<h5 class="text-black-50 font-weight-bold text-center card-title">
-							{{ $t("resultat_test.sortieConsole") }}
-						</h5>
+						<h5 class="text-danger font-weight-bold text-center card-title">{{ $t("resultat_test.sortieErreur") }}</h5>
 						<pre>
 							<p class="card-text" v-html="resultat.sortie_observée"></p>
 						</pre>
@@ -39,9 +40,14 @@
 			<div class="row">
 				<div v-if="resultat.sortie_erreur" class="bg-light col card device-card">
 					<div class="card-body">
-						<h5 class="text-danger font-weight-bold text-center card-title">{{ $t("resultat_test.sortieErreur") }}</h5>
-						<pre>
-							<p class="card-text" v-html="resultat.sortie_erreur"></p>
+						<h5 class="text-black-50 font-weight-bold text-center card-title">
+							{{ $t("resultat_test.sortieConsole") }}
+						</h5>
+						<pre v-if="resultat.sortie_observée == ''">
+							<p class="card-text sortie vide">[vide]</p>
+						</pre>
+						<pre v-else>
+							<p class="card-text" v-html="resultat.sortie_observée"></p>
 						</pre>
 					</div>
 				</div>
@@ -60,3 +66,5 @@
 </template>
 
 <script src="./resultat_test.js"></script>
+
+<style src="./resultat_test.css"></style>

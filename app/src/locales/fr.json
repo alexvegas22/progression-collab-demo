@@ -15,6 +15,12 @@
 		"modeVisuel": "Mode visuel"
 	},
 
+	"editeur": {
+		"langageÉbauche": "Langage de l'ébauche : ",
+		"choixLangage": "-- Choisis ton langage --",
+		"réinitialiser": "Réinitialiser"
+	},
+
 	"retroaction_tentative": {
 		"bonneRéponse": "Bonne réponse",
 		"mauvaiseRéponse": "Mauvaise réponse",
