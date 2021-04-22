@@ -13,6 +13,12 @@
 		"jeuTests": "Test cases"
 	},
 
+	"editeur": {
+		"langageÉbauche": "Language template : ",
+		"choixLangage": "-- Pick a language --",
+		"réinitialiser": "Reset"
+	},
+
 	"retroaction_tentative": {
 		"bonneRéponse": "Correct",
 		"mauvaiseRéponse": "Incorrect",
@@ -21,7 +27,7 @@
 		"traitementEnCours": "Your answer is being tested...",
 		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
 	},
-	
+
 	"resultat_test": {
 		"entrée": "Input",
 		"sortieAttendue": "Expected output",
