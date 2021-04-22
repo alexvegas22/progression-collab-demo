@@ -21,11 +21,12 @@ export default {
 			}
 
 			if (this.modeVisuel) {
-				chaîne = chaîne.replace(/ /g, '<span class="modeVisuel">_</span>');
-				chaîne = chaîne.replace(/\r|\n/g, '<span class="modeVisuel">↵\n</span>');
+				chaîne = chaîne.replaceAll(" ", '<span class="modeVisuel">_</span>');
+				chaîne = chaîne.replaceAll("\n", '<span class="modeVisuel">↵\n</span>');
+				chaîne = chaîne.replaceAll("\r", '<span class="modeVisuel">↵\n</span>');
 			} else {
-				chaîne = chaîne.replace(/<span class="modeVisuel">_<\/span>/g, " ");
-				chaîne = chaîne.replace(/<span class="modeVisuel">↵\n<\/span>/g, "\n");
+				chaîne = chaîne.replaceAll('<span class="modeVisuel">_</span>', " ");
+				chaîne = chaîne.replaceAll('<span class="modeVisuel">↵\n</span>', "\n");
 			}
 			return chaîne;
 		},
