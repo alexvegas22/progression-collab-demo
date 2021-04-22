@@ -10,7 +10,9 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases"
+		"jeuTests": "Test cases",
+		"modeNormal": "Default mode",
+		"modeVisuel": "Visual mode"
 	},
 
 	"retroaction_tentative": {
@@ -21,7 +23,7 @@
 		"traitementEnCours": "Your answer is being tested...",
 		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
 	},
-	
+
 	"resultat_test": {
 		"entrée": "Input",
 		"sortieAttendue": "Expected output",

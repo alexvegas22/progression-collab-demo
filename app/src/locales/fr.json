@@ -8,9 +8,11 @@
 	"validation_tentative": {
 		"boutonValider": "Valider"
 	},
-	
+
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"modeNormal": "Mode normal",
+		"modeVisuel": "Mode visuel"
 	},
 
 	"retroaction_tentative": {
