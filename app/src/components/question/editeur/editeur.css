@@ -21,3 +21,7 @@
 	margin-right: 15px;
 	width: calc(30% - 15px);
 }
+.ace_comment {
+	font-style: italic !important;
+	color: red !important;
+}
