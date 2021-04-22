@@ -10,14 +10,21 @@ export default {
 		resultats() {
 			return this.$store.state.retroactionTentative ? this.$store.state.retroactionTentative.resultats : [];
 		},
-		data: {
+	},
+	data() {
+		return {
 			modeVisuel: false,
-		},
+		};
+	},
+	updated: function () {
+		this.changerModeComparaison();
 	},
 	methods: {
 		remplacerCaractèresVisuels(chaîne) {
 			if (!chaîne) {
 				return;
+			} else if (this.modeVisuel && chaîne.indexOf('<span class="modeVisuel">') > -1) {
+				return chaîne;
 			}
 
 			if (this.modeVisuel) {
@@ -28,6 +35,7 @@ export default {
 				chaîne = chaîne.replaceAll('<span class="modeVisuel">_</span>', " ");
 				chaîne = chaîne.replaceAll('<span class="modeVisuel">↵\n</span>', "\n");
 			}
+
 			return chaîne;
 		},
 		changerModeComparaison() {

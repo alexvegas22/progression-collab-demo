@@ -4,14 +4,7 @@
 		<label class="label">
 			<div class="label-text" style="margin-right: 10px">{{ $t("jeu_tests.modeNormal") }}</div>
 			<div class="toggle">
-				<input
-					class="toggle-state"
-					type="checkbox"
-					name="check"
-					v-model="modeVisuel"
-					v-on:input="modeVisuel = $event.target.value"
-					@change="changerModeComparaison()"
-				/>
+				<input class="toggle-state" type="checkbox" name="check" v-model="modeVisuel" />
 				<div class="indicator"></div>
 			</div>
 			<div class="label-text">{{ $t("jeu_tests.modeVisuel") }}</div>
