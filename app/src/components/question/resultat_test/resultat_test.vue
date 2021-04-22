@@ -13,7 +13,10 @@
 					<h5 class="text-black-50 font-weight-bold text-center card-title">
 						{{ $t("resultat_test.sortieAttendue") }}
 					</h5>
-					<pre>
+					<pre v-if="test.sortie_attendue == ''">
+						<p class="card-text resultat vide">[vide]</p>
+					</pre>
+					<pre v-else>
 						<p class="card-text" v-html="test.sortie_attendue"></p>
 					</pre>
 				</div>
