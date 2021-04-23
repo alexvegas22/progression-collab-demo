@@ -15,14 +15,31 @@ export default {
 	data() {
 		return {
 			modeVisuel: false,
+			modeDiff: false,
+			testsDiff: undefined,
+			resultatsDiff: [],
 		};
 	},
-	updated() {
-		this.changerModeComparaison();
-		this.différence();
+	mounted() {
+		this.testsDiff = this.tests;
+	},
+	watch: {
+		modeVisuel: function(nouveauMode, ancienMode) {
+			if (this.modeDiff && nouveauMode) {
+				this.modeDiff = false;
+			}
+			this.changerModeComparaison();
+		},
+		modeDiff: function(nouveauMode, ancienMode) {
+			if (this.modeVisuel && nouveauMode) {
+				this.modeVisuel = false;
+			}
+			this.différence();
+		},
 	},
 	methods: {
 		remplacerCaractèresVisuels(chaîne) {
+			var chaîneTmp = undefined;
 			if (!chaîne) {
 				return;
 			} else if (this.modeVisuel && chaîne.indexOf('<span class="modeVisuel">') > -1) {
@@ -30,35 +47,39 @@ export default {
 			}
 
 			if (this.modeVisuel) {
-				chaîne = chaîne.replaceAll(" ", '<span class="modeVisuel">_</span>');
-				chaîne = chaîne.replaceAll("\n", '<span class="modeVisuel">↵\n</span>');
-				chaîne = chaîne.replaceAll("\r", '<span class="modeVisuel">↵\n</span>');
+				chaîneTmp = chaîne.replaceAll(" ", '<span class="modeVisuel">_</span>');
+				chaîneTmp = chaîneTmp.replaceAll("\n", '<span class="modeVisuel">↵\n</span>');
+				chaîneTmp = chaîneTmp.replaceAll("\r", '<span class="modeVisuel">↵\n</span>');
 			} else {
-				chaîne = chaîne.replaceAll('<span class="modeVisuel">_</span>', " ");
-				chaîne = chaîne.replaceAll('<span class="modeVisuel">↵\n</span>', "\n");
+				chaîneTmp = chaîne.replaceAll('<span class="modeVisuel">_</span>', " ");
+				chaîneTmp = chaîneTmp.replaceAll('<span class="modeVisuel">↵\n</span>', "\n");
 			}
 
-			return chaîne;
+			return chaîneTmp;
 		},
 		changerModeComparaison() {
+			this.testsDiff = this.tests;
+			this.resultatsDiff = this.resultats;
 			for (let i = 0; i < this.resultats.length; i++) {
-				this.resultats[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
-				this.tests[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
+				this.resultatsDiff[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultatsDiff[i].sortie_observée);
+				this.testsDiff[i].sortie_attendue = this.remplacerCaractèresVisuels(this.testsDiff[i].sortie_attendue);
 			}
 		},
 		différence() {
-			console.log("appellé");
-			console.log(this.tests.length);
-			for (let i = 0; i < this.tests.length; i++) {
-				console.log("dans for loop");
-				if (!this.resultats[i].sortie_observée || !this.tests[i].sortie_attendue) {
-					return;
+			if (!this.resultatsDiff || !this.testsDiff || this.resultatsDiff.length === 0 || this.modeVisuel == true) {
+				return;
+			}
+
+			this.testsDiff = this.tests;
+			this.resultatsDiff = this.resultats;
+
+			for (let i = 0; i < this.testsDiff.length; i++) {
+				if (!this.testsDiff[i].sortie_attendue) {
+					return this.testsDiff[i].sortie_attendue;
 				}
-				const diffTmp = diff.diffChars(this.resultats[i].sortie_observée, this.tests[i].sortie_attendue);
-				console.log("DIFFTMP: ", diffTmp);
+				const diffTmp = diff.diffChars(this.tests[i].sortie_attendue, this.resultats[i].sortie_observée);
 				var nouvelleSortieDiff = "";
 				diffTmp.forEach(partie => {
-					console.log("PARTIE: ", partie);
 					var span = undefined;
 					if (partie.added) {
 						span = `<span class="diff inséré">${partie.value}</span>`;
@@ -69,10 +90,8 @@ export default {
 					}
 					nouvelleSortieDiff += span;
 				});
-				this.tests[i].sortie_attendue = nouvelleSortieDiff;
+				this.resultatsDiff[i].sortie_observée = nouvelleSortieDiff;
 			}
-			console.log("TABLEAUDIF2: ", this.tests);
-			//return this.tests;
 		},
 	},
 };
