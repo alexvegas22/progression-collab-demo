@@ -12,9 +12,6 @@ export default {
 			return this.$store.state.retroactionTentative ? this.$store.state.retroactionTentative.resultats : [];
 		},
 	},
-	props: {
-		testsDiff: undefined,
-	},
 	data() {
 		return {
 			modeVisuel: false,
@@ -50,13 +47,18 @@ export default {
 			}
 		},
 		différence() {
+			console.log("appellé");
+			console.log(this.tests.length);
 			for (let i = 0; i < this.tests.length; i++) {
+				console.log("dans for loop");
 				if (!this.resultats[i].sortie_observée || !this.tests[i].sortie_attendue) {
 					return;
 				}
 				const diffTmp = diff.diffChars(this.resultats[i].sortie_observée, this.tests[i].sortie_attendue);
+				console.log("DIFFTMP: ", diffTmp);
 				var nouvelleSortieDiff = "";
 				diffTmp.forEach(partie => {
+					console.log("PARTIE: ", partie);
 					var span = undefined;
 					if (partie.added) {
 						span = `<span class="diff inséré">${partie.value}</span>`;
@@ -69,6 +71,8 @@ export default {
 				});
 				this.tests[i].sortie_attendue = nouvelleSortieDiff;
 			}
+			console.log("TABLEAUDIF2: ", this.tests);
+			//return this.tests;
 		},
 	},
 };
