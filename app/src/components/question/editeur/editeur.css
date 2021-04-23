@@ -21,6 +21,6 @@
 	margin-right: 15px;
 	width: calc(30% - 15px);
 }
-#editeur {
-	height: 300px;
+.ligne-ro {
+	background: #303030;
 }

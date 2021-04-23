@@ -1,4 +1,4 @@
-import { VCodeMirror } from "vue3-code-mirror";
+import { VCodeMirror } from "./VCodeMirrorModifié";
 
 export default {
 	components: {

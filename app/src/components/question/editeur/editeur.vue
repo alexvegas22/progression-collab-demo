@@ -14,10 +14,8 @@
 	<div>
 		<v-code-mirror
 			id="editor"
-			name="editor"
 			:value="this.code"
-			style="height: 300px"
-			:lang="selected"
+			:mode="selected"
 			theme="monokai"
 		/>
 	</div>
