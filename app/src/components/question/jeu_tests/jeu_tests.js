@@ -1,4 +1,5 @@
 import Test from "@/components/question/test/test.vue";
+const diff = require("diff");
 
 export default {
 	components: { Test },
@@ -11,13 +12,17 @@ export default {
 			return this.$store.state.retroactionTentative ? this.$store.state.retroactionTentative.resultats : [];
 		},
 	},
+	props: {
+		testsDiff: undefined,
+	},
 	data() {
 		return {
 			modeVisuel: false,
 		};
 	},
-	updated: function () {
+	updated() {
 		this.changerModeComparaison();
+		this.différence();
 	},
 	methods: {
 		remplacerCaractèresVisuels(chaîne) {
@@ -42,6 +47,27 @@ export default {
 			for (let i = 0; i < this.resultats.length; i++) {
 				this.resultats[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
 				this.tests[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
+			}
+		},
+		différence() {
+			for (let i = 0; i < this.tests.length; i++) {
+				if (!this.resultats[i].sortie_observée || !this.tests[i].sortie_attendue) {
+					return;
+				}
+				const diffTmp = diff.diffChars(this.resultats[i].sortie_observée, this.tests[i].sortie_attendue);
+				var nouvelleSortieDiff = "";
+				diffTmp.forEach(partie => {
+					var span = undefined;
+					if (partie.added) {
+						span = `<span class="diff inséré">${partie.value}</span>`;
+					} else if (partie.removed) {
+						span = `<span class="diff enlevé">${partie.value}</span>`;
+					} else {
+						span = partie.value;
+					}
+					nouvelleSortieDiff += span;
+				});
+				this.tests[i].sortie_attendue = nouvelleSortieDiff;
 			}
 		},
 	},
