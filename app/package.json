@@ -25,7 +25,7 @@
     "vue-i18n": "^9.1.4",
     "vue-loader-v16": "^16.0.0-beta.5.4",
     "vue-router": "^4.0.3",
-    "vue3-ace-editor": "^2.0.2",
+    "vue3-code-mirror": "^1.0.3",
     "vuex": "^4.0.0",
     "webpack": "^4.0.0",
     "yarn": "^1.22.10"

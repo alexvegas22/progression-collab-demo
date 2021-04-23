@@ -57,6 +57,11 @@ export const VAceEditor = defineComponent({
 		var TODOMoin = editor.find("-TODO", {
 			caseSensitive: true
 		});
+		TODOPlus.start.column = 0;
+		editor.session.addFold("", TODOPlus);
+
+		TODOMoin.start.column = 0;
+		editor.session.addFold("", TODOMoin);
 
 		var positionTODO = [new Anchor(document, TODOPlus.start.row, 0), new Anchor(document, TODOMoin.start.row, 0)];
 
@@ -70,11 +75,19 @@ export const VAceEditor = defineComponent({
 				console.log("in éditable");
 			} else {
 				console.log("not éditable");
-				e.preventDefault();
-				e.stopPropagation();
+				if (
+					e.command.name == "insertstring" ||
+					e.command.name == "paste" ||
+					e.command.name == "backspace" ||
+					e.command.name == "del" ||
+					e.command.name.startsWith("cut") ||
+					e.command.name.startsWith("remove")
+				) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
 			}
 		});
-
 		editor.on("change", () => {
 			const content = editor.getValue();
 			this._contentBackup = content;

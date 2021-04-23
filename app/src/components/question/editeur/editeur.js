@@ -1,8 +1,8 @@
-import { VAceEditor } from "./VAceEditorModifié";
+import { VCodeMirror } from "vue3-code-mirror";
 
 export default {
 	components: {
-		VAceEditor
+		VCodeMirror
 	},
 	data() {
 		return {

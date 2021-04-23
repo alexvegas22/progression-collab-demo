@@ -12,7 +12,7 @@
 		</option>
 	</select>
 	<div>
-		<v-ace-editor
+		<v-code-mirror
 			id="editor"
 			name="editor"
 			:value="this.code"
