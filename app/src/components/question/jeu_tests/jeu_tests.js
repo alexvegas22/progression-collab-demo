@@ -16,20 +16,7 @@ export default {
 		return {
 			modeVisuel: false,
 			modeDiff: false,
-			testsDiff: undefined,
-			resultatsDiff: [],
 		};
-	},
-	updated() {
-		this.testsDiff = this.tests;
-		this.resultatsDiff = this.resultats;
-		console.log("1", this.tests);
-		console.log("2", this.testsDiff);
-		console.log("3", this.resultats);
-		console.log("4", this.resultatsDiff);
-	},
-	mounted() {
-		this.testsDiff = this.tests;
 	},
 	watch: {
 		modeVisuel: function(nouveauMode) {
@@ -66,39 +53,44 @@ export default {
 			return chaîneTmp;
 		},
 		changerModeComparaison() {
-			this.testsDiff = this.tests;
-			this.resultatsDiff = this.resultats;
 			for (let i = 0; i < this.resultats.length; i++) {
-				this.resultatsDiff[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
-				this.testsDiff[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
+				this.resultats[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
+				this.tests[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
 			}
 		},
 		différence() {
-			if (!this.resultatsDiff || !this.testsDiff || this.resultatsDiff.length === 0 || this.modeVisuel == true) {
-				return;
-			}
-
-			this.testsDiff = this.tests;
-			this.resultatsDiff = this.resultats;
-
-			for (let i = 0; i < this.tests.length; i++) {
-				if (!this.tests[i].sortie_attendue) {
-					return this.tests[i].sortie_attendue;
+			if (this.modeDiff == false) {
+				for (let i = 0; i < this.resultats.length; i++) {
+					this.resultats[i].sortie_observée = this.resultats[i].sortie_observée.replaceAll(
+						'<span class="diff enlevé">',
+						"",
+					);
+					this.resultats[i].sortie_observée = this.resultats[i].sortie_observée.replaceAll(
+						'<span class="diff inséré">',
+						"",
+					);
+					this.resultats[i].sortie_observée = this.resultats[i].sortie_observée.replaceAll("</span>", "");
 				}
-				const diffTmp = diff.diffChars(this.tests[i].sortie_attendue, this.resultats[i].sortie_observée);
-				var nouvelleSortieDiff = "";
-				diffTmp.forEach(partie => {
-					var span = undefined;
-					if (partie.added) {
-						span = `<span class="diff enlevé">${partie.value}</span>`;
-					} else if (partie.removed) {
-						span = `<span class="diff inséré">${partie.value}</span>`;
-					} else {
-						span = partie.value;
+			} else {
+				for (let i = 0; i < this.tests.length; i++) {
+					if (!this.tests[i].sortie_attendue) {
+						this.resultats[i].sortie_observée = "";
 					}
-					nouvelleSortieDiff += span;
-				});
-				this.resultatsDiff[i].sortie_observée = nouvelleSortieDiff;
+					const diffTmp = diff.diffChars(this.tests[i].sortie_attendue, this.resultats[i].sortie_observée);
+					var nouvelleSortieDiff = "";
+					diffTmp.forEach(partie => {
+						var span = undefined;
+						if (partie.added) {
+							span = `<span class="diff enlevé">${partie.value}</span>`;
+						} else if (partie.removed) {
+							span = `<span class="diff inséré">${partie.value}</span>`;
+						} else {
+							span = partie.value;
+						}
+						nouvelleSortieDiff += span;
+					});
+					this.resultats[i].sortie_observée = nouvelleSortieDiff;
+				}
 			}
 		},
 	},
