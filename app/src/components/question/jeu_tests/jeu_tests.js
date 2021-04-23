@@ -86,9 +86,9 @@ export default {
 				diffTmp.forEach(partie => {
 					var span = undefined;
 					if (partie.added) {
-						span = `<span class="diff inséré">${partie.value}</span>`;
-					} else if (partie.removed) {
 						span = `<span class="diff enlevé">${partie.value}</span>`;
+					} else if (partie.removed) {
+						span = `<span class="diff inséré">${partie.value}</span>`;
 					} else {
 						span = partie.value;
 					}
