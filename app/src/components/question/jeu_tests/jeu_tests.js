@@ -20,17 +20,21 @@ export default {
 			resultatsDiff: [],
 		};
 	},
+	updated() {
+		this.testsDiff = this.tests;
+		this.resultatsDiff = this.resultats;
+	},
 	mounted() {
 		this.testsDiff = this.tests;
 	},
 	watch: {
-		modeVisuel: function(nouveauMode, ancienMode) {
+		modeVisuel: function(nouveauMode) {
 			if (this.modeDiff && nouveauMode) {
 				this.modeDiff = false;
 			}
 			this.changerModeComparaison();
 		},
-		modeDiff: function(nouveauMode, ancienMode) {
+		modeDiff: function(nouveauMode) {
 			if (this.modeVisuel && nouveauMode) {
 				this.modeVisuel = false;
 			}
