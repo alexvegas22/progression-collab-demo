@@ -4,6 +4,7 @@ import CodeMirror from "codemirror";
 import "codemirror/addon/fold/brace-fold";
 import "codemirror/addon/fold/foldgutter";
 import "codemirror/addon/fold/foldgutter.css";
+import "codemirror/mode/clike/clike/";
 import "codemirror/mode/python/python";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
