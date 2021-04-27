@@ -80,22 +80,27 @@ export default {
 			} else {
 				for (let i = 0; i < this.tests.length; i++) {
 					if (!this.testsModes[i].sortie_attendue) {
-						this.resultatsModes[i].sortie_observée = "";
+						return;
 					}
-					const diffTmp = diff.diffChars(this.testsModes[i].sortie_attendue, this.resultatsModes[i].sortie_observée);
-					var nouvelleSortieDiff = "";
-					diffTmp.forEach(partie => {
-						var span = undefined;
+					const diffTmpRes = diff.diffChars(this.testsModes[i].sortie_attendue, this.resultatsModes[i].sortie_observée);
+					var nouvelleSortieDiffRes = "";
+					var nouvelleSortieDiffTes = "";
+					diffTmpRes.forEach(partie => {
+						var spanRes = "";
+						var spanTes = "";
 						if (partie.added) {
-							span = `<span class="diff enlevé">${partie.value}</span>`;
+							spanRes = `<span class="diff différent">${partie.value}</span>`;
 						} else if (partie.removed) {
-							span = `<span class="diff inséré">${partie.value}</span>`;
+							spanTes = `<span class="diff différent">${partie.value}</span>`;
 						} else {
-							span = partie.value;
+							spanRes = partie.value;
+							spanTes = partie.value;
 						}
-						nouvelleSortieDiff += span;
+						nouvelleSortieDiffRes += spanRes;
+						nouvelleSortieDiffTes += spanTes;
 					});
-					this.resultatsModes[i].sortie_observée = nouvelleSortieDiff;
+					this.resultatsModes[i].sortie_observée = nouvelleSortieDiffRes;
+					this.testsModes[i].sortie_attendue = nouvelleSortieDiffTes;
 				}
 			}
 		},

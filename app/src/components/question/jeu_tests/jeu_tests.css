@@ -42,13 +42,7 @@
 	color: #959595;
 }
 
-.diff.inséré {
+.diff.différent {
 	text-decoration: none;
 	background-color: #fbb6c2;
-}
-
-.diff.enlevé {
-	text-decoration: line-through;
-	background-color: #fbb6c2;
-	color: #555;
 }
