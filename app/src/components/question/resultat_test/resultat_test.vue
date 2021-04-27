@@ -10,20 +10,6 @@
 		</div>
 
 		<div class="row">
-			<div class="bg-light col card device-card">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-center card-title">
-						{{ $t("resultat_test.sortieAttendue") }}
-					</h5>
-					<pre v-if="test.sortie_attendue == ''">
-						<p class="card-text sortie vide">[vide]</p>
-					</pre>
-					<pre v-else>
-						<p class="card-text" v-html="test.sortie_attendue"></p>
-					</pre>
-				</div>
-			</div>
-
 			<div v-if="resultat">
 				<div class="bg-light col card device-card">
 					<div class="card-body">
@@ -37,6 +23,20 @@
 							<p class="card-text" v-html="resultat.sortie_observée"></p>
 						</pre>
 					</div>
+				</div>
+			</div>
+
+			<div class="bg-light col card device-card">
+				<div class="card-body">
+					<h5 class="text-black-50 font-weight-bold text-center card-title">
+						{{ $t("resultat_test.sortieAttendue") }}
+					</h5>
+					<pre v-if="test.sortie_attendue == ''">
+						<p class="card-text sortie vide">[vide]</p>
+					</pre>
+					<pre v-else>
+						<p class="card-text" v-html="test.sortie_attendue"></p>
+					</pre>
 				</div>
 			</div>
 		</div>
