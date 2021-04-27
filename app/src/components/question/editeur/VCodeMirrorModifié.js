@@ -130,11 +130,6 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 				{ readOnly: true, inclusiveRight: true }
 			);
 
-			//Style des lignes immuables
-			// for (let i = ligneDébut.line; i < ligneFin.line; i++) {
-			// 	this.editor.doc.addLineClass(i, "background", "ligne-ro");
-			// }
-
 			//Cache la ligne -TODO
 			this.editor.doc.markText(
 				{ line: ligneDébut.line, ch: 0 },

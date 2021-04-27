@@ -14,7 +14,7 @@
 	<div>
 		<v-code-mirror
 			id="editor"
-			:value="this.code"
+			v-model:value="this.code"
 			:mode="selected"
 			theme="monokai"
 		/>
