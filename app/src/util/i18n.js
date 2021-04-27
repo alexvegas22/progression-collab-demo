@@ -1,4 +1,4 @@
-import { createI18n } from "vue-i18n";
+import { createI18n } from "vue-i18n/index";
 
 function loadLocaleMessages() {
 	const locales = require.context("../locales", true, /[A-Za-z0-9-_,\s]+\.json$/i);
@@ -13,8 +13,20 @@ function loadLocaleMessages() {
 	return messages;
 }
 
+function checkDefaultLanguage() {
+	let matched = null;
+	let languages = Object.getOwnPropertyNames(loadLocaleMessages());
+	languages.forEach(lang => {
+		let languagePartials = navigator.language.split('-')[0];
+		if (lang === languagePartials) {
+			matched = lang;
+		}
+	});
+	return matched;
+}
+
 const i18n = new createI18n({
-	locale: navigator.language.split("-")[0],
+	locale: checkDefaultLanguage() || process.env.VUE_APP_I18N_LOCALE,
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE,
 	messages: loadLocaleMessages()
 });
