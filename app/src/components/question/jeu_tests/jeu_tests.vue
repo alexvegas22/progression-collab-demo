@@ -19,8 +19,8 @@
 			<div class="label-text">Diff on</div>
 		</label>
 	</div>
-	<div v-for="(test, index) in this.tests" :key="index">
-		<Test v-bind:test="test" v-bind:resultat="resultats[index]" />
+	<div v-for="(test, index) in testsModes" :key="index">
+		<Test v-bind:test="test" v-bind:resultat="resultatsModes[index]" />
 	</div>
 </template>
 

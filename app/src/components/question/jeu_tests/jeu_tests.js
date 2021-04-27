@@ -16,20 +16,35 @@ export default {
 		return {
 			modeVisuel: false,
 			modeDiff: false,
+			resultatsModes: [],
+			testsModes: [],
+			prêt: false,
 		};
 	},
+	mounted() {
+		this.réinitialiserTableaux();
+	},
+	updated() {
+		if (!this.resultats[0] && !this.prêt) {
+			this.prêt = true;
+			this.réinitialiserTableaux("résultats");
+		}
+	},
 	watch: {
-		modeVisuel: function(nouveauMode) {
-			if (this.modeDiff && nouveauMode) {
+		modeVisuel: function(mode) {
+			if (this.modeDiff && mode) {
 				this.modeDiff = false;
 			}
 			this.changerModeComparaison();
 		},
-		modeDiff: function(nouveauMode) {
-			if (this.modeVisuel && nouveauMode) {
+		modeDiff: function(mode) {
+			if (this.modeVisuel && mode) {
 				this.modeVisuel = false;
 			}
 			this.différence();
+		},
+		resultats: function() {
+			this.réinitialiserTableaux("résultats");
 		},
 	},
 	methods: {
@@ -41,42 +56,33 @@ export default {
 				return chaîne;
 			}
 
-			if (this.modeVisuel) {
-				chaîneTmp = chaîne.replaceAll(" ", '<span class="modeVisuel">_</span>');
-				chaîneTmp = chaîneTmp.replaceAll("\n", '<span class="modeVisuel">↵\n</span>');
-				chaîneTmp = chaîneTmp.replaceAll("\r", '<span class="modeVisuel">↵\n</span>');
-			} else {
-				chaîneTmp = chaîne.replaceAll('<span class="modeVisuel">_</span>', " ");
-				chaîneTmp = chaîneTmp.replaceAll('<span class="modeVisuel">↵\n</span>', "\n");
-			}
+			chaîneTmp = chaîne.replaceAll(" ", '<span class="modeVisuel">_</span>');
+			chaîneTmp = chaîneTmp.replaceAll("\n", '<span class="modeVisuel">↵\n</span>');
+			chaîneTmp = chaîneTmp.replaceAll("\r", '<span class="modeVisuel">↵\n</span>');
 
 			return chaîneTmp;
 		},
 		changerModeComparaison() {
-			for (let i = 0; i < this.resultats.length; i++) {
-				this.resultats[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
-				this.tests[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
+			if (this.modeVisuel) {
+				for (let i = 0; i < this.resultatsModes.length; i++) {
+					this.resultatsModes[i].sortie_observée = this.remplacerCaractèresVisuels(
+						this.resultatsModes[i].sortie_observée,
+					);
+					this.testsModes[i].sortie_attendue = this.remplacerCaractèresVisuels(this.testsModes[i].sortie_attendue);
+				}
+			} else {
+				this.réinitialiserTableaux();
 			}
 		},
 		différence() {
 			if (this.modeDiff == false) {
-				for (let i = 0; i < this.resultats.length; i++) {
-					this.resultats[i].sortie_observée = this.resultats[i].sortie_observée.replaceAll(
-						'<span class="diff enlevé">',
-						"",
-					);
-					this.resultats[i].sortie_observée = this.resultats[i].sortie_observée.replaceAll(
-						'<span class="diff inséré">',
-						"",
-					);
-					this.resultats[i].sortie_observée = this.resultats[i].sortie_observée.replaceAll("</span>", "");
-				}
+				this.réinitialiserTableaux("résultats");
 			} else {
 				for (let i = 0; i < this.tests.length; i++) {
-					if (!this.tests[i].sortie_attendue) {
-						this.resultats[i].sortie_observée = "";
+					if (!this.testsModes[i].sortie_attendue) {
+						this.resultatsModes[i].sortie_observée = "";
 					}
-					const diffTmp = diff.diffChars(this.tests[i].sortie_attendue, this.resultats[i].sortie_observée);
+					const diffTmp = diff.diffChars(this.testsModes[i].sortie_attendue, this.resultatsModes[i].sortie_observée);
 					var nouvelleSortieDiff = "";
 					diffTmp.forEach(partie => {
 						var span = undefined;
@@ -89,9 +95,55 @@ export default {
 						}
 						nouvelleSortieDiff += span;
 					});
-					this.resultats[i].sortie_observée = nouvelleSortieDiff;
+					this.resultatsModes[i].sortie_observée = nouvelleSortieDiff;
 				}
 			}
+		},
+		réinitialiserTableaux(tableau = "les deux") {
+			switch (tableau) {
+				case "tests":
+					this.testsModes = [];
+					this.réinitialiserTests();
+					break;
+				case ("resultats", "résultats"):
+					this.resultatsModes = [];
+					this.réinitialiserRésultats();
+					break;
+				default:
+					this.testsModes = [];
+					this.resultatsModes = [];
+					this.réinitialiserTests();
+					this.réinitialiserRésultats();
+			}
+		},
+		réinitialiserTests() {
+			this.tests.forEach(test => {
+				this.testsModes.push({
+					numéro: test.numéro,
+					nom: test.nom,
+					entrée: test.entrée,
+					sortie_attendue: test.sortie_attendue,
+					liens: {
+						related: test.liens.related,
+						self: test.liens.self,
+					},
+				});
+			});
+		},
+		réinitialiserRésultats() {
+			this.resultats.forEach(résultat => {
+				this.resultatsModes.push({
+					numéro: résultat.numéro,
+					feedback: résultat.feedback,
+					résultat: résultat.résultat,
+					sortie_observée: résultat.sortie_observée,
+					sortie_erreur: résultat.sortie_erreur,
+					liens: {
+						related: résultat.liens.related,
+						self: résultat.liens.self,
+					},
+				});
+			});
 		},
 	},
 };
