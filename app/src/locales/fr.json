@@ -8,9 +8,15 @@
 	"validation_tentative": {
 		"boutonValider": "Valider"
 	},
-	
+
 	"jeu_tests": {
 		"jeuTests": "Jeu de tests"
+	},
+
+	"editeur": {
+		"langageÉbauche": "Langage de l'ébauche : ",
+		"choixLangage": "-- Choisis ton langage --",
+		"réinitialiser": "Réinitialiser"
 	},
 
 	"retroaction_tentative": {
