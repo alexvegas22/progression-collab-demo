@@ -27,15 +27,24 @@ RUN npm install
 COPY app/ /app
 
 # build app for production with minification
-#RUN npm run build
+# RUN npm run build
 
 # Développement
+
 EXPOSE 8080
+
 CMD [ "npm", "run", "serve" ]
 
 
-# Production 
-# FROM nginx:stable-alpine as production-stage
+# #Production 
+# FROM nginx:stable as production-stage
+# 
+# RUN apt update && apt -y install php php-cli php-fpm && apt autoclean
+# 
 # COPY --from=build-stage /app/dist /usr/share/nginx/html
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+# #EXPOSE 80
+# 
+# COPY default.conf /etc/nginx/conf.d/
+# RUN echo listen.mode=0777 >> /etc/php/7.3/fpm/php-fpm.conf
+# 
+# CMD service php7.3-fpm start && service nginx start && tail -f /dev/null
