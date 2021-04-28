@@ -1,5 +1,5 @@
 <template class="p-4">
-	<div v-show="msgReponseApi" class="alert alert-warning alert-dismissible fade show" role="alert">
+	<div v-if="msgReponseApi" class="alert alert-warning alert-dismissible fade show" role="alert">
 		<strong>{{ $t("retroaction_tentative."+msgReponseApi) }}</strong>
 	</div>
 	<div v-if="retroactionTentative">

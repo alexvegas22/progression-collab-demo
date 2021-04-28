@@ -35,7 +35,8 @@
 		"sortieAttendue": "Expected output",
 		"sortieErreur": "Error output",
 		"sortieConsole": "Actual output",
-		"rétroaction": "Feedback"
+		"rétroaction": "Feedback",
+		"vide": "[empty]"
 	},
 
 	"avancement": {

@@ -35,7 +35,8 @@
 		"sortieAttendue": "Sortie attendue",
 		"sortieErreur": "Sortie erreur",
 		"sortieConsole": "Sortie observée",
-		"rétroaction": "Rétroaction"
+		"rétroaction": "Rétroaction",
+		"vide": "[vide]"
 	},
 
 	"avancement": {
