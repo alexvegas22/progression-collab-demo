@@ -65,10 +65,10 @@ const getAvancementApi = async (urlAvancement) => {
 		console.log(err);
 	}
 };
-const postAvancementApi = async (objet) => {
+const postAvancementApi = async (params) => {
 	try {
-		const body = (objet.avancement)? {question_uri: objet.question_uri, avancement: objet.avancement} : {question_uri: objet.question_uri}
-		const data = await postData(objet.url, body);
+		const body = (params.avancement)? {question_uri: params.question_uri, avancement: params.avancement} : {question_uri: params.question_uri}
+		const data = await postData(params.url, body);
 		var avancement = data.data.attributes;
 		avancement.liens = data.data.links;
 		avancement.tentatives = [];

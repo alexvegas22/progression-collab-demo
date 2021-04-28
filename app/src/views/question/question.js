@@ -36,11 +36,10 @@ export default {
 			);
 		}
 		else {
-			const objet = {
+			this.$store.dispatch("postAvancement", {
 				url: this.$store.state.user.liens.avancements,
 				question_uri: this.uri
-			}
-			this.$store.dispatch("postAvancement", objet);
+			});
 		}
 	},
 };

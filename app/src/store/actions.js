@@ -54,9 +54,9 @@ export default {
 			console.log(error);
 		}
 	},
-	async postAvancement({ commit }, objet) {
+	async postAvancement({ commit }, params) {
 		try {
-			const avancement = await postAvancementApi(objet);
+			const avancement = await postAvancementApi(params);
 			commit("setAvancement", avancement);
 		} catch (error) {
 			console.log(error);
