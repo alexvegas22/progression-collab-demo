@@ -38,7 +38,7 @@ export default {
 	methods: {
 		remplacerCaractèresVisuels(chaîne) {
 			if (!chaîne) {
-				return;
+				return "";
 			}
 
 			var chaîneTmp = undefined;
