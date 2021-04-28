@@ -11,7 +11,6 @@ export default {
 			mode: undefined,
 			resultatCopie: null,
 			testCopie: null,
-			prêt: false,
 		};
 	},
 	mounted() {
