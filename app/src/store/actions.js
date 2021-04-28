@@ -1,4 +1,4 @@
-import { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative } from "@/services/index.js";
+import { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative, postAvancementApi } from "@/services/index.js";
 
 export default {
 	async getUser({ commit }, urlUser) {
@@ -34,7 +34,6 @@ export default {
 			console.log(error);
 		}
 	},
-	
 	async soumettreTentative({ commit }, params) {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("updateMsgAPIEnvoiTentative", "traitementEnCours");
@@ -52,6 +51,14 @@ export default {
 			commit("updateEnvoieTentativeEnCours", false);
 		} catch (error) {
 			commit("updateMsgAPIEnvoiTentative", "erreurServeur");
+			console.log(error);
+		}
+	},
+	async postAvancement({ commit }, objet) {
+		try {
+			const avancement = await postAvancementApi(objet);
+			commit("setAvancement", avancement);
+		} catch (error) {
 			console.log(error);
 		}
 	},

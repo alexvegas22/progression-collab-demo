@@ -5,6 +5,7 @@ const getUserApi = async (urlUser) => {
 		const data = await getData(urlUser + "?include=avancements");
 		var user = data.data.attributes;
 		user.liens = data.data.links;
+		user.liens.avancements = data.data.relationships.avancements.links.related;
 		user.avancements = [];
 		if (data.included) {
 			data.included.forEach((item) => {
@@ -64,6 +65,18 @@ const getAvancementApi = async (urlAvancement) => {
 		console.log(err);
 	}
 };
+const postAvancementApi = async (objet) => {
+	try {
+		const body = (objet.avancement)? {question_uri: objet.question_uri, avancement: objet.avancement} : {question_uri: objet.question_uri}
+		const data = await postData(objet.url, body);
+		var avancement = data.data.attributes;
+		avancement.liens = data.data.links;
+		avancement.tentatives = [];
+		return avancement;
+	} catch (err) {
+		console.log(err);
+	}
+};
 
 const getTentativeApi = async (urlTentative) => {
 	try {
@@ -99,4 +112,4 @@ const postTentative = async (params) => {
 	}
 };
 
-export { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative };
+export { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative, postAvancementApi };
