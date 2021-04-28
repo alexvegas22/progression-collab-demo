@@ -1,25 +1,22 @@
-import { VAceEditor } from "vue3-ace-editor";
-import brace from "brace";
-import "brace/mode/python";
-import "brace/theme/monokai";
+import { VCodeMirror } from "./VCodeMirrorModifié";
 
 export default {
 	components: {
-		VAceEditor,
+		VCodeMirror
 	},
 	data() {
 		return {
-			selected: 0,
+			selected: "text"
 		};
 	},
 	computed: {
 		code: {
-			get: function () {
+			get: function() {
 				return this.$store.state.tentative.code;
 			},
-			set: function (texte) {
+			set: function(texte) {
 				this.$store.dispatch("mettreAjourCode", texte);
-			},
+			}
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
@@ -29,7 +26,7 @@ export default {
 		},
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
-		},
+		}
 	},
 	mounted() {
 		if (this.tentative) {
@@ -37,18 +34,11 @@ export default {
 		}
 	},
 	watch: {
-		tentative: function () {
+		tentative: function() {
 			this.selected = this.tentative.langage;
-		},
+		}
 	},
 	methods: {
-		editorInit: function () {
-			require("brace/ext/language_tools");
-			require("brace/mode/html");
-			require("brace/mode/python");
-			require("brace/mode/less");
-			require("brace/theme/monokai");
-		},
 		reinitialiserCodeEditeur() {
 			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?";
 			if (confirm(msgAvertissement) == true) {
@@ -59,7 +49,7 @@ export default {
 			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage);
 			var tentativeExiste = false;
 			if (this.tentatives.length > 0) {
-				this.tentatives.forEach((uneTentative) => {
+				this.tentatives.forEach(uneTentative => {
 					if (!tentativeExiste && uneTentative.langage == unLangage) {
 						this.$store.dispatch("mettreAjourCode", uneTentative.code);
 						tentativeExiste = true;
@@ -70,6 +60,6 @@ export default {
 			if (!tentativeExiste) {
 				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
-		},
-	},
+		}
+	}
 };

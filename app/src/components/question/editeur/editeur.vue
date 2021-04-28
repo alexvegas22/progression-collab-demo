@@ -12,13 +12,10 @@
 		</option>
 	</select>
 	<div>
-		<v-ace-editor
+		<v-code-mirror
 			id="editor"
-			name="editor"
 			v-model:value="this.code"
-			style="height: 300px"
-			@init="editorInit"
-			lang="python"
+			:mode="selected"
 			theme="monokai"
 		/>
 	</div>
