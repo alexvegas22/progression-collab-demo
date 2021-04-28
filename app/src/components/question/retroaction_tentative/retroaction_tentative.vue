@@ -1,9 +1,9 @@
 <template class="p-4">
-	<div v-if="msgReponseApi != null" class="alert alert-warning alert-dismissible fade show" role="alert">
+	<div v-show="msgReponseApi" class="alert alert-warning alert-dismissible fade show" role="alert">
 		<strong>{{ $t("retroaction_tentative."+msgReponseApi) }}</strong>
 	</div>
 	<div v-if="retroactionTentative">
-		<div v-if="!tentativeEnCoursDeSoumission && msgReponseApi == null" class="p-2">
+		<div v-show="!tentativeEnCoursDeSoumission" class="p-2">
 			<h3 v-if="retroactionTentative.réussi"><span style="color: green">{{$t('retroaction_tentative.bonneRéponse')}}</span> 👍</h3>
 			&nbsp;
 			<h3 v-else><span style="color: red">{{$t('retroaction_tentative.mauvaiseRéponse')}}</span> 😢</h3>

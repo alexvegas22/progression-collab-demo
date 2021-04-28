@@ -72,9 +72,15 @@ const getTentativeApi = async (urlTentative) => {
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
 
+		if(data.erreur){
+			console.log(data.erreur);
+			return null;
+		}
+		
 		return tentative;
 	} catch (err) {
 		console.log(err);
+		return null;
 	}
 };
 const postTentative = async (params) => {
@@ -83,6 +89,11 @@ const postTentative = async (params) => {
 		const urlRequete = params.urlTentative + "?include=resultats";
 		const data = await postData(urlRequete, body);
 
+		if(data.erreur){
+			console.log(data.erreur);
+			return null;
+		}
+		
 		var tentative = data.data.attributes;
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
@@ -96,6 +107,7 @@ const postTentative = async (params) => {
 		return tentative;
 	} catch (err) {
 		console.log(err);
+		return null;
 	}
 };
 

@@ -15,7 +15,7 @@ export default {
 				: null;
 		},
 		msgReponseApi() {
-			return this.$store.state.msgAPIEnvoiTentative;
+			return this.$store.state.msgReponseApi;
 		},
 		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;

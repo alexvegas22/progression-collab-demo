@@ -33,8 +33,8 @@ export const mutations = {
 	updateLangageTentative(state, langage) {
 		state.tentative.langage = langage;
 	},
-	updateMsgAPIEnvoiTentative(state, msg) {
-		state.msgAPIEnvoiTentative = msg;
+	updateMsgReponseApi(state, msg) {
+		state.msgReponseApi = msg;
 	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
