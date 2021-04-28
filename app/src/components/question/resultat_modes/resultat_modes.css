@@ -1,0 +1,19 @@
+label {
+	display: inline-flex;
+	margin-right: 10px;
+	color: #394a56;
+}
+
+.modeVisuel {
+	color: #959595ff;
+}
+
+.diff.différentIns {
+	text-decoration: none;
+	background-color: #d4fcbc;
+}
+
+.diff.différentDel {
+	text-decoration: none;
+	background-color: #fbb6c2;
+}
