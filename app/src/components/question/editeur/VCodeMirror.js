@@ -1,4 +1,4 @@
-var VCodeMirror_1;
+var VCodeMirrorComp;
 import { __decorate, __metadata } from "tslib";
 import CodeMirror from "codemirror";
 import "codemirror/addon/fold/brace-fold";
@@ -10,19 +10,11 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
 import { capitalize, h, markRaw } from "vue";
 import ResizeObserver from "resize-observer-polyfill";
-// 这个组件会监听 html 标签上的 `theme-white` `theme-dark` 变化动态指定编辑器的主题色
 import { $theme } from "theme-helper";
 import { Component, Inreactive, Prop, VueComponentBase, Watch } from "vue3-component-base";
-const Events = [
-	/** 获得焦点时触发 */
-	"focus",
-	/** 失去焦点时触发 */
-	"blur",
-	/** 滚动时触发 */
-	"scroll"
-];
-/** 代码编辑组件 */
-let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
+const Events = ["focus", "blur", "scroll"];
+
+let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase {
 	render() {
 		return h("div", { class: "v-code-mirror" });
 	}
@@ -37,8 +29,8 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 				lineNumbers: true,
 				foldGutter: true,
 				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-				...this.options
-			})
+				...this.options,
+			}),
 		));
 		this.cacherHorsVisible(editor.getValue());
 		this.désactiverHorsTodo(editor.getValue());
@@ -58,12 +50,12 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 		this.cleanEvent = markRaw(
 			$theme.onchange(({ detail }) => {
 				this.editor.setOption("theme", detail === "white" ? "default" : "dracula");
-			})
+			}),
 		);
 		this.backupValue = this.value;
 		this.$el._component = this;
-		if (!VCodeMirror_1.ro) {
-			VCodeMirror_1.ro = new ResizeObserver(function(entries) {
+		if (!VCodeMirrorComp.ro) {
+			VCodeMirrorComp.ro = new ResizeObserver(function(entries) {
 				entries.forEach(entry => {
 					const that = entry.target._component;
 					if (that.autoHeight) {
@@ -74,12 +66,12 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 				});
 			});
 		}
-		VCodeMirror_1.ro.observe(this.$el);
+		VCodeMirrorComp.ro.observe(this.$el);
 	}
 	beforeUnmount() {
 		var _a, _b;
 		(_a = this.cleanEvent) === null || _a === void 0 ? void 0 : _a.call(this);
-		(_b = VCodeMirror_1.ro) === null || _b === void 0 ? void 0 : _b.unobserve(this.$el);
+		(_b = VCodeMirrorComp.ro) === null || _b === void 0 ? void 0 : _b.unobserve(this.$el);
 	}
 	updateValue(value) {
 		if (value === this.backupValue) return;
@@ -126,25 +118,25 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 			//Rend immuable
 			this.editor.doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
-				{ line: ligneFin.line+1, ch: 0 },
-				{ readOnly: true, inclusiveLeft: false, inclusiveRight: false }
+				{ line: ligneFin.line + 1, ch: 0 },
+				{ readOnly: true, inclusiveLeft: false, inclusiveRight: false },
 			);
 
-			for(let i =ligneDébut.line; i<ligneFin.line+1; i++)
+			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++)
 				this.editor.doc.removeLineClass(i, "background", "ligne-editable");
-			
+
 			//Cache la ligne +TODO
 			this.editor.doc.markText(
 				{ line: ligneFin.line, ch: 0 },
 				{ line: ligneFin.line, ch: 999 },
-				{ collapsed: true, readOnly:true, atomic: true, inclusiveRight: true }
-				);
+				{ className: "ligne-cache", collapsed: false, readOnly: true, atomic: true, inclusiveRight: true },
+			);
 
 			//Cache la ligne -TODO
 			this.editor.doc.markText(
-				{ line: ligneDébut.line-1, ch: 999 },
+				{ line: ligneDébut.line - 1, ch: 999 },
 				{ line: ligneDébut.line, ch: 999 },
-				{ collapsed: true, readOnly:true, atomic: true, inclusiveLeft: false}
+				{ className: "ligne-cache", collapsed: false, readOnly: true, atomic: true, inclusiveLeft: false },
 			);
 
 			posDébut = doc.indexOf("-TODO\n", posFin);
@@ -167,8 +159,8 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
 				{
-					collapsed: "true"
-				}
+					collapsed: "true",
+				},
 			);
 
 			posDébut = doc.indexOf("-VISIBLE", posFin);
@@ -191,53 +183,52 @@ __decorate(
 		Watch("value"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [String]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateValue",
-	null
+	null,
 );
 __decorate(
 	[
 		Watch("mode"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [String]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateMode",
-	null
+	null,
 );
 __decorate(
 	[
 		Watch("readonly"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [Boolean]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateReadonly",
-	null
+	null,
 );
 __decorate(
 	[
 		Watch("wrap"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [Boolean]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateWrap",
-	null
+	null,
 );
-VCodeMirror = VCodeMirror_1 = __decorate(
+VCodeMirror = VCodeMirrorComp = __decorate(
 	[
 		Component({
 			name: "VCodeMirror",
-			emits: ["update:value", ...Events]
-		})
+			emits: ["update:value", ...Events],
+		}),
 	],
-	VCodeMirror
+	VCodeMirror,
 );
 export { VCodeMirror };
-//# sourceMappingURL=index.js.map

@@ -1,30 +1,18 @@
-.my-editor {
-	/* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
-	background: #2d2d2d;
-	color: #ccc;
-	height: 100%;
-	/* you must provide font-family font-size line-height. Example: */
-	font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
-	font-size: 14px;
-	line-height: 1.5;
-	padding: 5px;
-}
-/* optional class for removing the outline */
-.prism-editor__textarea:focus {
-	outline: none;
-}
-.my-editor pre {
-	color: #f6f6f6;
-}
 .btn-reset {
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 	margin-right: 15px;
 	width: calc(30% - 15px);
 }
-.ligne-ro {
-	background: #101010;
-}
 
 .ligne-editable {
-	background: #303030;
+	background:
+        /* top, transparent black, faked with gradient */ 
+        linear-gradient(
+			rgba(0, 0, 0, 0.2), 
+			rgba(0, 0, 0, 0.2)
+        );
+}
+
+.ligne-cache {
+	visibility: hidden;
 }
