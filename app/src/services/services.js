@@ -67,7 +67,7 @@ const getAvancementApi = async (urlAvancement) => {
 };
 const postAvancementApi = async (params) => {
 	try {
-		const body = (params.avancement)? {question_uri: params.question_uri, avancement: params.avancement} : {question_uri: params.question_uri}
+		const body = {question_uri: params.question_uri};
 		const data = await postData(params.url, body);
 		var avancement = data.data.attributes;
 		avancement.liens = data.data.links;
