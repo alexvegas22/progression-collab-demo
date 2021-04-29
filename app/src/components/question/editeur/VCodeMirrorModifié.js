@@ -137,14 +137,14 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 			this.editor.doc.markText(
 				{ line: ligneFin.line, ch: 0 },
 				{ line: ligneFin.line, ch: 999 },
-				{ collapsed: true, readOnly:true, atomic: true, inclusiveRight: true }
+				{ className: "ligne-cache", collapsed: false, readOnly:true, atomic: true, inclusiveRight: true }
 				);
 
 			//Cache la ligne -TODO
 			this.editor.doc.markText(
 				{ line: ligneDébut.line-1, ch: 999 },
 				{ line: ligneDébut.line, ch: 999 },
-				{ collapsed: true, readOnly:true, atomic: true, inclusiveLeft: false}
+				{ className: "ligne-cache", collapsed: false, readOnly:true, atomic: true, inclusiveLeft: false}
 			);
 
 			posDébut = doc.indexOf("-TODO\n", posFin);
