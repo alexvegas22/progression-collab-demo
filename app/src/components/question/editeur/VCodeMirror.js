@@ -29,8 +29,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				lineNumbers: true,
 				foldGutter: true,
 				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-				...this.options
-			})
+				...this.options,
+			}),
 		));
 		this.cacherHorsVisible(editor.getValue());
 		this.désactiverHorsTodo(editor.getValue());
@@ -50,7 +50,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		this.cleanEvent = markRaw(
 			$theme.onchange(({ detail }) => {
 				this.editor.setOption("theme", detail === "white" ? "default" : "dracula");
-			})
+			}),
 		);
 		this.backupValue = this.value;
 		this.$el._component = this;
@@ -119,7 +119,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			this.editor.doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
-				{ readOnly: true, inclusiveLeft: false, inclusiveRight: false }
+				{ readOnly: true, inclusiveLeft: false, inclusiveRight: false },
 			);
 
 			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++)
@@ -129,14 +129,14 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			this.editor.doc.markText(
 				{ line: ligneFin.line, ch: 0 },
 				{ line: ligneFin.line, ch: 999 },
-				{ className: "ligne-cache", collapsed: false, readOnly: true, atomic: true, inclusiveRight: true }
+				{ className: "ligne-cache", collapsed: false, readOnly: true, atomic: true, inclusiveRight: true },
 			);
 
 			//Cache la ligne -TODO
 			this.editor.doc.markText(
 				{ line: ligneDébut.line - 1, ch: 999 },
 				{ line: ligneDébut.line, ch: 999 },
-				{ className: "ligne-cache", collapsed: false, readOnly: true, atomic: true, inclusiveLeft: false }
+				{ className: "ligne-cache", collapsed: false, readOnly: true, atomic: true, inclusiveLeft: false },
 			);
 
 			posDébut = doc.indexOf("-TODO\n", posFin);
@@ -159,8 +159,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
 				{
-					collapsed: "true"
-				}
+					collapsed: "true",
+				},
 			);
 
 			posDébut = doc.indexOf("-VISIBLE", posFin);
@@ -183,52 +183,52 @@ __decorate(
 		Watch("value"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [String]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateValue",
-	null
+	null,
 );
 __decorate(
 	[
 		Watch("mode"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [String]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateMode",
-	null
+	null,
 );
 __decorate(
 	[
 		Watch("readonly"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [Boolean]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateReadonly",
-	null
+	null,
 );
 __decorate(
 	[
 		Watch("wrap"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [Boolean]),
-		__metadata("design:returntype", void 0)
+		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
 	"updateWrap",
-	null
+	null,
 );
 VCodeMirror = VCodeMirrorComp = __decorate(
 	[
 		Component({
 			name: "VCodeMirror",
-			emits: ["update:value", ...Events]
-		})
+			emits: ["update:value", ...Events],
+		}),
 	],
-	VCodeMirror
+	VCodeMirror,
 );
 export { VCodeMirror };
