@@ -11,7 +11,7 @@
 			<h4>
 				💡 {{$t('retroaction_tentative.nbTestsValidés')}}
 				<span style="color: green">
-					<strong>{{ retroactionTentative.tests_réussis }} </strong>
+					<strong>{{ testsRéussisPct }} %</strong>
 				</span>
 			</h4>
 			&nbsp;

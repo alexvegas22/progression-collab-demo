@@ -16,7 +16,7 @@
 	},
 
 	"editeur": {
-		"langageÉbauche": "Langage de l'ébauche : ",
+		"langageÉbauche": "Langage : ",
 		"choixLangage": "-- Choisis ton langage --",
 		"réinitialiser": "Réinitialiser"
 	},
@@ -24,7 +24,7 @@
 	"retroaction_tentative": {
 		"bonneRéponse": "Bonne réponse",
 		"mauvaiseRéponse": "Mauvaise réponse",
-		"nbTestsValidés": "Nombre de tests validés : ",
+		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
 		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
 		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
