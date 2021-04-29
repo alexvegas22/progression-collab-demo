@@ -105,17 +105,17 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 		let posDébut = 0;
 		let posFin = 0;
 
-		let todoPlus = doc.indexOf("+TODO", posDébut);
-		let todoMoin = doc.indexOf("-TODO", todoPlus);
+		let todoPlus = doc.indexOf("+TODO\n", posDébut);
+		let todoMoin = doc.indexOf("-TODO\n", todoPlus);
 		let lignePlus = this.editor.doc.posFromIndex(todoPlus);
 		let ligneMoin = this.editor.doc.posFromIndex(todoMoin);
 
-		for (let i = lignePlus.line; i < ligneMoin.line; i++) {
-			this.editor.doc.addLineClass(i, "background", "ligne-ro");
+		for (let i = 0; i < this.editor.doc.lineCount(); i++) {
+			this.editor.doc.addLineClass(i, "background", "ligne-editable");
 		}
 
 		while (posDébut > -1) {
-			posFin = doc.indexOf("+TODO", posDébut);
+			posFin = doc.indexOf("+TODO\n", posDébut);
 			if (posFin == -1) {
 				posFin = doc.length;
 			}
@@ -126,24 +126,28 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 			//Rend immuable
 			this.editor.doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
-				{ line: ligneFin.line, ch: 999 },
-				{ readOnly: true, inclusiveRight: true }
+				{ line: ligneFin.line+1, ch: 0 },
+				{ readOnly: true, inclusiveLeft: false, inclusiveRight: false }
 			);
+
+			for(let i =ligneDébut.line; i<ligneFin.line+1; i++)
+				this.editor.doc.removeLineClass(i, "background", "ligne-editable");
+			
+			//Cache la ligne +TODO
+			this.editor.doc.markText(
+				{ line: ligneFin.line, ch: 0 },
+				{ line: ligneFin.line, ch: ligneFin.ch+6 },
+				{ collapsed: true, readOnly:true, atomic: true, inclusiveRight: true }
+				);
 
 			//Cache la ligne -TODO
 			this.editor.doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
-				{ line: ligneDébut.line + 1, ch: 0 },
-				{ collapsed: "true" }
-			);
-			//Cache la ligne +TODO
-			this.editor.doc.markText(
-				{ line: ligneFin.line, ch: 0 },
-				{ line: ligneFin.line + 1, ch: 0 },
-				{ collapsed: "true" }
+				{ line: ligneDébut.line, ch: 999 },
+				{ collapsed: true, readOnly:true, atomic: true, inclusiveLeft: false}
 			);
 
-			posDébut = doc.indexOf("-TODO", posFin);
+			posDébut = doc.indexOf("-TODO\n", posFin);
 		}
 	}
 	cacherHorsVisible(doc) {

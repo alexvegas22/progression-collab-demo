@@ -22,5 +22,9 @@
 	width: calc(30% - 15px);
 }
 .ligne-ro {
+	background: #101010;
+}
+
+.ligne-editable {
 	background: #303030;
 }
