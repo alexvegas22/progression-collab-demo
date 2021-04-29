@@ -136,13 +136,13 @@ let VCodeMirror = (VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 			//Cache la ligne +TODO
 			this.editor.doc.markText(
 				{ line: ligneFin.line, ch: 0 },
-				{ line: ligneFin.line, ch: ligneFin.ch+6 },
+				{ line: ligneFin.line, ch: 999 },
 				{ collapsed: true, readOnly:true, atomic: true, inclusiveRight: true }
 				);
 
 			//Cache la ligne -TODO
 			this.editor.doc.markText(
-				{ line: ligneDébut.line, ch: 0 },
+				{ line: ligneDébut.line-1, ch: 999 },
 				{ line: ligneDébut.line, ch: 999 },
 				{ collapsed: true, readOnly:true, atomic: true, inclusiveLeft: false}
 			);
