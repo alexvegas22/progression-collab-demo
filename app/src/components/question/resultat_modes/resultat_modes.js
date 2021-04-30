@@ -82,6 +82,7 @@ export default {
 				this.testsModeVisuel = new Array(this.tests.length);
 				this.resultatsModeVisuel = this.copierResultats(this.resultatsCopie, this.resultatsModeVisuel);
 				this.testsModeVisuel = this.copierTests(this.testsCopie, this.testsModeVisuel);
+
 				for (let i = 0; i < this.resultatsModeVisuel.length; i++) {
 					this.resultatsModeVisuel[i].sortie_observée = this.remplacerCaractèresVisuels(
 						this.resultats[i].sortie_observée,
@@ -96,6 +97,7 @@ export default {
 				this.testsModeDiff = new Array(this.tests.length);
 				this.resultatsModeDiff = this.copierResultats(this.resultatsCopie, this.resultatsModeDiff);
 				this.testsModeDiff = this.copierTests(this.testsCopie, this.testsModeDiff);
+
 				for (let i = 0; i < this.testsModeDiff.length; i++) {
 					if (!this.testsModeDiff[i].sortie_attendue) {
 						return;
@@ -114,6 +116,7 @@ export default {
 					for (let i = 0; i < différences.length; i++) {
 						var spanRes = "";
 						var spanTes = "";
+
 						if (différences[i].added) {
 							if (i < différences.length - 1 && différences[i + 1].added) {
 								spanResTmpAjouté += différences[i].value;
@@ -134,9 +137,11 @@ export default {
 							spanRes = différences[i].value;
 							spanTes = différences[i].value;
 						}
+
 						nouvelleSortieDiffRes += spanRes;
 						nouvelleSortieDiffTes += spanTes;
 					}
+
 					this.resultatsModeDiff[i].sortie_observée = nouvelleSortieDiffRes;
 					this.testsModeDiff[i].sortie_attendue = nouvelleSortieDiffTes;
 				}

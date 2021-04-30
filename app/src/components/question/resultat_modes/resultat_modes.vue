@@ -1,6 +1,14 @@
 <template>
 	<div class="text-center" v-if="resultats.length > 0">
-		<input type="radio" id="normal" name="modeBtn" value="normal" v-model="modeBtn" />
+		<input
+			type="radio"
+			id="normal"
+			name="modeBtn"
+			value="normal"
+			checked="checked"
+			autocomplete="off"
+			v-model="modeBtn"
+		/>
 		<label for="normal">{{ $t("resultat_modes.modeNormal") }}</label>
 		<input type="radio" id="visuel" name="modeBtn" value="visuel" v-model="modeBtn" />
 		<label for="visuel">{{ $t("resultat_modes.modeVisuel") }}</label>
