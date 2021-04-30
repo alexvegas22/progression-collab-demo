@@ -5,7 +5,6 @@ export default {
 	props: {
 		test: null,
 		resultat_p: null,
-		mode: null,
 	},
 	computed: {
 		resultat() {
