@@ -12,10 +12,6 @@ export default {
 			return this.$store.state.retroactionTentative ? this.$store.state.retroactionTentative.resultats : [];
 		},
 	},
-	mounted() {
-		console.log("TESTSSSSS", this.tests);
-		console.log("MODEEEEEE", this.mode);
-	},
 	data() {
 		return {
 			mode: {
