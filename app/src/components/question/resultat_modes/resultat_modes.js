@@ -3,34 +3,53 @@ const diff = require("diff");
 export default {
 	name: "ResultatModes",
 	props: {
-		resultat: null,
-		test: null,
+		resultats: [],
+		tests: [],
+		mode: null,
 	},
 	data() {
 		return {
-			mode: undefined,
-			resultatCopie: null,
-			testCopie: null,
+			modeBtn: undefined,
+			resultatsCopie: [],
+			testsCopie: [],
+			resultatsModeVisuel: [],
+			testsModeVisuel: [],
+			resultatsModeDiff: [],
+			testsModeDiff: [],
 		};
 	},
 	mounted() {
-		this.copierObjets();
+		this.copierTests(this.tests, this.testsCopie);
 	},
+	updated() {},
 	watch: {
-		mode: function(mode) {
-			if (!this.resultatCopie) {
-				this.copierObjets("résultat");
+		resultats: function(res) {
+			this.copierResultats(res, this.resultatsCopie);
+		},
+		modeBtn: function(mode) {
+			if (!this.resultatsCopie || !this.testsCopie) {
+				this.copierListes();
 			}
 
-			this.réinitialiserObjets();
+			this.réinitialiserListesOriginales();
 
 			switch (mode) {
 				case "visuel":
+					this.mode.normal = false;
+					this.mode.visuel = true;
+					this.mode.diff = false;
 					this.changerModeComparaison();
 					break;
 				case "diff":
+					this.mode.normal = false;
+					this.mode.visuel = false;
+					this.mode.diff = true;
 					this.différence();
 					break;
+				default:
+					this.mode.normal = true;
+					this.mode.visuel = false;
+					this.mode.diff = false;
 			}
 		},
 	},
@@ -48,93 +67,100 @@ export default {
 			return chaîneTmp;
 		},
 		changerModeComparaison() {
-			this.resultat.sortie_observée = this.remplacerCaractèresVisuels(this.resultat.sortie_observée);
-			this.test.sortie_attendue = this.remplacerCaractèresVisuels(this.test.sortie_attendue);
+			for (let i = 0; i < this.resultats.length; i++) {
+				this.resultats[i].sortie_observée = this.remplacerCaractèresVisuels(this.resultats[i].sortie_observée);
+				this.tests[i].sortie_attendue = this.remplacerCaractèresVisuels(this.tests[i].sortie_attendue);
+			}
 		},
 		différence() {
-			if (!this.test.sortie_attendue) {
-				return;
-			}
-			const différences = diff.diffChars(this.test.sortie_attendue, this.resultat.sortie_observée);
-			var nouvelleSortieDiffRes = "";
-			var nouvelleSortieDiffTes = "";
-			différences.forEach(partie => {
-				var spanRes = "";
-				var spanTes = "";
-				if (partie.added) {
-					spanRes = `<span class="diff différentDel">${partie.value}</span>`;
-				} else if (partie.removed) {
-					spanTes = `<span class="diff différentIns">${partie.value}</span>`;
-				} else {
-					spanRes = partie.value;
-					spanTes = partie.value;
+			for (let i = 0; i < this.tests.length; i++) {
+				if (!this.tests[i].sortie_attendue) {
+					return;
 				}
-				nouvelleSortieDiffRes += spanRes;
-				nouvelleSortieDiffTes += spanTes;
-			});
-			this.resultat.sortie_observée = nouvelleSortieDiffRes;
-			this.test.sortie_attendue = nouvelleSortieDiffTes;
+				const différences = diff.diffChars(this.tests[i].sortie_attendue, this.resultats[i].sortie_observée);
+				var nouvelleSortieDiffRes = "";
+				var nouvelleSortieDiffTes = "";
+				var spanResTmpAjouté = "";
+				var spanTesTmpEnlevé = "";
+				for (let i = 0; i < différences.length; i++) {
+					var spanRes = "";
+					var spanTes = "";
+					if (différences[i].added) {
+						if (différences[i + 1].added) {
+							spanResTmpAjouté += différences[i].value;
+						} else if (spanResTmpAjouté != "") {
+							spanRes = `<span class="diff différentDel">${spanResTmpAjouté}</span>`;
+						} else {
+							spanRes = `<span class="diff différentDel">${différences[i].value}</span>`;
+						}
+					} else if (différences[i].removed) {
+						if (différences[i + 1].removed) {
+							spanTesTmpEnlevé += différences[i].value;
+						} else if (spanTesTmpEnlevé != "") {
+							spanRes = `<span class="diff différentIns">${spanTesTmpEnlevé}</span>`;
+						} else {
+							spanRes = `<span class="diff différentIns">${différences[i].value}</span>`;
+						}
+					} else {
+						spanRes = différences[i].value;
+						spanTes = différences[i].value;
+					}
+					nouvelleSortieDiffRes += spanRes;
+					nouvelleSortieDiffTes += spanTes;
+				}
+				this.resultats[i].sortie_observée = nouvelleSortieDiffRes;
+				this.tests[i].sortie_attendue = nouvelleSortieDiffTes;
+			}
 		},
-		copierObjets(nomObjet = "les deux") {
-			switch (nomObjet) {
-				case ("résultat", "resultat"):
-					this.copierResultat();
+		copierListes(nomListe = "les deux") {
+			if (!this.resultatsCopie[0]) {
+				this.copierResultats(this.resultats, this.resultatsCopie);
+				this.copierTests(this.tests, this.testsCopie);
+			}
+			switch (nomListe) {
+				case ("résultats", "resultats"):
+					this.copierResultats(this.resultatsCopie, this.resultatsModeVisuel);
+					this.copierResultats(this.resultatsCopie, this.resultatsModeDiff);
 					break;
-				case "test":
-					this.copierTest();
+				case "tests":
+					this.copierTests(this.testsCopie, this.testsModeVisuel);
+					this.copierTests(this.testsCopie, this.testsModeDiff);
 					break;
 				default:
-					this.copierTest();
-					this.copierResultat();
+					this.copierTests(this.testsCopie, this.testsModeVisuel);
+					this.copierTests(this.testsCopie, this.testsModeDiff);
+					this.copierResultats(this.resultatsCopie, this.resultatsModeVisuel);
+					this.copierResultats(this.resultatsCopie, this.resultatsModeDiff);
 			}
 		},
-		copierTest() {
-			if (this.test) {
-				this.testCopie = {
-					numéro: this.test.numéro,
-					nom: this.test.nom,
-					entrée: this.test.entrée,
-					sortie_attendue: this.test.sortie_attendue,
-					liens: {
-						related: this.test.liens.related,
-						self: this.test.liens.self,
-					},
-				};
+		copierTests(source, destination) {
+			if (source != []) {
+				for (let i = 0; i < destination.length; i++) {
+					destination[i].numéro = source[i].numéro;
+					destination[i].nom = source[i].nom;
+					destination[i].entrée = source[i].entrée;
+					destination[i].sortie_attendue = source[i].sortie_attendue;
+					destination[i].liens.related = source[i].liens.related;
+					destination[i].liens.self = source[i].liens.self;
+				}
 			}
 		},
-		copierResultat() {
-			if (this.resultat) {
-				this.resultatCopie = {
-					numéro: this.resultat.numéro,
-					feedback: this.resultat.feedback,
-					résultat: this.resultat.résultat,
-					sortie_observée: this.resultat.sortie_observée,
-					sortie_erreur: this.resultat.sortie_erreur,
-					liens: {
-						related: this.resultat.liens.related,
-						self: this.resultat.liens.self,
-					},
-				};
+		copierResultats(source, destination) {
+			if (source.length > 0) {
+				for (let i = 0; i < destination.length; i++) {
+					destination[i].numéro = source[i].numéro;
+					destination[i].feedback = source[i].feedback;
+					destination[i].résultat = source[i].résultat;
+					destination[i].sortie_observée = source[i].sortie_observée;
+					destination[i].sortie_erreur = source[i].sortie_erreur;
+					destination[i].liens.related = source[i].liens.related;
+					destination[i].liens.self = source[i].liens.self;
+				}
 			}
 		},
-		réinitialiserObjets() {
-			if (this.test && this.testCopie) {
-				this.test.numéro = this.testCopie.numéro;
-				this.test.nom = this.testCopie.nom;
-				this.test.entrée = this.testCopie.entrée;
-				this.test.sortie_attendue = this.testCopie.sortie_attendue;
-				this.test.liens.related = this.testCopie.liens.related;
-				this.test.liens.self = this.testCopie.liens.self;
-			}
-			if (this.resultat && this.resultatCopie) {
-				this.resultat.numéro = this.resultatCopie.numéro;
-				this.resultat.feedback = this.resultatCopie.feedback;
-				this.resultat.résultat = this.resultatCopie.résultat;
-				this.resultat.sortie_observée = this.resultatCopie.sortie_observée;
-				this.resultat.sortie_erreur = this.resultatCopie.sortie_erreur;
-				this.resultat.liens.related = this.resultatCopie.liens.related;
-				this.resultat.liens.self = this.resultatCopie.liens.self;
-			}
+		réinitialiserListesOriginales() {
+			this.copierResultats(this.resultatsCopie, this.resultats);
+			this.copierTests(this.testsCopie, this.tests);
 		},
 	},
 };

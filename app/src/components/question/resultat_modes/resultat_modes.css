@@ -8,6 +8,17 @@ label {
 	color: #959595ff;
 }
 
+.mode.normal {
+	background-color: #a0000000 !important;
+}
+.mode.visuel > span {
+	background-color: #a0000000 !important;
+	color: #959595ff !important;
+}
+.mode.diff {
+	color: #000 !important;
+}
+
 .diff.différentIns {
 	text-decoration: none;
 	background-color: #d4fcbc;

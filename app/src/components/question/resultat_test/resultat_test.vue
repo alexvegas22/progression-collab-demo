@@ -19,7 +19,7 @@
 						<pre v-if="resultat.sortie_observée == ''">
 							<p class="card-text sortie vide">[vide]</p>
 						</pre>
-						<pre v-else>
+						<pre v-else class="mode" :class="{ normal: mode.normal, visuel: mode.visuel, diff: mode.diff }">
 							<p class="card-text" v-html="resultat.sortie_observée"></p>
 						</pre>
 					</div>
@@ -34,7 +34,7 @@
 					<pre v-if="test.sortie_attendue == ''">
 						<p class="card-text sortie vide">[vide]</p>
 					</pre>
-					<pre v-else>
+					<pre v-else class="mode" :class="{ normal: mode.normal, visuel: mode.visuel, diff: mode.diff }">
 						<p class="card-text" v-html="test.sortie_attendue"></p>
 					</pre>
 				</div>

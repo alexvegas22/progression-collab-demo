@@ -6,6 +6,7 @@ export default {
 	props: {
 		test: null,
 		resultat: null,
+		mode: null,
 	},
 	data() {
 		return {

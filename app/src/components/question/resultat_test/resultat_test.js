@@ -5,12 +5,13 @@ export default {
 	props: {
 		test: null,
 		resultat_p: null,
+		mode: null,
 	},
 	computed: {
 		resultat() {
 			return this.resultat_p
 				? new Proxy(this.resultat_p, {
-						get: function (obj, prop) {
+						get: function(obj, prop) {
 							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
 						},
 				  })
