@@ -10,24 +10,33 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases"
+		"jeuTests": "Test cases",
+		"modeNormal": "Default mode",
+		"modeVisuel": "Visual mode"
+	},
+
+	"editeur": {
+		"langageÉbauche": "Language : ",
+		"choixLangage": "-- Pick a language --",
+		"réinitialiser": "Reset"
 	},
 
 	"retroaction_tentative": {
 		"bonneRéponse": "Correct",
 		"mauvaiseRéponse": "Incorrect",
-		"nbTestsValidés": "💡 Number of validated tests : ",
-		"conseil": "💡 Tip : ",
+		"nbTestsValidés": "Passed tests : ",
+		"conseil": "Tip : ",
 		"traitementEnCours": "Your answer is being tested...",
 		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
 	},
-	
+
 	"resultat_test": {
 		"entrée": "Input",
 		"sortieAttendue": "Expected output",
 		"sortieErreur": "Error output",
 		"sortieConsole": "Actual output",
-		"rétroaction": "Feedback"
+		"rétroaction": "Feedback",
+		"vide": "[empty]"
 	},
 
 	"avancement": {

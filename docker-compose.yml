@@ -12,6 +12,7 @@ services:
     #Pour le développement  
     volumes:
       - "./app/src:/app/src"
+      - "./app/public:/app/public"
     networks:
       default:
         ipv4_address: 172.20.0.6

@@ -14,8 +14,11 @@ export default {
 				  })
 				: null;
 		},
+		testsRéussisPct() {
+			return this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length * 100;
+		},
 		msgReponseApi() {
-			return this.$store.state.msgAPIEnvoiTentative;
+			return this.$store.state.msgReponseApi;
 		},
 		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;

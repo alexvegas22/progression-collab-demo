@@ -1,15 +1,12 @@
-import { VAceEditor } from "vue3-ace-editor";
-import brace from "brace";
-import "brace/mode/python";
-import "brace/theme/monokai";
+import { VCodeMirror } from "./VCodeMirror";
 
 export default {
 	components: {
-		VAceEditor,
+		VCodeMirror,
 	},
 	data() {
 		return {
-			selected: 0,
+			selected: "",
 		};
 	},
 	computed: {
@@ -42,13 +39,6 @@ export default {
 		},
 	},
 	methods: {
-		editorInit: function () {
-			require("brace/ext/language_tools");
-			require("brace/mode/html");
-			require("brace/mode/python");
-			require("brace/mode/less");
-			require("brace/theme/monokai");
-		},
 		reinitialiserCodeEditeur() {
 			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?";
 			if (confirm(msgAvertissement) == true) {

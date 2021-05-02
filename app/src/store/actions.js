@@ -37,22 +37,29 @@ export default {
 	
 	async soumettreTentative({ commit }, params) {
 		commit("updateEnvoieTentativeEnCours", true);
-		commit("updateMsgAPIEnvoiTentative", "traitementEnCours");
+		commit("updateMsgReponseApi", "traitementEnCours");
 		try {
 			params.urlTentative = this.state.avancement.liens.tentative;
 			var retroactionTentative = await postTentative(params);
-			commit("updateRetroaction", retroactionTentative);
-
-			this.state.avancement.tentatives.unshift(retroactionTentative);
-			if (this.state.avancement.état != 2) {
-				this.state.avancement.état = retroactionTentative.réussi ? 2 : 1;
+			if(retroactionTentative == null) {
+				commit("updateMsgReponseApi", "erreurServeur");
+				console.log(retroactionTentative.erreur);
 			}
+			else{
+				commit("updateRetroaction", retroactionTentative);
 
-			commit("updateMsgAPIEnvoiTentative", null);
-			commit("updateEnvoieTentativeEnCours", false);
+				this.state.avancement.tentatives.unshift(retroactionTentative);
+				if (this.state.avancement.état != 2) {
+					this.state.avancement.état = retroactionTentative.réussi ? 2 : 1;
+				}
+				commit("updateMsgReponseApi", null);
+			}
 		} catch (error) {
-			commit("updateMsgAPIEnvoiTentative", "erreurServeur");
+			commit("updateMsgReponseApi", "erreurServeur");
 			console.log(error);
+		}
+		finally {
+			commit("updateEnvoieTentativeEnCours", false);
 		}
 	},
 	mettreAjourCode({ commit }, code) {

@@ -1,22 +1,29 @@
-import { createI18n } from "vue-i18n";
+import { createI18n } from "vue-i18n/index";
 
-function loadLocaleMessages() {
+const messages = chargerMessagesLocalisés();
+
+function chargerMessagesLocalisés() {
 	const locales = require.context("../locales", true, /[A-Za-z0-9-_,\s]+\.json$/i);
 	const messages = {};
 	locales.keys().forEach(key => {
-		const matched = key.match(/([A-Za-z0-9-_]+)\./i);
-		if (matched && matched.length > 1) {
-			const locale = matched[1];
+		const langueTrouvée = key.match(/([A-Za-z0-9-_]+)\./i);
+		if (langueTrouvée && langueTrouvée.length > 1) {
+			const locale = langueTrouvée[1];
 			messages[locale] = locales(key);
 		}
 	});
 	return messages;
 }
 
+function trouverLocalePréférée(languePréférée) {
+	let langages = Object.getOwnPropertyNames(messages);
+	return langages.includes(languePréférée) ? languePréférée : process.env.VUE_APP_I18N_LOCALE;
+}
+
 const i18n = new createI18n({
-	locale: navigator.language.split("-")[0],
+	locale: trouverLocalePréférée(navigator.language.split('-')[0]),
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE,
-	messages: loadLocaleMessages()
+	messages: messages
 });
 
 export default i18n;

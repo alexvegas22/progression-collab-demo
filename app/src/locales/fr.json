@@ -8,15 +8,23 @@
 	"validation_tentative": {
 		"boutonValider": "Valider"
 	},
-	
+
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"modeNormal": "Mode normal",
+		"modeVisuel": "Mode visuel"
+	},
+
+	"editeur": {
+		"langageÉbauche": "Langage : ",
+		"choixLangage": "-- Choisis ton langage --",
+		"réinitialiser": "Réinitialiser"
 	},
 
 	"retroaction_tentative": {
 		"bonneRéponse": "Bonne réponse",
 		"mauvaiseRéponse": "Mauvaise réponse",
-		"nbTestsValidés": "Nombre de tests validés : ",
+		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
 		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
 		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
@@ -27,7 +35,8 @@
 		"sortieAttendue": "Sortie attendue",
 		"sortieErreur": "Sortie erreur",
 		"sortieConsole": "Sortie observée",
-		"rétroaction": "Rétroaction"
+		"rétroaction": "Rétroaction",
+		"vide": "[vide]"
 	},
 
 	"avancement": {
