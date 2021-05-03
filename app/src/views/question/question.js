@@ -38,7 +38,8 @@ export default {
 		else {
 			this.$store.dispatch("postAvancement", {
 				url: this.$store.state.user.liens.avancements,
-				question_uri: this.uri
+				question_uri: this.uri,
+				avancement: {},
 			});
 		}
 	},
