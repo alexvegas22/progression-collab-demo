@@ -29,16 +29,18 @@ export default {
 	mounted() {
 		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 
-		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri))
+		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri)) {
 			this.$store.dispatch(
 				"getAvancement",
 				this.$store.state.user.avancements[this.$store.state.user.username + "/" + this.uri].liens.self
 			);
+		}
 		else {
-			this.$store.dispatch(
-				"getAvancement",
-				API_URL + "/avancement/" + this.$store.state.user.username + "/" + this.uri
-			);
+			this.$store.dispatch("postAvancement", {
+				url: this.$store.state.user.liens.avancements,
+				question_uri: this.uri,
+				avancement: {},
+			});
 		}
 	},
 };
