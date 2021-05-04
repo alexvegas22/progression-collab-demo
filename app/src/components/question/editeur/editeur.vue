@@ -1,12 +1,14 @@
 <template>
 	<label for="langages">{{ $t("editeur.langageÉbauche") }}</label>
-	<select name="langages" id="langages" style="margin-left: 10px; width: 250px; text-align: center" v-model="selected">
+	<select name="langages" id="langages" style="margin-left: 10px; width: 250px; text-align: center"
+			v-model="selected"
+			v-on:change="this.chargerEbaucheParLangage()"
+	>
 		<option v-if="Object.keys(this.ebauches).length === 0" disabled selected>{{ $t("editeur.choixLangage") }}</option>
 		<option v-else disabled>{{ $t("editeur.choixLangage") }}</option>
 		<option
 			v-for="langage in Object.keys(this.ebauches)"
 			v-bind:key="langage"
-			v-on:click="this.chargerEbaucheParLangage(langage)"
 		>
 			{{ langage }}
 		</option>

@@ -45,8 +45,8 @@ export default {
 				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
 		},
-		chargerEbaucheParLangage(unLangage) {
-			this.$store.dispatch("mettreAjourLangageSelectionne", unLangage);
+		chargerEbaucheParLangage() {
+			this.$store.dispatch("mettreAjourLangageSelectionne", this.selected);
 			var tentativeExiste = false;
 			if (this.tentatives.length > 0) {
 				this.tentatives.forEach((uneTentative) => {
