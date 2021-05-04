@@ -100,12 +100,10 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	}
 
 	désactiverHorsTodo(doc) {
-		let posDébut = doc.getValue().indexOf("-TODO\n", posFin);;
+		let posDébut = doc.getValue().indexOf("+TODO") > -1 ? 0 : doc.getValue().indexOf("-TODO", posFin);;
 		let posFin = 0;
 
 		for (let i = 0; i < this.editor.doc.lineCount(); i++) {
-			//doc.addLineClass(i, "background", "ligne-editable");
-
 			if (doc.getLine(i).match("[+-]TODO")){
 				//Cache la ligne +TODO
 				doc.markText(
@@ -117,7 +115,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		}
 		
 		while (posDébut > -1) {
-			posFin = doc.getValue().indexOf("+TODO\n", posDébut);
+			posFin = doc.getValue().indexOf("+TODO", posDébut);
 			if (posFin == -1) {
 				posFin = doc.getValue().length;
 			}
@@ -129,13 +127,13 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
-				{ readOnly: true, inclusiveLeft: false, inclusiveRight: false },
+				{ readOnly: true, inclusiveLeft: false, inclusiveRight: true },
 			);
 
 			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++)
 				doc.removeLineClass(i, "background", "ligne-editable");
 
-			posDébut = doc.getValue().indexOf("-TODO\n", posFin);
+			posDébut = doc.getValue().indexOf("-TODO", posFin);
 		}
 	}
 
@@ -154,8 +152,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		}
 
 		let posFin = 0;
-		let posDébut = posDébut = doc.getValue().indexOf("-VISIBLE", posFin);;
-
+		let posDébut = doc.getValue().indexOf("+VISIBLE") > -1 ? 0 : doc.getValue().indexOf("-VISIBLE", posFin);
+		
 		while (posDébut > -1) {
 			posFin = doc.getValue().indexOf("+VISIBLE", posDébut);
 			if (posFin == -1) {
@@ -167,9 +165,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 
 			//Cache toute la section non visible
 			doc.markText(
-				ligneDébut.line==0?{line:0, ch:0}:
-				{ line: ligneDébut.line -1, ch: 999 },
-				{ line: ligneFin.line, ch: 999 },
+				{ line: ligneDébut.line -1 },
+				{ line: ligneFin.line },
 				{
 					collapsed: "true",
 				},
