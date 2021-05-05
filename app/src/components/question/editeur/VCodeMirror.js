@@ -127,7 +127,11 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
-				{ readOnly: true, inclusiveLeft: false, inclusiveRight: true },
+				{ readOnly: true,
+				  inclusiveLeft: false,
+				  //empêche d'écrire sur la dernière ligne
+				  inclusiveRight: ligneFin.line+1==doc.lineCount()
+				},
 			);
 
 			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++)
@@ -168,7 +172,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				{ line: ligneDébut.line -1 },
 				{ line: ligneFin.line },
 				{
-					collapsed: "true",
+					collapsed: true,
 				},
 			);
 
