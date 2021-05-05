@@ -1,12 +1,11 @@
-import ResultatTest from "@/components/question/resultat_test.vue";
+import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
 
 export default {
 	components: { ResultatTest },
 	name: "Test",
 	props: {
-		resultat_test: {
-			required: true,
-		},
+		test: null,
+		resultat: null,
 	},
 	data() {
 		return {

@@ -1,0 +1,51 @@
+{
+	"login": {
+		"courriel": "Email : ",
+		"motDePasse": "Password : ",
+		"boutonConnexion": "Log in"
+	},
+
+	"validation_tentative": {
+		"boutonValider": "Validate"
+	},
+
+	"jeu_tests": {
+		"jeuTests": "Test cases",
+		"modeNormal": "Default mode",
+		"modeVisuel": "Visual mode"
+	},
+
+	"editeur": {
+		"langageÉbauche": "Language : ",
+		"choixLangage": "-- Pick a language --",
+		"réinitialiser": "Reset"
+	},
+
+	"retroaction_tentative": {
+		"bonneRéponse": "Correct",
+		"mauvaiseRéponse": "Incorrect",
+		"nbTestsValidés": "Passed tests : ",
+		"conseil": "Tip : ",
+		"traitementEnCours": "Your answer is being tested...",
+		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
+	},
+
+	"resultat_test": {
+		"entrée": "Input",
+		"sortieAttendue": "Expected output",
+		"sortieErreur": "Error output",
+		"sortieConsole": "Actual output",
+		"rétroaction": "Feedback",
+		"vide": "[empty]"
+	},
+
+	"avancement": {
+		"premièreTentative": "This is your first attempt. You can do it!",
+		"questionNonRésolue": "Not solved yet. Keep trying.",
+		"questionRésolue": "Solved! Good job!",
+		"questionIndéterminée": "This exercice is... -/+@-/*»!... I can't hear you, I'm using the scrambler!",
+		"versionTentative": "Previous attempts : ",
+		"choisirTentative": "Choose a previous attempt",
+		"dateTentative": "Attempt from "
+	}
+}

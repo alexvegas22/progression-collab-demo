@@ -8,3 +8,4 @@ Dockerfile
 
 # Dossier de mock
 mock/
+app/node_modules/

@@ -1,4 +1,3 @@
-
 import { getData, postData } from "@/services/request_services";
 
 const getUserApi = async (urlUser) => {
@@ -6,6 +5,7 @@ const getUserApi = async (urlUser) => {
 		const data = await getData(urlUser + "?include=avancements");
 		var user = data.data.attributes;
 		user.liens = data.data.links;
+		user.liens.avancements = data.data.relationships.avancements.links.related;
 		user.avancements = [];
 		if (data.included) {
 			data.included.forEach((item) => {
@@ -56,9 +56,22 @@ const getAvancementApi = async (urlAvancement) => {
 			data.included.forEach((item) => {
 				var tentative = item.attributes;
 				tentative.liens = item.links;
+				tentative.resultats = [];
 				avancement.tentatives.unshift(tentative);
 			});
 		}
+		return avancement;
+	} catch (err) {
+		console.log(err);
+	}
+};
+const postAvancementApi = async (params) => {
+	try {
+		const body = {question_uri: params.question_uri};
+		const data = await postData(params.url, body);
+		var avancement = data.data.attributes;
+		avancement.liens = data.data.links;
+		avancement.tentatives = [];
 		return avancement;
 	} catch (err) {
 		console.log(err);
@@ -72,9 +85,15 @@ const getTentativeApi = async (urlTentative) => {
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
 
+		if(data.erreur){
+			console.log(data.erreur);
+			return null;
+		}
+		
 		return tentative;
 	} catch (err) {
 		console.log(err);
+		return null;
 	}
 };
 const postTentative = async (params) => {
@@ -83,6 +102,11 @@ const postTentative = async (params) => {
 		const urlRequete = params.urlTentative + "?include=resultats";
 		const data = await postData(urlRequete, body);
 
+		if(data.erreur){
+			console.log(data.erreur);
+			return null;
+		}
+		
 		var tentative = data.data.attributes;
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
@@ -96,7 +120,8 @@ const postTentative = async (params) => {
 		return tentative;
 	} catch (err) {
 		console.log(err);
+		return null;
 	}
 };
 
-export { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative };
+export { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative, postAvancementApi };
