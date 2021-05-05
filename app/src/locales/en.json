@@ -10,9 +10,13 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases",
-		"modeNormal": "Default mode",
-		"modeVisuel": "Visual mode"
+		"jeuTests": "Test cases"
+	},
+
+	"resultat_modes": {
+		"modeNormal": "Default",
+		"modeVisuel": "Visual",
+		"modeDiff": "Diff"
 	},
 
 	"editeur": {

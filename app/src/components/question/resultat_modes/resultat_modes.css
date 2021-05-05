@@ -1,0 +1,30 @@
+label {
+	display: inline-flex;
+	margin-right: 10px;
+	color: #394a56;
+}
+
+.modeVisuel {
+	color: #959595ff;
+}
+
+.mode.normal {
+	background-color: #a0000000 !important;
+}
+.mode.visuel > span {
+	background-color: #a0000000 !important;
+	color: #959595ff !important;
+}
+.mode.diff {
+	color: #000 !important;
+}
+
+.diff.différentIns {
+	text-decoration: none;
+	background-color: #d4fcbc;
+}
+
+.diff.différentDel {
+	text-decoration: none;
+	background-color: #fbb6c2;
+}

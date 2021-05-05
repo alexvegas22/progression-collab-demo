@@ -21,7 +21,7 @@
 				<div class="col-md align-right"></div>
 			</div>
 			<div class="col-md-12" v-if="this.visible">
-				<ResultatTest v-bind:test="test" v-bind:resultat_p="resultat"/>
+				<ResultatTest v-bind:test="test" v-bind:resultat_p="resultat" />
 			</div>
 		</div>
 	</div>
