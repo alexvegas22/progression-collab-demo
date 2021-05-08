@@ -29,10 +29,11 @@ export default {
 	mounted() {
 		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 
-		if (this.$store.state.user.avancements.includes(this.$store.state.user.username + "/" + this.uri)) {
+		const id_avancement = this.$store.state.user.username + "/" + this.uri;
+		if ( id_avancement in this.$store.state.user.avancements) {
 			this.$store.dispatch(
 				"getAvancement",
-				this.$store.state.user.avancements[this.$store.state.user.username + "/" + this.uri].liens.self
+				this.$store.state.user.avancements[ id_avancement ].liens.self
 			);
 		}
 		else {
