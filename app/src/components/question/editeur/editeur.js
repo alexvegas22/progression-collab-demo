@@ -50,7 +50,7 @@ export default {
 			var tentativeExiste = false;
 			if (this.tentatives.length > 0) {
 				this.tentatives.forEach((uneTentative) => {
-					if (!tentativeExiste && uneTentative.langage == unLangage) {
+					if (!tentativeExiste && uneTentative.langage == this.tentative.langage) {
 						this.$store.dispatch("mettreAjourCode", uneTentative.code);
 						tentativeExiste = true;
 						return; //break le forEach
