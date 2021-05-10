@@ -14,10 +14,11 @@
 	},
 
 	"resultat_modes": {
-		"modeNormal": "Default",
-		"modeVisuel": "Visual",
-		"modeDiff": "Diff"
+		"0":"Normal",
+		"1":"Diff"
 	},
+
+	"mode_affichage": "Display mode",
 
 	"editeur": {
 		"langageÉbauche": "Language : ",

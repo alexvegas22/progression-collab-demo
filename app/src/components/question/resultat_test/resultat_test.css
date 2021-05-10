@@ -1,3 +1,38 @@
 .sortie.vide {
 	color: gray;
 }
+.mode.diff {
+	color: #000 !important;
+}
+
+.diff.visuel {
+	color: #95959500;
+}
+
+.diff.visuel.enabled {
+	color: #959595ff;
+}
+
+.diff.normal {
+	text-decoration: none;
+	background-color: #ffffff;
+}
+
+.diff.différent.ins{
+	text-decoration: none;
+	background-color: #ffffff;
+}
+
+.diff.différent.del{
+	text-decoration: none;
+	background-color: #ffffff;
+}
+
+.diff.différent.ins.enabled{
+	background-color: #d4fcbc;
+}
+
+.diff.différent.del.enabled{
+	background-color: #fbb6c2;
+}
+

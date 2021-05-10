@@ -1,8 +1,7 @@
 import Test from "@/components/question/test/test.vue";
-import ResultatModes from "@/components/question/resultat_modes/resultat_modes.vue";
 
 export default {
-	components: { Test, ResultatModes },
+	components: { Test },
 	name: "JeuTests",
 	computed: {
 		tests() {

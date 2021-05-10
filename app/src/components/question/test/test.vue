@@ -1,12 +1,10 @@
 <template>
 	<div class="pb-5">
-		<div v-on:click="toggleVisibilite">
+		<div>
 			<div class="row w-100 m-0">
-				<div class="col-md text-right" v-if="this.visible">
-					<span style="font-size: 200%"> &#9660; </span>
-				</div>
-				<div class="col-md text-right" v-else>
-					<span style="font-size: 200%"> &#10148; </span>
+				<div class="col-md text-right">
+					<span style="font-size: 200%" v-show="this.visible"  v-on:click="toggleVisibilite"> &#9660; </span>
+					<span style="font-size: 200%" v-show="!this.visible"  v-on:click="toggleVisibilite"> &#10148; </span>
 				</div>
 
 				<div class="col-md-8">
@@ -20,8 +18,9 @@
 
 				<div class="col-md align-right"></div>
 			</div>
-			<div class="col-md-12" v-if="this.visible">
-				<ResultatTest v-bind:test="test" v-bind:resultat_p="resultat" />
+			<div class="col-md-12" v-show="this.visible">
+				<ResultatTest v-bind:test="test" v-bind:resultat="resultat" />
+				<SélecteurModeAffichage />
 			</div>
 		</div>
 	</div>
