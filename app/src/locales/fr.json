@@ -10,11 +10,11 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests",
-		"modeNormal": "Mode normal",
-		"modeVisuel": "Mode visuel"
+		"jeuTests": "Jeu de tests"
 	},
 
+	"mode_affichage": "Mode d'affichage par différences",
+	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
 		"choixLangage": "-- Choisis ton langage --",
