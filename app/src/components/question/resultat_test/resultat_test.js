@@ -49,15 +49,27 @@ export default {
 		},
 	},
 	mounted() {
-		this.sortie_attendue = this.test.sortie_attendue.replaceAll("\n", '<span class="diff visuel">↵\n</span>');
+		this.rafraîchirSorties();
+	},
+	methods:{
+		rafraîchirSorties: function(){
+			if(!this.test) return;
+			if(!this.resultat) {
+				this.sortie_observée = null
+				this.sortie_attendue = this.test.sortie_attendue;
+				this.feedback = null
+			}
+			else{
+				const résultats = différence(this.resultat.sortie_observée.toString(), this.test.sortie_attendue.toString(), this.mode_affichage);
+				this.sortie_observée = résultats.résultat_observé;
+				this.sortie_attendue = résultats.résultat_attendu;
+				this.feedback = parseMD(this.resultat.feedback);
+			}
+		},
 	},
 	watch: {
-		resultat: function () {
-			const résultats = différence(this.resultat.sortie_observée, this.test.sortie_attendue, this.mode_affichage);
-			this.sortie_observée = résultats.résultat_observé;
-			this.sortie_attendue = résultats.résultat_attendu;
-			this.feedback = parseMD(this.resultat.feedback);
-		},
+		resultat: function (){ this.rafraîchirSorties(); },
+		test: function (){ this.rafraîchirSorties(); },
 		mode_affichage: function (mode) {
 			if (mode) {
 				document.getElementsByClassName("diff différent").forEach((item) => {
