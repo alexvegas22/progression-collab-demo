@@ -13,12 +13,7 @@
 		"jeuTests": "Jeu de tests"
 	},
 
-	"resultat_modes": {
-		"0":"Normal",
-		"1":"Diff"
-	},
-
-	"mode_affichage": "Mode d'affichage",
+	"mode_affichage": "Mode d'affichage par différences",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",

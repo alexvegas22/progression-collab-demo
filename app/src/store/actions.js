@@ -1,4 +1,11 @@
-import { getUserApi, getQuestionApi, getTentativeApi, getAvancementApi, postTentative, postAvancementApi } from "@/services/index.js";
+import {
+	getUserApi,
+	getQuestionApi,
+	getTentativeApi,
+	getAvancementApi,
+	postTentative,
+	postAvancementApi,
+} from "@/services/index.js";
 
 export default {
 	async getUser({ commit }, urlUser) {
@@ -40,11 +47,10 @@ export default {
 		try {
 			params.urlTentative = this.state.avancement.liens.tentative;
 			var retroactionTentative = await postTentative(params);
-			if(retroactionTentative == null) {
+			if (retroactionTentative == null) {
 				commit("updateMsgReponseApi", "erreurServeur");
 				console.log(retroactionTentative.erreur);
-			}
-			else{
+			} else {
 				commit("updateRetroaction", retroactionTentative);
 
 				this.state.avancement.tentatives.unshift(retroactionTentative);
@@ -56,8 +62,7 @@ export default {
 		} catch (error) {
 			commit("updateMsgReponseApi", "erreurServeur");
 			console.log(error);
-		}
-		finally {
+		} finally {
 			commit("updateEnvoieTentativeEnCours", false);
 		}
 	},

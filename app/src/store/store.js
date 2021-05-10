@@ -10,7 +10,7 @@ export default createStore({
 		retroactionTentative: null,
 		msgAPIEnvoiTentative: null,
 		envoiTentativeEnCours: false,
-		mode_affichage:0,
+		mode_affichage: 0,
 		avancement: null,
 	},
 	actions,

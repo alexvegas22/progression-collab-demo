@@ -13,12 +13,7 @@
 		"jeuTests": "Test cases"
 	},
 
-	"resultat_modes": {
-		"0":"Normal",
-		"1":"Diff"
-	},
-
-	"mode_affichage": "Display mode",
+	"mode_affichage": "Differences display mode",
 
 	"editeur": {
 		"langageÉbauche": "Language : ",
