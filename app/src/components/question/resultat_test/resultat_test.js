@@ -1,20 +1,79 @@
 import parseMD from "@/util/parse";
+const diff = require("diff");
+
+const différence = function (orig = "", modif = "", mode_affichage) {
+	const différences = diff.diffChars(orig, modif);
+
+	var résultat_ins = "";
+	var résultat_del = "";
+
+	différences.forEach((différence) => {
+		if (différence.added) {
+			résultat_ins += `<span class="diff différent ins ${mode_affichage ? " enabled" : ""}">${différence.value}</span>`;
+		} else if (différence.removed) {
+			résultat_del += `<span class="diff différent del ${mode_affichage ? " enabled" : ""}">${différence.value}</span>`;
+		} else {
+			résultat_ins += différence.value;
+			résultat_del += différence.value;
+		}
+	});
+
+	return {
+		résultat_attendu: résultat_ins.replaceAll(
+			"\n",
+			`<span class="diff visuel ${mode_affichage ? " enabled" : ""}">↵\n</span>`,
+		),
+		résultat_observé: résultat_del.replaceAll(
+			"\n",
+			`<span class="diff visuel ${mode_affichage ? " enabled" : ""}">↵\n</span>`,
+		),
+	};
+};
 
 export default {
 	name: "ResultatTest",
+	data() {
+		return {
+			sortie_observée: null,
+			sortie_attendue: null,
+			feedback: null,
+		};
+	},
 	props: {
 		test: null,
-		resultat_p: null,
+		resultat: null,
 	},
 	computed: {
-		resultat() {
-			return this.resultat_p
-				? new Proxy(this.resultat_p, {
-						get: function (obj, prop) {
-							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-						},
-				  })
-				: null;
+		mode_affichage() {
+			return this.$store.state.mode_affichage;
+		},
+	},
+	mounted() {
+		this.sortie_attendue = this.test.sortie_attendue.replaceAll("\n", '<span class="diff visuel">↵\n</span>');
+	},
+	watch: {
+		resultat: function () {
+			const résultats = différence(this.resultat.sortie_observée, this.test.sortie_attendue, this.mode_affichage);
+			this.sortie_observée = résultats.résultat_observé;
+			this.sortie_attendue = résultats.résultat_attendu;
+			this.feedback = parseMD(this.resultat.feedback);
+		},
+		mode_affichage: function (mode) {
+			if (mode) {
+				document.getElementsByClassName("diff différent").forEach((item) => {
+					item.classList.add("enabled");
+				});
+				document.getElementsByClassName("diff visuel").forEach((item) => {
+					item.classList.add("enabled");
+				});
+			} else {
+				document.getElementsByClassName("diff différent").forEach((item) => {
+					item.classList.remove("enabled");
+				});
+				document.getElementsByClassName("diff visuel").forEach((item) => {
+					item.classList.remove("enabled");
+				});
+			}
 		},
 	},
 };

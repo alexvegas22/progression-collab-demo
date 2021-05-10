@@ -67,7 +67,7 @@ const getAvancementApi = async (urlAvancement) => {
 };
 const postAvancementApi = async (params) => {
 	try {
-		const body = {question_uri: params.question_uri};
+		const body = { question_uri: params.question_uri };
 		const data = await postData(params.url, body);
 		var avancement = data.data.attributes;
 		avancement.liens = data.data.links;
@@ -85,11 +85,11 @@ const getTentativeApi = async (urlTentative) => {
 		tentative.liens = data.data.links;
 		tentative.resultats = [];
 
-		if(data.erreur){
+		if (data.erreur) {
 			console.log(data.erreur);
 			return null;
 		}
-		
+
 		return tentative;
 	} catch (err) {
 		console.log(err);
@@ -102,11 +102,11 @@ const postTentative = async (params) => {
 		const urlRequete = params.urlTentative + "?include=resultats";
 		const data = await postData(urlRequete, body);
 
-		if(data.erreur){
+		if (data.erreur) {
 			console.log(data.erreur);
 			return null;
 		}
-		
+
 		var tentative = data.data.attributes;
 		tentative.liens = data.data.links;
 		tentative.resultats = [];

@@ -15,7 +15,7 @@ export default {
 				: null;
 		},
 		testsRéussisPct() {
-			return this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length * 100;
+			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
 		},
 		msgReponseApi() {
 			return this.$store.state.msgReponseApi;

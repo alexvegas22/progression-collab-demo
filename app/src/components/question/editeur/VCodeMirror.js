@@ -41,7 +41,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			this.cacherHorsVisible(editor.doc);
 			this.désactiverHorsTodo(editor.doc);
 		});
-		Events.forEach(x => {
+		Events.forEach((x) => {
 			const eventName = "on" + capitalize(x);
 			if (typeof this.$.vnode.props[eventName] === "function") {
 				editor.on(x, this.$emit.bind(this, x));
@@ -55,8 +55,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		this.backupValue = this.value;
 		this.$el._component = this;
 		if (!VCodeMirrorComp.ro) {
-			VCodeMirrorComp.ro = new ResizeObserver(function(entries) {
-				entries.forEach(entry => {
+			VCodeMirrorComp.ro = new ResizeObserver(function (entries) {
+				entries.forEach((entry) => {
 					const that = entry.target._component;
 					if (that.autoHeight) {
 						that.editor.refresh();
@@ -80,9 +80,9 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateMode(value) {
 		if (value === "java") {
 			this.editor.setOption("mode", "text/x-java");
-		} else if(value === "python") {
+		} else if (value === "python") {
 			this.editor.setOption("mode", value);
-		} else if(["c", "cpp", "c++"].includes(value)) {
+		} else if (["c", "cpp", "c++"].includes(value)) {
 			this.editor.setOption("mode", value);
 		} else {
 			this.editor.setOption("mode", null);
@@ -100,20 +100,20 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	}
 
 	désactiverHorsTodo(doc) {
-		let posDébut = doc.getValue().indexOf("+TODO") > -1 ? 0 : doc.getValue().indexOf("-TODO", posFin);;
+		let posDébut = doc.getValue().indexOf("+TODO") > -1 ? 0 : doc.getValue().indexOf("-TODO", posFin);
 		let posFin = 0;
 
 		for (let i = 0; i < this.editor.doc.lineCount(); i++) {
-			if (doc.getLine(i).match("[+-]TODO")){
+			if (doc.getLine(i).match("[+-]TODO")) {
 				//Cache la ligne +TODO
 				doc.markText(
-					{ line: i-1, sticky:"after" },
-					{ line: i, sticky:"after" },
-					{ collapsed: true, selectRight:false },
+					{ line: i - 1, sticky: "after" },
+					{ line: i, sticky: "after" },
+					{ collapsed: true, selectRight: false },
 				);
 			}
 		}
-		
+
 		while (posDébut > -1) {
 			posFin = doc.getValue().indexOf("+TODO", posDébut);
 			if (posFin == -1) {
@@ -127,15 +127,15 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
-				{ readOnly: true,
-				  inclusiveLeft: false,
-				  //empêche d'écrire sur la dernière ligne
-				  inclusiveRight: ligneFin.line+1==doc.lineCount()
+				{
+					readOnly: true,
+					inclusiveLeft: false,
+					//empêche d'écrire sur la dernière ligne
+					inclusiveRight: ligneFin.line + 1 == doc.lineCount(),
 				},
 			);
 
-			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++)
-				doc.removeLineClass(i, "background", "ligne-editable");
+			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++) doc.removeLineClass(i, "background", "ligne-editable");
 
 			posDébut = doc.getValue().indexOf("-TODO", posFin);
 		}
@@ -145,19 +145,19 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		for (let i = 0; i < this.editor.doc.lineCount(); i++) {
 			doc.addLineClass(i, "background", "ligne-editable");
 
-			if (doc.getLine(i).match("[+-]VISIBLE")){
+			if (doc.getLine(i).match("[+-]VISIBLE")) {
 				//Cache la ligne +VISIBLE
 				doc.markText(
-					{ line: i-1, sticky:"after" }, 
-					{ line: i, sticky:"after" },
-					{ collapsed: true, selectRight:false},
+					{ line: i - 1, sticky: "after" },
+					{ line: i, sticky: "after" },
+					{ collapsed: true, selectRight: false },
 				);
 			}
 		}
 
 		let posFin = 0;
 		let posDébut = doc.getValue().indexOf("+VISIBLE") > -1 ? 0 : doc.getValue().indexOf("-VISIBLE", posFin);
-		
+
 		while (posDébut > -1) {
 			posFin = doc.getValue().indexOf("+VISIBLE", posDébut);
 			if (posFin == -1) {
@@ -169,7 +169,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 
 			//Cache toute la section non visible
 			doc.markText(
-				{ line: ligneDébut.line -1 },
+				{ line: ligneDébut.line - 1 },
 				{ line: ligneFin.line },
 				{
 					collapsed: true,

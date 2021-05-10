@@ -10,10 +10,10 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases",
-		"modeNormal": "Default mode",
-		"modeVisuel": "Visual mode"
+		"jeuTests": "Test cases"
 	},
+
+	"mode_affichage": "Differences display mode",
 
 	"editeur": {
 		"langageÉbauche": "Language : ",

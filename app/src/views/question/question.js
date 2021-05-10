@@ -33,10 +33,9 @@ export default {
 		if ( id_avancement in this.$store.state.user.avancements) {
 			this.$store.dispatch(
 				"getAvancement",
-				this.$store.state.user.avancements[ id_avancement ].liens.self
+				this.$store.state.user.avancements[ id_avancement ].liens.self,
 			);
-		}
-		else {
+		} else {
 			this.$store.dispatch("postAvancement", {
 				url: this.$store.state.user.liens.avancements,
 				question_uri: this.uri,
