@@ -1,20 +1,13 @@
-Simon Roy
-<br>
-Danny Villeda
-<br>
-Guillaume Langlois
-<br>
-Charles-Antoine Poitras
-<br>
-Samuel Beaulieu
-<br>
-Hamed Tijane Mkpoumie Monfouayi
-<br>
-Julien Jacquard
-<br>
-Maryia Pashkevich
-<br>
-Hedi Ouahada
-<br>
-Alexandre Dinh
-<br>
+- Patrick Lafrance
+- Hamed Tijane Mkpoumie Monfouayi
+- Simon Roy
+- Danny Villeda
+- Guillaume Langlois
+- Charles-Antoine Poitras
+- Samuel Beaulieu
+- Julien Jacquard
+- Maryia Pashkevich
+- Hedi Ouahada
+- Alexandre Dinh
+- Radu Dumitru
+- Hugo Barou
