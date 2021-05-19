@@ -1,4 +1,8 @@
 {
+	"erreur": {
+		"réseau": "Connection to server failed. Please retry or contact an administrator."
+	},
+	
 	"login": {
 		"courriel": "Email : ",
 		"motDePasse": "Password : ",
@@ -17,8 +21,9 @@
 
 	"editeur": {
 		"langageÉbauche": "Language : ",
-		"choixLangage": "-- Pick a language --",
-		"réinitialiser": "Reset"
+		"choixLangage": "-- Select a language --",
+		"réinitialiser": "Reset",
+		"réinitialiser_avertissement": "Changes made since the last attempt will be lost. Do you want to reset?"
 	},
 
 	"retroaction_tentative": {

@@ -1,7 +1,7 @@
 <template>
 	<label for="langages">{{ $t("editeur.langageÉbauche") }}</label>
 	<select name="langages" id="langages" style="margin-left: 10px; width: 250px; text-align: center"
-			v-model="selected"
+			v-model="langageSélectionné"
 			v-on:change="this.chargerEbaucheParLangage()"
 	>
 		<option v-if="Object.keys(this.ebauches).length === 0" disabled selected>{{ $t("editeur.choixLangage") }}</option>
@@ -13,11 +13,12 @@
 			{{ langage }}
 		</option>
 	</select>
+	<div :class="classeIndicateur">*</div>
 	<div>
 		<v-code-mirror
 			id="editor"
-			v-model:value="this.code"
-			:mode="selected"
+			v-model:value="code"
+			:mode="langageSélectionné"
 			theme="monokai"
 		/>
 	</div>

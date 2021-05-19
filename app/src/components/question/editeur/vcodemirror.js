@@ -1,4 +1,3 @@
-var VCodeMirrorComp;
 import { __decorate, __metadata } from "tslib";
 import CodeMirror from "codemirror";
 import "codemirror/addon/fold/brace-fold";
@@ -12,12 +11,16 @@ import { capitalize, h, markRaw } from "vue";
 import ResizeObserver from "resize-observer-polyfill";
 import { $theme } from "theme-helper";
 import { Component, Inreactive, Prop, VueComponentBase, Watch } from "vue3-component-base";
+import { zones } from "./zones";
+
 const Events = ["focus", "blur", "scroll"];
+var VCodeMirrorComp;
 
 let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase {
 	render() {
 		return h("div", { class: "v-code-mirror" });
 	}
+
 	mounted() {
 		const editor = (this.editor = markRaw(
 			CodeMirror(this.$el, {
@@ -32,28 +35,29 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				...this.options,
 			}),
 		));
-		this.cacherHorsVisible(editor.doc);
-		this.désactiverHorsTodo(editor.doc);
+
+		this.$el._component = this;
+
+		zones.cacherHorsVisible(editor.doc);
+		zones.désactiverHorsTodo(editor.doc);
+
 		editor.on("changes", () => {
-			const value = editor.doc.getValue();
-			this.backupValue = value;
-			this.$emit("update:value", editor.doc.getValue());
-			this.cacherHorsVisible(editor.doc);
-			this.désactiverHorsTodo(editor.doc);
+			this.$emit("update:value", this.editor.getValue());
 		});
+
 		Events.forEach((x) => {
 			const eventName = "on" + capitalize(x);
 			if (typeof this.$.vnode.props[eventName] === "function") {
 				editor.on(x, this.$emit.bind(this, x));
 			}
 		});
+
 		this.cleanEvent = markRaw(
 			$theme.onchange(({ detail }) => {
 				this.editor.setOption("theme", detail === "white" ? "default" : "dracula");
 			}),
 		);
-		this.backupValue = this.value;
-		this.$el._component = this;
+
 		if (!VCodeMirrorComp.ro) {
 			VCodeMirrorComp.ro = new ResizeObserver(function (entries) {
 				entries.forEach((entry) => {
@@ -68,15 +72,23 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		}
 		VCodeMirrorComp.ro.observe(this.$el);
 	}
+
 	beforeUnmount() {
 		var _a, _b;
 		(_a = this.cleanEvent) === null || _a === void 0 ? void 0 : _a.call(this);
 		(_b = VCodeMirrorComp.ro) === null || _b === void 0 ? void 0 : _b.unobserve(this.$el);
 	}
+
 	updateValue(value) {
-		if (value === this.backupValue) return;
-		this.editor.setValue(value);
+		if (value != this.editor.getValue()) {
+			var cursor = this.editor.getCursor();
+			this.editor.setValue(value);
+			zones.cacherHorsVisible(this.editor.doc);
+			zones.désactiverHorsTodo(this.editor.doc);
+			this.editor.setCursor(cursor);
+		}
 	}
+
 	updateMode(value) {
 		if (value === "java") {
 			this.editor.setOption("mode", "text/x-java");
@@ -92,92 +104,13 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateReadonly(value) {
 		this.editor.setOption("readOnly", value);
 	}
+
 	updateWrap(value) {
 		this.editor.setOption("lineWrapping", value);
 	}
+
 	focus() {
 		this.editor.focus();
-	}
-
-	désactiverHorsTodo(doc) {
-		let posDébut = doc.getValue().indexOf("+TODO") > -1 ? 0 : doc.getValue().indexOf("-TODO", posFin);
-		let posFin = 0;
-
-		for (let i = 0; i < this.editor.doc.lineCount(); i++) {
-			if (doc.getLine(i).match("[+-]TODO")) {
-				//Cache la ligne +TODO
-				doc.markText(
-					{ line: i - 1, sticky: "after" },
-					{ line: i, sticky: "after" },
-					{ collapsed: true, selectRight: false },
-				);
-			}
-		}
-
-		while (posDébut > -1) {
-			posFin = doc.getValue().indexOf("+TODO", posDébut);
-			if (posFin == -1) {
-				posFin = doc.getValue().length;
-			}
-
-			let ligneDébut = doc.posFromIndex(posDébut);
-			let ligneFin = doc.posFromIndex(posFin);
-
-			//Rend immuable
-			doc.markText(
-				{ line: ligneDébut.line, ch: 0 },
-				{ line: ligneFin.line + 1, ch: 0 },
-				{
-					readOnly: true,
-					inclusiveLeft: false,
-					//empêche d'écrire sur la dernière ligne
-					inclusiveRight: ligneFin.line + 1 == doc.lineCount(),
-				},
-			);
-
-			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++) doc.removeLineClass(i, "background", "ligne-editable");
-
-			posDébut = doc.getValue().indexOf("-TODO", posFin);
-		}
-	}
-
-	cacherHorsVisible(doc) {
-		for (let i = 0; i < this.editor.doc.lineCount(); i++) {
-			doc.addLineClass(i, "background", "ligne-editable");
-
-			if (doc.getLine(i).match("[+-]VISIBLE")) {
-				//Cache la ligne +VISIBLE
-				doc.markText(
-					{ line: i - 1, sticky: "after" },
-					{ line: i, sticky: "after" },
-					{ collapsed: true, selectRight: false },
-				);
-			}
-		}
-
-		let posFin = 0;
-		let posDébut = doc.getValue().indexOf("+VISIBLE") > -1 ? 0 : doc.getValue().indexOf("-VISIBLE", posFin);
-
-		while (posDébut > -1) {
-			posFin = doc.getValue().indexOf("+VISIBLE", posDébut);
-			if (posFin == -1) {
-				posFin = doc.getValue().length;
-			}
-
-			let ligneDébut = doc.posFromIndex(posDébut);
-			let ligneFin = doc.posFromIndex(posFin);
-
-			//Cache toute la section non visible
-			doc.markText(
-				{ line: ligneDébut.line - 1 },
-				{ line: ligneFin.line },
-				{
-					collapsed: true,
-				},
-			);
-
-			posDébut = doc.getValue().indexOf("-VISIBLE", posFin);
-		}
 	}
 });
 __decorate([Prop({ required: true }), __metadata("design:type", String)], VCodeMirror.prototype, "value", void 0);
