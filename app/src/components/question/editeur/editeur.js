@@ -1,14 +1,20 @@
-import { VCodeMirror } from "./VCodeMirror";
+import { VCodeMirror } from "./vcodemirror";
 
 export default {
+	name: "EditeurCode",
 	components: {
 		VCodeMirror,
 	},
+
 	data() {
 		return {
-			selected: "",
+			langageSélectionné: "",
+			indicateurSauvegardeEnCours: false,
+			indicateurModifié: false,
+			sauvegardeAutomatique: null,
 		};
 	},
+
 	computed: {
 		code: {
 			get: function () {
@@ -16,49 +22,104 @@ export default {
 			},
 			set: function (texte) {
 				this.$store.dispatch("mettreAjourCode", texte);
+				this.texteModifié();
 			},
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
 		},
+
 		tentative() {
 			return this.$store.state.tentative;
 		},
-		tentatives() {
-			return this.$store.state.avancement.tentatives ?? [];
+
+		classeIndicateur() {
+			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
 		},
 	},
+
+	created() {
+		window.onbeforeunload = this.beforeWindowUnload;
+	},
+
 	mounted() {
 		if (this.tentative) {
-			this.selected = this.tentative.langage;
+			this.langageSélectionné = this.tentative.langage;
 		}
 	},
+
+	beforeUnmount() {
+		this.sauvegarder();
+		window.removeEventListener("beforeunload", this.beforeWindowUnload);
+	},
+
 	watch: {
 		tentative: function () {
-			this.selected = this.tentative.langage;
+			this.langageSélectionné = this.tentative.langage;
 		},
 	},
+
 	methods: {
+		beforeWindowUnload() {
+			if (this.indicateurModifié || this.indicateurSauvegardeEnCours) return "";
+		},
+
 		reinitialiserCodeEditeur() {
-			const msgAvertissement = "Êtes-vous sûr de vouloir réinitialiser?";
+			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("réinitialiser", this.tentative.langage);
 			}
 		},
+
+		sauvegarder() {
+			if (this.indicateurModifié && !this.indicateurSauvegardeEnCours) {
+				this.indicateurSauvegardeEnCours = true;
+				this.indicateurModifié = false;
+				this.$store.dispatch("mettreAjourSauvegarde");
+			}
+		},
+
 		chargerEbaucheParLangage() {
-			this.$store.dispatch("mettreAjourLangageSelectionne", this.selected);
-			var tentativeExiste = false;
-			if (this.tentatives.length > 0) {
-				this.tentatives.forEach((uneTentative) => {
-					if (!tentativeExiste && uneTentative.langage == this.tentative.langage) {
-						this.$store.dispatch("mettreAjourCode", uneTentative.code);
-						tentativeExiste = true;
+			var nouveauCode = null;
+
+			this.sauvegarder();
+			if (Object.keys(this.$store.state.sauvegardes).includes(this.langageSélectionné)) {
+				nouveauCode = this.$store.state.sauvegardes[this.langageSélectionné].code;
+			} else if (this.$store.state.avancement.tentatives.length > 0) {
+				this.$store.state.avancement.tentatives.forEach((uneTentative) => {
+					if (uneTentative.langage == this.langageSélectionné) {
+						nouveauCode = uneTentative.code;
 						return; //break le forEach
 					}
 				});
 			}
-			if (!tentativeExiste) {
-				this.$store.dispatch("réinitialiser", this.tentative.langage);
+
+			if (!nouveauCode && Object.keys(this.ebauches).includes(this.langageSélectionné)) {
+				nouveauCode = this.ebauches[this.langageSélectionné].code;
+			}
+
+			this.$store.dispatch("mettreAjourLangageSelectionne", this.langageSélectionné);
+			this.$store.dispatch("mettreAjourCode", nouveauCode);
+		},
+
+		texteModifié() {
+			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
+				this.sauvegardeAutomatique = setTimeout(async () => {
+					this.indicateurSauvegardeEnCours = true;
+					this.indicateurModifié = false;
+					await this.$store
+						.dispatch("mettreAjourSauvegarde")
+						.catch((erreur) => {
+							console.log("ERREUR de sauvegarde : " + erreur);
+							this.indicateurModifié = true;
+						})
+						.finally(() => {
+							this.indicateurSauvegardeEnCours = false;
+							this.sauvegardeAutomatique = null;
+						});
+				}, process.env.VUE_APP_DELAI_SAUVEGARDE);
+
+				this.indicateurModifié = true;
 			}
 		},
 	},

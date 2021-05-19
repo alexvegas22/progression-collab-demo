@@ -20,7 +20,7 @@ services:
 networks:
   default:
     external:
-      name: progression_backend_progressionnet
+      name: progression_backend_master_progressionnet
 
 # command to build
 #   docker-compose build

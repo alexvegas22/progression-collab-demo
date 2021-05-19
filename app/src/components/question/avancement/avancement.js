@@ -15,8 +15,11 @@ export default {
 		filtrerTentativesParLangage: function (langage) {
 			return this.tentatives.filter((item) => item.langage == langage);
 		},
-		chargerTentative: function (lien) {
-			this.$store.dispatch("getTentative", lien);
+		chargerTentative: function () {
+			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
+			if (confirm(msgAvertissement) == true) {
+				this.$store.dispatch("getTentative", event.target.value);
+			}
 		},
 		timestampVersDate: function (timestamp) {
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");

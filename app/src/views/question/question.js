@@ -25,16 +25,17 @@ export default {
 		question() {
 			return this.$store.state.question;
 		},
+		erreurs() {
+			return this.$store.state.erreurs;
+		},
 	},
 	mounted() {
+		this.$store.dispatch("initialiserUriQuestion", this.uri);
 		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 
 		const id_avancement = this.$store.state.user.username + "/" + this.uri;
-		if ( id_avancement in this.$store.state.user.avancements) {
-			this.$store.dispatch(
-				"getAvancement",
-				this.$store.state.user.avancements[ id_avancement ].liens.self,
-			);
+		if (id_avancement in this.$store.state.user.avancements) {
+			this.$store.dispatch("getAvancement", this.$store.state.user.avancements[id_avancement].liens.self);
 		} else {
 			this.$store.dispatch("postAvancement", {
 				url: this.$store.state.user.liens.avancements,

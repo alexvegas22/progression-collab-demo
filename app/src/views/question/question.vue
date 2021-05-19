@@ -1,4 +1,7 @@
 <template>
+	<div v-show="erreurs" class="alert alert-danger">
+		{{$t("erreur.réseau")}}
+	</div>
 	<div  v-if="question">
 		<div class="question">
 			<Enonce/>
