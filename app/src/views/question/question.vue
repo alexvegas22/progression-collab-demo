@@ -1,16 +1,17 @@
 <template>
 	<div  v-if="question">
-		<div class="question">
-			<Enonce/>
-			<div></div>
-			<div class="editeur-container">
-				<div class="division">
-					<EditeurCode />
-					<ValidationTentative />
-				</div>
-				<div class="division retroaction-container" id="retroaction">
+		<div class="container-fluid p-3">
+			<div class="row">
+			<div class="col-xl-4 col-md-6">
+				<Enonce/>
+				<div id="retroaction">
 					<RetroactionTentative />
 				</div>
+			</div>
+			<div class="col-xl-8 col-md-6">
+				<EditeurCode />
+				<ValidationTentative />
+			</div>
 			</div>
 		</div>
 		<div>
