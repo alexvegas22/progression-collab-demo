@@ -6,13 +6,46 @@
 
 .ligne-editable {
 	background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-			rgba(0, 0, 0, 0.2), 
-			rgba(0, 0, 0, 0.2)
-        );
+		/* top, transparent black, faked with gradient */ 
+		linear-gradient(
+		rgba(255, 255, 255, 0.05),
+		rgba(255, 255, 255, 0.05)
+	);
 }
 
 .ligne-cache {
 	visibility: hidden;
+}
+
+.non-sauvegardé {
+	padding: 10px;
+	float: right;
+	border: none;
+	width: 20px;
+	height: 20px;
+	color: red;
+	font-size: 20px;
+}
+.en-cours {
+	padding: 10px;
+	float: right;
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #3498db;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	animation: spin 2s linear infinite;
+	color: transparent;
+}
+.sauvegardé {
+	padding: 10px;
+	float: right;
+	border: none;
+	width: 20px;
+	height: 20px;
+	visibility: hidden;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }

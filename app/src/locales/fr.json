@@ -1,4 +1,8 @@
 {
+	"erreur": {
+		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur"
+	},
+
 	"login": {
 		"courriel": "Courriel : ",
 		"motDePasse": "Mot de passe : ",
@@ -17,8 +21,9 @@
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
-		"choixLangage": "-- Choisis ton langage --",
-		"réinitialiser": "Réinitialiser"
+		"choixLangage": "-- Choisissez un langage --",
+		"réinitialiser": "Réinitialiser",
+		"réinitialiser_avertissement": "Vos modifications depuis la dernière tentative seront perdues. Voulez-vous réinitialiser?"
 	},
 
 	"retroaction_tentative": {
