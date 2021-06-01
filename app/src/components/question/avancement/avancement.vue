@@ -1,7 +1,5 @@
 <template>
-	<h3>{{ $t('avancement.'+étatVersChaîne(avancement.état)) }}</h3>
-	<div v-if="this.tentatives.length > 0">
-		<label for="avancement">{{$t('avancement.versionTentative')}}</label>
+	<div v-if="this.tentatives.length > 0" >
 		<select name="avancement" id="avancement" v-on:change="this.chargerTentative()">
 			<option disabled>{{$t('avancement.choisirTentative')}}</option>
 			<optgroup 

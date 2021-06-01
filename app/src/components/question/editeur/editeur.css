@@ -1,16 +1,17 @@
 .btn-reset {
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-	margin-right: 15px;
-	width: calc(30% - 15px);
+	border-radius: 50%;
+	position: absolute;
+	top: -300px;
+	right: 15px;
 }
 
 .ligne-editable {
 	background:
 		/* top, transparent black, faked with gradient */ 
 		linear-gradient(
-		rgba(255, 255, 255, 0.05),
-		rgba(255, 255, 255, 0.05)
-	);
+			rgba(255, 255, 255, 0.05),
+			rgba(255, 255, 255, 0.05)
+		);
 }
 
 .ligne-cache {
@@ -45,6 +46,13 @@
 	height: 20px;
 	visibility: hidden;
 }
+
+.btn-valider{
+	border-radius: 50%;
+	position: absolute;
+	right: 15px;
+}
+
 @keyframes spin {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }

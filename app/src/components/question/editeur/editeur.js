@@ -36,6 +36,9 @@ export default {
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
 		},
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
+		},
 	},
 
 	created() {
@@ -101,7 +104,6 @@ export default {
 			this.$store.dispatch("mettreAjourLangageSelectionne", this.langageSélectionné);
 			this.$store.dispatch("mettreAjourCode", nouveauCode);
 		},
-
 		texteModifié() {
 			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
 				this.sauvegardeAutomatique = setTimeout(async () => {
@@ -121,6 +123,12 @@ export default {
 
 				this.indicateurModifié = true;
 			}
+		},
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
+			});
 		},
 	},
 };

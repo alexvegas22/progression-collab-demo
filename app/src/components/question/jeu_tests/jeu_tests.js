@@ -22,7 +22,7 @@ export default {
 			return this.$store.state.question.tests[this.index_select];
 		},
 		resultat_select() {
-			return this.$store.state.retroactionTentative.resultats[this.index_select];
+			return this.$store.state.retroactionTentative ? this.$store.state.retroactionTentative.resultats[this.index_select] : null;
 		},
 	},
 	data() {

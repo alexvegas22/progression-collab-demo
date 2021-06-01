@@ -4,8 +4,6 @@
 			v-model="langageSélectionné"
 			v-on:change="this.chargerEbaucheParLangage()"
 	>
-		<option v-if="Object.keys(this.ebauches).length === 0" disabled selected>{{ $t("editeur.choixLangage") }}</option>
-		<option v-else disabled>{{ $t("editeur.choixLangage") }}</option>
 		<option
 			v-for="langage in Object.keys(this.ebauches)"
 			v-bind:key="langage"
@@ -17,19 +15,31 @@
 	<div>
 		<v-code-mirror
 			id="editor"
-			v-model:value="code"
+				v-model:value="code"
 			:mode="langageSélectionné"
 			theme="monokai"
 		/>
 	</div>
-	<button
-		type="button"
-		class="btn btn-info btn-reset p-3"
-		style="margin-top: 15px"
-		@click="this.reinitialiserCodeEditeur()"
-	>
-		{{ $t("editeur.réinitialiser") }}
+
+	<div style="position: relative; top: -45px">
+
+		<button
+			type="button"
+			class="btn btn-info btn-reset"
+			@click="this.reinitialiserCodeEditeur()"
+		>
+			⟲
+		</button>
+
+			<button
+				type="button"
+					  class="btn btn-success btn-valider"
+					  :disabled="envoiEnCours"
+				@click="validerTentative"
+			>
+		➜
 	</button>
+	</div>
 </template>
 
 <script src="./editeur.js"></script>

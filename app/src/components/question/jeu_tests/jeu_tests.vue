@@ -5,8 +5,10 @@
 				<h3 style="text-align: left">{{ $t("jeu_tests.jeuTests") }}</h3>
 				<div v-for="(test, index) in tests" :key="index">
 					<Test v-bind:test="test"
+						  v-bind:index="index"
 						  v-bind:réussi="resultats[index]"
 						  v-bind:non_réussi="resultats[index] == false"
+						  v-bind:sélectionné="index==index_select"
 
 						  v-on:select="select(index)"
 					/>

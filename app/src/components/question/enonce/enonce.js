@@ -3,8 +3,11 @@ import parseMD from "@/util/parse";
 export default {
 	name: "Enonce",
 	computed: {
-		avancement() {
-			return this.$store.state.avancement;
+		état_réussi() {
+			return this.$store.state.avancement.état;
+		},
+		état_non_réussi() {
+			return !this.$store.state.avancement.état;
 		},
 		question() {
 			return new Proxy(this.$store.state.question, {

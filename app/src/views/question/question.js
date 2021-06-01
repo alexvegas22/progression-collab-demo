@@ -3,7 +3,6 @@ import EditeurCode from "@/components/question/editeur/editeur.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 import JeuTests from "@/components/question/jeu_tests/jeu_tests.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
-import ValidationTentative from "@/components/question/validation_tentative/validation_tentative.vue";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -16,7 +15,6 @@ export default {
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
-		ValidationTentative,
 	},
 	computed: {
 		avancement() {
