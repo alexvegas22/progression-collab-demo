@@ -1,0 +1,15 @@
+.non_réussi{
+	background: #e3a5a5
+}
+
+.réussi{
+	background: #9bd58e
+}
+
+.sélectionné{
+	border: 2px solid black;
+}
+
+.non_sélectionné{
+	border: 2px solid lightgrey;
+}
