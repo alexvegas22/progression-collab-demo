@@ -32,7 +32,8 @@
 		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
 		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
-		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur.",
+		"soumettre": "Soumettez votre solution pour obtenir une rétroaction"
 	},
 
 	"resultat_test": {
@@ -51,6 +52,7 @@
 		"questionIndéterminée": "L'exercice est... */»(-)+«+(!... un skidoo, tu peux-tu laisser ça d'ans cours?",
 		"versionTentative": "Version de la tentative : ",
 		"choisirTentative": "Choisir une tentative précédente",
-		"dateTentative": "Tentative du "
+		"dateTentative": "Tentative du ",
+		"ébauche_initiale": "Revenir à l'ébauche initiale"
 	}
 }

@@ -32,7 +32,8 @@
 		"nbTestsValidés": "Passed tests : ",
 		"conseil": "Tip : ",
 		"traitementEnCours": "Your answer is being tested...",
-		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
+		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator",
+		"soumettre": "Submit your answer to receive feedback"
 	},
 
 	"resultat_test": {
@@ -51,6 +52,7 @@
 		"questionIndéterminée": "This exercice is... -/+@-/*»!... I can't hear you, I'm using the scrambler!",
 		"versionTentative": "Previous attempts : ",
 		"choisirTentative": "Choose a previous attempt",
-		"dateTentative": "Attempt from "
+		"dateTentative": "Attempt from ",
+		"ébauche_initiale": "Reset initial draft"
 	}
 }

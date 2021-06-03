@@ -2,13 +2,27 @@
 	font-weight: bold;
 }
 .enonce {
-	font-style: italic;
-	font-size: 1.7em;
+	font-size: 1em;
+}
+.titre {
+	font-size: 1.5em;
+	color: black;
+	font-weight: bold;
 }
 
-.titre {
-	font-size: 3em;
-	text-align: center;
-	color: white;
-	font-weight: bold;
+.encadré{
+	padding-top:5px;
+}
+
+.état{
+	position: relative;
+	left: -30px;
+	top: 20px;
+	font-size: 2em;
+	visibility: hidden;
+	color: green
+}
+
+.état.réussi{
+	visibility: visible;
 }

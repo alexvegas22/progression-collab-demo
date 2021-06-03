@@ -1,22 +1,21 @@
 <template>
-	<h3>{{ $t('avancement.'+étatVersChaîne(avancement.état)) }}</h3>
-	<div v-if="this.tentatives.length > 0">
-		<label for="avancement">{{$t('avancement.versionTentative')}}</label>
-		<select name="avancement" id="avancement" v-on:change="this.chargerTentative()">
-			<option disabled>{{$t('avancement.choisirTentative')}}</option>
-			<optgroup 
-				v-for="langage in this.langages"
-				v-bind:key="langage"
-				:label="langage"
-			>
-				<option
-					v-for="elem in this.filtrerTentativesParLangage(langage)"
-					:value="elem.liens.self"
-				>
-					{{ this.timestampVersDate(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
-				</option>
-			</optgroup>
-		</select>
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
+			{{this.langage}}
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="menu_historique">
+			<li v-for="langage in this.langages" key="langage">
+				<button class="dropdown-item disabled">{{langage}}</button>
+				<ul>
+					<li><button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">{{ $t('avancement.ébauche_initiale') }}</button></li>
+					<li v-for="elem in this.filtrerTentativesParLangage(langage)">
+						<button class="dropdown-item" @click="this.chargerTentative()" :value="elem.liens.self">
+							{{ this.timestampVersDate(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}							
+						</button>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
 </template>
 

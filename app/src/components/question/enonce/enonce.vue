@@ -1,14 +1,20 @@
 <template>
-	<div class="jumbotron rounded-0 bg-info">
-		<h3 class="titre text-light">
-			{{ question.titre }}
-		</h3>
-
-		<div class="row">
-			<div
-				class="enonce col-xs-12 col-sm-6 col-md-6 mx-auto bg-light text-info border border-dark"
-				v-html="question.énoncé"
-			>
+	<div class="jumbotron encadré">
+		<div class="container">
+				<span class = "état" :class="{réussi: état_réussi}">
+					✔
+				</span>
+			<div class="row">
+				<h3 class="titre align-self-start">
+					{{ question.titre }}
+				</h3>
+			</div>
+			
+			<div class="row">
+				<p
+					class="lead"
+					v-html="question.énoncé">
+				</p>
 			</div>
 		</div>
 	</div>

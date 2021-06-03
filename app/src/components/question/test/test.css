@@ -1,0 +1,19 @@
+.test.réussi{
+	background-color: #80cc8e;
+}
+
+.test.non_réussi{
+	background-color: #d88f90;
+}
+
+.sélectionné{
+	border: 2px solid black;
+}
+
+.non_sélectionné{
+	border: 2px solid lightgrey;
+}
+
+.visible{
+	visibility: visible;
+}

@@ -10,7 +10,7 @@ const getUserApi = async (urlUser) => {
 		data.included.forEach((item) => {
 			var avancement = item.attributes;
 			avancement.liens = item.links;
-			user.avancements[item.langage] = avancement;
+			user.avancements[item.id] = avancement;
 		});
 	}
 	return user;

@@ -1,7 +1,27 @@
 <template>
-	<h1 style="text-align: center">{{ $t("jeu_tests.jeuTests") }}</h1>
-	<div v-for="(test, index) in tests" :key="index">
-		<Test v-bind:test="test" v-bind:resultat="resultats[index]" v-bind:mode="mode" />
+	<div class="container-fluid">
+		<div class="row">
+			<div class="container col-4">
+				<h3 style="text-align: left">{{ $t("jeu_tests.jeuTests") }}</h3>
+				<div v-for="(test, index) in tests" :key="index">
+					<Test v-bind:test="test"
+						  v-bind:index="index"
+						  v-bind:réussi="resultats[index]"
+						  v-bind:non_réussi="resultats[index] == false"
+						  v-bind:sélectionné="index==index_select"
+
+						  v-on:select="select(index)"
+					/>
+				</div>
+			</div>
+			<div class="col-8">
+				<ResultatTest v-bind:test="test_select" v-bind:resultat="resultat_select" />
+			</div>
+			<div class="col-md-12">
+				<SélecteurModeAffichage />
+			</div>
+			
+		</div>
 	</div>
 </template>
 

@@ -1,8 +1,13 @@
 import parseMD from "@/util/parse";
+import VueTippy from "vue-tippy";
 
 export default {
 	name: "RetroactionTentative",
+	components: { VueTippy },
 	computed: {
+		tentative() {
+			return this.$store.state.tentative;
+		},
 		retroactionTentative() {
 			let tentative = this.$store.state.retroactionTentative;
 
@@ -15,7 +20,21 @@ export default {
 				: null;
 		},
 		testsRéussisPct() {
-			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+			return {
+				width:
+					(this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100 + "%",
+			};
+		},
+		testsRatésPct() {
+			return {
+				width:
+					100 -
+					(this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100 +
+					"%",
+			};
+		},
+		nbTests() {
+			return this.$store.state.question.tests.length;
 		},
 		msgReponseApi() {
 			return this.$store.state.msgReponseApi;

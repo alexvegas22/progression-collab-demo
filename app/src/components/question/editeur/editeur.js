@@ -8,7 +8,6 @@ export default {
 
 	data() {
 		return {
-			langageSélectionné: "",
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
@@ -28,7 +27,9 @@ export default {
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
 		},
-
+		mode() {
+			return this.$store.state.tentative.langage;
+		},
 		tentative() {
 			return this.$store.state.tentative;
 		},
@@ -36,16 +37,30 @@ export default {
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
 		},
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
+		},
+		retroactionTentative() {
+			let tentative = this.$store.state.retroactionTentative;
+
+			return tentative
+				? new Proxy(tentative, {
+						get: function (obj, prop) {
+							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+						},
+				  })
+				: null;
+		},
+		tentative_réussie() {
+			return this.$store.state.tentative.réussi;
+		},
+		testsRéussisPct() {
+			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+		},
 	},
 
 	created() {
 		window.onbeforeunload = this.beforeWindowUnload;
-	},
-
-	mounted() {
-		if (this.tentative) {
-			this.langageSélectionné = this.tentative.langage;
-		}
 	},
 
 	beforeUnmount() {
@@ -53,22 +68,9 @@ export default {
 		window.removeEventListener("beforeunload", this.beforeWindowUnload);
 	},
 
-	watch: {
-		tentative: function () {
-			this.langageSélectionné = this.tentative.langage;
-		},
-	},
-
 	methods: {
 		beforeWindowUnload() {
 			if (this.indicateurModifié || this.indicateurSauvegardeEnCours) return "";
-		},
-
-		reinitialiserCodeEditeur() {
-			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
-			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("réinitialiser", this.tentative.langage);
-			}
 		},
 
 		sauvegarder() {
@@ -77,29 +79,6 @@ export default {
 				this.indicateurModifié = false;
 				this.$store.dispatch("mettreAjourSauvegarde");
 			}
-		},
-
-		chargerEbaucheParLangage() {
-			var nouveauCode = null;
-
-			this.sauvegarder();
-			if (Object.keys(this.$store.state.sauvegardes).includes(this.langageSélectionné)) {
-				nouveauCode = this.$store.state.sauvegardes[this.langageSélectionné].code;
-			} else if (this.$store.state.avancement.tentatives.length > 0) {
-				this.$store.state.avancement.tentatives.forEach((uneTentative) => {
-					if (uneTentative.langage == this.langageSélectionné) {
-						nouveauCode = uneTentative.code;
-						return; //break le forEach
-					}
-				});
-			}
-
-			if (!nouveauCode && Object.keys(this.ebauches).includes(this.langageSélectionné)) {
-				nouveauCode = this.ebauches[this.langageSélectionné].code;
-			}
-
-			this.$store.dispatch("mettreAjourLangageSelectionne", this.langageSélectionné);
-			this.$store.dispatch("mettreAjourCode", nouveauCode);
 		},
 
 		texteModifié() {
@@ -121,6 +100,12 @@ export default {
 
 				this.indicateurModifié = true;
 			}
+		},
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
+			});
 		},
 	},
 };
