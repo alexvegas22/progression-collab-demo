@@ -2,8 +2,16 @@
 	color: #5f9ea0
 }
 
-.conseil {
+.fond_conseil {
 	background: white;
+}
+
+.popup_conseil{
+	float: right;
+	position: relative;
+	top: -75px;
+	right: 38px;
+	z-index: 3";
 }
 
 .test_réussi{
