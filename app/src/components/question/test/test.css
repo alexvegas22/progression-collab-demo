@@ -1,9 +1,9 @@
-.test.non_réussi{
-	background: #e3a5a5
+.test.réussi{
+	background-color: #80cc8e;
 }
 
-.test.réussi{
-	background: #9bd58e
+.test.non_réussi{
+	background-color: #d88f90;
 }
 
 .sélectionné{

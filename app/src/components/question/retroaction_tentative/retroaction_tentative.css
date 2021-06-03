@@ -2,15 +2,14 @@
 	color: #5f9ea0
 }
 
-#tooltip {
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 13px;
-	display: none;
+.conseil {
+	background: white;
 }
 
-#tooltip[data-show] {
-	display:block;
+.test_réussi{
+	background-color: #80cc8e;
+}
+
+.test_non_réussi{
+	background-color: #d88f90;
 }

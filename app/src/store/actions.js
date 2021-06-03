@@ -129,5 +129,6 @@ export default {
 		const langage = langage_p ?? this.state.tentative.langage;
 		commit("updateCodeTentative", this.state.question.ebauches[langage].code);
 		commit("updateLangageTentative", langage);
+		commit("updateRetroaction", null);
 	},
 };
