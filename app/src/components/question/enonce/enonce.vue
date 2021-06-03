@@ -1,7 +1,7 @@
 <template>
 	<div class="jumbotron encadré">
 		<div class="container">
-				<span :class="{état_réussi, état_non_réussi}">
+				<span class = "état" :class="{réussi: état_réussi}">
 					✔
 				</span>
 			<div class="row">

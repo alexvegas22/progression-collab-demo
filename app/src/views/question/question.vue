@@ -5,24 +5,19 @@
 	<div v-if="question">
 		<div class="container-fluid p-3">
 			<div class="row">
-				<div class="col-xl-4 col-md-6">
-					<div style="overflow: auto; height: 600px">
-						<Enonce />
-					</div>
-					<div id="retroaction">
-						<RetroactionTentative />
-					</div>
+				<div class="col-lg-4 col-md-6">
+					<Enonce />
 				</div>
 				
-				<div class="col-xl-8 col-md-6">
-					<Avancement style="position: absolute; right: 80px" />
+				<div class="col-lg-8 col-md-6">
+					<Avancement />
 					<EditeurCode />
-					<JeuTests />
+					<RetroactionTentative />
+					<JeuTests class="p-2" />
 				</div>
 			</div>
 		</div>
 	</div>
-	
 </template>
 
 <script src="./question.js"></script>

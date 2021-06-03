@@ -4,10 +4,7 @@ export default {
 	name: "Enonce",
 	computed: {
 		état_réussi() {
-			return this.$store.state.avancement.état;
-		},
-		état_non_réussi() {
-			return !this.$store.state.avancement.état;
+			return this.$store.state.avancement.état == 2;
 		},
 		question() {
 			return new Proxy(this.$store.state.question, {

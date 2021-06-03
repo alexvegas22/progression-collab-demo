@@ -39,10 +39,27 @@ export default {
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
+		retroactionTentative() {
+			let tentative = this.$store.state.retroactionTentative;
+
+			return tentative
+				? new Proxy(tentative, {
+						get: function (obj, prop) {
+							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+						},
+				  })
+				: null;
+		},
+		tentative_réussie() {
+			return this.$store.state.tentative.réussi;
+		},
+		testsRéussisPct() {
+			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+		},
 	},
 
-	created() {
-		window.onbeforeunload = this.beforeWindowUnload;
+		created() {
+			window.onbeforeunload = this.beforeWindowUnload;
 	},
 
 	mounted() {
@@ -65,13 +82,6 @@ export default {
 	methods: {
 		beforeWindowUnload() {
 			if (this.indicateurModifié || this.indicateurSauvegardeEnCours) return "";
-		},
-
-		reinitialiserCodeEditeur() {
-			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
-			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("réinitialiser", this.tentative.langage);
-			}
 		},
 
 		sauvegarder() {

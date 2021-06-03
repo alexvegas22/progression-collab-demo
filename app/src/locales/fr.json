@@ -32,7 +32,8 @@
 		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
 		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
-		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur.",
+		"soumettre": "Soumettez votre solution pour obtenir une rétroaction"
 	},
 
 	"resultat_test": {

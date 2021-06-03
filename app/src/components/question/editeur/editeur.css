@@ -1,8 +1,5 @@
 .btn-reset {
 	border-radius: 50%;
-	position: absolute;
-	top: -300px;
-	right: 15px;
 }
 
 .ligne-editable {
@@ -47,10 +44,13 @@
 	visibility: hidden;
 }
 
+
 .btn-valider{
 	border-radius: 50%;
-	position: absolute;
-	right: 15px;
+}
+
+.btn-valider.tentative_en_cours {
+	animation: spin 2s linear infinite;
 }
 
 @keyframes spin {

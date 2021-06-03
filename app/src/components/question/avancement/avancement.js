@@ -38,5 +38,12 @@ export default {
 			}
 			return etatString;
 		},
+		reinitialiserCodeEditeur() {
+			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
+			if (confirm(msgAvertissement) == true) {
+				this.$store.dispatch("réinitialiser");
+			}
+		},
+
 	},
 };

@@ -1,8 +1,8 @@
-.non_réussi{
+.test.non_réussi{
 	background: #e3a5a5
 }
 
-.réussi{
+.test.réussi{
 	background: #9bd58e
 }
 
@@ -12,4 +12,8 @@
 
 .non_sélectionné{
 	border: 2px solid lightgrey;
+}
+
+.visible{
+	visibility: visible;
 }

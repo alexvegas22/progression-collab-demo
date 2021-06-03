@@ -3,19 +3,28 @@ import parseMD from "@/util/parse";
 export default {
 	name: "RetroactionTentative",
 	computed: {
+		tentative(){
+			return this.$store.state.tentative;
+		},
 		retroactionTentative() {
 			let tentative = this.$store.state.retroactionTentative;
 
 			return tentative
-				? new Proxy(tentative, {
-						get: function (obj, prop) {
-							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-						},
-				  })
-				: null;
+				 ? new Proxy(tentative, {
+					 get: function (obj, prop) {
+						 return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+					 },
+				 })
+				 : null;
 		},
 		testsRéussisPct() {
-			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+			return {width: ((this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100) + "%"};
+		},
+		testsRatésPct() {
+			return {width: (100-(this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100) + "%"};
+		},
+		nbTests(){
+			return this.$store.state.question.tests.length;
 		},
 		msgReponseApi() {
 			return this.$store.state.msgReponseApi;

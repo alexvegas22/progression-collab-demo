@@ -1,45 +1,46 @@
 <template>
-	<label for="langages">{{ $t("editeur.langageÉbauche") }}</label>
-	<select name="langages" id="langages" style="margin-left: 10px; width: 250px; text-align: center"
-			v-model="langageSélectionné"
-			v-on:change="this.chargerEbaucheParLangage()"
-	>
-		<option
-			v-for="langage in Object.keys(this.ebauches)"
-			v-bind:key="langage"
-		>
-			{{ langage }}
-		</option>
-	</select>
-	<div :class="classeIndicateur">*</div>
-	<div>
-		<v-code-mirror
-			id="editor"
-				v-model:value="code"
-			:mode="langageSélectionné"
-			theme="monokai"
-		/>
-	</div>
-
-	<div style="position: relative; top: -45px">
-
-		<button
-			type="button"
-			class="btn btn-info btn-reset"
-			@click="this.reinitialiserCodeEditeur()"
-		>
-			⟲
-		</button>
-
+	<div class="container">
+		<div class="row">
+			<div class="col-6">
+				<label for="langages">{{ $t("editeur.langageÉbauche") }}</label>
+				<select name="langages" id="langages" style="text-align: left"
+							  v-model="langageSélectionné"
+							  v-on:change="this.chargerEbaucheParLangage()"
+				>
+					<option
+						v-for="langage in Object.keys(this.ebauches)"
+						v-bind:key="langage"
+					>
+						{{ langage }}
+					</option>
+				</select>
+			</div>
+		</div>
+		
+		<div :class="classeIndicateur">*</div>
+		
+		<div class="row">
+			<v-code-mirror
+				id="editor"
+					v-model:value="code"
+				:mode="langageSélectionné"
+				theme="monokai"
+			/>
+		</div>
+		
+		<div class="row" style="float: right">
 			<button
 				type="button"
 					  class="btn btn-success btn-valider"
-					  :disabled="envoiEnCours"
+					  :class="{tentative_en_cours: envoiEnCours}"
+				:disabled="envoiEnCours"
 				@click="validerTentative"
 			>
-		➜
-	</button>
-	</div>
+				➜
+			</button>
+		</div>
+		
+	</div>	
 </template>
 
 <script src="./editeur.js"></script>
