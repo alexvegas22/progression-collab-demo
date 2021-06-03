@@ -45,7 +45,6 @@ export default {
 			commit,
 			getAvancementApi(urlAvancement).then((avancement) => {
 				commit("setAvancement", avancement);
-				//commit("setSauvegardes", avancement.sauvegardes);
 			}),
 		);
 	},
@@ -55,7 +54,6 @@ export default {
 			commit,
 			postAvancementApi(params).then((avancement) => {
 				commit("setAvancement", avancement);
-				//commit("setSauvegardes", avancement.sauvegardes);
 			}),
 		);
 	},
@@ -125,7 +123,7 @@ export default {
 		commit("updateLangageTentative", langage);
 	},
 
-	réinitialiser({ commit }, langage_p ) {
+	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
 		commit("updateCodeTentative", this.state.question.ebauches[langage].code);
 		commit("updateLangageTentative", langage);

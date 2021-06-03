@@ -1,7 +1,7 @@
 export default {
 	name: "Avancement",
 	computed: {
-		langage(){
+		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
 		},
 		tentatives() {

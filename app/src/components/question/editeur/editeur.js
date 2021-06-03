@@ -59,8 +59,8 @@ export default {
 		},
 	},
 
-		created() {
-			window.onbeforeunload = this.beforeWindowUnload;
+	created() {
+		window.onbeforeunload = this.beforeWindowUnload;
 	},
 
 	beforeUnmount() {

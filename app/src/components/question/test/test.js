@@ -1,7 +1,7 @@
 import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
 
 export default {
-	components: { ResultatTest},
+	components: { ResultatTest },
 	name: "Test",
 	props: {
 		index: 0,
