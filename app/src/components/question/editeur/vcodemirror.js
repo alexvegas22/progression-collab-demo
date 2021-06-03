@@ -71,6 +71,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			});
 		}
 		VCodeMirrorComp.ro.observe(this.$el);
+		this.updateMode(this.mode);
 	}
 
 	beforeUnmount() {

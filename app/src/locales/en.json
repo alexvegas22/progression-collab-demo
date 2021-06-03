@@ -52,6 +52,7 @@
 		"questionIndéterminée": "This exercice is... -/+@-/*»!... I can't hear you, I'm using the scrambler!",
 		"versionTentative": "Previous attempts : ",
 		"choisirTentative": "Choose a previous attempt",
-		"dateTentative": "Attempt from "
+		"dateTentative": "Attempt from ",
+		"ébauche_initiale": "Reset initial draft"
 	}
 }

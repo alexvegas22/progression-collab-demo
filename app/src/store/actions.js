@@ -45,7 +45,7 @@ export default {
 			commit,
 			getAvancementApi(urlAvancement).then((avancement) => {
 				commit("setAvancement", avancement);
-				commit("setSauvegardes", avancement.sauvegardes);
+				//commit("setSauvegardes", avancement.sauvegardes);
 			}),
 		);
 	},
@@ -55,7 +55,7 @@ export default {
 			commit,
 			postAvancementApi(params).then((avancement) => {
 				commit("setAvancement", avancement);
-				commit("setSauvegardes", avancement.sauvegardes);
+				//commit("setSauvegardes", avancement.sauvegardes);
 			}),
 		);
 	},

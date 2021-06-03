@@ -8,7 +8,6 @@ export default {
 
 	data() {
 		return {
-			langageSélectionné: "",
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
@@ -28,7 +27,9 @@ export default {
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
 		},
-
+		mode() {
+			return this.$store.state.tentative.langage;
+		},
 		tentative() {
 			return this.$store.state.tentative;
 		},
@@ -62,21 +63,9 @@ export default {
 			window.onbeforeunload = this.beforeWindowUnload;
 	},
 
-	mounted() {
-		if (this.tentative) {
-			this.langageSélectionné = this.tentative.langage;
-		}
-	},
-
 	beforeUnmount() {
 		this.sauvegarder();
 		window.removeEventListener("beforeunload", this.beforeWindowUnload);
-	},
-
-	watch: {
-		tentative: function () {
-			this.langageSélectionné = this.tentative.langage;
-		},
 	},
 
 	methods: {
@@ -92,28 +81,6 @@ export default {
 			}
 		},
 
-		chargerEbaucheParLangage() {
-			var nouveauCode = null;
-
-			this.sauvegarder();
-			if (Object.keys(this.$store.state.sauvegardes).includes(this.langageSélectionné)) {
-				nouveauCode = this.$store.state.sauvegardes[this.langageSélectionné].code;
-			} else if (this.$store.state.avancement.tentatives.length > 0) {
-				this.$store.state.avancement.tentatives.forEach((uneTentative) => {
-					if (uneTentative.langage == this.langageSélectionné) {
-						nouveauCode = uneTentative.code;
-						return; //break le forEach
-					}
-				});
-			}
-
-			if (!nouveauCode && Object.keys(this.ebauches).includes(this.langageSélectionné)) {
-				nouveauCode = this.ebauches[this.langageSélectionné].code;
-			}
-
-			this.$store.dispatch("mettreAjourLangageSelectionne", this.langageSélectionné);
-			this.$store.dispatch("mettreAjourCode", nouveauCode);
-		},
 		texteModifié() {
 			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
 				this.sauvegardeAutomatique = setTimeout(async () => {

@@ -1,6 +1,9 @@
 export default {
 	name: "Avancement",
 	computed: {
+		langage(){
+			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
+		},
 		tentatives() {
 			return this.$store.state.avancement.tentatives;
 		},
@@ -38,12 +41,11 @@ export default {
 			}
 			return etatString;
 		},
-		reinitialiserCodeEditeur() {
+		reinitialiserCodeEditeur(langage) {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("réinitialiser");
+				this.$store.dispatch("réinitialiser", langage);
 			}
 		},
-
 	},
 };

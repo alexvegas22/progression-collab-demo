@@ -1,6 +1,6 @@
 <template>
 	<div v-if="tentative || tentativeEnCoursDeSoumission" class="accordion" id="accordionRésultat">
-		<div class="accordion-item" >
+		<div class="accordion-item">
 			<h2 class="accordion-header" id="headerRésultat" >
 					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRésultat" aria-expanded="true" aria-controls="collapseRésultat" >
 						<div v-if="retroactionTentative" class="progress" style="width: 100%">
