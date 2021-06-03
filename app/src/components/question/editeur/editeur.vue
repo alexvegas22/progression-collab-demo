@@ -5,7 +5,7 @@
 			<div class="col-auto" :class="classeIndicateur">●</div>
 		</div>
 		
-		<div class="row">
+		<div class="row" style="height: 100%">
 			<v-code-mirror
 				id="editor"
 					v-model:value="code"

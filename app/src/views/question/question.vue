@@ -11,7 +11,7 @@
 				
 				<div class="col-lg-8 col-md-6">
 					<Avancement />
-					<EditeurCode />
+					<EditeurCode style="height: 500px" />
 					<RetroactionTentative />
 					<JeuTests class="p-2" />
 				</div>
