@@ -1,5 +1,7 @@
 import parseMD from "@/util/parse";
 import VueTippy from "vue-tippy";
+import tippy, {roundArrow} from 'tippy.js';
+import 'tippy.js/dist/svg-arrow.css';
 
 export default {
 	name: "RetroactionTentative",
@@ -20,12 +22,14 @@ export default {
 				: null;
 		},
 		testsRéussisPct() {
-			return {
-				width:
+			if(!this.$store.state.retroactionTentative) return null;
+				return {
+					width:
 					(this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100 + "%",
-			};
+				};
 		},
 		testsRatésPct() {
+			if(!this.$store.state.retroactionTentative) return null;
 			return {
 				width:
 					100 -
