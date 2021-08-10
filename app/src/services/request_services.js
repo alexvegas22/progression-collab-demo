@@ -5,13 +5,13 @@ const axios = require("axios");
  * @param lien: le lien COMPLET de la requete
  * @returns {Promise<unknown>}
  */
-const config = {
-	headers: {
-		Authorization: "Bearer " + localStorage.getItem("user-token"),
-	},
-};
 
-const getData = async (lien) => {
+const getData = async (lien, token) => {
+	const config = {
+		headers: {
+			Authorization: "Bearer " + token,
+		},
+	};
 	const res = await axios.get(lien, config);
 	return res.data;
 };
@@ -22,7 +22,12 @@ const getData = async (lien) => {
  * @param body: le body COMPLET de la requete
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
-const postData = async (lien, body) => {
+const postData = async (lien, body, token) => {
+	const config = {
+		headers: {
+			Authorization: "Bearer " + token,
+		},
+	};
 	const res = await axios.post(lien, body, config);
 	return res.data;
 };

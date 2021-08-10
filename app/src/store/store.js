@@ -4,8 +4,9 @@ import actions from "./actions";
 
 export default createStore({
 	state: {
-		uri_question: null,
 		user: null,
+		token: null,
+		username: null,
 		question: null,
 		tentative: null,
 		retroactionTentative: null,

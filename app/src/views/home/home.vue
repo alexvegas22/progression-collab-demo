@@ -1,16 +1,17 @@
 <template>
-	<div class="home">
-		<Login />
+	<div>
+		Bonjour {{ this.$store.state.username }}
 	</div>
 </template>
 
 <script>
-import Login from "@/components/home/login/login.vue";
-
-export default {
-	name: "Home",
-	components: {
-		Login,
-	},
-};
+ export default {
+	 name: "Home",
+	 mounted() {
+		 if(this.$store.state.token)
+			 this.$router.push({name: "Question"});
+		 else
+			 this.$router.push({name: "LoginView"});
+	 }
+ };
 </script>

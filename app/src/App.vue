@@ -4,63 +4,73 @@
 		<router-link :to="{ name: 'Home' }" class="navbar-brand text-light">
 			<span class="text-info"> Prog</span>ression
 		</router-link>
-		<button
-			class="navbar-toggler"
-			type="button"
-			data-toggle="collapse"
-			data-target="#navbarNav"
-			aria-controls="navbarNav"
-			aria-expanded="false"
-			aria-label="Toggle navigation"
-		>
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<router-link :to="{ name: 'Question', params: { uri: uri, username: username } }" class="text-light">
-						Question
-					</router-link>
-				</li>
-			</ul>
-		</div>
 	</nav>
 	<router-view />
 </template>
 
 <script>
-export default {
-	name: "App",
-	computed: {
-		uri() {
-			return "aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9wcm9ncmVzc2lvbl9jb250ZW51X2RlbW8vcHJvZzEvbGVzX2ZvbmN0aW9uc18wMS9hcHBlbGVyX3VuZV9mb25jdGlvbl9hdmVjX3JldG91ci9pbmZvLnltbA";
-		},
-		username() {
-			return localStorage.getItem('user-name');
-		},
-	},
-};
+
+ const API_URL = process.env.VUE_APP_API_URL;
+ 
+ export default {
+	 name: "App",
+	 computed: {
+		 username() {
+			 return this.$store.state.username;
+		 },
+		 token() {
+			 return this.$store.state.token;
+		 }
+	 },
+	 mounted() {
+		 var token;
+
+		 const query_parts = window.location.href.split('#');
+		 var urlParams = new URLSearchParams(query_parts[0]);
+			 
+		 if(urlParams.has('token')){
+			 token = urlParams.get('token');
+			 localStorage.setItem("user-token", token);
+			 this.$store.dispatch("setToken", token);
+		 }
+		 else{
+			 token = localStorage.getItem("user-token");
+
+			 if(token && !this.$store.state.token){
+				 this.$store.dispatch("setToken", token);
+			 }
+		 }
+
+		 if(token){
+			 this.$store.dispatch("getUser", API_URL + "/user/" + this.$store.state.username)
+		 }
+		 else{
+			 this.$router.push( {name: 'LoginView', params: { ref: window.btoa(window.location.href), ltik: urlParams.get('ltik'), context: urlParams.get('context') } } );
+		 }
+
+	 }
+ };
 </script>
 
 <style src="./css/style.css">
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-}
+ #app {
+	 font-family: Avenir, Helvetica, Arial, sans-serif;
+	 -webkit-font-smoothing: antialiased;
+	 -moz-osx-font-smoothing: grayscale;
+	 text-align: center;
+	 color: #2c3e50;
+ }
 
-#nav {
-	padding: 30px;
-}
+ #nav {
+	 padding: 30px;
+ }
 
-#nav a {
-	font-weight: bold;
-	color: #2c3e50;
-}
+ #nav a {
+	 font-weight: bold;
+	 color: #2c3e50;
+ }
 
-#nav a.router-link-exact-active {
-	color: #42b983;
-}
+ #nav a.router-link-exact-active {
+	 color: #42b983;
+ }
 </style>

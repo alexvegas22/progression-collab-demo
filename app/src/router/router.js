@@ -4,13 +4,18 @@ const routes = [
 	{
 		path: "/",
 		name: "Home",
-		component: () => import("@/views/home/home.vue"),
+		component: () => import("@/views/home/home.vue")
 	},
 	{
-		path: "/question/:username/:uri",
+		path: "/login",
+		name: "LoginView",
+		component: () => import("@/views/login/login.vue")
+	},
+	{
+		path: "/question",
 		name: "Question",
-		component: () => import("@/views/question/question.vue"),
 		props: true,
+		component: () => import("@/views/question/question.vue"),
 	},
 	{
 		path: "/:catchAll(.*)",
@@ -18,6 +23,7 @@ const routes = [
 		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
 ];
+
 
 const router = createRouter({
 	history: createWebHashHistory(),

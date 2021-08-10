@@ -2,7 +2,7 @@
 	<div v-show="erreurs" class="alert alert-danger">
 		{{$t("erreur.réseau")}}
 	</div>
-	<div v-if="question">
+	<div v-if="question && avancement">
 		<div class="container-fluid p-3">
 			<div class="row">
 				<div class="col-lg-4 col-md-6">

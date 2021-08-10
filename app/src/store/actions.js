@@ -8,6 +8,8 @@ import {
 	postSauvegardeApi,
 } from "@/services/index.js";
 
+import jwt_decode from "jwt-decode";
+
 const valider = function (commit, promesse) {
 	promesse
 		.then((résultat) => {
@@ -23,18 +25,16 @@ const valider = function (commit, promesse) {
 
 export default {
 	async getUser({ commit }, urlUser) {
-		valider(
-			commit,
-			getUserApi(urlUser).then((user) => {
+		return getUserApi(urlUser, this.state.token).then((user) => {
 				commit("setUser", user);
-			}),
-		);
+			});
+		
 	},
 
 	async getQuestion({ commit }, urlQuestion) {
 		valider(
 			commit,
-			getQuestionApi(urlQuestion).then((question) => {
+			getQuestionApi(urlQuestion, this.state.token).then((question) => {
 				commit("setQuestion", question);
 			}),
 		);
@@ -43,7 +43,7 @@ export default {
 	async getAvancement({ commit }, urlAvancement) {
 		valider(
 			commit,
-			getAvancementApi(urlAvancement).then((avancement) => {
+			getAvancementApi(urlAvancement, this.state.token).then((avancement) => {
 				commit("setAvancement", avancement);
 			}),
 		);
@@ -52,7 +52,7 @@ export default {
 	async postAvancement({ commit }, params) {
 		valider(
 			commit,
-			postAvancementApi(params).then((avancement) => {
+			postAvancementApi(params, this.state.token).then((avancement) => {
 				commit("setAvancement", avancement);
 			}),
 		);
@@ -61,7 +61,7 @@ export default {
 	async getTentative({ commit }, urlTentative) {
 		valider(
 			commit,
-			getTentativeApi(urlTentative).then((tentative) => {
+			getTentativeApi(urlTentative, this.state.token).then((tentative) => {
 				commit("setTentative", tentative);
 				commit("updateRetroaction", tentative);
 			}),
@@ -75,7 +75,7 @@ export default {
 		params.urlTentative = this.state.avancement.liens.tentative;
 		valider(
 			commit,
-			postTentative(params)
+			postTentative(params, this.state.token)
 				.then((retroactionTentative) => {
 					commit("updateRetroaction", retroactionTentative);
 
@@ -103,16 +103,12 @@ export default {
 
 		return valider(
 			commit,
-			postSauvegardeApi(params).then((sauvegarde) => {
+			postSauvegardeApi(params, this.state.token).then((sauvegarde) => {
 				if (sauvegarde) {
 					commit("setSauvegarde", sauvegarde);
 				}
 			}),
 		);
-	},
-
-	initialiserUriQuestion({ commit }, uri) {
-		commit("setUriQuestion", uri);
 	},
 
 	mettreAjourCode({ commit }, code) {
@@ -129,4 +125,22 @@ export default {
 		commit("updateLangageTentative", langage);
 		commit("updateRetroaction", null);
 	},
+
+	setToken( { commit }, token ){
+		const token_décodé = jwt_decode( token )
+
+		if( token_décodé.user ){
+			commit("setToken", token);
+			commit("setUsername", token_décodé.user.username );
+		}
+	},
+
+	deleteToken( { commit } ){
+		commit("setToken", null);
+		commit("setUsername", null);
+	},
+	
+	setUsername( { commit }, username ){
+		commit("setUsername", username );
+	}
 };

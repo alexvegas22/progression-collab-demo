@@ -6,6 +6,15 @@ export const mutations = {
 	setUser(state, user) {
 		state.user = user;
 	},
+
+	setUsername(state, username){
+		state.username = username;
+	},
+	
+	setToken(state, token) {
+		state.token = token;
+	},
+	
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
 		if (Object.keys(avancement.sauvegardes).length > 0) {
@@ -55,9 +64,6 @@ export const mutations = {
 	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
-	},
-	setUriQuestion(state, uri_question) {
-		state.uri_question = uri_question;
 	},
 	setSauvegarde(state, sauvegarde) {
 		state.sauvegardes[sauvegarde.langage] = sauvegarde;
