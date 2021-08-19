@@ -2,7 +2,6 @@ require('dotenv').config()
 const axios = require( 'axios' )
 
 const path = require('path')
-const routes = require('./src/routes')
 const provMainDebug = require('debug')('provider:main')
 const lti = require('ltijs').Provider
 const mongoose = require('mongoose')
@@ -84,12 +83,12 @@ lti.onConnect(async (token, req, res) => {
 			}
 		}		
 		provMainDebug('Token : ' + user.token)
-		return lti.redirect(res, process.env.URL_BASE'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": user.token } });
+		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": user.token } });
 	}
 	else{
 		provMainDebug('User non trouvé.')
 		//return res.sendFile(path.join(__dirname, './public/index.html'))
-		return lti.redirect(res, process.env.URL_BASE'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "context": res.context } } )
+		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "context": res.context } } )
 	}
 	
 })
@@ -107,7 +106,7 @@ function sauvegarderAuthKey( user, authKey ){
 }
 
 const loginAndGetToken = async function( user, authKey ){
-	const res = await axios.post('http://rocinante.lamancha:81/auth', { username: user.username, key_name: "LTIauthKey", key_secret: authKey })
+	const res = await axios.post(process.env.API_URL+'/auth', { username: user.username, key_name: "LTIauthKey", key_secret: authKey })
 	return res.data.Token
 }
 
@@ -121,7 +120,7 @@ lti.onDeepLinking(async (token, req, res) => {
 })
 
 // Setting up routes
-lti.app.use(routes)
+//lti.app.use(routes)
 
 // Setup function
 const setup = async () => {
@@ -139,15 +138,6 @@ const setup = async () => {
 	//		accesstokenEndpoint: 'http://172.20.0.8:8080/mod/lti/token.php',
 	//		authConfig: { method: 'JWK_SET', key: 'http://172.20.0.8:8080/mod/lti/certs.php' }
 	//	})
-
-	await lti.registerPlatform({
-		url: 'http://rocinante.lamancha:82',
-		name: 'Moodle local',
-		clientId: 'oShV5G8qB6WuqHx',
-		authenticationEndpoint: 'http://rocinante.lamancha:82/mod/lti/auth.php',
-		accesstokenEndpoint: 'http://rocinante.lamancha:82/mod/lti/token.php',
-		authConfig: { method: 'JWK_SET', key: 'http://rocinante.lamancha:82/mod/lti/certs.php' }
-	})
 
 }
 
