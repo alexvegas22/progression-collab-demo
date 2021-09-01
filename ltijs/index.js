@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
 	userId: String,   // Id de la plateforme
 	username: String, // username Progression
     token: String,    // token JWT Progression
-	authKey: String   // Clé d'authentification Progression
+	authKey_nom: String,   // Clé d'authentification Progression
+	authKey_secret: String
 })
 userSchema.index({ userId: 1}, { unique: true })
 
@@ -66,7 +67,7 @@ lti.onConnect(async (token, req, res) => {
 		
 		if( !user.token || !tokenEstValide(user.token) ){
 			provMainDebug('Token non trouvé. ')
-			if (!user.authKey){
+			if (!user.authKey_nom || !user.authKey_secret){
 				provMainDebug('Clé d\'authentification non trouvée. ')
 				authKey = loginAndGetAuthKey(user)
 				if(authKey){
@@ -76,7 +77,7 @@ lti.onConnect(async (token, req, res) => {
 				}
 			}
 			provMainDebug('Login via clé d\'authentification. ')
-			token = await loginEtObtenirToken(user, user.authKey)
+			token = await loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret)
 			
 			if(token){
 				provMainDebug('Token obtenu: ' + token )
@@ -99,6 +100,7 @@ lti.onConnect(async (token, req, res) => {
 		Password :<input type="password" name="password"><br>
 		<input type="hidden" name="ltik" value="${res.locals.ltik}">
 		<input type="hidden" name="uri" value="${uri}">
+		<input type="hidden" name="creation" value="0">
 		<input type="submit">
 		</form>
 		</body>
@@ -125,10 +127,14 @@ function sauvegarderAuthKey( user, authKey ){
 	return null
 }
 
-const loginEtObtenirToken = async function( user, authKey ){
-	const res = await axios.post(process.env.API_URL+'/auth', { username: user.username, key_name: "LTIauthKey", key_secret: authKey })
-	return res.data.Token
+const loginEtObtenirToken = async function( username, authKey_nom, authKey_secret ){
+	provMainDebug("Requête : " + process.env.API_URL+'/auth')
+	provMainDebug("Params: username " + username + ", authKey_nom " + authKey_nom + ", authKey_secret " + authKey_secret)
+
+	const res = await axios.post(process.env.API_URL+'/auth', { username: username, key_name: authKey_nom, key_secret: authKey_secret })
+	return res.data.Token ?? null
 }
+
 
 function sauvegarderToken( user, token ){
 	return null

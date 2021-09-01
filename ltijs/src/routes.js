@@ -72,54 +72,80 @@ router.post('/lti/register', async (req, res) => {
 	if (!username || !password || !uri )
 		return res.status(400)
 
-	provMainDebug("Création de l'utilisateur")
-	authKey = await créerUserEtObtenirAuthKey( username, password )
-	if(!authKey){
-		return res.status(400)
+	token = null
+	if (req.body.creation == "1"){
+		provMainDebug("Création de l'utilisateur")
+		token = await créerUserEtObtenirToken( username, password )
 	}
+	else {
+		provMainDebug("Login et récupération du token")
+		token = await loginEtObtenirToken(username, password)
 
-	provMainDebug("Login et récupération du token")
-	token = await loginEtObtenirToken(username, authKey)
+	}		
 
 	if(!token){
 		return res.status(401)
 	}
 
+	authKey = null
+	provMainDebug("Obtention de la clé")
+	authKey = await créerAuthKey( token )
+	
+	if(!authKey){
+		return res.status(400)
+	}
+
 	provMainDebug("Sauvegarde de l'utilisateur")
 	const db = lti.Database
-	const result = await db.Insert( null, 'user', 
+	const result = await db.Replace( null, 'user', {"userId": userId},
 									 {"userId": userId,
 									  "username": username,
 									  "token": token,
-									  "authKey": authKey
+									  "authKey_nom": authKey.nom,
+									  "authKey_secret": authKey.secret
 									 } )
 
 	provMainDebug("Redirection vers /question")
 	return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } });
 })
 
-const créerUserEtObtenirAuthKey = async function( username, password ){
+const créerUserEtObtenirToken = async function( username, password ){
 	provMainDebug("Requête : " + process.env.API_URL+'/inscription')
-	provMainDebug("Params: username " + username + " password " + password )
+	provMainDebug("Params: username " + username + ", password : " + password )
 
 	const res_tok = await axios.post(process.env.API_URL+'/inscription', { username: username, password: password })
 	
 	token = res_tok.data.Token ?? null
-	if(!token)
-		return null
 
-	const res_key = await axios.post(process.env.API_URL+'/user/'+username+'/cles', { nom: "LTIauthKey", portée: 1 }, { headers: {"Authorization": "bearer " + token} } )
-provMainDebug(JSON.stringify(res_key.data))
-	return res_key.data.data.attributes.secret ?? null
+	return token
 }
 
-const loginEtObtenirToken = async function( username, authKey ){
-	provMainDebug("Requête : " + process.env.API_URL+'/auth')
-	provMainDebug("Params: username " + username + " key_secret " + authKey )
+const créerAuthKey = async function( token ){
+	provMainDebug("Requête : " + process.env.API_URL+'/user/'+username+'/cles')
+	provMainDebug("Params: token : " + token )
 
-	const res = await axios.post(process.env.API_URL+'/auth', { username: username, key_name: "LTIauthKey", key_secret: authKey })
+	const key_name = "LTIauthKey_" + randomID()
+	
+	const res_key = await axios.post(process.env.API_URL+'/user/'+username+'/cles', { nom: key_name, portée: 1 }, { headers: {"Authorization": "bearer " + token} } )
+
+	return res_key.data.data.attributes ? { nom: key_name,
+											secret: res_key.data.data.attributes.secret } : null
+}
+
+const loginEtObtenirToken = async function( username, password ){
+	provMainDebug("Requête : " + process.env.API_URL+'/auth')
+	provMainDebug("Params: username " + username + ", password " + password )
+
+	const res = await axios.post(process.env.API_URL+'/auth', { username: username, password: password })
 	return res.data.Token ?? null
 }
+
+const randomID = function () {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return Math.random().toString(36).substr(2, 9);
+};
 
 
 // Deep linking route
