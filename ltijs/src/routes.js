@@ -63,88 +63,116 @@ router.get('/members', async (req, res) => {
 router.post('/lti/register', async (req, res) => {
 	userId = res.locals.context.contextId + "/" + res.locals.context.user
 
-	provMainDebug("Enregistrement de l'utilisateur " + res.locals.context.user)
+	provMainDebug("Enregistrement de l'utilisateur " + userId)
 
 	uri = req.body.uri
 	username = req.body.username
 	password = req.body.password
 
-	if (!username || !password || !uri )
-		return res.status(400)
+	if (!username || !password || !uri ) {
+		return res.status(400).send("Requête invalide")
+	}
 
-	token = null
 	if (req.body.creation == "1"){
 		provMainDebug("Création de l'utilisateur")
-		token = await créerUserEtObtenirToken( username, password )
+		créerUserEtObtenirToken( username, password ).then(
+			token => {
+				obtenirEtSauvegarderAuthKey(userId, username, token )
+				
+				provMainDebug("Redirection vers /question")
+				return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } })
+			}
+		).catch(
+			error => {
+				return res.status(403).send(error.message)
+			}
+		)
 	}
 	else {
 		provMainDebug("Login et récupération du token")
-		token = await loginEtObtenirToken(username, password)
-
-	}		
-
-	if(!token){
-		return res.status(401)
-	}
-
-	authKey = null
-	provMainDebug("Obtention de la clé")
-	authKey = await créerAuthKey( token )
-	
-	if(!authKey){
-		return res.status(400)
-	}
-
-	provMainDebug("Sauvegarde de l'utilisateur")
-	const db = lti.Database
-	const result = await db.Replace( null, 'user', {"userId": userId},
-									 {"userId": userId,
-									  "username": username,
-									  "token": token,
-									  "authKey_nom": authKey.nom,
-									  "authKey_secret": authKey.secret
-									 } )
-
-	provMainDebug("Redirection vers /question")
-	return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } });
+		loginEtObtenirToken(username, password).then(
+			token => {
+				obtenirEtSauvegarderAuthKey(userId, username, token )
+				
+				provMainDebug("Redirection vers /question")
+				return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } })
+			}
+		).catch(
+			error => {
+				return res.status(401).send(error.message)
+		})
+	} 
 })
 
-const créerUserEtObtenirToken = async function( username, password ){
-	provMainDebug("Requête : " + process.env.API_URL+'/inscription')
-	provMainDebug("Params: username " + username + ", password : " + password )
+const obtenirEtSauvegarderAuthKey = async function( userId, username, token ) {
+	provMainDebug("Obtention de la clé")
 
-	const res_tok = await axios.post(process.env.API_URL+'/inscription', { username: username, password: password })
-	
-	token = res_tok.data.Token ?? null
-
-	return token
-}
-
-const créerAuthKey = async function( token ){
 	provMainDebug("Requête : " + process.env.API_URL+'/user/'+username+'/cles')
 	provMainDebug("Params: token : " + token )
 
 	const key_name = "LTIauthKey_" + randomID()
 	
 	const res_key = await axios.post(process.env.API_URL+'/user/'+username+'/cles', { nom: key_name, portée: 1 }, { headers: {"Authorization": "bearer " + token} } )
+	provMainDebug("Clé générée : " + JSON.stringify(res_key.data.data.attributes))
+	provMainDebug("Sauvegarde de l'utilisateur")
 
-	return res_key.data.data.attributes ? { nom: key_name,
-											secret: res_key.data.data.attributes.secret } : null
+	const db = lti.Database
+	db.Replace( null, 'user', {"userId": userId},
+									 {"userId": userId,
+									  "username": username,
+									  "token": token,
+									  "authKey_nom": key_name,
+									  "authKey_secret": res_key.data.data.attributes.secret
+									 }
+	).then(
+		response => provMainDebug("Utilisateur sauvegardé : " + userId)
+	).catch(
+		error => {
+			console.log("Erreur de sauvegarde : " + error)
+		}
+	)
+}
+
+const créerUserEtObtenirToken = async function( username, password ){
+	provMainDebug("Requête : " + process.env.API_URL+'/inscription')
+	provMainDebug("Params: username " + username + ", password : " + password )
+
+	return axios.post(process.env.API_URL+'/inscription', { username: username, password: password }).then(
+		response => {
+			return response.data.Token
+		}
+	)
+}
+
+const créerAuthKey = async function( username, token ){
+	provMainDebug("Requête : " + process.env.API_URL+'/user/'+username+'/cles')
+	provMainDebug("Params: token : " + token )
+
+	const key_name = "LTIauthKey_" + randomID()
+	
+	return axios.post(process.env.API_URL+'/user/'+username+'/cles', { nom: key_name, portée: 1 }, { headers: {"Authorization": "bearer " + token} } ).then(
+		response => {
+			return { nom: key_name, secret: response.data.attributes.secret }
+		}
+	)
 }
 
 const loginEtObtenirToken = async function( username, password ){
 	provMainDebug("Requête : " + process.env.API_URL+'/auth')
 	provMainDebug("Params: username " + username + ", password " + password )
 
-	const res = await axios.post(process.env.API_URL+'/auth', { username: username, password: password })
-	return res.data.Token ?? null
+	return axios.post(process.env.API_URL+'/auth', { username: username, password: password }).then(
+		response => {
+			return response.data.Token
+		}
+	)
 }
 
-const randomID = function () {
-  // Math.random should be unique because of its seeding algorithm.
-  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-  // after the decimal.
-  return Math.random().toString(36).substr(2, 9);
+		const randomID = function () {
+	// Math.random should be unique because of its seeding algorithm.
+	// Convert it to base 36 (numbers + letters), and grab the first 9 characters
+	// after the decimal.
+	return Math.random().toString(36).substr(2, 9);
 };
 
 

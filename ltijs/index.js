@@ -93,16 +93,35 @@ lti.onConnect(async (token, req, res) => {
 
 		formulaire = `
         <html><body>
-		Test de login :
+		Utilisateur existant :
 		
-		<form method="POST" action="/lti/register">
-		Username :<input type="text" name="username"><br>
-		Password :<input type="password" name="password"><br>
+		<form name="login" method="POST" action="/lti/register">
+		Nom d'utilisateur :<input type="text" name="username"><br>
+		Mot de passe :<input type="password" name="password"><br>
 		<input type="hidden" name="ltik" value="${res.locals.ltik}">
 		<input type="hidden" name="uri" value="${uri}">
 		<input type="hidden" name="creation" value="0">
 		<input type="submit">
 		</form>
+
+        Nouvel utilisateur :
+		<form name="inscription" method="POST" action="/lti/register">
+		Nom d'utilisateur :<input type="text" name="username"><br>
+		Mot de passe :<input type="password" name="password"><br>
+		Confirmer :<input type="password" name="confirmation"><br>
+		<input type="hidden" name="ltik" value="${res.locals.ltik}">
+		<input type="hidden" name="uri" value="${uri}">
+		<input type="hidden" name="creation" value="1">
+		<input type="button" value="Soumettre" onclick="check_form(document.inscription)">
+		</form>
+
+        <script>
+        function check_form(insc){
+            if (insc.username.value && insc.password.value && insc.password.value == insc.confirmation.value)
+                insc.submit();
+        }
+        </script>
+
 		</body>
 		</html>
 		`
