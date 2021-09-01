@@ -5,6 +5,8 @@ const path = require('path')
 const provMainDebug = require('debug')('provider:main')
 const lti = require('ltijs').Provider
 const mongoose = require('mongoose')
+const routes = require('./src/routes')
+
 mongoose.set('useCreateIndex', true)
 
 const userSchema = new mongoose.Schema({
@@ -74,7 +76,7 @@ lti.onConnect(async (token, req, res) => {
 				}
 			}
 			provMainDebug('Login via clé d\'authentification. ')
-			token = await loginAndGetToken(user, user.authKey)
+			token = await loginEtObtenirToken(user, user.authKey)
 			
 			if(token){
 				provMainDebug('Token obtenu: ' + token )
@@ -87,8 +89,26 @@ lti.onConnect(async (token, req, res) => {
 	}
 	else{
 		provMainDebug('User non trouvé.')
-		//return res.sendFile(path.join(__dirname, './public/index.html'))
-		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "context": res.context } } )
+
+		formulaire = `
+        <html><body>
+		Test de login :
+		
+		<form method="POST" action="/lti/register">
+		Username :<input type="text" name="username"><br>
+		Password :<input type="password" name="password"><br>
+		<input type="hidden" name="ltik" value="${res.locals.ltik}">
+		<input type="hidden" name="uri" value="${uri}">
+		<input type="submit">
+		</form>
+		</body>
+		</html>
+		`
+
+		
+		return res.send( formulaire )
+		//return res.sendFile(path.join(__dirname, './public/loginform.html'))
+		//return lti.redirect(res, '/loginform', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "context": res.context } } )
 	}
 	
 })
@@ -105,7 +125,7 @@ function sauvegarderAuthKey( user, authKey ){
 	return null
 }
 
-const loginAndGetToken = async function( user, authKey ){
+const loginEtObtenirToken = async function( user, authKey ){
 	const res = await axios.post(process.env.API_URL+'/auth', { username: user.username, key_name: "LTIauthKey", key_secret: authKey })
 	return res.data.Token
 }
@@ -120,7 +140,7 @@ lti.onDeepLinking(async (token, req, res) => {
 })
 
 // Setting up routes
-//lti.app.use(routes)
+lti.app.use(routes)
 
 // Setup function
 const setup = async () => {
@@ -129,15 +149,15 @@ const setup = async () => {
 	/**
 	 * Register platform
 	 */
-	//
-	//	await lti.registerPlatform({
-	//		url: 'http://172.20.0.8:8080',
-	//		name: 'Moodle local',
-	//		clientId: 'oShV5G8qB6WuqHx',
-	//		authenticationEndpoint: 'http://172.20.0.8:8080/mod/lti/auth.php',
-	//		accesstokenEndpoint: 'http://172.20.0.8:8080/mod/lti/token.php',
-	//		authConfig: { method: 'JWK_SET', key: 'http://172.20.0.8:8080/mod/lti/certs.php' }
-	//	})
+	
+		await lti.registerPlatform({
+			url: 'http://rocinante.lamancha:82',
+			name: 'Moodle local',
+			clientId: 'oShV5G8qB6WuqHx',
+			authenticationEndpoint: 'http://rocinante.lamancha:82/mod/lti/auth.php',
+			accesstokenEndpoint: 'http://rocinante.lamancha:82/mod/lti/token.php',
+			authConfig: { method: 'JWK_SET', key: 'http://rocinante.lamancha:82/mod/lti/certs.php' }
+		})
 
 }
 
