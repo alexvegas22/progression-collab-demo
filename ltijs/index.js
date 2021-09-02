@@ -1,11 +1,13 @@
 require('dotenv').config()
 const axios = require( 'axios' )
 
+const fs = require('fs')
 const path = require('path')
 const provMainDebug = require('debug')('provider:main')
 const lti = require('ltijs').Provider
 const mongoose = require('mongoose')
 const routes = require('./src/routes')
+const Mustache = require('mustache')
 
 mongoose.set('useCreateIndex', true)
 
@@ -52,7 +54,7 @@ lti.onConnect(async (token, req, res) => {
 
 	const userId = res.locals.context.contextId + "/" + res.locals.context.user
 	provMainDebug(`userId : ${userId}`)
-	const uri = res.locals.context.custom.uri
+	const uri = btoa_url(res.locals.context.custom.uri)
 	provMainDebug(`uri : ${uri}`)
 	
 	const result = await db.Get( null, 'user', {"userId": userId})
@@ -91,48 +93,19 @@ lti.onConnect(async (token, req, res) => {
 	else{
 		provMainDebug('User non trouvé.')
 
-		formulaire = `
-        <html><body>
-		Utilisateur existant :
-		
-		<form name="login" method="POST" action="/lti/register">
-		Nom d'utilisateur :<input type="text" name="username"><br>
-		Mot de passe :<input type="password" name="password"><br>
-		<input type="hidden" name="ltik" value="${res.locals.ltik}">
-		<input type="hidden" name="uri" value="${uri}">
-		<input type="hidden" name="creation" value="0">
-		<input type="submit">
-		</form>
-
-        Nouvel utilisateur :
-		<form name="inscription" method="POST" action="/lti/register">
-		Nom d'utilisateur :<input type="text" name="username"><br>
-		Mot de passe :<input type="password" name="password"><br>
-		Confirmer :<input type="password" name="confirmation"><br>
-		<input type="hidden" name="ltik" value="${res.locals.ltik}">
-		<input type="hidden" name="uri" value="${uri}">
-		<input type="hidden" name="creation" value="1">
-		<input type="button" value="Soumettre" onclick="check_form(document.inscription)">
-		</form>
-
-        <script>
-        function check_form(insc){
-            if (insc.username.value && insc.password.value && insc.password.value == insc.confirmation.value)
-                insc.submit();
-        }
-        </script>
-
-		</body>
-		</html>
-		`
-
-		
+		var formulaire = Mustache.render(fs.readFileSync(path.join(__dirname, './templates/loginform.mst'), 'utf8'),
+										 {
+											 ltik: res.locals.ltik,
+											 uri: uri,
+											 }
+										 })
+			
 		return res.send( formulaire )
-		//return res.sendFile(path.join(__dirname, './public/loginform.html'))
-		//return lti.redirect(res, '/loginform', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "context": res.context } } )
 	}
 	
 })
+
+const btoa_url = s => btoa(unescape(encodeURIComponent(s))).replace(/\//g, '_').replace(/\+/g, '-').replace(/=/g, '')
 
 function tokenEstValide( token ){
 	return true
