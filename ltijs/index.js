@@ -8,6 +8,7 @@ const lti = require('ltijs').Provider
 const mongoose = require('mongoose')
 const routes = require('./src/routes')
 const Mustache = require('mustache')
+const jwt_decode = require('jwt-decode');
 
 mongoose.set('useCreateIndex', true)
 
@@ -52,7 +53,9 @@ lti.onConnect(async (token, req, res) => {
 	provMainDebug('onConnect')
 	const db = lti.Database
 
-	const userId = res.locals.context.contextId + "/" + res.locals.context.user
+	const ltik = jwt_decode(res.locals.ltik)
+	
+	const userId = ltik.platformCode + "/" + res.locals.context.context.id + "/" + res.locals.context.user
 	provMainDebug(`userId : ${userId}`)
 	const uri = btoa_url(res.locals.context.custom.uri)
 	provMainDebug(`uri : ${uri}`)
@@ -97,7 +100,9 @@ lti.onConnect(async (token, req, res) => {
 										 {
 											 ltik: res.locals.ltik,
 											 uri: uri,
-											 }
+											 userid: userId,
+											 platform_url: ltik.platformUrl,
+											 cours_nom: res.locals.context.context.title
 										 })
 			
 		return res.send( formulaire )

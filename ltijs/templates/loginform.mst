@@ -16,11 +16,18 @@
 
 	<div class="container">
 	  <div class="row">
-		<div class="alert alert-primary">
-		  Pour débuter, veuillez vous connecter à Progression avec un compte existant ou créer un nouveau compte.
+		<div class="alert alert-danger">
+		  La plateforme
+		  <mark>{{ platform_url }}</mark>
+		  pour le cours 
+		  <mark> {{ cours_nom }} </mark>
+		  requiert la permission de se connecter en votre nom à Progression.
 		</div>
 	  </div>
 
+	  <div class="alert alert-primary">
+			Pour continuer, veuillez vous connecter à Progression avec un compte existant ou créer un nouveau compte.
+	  </div>
 	  <div class="row">
 		<div class="col-md">
 		  <div class="jumbotron">
@@ -41,6 +48,7 @@
 			  
 			  <input type="hidden" name="ltik" value="{{ ltik }}">
 			  <input type="hidden" name="uri" value="{{ uri }}">
+			  <input type="hidden" name="userid" value="{{ userid }}">
 			  <input type="hidden" name="creation" value="0">
 			  <input type="submit" class="btn btn-primary">
 			</form>
@@ -66,6 +74,7 @@
 			  </div>
 			  <input type="hidden" name="ltik" value="{{ ltik }}">
 			  <input type="hidden" name="uri" value="{{ uri }}">
+			  <input type="hidden" name="userid" value="{{ userid }}">
 			  <input type="hidden" name="creation" value="1">
 			  <input type="button" class="btn btn-primary" value="Soumettre" onclick="check_form(document.inscription)">
 			</form>

@@ -7,13 +7,14 @@ const provMainDebug = require('debug')('provider:main')
 const lti = require('ltijs').Provider
 
 router.post('/lti/register', async (req, res) => {
-	userId = res.locals.context.contextId + "/" + res.locals.context.user
+	provMainDebug("Requête : " + JSON.stringify(req.body))
+
+	const uri = req.body.uri
+	const userId = req.body.userid
+	const username = req.body.username
+	const password = req.body.password
 
 	provMainDebug("Enregistrement de l'utilisateur " + userId)
-
-	uri = req.body.uri
-	username = req.body.username
-	password = req.body.password
 
 	if (!username || !password || !uri ) {
 		return res.status(400).send("Requête invalide")
