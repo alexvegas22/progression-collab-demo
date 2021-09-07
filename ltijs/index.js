@@ -1,17 +1,23 @@
 require('dotenv').config()
 const axios = require( 'axios' )
 
+const fs = require('fs')
 const path = require('path')
 const provMainDebug = require('debug')('provider:main')
 const lti = require('ltijs').Provider
 const mongoose = require('mongoose')
+const routes = require('./src/routes')
+const Mustache = require('mustache')
+const jwt_decode = require('jwt-decode');
+
 mongoose.set('useCreateIndex', true)
 
 const userSchema = new mongoose.Schema({
 	userId: String,   // Id de la plateforme
 	username: String, // username Progression
     token: String,    // token JWT Progression
-	authKey: String   // Clé d'authentification Progression
+	authKey_nom: String,   // Clé d'authentification Progression
+	authKey_secret: String
 })
 userSchema.index({ userId: 1}, { unique: true })
 
@@ -47,9 +53,11 @@ lti.onConnect(async (token, req, res) => {
 	provMainDebug('onConnect')
 	const db = lti.Database
 
-	const userId = res.locals.context.contextId + "/" + res.locals.context.user
+	const ltik = jwt_decode(res.locals.ltik)
+	
+	const userId = ltik.platformCode + "/" + res.locals.context.context.id + "/" + res.locals.context.user
 	provMainDebug(`userId : ${userId}`)
-	const uri = res.locals.context.custom.uri
+	const uri = btoa_url(res.locals.context.custom.uri)
 	provMainDebug(`uri : ${uri}`)
 	
 	const result = await db.Get( null, 'user', {"userId": userId})
@@ -64,7 +72,7 @@ lti.onConnect(async (token, req, res) => {
 		
 		if( !user.token || !tokenEstValide(user.token) ){
 			provMainDebug('Token non trouvé. ')
-			if (!user.authKey){
+			if (!user.authKey_nom || !user.authKey_secret){
 				provMainDebug('Clé d\'authentification non trouvée. ')
 				authKey = loginAndGetAuthKey(user)
 				if(authKey){
@@ -74,7 +82,7 @@ lti.onConnect(async (token, req, res) => {
 				}
 			}
 			provMainDebug('Login via clé d\'authentification. ')
-			token = await loginAndGetToken(user, user.authKey)
+			token = await loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret)
 			
 			if(token){
 				provMainDebug('Token obtenu: ' + token )
@@ -87,11 +95,22 @@ lti.onConnect(async (token, req, res) => {
 	}
 	else{
 		provMainDebug('User non trouvé.')
-		//return res.sendFile(path.join(__dirname, './public/index.html'))
-		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "context": res.context } } )
+
+		var formulaire = Mustache.render(fs.readFileSync(path.join(__dirname, './templates/loginform.mst'), 'utf8'),
+										 {
+											 ltik: res.locals.ltik,
+											 uri: uri,
+											 userid: userId,
+											 platform_url: ltik.platformUrl,
+											 cours_nom: res.locals.context.context.title
+										 })
+			
+		return res.send( formulaire )
 	}
 	
 })
+
+const btoa_url = s => btoa(unescape(encodeURIComponent(s))).replace(/\//g, '_').replace(/\+/g, '-').replace(/=/g, '')
 
 function tokenEstValide( token ){
 	return true
@@ -105,10 +124,14 @@ function sauvegarderAuthKey( user, authKey ){
 	return null
 }
 
-const loginAndGetToken = async function( user, authKey ){
-	const res = await axios.post(process.env.API_URL+'/auth', { username: user.username, key_name: "LTIauthKey", key_secret: authKey })
-	return res.data.Token
+const loginEtObtenirToken = async function( username, authKey_nom, authKey_secret ){
+	provMainDebug("Requête : " + process.env.API_URL+'/auth')
+	provMainDebug("Params: username " + username + ", authKey_nom " + authKey_nom + ", authKey_secret " + authKey_secret)
+
+	const res = await axios.post(process.env.API_URL+'/auth', { username: username, key_name: authKey_nom, key_secret: authKey_secret })
+	return res.data.Token ?? null
 }
+
 
 function sauvegarderToken( user, token ){
 	return null
@@ -120,7 +143,7 @@ lti.onDeepLinking(async (token, req, res) => {
 })
 
 // Setting up routes
-//lti.app.use(routes)
+lti.app.use(routes)
 
 // Setup function
 const setup = async () => {
@@ -129,15 +152,15 @@ const setup = async () => {
 	/**
 	 * Register platform
 	 */
-	//
-	//	await lti.registerPlatform({
-	//		url: 'http://172.20.0.8:8080',
-	//		name: 'Moodle local',
-	//		clientId: 'oShV5G8qB6WuqHx',
-	//		authenticationEndpoint: 'http://172.20.0.8:8080/mod/lti/auth.php',
-	//		accesstokenEndpoint: 'http://172.20.0.8:8080/mod/lti/token.php',
-	//		authConfig: { method: 'JWK_SET', key: 'http://172.20.0.8:8080/mod/lti/certs.php' }
-	//	})
+	
+		await lti.registerPlatform({
+			url: 'http://rocinante.lamancha:82',
+			name: 'Moodle local',
+			clientId: 'oShV5G8qB6WuqHx',
+			authenticationEndpoint: 'http://rocinante.lamancha:82/mod/lti/auth.php',
+			accesstokenEndpoint: 'http://rocinante.lamancha:82/mod/lti/token.php',
+			authConfig: { method: 'JWK_SET', key: 'http://rocinante.lamancha:82/mod/lti/certs.php' }
+		})
 
 }
 
