@@ -4,7 +4,7 @@
 			<div class="bg-light col card device-card">
 				<div class="card-body">
 					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
-					<p class="card-text" v-html="test.entrée"></p>
+					<pre class="card-text" v-html="test.entrée"></pre>
 				</div>
 			</div>
 		</div>
