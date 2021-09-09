@@ -62,48 +62,54 @@ lti.onConnect(async (token, req, res) => {
 	
 	const result = await db.Get( null, 'user', {"userId": userId})
 
+	var user = null
 	if(result.length>1)
 		return null;
 	else
 		user = result[0]
 
+	token = null
 	if(user){
 		provMainDebug('User trouvé. ' + JSON.stringify(user) )
-		
-		if( !user.token || !tokenEstValide(user.token) ){
-			provMainDebug('Token non trouvé. ')
-			if (!user.authKey_nom || !user.authKey_secret){
-				provMainDebug('Clé d\'authentification non trouvée. ')
-				authKey = loginAndGetAuthKey(user)
-				if(authKey){
-					provMainDebug('Clé d\'authentification obtenue. ')
-					user.authKey = authKey
-					sauvegarderAuthKey(user, authKey)
+
+		token = user.token
+		if( !token || !tokenEstValide(token) ){
+			provMainDebug('Token non trouvé ou invalide. ')
+			
+			if (user.authKey_nom && user.authKey_secret){
+				provMainDebug('Login via clé d\'authentification. ')
+				token = await loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret)
+				if(token){
+					provMainDebug('Token obtenu: ' + token )
+					sauvegarderToken( user, token )
+				}
+				else{
+					provMainDebug('Token non obtenu: ')
 				}
 			}
-			provMainDebug('Login via clé d\'authentification. ')
-			token = await loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret)
-			
-			if(token){
-				provMainDebug('Token obtenu: ' + token )
-				user.token = token
-				sauvegarderToken( user, token )
+			else{
+				provMainDebug('Clé d\'authentification non trouvée. ')
 			}
 		}		
-		provMainDebug('Token : ' + user.token)
-		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": user.token } });
+	}
+
+	
+	if(token){
+		provMainDebug('Token : ' + token)
+		provMainDebug('Redirection vers : ' + process.env.URL_BASE+'/#/question')
+		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } });
 	}
 	else{
-		provMainDebug('User non trouvé.')
+		provMainDebug('Redirection vers le formulaire de login')
 
 		var formulaire = Mustache.render(fs.readFileSync(path.join(__dirname, './templates/loginform.mst'), 'utf8'),
-										 {
-											 ltik: res.locals.ltik,
-											 uri: uri,
-											 userid: userId,
-											 platform_url: ltik.platformUrl,
-											 cours_nom: res.locals.context.context.title
-										 })
+		{
+			ltik: res.locals.ltik,
+			uri: uri,
+			userid: userId,
+			platform_url: ltik.platformUrl,
+			cours_nom: res.locals.context.context.title
+		})
 			
 		return res.send( formulaire )
 	}
@@ -113,15 +119,8 @@ lti.onConnect(async (token, req, res) => {
 const btoa_url = s => btoa(unescape(encodeURIComponent(s))).replace(/\//g, '_').replace(/\+/g, '-').replace(/=/g, '')
 
 function tokenEstValide( token ){
-	return true
-}
-
-function loginAndGetAuthKey( user ){
-	return null
-}
-
-function sauvegarderAuthKey( user, authKey ){
-	return null
+	const token_décodé = jwt_decode(token)
+	return Math.floor(Date.now()/1000) < token_décodé.expired 
 }
 
 const loginEtObtenirToken = async function( username, authKey_nom, authKey_secret ){
@@ -133,8 +132,21 @@ const loginEtObtenirToken = async function( username, authKey_nom, authKey_secre
 }
 
 
-function sauvegarderToken( user, token ){
-	return null
+const sauvegarderToken = async function( user, token ){
+	const db = lti.Database
+
+	db.Replace( null, 'user', {"userId": user.userId},
+				{
+					"userId": user.userId,
+					"username": user.username,
+					"token": token,
+					"authKey_nom": user.authKey_nom,
+					"authKey_secret": user.authKey_secret
+				})
+				  .then(
+					  result => provMainDebug("Token sauvegardé"))
+				  .catch(
+					  error => provMainDebug("Erreur de sauvegarde : " + error))
 }
 
 // When receiving deep linking request redirects to deep screen
