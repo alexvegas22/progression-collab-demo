@@ -24,7 +24,7 @@ export default {
 					this.logué = "true";
 					this.erreurs = "";
 					this.$store.dispatch("setToken", token.data.Token);
-					this.$store.dispatch("getUser", API_URL + "/user/" + username)
+					this.$store.dispatch("getUser", API_URL + "/user/" + username);
 				})
 				.catch((err) => {
 					this.erreurs = err;

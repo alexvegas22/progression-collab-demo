@@ -16,7 +16,7 @@ export default {
 		RetroactionTentative,
 	},
 	computed: {
-		user(){
+		user() {
 			return this.$store.state.user;
 		},
 		question() {
@@ -30,11 +30,11 @@ export default {
 		},
 		uri() {
 			var urlParams = new URLSearchParams(window.location.href);
-			return urlParams.get('uri');
+			return urlParams.get("uri");
 		},
 		lang() {
 			var urlParams = new URLSearchParams(window.location.href);
-			return urlParams.get('lang');
+			return urlParams.get("lang");
 		},
 		erreurs() {
 			return this.$store.state.erreurs;
@@ -46,30 +46,30 @@ export default {
 		},
 		question: function () {
 			this.récupérerAvancement();
-		}
+		},
 	},
 	methods: {
 		récupérerAvancement() {
-			if ( !this.user || !this.question ) return;
-			
+			if (!this.user || !this.question) return;
+
 			const id_avancement = this.user.username + "/" + this.uri;
-			
+
 			if (id_avancement in this.user.avancements) {
 				this.$store.dispatch("getAvancement", {
 					url: this.user.avancements[id_avancement].liens.self,
-					lang_défaut: this.lang
-				} );
+					lang_défaut: this.lang,
+				});
 			} else {
 				this.$store.dispatch("postAvancement", {
 					url: this.user.liens.avancements,
 					question_uri: this.uri,
 					avancement: {},
-					lang_défaut: this.lang
-				} );
+					lang_défaut: this.lang,
+				});
 			}
-		}
+		},
 	},
-	mounted(){
-		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri );
+	mounted() {
+		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 	},
 };

@@ -7,14 +7,14 @@ export const mutations = {
 		state.user = user;
 	},
 
-	setUsername(state, username){
+	setUsername(state, username) {
 		state.username = username;
 	},
-	
+
 	setToken(state, token) {
 		state.token = token;
 	},
-	
+
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
 	},

@@ -26,9 +26,8 @@ const valider = function (commit, promesse) {
 export default {
 	async getUser({ commit }, urlUser) {
 		return getUserApi(urlUser, this.state.token).then((user) => {
-				commit("setUser", user);
-			});
-		
+			commit("setUser", user);
+		});
 	},
 
 	async getQuestion({ commit }, urlQuestion) {
@@ -44,9 +43,9 @@ export default {
 		valider(
 			commit,
 			getAvancementApi(params.url, this.state.token).then((avancement) => {
-				commit("setAvancement", avancement );
-				var tentative
-				
+				commit("setAvancement", avancement);
+				var tentative;
+
 				if (Object.keys(avancement.sauvegardes).length > 0) {
 					var datePlusRecente = 0;
 					for (var key in avancement.sauvegardes) {
@@ -58,25 +57,20 @@ export default {
 							datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
 						}
 					}
-				}
-				else if (avancement.tentatives.length > 0) {
+				} else if (avancement.tentatives.length > 0) {
 					tentative = avancement.tentatives[0];
-				}
-				else {
+				} else {
 					var ebauches = this.state.question.ebauches;
-					if ( ebauches[params.lang_défaut] ){
-						tentative = ebauches[ params.lang_défaut ]
-					}
-					else{
+					if (ebauches[params.lang_défaut]) {
+						tentative = ebauches[params.lang_défaut];
+					} else {
 						tentative = ebauches[Object.keys(ebauches)[0]];
 					}
 				}
 
 				commit("setTentative", tentative);
 				commit("updateRetroaction", tentative);
-
-
-			})
+			}),
 		);
 	},
 
@@ -84,9 +78,9 @@ export default {
 		valider(
 			commit,
 			postAvancementApi(params, this.state.token).then((avancement) => {
-				commit("setAvancement", avancement );
-				var tentative
-				
+				commit("setAvancement", avancement);
+				var tentative;
+
 				if (Object.keys(avancement.sauvegardes).length > 0) {
 					var datePlusRecente = 0;
 					for (var key in avancement.sauvegardes) {
@@ -98,21 +92,18 @@ export default {
 							datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
 						}
 					}
-				}
-				else {
+				} else {
 					var ebauches = this.state.question.ebauches;
-					if ( ebauches[params.lang_défaut] ){
-						tentative = ebauches[ params.lang_défaut ]
-					}
-					else{
+					if (ebauches[params.lang_défaut]) {
+						tentative = ebauches[params.lang_défaut];
+					} else {
 						tentative = ebauches[Object.keys(ebauches)[0]];
 					}
 				}
 
 				commit("setTentative", tentative);
 				commit("updateRetroaction", tentative);
-
-			})
+			}),
 		);
 	},
 
@@ -184,21 +175,21 @@ export default {
 		commit("updateRetroaction", null);
 	},
 
-	setToken( { commit }, token ){
-		const token_décodé = jwt_decode( token )
+	setToken({ commit }, token) {
+		const token_décodé = jwt_decode(token);
 
-		if( token_décodé.user ){
+		if (token_décodé.user) {
 			commit("setToken", token);
-			commit("setUsername", token_décodé.user.username );
+			commit("setUsername", token_décodé.user.username);
 		}
 	},
 
-	deleteToken( { commit } ){
+	deleteToken({ commit }) {
 		commit("setToken", null);
 		commit("setUsername", null);
 	},
-	
-	setUsername( { commit }, username ){
-		commit("setUsername", username );
-	}
+
+	setUsername({ commit }, username) {
+		commit("setUsername", username);
+	},
 };
