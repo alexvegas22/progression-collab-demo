@@ -40,12 +40,43 @@ export default {
 		);
 	},
 
-	async getAvancement({ commit }, urlAvancement) {
+	async getAvancement({ commit }, params) {
 		valider(
 			commit,
-			getAvancementApi(urlAvancement, this.state.token).then((avancement) => {
-				commit("setAvancement", avancement);
-			}),
+			getAvancementApi(params.url, this.state.token).then((avancement) => {
+				commit("setAvancement", avancement );
+				var tentative
+				
+				if (Object.keys(avancement.sauvegardes).length > 0) {
+					var datePlusRecente = 0;
+					for (var key in avancement.sauvegardes) {
+						if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
+							tentative = {
+								code: avancement.sauvegardes[key].code,
+								langage: key,
+							};
+							datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
+						}
+					}
+				}
+				else if (avancement.tentatives.length > 0) {
+					tentative = avancement.tentatives[0];
+				}
+				else {
+					var ebauches = this.state.question.ebauches;
+					if ( ebauches[params.lang_défaut] ){
+						tentative = ebauches[ params.lang_défaut ]
+					}
+					else{
+						tentative = ebauches[Object.keys(ebauches)[0]];
+					}
+				}
+
+				commit("setTentative", tentative);
+				commit("updateRetroaction", tentative);
+
+
+			})
 		);
 	},
 
@@ -53,8 +84,35 @@ export default {
 		valider(
 			commit,
 			postAvancementApi(params, this.state.token).then((avancement) => {
-				commit("setAvancement", avancement);
-			}),
+				commit("setAvancement", avancement );
+				var tentative
+				
+				if (Object.keys(avancement.sauvegardes).length > 0) {
+					var datePlusRecente = 0;
+					for (var key in avancement.sauvegardes) {
+						if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
+							tentative = {
+								code: avancement.sauvegardes[key].code,
+								langage: key,
+							};
+							datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
+						}
+					}
+				}
+				else {
+					var ebauches = this.state.question.ebauches;
+					if ( ebauches[params.lang_défaut] ){
+						tentative = ebauches[ params.lang_défaut ]
+					}
+					else{
+						tentative = ebauches[Object.keys(ebauches)[0]];
+					}
+				}
+
+				commit("setTentative", tentative);
+				commit("updateRetroaction", tentative);
+
+			})
 		);
 	},
 

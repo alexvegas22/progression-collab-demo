@@ -10,6 +10,7 @@ router.post('/lti/register', async (req, res) => {
 	provMainDebug("Requête : " + JSON.stringify(req.body))
 
 	const uri = req.body.uri
+	const lang = req.body.lang
 	const userId = req.body.userid
 	const username = req.body.username
 	const password = req.body.password
@@ -27,7 +28,14 @@ router.post('/lti/register', async (req, res) => {
 				obtenirEtSauvegarderAuthKey(userId, username, token )
 				
 				provMainDebug("Redirection vers /question")
-				return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } })
+				return lti.redirect(res, process.env.URL_BASE+'/#/question', {
+					newResource: true,
+					query: {
+						"ltik": res.locals.ltik,
+						"uri": uri,
+						"token": token,
+						"lang": lang ?? "",
+					} } )
 			}
 		).catch(
 			error => {
@@ -42,7 +50,7 @@ router.post('/lti/register', async (req, res) => {
 				obtenirEtSauvegarderAuthKey(userId, username, token )
 				
 				provMainDebug("Redirection vers /question")
-				return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } })
+				return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "lang": lang ?? "", "token": token } })
 			}
 		).catch(
 			error => {

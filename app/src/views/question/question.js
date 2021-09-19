@@ -16,51 +16,60 @@ export default {
 		RetroactionTentative,
 	},
 	computed: {
+		user(){
+			return this.$store.state.user;
+		},
+		question() {
+			return this.$store.state.question;
+		},
 		avancement() {
 			return this.$store.state.avancement;
+		},
+		tentative() {
+			return this.$store.state.tentative;
 		},
 		uri() {
 			var urlParams = new URLSearchParams(window.location.href);
 			return urlParams.get('uri');
 		},
-		question() {
-			return this.$store.state.question;
+		lang() {
+			var urlParams = new URLSearchParams(window.location.href);
+			return urlParams.get('lang');
 		},
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
-		user(){
-			return this.$store.state.user;
-		},
 	},
-	watch:{
-		user(){
+	watch: {
+		user: function () {
 			this.récupérerAvancement();
 		},
-		question(){
+		question: function () {
 			this.récupérerAvancement();
-		}
-	},
-	mounted() {
-		if(this.uri){
-			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		}
 	},
 	methods: {
-		récupérerAvancement(){
-			if(!this.$store.state.user || !this.$store.state.question) return;
+		récupérerAvancement() {
+			if ( !this.user || !this.question ) return;
 			
-			const id_avancement = this.$store.state.user.username + "/" + this.uri;
+			const id_avancement = this.user.username + "/" + this.uri;
 			
-			if (id_avancement in this.$store.state.user.avancements) {
-				this.$store.dispatch("getAvancement", this.$store.state.user.avancements[id_avancement].liens.self);
+			if (id_avancement in this.user.avancements) {
+				this.$store.dispatch("getAvancement", {
+					url: this.user.avancements[id_avancement].liens.self,
+					lang_défaut: this.lang
+				} );
 			} else {
 				this.$store.dispatch("postAvancement", {
-					url: this.$store.state.user.liens.avancements,
+					url: this.user.liens.avancements,
 					question_uri: this.uri,
 					avancement: {},
-				});
-			}			
+					lang_défaut: this.lang
+				} );
+			}
 		}
-	}
+	},
+	mounted(){
+		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri );
+	},
 };

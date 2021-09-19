@@ -9,11 +9,14 @@ export default {
 		tests() {
 			return this.$store.state.question.tests;
 		},
+		tentative() {
+			return this.$store.state.retroactionTentative;
+		},
 		resultats() {
 			var res = [];
 			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
 				var tentative = this.$store.state.retroactionTentative;
-				var résultat = tentative && i < tentative.resultats.length ? tentative.resultats[i].résultat : null;
+				var résultat = tentative.resultats && i < tentative.resultats.length ? tentative.resultats[i].résultat : null;
 				res.push(résultat);
 			}
 			return res;
@@ -22,7 +25,7 @@ export default {
 			return this.$store.state.question.tests[this.index_select];
 		},
 		resultat_select() {
-			return this.$store.state.retroactionTentative
+			return this.$store.state.retroactionTentative.resultats
 				? this.$store.state.retroactionTentative.resultats[this.index_select]
 				: null;
 		},

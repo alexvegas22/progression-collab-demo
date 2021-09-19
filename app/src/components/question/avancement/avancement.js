@@ -5,7 +5,7 @@ export default {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
 		},
 		tentatives() {
-			return this.$store.state.avancement.tentatives;
+			return this.$store.state.avancement.tentatives ?? [];
 		},
 		langages() {
 			return Object.keys(this.$store.state.question.ebauches);

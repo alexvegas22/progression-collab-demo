@@ -59,6 +59,8 @@ lti.onConnect(async (token, req, res) => {
 	provMainDebug(`userId : ${userId}`)
 	const uri = btoa_url(res.locals.context.custom.uri)
 	provMainDebug(`uri : ${uri}`)
+	const lang = res.locals.context.custom.lang
+	provMainDebug(`lang : ${lang}`)
 	
 	const result = await db.Get( null, 'user', {"userId": userId})
 
@@ -97,7 +99,11 @@ lti.onConnect(async (token, req, res) => {
 	if(token){
 		provMainDebug('Token : ' + token)
 		provMainDebug('Redirection vers : ' + process.env.URL_BASE+'/#/question')
-		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: { "ltik": res.locals.ltik, "uri": uri, "token": token } });
+		return lti.redirect(res, process.env.URL_BASE+'/#/question', { newResource: true, query: {
+			"ltik": res.locals.ltik,
+			"uri": uri,
+			"lang": lang ?? "",
+			"token": token } } );
 	}
 	else{
 		provMainDebug('Redirection vers le formulaire de login')
@@ -106,11 +112,12 @@ lti.onConnect(async (token, req, res) => {
 		{
 			ltik: res.locals.ltik,
 			uri: uri,
+			lang: lang ?? "",
 			userid: userId,
 			platform_url: ltik.platformUrl,
 			cours_nom: res.locals.context.context.title
 		})
-			
+		
 		return res.send( formulaire )
 	}
 	
