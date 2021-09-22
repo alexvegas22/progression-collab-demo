@@ -25,8 +25,7 @@
 	 mounted() {
 		 var token;
 
-		 const query_parts = window.location.href.split('#');
-		 var urlParams = new URLSearchParams(query_parts[0]);
+		 var urlParams = new URLSearchParams(window.location.search);
 			 
 		 if(urlParams.has('token')){
 			 token = urlParams.get('token');
