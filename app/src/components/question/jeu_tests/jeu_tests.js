@@ -15,8 +15,7 @@ export default {
 		resultats() {
 			var res = [];
 			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
-				var tentative = this.$store.state.retroactionTentative;
-				var résultat = tentative.resultats && i < tentative.resultats.length ? tentative.resultats[i].résultat : null;
+				var résultat = this.tentative && this.tentative.resultats && i < this.tentative.resultats.length ? this.tentative.resultats[i].résultat : null;
 				res.push(résultat);
 			}
 			return res;
@@ -25,7 +24,7 @@ export default {
 			return this.$store.state.question.tests[this.index_select];
 		},
 		resultat_select() {
-			return this.$store.state.retroactionTentative.resultats
+			return this.tentative && this.tentative.resultats
 				? this.$store.state.retroactionTentative.resultats[this.index_select]
 				: null;
 		},

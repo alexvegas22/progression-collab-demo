@@ -170,8 +170,11 @@ export default {
 
 	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
-		commit("updateCodeTentative", this.state.question.ebauches[langage].code);
-		commit("updateLangageTentative", langage);
+		commit("setTentative", {
+			langage: langage,
+			code: this.state.question.ebauches[langage].code,
+		} );
+
 		commit("updateRetroaction", null);
 	},
 
