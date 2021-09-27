@@ -87,6 +87,10 @@ const postTentative = async (params, token) => {
 	return tentative;
 };
 
+const callbackGrade = async (url, params, token) => {
+	await postData( url, params, token );
+}
+
 const postSauvegardeApi = async (params, token) => {
 	const body = { langage: params.langage, code: params.code };
 	const urlRequete = params.url;
@@ -144,4 +148,5 @@ export {
 	postTentative,
 	postAvancementApi,
 	postSauvegardeApi,
+	callbackGrade,
 };

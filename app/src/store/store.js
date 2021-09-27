@@ -5,7 +5,11 @@ import actions from "./actions";
 export default createStore({
 	state: {
 		user: null,
+		uri: null,
+		langageDéfaut: null,
 		token: null,
+		cb_succes: null,
+		cb_succes_params: null,
 		username: null,
 		question: null,
 		tentative: null,

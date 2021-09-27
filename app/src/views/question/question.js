@@ -29,12 +29,10 @@ export default {
 			return this.$store.state.tentative;
 		},
 		uri() {
-			var urlParams = new URLSearchParams(window.location.search);
-			return urlParams.get("uri");
+			return this.$store.state.uri;
 		},
 		lang() {
-			var urlParams = new URLSearchParams(window.location.search);
-			return urlParams.get("lang");
+			return this.$store.state.langageDéfaut;
 		},
 		erreurs() {
 			return this.$store.state.erreurs;

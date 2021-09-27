@@ -1,5 +1,9 @@
 <template>
-	<div id="app"></div>
+	<div id="app">
+		<div v-show="erreurs" class="alert alert-danger">
+			{{$t("erreur.réseau")}}
+		</div>
+	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<router-link :to="{ name: 'Home' }" class="navbar-brand text-light">
 			<span class="text-info"> Prog</span>ression
@@ -23,10 +27,25 @@
 		 }
 	 },
 	 mounted() {
-		 var token;
 
 		 var urlParams = new URLSearchParams(window.location.search);
-			 
+
+		 if(urlParams.has('uri')){
+			 this.$store.dispatch("setUri", urlParams.get('uri'));
+		 }
+		 
+		 if(urlParams.has('lang')){
+			 this.$store.dispatch("setLangageDéfaut", urlParams.get('lang'));
+		 }
+
+		 if(urlParams.has('cb_succes')){
+			 this.$store.dispatch("setCallbackSucces", urlParams.get('cb_succes'));
+			 if(urlParams.has('cb_succes_params')){
+				 this.$store.dispatch("setCallbackSuccesParams", JSON.parse(urlParams.get('cb_succes_params')));
+			 }
+		 }
+		 
+		 var token;
 		 if(urlParams.has('token')){
 			 token = urlParams.get('token');
 			 localStorage.setItem("user-token", token);
@@ -41,7 +60,9 @@
 		 }
 
 		 if(token){
-			 this.$store.dispatch("getUser", API_URL + "/user/" + this.$store.state.username)
+			 this.$store.dispatch("getUser", API_URL + "/user/" + this.$store.state.username).catch( (erreur) => {
+				 this.$router.push( {name: 'LoginView', params: { ref: window.btoa(window.location.href), ltik: urlParams.get('ltik'), context: urlParams.get('context') } } );
+			 } );
 		 }
 		 else{
 			 this.$router.push( {name: 'LoginView', params: { ref: window.btoa(window.location.href), ltik: urlParams.get('ltik'), context: urlParams.get('context') } } );

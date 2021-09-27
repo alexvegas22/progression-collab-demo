@@ -1,5 +1,4 @@
 require("dotenv").config();
-const axios = require("axios");
 
 const fs = require("fs");
 const path = require("path");
@@ -9,6 +8,7 @@ const mongoose = require("mongoose");
 const routes = require("./src/routes");
 const Mustache = require("mustache");
 const jwt_decode = require("jwt-decode");
+const services = require("./src/services.js");
 
 mongoose.set("useCreateIndex", true);
 
@@ -48,71 +48,50 @@ lti.setup(
 );
 
 // When receiving successful LTI launch redirects to app
-lti.onConnect(async (token, req, res) => {
+lti.onConnect(async (idToken, req, res) => {
 	provMainDebug("onConnect");
-	const db = lti.Database;
 
 	const ltik = jwt_decode(res.locals.ltik);
 
-	const userId = ltik.platformCode + "/" + res.locals.context.context.id + "/" + res.locals.context.user;
+	const userId = idToken.platformId + "/" + idToken.user;
 	provMainDebug(`userId : ${userId}`);
 	const uri = btoa_url(res.locals.context.custom.uri);
 	provMainDebug(`uri : ${uri}`);
 	const lang = res.locals.context.custom.lang;
 	provMainDebug(`lang : ${lang}`);
 
-	const result = await db.Get(null, "user", { userId: userId });
+	const token = await services.récupérerToken( userId );
 
-	var user = null;
-	if (result.length > 1) return null;
-	else user = result[0];
-
-	token = null;
-	if (user) {
-		provMainDebug("User trouvé. " + JSON.stringify(user));
-
-		token = user.token;
-		if (!token || !tokenEstValide(token)) {
-			provMainDebug("Token non trouvé ou invalide. ");
-
-			if (user.authKey_nom && user.authKey_secret) {
-				provMainDebug("Login via clé d'authentification. ");
-				token = await loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret);
-				if (token) {
-					provMainDebug("Token obtenu: " + token);
-					sauvegarderToken(user, token);
-				} else {
-					provMainDebug("Token non obtenu: ");
-				}
-			} else {
-				provMainDebug("Clé d'authentification non trouvée. ");
-			}
-		}
-	}
-
-	if (token) {
-		provMainDebug("Token : " + token);
-		provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
-		return lti.redirect(res, process.env.URL_BASE + "/#/question", {
-			newResource: true,
-			query: {
+	const query = {
 				ltik: res.locals.ltik,
 				uri: uri,
 				lang: lang ?? "",
 				token: token,
-			},
+				cb_succes: process.env.URL_BASE + "/lti/grade",
+				cb_succes_params: JSON.stringify({
+					ltik: res.locals.ltik,
+					uri: uri
+				})
+	}
+	
+	if (token) {
+		provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
+		return lti.redirect(res, process.env.URL_BASE + "/#/question", {
+			newResource: true,
+			query: query,
 		});
-	} else {
+	}
+	else {
 		provMainDebug("Redirection vers le formulaire de login");
 
-		var formulaire = Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), {
-			ltik: res.locals.ltik,
-			uri: uri,
-			lang: lang ?? "",
+		const query_plus = {
+			...query,
 			userid: userId,
 			platform_url: ltik.platformUrl,
 			cours_nom: res.locals.context.context.title,
-		});
+		};
+		var formulaire = Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), query_plus
+		);
 
 		return res.send(formulaire);
 	}
@@ -123,42 +102,6 @@ const btoa_url = (s) =>
 		.replace(/\//g, "_")
 		.replace(/\+/g, "-")
 		.replace(/=/g, "");
-
-function tokenEstValide(token) {
-	const token_décodé = jwt_decode(token);
-	return Math.floor(Date.now() / 1000) < token_décodé.expired;
-}
-
-const loginEtObtenirToken = async function (username, authKey_nom, authKey_secret) {
-	provMainDebug("Requête : " + process.env.API_URL + "/auth");
-	provMainDebug("Params: username " + username + ", authKey_nom " + authKey_nom + ", authKey_secret " + authKey_secret);
-
-	const res = await axios.post(process.env.API_URL + "/auth", {
-		username: username,
-		key_name: authKey_nom,
-		key_secret: authKey_secret,
-	});
-	return res.data.Token ?? null;
-};
-
-const sauvegarderToken = async function (user, token) {
-	const db = lti.Database;
-
-	db.Replace(
-		null,
-		"user",
-		{ userId: user.userId },
-		{
-			userId: user.userId,
-			username: user.username,
-			token: token,
-			authKey_nom: user.authKey_nom,
-			authKey_secret: user.authKey_secret,
-		},
-	)
-		.then((result) => provMainDebug("Token sauvegardé"))
-		.catch((error) => provMainDebug("Erreur de sauvegarde : " + error));
-};
 
 // When receiving deep linking request redirects to deep screen
 lti.onDeepLinking(async (token, req, res) => {

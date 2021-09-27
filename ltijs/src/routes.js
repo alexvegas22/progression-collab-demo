@@ -2,6 +2,7 @@ const router = require("express").Router();
 const axios = require("axios");
 const path = require("path");
 const provMainDebug = require("debug")("provider:main");
+const services = require("./services.js");
 
 // Requiring Ltijs
 const lti = require("ltijs").Provider;
@@ -14,6 +15,8 @@ router.post("/lti/register", async (req, res) => {
 	const userId = req.body.userid;
 	const username = req.body.username;
 	const password = req.body.password;
+	const cb_succes = req.body.cb_succes;
+	const cb_succes_params = req.body.cb_succes_params;
 
 	provMainDebug("Enregistrement de l'utilisateur " + userId);
 
@@ -35,6 +38,8 @@ router.post("/lti/register", async (req, res) => {
 						uri: uri,
 						token: token,
 						lang: lang ?? "",
+						cb_succes: cb_succes,
+						cb_succes_params: cb_succes_params,
 					},
 				});
 			})
@@ -50,7 +55,13 @@ router.post("/lti/register", async (req, res) => {
 				provMainDebug("Redirection vers /question");
 				return lti.redirect(res, process.env.URL_BASE + "/#/question", {
 					newResource: true,
-					query: { ltik: res.locals.ltik, uri: uri, lang: lang ?? "", token: token },
+					query: { ltik: res.locals.ltik,
+							 uri: uri,
+							 lang: lang ?? "",
+							 token: token,
+							 cb_succes: cb_succes,
+							 cb_succes_params: cb_succes_params,
+					},
 				});
 			})
 			.catch((error) => {
@@ -137,6 +148,85 @@ const randomID = function () {
 	// after the decimal.
 	return Math.random().toString(36).substr(2, 9);
 };
+
+router.post('/lti/grade', async (req, res) => {
+	try {
+		provMainDebug("Requête de grade");
+		
+		const idToken = res.locals.token // IdToken
+
+		const userId = idToken.platformId + "/" + idToken.user;
+		const username = await getUsername( userId )
+		const uri = req.body.uri
+		const token = await services.récupérerToken( userId )
+		
+		const score = await récupérerScore( username, uri, token )
+		
+		// Creating Grade object
+		const gradeObj = {
+			userId: idToken.user,
+			scoreGiven: score,
+			scoreMaximum: 100,
+			activityProgress: 'Completed',
+			gradingProgress: 'FullyGraded',			
+		}
+
+		// Selecting linetItem ID
+		// Attempting to retrieve it from idtoken
+		let lineItemId = idToken.platformContext.endpoint.lineitem
+		
+		if (!lineItemId) {
+			const response = await lti.Grade.getLineItems(idToken, { resourceLinkId: true })
+			const lineItems = response.lineItems
+			if (lineItems.length === 0) {
+				// Creating line item if there is none
+				provMainDebug("Création d'un item de gradation");
+				const newLineItem = {
+					scoreMaximum: 100,
+					label: 'Grade',
+					tag: 'grade',
+					resourceLinkId: idToken.contextId
+				}
+				const lineItem = await lti.Grade.createLineItem(idToken, newLineItem)
+				lineItemId = lineItem.id
+			} else lineItemId = lineItems[0].id
+		}
+		
+		// Sending Grade
+		const responseGrade = await lti.Grade.submitScore(idToken, lineItemId, gradeObj)
+		return res.send(responseGrade)
+	} catch (err) {
+		provMainDebug(err)
+		return res.status(500).send({ err: err.message })
+	}
+})
+
+const getUsername = async function( userId ) {
+	const user = await services.récupérerUser( userId )
+	return user.username ?? null;
+}
+
+const récupérerScore = async function( username, uri, token ){
+
+	const config = {
+		headers: {
+			Authorization: "Bearer " + token,
+		},
+	};
+
+	const requête = process.env.API_URL + "/avancement/" + username + "/" + uri;
+	provMainDebug("Requête d'avancement : " + requête );
+	const res = await axios.get( requête, config);
+	provMainDebug("Avancement : " + JSON.stringify(res.data) );
+	
+	if (res.data){
+		return res.data.data.attributes.état==2 ? 100 : 0;
+	}
+	else{
+		return 0;
+	}
+
+}
 
 // Wildcard route to deal with redirecting to React routes
 router.get("*", (req, res) => {

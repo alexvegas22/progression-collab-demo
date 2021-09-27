@@ -6,6 +6,7 @@ import {
 	postTentative,
 	postAvancementApi,
 	postSauvegardeApi,
+	callbackGrade,
 } from "@/services/index.js";
 
 import jwt_decode from "jwt-decode";
@@ -132,9 +133,21 @@ export default {
 					if (this.state.avancement.état != 2) {
 						this.state.avancement.état = retroactionTentative.réussi ? 2 : 1;
 					}
+
+					callbackGrade(
+						this.state.cb_succes,
+						this.state.cb_succes_params,
+						this.state.token).catch((erreur)=>{
+							//Afficher un message
+							commit("setErreurs", erreur);
+						}
+							
+						);
+					
 					commit("updateMsgReponseApi", null);
 				})
 				.catch((erreur) => {
+					console.log(erreur);
 					commit("updateMsgReponseApi", "erreurServeur");
 				})
 				.finally(() => {
@@ -187,6 +200,22 @@ export default {
 		}
 	},
 
+	setUri({commit}, uri) {
+		commit("setUri", uri);
+	},
+	
+	setLangageDéfaut({commit}, langageDéfaut) {
+		commit("setLangageDéfaut", langageDéfaut);
+	},
+	
+	setCallbackSucces({commit}, cb_succes) {
+		commit("setCallbackSucces", cb_succes);
+	},
+	
+	setCallbackSuccesParams({commit}, cb_succes_params) {
+		commit("setCallbackSuccesParams", cb_succes_params);
+	},
+	
 	deleteToken({ commit }) {
 		commit("setToken", null);
 		commit("setUsername", null);

@@ -49,6 +49,8 @@
 			  <input type="hidden" name="ltik" value="{{ ltik }}">
 			  <input type="hidden" name="uri" value="{{ uri }}">
 			  <input type="hidden" name="userid" value="{{ userid }}">
+			  <input type="hidden" name="cb_succes" value="{{ cb_succes }}">
+			  <input type="hidden" name="cb_succes_params" value="{{ cb_succes_params }}">
 			  <input type="hidden" name="creation" value="0">
 			  <input type="submit" class="btn btn-primary">
 			</form>

@@ -15,6 +15,22 @@ export const mutations = {
 		state.token = token;
 	},
 
+	setUri(state, uri) {
+		state.uri = uri;
+	},
+
+	setLangageDéfaut(state, langageDéfaut) {
+		state.langageDéfaut = langageDéfaut;
+	},
+
+	setCallbackSucces(state, cb_succes) {
+		state.cb_succes = cb_succes;
+	},
+
+	setCallbackSuccesParams(state, cb_succes_params) {
+		state.cb_succes_params = cb_succes_params;
+	},
+
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
 	},
