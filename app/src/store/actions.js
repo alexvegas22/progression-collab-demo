@@ -194,9 +194,9 @@ export default {
 	setToken({ commit }, token) {
 		const token_décodé = jwt_decode(token);
 
-		if (token_décodé.user) {
+		if (token_décodé.username) {
 			commit("setToken", token);
-			commit("setUsername", token_décodé.user.username);
+			commit("setUsername", token_décodé.username);
 		}
 	},
 
