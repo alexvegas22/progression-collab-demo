@@ -67,31 +67,32 @@ lti.onConnect(async (idToken, req, res) => {
 		cb_succes: process.env.URL_BASE + "/lti/grade",
 		cb_succes_params: JSON.stringify({
 			ltik: res.locals.ltik,
-			uri: uri
-		})
-	}
+			uri: uri,
+		}),
+	};
 
-	return await services.récupérerToken( userId )
-						 .then( (token) => {
-							 provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
-							 lti.redirect(res, process.env.URL_BASE + "/#/question", {
-								 newResource: true,
-								 query: { ...query, token: token }
-							 } ) } )
-						 .catch( (erreur) => {
-							 provMainDebug(erreur);
-							 provMainDebug("Redirection vers le formulaire de login");
-							 return res.send(
-								 Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), 
-												 {
-													 ...query,
-													 userid: userId,
-													 platform_url: platformUrl,
-													 cours_nom: res.locals.context.context.title,
-												 }
-								 ) );
-						 } )
-} );
+	return await services
+		.récupérerToken(userId)
+		.then((token) => {
+			provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
+			lti.redirect(res, process.env.URL_BASE + "/#/question", {
+				newResource: true,
+				query: { ...query, token: token },
+			});
+		})
+		.catch((erreur) => {
+			provMainDebug(erreur);
+			provMainDebug("Redirection vers le formulaire de login");
+			return res.send(
+				Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), {
+					...query,
+					userid: userId,
+					platform_url: platformUrl,
+					cours_nom: res.locals.context.context.title,
+				}),
+			);
+		});
+});
 
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
