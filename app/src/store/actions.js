@@ -12,27 +12,26 @@ import {
 import jwt_decode from "jwt-decode";
 
 const valider = function (commit, promesse) {
-	promesse
+	return promesse
 		.then((résultat) => {
 			commit("setErreurs", null);
 		})
 		.catch((erreur) => {
 			commit("setErreurs", erreur);
-			throw erreur;
 		});
-
-	return promesse;
 };
 
 export default {
 	async getUser({ commit }, urlUser) {
-		return getUserApi(urlUser, this.state.token).then((user) => {
-			commit("setUser", user);
-		});
+		return valider(
+			commit,
+			getUserApi(urlUser, this.state.token).then((user) => {
+				commit("setUser", user);
+		} ) );
 	},
 
 	async getQuestion({ commit }, urlQuestion) {
-		valider(
+		return valider(
 			commit,
 			getQuestionApi(urlQuestion, this.state.token).then((question) => {
 				commit("setQuestion", question);
@@ -41,7 +40,7 @@ export default {
 	},
 
 	async getAvancement({ commit }, params) {
-		valider(
+		return valider(
 			commit,
 			getAvancementApi(params.url, this.state.token).then((avancement) => {
 				commit("setAvancement", avancement);
@@ -76,7 +75,7 @@ export default {
 	},
 
 	async postAvancement({ commit }, params) {
-		valider(
+		return valider(
 			commit,
 			postAvancementApi(params, this.state.token).then((avancement) => {
 				commit("setAvancement", avancement);
@@ -109,7 +108,7 @@ export default {
 	},
 
 	async getTentative({ commit }, urlTentative) {
-		valider(
+		return valider(
 			commit,
 			getTentativeApi(urlTentative, this.state.token).then((tentative) => {
 				commit("setTentative", tentative);
@@ -123,7 +122,7 @@ export default {
 		commit("updateMsgReponseApi", "traitementEnCours");
 
 		params.urlTentative = this.state.avancement.liens.tentative;
-		valider(
+		return valider(
 			commit,
 			postTentative(params, this.state.token)
 				.then((retroactionTentative) => {

@@ -24,6 +24,7 @@ export default {
 					this.logué = "true";
 					this.erreurs = "";
 					this.$store.dispatch("setToken", token.data.Token);
+					localStorage.setItem("user-token", token.data.Token);
 					this.$store.dispatch("getUser", API_URL + "/user/" + username);
 				})
 				.catch((err) => {

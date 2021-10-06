@@ -2,6 +2,12 @@
 	<div id="app">
 		<div v-show="erreurs" class="alert alert-danger">
 			{{$t("erreur.réseau")}}
+		<details>
+			<summary>
+				détails
+			</summary>
+			{{ erreurs }}
+		</details>
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,6 +25,9 @@
  export default {
 	 name: "App",
 	 computed: {
+		 erreurs() {
+			 return this.$store.state.erreurs;
+		 },
 		 username() {
 			 return this.$store.state.username;
 		 }
@@ -31,7 +40,7 @@
 			 if (!this.username) return;
 			 
 			 if(this.$store.state.token){
-				 this.redirigerVersQuestion().catch(
+				 this.chargerUser().catch(
 					 (erreur) => {
 						 this.redirigerVersLogin( window.btoa(window.location.href) );
 					 } );
@@ -64,9 +73,18 @@
 			 if(urlParams.has('token')){
 				 this.$store.dispatch("setToken", urlParams.get('token'));
 			 }
+			 else {
+				 const token = localStorage.getItem("user-token");
+				 if (token) {
+					 this.$store.dispatch("setToken", token);
+				 }
+				 else {
+					 this.$store.dispatch("setUsername", "anonyme");
+				 }
+			 }
 		 },
-		 redirigerVersQuestion(){
-			 return this.$store.dispatch("getUser", API_URL + "/user/" + this.$store.state.username)
+		 chargerUser(){
+			 return this.$store.dispatch("getUser", API_URL + "/user/" + this.$store.state.username);
 		 },
 		 redirigerVersLogin( ref ){
 			 this.$router.push( {

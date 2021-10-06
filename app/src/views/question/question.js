@@ -40,7 +40,7 @@ export default {
 	},
 	watch: {
 		user: function () {
-			this.récupérerAvancement();
+			this.récupérerQuestion();
 		},
 		question: function () {
 			this.récupérerAvancement();
@@ -48,8 +48,6 @@ export default {
 	},
 	methods: {
 		récupérerAvancement() {
-			if (!this.user || !this.question) return;
-
 			const id_avancement = this.user.username + "/" + this.uri;
 
 			if (id_avancement in this.user.avancements) {
@@ -66,8 +64,8 @@ export default {
 				});
 			}
 		},
-	},
-	mounted() {
-		this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
-	},
+		récupérerQuestion() {
+			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
+		},
+	}
 };
