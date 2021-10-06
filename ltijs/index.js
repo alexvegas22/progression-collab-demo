@@ -51,7 +51,7 @@ lti.setup(
 lti.onConnect(async (idToken, req, res) => {
 	provMainDebug("onConnect");
 
-	const ltik = jwt_decode(res.locals.ltik);
+	const platformUrl = jwt_decode(res.locals.ltik).platformUrl;
 
 	const userId = idToken.platformId + "/" + idToken.user;
 	provMainDebug(`userId : ${userId}`);
@@ -60,53 +60,44 @@ lti.onConnect(async (idToken, req, res) => {
 	const lang = res.locals.context.custom.lang;
 	provMainDebug(`lang : ${lang}`);
 
-	const token = await services.récupérerToken( userId );
-
 	const query = {
-				ltik: res.locals.ltik,
-				uri: uri,
-				lang: lang ?? "",
-				token: token,
-				cb_succes: process.env.URL_BASE + "/lti/grade",
-				cb_succes_params: JSON.stringify({
-					ltik: res.locals.ltik,
-					uri: uri
-				})
+		ltik: res.locals.ltik,
+		uri: uri,
+		lang: lang ?? "",
+		cb_succes: process.env.URL_BASE + "/lti/grade",
+		cb_succes_params: JSON.stringify({
+			ltik: res.locals.ltik,
+			uri: uri
+		})
 	}
-	
-	if (token) {
-		provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
-		return lti.redirect(res, process.env.URL_BASE + "/#/question", {
-			newResource: true,
-			query: query,
-		});
-	}
-	else {
-		provMainDebug("Redirection vers le formulaire de login");
 
-		const query_plus = {
-			...query,
-			userid: userId,
-			platform_url: ltik.platformUrl,
-			cours_nom: res.locals.context.context.title,
-		};
-		var formulaire = Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), query_plus
-		);
-
-		return res.send(formulaire);
-	}
-});
+	return await services.récupérerToken( userId )
+						 .then( (token) => {
+							 provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
+							 lti.redirect(res, process.env.URL_BASE + "/#/question", {
+								 newResource: true,
+								 query: { ...query, token: token }
+							 } ) } )
+						 .catch( (erreur) => {
+							 provMainDebug(erreur);
+							 provMainDebug("Redirection vers le formulaire de login");
+							 return res.send(
+								 Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), 
+												 {
+													 ...query,
+													 userid: userId,
+													 platform_url: platformUrl,
+													 cours_nom: res.locals.context.context.title,
+												 }
+								 ) );
+						 } )
+} );
 
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
 		.replace(/\//g, "_")
 		.replace(/\+/g, "-")
 		.replace(/=/g, "");
-
-// When receiving deep linking request redirects to deep screen
-lti.onDeepLinking(async (token, req, res) => {
-	return lti.redirect(res, "/deeplink", { newResource: true });
-});
 
 // Setting up routes
 lti.app.use(routes);

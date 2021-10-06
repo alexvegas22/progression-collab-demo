@@ -8,7 +8,7 @@ const services = require("./services.js");
 const lti = require("ltijs").Provider;
 
 router.post("/lti/register", async (req, res) => {
-	provMainDebug("Requête : " + JSON.stringify(req.body));
+	provMainDebug("/lti/register");
 
 	const uri = req.body.uri;
 	const lang = req.body.lang;
@@ -18,30 +18,28 @@ router.post("/lti/register", async (req, res) => {
 	const cb_succes = req.body.cb_succes;
 	const cb_succes_params = req.body.cb_succes_params;
 
-	provMainDebug("Enregistrement de l'utilisateur " + userId);
+	provMainDebug("Login utilisateur " + userId);
 
 	if (!username || !password || !uri) {
 		return res.status(400).send("Requête invalide");
 	}
 
+	const query = {
+		ltik: res.locals.ltik,
+		uri: uri,
+		lang: lang ?? "",
+		cb_succes: cb_succes,
+		cb_succes_params: cb_succes_params,
+	};
+	
 	if (req.body.creation == "1") {
 		provMainDebug("Création de l'utilisateur");
 		créerUserEtObtenirToken(username, password)
 			.then((token) => {
-				obtenirEtSauvegarderAuthKey(userId, username, token);
-
-				provMainDebug("Redirection vers /question");
-				return lti.redirect(res, process.env.URL_BASE + "/#/question", {
-					newResource: true,
-					query: {
-						ltik: res.locals.ltik,
-						uri: uri,
-						token: token,
-						lang: lang ?? "",
-						cb_succes: cb_succes,
-						cb_succes_params: cb_succes_params,
-					},
-				});
+				obtenirEtSauvegarderAuthKey(userId, username, token).then( () => {
+					redirigerVersQuestion( res, { ...query, token: token } );
+				}
+				)
 			})
 			.catch((error) => {
 				return res.status(403).send(error.message);
@@ -50,19 +48,10 @@ router.post("/lti/register", async (req, res) => {
 		provMainDebug("Login et récupération du token");
 		loginEtObtenirToken(username, password)
 			.then((token) => {
-				obtenirEtSauvegarderAuthKey(userId, username, token);
-
-				provMainDebug("Redirection vers /question");
-				return lti.redirect(res, process.env.URL_BASE + "/#/question", {
-					newResource: true,
-					query: { ltik: res.locals.ltik,
-							 uri: uri,
-							 lang: lang ?? "",
-							 token: token,
-							 cb_succes: cb_succes,
-							 cb_succes_params: cb_succes_params,
-					},
-				});
+				obtenirEtSauvegarderAuthKey(userId, username, token).then( () => {
+					redirigerVersQuestion( res, { ...query, token: token } );
+				}
+				)
 			})
 			.catch((error) => {
 				return res.status(401).send(error.message);
@@ -71,20 +60,26 @@ router.post("/lti/register", async (req, res) => {
 });
 
 const obtenirEtSauvegarderAuthKey = async function (userId, username, token) {
+	const clé_id = "LTIauthKey_" + randomID();
+	
+	return obtenirAuthKey( username, token, clé_id ).then( (résultat) => {
+		sauvegarderAuthKey( userId, username, token, clé_id, résultat.data.data.attributes.secret );
+	} );
+};
+
+const obtenirAuthKey = function( username, token, clé_id ){
 	provMainDebug("Obtention de la clé");
 
-	provMainDebug("Requête : " + process.env.API_URL + "/user/" + username + "/cles");
-	provMainDebug("Params: token : " + token);
-
-	const key_name = "LTIauthKey_" + randomID();
-
-	const res_key = await axios.post(
+	return axios.post(
 		process.env.API_URL + "/user/" + username + "/cles",
-		{ nom: key_name, portée: 1 },
+		{ nom: clé_id, portée: 1 },
 		{ headers: { Authorization: "bearer " + token } },
 	);
-	provMainDebug("Clé générée : " + JSON.stringify(res_key.data.data.attributes));
-	provMainDebug("Sauvegarde de l'utilisateur");
+
+}
+
+const sauvegarderAuthKey = function( userId, username, token, clé_id, clé_secret ){
+	provMainDebug("Sauvegarde de l'utilisateur " + userId);
 
 	const db = lti.Database;
 	db.Replace(
@@ -95,15 +90,24 @@ const obtenirEtSauvegarderAuthKey = async function (userId, username, token) {
 			userId: userId,
 			username: username,
 			token: token,
-			authKey_nom: key_name,
-			authKey_secret: res_key.data.data.attributes.secret,
+			authKey_nom: clé_id,
+			authKey_secret: clé_secret,
 		},
 	)
-		.then((response) => provMainDebug("Utilisateur sauvegardé : " + userId))
-		.catch((error) => {
-			console.log("Erreur de sauvegarde : " + error);
-		});
-};
+	  .then((response) => provMainDebug("Utilisateur sauvegardé."))
+	  .catch((error) => {
+		  provMainDebug("Erreur de sauvegarde : " + error);
+	  });	
+}
+
+const redirigerVersQuestion = function( res, query ){
+	provMainDebug("Redirection vers /question");
+
+	lti.redirect(res, process.env.URL_BASE + "/#/question", {
+		newResource: true,
+		query,
+	});
+}
 
 const créerUserEtObtenirToken = async function (username, password) {
 	provMainDebug("Requête : " + process.env.API_URL + "/inscription");
@@ -137,9 +141,14 @@ const loginEtObtenirToken = async function (username, password) {
 	provMainDebug("Requête : " + process.env.API_URL + "/auth");
 	provMainDebug("Params: username " + username + ", password " + password);
 
-	return axios.post(process.env.API_URL + "/auth", { username: username, password: password }).then((response) => {
-		return response.data.Token;
-	});
+	return axios
+		.post(
+			process.env.API_URL + "/auth",
+			{ username: username, password: password }
+		)
+		.then((response) => {
+			return response.data.Token;
+		});
 };
 
 const randomID = function () {
@@ -151,9 +160,9 @@ const randomID = function () {
 
 router.post('/lti/grade', async (req, res) => {
 	try {
-		provMainDebug("Requête de grade");
+		provMainDebug("/lti/grade");
 		
-		const idToken = res.locals.token // IdToken
+		const idToken = res.locals.token
 
 		const userId = idToken.platformId + "/" + idToken.user;
 		const username = await getUsername( userId )
@@ -162,7 +171,7 @@ router.post('/lti/grade', async (req, res) => {
 		
 		const score = await récupérerScore( username, uri, token )
 		
-		// Creating Grade object
+		// Note
 		const gradeObj = {
 			userId: idToken.user,
 			scoreGiven: score,
@@ -180,7 +189,7 @@ router.post('/lti/grade', async (req, res) => {
 			const lineItems = response.lineItems
 			if (lineItems.length === 0) {
 				// Creating line item if there is none
-				provMainDebug("Création d'un item de gradation");
+				provMainDebug("Création d'un item de notation");
 				const newLineItem = {
 					scoreMaximum: 100,
 					label: 'Grade',
@@ -192,7 +201,7 @@ router.post('/lti/grade', async (req, res) => {
 			} else lineItemId = lineItems[0].id
 		}
 		
-		// Sending Grade
+		// Envoie de la note
 		const responseGrade = await lti.Grade.submitScore(idToken, lineItemId, gradeObj)
 		return res.send(responseGrade)
 	} catch (err) {
@@ -202,11 +211,12 @@ router.post('/lti/grade', async (req, res) => {
 })
 
 const getUsername = async function( userId ) {
-	const user = await services.récupérerUser( userId )
-	return user.username ?? null;
+	return services.récupérerUser( userId ).then( (user) => user.username );
 }
 
 const récupérerScore = async function( username, uri, token ){
+	provMainDebug("Requête : " + process.env.API_URL + "/avancement" );
+	provMainDebug("Params : username : " + username + ", uri : " + uri );
 
 	const config = {
 		headers: {
@@ -215,22 +225,14 @@ const récupérerScore = async function( username, uri, token ){
 	};
 
 	const requête = process.env.API_URL + "/avancement/" + username + "/" + uri;
-	provMainDebug("Requête d'avancement : " + requête );
-	const res = await axios.get( requête, config);
-	provMainDebug("Avancement : " + JSON.stringify(res.data) );
-	
-	if (res.data){
-		return res.data.data.attributes.état==2 ? 100 : 0;
-	}
-	else{
-		return 0;
-	}
 
+	axios.get( requête, config)
+	.then( ( res ) => {
+		return res.data.data.attributes.état==2 ? 100 : 0;
+	} );
 }
 
-// Wildcard route to deal with redirecting to React routes
 router.get("*", (req, res) => {
-	provMainDebug("reg" + JSON.stringify(req.originalUrl));
 	return res.sendFile(path.join(__dirname, "../public/404.html"));
 });
 
