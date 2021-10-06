@@ -15,23 +15,19 @@
 	 props: {
 		 ref: String,
 	 },
-	 methods: {
-		 onLogué(token, cléApi){
-			 if (token) {
-				 if (cléApi){
-					 this.envoyerCléApi(token, cléApi)
-				 }
-				 this.envoyerToken(token)
-			 }
-
-			 this.rediriger();
-		 },
-		 rediriger(){
-			 this.$router.push(this.ref);
-		 },
-		 envoyerToken(){},
-		 envoyerCléApi(){},
+	 computed: {
+		 token() {
+			 return this.$store.state.token;
+		 }
+	 },
+	 watch: {
+		 token(){
+			 this.$router.push( {
+				 name: 'Question',
+				 params: {
+					 ...this.ref,
+				 } } );
+		 }
 	 }
- 
  };
 </script>

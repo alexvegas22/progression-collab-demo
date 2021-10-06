@@ -19,7 +19,8 @@
 </template>
 
 <script>
-
+ import tokenEstValide from "@/util/token";
+ 
  const API_URL = process.env.VUE_APP_API_URL;
  
  export default {
@@ -39,7 +40,7 @@
 		 username() {
 			 if (!this.username) return;
 			 
-			 if(this.$store.state.token){
+			 if( this.$store.state.token && tokenEstValide( this.$store.state.token ) ){
 				 this.chargerUser().catch(
 					 (erreur) => {
 						 this.redirigerVersLogin( window.btoa(window.location.href) );
