@@ -27,7 +27,7 @@ export const zones = {
 			doc.markText(
 				{ line: ligneDébut.line, ch: 0 },
 				{ line: ligneFin.line + 1, ch: 0 },
-				{ readOnly: true, inclusiveLeft: true, inclusiveRight: false },
+				{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: false },
 			);
 
 			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++) doc.addLineClass(i, "background", "ligne-editable");
@@ -66,6 +66,8 @@ export const zones = {
 				{ line: ligneFin.line },
 				{
 					collapsed: "true",
+					atomic: true,
+					selectRight: false
 				},
 			);
 
