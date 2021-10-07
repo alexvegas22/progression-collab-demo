@@ -46,6 +46,9 @@ export default {
 			this.récupérerAvancement();
 		},
 	},
+	mounted(){
+		if(this.user) this.récupérerQuestion();
+	},
 	methods: {
 		récupérerAvancement() {
 			const id_avancement = this.user.username + "/" + this.uri;
