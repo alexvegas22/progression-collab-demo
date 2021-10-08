@@ -5,11 +5,13 @@
 	font-size: 1em;
 }
 .titre {
-	font-size: 1.5em;
+	font-size: 2em;
+}
+h3 {
+	font-size: 1em;
 	color: black;
 	font-weight: bold;
 }
-
 .encadré{
 	padding-top:5px;
 }
