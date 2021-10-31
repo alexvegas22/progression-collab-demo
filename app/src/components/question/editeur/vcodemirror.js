@@ -30,6 +30,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				readOnly: this.readonly,
 				lineWrapping: this.wrap,
 				lineNumbers: true,
+				indentUnit: 4,
+				extraKeys: { Tab: "indentAuto" },
 				foldGutter: true,
 				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 				...this.options,
