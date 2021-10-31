@@ -79,17 +79,17 @@ export default {
 		},
 		mode_affichage: function (mode) {
 			if (mode) {
-				document.getElementsByClassName("diff différent").forEach((item) => {
+				Array.from(document.getElementsByClassName("diff différent")).forEach((item) => {
 					item.classList.add("enabled");
 				});
-				document.getElementsByClassName("diff visuel").forEach((item) => {
+				Array.from(document.getElementsByClassName("diff visuel")).forEach((item) => {
 					item.classList.add("enabled");
 				});
 			} else {
-				document.getElementsByClassName("diff différent").forEach((item) => {
+				Array.from(document.getElementsByClassName("diff différent")).forEach((item) => {
 					item.classList.remove("enabled");
 				});
-				document.getElementsByClassName("diff visuel").forEach((item) => {
+				Array.from(document.getElementsByClassName("diff visuel")).forEach((item) => {
 					item.classList.remove("enabled");
 				});
 			}
