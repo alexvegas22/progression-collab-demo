@@ -5,27 +5,25 @@ const axios = require("axios");
 const lti = require("ltijs").Provider;
 const jwt_decode = require("jwt-decode");
 
-const récupérerToken = function (userId) {
-	provMainDebug("Récupération du token pour " + userId);
-	return récupérerUser(userId).then((user) => {
-		if (user.token && tokenEstValide(user.token)) {
-			provMainDebug("Token valide trouvé");
-			return user.token;
+const récupérerToken = function (user) {
+	provMainDebug("Récupération du token pour " + user.username);
+	if (user.token && tokenEstValide(user.token)) {
+		provMainDebug("Token valide trouvé");
+		return user.token;
+	} else {
+		provMainDebug("Token non trouvé ou invalide. ");
+		if (user.authKey_nom && user.authKey_secret) {
+			provMainDebug("Login via clé d'authentification. ");
+			return loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret).then((token) => {
+				provMainDebug("Token obtenu: " + token);
+				sauvegarderToken(user, token);
+				return token;
+			});
 		} else {
-			provMainDebug("Token non trouvé ou invalide. ");
-			if (user.authKey_nom && user.authKey_secret) {
-				provMainDebug("Login via clé d'authentification. ");
-				return loginEtObtenirToken(user.username, user.authKey_nom, user.authKey_secret).then((token) => {
-					provMainDebug("Token obtenu: " + token);
-					sauvegarderToken(user, token);
-					return token;
-				});
-			} else {
-				provMainDebug("Clé d'authentification non trouvée. ");
-				throw "Clé d'authentification non trouvée. ";
-			}
+			provMainDebug("Clé d'authentification non trouvée. ");
+			return null;
 		}
-	});
+	}
 };
 
 const récupérerUser = function (userId) {
@@ -33,7 +31,7 @@ const récupérerUser = function (userId) {
 	return db.Get(null, "user", { userId: userId }).then((resultat) => {
 		if (resultat.length != 1) {
 			provMainDebug(`User ${userId} non trouvé.`);
-			throw `User ${userId} non trouvé.`;
+			return null;
 		}
 
 		const user = resultat[0];
@@ -49,7 +47,7 @@ const tokenEstValide = function (token, délais = 300) {
 
 const loginEtObtenirToken = function (username, authKey_nom, authKey_secret) {
 	provMainDebug("Requête : " + process.env.API_URL + "/auth");
-	provMainDebug("Params: username " + username + ", authKey_nom " + authKey_nom + ", authKey_secret " + authKey_secret);
+	provMainDebug("Params: username " + username + ", authKey_nom " + authKey_nom );
 
 	return axios
 		.post(process.env.API_URL + "/auth", {
@@ -80,5 +78,26 @@ const sauvegarderToken = function (user, token) {
 		.catch((error) => provMainDebug("Erreur de sauvegarde : " + error));
 };
 
-exports.récupérerToken = récupérerToken;
-exports.récupérerUser = récupérerUser;
+const sauvegarderUser = function (user) {
+	const db = lti.Database;
+
+	return db
+		.Replace(
+			null,
+			"user",
+			{ userId: user.userId },
+			{
+				userId: user.userId,
+				username: user.username,
+			},
+		)
+		.then((result) => provMainDebug("User sauvegardé"))
+		.catch((error) => provMainDebug("Erreur de sauvegarde : " + error));
+};
+
+module.exports = {
+	récupérerToken,
+	récupérerUser,
+	sauvegarderToken,
+	sauvegarderUser,
+}

@@ -1,12 +1,15 @@
 {
 	"erreur": {
-		"réseau": "Connection to server failed. Please retry or contact an administrator."
+		"réseau": "Connection to server failed. Please retry or contact an administrator.",
+		"authentification": "Incorrect username or password"
 	},
 	
 	"login": {
-		"courriel": "Email : ",
+		"courriel": "Username : ",
 		"motDePasse": "Password : ",
-		"boutonConnexion": "Log in"
+		"boutonConnexion": "Log in",
+		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",
+		"persister": "Remember me on this computer"
 	},
 
 	"validation_tentative": {

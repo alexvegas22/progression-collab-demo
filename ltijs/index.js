@@ -59,41 +59,37 @@ lti.onConnect(async (idToken, req, res) => {
 	provMainDebug(`uri : ${uri}`);
 	const lang = res.locals.context.custom.lang;
 	provMainDebug(`lang : ${lang}`);
+	const token = await services.récupérerUser( userId )
+								.then( (user) => user ? services.récupérerToken(user) : null)
 
-	const query = {
-		ltik: res.locals.ltik,
-		uri: uri,
-		lang: lang ?? "",
-		cb_succes: process.env.URL_BASE + "/lti/grade",
-		cb_succes_params: JSON.stringify({
+	const query = Object.assign(
+		{
 			ltik: res.locals.ltik,
 			uri: uri,
-		}),
-	};
+			lang: lang,
+			cb_succes: process.env.URL_BASE + "/lti/grade",
+			cb_succes_params: JSON.stringify({
+				ltik: res.locals.ltik,
+			})
+		},
+		token ? {
+			token: token,
+		} : {
+			cb_auth: process.env.URL_BASE + "/lti/auth",
+			cb_auth_params: JSON.stringify({
+				ltik: res.locals.ltik,
+			}),
+			platform_url: platformUrl,
+			cours_nom: btoa(res.locals.context.context.title),
+		} );
 
-	return await services
-		.récupérerToken(userId)
-		.then((token) => {
-			provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
-			lti.redirect(res, process.env.URL_BASE + "/#/question", {
-				newResource: true,
-				query: { ...query, token: token },
-			});
-		})
-		.catch((erreur) => {
-			provMainDebug(erreur);
-			provMainDebug("Redirection vers le formulaire de login");
-			return res.send(
-				Mustache.render(fs.readFileSync(path.join(__dirname, "./templates/loginform.mst"), "utf8"), {
-					...query,
-					userid: userId,
-					platform_url: platformUrl,
-					cours_nom: res.locals.context.context.title,
-				}),
-			);
-		});
+	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
+	lti.redirect(res, process.env.URL_BASE + "/#/question", {
+		newResource: true,
+		query: query
+	});
 });
-
+	
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
 		.replace(/\//g, "_")

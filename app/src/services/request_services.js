@@ -6,14 +6,18 @@ const axios = require("axios");
  * @returns {Promise<unknown>}
  */
 
-const getData = async (lien, token) => {
-	const config = {
-		headers: {
-			Authorization: "Bearer " + token,
-		},
-	};
-	const res = await axios.get(lien, config);
-	return res.data;
+const getData = async (lien, token = null) => {
+	const config = token
+		? {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+		  }
+		: {};
+
+	return axios.get(lien, config).then((réponse) => {
+		return réponse.data;
+	});
 };
 
 /**
@@ -22,14 +26,18 @@ const getData = async (lien, token) => {
  * @param body: le body COMPLET de la requete
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
-const postData = async (lien, body, token) => {
-	const config = {
-		headers: {
-			Authorization: "Bearer " + token,
-		},
-	};
-	const res = await axios.post(lien, body, config);
-	return res.data;
+const postData = async (lien, body, token = null) => {
+	const config = token
+		? {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+		  }
+		: {};
+
+	return axios.post(lien, body, config).then((réponse) => {
+		return réponse.data;
+	});
 };
 
 export { getData, postData };

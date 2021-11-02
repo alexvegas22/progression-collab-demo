@@ -1,13 +1,21 @@
 <template>
 	<div id="app">
 		<div v-show="erreurs" class="alert alert-danger">
-			{{$t("erreur.réseau")}}
-		<details>
-			<summary>
-				détails
-			</summary>
-			{{ erreurs }}
-		</details>
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="effacerErreurs()">
+				×
+			</button>
+			<div v-if="erreurs && erreurs.message">
+				{{erreurs.message}}
+			</div>
+			<div v-if="erreurs && erreurs.détails">
+        		{{$t("erreur.réseau")}}
+				<details >
+					<summary>
+						détails
+					</summary>
+					{{ erreurs.détails }}
+				</details>
+			</div>
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +33,15 @@
  
  export default {
 	 name: "App",
+	 data() {
+		 return {
+			 cb_auth: null,
+			 cb_auth_params: null,
+		 } },
 	 computed: {
+		 token() {
+			 return this.$store.state.token;
+		 },
 		 erreurs() {
 			 return this.$store.state.erreurs;
 		 },
@@ -35,21 +51,13 @@
 	 },
 	 mounted() {
 		 this.traiterParamètresURL( window.location.search );
-	 },
-	 watch: {
-		 username() {
-			 if (!this.username) return;
-			 
-			 if( this.$store.state.token && tokenEstValide( this.$store.state.token ) ){
-				 this.chargerUser().catch(
-					 (erreur) => {
-						 this.redirigerVersLogin( window.btoa(window.location.href) );
-					 } );
-			 }
-			 else{
-				 this.redirigerVersLogin( window.btoa(window.location.href) );
-			 }
-		 },
+
+		 if(this.récupérerUserInfos()){
+			 this.chargerUser();
+		 }
+		 else{
+			 this.redirigerVersLogin( window.btoa(window.location.href) );
+		 }
 	 },
 
 	 methods: {
@@ -71,21 +79,25 @@
 				 }
 			 }
 
-			 if(urlParams.has('token')){
-				 this.$store.dispatch("setToken", urlParams.get('token'));
-			 }
-			 else {
-				 const token = localStorage.getItem("user-token");
-				 if (token) {
-					 this.$store.dispatch("setToken", token);
-				 }
-				 else {
-					 this.$store.dispatch("setUsername", "anonyme");
+			 if(urlParams.has('cb_auth')){
+				 this.$store.dispatch("setCallbackAuth", urlParams.get('cb_auth'));
+				 if(urlParams.has('cb_auth_params')){
+					 this.$store.dispatch("setCallbackAuthParams", JSON.parse(urlParams.get('cb_auth_params')));
 				 }
 			 }
 		 },
+		 récupérerUserInfos(){
+			 const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+			 const username = sessionStorage.getItem("username") || localStorage.getItem("username");
+			 this.$store.dispatch("setToken", token);
+			 this.$store.dispatch("setUsername", username);
+
+			 return token != null;
+		 },
 		 chargerUser(){
-			 return this.$store.dispatch("getUser", API_URL + "/user/" + this.$store.state.username);
+			 return this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username).catch((err) => {
+				this.redirigerVersLogin( window.btoa(window.location.href) );
+			 });
 		 },
 		 redirigerVersLogin( ref ){
 			 this.$router.push( {
@@ -93,6 +105,9 @@
 				 params: {
 					 ref: ref,
 				 } } );
+		 },
+		 effacerErreurs(){
+			 this.$store.dispatch("setErreurs", null);
 		 }
 	 }
  };
