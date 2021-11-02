@@ -1,12 +1,15 @@
 {
 	"erreur": {
-		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur"
+		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur",
+		"authentification": "Nom d'utilisateur ou mot de passe incorrect"
 	},
 
 	"login": {
-		"courriel": "Courriel : ",
+		"courriel": "Nom d'utilisateur : ",
 		"motDePasse": "Mot de passe : ",
-		"boutonConnexion": "Connexion"
+		"boutonConnexion": "Connexion",
+		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
+		"persister": "Se souvenir de moi sur cet ordinateur"
 	},
 
 	"validation_tentative": {

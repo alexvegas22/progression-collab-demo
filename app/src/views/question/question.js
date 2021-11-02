@@ -40,35 +40,52 @@ export default {
 	},
 	watch: {
 		user: function () {
-			this.récupérerQuestion();
+			if (this.user) this.récupérerQuestion();
 		},
 		question: function () {
 			this.récupérerAvancement();
 		},
 	},
-	mounted(){
-		if(this.user) this.récupérerQuestion();
+	mounted() {
+		if (this.user) this.récupérerQuestion();
 	},
 	methods: {
 		récupérerAvancement() {
+			console.log("Récupérer avancement");
 			const id_avancement = this.user.username + "/" + this.uri;
 
 			if (id_avancement in this.user.avancements) {
-				this.$store.dispatch("getAvancement", {
-					url: this.user.avancements[id_avancement].liens.self,
-					lang_défaut: this.lang,
-				});
+				this.$store
+					.dispatch("getAvancement", {
+						url: this.user.avancements[id_avancement].liens.self,
+						lang_défaut: this.lang,
+					})
+					.catch((err) => {
+						this.redirigerVersLogin(window.btoa(window.location.href));
+					});
 			} else {
-				this.$store.dispatch("postAvancement", {
-					url: this.user.liens.avancements,
-					question_uri: this.uri,
-					avancement: {},
-					lang_défaut: this.lang,
-				});
+				this.$store
+					.dispatch("postAvancement", {
+						url: this.user.liens.avancements,
+						question_uri: this.uri,
+						avancement: {},
+						lang_défaut: this.lang,
+					})
+					.catch((err) => {
+						this.redirigerVersLogin(window.btoa(window.location.href));
+					});
 			}
 		},
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-	}
+		redirigerVersLogin(ref) {
+			this.$router.push({
+				name: "LoginView",
+				params: {
+					ref: ref,
+				},
+			});
+		},
+	},
 };

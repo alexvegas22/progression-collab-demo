@@ -18,7 +18,9 @@ export default {
 		chargerTentative: function () {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("getTentative", event.target.value);
+				this.$store.dispatch("getTentative", event.target.value).catch((err) => {
+					this.redirigerVersLogin(window.btoa(window.location.href));
+				});
 			}
 		},
 		timestampVersDate: function (timestamp) {
@@ -46,6 +48,14 @@ export default {
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("réinitialiser", langage);
 			}
+		},
+		redirigerVersLogin(ref) {
+			this.$router.push({
+				name: "LoginView",
+				params: {
+					ref: ref,
+				},
+			});
 		},
 	},
 };

@@ -1,19 +1,27 @@
 import { getData, postData } from "@/services/request_services";
 
+const authentifierApi = async (urlAuth, nom_utilisateur, mdp) =>
+	(await postData(urlAuth, { username: nom_utilisateur, password: mdp })).Token;
+
+const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
+	(await postData(urlAuth, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
+
 const getUserApi = async (urlUser, token) => {
-	const data = await getData(urlUser + "?include=avancements", token);
-	var user = data.data.attributes;
-	user.liens = data.data.links;
-	user.liens.avancements = data.data.relationships.avancements.links.related;
-	user.avancements = [];
-	if (data.included) {
-		data.included.forEach((item) => {
-			var avancement = item.attributes;
-			avancement.liens = item.links;
-			user.avancements[item.id] = avancement;
-		});
-	}
-	return user;
+	return getData(urlUser + "?include=avancements", token).then((data) => {
+		var user = data.data.attributes;
+		user.liens = data.data.links;
+		user.liens.avancements = data.data.relationships.avancements.links.related;
+		user.liens.clés = data.data.relationships.cles.links.related;
+		user.avancements = [];
+		if (data.included) {
+			data.included.forEach((item) => {
+				var avancement = item.attributes;
+				avancement.liens = item.links;
+				user.avancements[item.id] = avancement;
+			});
+		}
+		return user;
+	});
 };
 
 const getQuestionApi = async (urlQuestion, token) => {
@@ -87,9 +95,13 @@ const postTentative = async (params, token) => {
 	return tentative;
 };
 
-const callbackGrade = async (url, params, token) => {
-	await postData( url, params, token );
-}
+const callbackGrade = async (url, params) => {
+	await postData(url, params);
+};
+
+const callbackAuth = async (url, params) => {
+	await postData(url, params);
+};
 
 const postSauvegardeApi = async (params, token) => {
 	const body = { langage: params.langage, code: params.code };
@@ -141,12 +153,15 @@ function construireTentative(item) {
 }
 
 export {
-	getUserApi,
+	authentifierApi,
+	callbackAuth,
+	callbackGrade,
+	getAvancementApi,
 	getQuestionApi,
 	getTentativeApi,
-	getAvancementApi,
-	postTentative,
+	getTokenApi,
+	getUserApi,
 	postAvancementApi,
 	postSauvegardeApi,
-	callbackGrade,
+	postTentative,
 };

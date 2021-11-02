@@ -31,6 +31,14 @@ export const mutations = {
 		state.cb_succes_params = cb_succes_params;
 	},
 
+	setCallbackAuth(state, cb_auth) {
+		state.cb_auth = cb_auth;
+	},
+
+	setCallbackAuthParams(state, cb_auth_params) {
+		state.cb_auth_params = cb_auth_params;
+	},
+
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
 	},
@@ -48,9 +56,6 @@ export const mutations = {
 	},
 	updateLangageTentative(state, langage) {
 		state.tentative.langage = langage;
-	},
-	updateMsgReponseApi(state, msg) {
-		state.msgReponseApi = msg;
 	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;

@@ -67,7 +67,7 @@ export const zones = {
 				{
 					collapsed: "true",
 					atomic: true,
-					selectRight: false
+					selectRight: false,
 				},
 			);
 
