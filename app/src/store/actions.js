@@ -210,11 +210,13 @@ export default {
 						this.state.avancement.état = retroactionTentative.réussi ? 2 : 1;
 					}
 
-					callbackGrade(this.state.cb_succes, {
-						...this.state.cb_succes_params,
-						uri: this.state.uri,
-						token: this.state.token,
-					});
+					if( this.state.cb_succes && this.state.cb_succes_params ) {
+						callbackGrade(this.state.cb_succes, {
+							...this.state.cb_succes_params,
+							uri: this.state.uri,
+							token: this.state.token,
+						});
+					}
 				})
 				.finally(() => {
 					commit("updateEnvoieTentativeEnCours", false);
