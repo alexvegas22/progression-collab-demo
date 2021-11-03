@@ -72,16 +72,17 @@ lti.onConnect(async (idToken, req, res) => {
 				ltik: res.locals.ltik,
 			})
 		},
-		token ? {
-			token: token,
-		} : {
-			cb_auth: process.env.URL_BASE + "/lti/auth",
-			cb_auth_params: JSON.stringify({
-				ltik: res.locals.ltik,
-			}),
-			platform_url: platformUrl,
-			cours_nom: btoa(res.locals.context.context.title),
-		} );
+//		token ? {
+//			token: token,
+//		} : {
+//			cb_auth: process.env.URL_BASE + "/lti/auth",
+//			cb_auth_params: JSON.stringify({
+//				ltik: res.locals.ltik,
+//			}),
+//			platform_url: platformUrl,
+//			cours_nom: btoa(res.locals.context.context.title),
+//		}
+	);
 
 	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
 	lti.redirect(res, process.env.URL_BASE + "/#/question", {
