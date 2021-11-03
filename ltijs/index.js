@@ -55,7 +55,7 @@ lti.onConnect(async (idToken, req, res) => {
 
 	const userId = idToken.platformId + "/" + idToken.user;
 	provMainDebug(`userId : ${userId}`);
-	const uri = btoa_url(res.locals.context.custom.uri);
+	const uri = btoa_url(res.locals.context.custom.uri || res.locals.context.custom.src);
 	provMainDebug(`uri : ${uri}`);
 	const lang = res.locals.context.custom.lang;
 	provMainDebug(`lang : ${lang}`);
