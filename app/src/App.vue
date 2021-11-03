@@ -92,7 +92,7 @@
 			 this.$store.dispatch("setToken", token);
 			 this.$store.dispatch("setUsername", username);
 
-			 return token && username;
+			 return username;
 		 },
 		 chargerUser(){
 			 return this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username).catch((err) => {
