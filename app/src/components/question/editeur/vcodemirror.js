@@ -4,6 +4,7 @@ import "codemirror/addon/fold/brace-fold";
 import "codemirror/addon/fold/foldgutter";
 import "codemirror/addon/fold/foldgutter.css";
 import "codemirror/mode/clike/clike/";
+import "codemirror/mode/shell/shell/";
 import "codemirror/mode/python/python";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
@@ -98,11 +99,13 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		if (value === "java") {
 			this.editor.setOption("mode", "text/x-java");
 		} else if (value === "python") {
-			this.editor.setOption("mode", value);
+			this.editor.setOption("mode", "python");
+		} else if (value === "bash") {
+			this.editor.setOption("mode", "shell");
 		} else if (["c", "cpp", "c++"].includes(value)) {
-			this.editor.setOption("mode", value);
+			this.editor.setOption("mode", "clike");
 		} else {
-			this.editor.setOption("mode", null);
+			this.editor.setOption("mode", value);
 		}
 	}
 
