@@ -57,12 +57,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			}
 		});
 
-		this.cleanEvent = markRaw(
-			$theme.onchange(({ detail }) => {
-				this.editor.setOption("theme", detail === "white" ? "default" : "dracula");
-			}),
-		);
-
 		if (!VCodeMirrorComp.ro) {
 			VCodeMirrorComp.ro = new ResizeObserver(function (entries) {
 				entries.forEach((entry) => {
@@ -77,6 +71,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		}
 		VCodeMirrorComp.ro.observe(this.$el);
 		this.updateMode(this.mode);
+		this.updateTheme(this.theme);
 	}
 
 	beforeUnmount() {
@@ -109,6 +104,10 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		}
 	}
 
+	updateTheme(value) {
+		this.editor.setOption("theme", value);
+	}
+	
 	updateReadonly(value) {
 		this.editor.setOption("readOnly", value);
 	}
@@ -120,6 +119,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	focus() {
 		this.editor.focus();
 	}
+
 });
 __decorate([Prop({ required: true }), __metadata("design:type", String)], VCodeMirror.prototype, "value", void 0);
 __decorate([Prop({ default: null }), __metadata("design:type", String)], VCodeMirror.prototype, "mode", void 0);
@@ -152,6 +152,17 @@ __decorate(
 	],
 	VCodeMirror.prototype,
 	"updateMode",
+	null,
+);
+__decorate(
+	[
+		Watch("theme"),
+		__metadata("design:type", Function),
+		__metadata("design:paramtypes", [String]),
+		__metadata("design:returntype", void 0),
+	],
+	VCodeMirror.prototype,
+	"updateTheme",
 	null,
 );
 __decorate(

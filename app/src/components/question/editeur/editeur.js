@@ -11,9 +11,14 @@ export default {
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
+			thèmeSombre: localStorage.getItem("thème") === "true",
 		};
 	},
-
+	watch: {
+		thèmeSombre() {
+			localStorage.setItem( "thème", this.thèmeSombre );
+		}
+	},
 	computed: {
 		code: {
 			get: function () {
@@ -23,6 +28,9 @@ export default {
 				this.$store.dispatch("mettreAjourCode", texte);
 				this.texteModifié();
 			},
+		},
+		thème(){
+			return this.thèmeSombre?"monokai":"default";
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];

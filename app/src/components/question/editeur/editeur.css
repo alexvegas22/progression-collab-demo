@@ -40,6 +40,11 @@
 	visibility: hidden;
 }
 
+.btn-thème{
+	position:relative;
+	top:-22px;
+	z-index:100;
+}
 
 .btn-valider{
 	border-radius: 50%;
