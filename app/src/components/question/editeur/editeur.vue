@@ -20,7 +20,7 @@
 				<div class="col-auto" :class="classeIndicateur">●</div>
 			</div>
 			
-			<div class="row" style="height: 100%">
+			<div class="row" style="height: 500px">
 				<v-code-mirror
 					id="editor"
 						:value="code" :mode="mode" :theme="thème"
