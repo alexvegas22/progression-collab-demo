@@ -3,9 +3,9 @@
 		<div class="container">
 			<div v-if = "état_réussi" class="crochet icon icon--order-success svg">
 				<svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
-					<g fill="none" stroke="#8EC343" stroke-width="6">
-						<circle cx="35" cy="40" r="25" style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
-						<path d="M21.417,40.778l9.93,9.909l20.444-20.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;"></path>
+					<g>
+						<circle cx="35" cy="40" r="25"  style="fill: #8EC343; stroke: #8EC343"></circle>
+						<path d="M21.417,40.778l9.93,9.909l20.444-20.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px; stroke-width: 6; stroke: white; fill: none"></path>
 					</g>
 				</svg>
 			</div>

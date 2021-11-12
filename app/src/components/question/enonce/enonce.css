@@ -13,8 +13,8 @@
 .crochet {
 	position: relative;
 	left: -40px;
-	top: -30px;
-	height: 10px;
+	top: -38px;
+	height: 0px;
 	z-index: 0;
 }
 h3 {
@@ -69,35 +69,35 @@ h3 {
 	100% {
 		stroke-dashoffset: 0
 	}
-}
 
+}
 @-webkit-keyframes checkmark-circle {
 	0% {
-		stroke-dashoffset: 240px
+		r: 0
 	}
 
 	100% {
-		stroke-dashoffset: 480px
+		r: 32px
 	}
 }
 
 @-ms-keyframes checkmark-circle {
 	0% {
-		stroke-dashoffset: 240px
+		r: 0
 	}
 
 	100% {
-		stroke-dashoffset: 480px
+		r: 32px
 	}
 }
 
 @keyframes checkmark-circle {
 	0% {
-		stroke-dashoffset: 240px
+		r: 0
 	}
 
 	100% {
-		stroke-dashoffset: 480px
+		r: 32px
 	}
 }
 
