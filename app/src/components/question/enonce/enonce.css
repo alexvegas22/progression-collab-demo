@@ -8,6 +8,14 @@
 	font-size: 2em;
 	color: black;
 	font-weight: bold;
+	z-index: 1;
+}
+.crochet {
+	position: relative;
+	left: -40px;
+	top: -30px;
+	height: 10px;
+	z-index: 0;
 }
 h3 {
 	font-size: 1em;
@@ -30,3 +38,89 @@ h3 {
 .état.réussi{
 	visibility: visible;
 }
+
+/* animations */
+
+@-webkit-keyframes checkmark {
+	0% {
+		stroke-dashoffset: 50px
+	}
+
+	100% {
+		stroke-dashoffset: 0
+	}
+}
+
+@-ms-keyframes checkmark {
+	0% {
+		stroke-dashoffset: 50px
+	}
+
+	100% {
+		stroke-dashoffset: 0
+	}
+}
+
+@keyframes checkmark {
+	0% {
+		stroke-dashoffset: 50px
+	}
+
+	100% {
+		stroke-dashoffset: 0
+	}
+}
+
+@-webkit-keyframes checkmark-circle {
+	0% {
+		stroke-dashoffset: 240px
+	}
+
+	100% {
+		stroke-dashoffset: 480px
+	}
+}
+
+@-ms-keyframes checkmark-circle {
+	0% {
+		stroke-dashoffset: 240px
+	}
+
+	100% {
+		stroke-dashoffset: 480px
+	}
+}
+
+@keyframes checkmark-circle {
+	0% {
+		stroke-dashoffset: 240px
+	}
+
+	100% {
+		stroke-dashoffset: 480px
+	}
+}
+
+/* other styles */
+/* .svg svg {
+   display: none
+   }
+ */
+.inlinesvg .svg svg {
+	display: inline
+}
+
+/* .svg img {
+   display: none
+   } */
+
+.icon--order-success svg path {
+	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+	animation: checkmark 0.25s ease-in-out 0.7s backwards
+}
+
+.icon--order-success svg circle {
+	-webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
+	animation: checkmark-circle 0.6s ease-in-out backwards
+}
+
