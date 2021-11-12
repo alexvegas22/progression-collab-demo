@@ -23,7 +23,9 @@
 			<div class="row" style="height: 500px">
 				<v-code-mirror
 					id="editor"
-						:value="code" :mode="mode" :theme="thème"
+						v-model:value="code"
+					:mode="mode"
+					:theme="thème"
 				/>
 			</div>
 			
