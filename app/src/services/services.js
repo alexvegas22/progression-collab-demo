@@ -119,6 +119,7 @@ function construireAvancement(data) {
 	var avancement = data.data.attributes;
 	avancement.liens = data.data.links;
 	avancement.liens.sauvegardes = data.data.relationships.sauvegardes.links.related;
+	avancement.liens.tentatives = data.data.relationships.tentatives.links.related;
 	avancement.tentatives = [];
 	avancement.sauvegardes = [];
 	if (data.included) {

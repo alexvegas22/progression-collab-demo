@@ -197,7 +197,7 @@ export default {
 	async soumettreTentative({ commit, state }, params) {
 		commit("updateEnvoieTentativeEnCours", true);
 
-		params.urlTentative = this.state.avancement.liens.tentative;
+		params.urlTentative = this.state.avancement.liens.tentatives;
 		return valider(
 			commit,
 			getToken({ commit, state })
