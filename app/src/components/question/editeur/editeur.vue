@@ -12,6 +12,15 @@
 						<label class="form-check-label" for="btn_thème">🕶</label>
 					</div>
 				</div>
+				<div class="col-auto" v-if="rôleÉditeur">
+					<div class="form-check form-switch btn-xray">
+						<input class="form-check-input" type="checkbox"
+							   id="btn_xray"
+							   name="btn_xray"
+							   v-model="xray" />
+						<label class="form-check-label" for="btn_xray">Tout voir</label>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="container" style="padding-left: 0px; padding-right: 0px" >
@@ -26,6 +35,7 @@
 						v-model:value="code"
 					:mode="mode"
 					:theme="thème"
+					:xray="xray"
 				/>
 			</div>
 			

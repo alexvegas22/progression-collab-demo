@@ -43,9 +43,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 
 		this.$el._component = this;
 
-		zones.cacherHorsVisible(editor.doc);
-		zones.désactiverHorsTodo(editor.doc);
-
 		editor.on("changes", () => {
 			this.$emit("update:value", this.editor.getValue());
 		});
@@ -72,6 +69,9 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		VCodeMirrorComp.ro.observe(this.$el);
 		this.updateMode(this.mode);
 		this.updateTheme(this.theme);
+		if(!this.xray){
+			this.updateZones();
+		}
 	}
 
 	beforeUnmount() {
@@ -84,8 +84,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		if (value != this.editor.getValue()) {
 			var cursor = this.editor.getCursor();
 			this.editor.setValue(value);
-			zones.cacherHorsVisible(this.editor.doc);
-			zones.désactiverHorsTodo(this.editor.doc);
 			this.editor.setCursor(cursor);
 		}
 	}
@@ -107,7 +105,22 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateTheme(value) {
 		this.editor.setOption("theme", value);
 	}
+
+	updateZones() {
+		zones.cacherHorsVisible(this.editor.doc);
+		zones.désactiverHorsTodo(this.editor.doc);
+	}
 	
+	updateXray(value) {
+		if(this.xray){
+			//Enlève le marquage
+			this.editor.setValue(this.editor.getValue());
+		}
+		else{
+			this.updateZones();
+		}
+	}
+
 	updateReadonly(value) {
 		this.editor.setOption("readOnly", value);
 	}
@@ -124,6 +137,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 __decorate([Prop({ required: true }), __metadata("design:type", String)], VCodeMirror.prototype, "value", void 0);
 __decorate([Prop({ default: null }), __metadata("design:type", String)], VCodeMirror.prototype, "mode", void 0);
 __decorate([Prop(), __metadata("design:type", String)], VCodeMirror.prototype, "theme", void 0);
+__decorate([Prop(), __metadata("design:type", Boolean)], VCodeMirror.prototype, "xray", void 0);
 __decorate([Prop(), __metadata("design:type", Boolean)], VCodeMirror.prototype, "readonly", void 0);
 __decorate([Prop({ default: true }), __metadata("design:type", Boolean)], VCodeMirror.prototype, "wrap", void 0);
 __decorate([Prop(), __metadata("design:type", Object)], VCodeMirror.prototype, "options", void 0);
@@ -163,6 +177,17 @@ __decorate(
 	],
 	VCodeMirror.prototype,
 	"updateTheme",
+	null,
+);
+__decorate(
+	[
+		Watch("xray"),
+		__metadata("design:type", Function),
+		__metadata("design:paramtypes", [Boolean]),
+		__metadata("design:returntype", void 0),
+	],
+	VCodeMirror.prototype,
+	"updateXray",
 	null,
 );
 __decorate(

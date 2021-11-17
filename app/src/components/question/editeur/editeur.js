@@ -12,11 +12,15 @@ export default {
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
 			thèmeSombre: localStorage.getItem("thème") === "true",
+			xray: localStorage.getItem("xray") === "true",
 		};
 	},
 	watch: {
 		thèmeSombre() {
 			localStorage.setItem( "thème", this.thèmeSombre );
+		},
+		xray() {
+			localStorage.setItem( "xray", this.xray );
 		}
 	},
 	computed: {
@@ -41,7 +45,9 @@ export default {
 		tentative() {
 			return this.$store.state.tentative;
 		},
-
+		rôleÉditeur() {
+			return this.$store.state.user.rôle==2;
+		},
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
 		},
