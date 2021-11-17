@@ -21,7 +21,7 @@ export default {
 		},
 		xray() {
 			localStorage.setItem( "xray", this.xray );
-		}
+		},
 	},
 	computed: {
 		code: {
@@ -116,22 +116,10 @@ export default {
 			}
 		},
 		validerTentative() {
-			this.$store
-				.dispatch("soumettreTentative", {
+			this.$store.dispatch("soumettreTentative", {
 					langage: this.$store.state.tentative.langage,
 					code: this.$store.state.tentative.code,
-				})
-				.catch((err) => {
-					this.redirigerVersLogin(window.btoa(window.location.href));
 				});
-		},
-		redirigerVersLogin(ref) {
-			this.$router.push({
-				name: "LoginView",
-				params: {
-					ref: ref,
-				},
-			});
 		},
 	},
 };
