@@ -81,10 +81,11 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	}
 
 	updateValue(value) {
-		if (value != this.editor.getValue()) {
-			var cursor = this.editor.getCursor();
-			this.editor.setValue(value);
-			this.editor.setCursor(cursor);
+		if (value.code != this.editor.getValue()) {
+			this.editor.setValue(value.code);
+		}
+		if(!this.xray){
+			this.updateZones();
 		}
 	}
 
@@ -148,7 +149,7 @@ __decorate([Inreactive, __metadata("design:type", Function)], VCodeMirror.protot
 
 __decorate(
 	[
-		Watch("value"),
+		Watch("$store.state.tentative"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [String]),
 		__metadata("design:returntype", void 0),
