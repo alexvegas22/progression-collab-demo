@@ -10,7 +10,9 @@
 		"motDePasse": "Mot de passe : ",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
-		"persister": "Se souvenir de moi sur cet ordinateur"
+		"persister": "Se souvenir de moi sur cet ordinateur",
+		"standard": "Standard",
+		"inscription": "Inscription"
 	},
 
 	"inscription": {

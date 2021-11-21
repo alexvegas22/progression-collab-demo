@@ -1,10 +1,6 @@
 <template>
 	<div class="container" id="login" >
 
-		<!-- Dans la version actuelle de BootstrapVue3, il semble
-			 impossible de contrôler l'affichage conditionnel d'un tab seulement
-			 On duplique l'ensemble des tabs pour contourner le problème
-		-->
 		<tabs v-model="tabSélectionné">
 			<tab :label="domaine" val="0" key="0">
 				<div class="tab" :class="{activeTab: estActif('0')}" >
@@ -14,13 +10,13 @@
 
 			<tab label="Standard" val="1" key="1">
 				<div class="tab" :class="{activeTab: estActif('1')}" >
-					Standard
+					{{ $t('login.standard') }}
 				</div>
 			</tab>
 			
 			<tab label="Inscription" val="2" key="2">
 				<div class="tab" :class="{activeTab: estActif('2')}" >
-					Inscription
+					{{ $t('login.inscription') }}
 				</div>
 			</tab>				
 		</tabs>
