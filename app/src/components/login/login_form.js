@@ -5,6 +5,9 @@ export default {
 	emits: {
 		onLogin: Object,
 	},
+	props : {
+		domaine: String,
+	},
 	data() {
 		return {
 			username: "",
@@ -14,6 +17,11 @@ export default {
 			username_vide: false,
 			password_vide: false,
 		};
+	},
+	computed: {
+		placeholder: function(){
+			return this.domaine ? '@'+this.domaine : ""
+		}
 	},
 	methods: {
 		login() {
@@ -27,7 +35,7 @@ export default {
 					urlAuth: process.env.VUE_APP_API_URL + "/auth",
 					nom_utilisateur: this.username,
 					mdp: this.password,
-					domaine: process.env.VUE_APP_DOMAINE,
+					domaine: this.domaine,
 				})
 				.then((token) => {
 					this.$emit("onLogin", { username: this.username, token: token, persister: this.persister });

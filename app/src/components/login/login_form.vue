@@ -3,7 +3,7 @@
 		<div class="form-group">
 			<div class="col-sm-6">
 				<label for="username" class="control-label">{{ $t('login.courriel') }}</label>
-				<input class="form-control" type="text" id="username" name="username" autofocus v-model="username"/>
+				<input class="form-control" type="text" id="username" name="username" autofocus v-model="username" :placeholder="placeholder"/>
 				<div v-if="username_vide">Champ obligatoire</div>
 			</div>
 			<div class="col-sm-6">

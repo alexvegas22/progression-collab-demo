@@ -5,49 +5,43 @@
 			 impossible de contrôler l'affichage conditionnel d'un tab seulement
 			 On duplique l'ensemble des tabs pour contourner le problème
 		-->
-		<div v-if="domaine">
-		<b-card no-body>
-			<b-tabs card>
-				<b-tab :title="domaine" active>
-					<b-card>
-						<LoginForm @onLogin="onLogin" />
-					</b-card>
-				</b-tab>
-				
-				<b-tab title="Standard">
-					<b-card>
-						<LoginForm @onLogin="onLogin" />
-					</b-card>
-				</b-tab>
+		<tabs v-model="tabSélectionné">
+			<tab :label="domaine" val="0" key="0">
+				<div class="tab" :class="{activeTab: estActif('0')}" >
+					DTI Rosemont
+				</div>
+			</tab>
 
-				<b-tab title="Inscription">
-					<b-card>
-						<Inscription @onLogin="onLogin" />
-					</b-card>
-				</b-tab>
-			</b-tabs>
-		</b-card>
-		</div>
+			<tab label="Standard" val="1" key="1">
+				<div class="tab" :class="{activeTab: estActif('1')}" >
+					Standard
+				</div>
+			</tab>
+			
+			<tab label="Inscription" val="2" key="2">
+				<div class="tab" :class="{activeTab: estActif('2')}" >
+					Inscription
+				</div>
+			</tab>				
+		</tabs>
 
-		<div v-else>
-		<b-card no-body>
-			<b-tabs card>
-				<b-tab title="Standard">
-					<b-card>
-						<LoginForm @onLogin="onLogin" />
-					</b-card>
-				</b-tab>
+		<tab-panels v-model="tabSélectionné" class="tab-panels">
+						<tab-panel val="0" key="0" class="tab-panel">
+							<LoginForm @onLogin="onLogin" :domaine="domaine" />
+						</tab-panel>
+					
+						<tab-panel val="1" key="1" class="tab-panel">
+							<LoginForm @onLogin="onLogin" />
+						</tab-panel>
 
-				<b-tab title="Inscription">
-					<b-card>
-						<Inscription @onLogin="onLogin" />
-					</b-card>
-				</b-tab>
-			</b-tabs>
-		</b-card>
-		</div>
-		
+						<tab-panel val="2" key="2" class="tab-panel">
+							<Inscription @onLogin="onLogin" />
+						</tab-panel>
+		</tab-panels>
 	</div>
+	
 </template>
 
 <script src="./login.js"></script>
+
+<style scoped src="./login.css"></style>

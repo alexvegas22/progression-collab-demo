@@ -8,7 +8,8 @@ export default {
 	},
 	data() {
 		return {
-			domaine: process.env.VUE_APP_DOMAINE
+			domaine: process.env.VUE_APP_DOMAINE,
+			tabSélectionné: "0",
 		}
 	},
 	emits: {
@@ -17,7 +18,10 @@ export default {
 	methods: {
 		onLogin(event){
 			this.$emit("onLogin", event);
-		}
+		},
+		estActif(tab) {
+			return this.tabSélectionné === tab;
+		}		
 	},
 	
 };
