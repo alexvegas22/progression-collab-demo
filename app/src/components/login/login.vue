@@ -1,38 +1,53 @@
 <template>
-	<div class="container" id="login">
-		<form name="login" class="form-horizontal" @submit.prevent="login">
-			<div class="form-group">
-				<div class="col-sm-3">
-					<label for="username" class="control-label">{{ $t('login.courriel') }}</label>
-					<input class="form-control" type="text" id="username" name="username" autofocus v-model="username" />
-					<div v-if="username_vide">Champ obligatoire</div>
-				</div>
-				<div class="col-sm-3">
-				</div>
-			</div>
-			<div class="form-group" v-if="password_req">
-				<div class="col-sm-3">
-					<label for="passwd" class="control-label">{{ $t('login.motDePasse') }}</label>
-					<input class="form-control" id="passwd" name="passwd" type="password" v-model="password" />
-					<div v-if="password_vide">Champ obligatoire</div>
-				</div>
-			</div>
-			<br>
-			<div class="form-group">
-				<div class="col-sm-3">
-					<input id="persister" name="persister" type="checkbox" v-model="persister" />
-					<label for="persister" class="control-label"  style="padding-left: 5px;">{{ $t('login.persister') }}</label>
-				</div>
-			</div>
-			<div>
-				
-			</div>
-			<div class="col-sm-offset-3">
-				<input name="submit" type="submit" class="btn btn-primary" :value="$t('login.boutonConnexion') "/>
-			</div>
+	<div class="container" id="login" >
 
-		   
-		</form>
+		<!-- Dans la version actuelle de BootstrapVue3, il semble
+			 impossible de contrôler l'affichage conditionnel d'un tab seulement
+			 On duplique l'ensemble des tabs pour contourner le problème
+		-->
+		<div v-if="domaine">
+		<b-card no-body>
+			<b-tabs card>
+				<b-tab :title="domaine" active>
+					<b-card>
+						<LoginForm @onLogin="onLogin" />
+					</b-card>
+				</b-tab>
+				
+				<b-tab title="Standard">
+					<b-card>
+						<LoginForm @onLogin="onLogin" />
+					</b-card>
+				</b-tab>
+
+				<b-tab title="Inscription">
+					<b-card>
+						<Inscription @onLogin="onLogin" />
+					</b-card>
+				</b-tab>
+			</b-tabs>
+		</b-card>
+		</div>
+
+		<div v-else>
+		<b-card no-body>
+			<b-tabs card>
+				<b-tab title="Standard">
+					<b-card>
+						<LoginForm @onLogin="onLogin" />
+					</b-card>
+				</b-tab>
+
+				<b-tab title="Inscription">
+					<b-card>
+						<Inscription @onLogin="onLogin" />
+					</b-card>
+				</b-tab>
+			</b-tabs>
+		</b-card>
+		</div>
+		
 	</div>
 </template>
+
 <script src="./login.js"></script>

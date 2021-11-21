@@ -3,8 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import i18n from "./util/i18n";
-import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+
+import BootstrapVue3 from 'bootstrap-vue-3'
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
 import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
@@ -17,4 +20,5 @@ createApp(App)
 		component: "tippy",
 		defaultProps: { placement: "bottom" },
 	})
+	.use(BootstrapVue3)
 	.mount("#app");

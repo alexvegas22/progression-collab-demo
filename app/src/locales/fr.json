@@ -1,7 +1,8 @@
 {
 	"erreur": {
 		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur",
-		"authentification": "Nom d'utilisateur ou mot de passe incorrect"
+		"authentification": "Nom d'utilisateur ou mot de passe incorrect",
+		"inscription": "Ce nom d'utilisateur est déjà utilisé"
 	},
 
 	"login": {
@@ -12,6 +13,11 @@
 		"persister": "Se souvenir de moi sur cet ordinateur"
 	},
 
+	"inscription": {
+		"confirmation": "Confirmation",
+		"boutonInscription": "S'inscrire"
+	},
+	
 	"validation_tentative": {
 		"boutonValider": "Valider"
 	},

@@ -84,10 +84,19 @@ export default {
 		const urlAuth = params.urlAuth;
 		const nom_utilisateur = params.nom_utilisateur;
 		const mdp = params.mdp;
+		const domaine = params.domaine;
+
+		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp, domaine));
+	},
+
+	async inscription({ commit, state }, params) {
+		const urlAuth = params.urlInscription;
+		const nom_utilisateur = params.nom_utilisateur;
+		const mdp = params.mdp;
 
 		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp));
 	},
-
+	
 	async getUser({ commit, state }, urlUser) {
 		return valider(
 			commit,

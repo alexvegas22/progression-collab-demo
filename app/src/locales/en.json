@@ -1,7 +1,8 @@
 {
 	"erreur": {
 		"réseau": "Connection to server failed. Please retry or contact an administrator.",
-		"authentification": "Incorrect username or password"
+		"authentification": "Incorrect username or password",
+		"inscription": "That username is already taken."
 	},
 	
 	"login": {
@@ -10,6 +11,11 @@
 		"boutonConnexion": "Log in",
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",
 		"persister": "Remember me on this computer"
+	},
+
+	"inscription": {
+		"confirmation": "Confirm",
+		"boutonInscription": "Sign in"
 	},
 
 	"validation_tentative": {
