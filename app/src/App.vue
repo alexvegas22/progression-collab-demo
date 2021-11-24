@@ -19,9 +19,9 @@
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<router-link :to="{ name: 'Home' }" class="navbar-brand text-light">
+		<a href="/home/index.html" class="navbar-brand text-light">
 			<span class="text-info"> Prog</span>ression
-		</router-link>
+		</a>
 	</nav>
 	<router-view />
 </template>
