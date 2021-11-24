@@ -19,21 +19,9 @@
 	 components: {
 		 Login,
 	 },
-	 props: {
-		 ref: String,
-	 },
 	 computed: {
 		 token() {
 			 return this.$store.state.token;
-		 }
-	 },
-	 watch: {
-		 token(){
-			 this.$router.push( {
-				 name: 'Question',
-				 params: {
-					 ...this.ref,
-				 } } );
 		 }
 	 },
 	 methods: {
@@ -44,17 +32,16 @@
 
 			 this.$store.dispatch("setUsername", username);
 
-			 this.$store.dispatch("setToken", token).then( () =>
-				 this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
-			 ).then((user) => {
-				 sessionStorage.setItem("token", token);
-				 return this.générerAuthKey(persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
-			 }).then( (authKey) => {
-				 const storage = persister ? localStorage : sessionStorage;
-				 storage.setItem("username", username);
-				 storage.setItem("authKey_nom", authKey.nom);
-				 storage.setItem("authKey_secret", authKey.clé.secret);
-			 })
+			 this.$store.dispatch("setToken", token).then( () => 
+				 this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)).then((user) => {
+					 sessionStorage.setItem("token", token);
+					 return this.générerAuthKey(persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+				 }).then( (authKey) => {
+					 const storage = persister ? localStorage : sessionStorage;
+					 storage.setItem("username", username);
+					 storage.setItem("authKey_nom", authKey.nom);
+					 storage.setItem("authKey_secret", authKey.clé.secret);
+				 }).then( () => this.$router.back() )
 		 },
 
 		 onAuth( event ){

@@ -47,11 +47,12 @@ export default {
 		},
 	},
 	mounted() {
-		if (this.user) this.récupérerQuestion();
+		if (this.$store.state.user) {
+			this.récupérerQuestion();
+		}
 	},
 	methods: {
 		récupérerAvancement() {
-			console.log("Récupérer avancement");
 			const id_avancement = this.user.username + "/" + this.uri;
 
 			if (id_avancement in this.user.avancements) {
@@ -60,9 +61,6 @@ export default {
 						url: this.user.avancements[id_avancement].liens.self,
 						lang_défaut: this.lang,
 					})
-					.catch((err) => {
-						this.redirigerVersLogin(window.btoa(window.location.href));
-					});
 			} else {
 				this.$store
 					.dispatch("postAvancement", {
@@ -71,21 +69,10 @@ export default {
 						avancement: {},
 						lang_défaut: this.lang,
 					})
-					.catch((err) => {
-						this.redirigerVersLogin(window.btoa(window.location.href));
-					});
 			}
 		},
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
-		},
-		redirigerVersLogin(ref) {
-			this.$router.push({
-				name: "LoginView",
-				params: {
-					ref: ref,
-				},
-			});
 		},
 	},
 };

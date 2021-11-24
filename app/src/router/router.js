@@ -2,6 +2,12 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
 	{
+		path: "/",
+		beforeEnter(to, from, next){
+			window.location.href="./home/index.html"
+		}
+	},
+	{
 		path: "/login",
 		name: "LoginView",
 		component: () => import("@/views/login/login.vue"),

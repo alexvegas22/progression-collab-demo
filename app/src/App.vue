@@ -55,9 +55,11 @@
 		 if(this.récupérerUserInfos()){
 			 this.chargerUser();
 		 }
-		 else{
-			 this.redirigerVersLogin( window.btoa(window.location.href) );
+
+		 if(this.$store.state.uri) {
+			 this.$router.push( {name: 'Question' } );
 		 }
+				 
 	 },
 
 	 methods: {
@@ -96,15 +98,8 @@
 		 },
 		 chargerUser(){
 			 return this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username).catch((err) => {
-				this.redirigerVersLogin( window.btoa(window.location.href) );
+				this.$router.push({ name: 'LoginView' });
 			 });
-		 },
-		 redirigerVersLogin( ref ){
-			 this.$router.push( {
-				 name: 'LoginView',
-				 params: {
-					 ref: ref,
-				 } } );
 		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
