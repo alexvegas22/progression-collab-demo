@@ -53,13 +53,15 @@
 		 this.traiterParamètresURL( window.location.search );
 
 		 if(this.récupérerUserInfos()){
-			 this.chargerUser();
+			 this.chargerUser().then( (user) => {
+				 if(this.$store.state.uri) {
+					 this.$router.push( {name: 'Question' } );
+				 }
+			 })
 		 }
-
-		 if(this.$store.state.uri) {
+		 else{
 			 this.$router.push( {name: 'Question' } );
 		 }
-				 
 	 },
 
 	 methods: {
@@ -98,7 +100,7 @@
 		 },
 		 chargerUser(){
 			 return this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username).catch((err) => {
-				this.$router.push({ name: 'LoginView' });
+				 this.$router.push({ name: 'LoginView' });
 			 });
 		 },
 		 effacerErreurs(){
