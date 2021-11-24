@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a href="/home/index.html" class="navbar-brand text-light">
+		<a href="./home/index.html" class="navbar-brand text-light">
 			<span class="text-info"> Prog</span>ression
 		</a>
 	</nav>
