@@ -49,7 +49,7 @@
 								<i class="fas fa-circle fa-stack-2x text-primary"></i>
 								<i class="fas fa-chalkboard-teacher fa-stack-1x fa-inverse"></i>
 							</span>
-							<h4 class="my-3">enseigner le programmation</h4>
+							<h4 class="my-3">enseigner la programmation</h4>
 						</a>
 						<p class="text-muted">Aidez vos étudiants à mettre en pratique les concepts vus en classe à l'aide d'exercices existants ou créez vos propres exercices adaptés à leurs besoins.</p>
 					</div>
@@ -73,13 +73,8 @@
 				<div class="text-center">
 					<h2 class="section-heading text-uppercase">Pour les étudiants</h2>
 				</div>
-				<ul>
-					<li>
-						<p class="text-muted">
-							<img width="100%" src="/img/AideProgression.png">
-						</p>
-					</li>
-				</ul>
+						<img src="./img/InterfaceDépart.png">
+						<img src="./img/InterfaceRésultat.png">
 			</div>
 		</section>
 		
