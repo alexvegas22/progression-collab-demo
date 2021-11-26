@@ -24,6 +24,10 @@
             <div class="container" style="border-style: solid; border-width: 10px; border-color: white; border-radius: 20px; padding: 10px; background-color: rgba(60,40,60,0.85)">
                 <div class="masthead-heading"><span class="text-info"> Prog</span><span style="color: white">ression</span></div>
                 <div class="masthead-subheading text-uppercase">Le gym de la programmation</div>
+				<p>
+					Progression est un exerciseur conçu pour aider l'apprentissage de la programmation par la pratique. Il permet d’<b>exécuter</b> dans un IDE en ligne, <b>analyser</b> et <b>diagnostiquer</b> du code programmé dans le cadre d'un exercice proposé et génère pour l'étudiant une rétroaction immédiate et spécifique.
+				</p>
+
                 <a class="btn btn-primary btn-xl text-uppercase" href="#débuter">Débuter</a>
             </div>
         </header>
