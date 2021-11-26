@@ -1,6 +1,8 @@
 <template>
 	<div>
+		
 		<!-- Navigation-->
+		<!-- 
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 			<div class="container">
 				<a class="navbar-brand" href="#page-top"><span class="text-info"> Prog</span><span style="color: white">ression</span></a>
@@ -16,7 +18,7 @@
 				</div>
 			</div>
 		</nav>
-
+		-->
         <!-- Masthead-->
         <header class="masthead">
             <div class="container" style="border-style: solid; border-width: 10px; border-color: white; border-radius: 20px; padding: 10px; background-color: rgba(60,40,60,0.85)">
