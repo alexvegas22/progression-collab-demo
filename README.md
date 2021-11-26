@@ -1,5 +1,1 @@
-### Lien DOC «INITIALE» API progression backend
-https://progression.dti.crosemont.quebec/api/v1/doc/api.html
-
-### Lien DOC «VERSION PLUS À JOUR» API progression backend
-https://progression.pages.dti.crosemont.quebec/progression_backend/api.html
+Progression est un exerciseur conçu pour aider l'apprentissage de la programmation par la pratique. Il permet d’exécuter, analyser et diagnostiquer du code programmé dans le cadre d'un exercice proposé et génère pour l'étudiant une rétroaction immédiate et spécifique.
