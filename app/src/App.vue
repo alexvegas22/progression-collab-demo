@@ -1,5 +1,8 @@
 <template>
-	<div id="app">
+  <metainfo>
+      <template v-slot:title="{ content }">{{ content ? `${content} | Progression` : `Progression` }}</template>
+  </metainfo>
+  <div id="app">
 		<div v-show="erreurs" class="alert alert-danger">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="effacerErreurs()">
 				×
@@ -19,7 +22,7 @@
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a href="./home/index.html" class="navbar-brand text-light">
+		<a href="/" class="navbar-brand text-light">
 			<span class="text-info"> Prog</span>ression
 		</a>
 	</nav>
@@ -28,13 +31,20 @@
 
 <script>
  import tokenEstValide from "@/util/token";
+ import { useMeta } from 'vue-meta'
  
  const API_URL = process.env.VUE_APP_API_URL;
  
  export default {
 	 name: "App",
+	 setup () {
+		 useMeta({
+			 title: 'Progression',
+			 htmlAttrs: { lang: 'fr', amp: true }
+		 })
+	 },
 	 data() {
-		 return {
+	  return {
 			 cb_auth: null,
 			 cb_auth_params: null,
 		 } },
@@ -52,15 +62,16 @@
 	 mounted() {
 		 this.traiterParamètresURL( window.location.search );
 
-		 if(this.récupérerUserInfos()){
-			 this.chargerUser().then( (user) => {
-				 if(this.$store.state.uri) {
-					 this.$router.push( {name: 'Question' } );
-				 }
-			 })
+		 if(this.$store.state.uri) {
+			 if(this.récupérerUserInfos()){
+				 this.chargerUser().then( (user) => this.$router.push( {name: 'Question' } ) );
+			 }
+			 else{
+				 this.$router.push( {name: 'Question' } );
+			 }
 		 }
-		 else{
-			 this.$router.push( {name: 'Question' } );
+		 else {
+			 this.$router.push( {name: 'Home' } );
 		 }
 	 },
 

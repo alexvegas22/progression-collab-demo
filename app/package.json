@@ -12,6 +12,9 @@
     "jest": "jest --watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@popperjs/core": "^2.9.2",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
@@ -29,8 +32,10 @@
     "theme-helper": "0.0.2",
     "tippy.js": "^6.3.1",
     "vue": "^3.0.7",
+    "vue-fontawesome": "^0.0.2",
     "vue-i18n": "^9.1.4",
     "vue-loader-v16": "^16.0.0-beta.5.4",
+    "vue-meta": "^3.0.0-alpha.7",
     "vue-router": "^4.0.3",
     "vue-tippy": "^6.0.0-alpha.29",
     "vue3-component-base": "0.0.6",

@@ -1,11 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{
 		path: "/",
-		beforeEnter(to, from, next){
-			window.location.href="./home/index.html"
-		}
+		name: "Home",
+		component: () => import("@/views/home/home.vue"),
 	},
 	{
 		path: "/login",
@@ -19,14 +18,14 @@ const routes = [
 		component: () => import("@/views/question/question.vue"),
 	},
 	{
-		path: "/:catchAll(.*)",
+		path: "/:catchAll(.+)",
 		name: "NotFound",
 		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
 ];
 
 const router = createRouter({
-	history: createWebHashHistory(),
+	history: createWebHistory(),
 	routes,
 });
 
