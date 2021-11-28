@@ -34,6 +34,7 @@ async function getToken({ commit, state }) {
 	if (tokenEstValide(state.token)) {
 		return state.token;
 	} else {
+		commit("setToken", null);
 		return rafraîchirToken().then((token) => {
 			commit("setToken", token);
 			return token;
@@ -46,13 +47,18 @@ async function rafraîchirToken() {
 	const username = récupérerUsername();
 
 	if (authKey) {
-		return getTokenApi(process.env.VUE_APP_API_URL + "/auth", username, authKey).then((token) => {
-			sauvegarderToken(token);
-			return token;
-		});
+		return getTokenApi(process.env.VUE_APP_API_URL + "/auth", username, authKey)
+			.then((token) => {
+				sauvegarderToken(token);
+				return token;
+			})
+			.catch( (err) => {
+				sauvegarderToken(null);
+				throw err;
+			});
 	} else {
 		sauvegarderToken(null);
-		throw "Pas de clé d'authentification disponible";
+		throw "Clé d'authentificatino non disponible";
 	}
 }
 

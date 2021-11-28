@@ -43,6 +43,16 @@
 			 htmlAttrs: { lang: 'fr', amp: true }
 		 })
 	 },
+	 mounted() {
+		 this.traiterParamètresURL( window.location.search );
+
+		 if(this.récupérerUserInfos()){
+			 this.chargerUser();
+		 }
+		 else {
+			 this.$router.push( {name: 'LoginView' } );
+		 }
+	 },
 	 data() {
 	  return {
 			 cb_auth: null,
@@ -57,21 +67,6 @@
 		 },
 		 username() {
 			 return this.$store.state.username;
-		 }
-	 },
-	 mounted() {
-		 this.traiterParamètresURL( window.location.search );
-
-		 if(this.$store.state.uri) {
-			 if(this.récupérerUserInfos()){
-				 this.chargerUser().then( (user) => this.$router.push( {name: 'Question' } ) );
-			 }
-			 else{
-				 this.$router.push( {name: 'Question' } );
-			 }
-		 }
-		 else {
-			 this.$router.push( {name: 'Home' } );
 		 }
 	 },
 

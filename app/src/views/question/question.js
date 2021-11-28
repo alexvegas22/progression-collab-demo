@@ -50,9 +50,6 @@ export default {
 		if (this.$store.state.token) {
 			this.récupérerQuestion();
 		}
-		else{
-			this.$router.push({ name: 'LoginView' });
-		}
 	},
 	methods: {
 		récupérerAvancement() {
