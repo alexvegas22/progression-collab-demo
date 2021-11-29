@@ -58,7 +58,7 @@ async function rafraîchirToken() {
 			});
 	} else {
 		sauvegarderToken(null);
-		throw "Clé d'authentificatino non disponible";
+		throw "Clé d'authentification non disponible";
 	}
 }
 
@@ -110,6 +110,7 @@ export default {
 				.then((token) => getUserApi(urlUser, token))
 				.then((user) => {
 					commit("setUser", user);
+					return user;
 				}),
 		);
 	},
@@ -121,6 +122,7 @@ export default {
 				.then((token) => getQuestionApi(urlQuestion, token))
 				.then((question) => {
 					commit("setQuestion", question);
+					return question;
 				}),
 		);
 	},
@@ -158,6 +160,7 @@ export default {
 
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
+					return avancement;
 				}),
 		);
 	},
@@ -193,6 +196,7 @@ export default {
 
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
+					return avancement;
 				}),
 		);
 	},
@@ -205,6 +209,7 @@ export default {
 				.then((tentative) => {
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
+					return tentative;
 				}),
 		);
 	},
@@ -253,6 +258,7 @@ export default {
 				.then((sauvegarde) => {
 					if (sauvegarde) {
 						commit("setSauvegarde", sauvegarde);
+						return sauvegarde;
 					}
 				}),
 		);

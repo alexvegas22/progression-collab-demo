@@ -40,16 +40,14 @@ export default {
 	},
 	watch: {
 		user: function () {
-			if (this.user) this.récupérerQuestion();
+			if (!this.question && this.uri && this.user) this.récupérerQuestion();
 		},
 		question: function () {
 			this.récupérerAvancement();
 		},
 	},
 	mounted() {
-		if (this.$store.state.token) {
-			this.récupérerQuestion();
-		}
+		if(this.uri && this.user) this.récupérerQuestion();
 	},
 	methods: {
 		récupérerAvancement() {
@@ -74,5 +72,6 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
+
 	},
 };

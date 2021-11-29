@@ -46,12 +46,9 @@
 	 mounted() {
 		 this.traiterParamètresURL( window.location.search );
 
-		 if(this.récupérerUserInfos()){
+		 if(this.récupérerUserInfos())
 			 this.chargerUser();
-		 }
-		 else {
-			 this.$router.push( {name: 'LoginView' } );
-		 }
+	 
 	 },
 	 data() {
 	  return {
@@ -105,9 +102,7 @@
 			 return username;
 		 },
 		 chargerUser(){
-			 return this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username).catch((err) => {
-				 this.$router.push({ name: 'LoginView' });
-			 });
+			 this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username);
 		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
