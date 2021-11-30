@@ -23,4 +23,10 @@ const app = createApp(App)
 	.use(createMetaManager())
 	.use(metaPlugin);
 
+store.dispatch("setAuthentificationErreurHandler", (err) => {
+	router.push({name: 'LoginView',
+				 query: window.location.search,
+				 params: { origine: window.location.href }});
+});
+
 router.isReady().then( () => app.mount("#app"));

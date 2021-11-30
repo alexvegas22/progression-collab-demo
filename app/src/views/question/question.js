@@ -39,6 +39,9 @@ export default {
 		},
 	},
 	watch: {
+		uri: function () {
+			if (!this.question && this.uri && this.user) this.récupérerQuestion();
+		},
 		user: function () {
 			if (!this.question && this.uri && this.user) this.récupérerQuestion();
 		},

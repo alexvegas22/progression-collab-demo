@@ -11,6 +11,8 @@ import {
 	postTentative,
 } from "@/services/index.js";
 
+import store from './store.js';
+
 import tokenEstValide from "@/util/token.js";
 
 import jwt_decode from "jwt-decode";
@@ -24,9 +26,13 @@ async function valider(commit, promesse) {
 			return résultat;
 		})
 		.catch((erreur) => {
-			console.trace(erreur);
-			commit("setErreurs", { détails: erreur });
-			throw erreur;
+			if(erreur.response.status==401 && store.state.authentificationErreurHandler) {
+				store.state.authentificationErreurHandler(erreur)
+			}
+			else{
+				commit("setErreurs", { détails: erreur });
+				throw erreur;
+			}
 		});
 }
 
@@ -47,7 +53,7 @@ async function rafraîchirToken() {
 	const username = récupérerUsername();
 
 	if (authKey) {
-		return getTokenApi(process.env.VUE_APP_API_URL + "/auth", username, authKey)
+		return getTokenApi(API_URL + "/auth", username, authKey)
 			.then((token) => {
 				sauvegarderToken(token);
 				return token;
@@ -224,6 +230,7 @@ export default {
 				.then((token) => postTentative(params, token))
 				.then((retroactionTentative) => {
 					commit("updateRetroaction", retroactionTentative);
+					commit("updateEnvoieTentativeEnCours", false);
 
 					this.state.avancement.tentatives.unshift(retroactionTentative);
 					if (this.state.avancement.état != 2) {
@@ -238,8 +245,10 @@ export default {
 						});
 					}
 				})
-				.finally(() => {
+				.catch((e) => {
+					console.log("ERREUR" + e);
 					commit("updateEnvoieTentativeEnCours", false);
+					throw(e);
 				}),
 		);
 	},
@@ -327,5 +336,9 @@ export default {
 
 	setUsername({ commit, state }, username) {
 		commit("setUsername", username);
+	},
+
+	setAuthentificationErreurHandler({ commit, state }, authentificationErreurHandler ){
+		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
 };

@@ -17,29 +17,6 @@ const routes = [
 		path: "/question",
 		name: "Question",
 		component: () => import("@/views/question/question.vue"),
-		beforeEnter: (to, from, next ) => {
-			const username = store.state.username || sessionStorage.getItem("username") || localStorage.getItem("username");
-			if(!store.state.user && username){
-				store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
-					   .then( () => next() )
-					   .catch( () =>{
-						   next( {name: 'LoginView',
-								  query: to.query,
-								  params: { origine: to.fullPath } 
-						   });
-					   });
-			}
-			else if(!username){
-				next( {name: 'LoginView',
-					   query: to.query,
-					   params: { origine: to.fullPath } 
-				});
-
-			}
-			else{
-				next();
-			}
-		},
 	},
 	{
 		path: "/:catchAll(.+)",
@@ -53,6 +30,35 @@ const router = createRouter({
 	routes,
 });
 
+router.beforeEach( (to, from, next ) => {
+	if(to.name != 'Question') {
+		next();
+		return;
+	}
 
+
+	if(store.state.user){
+		next();
+		return;
+	}
+	
+	const username = store.state.username || sessionStorage.getItem("username") || localStorage.getItem("username");
+	if(!username){
+		next( {name: 'LoginView',
+			   query: to.query,
+			   params: { origine: to.fullPath } 
+		});
+		return;
+	}
+	
+	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
+		 .then( () => next() )
+		 .catch( () =>{
+			 next( {name: 'LoginView',
+					query: to.query,
+					params: { origine: to.fullPath } 
+			 });
+		 });
+});
 
 export default router;

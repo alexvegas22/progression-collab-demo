@@ -21,6 +21,7 @@ export default createStore({
 		avancement: null,
 		sauvegardes: [],
 		erreurs: null,
+		authentificationErreurHandler: null
 	},
 	actions,
 	mutations,

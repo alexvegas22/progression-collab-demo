@@ -43,12 +43,8 @@
 			 htmlAttrs: { lang: 'fr', amp: true }
 		 })
 	 },
-	 mounted() {
+	 created() {
 		 this.traiterParamètresURL( window.location.search );
-
-		 if(this.récupérerUserInfos())
-			 this.chargerUser();
-	 
 	 },
 	 data() {
 	  return {
@@ -100,9 +96,6 @@
 			 this.$store.dispatch("setUsername", username);
 
 			 return username;
-		 },
-		 chargerUser(){
-			 this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username);
 		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
