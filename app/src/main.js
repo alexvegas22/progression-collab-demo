@@ -25,9 +25,11 @@ const app = createApp(App)
 	.use(metaPlugin);
 
 const authentificationErreurHandler = function(err) {
-	router.push({name: 'LoginView',
-				 query: window.location.search,
-				 params: { origine: window.location.href }});
+	if ( router.currentRoute.value.name != 'LoginView' ) {
+		router.push({name: 'LoginView',
+					 query: window.location.search,
+					 params: { origine: window.location.href }});
+	}
 };
 
 const valider = async function(promesse) {
@@ -42,8 +44,8 @@ const valider = async function(promesse) {
 			}
 			else{
 				store.dispatch("setErreurs", { détails: erreur });
-				throw erreur;
 			}
+			throw erreur;
 		});
 }
 
