@@ -66,7 +66,4 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
-	setAuthentificationErreurHandler(state, f){
-		state.authentificationErreurHandler = f;
-	}
 };

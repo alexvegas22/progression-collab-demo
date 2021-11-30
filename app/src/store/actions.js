@@ -11,30 +11,16 @@ import {
 	postTentative,
 } from "@/services/index.js";
 
-import store from './store.js';
-
 import tokenEstValide from "@/util/token.js";
 
 import jwt_decode from "jwt-decode";
 
-const API_URL = process.env.VUE_APP_API_URL;
-
-async function valider(commit, promesse) {
-	return promesse
-		.then((résultat) => {
-			commit("setErreurs", null);
-			return résultat;
-		})
-		.catch((erreur) => {
-			if(erreur.response.status==401 && store.state.authentificationErreurHandler) {
-				store.state.authentificationErreurHandler(erreur)
-			}
-			else{
-				commit("setErreurs", { détails: erreur });
-				throw erreur;
-			}
-		});
+var validateur = (v) => v;
+const valider = async function(commit, promesse){
+	return validateur(promesse)
 }
+
+const API_URL = process.env.VUE_APP_API_URL;
 
 async function getToken({ commit, state }) {
 	if (tokenEstValide(state.token)) {
@@ -88,6 +74,10 @@ function sauvegarderToken(token) {
 }
 
 export default {
+	async setValidateur( v ){
+		validateur = v;
+	},
+	
 	async setErreurs({ commit, state }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
@@ -246,7 +236,6 @@ export default {
 					}
 				})
 				.catch((e) => {
-					console.log("ERREUR" + e);
 					commit("updateEnvoieTentativeEnCours", false);
 					throw(e);
 				}),
