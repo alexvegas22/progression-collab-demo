@@ -39,20 +39,18 @@ export default {
 		},
 	},
 	watch: {
+		uri: function () {
+			if (!this.question && this.uri && this.user) this.récupérerQuestion();
+		},
 		user: function () {
-			if (this.user) this.récupérerQuestion();
+			if (!this.question && this.uri && this.user) this.récupérerQuestion();
 		},
 		question: function () {
 			this.récupérerAvancement();
 		},
 	},
 	mounted() {
-		if (this.$store.state.token) {
-			this.récupérerQuestion();
-		}
-		else{
-			this.$router.push({ name: 'LoginView' });
-		}
+		if(this.uri && this.user) this.récupérerQuestion();
 	},
 	methods: {
 		récupérerAvancement() {
@@ -77,5 +75,6 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
+
 	},
 };

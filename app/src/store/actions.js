@@ -15,25 +15,18 @@ import tokenEstValide from "@/util/token.js";
 
 import jwt_decode from "jwt-decode";
 
-const API_URL = process.env.VUE_APP_API_URL;
-
-async function valider(commit, promesse) {
-	return promesse
-		.then((résultat) => {
-			commit("setErreurs", null);
-			return résultat;
-		})
-		.catch((erreur) => {
-			console.trace(erreur);
-			commit("setErreurs", { détails: erreur });
-			throw erreur;
-		});
+var validateur = (v) => v;
+const valider = async function(commit, promesse){
+	return validateur(promesse)
 }
+
+const API_URL = process.env.VUE_APP_API_URL;
 
 async function getToken({ commit, state }) {
 	if (tokenEstValide(state.token)) {
 		return state.token;
 	} else {
+		commit("setToken", null);
 		return rafraîchirToken().then((token) => {
 			commit("setToken", token);
 			return token;
@@ -46,13 +39,18 @@ async function rafraîchirToken() {
 	const username = récupérerUsername();
 
 	if (authKey) {
-		return getTokenApi(process.env.VUE_APP_API_URL + "/auth", username, authKey).then((token) => {
-			sauvegarderToken(token);
-			return token;
-		});
+		return getTokenApi(API_URL + "/auth", username, authKey)
+			.then((token) => {
+				sauvegarderToken(token);
+				return token;
+			})
+			.catch( (err) => {
+				sauvegarderToken(null);
+				throw err;
+			});
 	} else {
 		sauvegarderToken(null);
-		throw "Pas de clé d'authentification disponible";
+		throw "Clé d'authentification non disponible";
 	}
 }
 
@@ -76,6 +74,10 @@ function sauvegarderToken(token) {
 }
 
 export default {
+	async setValidateur( v ){
+		validateur = v;
+	},
+	
 	async setErreurs({ commit, state }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
@@ -104,6 +106,7 @@ export default {
 				.then((token) => getUserApi(urlUser, token))
 				.then((user) => {
 					commit("setUser", user);
+					return user;
 				}),
 		);
 	},
@@ -115,6 +118,7 @@ export default {
 				.then((token) => getQuestionApi(urlQuestion, token))
 				.then((question) => {
 					commit("setQuestion", question);
+					return question;
 				}),
 		);
 	},
@@ -152,6 +156,7 @@ export default {
 
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
+					return avancement;
 				}),
 		);
 	},
@@ -187,6 +192,7 @@ export default {
 
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
+					return avancement;
 				}),
 		);
 	},
@@ -199,6 +205,7 @@ export default {
 				.then((tentative) => {
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
+					return tentative;
 				}),
 		);
 	},
@@ -213,6 +220,7 @@ export default {
 				.then((token) => postTentative(params, token))
 				.then((retroactionTentative) => {
 					commit("updateRetroaction", retroactionTentative);
+					commit("updateEnvoieTentativeEnCours", false);
 
 					this.state.avancement.tentatives.unshift(retroactionTentative);
 					if (this.state.avancement.état != 2) {
@@ -227,8 +235,9 @@ export default {
 						});
 					}
 				})
-				.finally(() => {
+				.catch((e) => {
 					commit("updateEnvoieTentativeEnCours", false);
+					throw(e);
 				}),
 		);
 	},
@@ -247,6 +256,7 @@ export default {
 				.then((sauvegarde) => {
 					if (sauvegarde) {
 						commit("setSauvegarde", sauvegarde);
+						return sauvegarde;
 					}
 				}),
 		);
@@ -315,5 +325,9 @@ export default {
 
 	setUsername({ commit, state }, username) {
 		commit("setUsername", username);
+	},
+
+	setAuthentificationErreurHandler({ commit, state }, authentificationErreurHandler ){
+		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
 };

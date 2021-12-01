@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import actions from "./store/actions.js";
 import i18n from "./util/i18n";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -22,5 +23,32 @@ const app = createApp(App)
 	.use(Tabs)
 	.use(createMetaManager())
 	.use(metaPlugin);
+
+const authentificationErreurHandler = function(err) {
+	if ( router.currentRoute.value.name != 'LoginView' ) {
+		router.push({name: 'LoginView',
+					 query: window.location.search,
+					 params: { origine: window.location.href }});
+	}
+};
+
+const valider = async function(promesse) {
+	return promesse
+		.then((résultat) => {
+			store.dispatch("setErreurs", null);
+			return résultat;
+		})
+		.catch((erreur) => {
+			if(erreur.response.status==401) {
+				authentificationErreurHandler(erreur)
+			}
+			else{
+				store.dispatch("setErreurs", { détails: erreur });
+			}
+			throw erreur;
+		});
+}
+
+actions.setValidateur( valider );
 
 router.isReady().then( () => app.mount("#app"));

@@ -43,6 +43,9 @@
 			 htmlAttrs: { lang: 'fr', amp: true }
 		 })
 	 },
+	 created() {
+		 this.traiterParamètresURL( window.location.search );
+	 },
 	 data() {
 	  return {
 			 cb_auth: null,
@@ -57,21 +60,6 @@
 		 },
 		 username() {
 			 return this.$store.state.username;
-		 }
-	 },
-	 mounted() {
-		 this.traiterParamètresURL( window.location.search );
-
-		 if(this.$store.state.uri) {
-			 if(this.récupérerUserInfos()){
-				 this.chargerUser().then( (user) => this.$router.push( {name: 'Question' } ) );
-			 }
-			 else{
-				 this.$router.push( {name: 'Question' } );
-			 }
-		 }
-		 else {
-			 this.$router.push( {name: 'Home' } );
 		 }
 	 },
 
@@ -108,11 +96,6 @@
 			 this.$store.dispatch("setUsername", username);
 
 			 return username;
-		 },
-		 chargerUser(){
-			 return this.$store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + this.$store.state.username).catch((err) => {
-				 this.$router.push({ name: 'LoginView' });
-			 });
 		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
