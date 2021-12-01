@@ -23,7 +23,13 @@
 
 		<tab-panels v-model="tabSélectionné" class="tab-panels">
 						<tab-panel val="0" key="0" class="tab-panel">
-							<LoginForm @onLogin="onLogin" :domaine="domaine" />
+							<LoginForm @onLogin="onLogin" :domaine="domaine"/>
+							<br>
+							<p>
+							<a href="https://portail.dti.crosemont.quebec/pwm/public/forgottenpassword">Mot de passe oublié?</a>
+							</p>
+							
+
 						</tab-panel>
 					
 						<tab-panel val="1" key="1" class="tab-panel">
