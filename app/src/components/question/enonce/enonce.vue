@@ -13,13 +13,14 @@
 			<div class="row">
 				<h3 class="titre align-self-start">
 					{{ question.titre }}
+					<b-badge>{{ question.niveau }}</b-badge>
 				</h3>
 			</div>
 			
-			<div class="row">
+			<div class="row flex-grow-1" >
 				<p
 					class="lead"
-					v-html="question.énoncé">
+						   v-html="question.énoncé">
 				</p>
 			</div>
 			
