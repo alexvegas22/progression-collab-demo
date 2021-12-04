@@ -4,7 +4,7 @@
 			<div class="col-sm-6">
 				<label for="username" class="control-label">{{ $t('login.courriel') }}</label>
 				<input class="form-control" type="text" id="username" name="username" autofocus v-model="username" :placeholder="placeholder"/>
-				<div v-if="username_vide">Champ obligatoire</div>
+				<div v-if="username_vide">{{ $t('login.champ_obligatoire') }}</div>
 			</div>
 			<div class="col-sm-6">
 			</div>
@@ -13,7 +13,7 @@
 			<div class="col-sm-6">
 				<label for="passwd" class="control-label">{{ $t('login.motDePasse') }}</label>
 				<input class="form-control" id="passwd" name="passwd" type="password" v-model="password" />
-				<div v-if="password_vide">Champ obligatoire</div>
+				<div v-if="password_vide">{{ $t('login.champ_obligatoire') }}</div>
 			</div>
 		</div>
 		<br>

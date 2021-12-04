@@ -12,7 +12,8 @@
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
-		"inscription": "Sign in"
+		"inscription": "Sign in",
+		"champ_obligatoire": "Required field"
 	},
 
 	"inscription": {
