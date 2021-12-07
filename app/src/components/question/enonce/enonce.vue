@@ -13,7 +13,7 @@
 			<div class="row">
 				<h3 class="titre align-self-start">
 					{{ question.titre }}
-					<b-badge>{{ question.niveau }}</b-badge>
+						<span class="badge niveau"> {{ question.niveau }} </span>
 				</h3>
 			</div>
 			

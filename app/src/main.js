@@ -8,10 +8,6 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import Tabs from 'vue3-tabs';
 import { createMetaManager, plugin as metaPlugin } from 'vue-meta'
-import BootstrapVue3 from 'bootstrap-vue-3'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
 import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
@@ -27,7 +23,6 @@ const app = createApp(App)
 	.use(Tabs)
 	.use(createMetaManager())
 	.use(metaPlugin)
-    .use(BootstrapVue3);
 
 const authentificationErreurHandler = function(err) {
 	if ( router.currentRoute.value.name != 'LoginView' ) {

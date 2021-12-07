@@ -39,6 +39,14 @@ h3 {
 	visibility: visible;
 }
 
+.badge.niveau {
+	/*Bug? badge par lui-même ne fonctionne pas.*/
+	font-size: 15px;
+	background-color: #0dcaf0;
+	position: relative;
+	top: -20px
+}
+
 /* animations */
 
 @-webkit-keyframes checkmark {
