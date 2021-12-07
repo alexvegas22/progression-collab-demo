@@ -30,10 +30,14 @@ export const zones = {
 				{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: false },
 			);
 
-			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++) doc.addLineClass(i, "background", "ligne-editable");
+			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++) {
+				doc.addLineClass(i, "gutter", "gutter-non-editable");			
+				doc.addLineClass(i, "background", "ligne-non-editable");
+			}
 
 			posDébut = doc.getValue().indexOf("-TODO", posFin);
-		}
+				
+			}
 	},
 
 	cacherHorsVisible(doc) {
