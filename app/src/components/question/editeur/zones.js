@@ -41,17 +41,6 @@ export const zones = {
 	},
 
 	cacherHorsVisible(doc) {
-		for (let i = 0; i < doc.lineCount(); i++) {
-			if (doc.getLine(i).match("[+-]VISIBLE")) {
-				//Cache la ligne +VISIBLE
-				doc.markText(
-					{ line: i - 1, sticky: "after" },
-					{ line: i, sticky: "after" },
-					{ collapsed: true, selectRight: false },
-				);
-			}
-		}
-
 		let posFin = 0;
 		let posDébut = doc.getValue().indexOf("+VISIBLE") > -1 ? 0 : doc.getValue().indexOf("-VISIBLE", posFin);
 
@@ -72,8 +61,15 @@ export const zones = {
 					collapsed: "true",
 					atomic: true,
 					selectRight: false,
-				},
-			);
+			});
+
+			//Remplace les lignes non visibles par des lignes vides.
+			//Utile pour éviter que les lignes invisibles n'influencent l'indentation automatique.
+			for(var i=ligneDébut.line; i<=ligneFin.line; i++)
+				if (!doc.getLine(i).match("[+-](TODO|VISIBLE)"))
+					doc.replaceRange("",
+									 { line: i, ch: 0 },
+									 { line: i } );
 
 			posDébut = doc.getValue().indexOf("-VISIBLE", posFin);
 		}
