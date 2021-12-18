@@ -1,8 +1,5 @@
 export const zones = {
 	désactiverHorsTodo(doc) {
-		let posDébut = doc.getValue().indexOf("+TODO") > -1 ? 0 : doc.getValue().indexOf("-TODO", posFin);
-		let posFin = 0;
-
 		for (let i = 0; i < doc.lineCount(); i++) {
 			if (doc.getLine(i).match("[+-]TODO")) {
 				//Cache la ligne +TODO
@@ -12,6 +9,25 @@ export const zones = {
 					{ collapsed: true, selectRight: false },
 				);
 			}
+			else {
+				doc.removeLineClass(i, "gutter", "gutter-non-editable");
+				doc.removeLineClass(i, "background", "ligne-non-editable");
+			}
+		}
+
+		let premierTodoPlus = doc.getValue().indexOf("+TODO")
+		let premierTodoMoins = doc.getValue().indexOf("-TODO")
+
+		// Pas de balises, on laisse tout modifiable
+		if (premierTodoPlus == -1 && premierTodoMoins == -1) return
+
+		var posDébut = 0;
+		var posFin = 0;
+
+		// S'il n'y a pas de +TODO ou s'il est après le premier -TODO,
+		// la première zone non-éditable commence là
+		if ( premierTodoMoins > 0 && (premierTodoPlus == -1 || premierTodoPlus > premierTodoMoins ) ) {
+			posDébut = premierTodoMoins
 		}
 
 		while (posDébut > -1) {
@@ -24,13 +40,22 @@ export const zones = {
 			let ligneFin = doc.posFromIndex(posFin);
 
 			//Rend immuable
-			doc.markText(
-				{ line: ligneDébut.line, ch: 0 },
-				{ line: ligneFin.line + 1, ch: 0 },
-				{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: false },
-			);
+			if(ligneFin.line == doc.lineCount() -1){
+				doc.markText(
+					{ line: ligneDébut.line, ch: 0 },
+					{ line: ligneFin.line },
+					{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: true },
+				);
+			}
+			else{
+				doc.markText(
+					{ line: ligneDébut.line, ch: 0 },
+					{ line: ligneFin.line + 1, ch: 0 },
+					{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: false },
+				);
+			}
 
-			for (let i = ligneDébut.line; i < ligneFin.line + 1; i++) {
+			for (let i = ligneDébut.line; i <= ligneFin.line; i++) {
 				doc.addLineClass(i, "gutter", "gutter-non-editable");			
 				doc.addLineClass(i, "background", "ligne-non-editable");
 			}
@@ -41,9 +66,20 @@ export const zones = {
 	},
 
 	cacherHorsVisible(doc) {
-		let posFin = 0;
-		let posDébut = doc.getValue().indexOf("+VISIBLE") > -1 ? 0 : doc.getValue().indexOf("-VISIBLE", posFin);
+		let premierVisiblePlus = doc.getValue().indexOf("+VISIBLE")
+		let premierVisibleMoins = doc.getValue().indexOf("-VISIBLE")
 
+		if (premierVisiblePlus == -1 && premierVisibleMoins == -1) return
+		
+		var posDébut = 0
+		var posFin = 0;
+
+		// S'il n'y a pas de +VISIBLE ou s'il est après le premier -VISIBLE,
+		// la première zone non-éditable commence là
+		if ( premierVisibleMoins > 0 && ( premierVisiblePlus == -1 || premierVisiblePlus > premierVisibleMoins ) ) {
+			posDébut = premierVisibleMoins
+		}
+		
 		while (posDébut > -1) {
 			posFin = doc.getValue().indexOf("+VISIBLE", posDébut);
 			if (posFin == -1) {

@@ -32,10 +32,12 @@
 			<div class="row" style="height: 500px">
 				<v-code-mirror
 					id="editor"
-						v-model:value="code"
+
+						:value="code"
 					:mode="mode"
 					:theme="thème"
 					:xray="xray"
+					@update:value="onChange"
 				/>
 			</div>
 			
