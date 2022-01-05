@@ -10,7 +10,6 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
 import { capitalize, h, markRaw } from "vue";
 import ResizeObserver from "resize-observer-polyfill";
-import { $theme } from "theme-helper";
 import { Component, Inreactive, Prop, VueComponentBase, Watch } from "vue3-component-base";
 import { zones } from "./zones";
 
