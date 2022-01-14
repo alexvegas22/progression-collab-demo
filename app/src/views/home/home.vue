@@ -76,32 +76,31 @@
 
 		<section class="page-section" id="étudiant">
 			<div class="container">
-				<div class="text-center">
-					<h2 class="section-heading text-uppercase">Pour les étudiants</h2>
-				</div>
-						<img src="./img/InterfaceDépart.png">
-						<img src="./img/InterfaceRésultat.png">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Pour les étudiants</h2>
+                </div>
+				<ul>
+					<li> Résolvez les problème soumis par votre enseignant ou</li>
+					<li> Parcourez <a href="https://progression.pages.dti.crosemont.quebec/contenu/prog_1/liste_questions.html">les questions de démonstration.</a></li>
+					<li> Besoin d'un coup de main? Consultez le <a href="manuel.html">manuel d'utilisation.</a> </li>
+				</ul>
 			</div>
 		</section>
 		
 		<section class="page-section" id="enseignant">
 			<div class="container">
-				<div class="text-center">
-					<h2 class="section-heading text-uppercase">Pour les enseignants</h2>
-				</div>
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Pour les enseignants</h2>
+                </div>
 				
 				<ul>
-					<li> Utiliser des <a href="https://progression.pages.dti.crosemont.quebec/progression_contenu_demo/liste_questions.html"> questions existantes</a>
-					</li>
-					<li> Créer des questions :
-						<a href="https://progression.pages.dti.crosemont.quebec/progression_contenu_demo/CONTRIBUTING.html">Contribuer</a>
-					</li>
-					<li> Intégrer des questions à Moodle
-					</li>
+					<li> Utilisez les <a href="https://progression.pages.dti.crosemont.quebec/contenu/prog_1/liste_questions.html"> questions de démonstration ou</a></li>
+					<li> <a href="https://progression.pages.dti.crosemont.quebec/contenu/prog_1/CONTRIBUTING.html"></a>Créez vos propres questions</li>
+					<li> Intégrez-les à Moodle pour vos étudiants (documentation à venir).</li>
 				</ul>
 			</div>
 		</section>
-
+		
 		<section class="page-section" id="collaborateur">
 			<div class="container">
 				<div class="text-center">
