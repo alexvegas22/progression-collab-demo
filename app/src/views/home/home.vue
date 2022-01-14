@@ -95,7 +95,7 @@
 				
 				<ul>
 					<li> Utilisez les <a href="https://progression.pages.dti.crosemont.quebec/contenu/prog_1/liste_questions.html"> questions de démonstration ou</a></li>
-					<li> <a href="https://progression.pages.dti.crosemont.quebec/contenu/prog_1/CONTRIBUTING.html">Créez vos propres questions</a></li>
+					<li> <a href="https://progression.pages.dti.crosemont.quebec/documentation/contenu/cr%C3%A9action_de_conteu.html">Créez vos propres questions</a></li>
 					<li> Intégrez-les à Moodle pour vos étudiants (documentation à venir).</li>
 				</ul>
 			</div>
