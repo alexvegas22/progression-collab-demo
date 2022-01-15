@@ -1,50 +1,37 @@
-#Commandes pour build et run l'image Docker
-# docker build -t "progression" .
-# docker run -d -p 8080:8080 progression
-
 FROM node:lts-alpine as build-stage
-
-
+ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
 
 # install simple http server for serving static content
 RUN npm install -g http-server
 
-
-
 # make the 'app' folder the current working directory
 WORKDIR /app
 
-
-
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY app/package*.json ./
-
 
 # install project dependencies
 RUN npm install
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY app/ /app
+COPY app/ .
 
-# build app for production with minification
-# RUN npm run build
+#EXPOSE 8080
 
 # Développement
+#CMD [ "npm", "run", "serve" ]
 
-EXPOSE 8080
+#Production  build app for production with minification
+RUN npm run build
 
-CMD [ "npm", "run", "serve" ]
+FROM nginx:stable as production-stage
+ENV NODE_ENV=$NODE_ENV
 
+RUN rm -rf /usr/share/nginx/html/*
 
-# #Production 
-# FROM nginx:stable as production-stage
-# 
-# RUN apt update && apt -y install php php-cli php-fpm && apt autoclean
-# 
-# COPY --from=build-stage /app/dist /usr/share/nginx/html
-# #EXPOSE 80
-# 
-# COPY default.conf /etc/nginx/conf.d/
-# RUN echo listen.mode=0777 >> /etc/php/7.3/fpm/php-fpm.conf
-# 
-# CMD service php7.3-fpm start && service nginx start && tail -f /dev/null
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+COPY default.conf /etc/nginx/conf.d/
+COPY 25-envsubst-vue-app.sh /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/25-envsubst-vue-app.sh
+
