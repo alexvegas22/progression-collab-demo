@@ -26,12 +26,13 @@ const routes = [
 ];
 
 const router = createRouter({
-	history: createWebHistory(),
+	history: createWebHistory(
+		process.env.NODE_ENV === 'production' ? '/' : ('/'+process.env.NODE_ENV)
+	),
 	routes,
 });
 
 router.beforeEach( (to, from, next ) => {
-
 	//Redirige vers Question si le paramètre uri a été fourni
 	if(to.name == 'Home'){
 		var urlParams = new URLSearchParams(to.query);
