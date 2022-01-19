@@ -27,7 +27,7 @@ const routes = [
 
 const router = createRouter({
 	history: createWebHistory(
-		process.env.NODE_ENV === 'production' ? '/' : ('/'+process.env.NODE_ENV)
+		"/" + process.env.VUE_APP_SUBDIR
 	),
 	routes,
 });
