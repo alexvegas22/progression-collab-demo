@@ -6,5 +6,5 @@ module.exports = {
 	devServer: {
 		compress: true,
 	},
-	publicPath: process.env.NODE_ENV === 'production' ? '/' : ('/'+process.env.NODE_ENV),
+	publicPath: "/" + process.env.VUE_APP_SUBDIR,
 }
