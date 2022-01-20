@@ -1,10 +1,13 @@
 module.exports = {
 	lintOnSave: false,
+    devServer: {
+		compress: true,
+        disableHostCheck: true
+	},
     transpileDependencies: [
         'vue-meta',
     ],
-	devServer: {
-		compress: true,
-	},
+
+	//Enlever en dev
 	publicPath: "/" + process.env.VUE_APP_SUBDIR,
 }
