@@ -7,6 +7,7 @@ export default {
 	},
 	props : {
 		domaine: String,
+		url_mdp_reinit: String
 	},
 	data() {
 		return {
