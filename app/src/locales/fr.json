@@ -13,7 +13,8 @@
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"champ_obligatoire": "Champ obligatoire"
+		"champ_obligatoire": "Champ obligatoire",
+		"mdp_oublié": "Mot de passe oublié?"
 	},
 
 	"inscription": {
