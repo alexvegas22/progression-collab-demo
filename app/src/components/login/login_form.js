@@ -7,13 +7,13 @@ export default {
 	},
 	props : {
 		domaine: String,
-		url_mdp_reinit: String
+		url_mdp_reinit: String,
+		password_req: Boolean,
 	},
 	data() {
 		return {
 			username: "",
 			password: "",
-			password_req: true,
 			persister: true,
 			username_vide: false,
 			password_vide: false,
@@ -27,7 +27,7 @@ export default {
 	methods: {
 		login() {
 			this.username_vide = this.username == "";
-			this.password_vide = this.password == "";
+			this.password_vide = this.password_req && this.password == "";
 
 			if (this.username_vide || this.password_vide) return;
 

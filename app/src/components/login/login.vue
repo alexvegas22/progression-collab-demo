@@ -32,7 +32,7 @@
 			</tab-panel>
 			
 			<tab-panel val="1" key="1" class="tab-panel">
-				<LoginForm @onLogin="onLogin" />
+				<LoginForm @onLogin="onLogin" :password_req="password_req" />
 			</tab-panel>
 
 			<tab-panel val="2" key="2" class="tab-panel">
