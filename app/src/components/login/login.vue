@@ -28,7 +28,7 @@
 
 		<tab-panels v-model="tabSélectionné" class="tab-panels">
 			<tab-panel val="0" key="0" class="tab-panel">
-				<LoginForm @onLogin="onLogin" :domaine="ldap_domaine" :url_mdp_reinit="ldap_url_mdp_reinit" />
+				<LoginForm @onLogin="onLogin" :domaine="ldap_domaine" :url_mdp_reinit="ldap_url_mdp_reinit" :password_req="true" />
 			</tab-panel>
 			
 			<tab-panel val="1" key="1" class="tab-panel">
