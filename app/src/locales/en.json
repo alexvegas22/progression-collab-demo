@@ -13,7 +13,8 @@
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
 		"inscription": "Sign in",
-		"champ_obligatoire": "Required field"
+		"champ_obligatoire": "Required field",
+		"mdp_oublié": "forgot your password?"
 	},
 
 	"inscription": {

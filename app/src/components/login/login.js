@@ -8,8 +8,24 @@ export default {
 	},
 	data() {
 		return {
-			domaine: process.env.VUE_APP_DOMAINE,
-			tabSélectionné: "0",
+			tabSélectionné: this.$store.getters.configServeur.AUTH.LDAP ? "0" : "1"
+		}
+	},
+	computed: {
+		config_serveur(){
+			return this.$store.getters.configServeur;
+		},
+		auth_local(){
+			return this.config_serveur.AUTH.LOCAL;
+		},
+		auth_ldap(){
+			return this.config_serveur.AUTH.LDAP;
+		},
+		ldap_domaine(){
+			return this.config_serveur.AUTH.LDAP ? this.config_serveur.LDAP.DOMAINE : "";
+		},
+		ldap_url_mdp_reinit(){
+			return this.config_serveur.AUTH.LDAP ? this.config_serveur.LDAP.URL_MDP_REINIT : "";
 		}
 	},
 	emits: {

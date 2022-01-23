@@ -14,6 +14,9 @@
 				<label for="passwd" class="control-label">{{ $t('login.motDePasse') }}</label>
 				<input class="form-control" id="passwd" name="passwd" type="password" v-model="password" />
 				<div v-if="password_vide">{{ $t('login.champ_obligatoire') }}</div>
+				<div v-if="url_mdp_reinit">
+					<a :href="url_mdp_reinit">{{ $t('login.mdp_oublié') }}</a>
+				</div>
 			</div>
 		</div>
 		<br>

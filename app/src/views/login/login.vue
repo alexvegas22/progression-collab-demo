@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="configServeur">
 		<Login @onAuth="onAuth" @onLogin="onLogin" password_req="true" plateforme="LMS" cours="Mon cours" />
 	</div>
 </template>
@@ -28,6 +28,9 @@
 	 computed: {
 		 token() {
 			 return this.$store.state.token;
+		 },
+		 configServeur() {
+			 return this.$store.getters.configServeur;
 		 }
 	 },
 	 methods: {

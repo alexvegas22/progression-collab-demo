@@ -1,6 +1,7 @@
 import {
 	authentifierApi,
 	callbackGrade,
+	getConfigServeurApi,
 	getAvancementApi,
 	getQuestionApi,
 	getTentativeApi,
@@ -80,6 +81,15 @@ export default {
 	
 	async setErreurs({ commit, state }, erreurs) {
 		commit("setErreurs", erreurs);
+	},
+
+	async getConfigServeur({commit, state }, urlConfig){
+		return valider(commit, getConfigServeurApi(urlConfig)
+			.then((config)=>{
+				commit("setConfigServeur", config);
+				return config;
+			})
+		);
 	},
 
 	async authentifier({ commit, state }, params) {

@@ -39,6 +39,10 @@ export const mutations = {
 		state.cb_auth_params = cb_auth_params;
 	},
 
+	setConfigServeur(state, config) {
+		state.configServeur = config;
+	},
+
 	setAvancement(state, avancement) {
 		state.avancement = avancement;
 	},

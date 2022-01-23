@@ -45,9 +45,10 @@
 	 },
 	 created() {
 		 this.traiterParamètresURL( window.location.search );
+		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
 	 },
 	 data() {
-	  return {
+		 return {
 			 cb_auth: null,
 			 cb_auth_params: null,
 		 } },

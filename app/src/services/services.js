@@ -6,6 +6,14 @@ const authentifierApi = async (urlAuth, nom_utilisateur, mdp, domaine) =>
 const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
 	(await postData(urlAuth, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
 
+const getConfigServeurApi = async (urlConfig) => {
+	return getData(urlConfig).then((data) => {
+		var config = data;
+
+		return config;
+	});
+};
+
 const getUserApi = async (urlUser, token) => {
 	return getData(urlUser + "?include=avancements", token).then((data) => {
 		var user = data.data.attributes;
@@ -157,6 +165,7 @@ export {
 	authentifierApi,
 	callbackAuth,
 	callbackGrade,
+	getConfigServeurApi,
 	getAvancementApi,
 	getQuestionApi,
 	getTentativeApi,
