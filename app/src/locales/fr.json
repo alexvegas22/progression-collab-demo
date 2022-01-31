@@ -52,6 +52,7 @@
 	"resultat_test": {
 		"entrée": "Entrée",
 		"sortieAttendue": "Sortie attendue",
+		"params": "Paramètres",
 		"sortieErreur": "Sortie erreur",
 		"sortieConsole": "Sortie observée",
 		"rétroaction": "Rétroaction",

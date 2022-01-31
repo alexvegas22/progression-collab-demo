@@ -36,6 +36,7 @@ export default {
 		return {
 			sortie_observée: null,
 			sortie_attendue: null,
+			params: null,
 			feedback: null,
 		};
 	},

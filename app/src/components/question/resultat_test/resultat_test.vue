@@ -9,6 +9,17 @@
 			</div>
 		</div>
 
+		<div class="row" v-if="test.params">
+			<div class="bg-light col card device-card">
+				<div class="card-body">
+					<h5 class="text-black-50 font-weight-bold text-left card-title">
+						{{ $t("resultat_test.params") }}
+					</h5>
+					<pre class="card-text" v-html="test.params"></pre>
+				</div>
+			</div>
+		</div>
+
 		<div class="row">
 			
 			<div class="bg-light col card device-card">
