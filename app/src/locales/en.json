@@ -52,6 +52,7 @@
 	"resultat_test": {
 		"entrée": "Input",
 		"sortieAttendue": "Expected output",
+		"params": "Arguments",
 		"sortieErreur": "Error output",
 		"sortieConsole": "Actual output",
 		"rétroaction": "Feedback",
