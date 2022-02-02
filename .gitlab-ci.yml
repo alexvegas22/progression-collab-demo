@@ -19,7 +19,7 @@ test_unitaires:
     command: ["--tls=false"]
     alias: dind
   script:
-    - true
+    - "true"
 
 # Stage build_image
 
