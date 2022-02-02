@@ -51,7 +51,7 @@ deploy:
     alias: dind
   script:
     - chmod 400 /builds/progression/progression_frontend.tmp/ID_RSA
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $CD_USER@$CD_HOST -p $CD_PORT $CD_COMMAND test $CI_COMMIT_REF
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $CD_USER@$CD_HOST -p $CD_PORT $CD_COMMAND test $( [ "$CI_COMMIT_REF_NAME" = "master" ] && echo "staging" || echo $CI_COMMIT_REF_NAME )
   only:
     - master
     - dev
