@@ -37,7 +37,6 @@ const_image:
     - export VUE_APP_API_AUTH_KEY_TTL=\$VUE_APP_API_AUTH_KEY_TTL
     - export VUE_APP_DOMAINE=\$VUE_APP_DOMAINE
     - export VUE_APP_SUBDIR=\$VUE_APP_SUBDIR
-    - echo $VUE_APP_API_URL
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
