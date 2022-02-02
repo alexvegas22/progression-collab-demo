@@ -1,8 +1,8 @@
 <template>
-  <metainfo>
-      <template v-slot:title="{ content }">{{ content ? `${content} | Progression` : `Progression` }}</template>
-  </metainfo>
-  <div id="app">
+	<metainfo>
+		<template v-slot:title="{ content }">{{ content ? `${content} | Progression` : `Progression` }}</template>
+	</metainfo>
+	<div id="app">
 		<div v-show="erreurs" class="alert alert-danger">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="effacerErreurs()">
 				×
