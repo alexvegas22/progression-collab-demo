@@ -34,12 +34,12 @@ const_image:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - |
       docker build \
-      -e VUE_APP_API_URL=\$VUE_APP_API_URL \
-      -e VUE_APP_I18N_FALLBACK_LOCALE=\$VUE_APPI_18N_FALLBACK_LOCALE \
-      -e VUE_APP_DELAI_SAUVEGARDE=\$VUE_APP_DELAI_SAUVEGARDE \
-      -e VUE_APP_API_AUTH_KEY_TTL=\$VUE_APP_API_AUTH_KEY_TTL \
-      -e VUE_APP_DOMAINE=\$VUE_APP_DOMAINE \
-      -e VUE_APP_SUBDIR=\$VUE_APP_SUBDIR \
+      --build-arg VUE_APP_API_URL=\$VUE_APP_API_URL \
+      --build-arg VUE_APP_I18N_FALLBACK_LOCALE=\$VUE_APPI_18N_FALLBACK_LOCALE \
+      --build-arg VUE_APP_DELAI_SAUVEGARDE=\$VUE_APP_DELAI_SAUVEGARDE \
+      --build-arg VUE_APP_API_AUTH_KEY_TTL=\$VUE_APP_API_AUTH_KEY_TTL \
+      --build-arg VUE_APP_DOMAINE=\$VUE_APP_DOMAINE \
+      --build-arg VUE_APP_SUBDIR=\$VUE_APP_SUBDIR \
       -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
   only:
