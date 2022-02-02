@@ -31,14 +31,16 @@ const_image:
     command: ["--tls=false"]
     alias: dind
   script:
-    - export VUE_APP_API_URL=\$VUE_APP_API_URL
-    - export VUE_APP_I18N_FALLBACK_LOCALE=\$VUE_APPI_18N_FALLBACK_LOCALE
-    - export VUE_APP_DELAI_SAUVEGARDE=\$VUE_APP_DELAI_SAUVEGARDE
-    - export VUE_APP_API_AUTH_KEY_TTL=\$VUE_APP_API_AUTH_KEY_TTL
-    - export VUE_APP_DOMAINE=\$VUE_APP_DOMAINE
-    - export VUE_APP_SUBDIR=\$VUE_APP_SUBDIR
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY/progression/progression_frontend:test .
+    - |
+      docker build \
+      -e VUE_APP_API_URL=\$VUE_APP_API_URL \
+      -e VUE_APP_I18N_FALLBACK_LOCALE=\$VUE_APPI_18N_FALLBACK_LOCALE \
+      -e VUE_APP_DELAI_SAUVEGARDE=\$VUE_APP_DELAI_SAUVEGARDE \
+      -e VUE_APP_API_AUTH_KEY_TTL=\$VUE_APP_API_AUTH_KEY_TTL \
+      -e VUE_APP_DOMAINE=\$VUE_APP_DOMAINE \
+      -e VUE_APP_SUBDIR=\$VUE_APP_SUBDIR \
+      -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
   only:
     - dev
