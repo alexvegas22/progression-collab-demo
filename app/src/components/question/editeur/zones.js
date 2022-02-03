@@ -103,7 +103,7 @@ export const zones = {
 			//Utile pour éviter que les lignes invisibles n'influencent l'indentation automatique.
 			for(var i=ligneDébut.line; i<=ligneFin.line; i++)
 				if (!doc.getLine(i).match("[+-](TODO|VISIBLE)"))
-					doc.replaceRange("",
+					doc.replaceRange("\n",
 									 { line: i, ch: 0 },
 									 { line: i } );
 
