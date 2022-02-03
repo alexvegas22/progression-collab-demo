@@ -87,7 +87,7 @@
                             <div class="timeline-heading">
                                 <h4>Où? </h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Entièrement en ligne! Toute la programmation à partir qu’un navigateur et d'une connexion internet.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Entièrement en ligne! Toute la programmation à partir d’un navigateur et d'une connexion internet.</p></div>
                         </div>
                     </li>
 
