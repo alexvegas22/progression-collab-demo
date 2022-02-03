@@ -81,7 +81,7 @@
                     <h3 class="section-subheading text-muted">L'apprenti-programmeur</h3>
                 </div>
                 <ul class="timeline">
-                    <li class="timeline-inverted">
+                    <li class="timeline">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/1.jpg" alt="Où" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -112,7 +112,7 @@
 						</div>
 					</li>
 					
-                    <li class="timeline-inverted">
+                    <li class="timeline">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/4.jpg" alt="Pourquoi" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -124,7 +124,20 @@
 							</div>
 						</div>
 					</li>
-								
+
+					<li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/5.jpg" alt="Pourquoi" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Esasaye-le maintenant! </h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">
+								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Byb2dfMS83NzE0MjQ3NC00MTdlLTQyN2ItYTVlOC0wODY0MWJlODVhYzcvaW5mby55bWw">Essaye un exercice de démo ici</a>
+							</p>
+							</div>
+						</div>
+					</li>
+
 				</ul>
 			</div>
 		</section>
@@ -136,7 +149,7 @@
                     <h3 class="section-subheading text-muted">Coach de la programmation</h3>
                 </div>
                 <ul class="timeline">
-                    <li class="timeline-inverted">
+                    <li class="timeline">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/1.jpg" alt="Où" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -185,24 +198,25 @@
                             <div class="timeline-body"><p class="text-muted">
 								Pour éviter les obstacles freinant l’initiation à la programmation, qui sont, entre autres :
 								<ul>
-								<li>les embûches induites par l'installation et la configuration de logicielsle code encombrant et non pertinent aux notions visées, en le masquant </li>
-								<li>les résolutions incomplètes dues à une compréhension partielle de l'énoncé </li>
+									<li>les embûches induites par l'installation et la configuration de logiciels</li>
+									<li>le code encombrant et non pertinent aux notions visées, en le masquant </li>
+									<li>les résolutions incomplètes dues à une compréhension partielle de l'énoncé </li>
 								</ul>
 							</p>
 							<p class="text-muted">
 								Pour consolider l’apprentissage de la programmation, en suivant ses recommandations pédagogiques spécifiques  : 
 								<ul>
-								<li>fournir des consignes claires, détaillées et complètes  </li>
-								<li>minimiser les contraintes technologiques   </li>
-								<li>respecter une gradation très progressive en difficulté  </li>
-								<li>fournir une rétroaction immédiate et constructive sur les erreurs  								</li>
+									<li>fournir des consignes claires, détaillées et complètes  </li>
+									<li>minimiser les contraintes technologiques   </li>
+									<li>respecter une gradation très progressive en difficulté  </li>
+									<li>fournir une rétroaction immédiate et constructive sur les erreurs  								</li>
 								</ul>
 							</p>
 							</div>
 						</div>
 					</li>
 
-                    <li class="timeline-inverted">
+                    <li class="timeline">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/4.jpg" alt="Pourquoi" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -219,6 +233,18 @@
 						</div>
 					</li>
 
+					<li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/5.jpg" alt="Pourquoi" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Esasayez-le maintenant! </h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">
+								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Byb2dfMS83NzE0MjQ3NC00MTdlLTQyN2ItYTVlOC0wODY0MWJlODVhYzcvaW5mby55bWw">Essayez un exercice de démo ici</a>
+							</p>
+							</div>
+						</div>
+					</li>
 					
 				</ul>
 			</div>
