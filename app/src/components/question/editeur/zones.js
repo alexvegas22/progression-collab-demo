@@ -86,13 +86,13 @@ export const zones = {
 				posFin = doc.getValue().length;
 			}
 
-			let ligneDébut = doc.posFromIndex(posDébut);
-			let ligneFin = doc.posFromIndex(posFin);
+			let ligneDébut = doc.posFromIndex(posDébut).line;
+			let ligneFin = doc.posFromIndex(posFin).line;
 
 			//Cache toute la section non visible
 			doc.markText(
-				{ line: ligneDébut.line - 1 },
-				{ line: ligneFin.line },
+				{ line: ligneDébut - 1 },
+				{ line: ligneFin },
 				{
 					collapsed: "true",
 					atomic: true,
@@ -101,13 +101,15 @@ export const zones = {
 
 			//Remplace les lignes non visibles par des lignes vides.
 			//Utile pour éviter que les lignes invisibles n'influencent l'indentation automatique.
-			for(var i=ligneDébut.line; i<=ligneFin.line; i++)
-				if (!doc.getLine(i).match("[+-](TODO|VISIBLE)"))
-					doc.replaceRange("\n",
+			for(var i=ligneDébut; i<=ligneFin; i++){
+				if (!doc.getLine(i).match("VISIBLE")){
+					doc.replaceRange("",
 									 { line: i, ch: 0 },
 									 { line: i } );
+				}
+			}
 
-			posDébut = doc.getValue().indexOf("-VISIBLE", posFin);
+			posDébut = doc.getValue().indexOf("-VISIBLE", doc.indexFromPos({line:ligneFin, ch: 0}));
 		}
 	},
 };
