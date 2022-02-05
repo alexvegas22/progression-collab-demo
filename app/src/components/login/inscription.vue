@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<div class="col-sm-offset-3">
-			<input name="submit" type="submit" class="btn btn-primary" :value="$t('inscription.boutonInscription') "/>
+			<input name="submit" type="submit" class="btn btn-primary" :disabled="authentificationEnCours" :value="$t('inscription.boutonInscription') "/>
 		</div>
 	</form>
 </template>

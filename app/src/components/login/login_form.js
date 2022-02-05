@@ -22,7 +22,10 @@ export default {
 	computed: {
 		placeholder: function(){
 			return this.domaine ? '@'+this.domaine : ""
-		}
+		},
+		authentificationEnCours: function(){
+			return this.$store.state.authentificationEnCours;
+		},
 	},
 	methods: {
 		login() {
@@ -31,25 +34,8 @@ export default {
 
 			if (this.username_vide || this.password_vide) return;
 
-			this.$store
-				.dispatch("authentifier", {
-					urlAuth: process.env.VUE_APP_API_URL + "/auth",
-					nom_utilisateur: this.username,
-					mdp: this.password,
-					domaine: this.domaine,
-				})
-				.then((token) => {
-					this.$emit("onLogin", { username: this.username, token: token, persister: this.persister });
-				})
-				.catch((err) => {
-					console.log(err);
-					if (err.response.status == 401) {
-						this.$store.dispatch("deleteToken");
-						this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
-					} else {
-						this.$store.dispatch("setErreurs", { détails: err });
-					}
-				});
+			this.$emit("onLogin", { username: this.username, password: this.password, persister: this.persister });
+			
 		},
 	},
 };

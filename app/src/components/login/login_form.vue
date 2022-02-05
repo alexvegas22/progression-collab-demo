@@ -27,7 +27,9 @@
 			</div>
 		</div>
 		<div class="col-sm-offset-3">
-			<input name="submit" type="submit" class="btn btn-primary" :value="$t('login.boutonConnexion') "/>
+			<input name="submit" type="submit" class="btn btn-primary"
+				   :disabled="authentificationEnCours"
+				   :value="$t('login.boutonConnexion') "/>
 		</div>
 	</form>
 </template>
