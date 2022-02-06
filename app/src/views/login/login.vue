@@ -55,12 +55,12 @@
 					 }
 				 }
 				 catch(err){
-					 console.log(err);
-					 if (err.response.status == 401) {
-						 this.$store.dispatch("deleteToken");
+					 if (err.response && err.response.status == 401) {
 						 this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
-					 } else {
-						 this.$store.dispatch("setErreurs", { détails: err });
+						 this.$store.dispatch("deleteToken");
+					 }
+					 else{
+						 throw err;
 					 }
 				 }
 				 finally{

@@ -114,27 +114,29 @@ export default {
 		const username = params.username;
 		const password = params.password;
 		const domaine = state.configServeur.LDAP ? state.configServeur.LDAP.DOMAINE : ""
-
 		commit("updateAuthentificationEnCours", true);
-		var token = await authentifierApi(urlAuth, username, password, domaine)
 
-		commit("setUsername", username);
-		commit("setToken", token);
+		return valider(commit, (async () => {
+			const token = await authentifierApi(urlAuth, username, password, domaine)
 
-		sessionStorage.setItem("token", token);
+				commit("setUsername", username);
+				commit("setToken", token);
 
-		// Obtenir l'utilisateur
-		var user = await this.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username);
+				sessionStorage.setItem("token", token);
 
-		// Obtenir la clé d'authentification
-		var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+				// Obtenir l'utilisateur
+				const user = await this.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username);
 
-		var authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
+				// Obtenir la clé d'authentification
+				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
 
-		const storage = persister ? localStorage : sessionStorage;
-		storage.setItem("username", username);
-		storage.setItem("authKey_nom", authKey.nom);
-		storage.setItem("authKey_secret", authKey.clé.secret);
+				const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
+
+				const storage = persister ? localStorage : sessionStorage;
+				storage.setItem("username", username);
+				storage.setItem("authKey_nom", authKey.nom);
+				storage.setItem("authKey_secret", authKey.clé.secret);
+			})());
 	},
 
 	async setAuthentificationEnCours({ commit, state }, état){
