@@ -13,13 +13,15 @@
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
 		"inscription": "Sign in",
-		"champ_obligatoire": "Required field",
-		"mdp_oublié": "forgot your password?"
+		"usernameInvalide": "The username must contain only letters, dashes et underscores",
+		"champObligatoire": "Mandatory field",
+		"mdpOublié": "forgot your password?"
 	},
 
 	"inscription": {
 		"confirmation": "Confirm",
-		"boutonInscription": "Sign in"
+		"boutonInscription": "Sign in",
+		"mdpDifférents": "Passwords must match"
 	},
 
 	"validation_tentative": {

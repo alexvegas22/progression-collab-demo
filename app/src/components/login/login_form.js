@@ -16,6 +16,7 @@ export default {
 			password: "",
 			persister: true,
 			username_vide: false,
+			username_invalide: false,
 			password_vide: false,
 		};
 	},
@@ -30,9 +31,10 @@ export default {
 	methods: {
 		login() {
 			this.username_vide = this.username == "";
+			this.username_invalide = !this.username_vide && !this.username.match(/^[-a-zA-Z0-9_]+$/);
 			this.password_vide = this.password_req && this.password == "";
 
-			if (this.username_vide || this.password_vide) return;
+			if (this.username_vide || this.username_invalide || this.password_vide) return;
 
 			this.$emit("onLogin", { username: this.username, password: this.password, persister: this.persister });
 			

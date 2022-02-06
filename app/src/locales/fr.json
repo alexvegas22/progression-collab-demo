@@ -13,13 +13,15 @@
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"champ_obligatoire": "Champ obligatoire",
-		"mdp_oublié": "Mot de passe oublié?"
+		"usernameInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés",
+		"champObligatoire": "Champ obligatoire",
+		"mdpOublié": "Mot de passe oublié?"
 	},
 
 	"inscription": {
 		"confirmation": "Confirmation",
-		"boutonInscription": "S'inscrire"
+		"boutonInscription": "S'inscrire",
+		"mdpDifférents": "Les deux mots de passe doivent correspondre"
 	},
 	
 	"validation_tentative": {

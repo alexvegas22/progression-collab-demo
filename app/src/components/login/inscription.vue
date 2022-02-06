@@ -4,7 +4,8 @@
 			<div class="col-sm-6">
 				<label for="username" class="control-label">{{ $t('login.courriel') }}</label>
 				<input class="form-control" type="text" id="username" name="username" autofocus v-model="username"/>
-				<div v-if="username_vide">Champ obligatoire</div>
+				<div v-if="username_vide">{{ $t('login.champObligatoire') }}</div>
+				<div v-if="username_invalide">{{ $t('login.usernameInvalide') }}</div>
 			</div>
 			<div class="col-sm-6">
 			</div>
@@ -13,7 +14,7 @@
 			<div class="col-sm-6">
 				<label for="passwd" class="control-label">{{ $t('login.motDePasse') }}</label>
 				<input class="form-control" id="passwd" name="passwd" type="password" v-model="password" />
-				<div v-if="password_vide">Champ obligatoire</div>
+				<div v-if="password_vide">{{ $t('login.champObligatoire') }}</div>
 			</div>
 		</div>
 		<div class="form-group" >
@@ -21,7 +22,7 @@
 			<div class="col-sm-6">
 				<input class="form-control" name="confirmation" type="password" v-model="confirmation" />
 				
-				<div v-if="confirmation_vide">Les deux mots de passe doivent correspondre</div>
+				<div v-if="confirmation_vide">{{ $t('inscription.mdpDifférents') }}</div>
 			</div>
 		</div>
 		<br>
