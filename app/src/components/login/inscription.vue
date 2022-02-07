@@ -30,8 +30,8 @@
 			<br>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<label for="persister" class="control-label"  style="padding-left: 5px;">{{ $t('login.persister') }}</label>
 					<input id="persister" name="persister" type="checkbox" v-model="persister" />
+					<label for="persister" class="control-label"  style="padding-left: 5px;">{{ $t('login.persister') }}</label>
 				</div>
 			</div>
 
