@@ -4,22 +4,30 @@
 		"authentification": "Incorrect username or password",
 		"inscription": "That username is already taken."
 	},
-	
+
+	"menu": {
+		"connexion": "Login",
+		"déconnexion": "Logout"
+	},
+
 	"login": {
-		"courriel": "Username : ",
-		"motDePasse": "Password : ",
+		"courriel": "Username",
+		"motDePasse": "Password",
 		"boutonConnexion": "Log in",
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
 		"inscription": "Sign in",
-		"champ_obligatoire": "Required field",
-		"mdp_oublié": "forgot your password?"
+		"usernameInvalide": "The username must contain only letters, dashes et underscores",
+		"champObligatoire": "Mandatory field",
+		"mdpOublié": "forgot your password?"
 	},
 
 	"inscription": {
+		"username": "Choose a username",
 		"confirmation": "Confirm",
-		"boutonInscription": "Sign in"
+		"boutonInscription": "Sign in",
+		"mdpDifférents": "Passwords must match"
 	},
 
 	"validation_tentative": {

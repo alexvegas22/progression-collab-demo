@@ -21,10 +21,13 @@
 			</div>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a href="/" class="navbar-brand text-light">
+	<nav class="navbar justify-content-between navbar-dark bg-dark">
+		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
+
+		<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+		<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
 	</nav>
 	<router-view />
 </template>
@@ -44,8 +47,8 @@
 		 })
 	 },
 	 created() {
-		 this.traiterParamètresURL( window.location.search );
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
+		 this.traiterParamètresURL( window.location.search );
 	 },
 	 data() {
 		 return {
@@ -100,6 +103,18 @@
 		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
+		 },
+		 connexion(){
+			 this.$router.push({name: "LoginView"});
+		 },
+		 déconnexion(){
+			 sessionStorage.removeItem("authKey_nom");
+			 sessionStorage.removeItem("authKey_secret");
+			 localStorage.removeItem("authKey_nom");
+			 localStorage.removeItem("authKey_secret");
+			 sessionStorage.removeItem("token");
+			 this.$store.dispatch("deleteToken");
+			 this.$router.push({name: "Home"});
 		 }
 	 }
  };
