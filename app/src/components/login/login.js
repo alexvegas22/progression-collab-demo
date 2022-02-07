@@ -10,10 +10,20 @@ export default {
 	},
 	data(){
 		return {
-			tabSélectionné: "2",
-		}
+			sélection: "STANDARD"
+		};
 	},
 	computed: {
+		tabSélectionné: {
+			get(){
+				if(this.sélection) return this.sélection;
+
+				return this.auth_ldap ? "LDAP" : !this.auth_ldap && this.auth_local ? "STANDARD" : "INSCRIPTION"
+			},
+			set(val){
+				this.sélection=val;
+			}
+		},
 		config_serveur(){
 			return this.$store.getters.configServeur;
 		},
@@ -39,6 +49,6 @@ export default {
 		},
 		estActif(tab) {
 			return this.tabSélectionné === tab;
-		}		
+		}
 	},
 };
