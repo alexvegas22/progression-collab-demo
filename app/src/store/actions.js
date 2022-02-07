@@ -114,7 +114,7 @@ export default {
 		const username = params.username;
 		const password = params.password;
 		const persister = params.persister;
-		const domaine = state.configServeur.LDAP ? state.configServeur.LDAP.DOMAINE : ""
+		const domaine = params.domaine;
 		commit("updateAuthentificationEnCours", true);
 
 		return valider(commit, (async () => {

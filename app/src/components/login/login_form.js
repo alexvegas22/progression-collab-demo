@@ -35,7 +35,7 @@ export default {
 
 			if (this.username_vide || this.username_invalide || this.password_vide) return;
 
-			this.$emit("onLogin", { username: this.username, password: this.password, persister: this.persister });
+			this.$emit("onLogin", { username: this.username, password: this.password, persister: this.persister, domaine: this.domaine });
 			
 		},
 	},
