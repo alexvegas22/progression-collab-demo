@@ -18,7 +18,7 @@ export default {
 			get(){
 				if(this.sélection) return this.sélection;
 
-				return this.auth_ldap ? "LDAP" : (!this.auth_ldap && this.auth_local) ? "STANDARD" : "INSCRIPTION"
+				return this.auth_ldap ? "LDAP" : !this.auth_ldap && this.auth_local ? "STANDARD" : "INSCRIPTION"
 			},
 			set(val){
 				this.sélection=val;
