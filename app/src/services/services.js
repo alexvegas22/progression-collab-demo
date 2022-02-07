@@ -103,6 +103,13 @@ const postTentative = async (params, token) => {
 	return tentative;
 };
 
+const postAuthKey = async( params, token ) =>
+	await postData( params.url, params.clé, token )
+		.then( (data) => {
+			return { nom: params.clé.nom,
+					 clé: data.data.attributes}
+		});
+
 const callbackGrade = async (url, params) => {
 	await postData(url, params);
 };
@@ -174,4 +181,5 @@ export {
 	postAvancementApi,
 	postSauvegardeApi,
 	postTentative,
+	postAuthKey,
 };

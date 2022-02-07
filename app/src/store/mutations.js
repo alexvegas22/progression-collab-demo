@@ -64,6 +64,9 @@ export const mutations = {
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
+	updateAuthentificationEnCours(state, bool) {
+		state.authentificationEnCours = bool;
+	},
 	setSauvegarde(state, sauvegarde) {
 		state.sauvegardes[sauvegarde.langage] = sauvegarde;
 	},

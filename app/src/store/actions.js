@@ -10,6 +10,7 @@ import {
 	postAvancementApi,
 	postSauvegardeApi,
 	postTentative,
+	postAuthKey
 } from "@/services/index.js";
 
 import tokenEstValide from "@/util/token.js";
@@ -74,6 +75,22 @@ function sauvegarderToken(token) {
 	else sessionStorage.setItem("token", token);
 }
 
+function générerAuthKey(user, token, expiration=0) {
+	const clé_id = "LTIauthKey_" + randomID();
+
+	return { nom: clé_id,
+				  portée: 1,
+				  expiration: expiration,
+	}
+}
+
+function randomID() {
+	// Math.random should be unique because of its seeding algorithm.
+	// Convert it to base 36 (numbers + letters), and grab the first 9 characters
+	// after the decimal.
+	return Math.random().toString(36).substr(2, 9);
+}
+
 export default {
 	async setValidateur( v ){
 		validateur = v;
@@ -93,14 +110,40 @@ export default {
 	},
 
 	async authentifier({ commit, state }, params) {
-		const urlAuth = params.urlAuth;
-		const nom_utilisateur = params.nom_utilisateur;
-		const mdp = params.mdp;
+		const urlAuth = process.env.VUE_APP_API_URL + (params.inscrire ? "/inscription" : "/auth");
+		const username = params.username;
+		const password = params.password;
+		const persister = params.persister;
 		const domaine = params.domaine;
+		commit("updateAuthentificationEnCours", true);
 
-		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp, domaine));
+		return valider(commit, (async () => {
+			const token = await authentifierApi(urlAuth, username, password, domaine)
+
+			commit("setUsername", username);
+			commit("setToken", token);
+
+			sessionStorage.setItem("token", token);
+
+			// Obtenir l'utilisateur
+			const user = await this.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username);
+
+			// Obtenir la clé d'authentification
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+
+			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
+
+			const storage = persister ? localStorage : sessionStorage;
+			storage.setItem("username", username);
+			storage.setItem("authKey_nom", authKey.nom);
+			storage.setItem("authKey_secret", authKey.clé.secret);
+		})());
 	},
 
+	async setAuthentificationEnCours({ commit, state }, état){
+		commit("updateAuthentificationEnCours", état);
+	},
+	
 	async inscription({ commit, state }, params) {
 		const urlAuth = params.urlInscription;
 		const nom_utilisateur = params.nom_utilisateur;
