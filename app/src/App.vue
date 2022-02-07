@@ -44,8 +44,8 @@
 		 })
 	 },
 	 created() {
-		 this.traiterParamètresURL( window.location.search );
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
+		 this.traiterParamètresURL( window.location.search );
 	 },
 	 data() {
 		 return {

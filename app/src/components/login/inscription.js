@@ -5,6 +5,9 @@ export default {
 	emits: {
 		onLogin: Object,
 	},
+	props:{
+		password_req: Boolean,
+	},
 	data() {
 		return {
 			username: "",
@@ -26,8 +29,8 @@ export default {
 		inscrire() {
 			this.username_vide = this.username == "";
 			this.username_invalide = !this.username_vide && !this.username.match(/^[-a-zA-Z0-9_]+$/);
-			this.password_vide = this.password == "";
-			this.confirmation_vide = this.confirmation != this.password;
+			this.password_vide = this.password_req && this.password == "";
+			this.confirmation_vide =this.password_req && this.confirmation != this.password;
 
 			if (this.username_vide || this.username_invalide || this.password_vide || this.confirmation_vide) return;
 

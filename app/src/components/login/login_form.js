@@ -8,7 +8,6 @@ export default {
 	props : {
 		domaine: String,
 		url_mdp_reinit: String,
-		password_req: Boolean,
 	},
 	data() {
 		return {
@@ -32,7 +31,7 @@ export default {
 		login() {
 			this.username_vide = this.username == "";
 			this.username_invalide = !this.username_vide && !this.username.match(/^[-a-zA-Z0-9_]+$/);
-			this.password_vide = this.password_req && this.password == "";
+			this.password_vide = this.password == "";
 
 			if (this.username_vide || this.username_invalide || this.password_vide) return;
 

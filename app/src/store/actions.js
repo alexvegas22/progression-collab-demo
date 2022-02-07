@@ -113,6 +113,7 @@ export default {
 		const urlAuth = process.env.VUE_APP_API_URL + (params.inscrire ? "/inscription" : "/auth");
 		const username = params.username;
 		const password = params.password;
+		const persister = params.persister;
 		const domaine = state.configServeur.LDAP ? state.configServeur.LDAP.DOMAINE : ""
 		commit("updateAuthentificationEnCours", true);
 

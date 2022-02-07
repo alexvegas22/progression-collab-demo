@@ -1,14 +1,16 @@
 import LoginForm from './login_form.vue';
 import Inscription from './inscription.vue';
 
+import {reactive, toRefs} from 'vue';
+
 export default {
 	components: {
 		LoginForm,
 		Inscription,
 	},
-	data() {
+	data(){
 		return {
-			tabSélectionné: this.$store.getters.configServeur.AUTH.LDAP ? "0" : "1"
+			tabSélectionné: "2",
 		}
 	},
 	computed: {
@@ -27,9 +29,6 @@ export default {
 		ldap_url_mdp_reinit(){
 			return this.config_serveur.AUTH.LDAP ? this.config_serveur.LDAP.URL_MDP_REINIT : "";
 		},
-		password_req(){
-			return this.auth_local || this.auth_ldap;
-		}
 	},
 	emits: {
 		onLogin: Object,
@@ -42,5 +41,4 @@ export default {
 			return this.tabSélectionné === tab;
 		}		
 	},
-	
 };

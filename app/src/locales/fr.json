@@ -6,8 +6,8 @@
 	},
 
 	"login": {
-		"courriel": "Nom d'utilisateur : ",
-		"motDePasse": "Mot de passe : ",
+		"courriel": "Nom d'utilisateur",
+		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
 		"persister": "Se souvenir de moi sur cet ordinateur",
@@ -19,6 +19,7 @@
 	},
 
 	"inscription": {
+		"username": "Veuillez choisir un nom d'utilisateur",
 		"confirmation": "Confirmation",
 		"boutonInscription": "S'inscrire",
 		"mdpDifférents": "Les deux mots de passe doivent correspondre"
