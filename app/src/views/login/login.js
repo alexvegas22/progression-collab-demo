@@ -50,7 +50,9 @@ export default {
 				catch(err){
 					if (err.response && err.response.status == 401) {
 						this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
-						this.$store.dispatch("deleteToken");
+					}
+					else if (err.response && err.response.status == 403) {
+						this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription") });
 					}
 					else{
 						throw err;
