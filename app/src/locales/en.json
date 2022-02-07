@@ -4,7 +4,12 @@
 		"authentification": "Incorrect username or password",
 		"inscription": "That username is already taken."
 	},
-	
+
+	"menu": {
+		"connexion": "Login",
+		"déconnexion": "Logout"
+	},
+
 	"login": {
 		"courriel": "Username",
 		"motDePasse": "Password",

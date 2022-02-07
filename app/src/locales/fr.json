@@ -5,6 +5,11 @@
 		"inscription": "Ce nom d'utilisateur est déjà utilisé"
 	},
 
+	"menu": {
+		"connexion": "Connexion",
+		"déconnexion": "Déconnexion"
+	},
+
 	"login": {
 		"courriel": "Nom d'utilisateur",
 		"motDePasse": "Mot de passe",
