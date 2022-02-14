@@ -23,6 +23,13 @@
 		"mdpOublié": "Mot de passe oublié?"
 	},
 
+	"présentation": {
+		"passer": "Passer l'introduction",
+		"suivant": "Suivant",
+		"précédent": "Précédent",
+		"terminer": "Terminer l'introduction"
+	},
+	
 	"inscription": {
 		"username": "Veuillez choisir un nom d'utilisateur",
 		"confirmation": "Confirmation",
@@ -52,9 +59,7 @@
 		"mauvaiseRéponse": "Mauvaise réponse",
 		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
-		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
-		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur.",
-		"soumettre": "Soumettez votre solution pour obtenir une rétroaction"
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
 	},
 
 	"resultat_test": {

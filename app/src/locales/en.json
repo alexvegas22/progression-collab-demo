@@ -23,6 +23,13 @@
 		"mdpOublié": "forgot your password?"
 	},
 
+	"présentation": {
+		"passer": "Passer l'introduction",
+		"suivant": "Suivant",
+		"précédent": "Précédent",
+		"terminer": "Terminer l'introduction"
+	},
+
 	"inscription": {
 		"username": "Choose a username",
 		"confirmation": "Confirm",
@@ -52,9 +59,7 @@
 		"mauvaiseRéponse": "Incorrect",
 		"nbTestsValidés": "Passed tests : ",
 		"conseil": "Tip : ",
-		"traitementEnCours": "Your answer is being tested...",
-		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator",
-		"soumettre": "Submit your answer to receive feedback"
+		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
 	},
 
 	"resultat_test": {
