@@ -11,7 +11,8 @@
 						  v-bind:sélectionné="index==index_select"
 
 						  v-on:select="select(index)"
-					/>
+						  présentation_étape="3.0"
+						/>
 				</div>
 			</div>
 			<div class="col-8">

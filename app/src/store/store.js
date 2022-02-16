@@ -8,6 +8,7 @@ export default createStore({
 		user: null,
 		uri: null,
 		langageDéfaut: null,
+		démo: false,
 		token: null,
 		cb_succes: null,
 		cb_succes_params: null,

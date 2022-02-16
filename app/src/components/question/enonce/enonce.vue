@@ -10,17 +10,17 @@
 				</svg>
 			</div>
 
-			<div class="row">
+			<div class="row" présentation_étape="0.1">
 				<h3 class="titre align-self-start">
 					{{ question.titre }}
-						<span class="badge niveau"> {{ question.niveau }} </span>
+					<span class="badge niveau"  présentation_étape="0.2"> {{ question.niveau }} </span>
 				</h3>
 			</div>
 			
 			<div class="row flex-grow-1" >
-				<p
-					class="lead"
-						   v-html="question.énoncé">
+				<p  présentation_étape="0.3"
+										class="lead"
+					v-html="question.énoncé">
 				</p>
 			</div>
 			
