@@ -19,6 +19,10 @@ export const mutations = {
 		state.uri = uri;
 	},
 
+	setDémo(state, val) {
+		state.démo = val;
+	},
+
 	setLangageDéfaut(state, langageDéfaut) {
 		state.langageDéfaut = langageDéfaut;
 	},

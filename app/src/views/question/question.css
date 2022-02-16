@@ -16,3 +16,11 @@ body {
 	margin: 1rem;
 	background: darkgray;
 }
+
+.v-tour__target--highlighted {
+	box-shadow: 0 0 0 99999px rgba(0,0,0,.4);
+}
+
+.v-step__content {
+	text-align: left;
+}

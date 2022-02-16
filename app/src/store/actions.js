@@ -355,6 +355,10 @@ export default {
 		commit("setLangageDéfaut", langageDéfaut);
 	},
 
+	setDémo({ commit, state }, val) {
+		commit("setDémo", val);
+	},
+
 	setCallbackSucces({ commit, state }, cb_succes) {
 		commit("setCallbackSucces", cb_succes);
 	},

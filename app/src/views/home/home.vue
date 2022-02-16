@@ -132,7 +132,7 @@
                                 <h4>Esasaye-le maintenant! </h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">
-								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Byb2dfMS83NzE0MjQ3NC00MTdlLTQyN2ItYTVlOC0wODY0MWJlODVhYzcvaW5mby55bWw">Essaye un exercice de démo ici</a>
+								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">Essaye un exercice de démo ici</a>
 							</p>
 							</div>
 						</div>
@@ -240,7 +240,7 @@
                                 <h4>Esasayez-le maintenant! </h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">
-								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Byb2dfMS83NzE0MjQ3NC00MTdlLTQyN2ItYTVlOC0wODY0MWJlODVhYzcvaW5mby55bWw">Essayez un exercice de démo ici</a>
+								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">Essayez un exercice de démo ici</a>
 							</p>
 							</div>
 						</div>

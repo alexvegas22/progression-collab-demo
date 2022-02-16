@@ -79,6 +79,10 @@
 				 this.$store.dispatch("setLangageDéfaut", urlParams.get('lang'));
 			 }
 
+			 if(urlParams.has('demo')){
+				 this.$store.dispatch("setDémo", true);
+			 }
+
 			 if(urlParams.has('cb_succes')){
 				 this.$store.dispatch("setCallbackSucces", urlParams.get('cb_succes'));
 				 if(urlParams.has('cb_succes_params')){

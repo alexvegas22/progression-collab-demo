@@ -23,6 +23,89 @@
 		"mdpOublié": "Mot de passe oublié?"
 	},
 
+	"présentation": {
+		"passer": "Passer l'introduction",
+		"suivant": "Suivant",
+		"précédent": "Précédent",
+		"terminer": "Terminer l'introduction",
+		"bienvenue": {
+			"titre": "Bienvenue",
+			"contenu": "Bienvenue à Progression, le gym de la programmation<br>Suivez le guide!"
+		},
+		"énoncé": {
+			"titre": "Énoncé",
+			"contenu": "L'énoncé de l'exercice se trouve dans cette partie"
+		},
+		"titre": {
+			"titre": "Énoncé",
+			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi"
+		},
+		"niveau":{
+			"titre": "Énoncé",
+			"contenu": "Le niveau de difficulté de l'exercice"
+		},
+		"énoncé_détail": {
+			"titre": "Énoncé",
+			"contenu": "La tâche à effectuer est détaillée ici :<ul><li>entrées<li>sorties<li>exemples<li>etc.</ul> Lisez bien!"
+		},
+		"code":{
+			"titre": "Éditeur de code",
+			"contenu": "L'éditeur de code. C'est ici que se passe votre travail!"
+		},
+		"pref_affichage": {
+			"titre": "Éditeur de code",
+			"contenu": "Préférences d'affichage. Êtes-vous plutôt nocture ou plutôt diurne?"
+		},
+		"ébauche":{
+			"titre": "Éditeur de code",
+			"contenu": "Complétez le code proposé ici. Certaines lignes sont occultées, d'autres sont désactivées pour vous permettre de rester concentré sur ce qui est essentiel à votre tâche."
+		},
+		"validation":{
+			"titre": "Validation",
+			"contenu": "Vous croyez avoir complété la tâche? Validez votre réponse en cliquant ici."
+		},
+		"progression":{
+			"titre": "Progression",
+			"contenu": "Votre progression pour cet exercice. Si tout est vert ici, vous avez réussi!"
+		},
+		"rétroaction":{
+			"titre": "Rétroaction",
+			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici"
+		},
+		"jeu_tests":{
+			"titre": "Tests",
+			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi"
+		},
+		"entrées":{
+			"titre": "Tests",
+			"contenu":"Chacun des tests fournit des entrées différentes au programme"
+		},
+		"sorties_attendues":{
+			"titre": "Tests",
+			"contenu": "et s'assure d'avoir reçu des sorties très spécifiques."
+		},
+		"sorties_observées":{
+			"titre": "Tests",
+			"contenu": "Les sorties de votre programme doivent concorder exactement!"
+		},
+		"avancement":{
+			"titre": "Sélectionner une ébauche",
+			"contenu": "Utilisez ce menu pour changer de langage de programmation..."
+		},
+		"ébauche_initiale": {
+			"titre": "Sélectionner une ébauche",
+			"contenu": "revenir à l'ébauche initiale de l'exercice pour ce langage..."
+		},
+		"tentative":{
+			"titre": "Sélectionner une ébauche",
+			"contenu": "ou à une tentative précédente."
+		},
+		"fin":{
+			"titre": "Au travail",
+			"contenu": "Et maintenant, à vous de jouer!"
+		}
+	},
+	
 	"inscription": {
 		"username": "Veuillez choisir un nom d'utilisateur",
 		"confirmation": "Confirmation",
@@ -52,9 +135,7 @@
 		"mauvaiseRéponse": "Mauvaise réponse",
 		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
-		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
-		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur.",
-		"soumettre": "Soumettez votre solution pour obtenir une rétroaction"
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
 	},
 
 	"resultat_test": {
