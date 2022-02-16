@@ -34,6 +34,7 @@ const_image:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
     - \[\[ "$CI_COMMIT_REF" = "dev" \]\] && target="build-stage" || target="production-stage"
+    - echo $CI_COMMIT_REF $target
     - docker build --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
   only:
