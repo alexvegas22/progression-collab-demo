@@ -38,6 +38,7 @@ export default {
 			sortie_attendue: null,
 			params: null,
 			feedback: null,
+			entréeEstFermé: true,
 		};
 	},
 	props: {
@@ -70,6 +71,12 @@ export default {
 				this.feedback = parseMD(this.resultat.feedback);
 			}
 		},
+		ouvrirEntrée: function(){
+			this.entréeEstFermé = false;
+		},
+		fermerÉnoncé: function(){
+			this.entréeEstFermé = true;
+		}
 	},
 	watch: {
 		resultat: function () {
