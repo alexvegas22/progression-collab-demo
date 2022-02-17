@@ -38,6 +38,7 @@ export default {
 			sortie_attendue: null,
 			params: null,
 			feedback: null,
+			sortiesSontOuvertes: true,
 		};
 	},
 	props: {
@@ -69,6 +70,9 @@ export default {
 				this.sortie_attendue = résultats.résultat_attendu;
 				this.feedback = parseMD(this.resultat.feedback);
 			}
+		},		
+		fermerSorties(){
+			this.sortiesSontOuvertes=!this.sortiesSontOuvertes;
 		},
 	},
 	watch: {
