@@ -18,8 +18,8 @@ COPY app/ .
 
 #EXPOSE 8080
 
-# Développement
-#CMD [ "npm", "run", "serve" ]
+# Serveur de développement
+CMD [ "npm", "run", "serve" ]
 
 #Production  build app for production with minification
 RUN npm run build

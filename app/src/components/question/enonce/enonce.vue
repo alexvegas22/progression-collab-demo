@@ -15,6 +15,7 @@
 					{{ question.titre }}
 					<span class="badge niveau"  présentation_étape="0.2"> {{ question.niveau }} </span>
 					<span><button class="énoncé-btn" @click="fermerÉnoncé">x</button></span>
+
 				</h3>
 				
 			</div>
@@ -40,7 +41,6 @@
 			<rect y="30" width="100" height="10"></rect>
 			<rect y="60" width="100" height="10"></rect>
 		</svg>
-		<!--<button class="énoncé-btn" @click="fermerÉnoncé"></button>-->
 	</div>
 </template>
 
