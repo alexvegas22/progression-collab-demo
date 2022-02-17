@@ -13,5 +13,29 @@ export default {
 				},
 			});
 		},
+		
 	},
+	methods: {
+		cacher() {
+
+			var element = document.getElementById("hh").innerHTML;
+			if (element == "Modifier ✎") {
+
+				document.getElementById("hh").innerHTML = "Visualiser 👁";
+			} else {
+				document.getElementById("hh").innerHTML = "Modifier ✎";
+			}
+
+		}
+	},
+	data() {
+    
+
+		return {
+		  text:"# Test Heading",
+		  count: 0,
+		  shown: true,
+		}; 
+	  },
+
 };
