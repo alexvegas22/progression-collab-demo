@@ -23,6 +23,13 @@ const routes = [
 		name: "NotFound",
 		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
+	{
+		path: "/accomplissements",
+		name: "haccomplissements",
+		component: () => import("@/views/accomplissements/accomplissements.vue"),
+
+	}
+	
 ];
 
 const router = createRouter({
