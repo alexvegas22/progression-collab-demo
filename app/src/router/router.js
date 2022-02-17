@@ -25,7 +25,7 @@ const routes = [
 	},
 	{
 		path: "/accomplissements",
-		name: "haccomplissements",
+		name: "accomplissements",
 		component: () => import("@/views/accomplissements/accomplissements.vue"),
 
 	}

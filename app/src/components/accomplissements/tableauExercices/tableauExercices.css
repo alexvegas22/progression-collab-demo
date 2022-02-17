@@ -12,22 +12,21 @@ div{
     position: relative;
 }
 
-table{
-    caption-side: top;
-}
-
-th{
-    text-align: center;
-    font-weight: bolder;
-}
-
-tr{
-    box-shadow: 5px 5px 5px 5px gray;
-}
-
-td{
-    text-align: center;
-    font-weight: bolder;
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
