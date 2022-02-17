@@ -96,6 +96,8 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			this.editor.setOption("mode", "text/x-java");
 		} else if (value === "javascript") {
 			this.editor.setOption("mode", "javascript");
+		} else if (value === "typescript") {
+			this.editor.setOption("mode", "text/typescript");
 		} else if (value === "python") {
 			this.editor.setOption("mode", "python");
 		} else if (value === "bash") {
