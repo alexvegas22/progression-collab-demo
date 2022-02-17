@@ -29,12 +29,22 @@ export default {
 		}
 	},
 	data() {
-    
+		
 
 		return {
 		  text:"# Test Heading",
 		  count: 0,
 		  shown: true,
+
+		  toolbar: {
+			  documentation: {
+				  title: 'Documentation Markdown',
+				  icon: 'v-md-icon-tip',
+				  action() {
+					window.open('https://www.markdownguide.org/cheat-sheet', '_blank');
+				  }
+			  }
+		  }
 		}; 
 	  },
 
