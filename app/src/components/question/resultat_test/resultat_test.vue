@@ -20,11 +20,11 @@
 			</div>
 		</div>
 
-		<div class="row">
-			
+		<div class="row" v-if="sortiesSontOuvertes">		
 			<div class="bg-light col card device-card">
 				<div class="card-body" présentation_étape="3.2">
 					<h5 class="text-black-50 font-weight-bold text-left card-title">
+						<span><button class="énoncé-btn" @click="fermerSorties">«</button></span>
 						{{ $t("resultat_test.sortieAttendue") }}
 					</h5>
 					<pre v-if="sortie_attendue"><p class="card-text" v-html="sortie_attendue"></p></pre>
@@ -33,7 +33,6 @@
 					</pre>
 				</div>
 			</div>
-
 			<div class="bg-light col card device-card" v-if="resultat">
 				<div class="card-body" présentation_étape="3.3">
 					<h5 class="text-black-50 font-weight-bold text-left card-title">
@@ -45,7 +44,14 @@
 					</pre>
 				</div>
 			</div>
+		</div>
 
+		<div v-else>
+			<svg @click="fermerSorties" viewBox="0 0 100 80" width="40" height="40" fill="black" >
+				<rect y="0" width="75" height="8"></rect>
+				<rect y="15" width="75" height="8"></rect>
+				<rect y="30" width="75" height="8"></rect>
+			</svg>
 		</div>
 
 		<div class="row">

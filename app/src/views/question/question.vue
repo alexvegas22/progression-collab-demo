@@ -1,7 +1,6 @@
 <template>
 	<div v-if="user">
 		<Présentation v-if="démo" présentation_étape="00" />
-		hdsahhasdh
 	</div>
 	<div class="container-fluid p-3">
 		<div class="row" v-if="avancement">
