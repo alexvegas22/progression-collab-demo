@@ -14,7 +14,9 @@
 			</div>
 
 			<div class="row" présentation_étape="0.1">
-				<button id="btnTitre" v-on:click="cacherTitre(), (shown1 = !shown1)">Modifier ✎</button>
+				<div>
+					<button id="btnTitre" v-on:click="cacherTitre(), (shown1 = !shown1)">Modifier ✎</button>
+				</div>
 				<div v-if="shown1">
 					<input type = 'text' placeholder="Titre" id='titre' v-model="titre">
 				</div>
