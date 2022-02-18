@@ -5,6 +5,7 @@ import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affic
 export default {
 	components: { Test, ResultatTest, SélecteurModeAffichage },
 	name: "JeuTests",
+	
 	computed: {
 		tests() {
 			return this.$store.state.question.tests;
@@ -35,11 +36,15 @@ export default {
 	data() {
 		return {
 			index_select: 0,
+			jeuTestsSontOuverts:true
 		};
 	},
 	methods: {
 		select: function (index) {
 			this.index_select = index;
 		},
+		fermerJeuTests(){
+			this.jeuTestsSontOuverts=!this.jeuTestsSontOuverts;
+		}
 	},
 };
