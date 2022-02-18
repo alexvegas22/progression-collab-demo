@@ -47,6 +47,30 @@ h3 {
 	top: -20px
 }
 
+.sidebar {
+	height: 100vh;
+	max-width: 5rem;
+	background-color: black;
+	margin: -1rem;
+	padding:0;
+}
+
+.énoncé-sidebar-btn {
+	margin-left: 1rem;
+	margin-top: 0.3rem;
+	cursor: pointer;
+	
+	
+}
+.énoncé-btn{ 
+	border: solid 1px black;
+	border-radius: 0;
+	background-color:none;
+	margin-left: 5vw;
+	margin-bottom: 2rem;
+}
+
+
 /* animations */
 
 @-webkit-keyframes checkmark {

@@ -2,6 +2,11 @@ import parseMD from "@/util/parse";
 
 export default {
 	name: "Enonce",
+	data(){
+        return{
+            énoncéEstOuvert:true
+        }
+    },
 	computed: {
 		état_réussi() {
 			return this.$store.state.avancement.état == 2;
@@ -14,4 +19,9 @@ export default {
 			});
 		},
 	},
+	methods:{
+		fermerÉnoncé(){
+			this.énoncéEstOuvert=!this.énoncéEstOuvert;
+		}
+	}
 };
