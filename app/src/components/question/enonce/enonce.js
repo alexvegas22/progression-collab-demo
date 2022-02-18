@@ -44,7 +44,7 @@ export default {
 		  count: 0,
 		  shown: true,
 		  titre: this.$store.state.question.titre,
-		  shown1: true,
+		  shown1: false,
 
 		  toolbar: {
 			  documentation: {
