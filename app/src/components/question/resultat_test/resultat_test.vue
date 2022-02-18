@@ -1,9 +1,15 @@
 <template>
 	<div class="container" v-if="test">
 		<div class="row">
-			<div class="bg-light col card device-card">
+			<div v-if="entréeEstFermé" présentation_étape="3.1">
+				<span><button class="text-black-50 font-weight-bold" @click="ouvrirEntrée">{{ $t("resultat_test.entrée") }}</button></span>
+			</div>
+			<div v-else class="bg-light col card device-card">
 				<div class="card-body" présentation_étape="3.1">
-					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
+					<div style="display: flex; justify-content: space-between;">
+						<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
+						<span><button class="énoncé-btn" @click="fermerÉnoncé">x</button></span>	
+					</div>
 					<pre class="card-text" v-html="test.entrée"></pre>
 				</div>
 			</div>

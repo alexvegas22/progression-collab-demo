@@ -74,6 +74,12 @@ export default {
 		fermerSorties(){
 			this.sortiesSontOuvertes=!this.sortiesSontOuvertes;
 		},
+		ouvrirEntrée: function(){
+			this.entréeEstFermé = false;
+		},
+		fermerÉnoncé: function(){
+			this.entréeEstFermé = true;
+		}
 	},
 	watch: {
 		resultat: function () {
