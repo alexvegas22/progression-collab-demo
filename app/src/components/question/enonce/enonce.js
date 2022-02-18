@@ -13,6 +13,8 @@ export default {
 				},
 			});
 		},
+
+	
 		
 	},
 	methods: {
@@ -32,7 +34,7 @@ export default {
 		
 
 		return {
-		  text:"# Test Heading",
+		  text: this.$store.state.question.énoncé,
 		  count: 0,
 		  shown: true,
 

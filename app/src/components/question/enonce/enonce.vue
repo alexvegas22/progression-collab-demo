@@ -23,11 +23,11 @@
 			<div class="row flex-grow-1">
 				<div style="color: red" v-if="shown">
 					<v-md-editor 
-						v-model="question.énoncé" height="400px" mode="preview"></v-md-editor>
+						v-model="text" height="400px" mode="preview"></v-md-editor>
 				</div>
 				<div v-else>
 					<v-md-editor 
-					v-model="question.énoncé" 
+					v-model="text" 
 					height="400px" 
 					mode="edit" 
 					left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation" :toolbar="toolbar"
