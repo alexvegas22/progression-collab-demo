@@ -13,7 +13,6 @@ export default {
 				},
 			});
 		},
-		
 	},
 	methods: {
 		cacher() {
@@ -32,7 +31,7 @@ export default {
 		
 
 		return {
-		  text:"# Test Heading",
+		  text: this.$store.state.question.énoncé,
 		  count: 0,
 		  shown: true,
 
