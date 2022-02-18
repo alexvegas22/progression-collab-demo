@@ -25,6 +25,9 @@
 		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
+		<a href="/accomplissements" class="navbar-brand text-light mr-auto">
+			<span class="text-info"> Accomplis</span>sements
+		</a>
 
 		<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
 		<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>

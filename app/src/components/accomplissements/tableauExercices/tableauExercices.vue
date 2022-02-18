@@ -10,12 +10,16 @@
                     <th>Date</th>
                 </tr>
             </thead>
+            <!--<tbody v-for="elem in this.tentatives()"> -->
             <tbody>
                     <tr>
+                        <!-- <td href = {{question_uri()}}> {{titre()}} </td> -->
                         <td>Boucle</td>
-                        <td>Moyen</td>
-                        <td>Réussi</td>
-                        <td>2022-02-17</td>
+                        <!-- {{niveau()}}-->
+                        <td>Base</td>
+                        <td>{{this.étatVersChaîne()}}</td>
+                        <!--                          elem.date_soumission-->
+                        <td>{{ this.timestampVersDate(date_soumission) }}</td>
                     </tr>
             </tbody>
         </table>
@@ -23,5 +27,5 @@
 </template>
 
 <style src="./tableauExercices.css"></style>
-<script src="./tableauExercices.js" />
+<script src="./tableauExercices.js"></script>
 
