@@ -20,7 +20,7 @@
 				</div>
 				<div v-else>
 					<h3 class="titre align-self-start">
-						{{ question.titre }}
+						{{ titre }}
 						<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
 					</h3>
 				</div>
