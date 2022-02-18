@@ -36,3 +36,7 @@
 	background-color: #FFB3B3;
 }
 
+.carteEntree {
+	display: flex;
+	justify-content: space-between;
+}
