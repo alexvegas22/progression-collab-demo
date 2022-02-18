@@ -25,15 +25,26 @@ export default {
 				document.getElementById("hh").innerHTML = "Modifier ✎";
 			}
 
-		}
+		},
+		cacherTitre() {
+
+			var element = document.getElementById("btnTitre").innerHTML;
+			if (element == "Modifier ✎") {
+				document.getElementById("btnTitre").innerHTML = "Visualiser 👁";
+			} else {
+				document.getElementById("btnTitre").innerHTML = "Modifier ✎";
+			}
+
+		},
 	},
 	data() {
-		
 
 		return {
 		  text: this.$store.state.question.énoncé,
 		  count: 0,
 		  shown: true,
+		  titre: this.$store.state.question.titre,
+		  shown1: true,
 
 		  toolbar: {
 			  documentation: {
@@ -46,5 +57,4 @@ export default {
 		  }
 		}; 
 	  },
-
 };

@@ -14,10 +14,16 @@
 			</div>
 
 			<div class="row" présentation_étape="0.1">
-				<h3 class="titre align-self-start">
-					{{ question.titre }}
-					<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
-				</h3>
+				<button id="btnTitre" v-on:click="cacherTitre(), (shown1 = !shown1)">Modifier ✎</button>
+				<div v-if="shown1">
+					<input type = 'text' placeholder="Titre" id='titre' v-model="titre">
+				</div>
+				<div v-else>
+					<h3 class="titre align-self-start">
+						{{ question.titre }}
+						<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
+					</h3>
+				</div>
 			</div>
 			<button id="hh" v-on:click="cacher(), (shown = !shown)">Modifier ✎</button>
 			<div class="row flex-grow-1">
@@ -44,5 +50,4 @@
 </template>
 
 <script src="./enonce.js"></script>
-
 <style src="./enonce.css"></style>
