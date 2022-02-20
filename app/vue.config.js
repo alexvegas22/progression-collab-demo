@@ -10,8 +10,4 @@ module.exports = {
 
 	//Enlever en dev
 	publicPath: "/" + process.env.VUE_APP_SUBDIR,
-	node: {
-		fs: "empty",
-		path: "empty",
-	}
 }
