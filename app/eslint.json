@@ -1,0 +1,12 @@
+{
+	"extends": [
+		"eslint:recommended"
+	],
+	"plugins": [
+		"smarter-tabs"
+	],
+	"rules": {
+		"smarter-tabs/smarter-tabs": "error",
+		"no-mixed-spaces-and-tabs": "off"
+	}
+}
