@@ -73,22 +73,22 @@ router.beforeEach( (to, from, next ) => {
 
 	//Charge l'utilisateur et contitnue
 	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
-		 .then( () => next() )
-		 .catch( () =>{
-			 //En cas de problème, si l'utilisateur est requis
-			 if (pages_sans_connexion.indexOf(to.name) != -1){
-				 next();
-				 return;
-			 }
-			 else{
-				 //redirige vers la page de Login
-				 next( {name: 'LoginView',
-						query: to.query,
-						params: { origine: to.fullPath } 
-				 });
-				 return;
-			 }
-		 });
+	     .then( () => next() )
+	     .catch( () => {
+	         //En cas de problème, si l'utilisateur est requis
+	         if (pages_sans_connexion.indexOf(to.name) != -1){
+	             next();
+	             return;
+	         }
+	         else {
+	             //redirige vers la page de Login
+	             next( {name: 'LoginView',
+	                    query: to.query,
+	                    params: { origine: to.fullPath }
+	             });
+	             return;
+	         }
+	     });
 });
 
 export default router;

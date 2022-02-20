@@ -36,9 +36,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				foldGutter: true,
 				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 				...this.options,
-				indentUnit: 4,
 				smartIndent: false,
-				extraKeys: { Tab: "indentAuto" },
 			})
 			));
 
@@ -118,7 +116,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		zones.désactiverHorsTodo(this.editor.doc);
 	}
 	
-	updateXray(value) {
+	updateXray() {
 		if(this.xray){
 			//Enlève le marquage
 			this.editor.setValue(this.editor.getValue());

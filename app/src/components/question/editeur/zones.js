@@ -56,7 +56,7 @@ export const zones = {
 			}
 
 			for (let i = ligneDébut.line; i <= ligneFin.line; i++) {
-				doc.addLineClass(i, "gutter", "gutter-non-editable");			
+				doc.addLineClass(i, "gutter", "gutter-non-editable");
 				doc.addLineClass(i, "background", "ligne-non-editable");
 			}
 
@@ -103,9 +103,11 @@ export const zones = {
 			//Utile pour éviter que les lignes invisibles n'influencent l'indentation automatique.
 			for(var i=ligneDébut; i<=ligneFin; i++){
 				if (!doc.getLine(i).match("VISIBLE")){
-					doc.replaceRange("",
-									 { line: i, ch: 0 },
-									 { line: i } );
+					doc.replaceRange(
+						"",
+						{ line: i, ch: 0 },
+						{ line: i }
+					);
 				}
 			}
 

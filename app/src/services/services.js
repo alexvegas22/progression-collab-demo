@@ -106,8 +106,9 @@ const postTentative = async (params, token) => {
 const postAuthKey = async( params, token ) =>
 	await postData( params.url, params.clé, token )
 		.then( (data) => {
-			return { nom: params.clé.nom,
-					 clé: data.data.attributes}
+			return {
+				nom: params.clé.nom,
+				clé: data.data.attributes}
 		});
 
 const callbackGrade = async (url, params) => {
