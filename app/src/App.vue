@@ -25,9 +25,10 @@
 		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
-
-		<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-		<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+		<div v-show="!page_login">
+			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+		</div>
 	</nav>
 	<router-view />
 </template>
@@ -56,15 +57,15 @@
 			 cb_auth_params: null,
 		 } },
 	 computed: {
+		 page_login(){
+			 return this.$route.name=='LoginView';
+		 },
 		 token() {
 			 return this.$store.state.token;
 		 },
 		 erreurs() {
 			 return this.$store.state.erreurs;
 		 },
-		 username() {
-			 return this.$store.state.username;
-		 }
 	 },
 
 	 methods: {
@@ -96,14 +97,6 @@
 					 this.$store.dispatch("setCallbackAuthParams", JSON.parse(urlParams.get('cb_auth_params')));
 				 }
 			 }
-		 },
-		 récupérerUserInfos(){
-			 const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-			 const username = sessionStorage.getItem("username") || localStorage.getItem("username");
-			 this.$store.dispatch("setToken", token);
-			 this.$store.dispatch("setUsername", username);
-
-			 return username;
 		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
