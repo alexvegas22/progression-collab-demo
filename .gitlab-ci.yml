@@ -19,7 +19,7 @@ test_unitaires:
     command: ["--tls=false"]
     alias: dind
   script:
-    - docker run -v $CI_PROJECT_DIR/app:/app $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslint.json src/
+    - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslint.json src/
 
 # Stage build_image
 
@@ -37,10 +37,6 @@ const_image:
     - echo TARGET $target
     - docker build --build-arg NODE_ENV=dev --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
-  only:
-    - dev
-    - master
-
 
 # Stage deploy_image
 
