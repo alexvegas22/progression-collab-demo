@@ -2,11 +2,11 @@ export default {
 	name: "TableauExercices",
 
 	computed: {
-		langage() {
-			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
+		tentative() {
+			return this.$store.state.tentative;
 		},
 		tentatives() {
-			return this.$store.state.avancement.tentatives ?? [];
+			return this.$store.state.avancement.tentatives;
 		},
 		niveau(){
 			return this.$store.state.question.niveau;
@@ -29,11 +29,11 @@ export default {
 		étatVersChaîne: function (etat) {
 			let etatString;
 			switch (etat) {
-				case 0:
-					etatString = "questionRésolue";
+				case 2:
+					etatString = "Réussi !!";
 					break;
 				default:
-					etatString = "questionNonRésolue";
+					etatString = "En cours";
 			}
 			return etatString;
 		},

@@ -15,7 +15,10 @@
             <tbody>
                     <tr v-for="avancement in avancements" :key="avancement.id">
                                                  
-                        <td>{{ avancement.état}}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ étatVersChaîne(avancement.état)}}</td>
+                        <td></td>
                     </tr>
             </tbody>
         </table>
