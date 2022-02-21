@@ -19,7 +19,7 @@ test_unitaires:
     command: ["--tls=false"]
     alias: dind
   script:
-    - "true"
+    - docker run $CI_REGISTRY/progression/progression_frontend:test eslint -c eslint.json app/src/
 
 # Stage build_image
 
