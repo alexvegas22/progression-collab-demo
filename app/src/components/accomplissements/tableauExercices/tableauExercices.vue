@@ -17,8 +17,8 @@
                                                  
                         <td></td>
                         <td></td>
-                        <td>{{ étatVersChaîne(avancement.état)}}</td>
-                        <td></td>
+                        <td>{{ etat(avancement.état)}}</td>
+                        <td>{{avancement.tentatives}}</td>
                     </tr>
             </tbody>
         </table>

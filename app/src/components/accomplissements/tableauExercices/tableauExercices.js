@@ -2,12 +2,6 @@ export default {
 	name: "TableauExercices",
 
 	computed: {
-		tentative() {
-			return this.$store.state.tentative;
-		},
-		tentatives() {
-			return this.$store.state.avancement.tentatives;
-		},
 		niveau(){
 			return this.$store.state.question.niveau;
 		},
@@ -17,6 +11,16 @@ export default {
 		avancements(){
 			return this.$store.state.user.avancements;
 		},
+		tentatives() {
+			return this.$store.state.avancement.tentatives ?? [];
+		},
+		tentative() {
+			return this.$store.state.tentative;
+		},
+		date_soumission() {
+			return this.$store.state.tentative.date_soumission;
+		},
+	
 		question_uri(){
 			return this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
@@ -26,7 +30,7 @@ export default {
 		timestampVersDate: function (timestamp) {
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");
 		},
-		étatVersChaîne: function (etat) {
+		etat: function (etat) {
 			let etatString;
 			switch (etat) {
 				case 2:
