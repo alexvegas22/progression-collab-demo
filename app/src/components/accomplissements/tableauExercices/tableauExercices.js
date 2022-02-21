@@ -11,8 +11,11 @@ export default {
 		niveau(){
 			return this.$store.state.question.niveau;
 		},
-		titre(){
-			return this.$store.state.question.titre;
+		user(){
+			return this.$store.state.user;
+		},
+		avancements(){
+			return this.$store.state.user.avancements;
 		},
 		question_uri(){
 			return this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);

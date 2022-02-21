@@ -1,4 +1,6 @@
+
 <template>
+<div v-if="avancements">
     <h1> Liste d'exercices </h1><br>
     <div class="container">
         <table class="table">
@@ -10,22 +12,16 @@
                     <th>Date</th>
                 </tr>
             </thead>
-            <!--<tbody v-for="elem in this.tentatives()"> -->
             <tbody>
-                    <tr>
-                        <!-- <td href = {{question_uri()}}> {{titre()}} </td> -->
-                        <td>Boucle</td>
-                        <!-- {{niveau()}}-->
-                        <td>Base</td>
-                        <td>{{this.étatVersChaîne()}}</td>
-                        <!--                          elem.date_soumission-->
-                        <td>{{ this.timestampVersDate(date_soumission) }}</td>
+                    <tr v-for="avancement in avancements" :key="avancement.id">
+                                                 
+                        <td>{{ avancement.état}}</td>
                     </tr>
             </tbody>
         </table>
     </div>
+</div>
 </template>
 
 <style src="./tableauExercices.css"></style>
 <script src="./tableauExercices.js"></script>
-

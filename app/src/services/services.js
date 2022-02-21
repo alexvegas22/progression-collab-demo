@@ -20,7 +20,7 @@ const getUserApi = async (urlUser, token) => {
 		user.liens = data.data.links;
 		user.liens.avancements = data.data.relationships.avancements.links.related;
 		user.liens.clés = data.data.relationships.cles.links.related;
-		user.avancements = [];
+		user.avancements = new Object();
 		if (data.included) {
 			data.included.forEach((item) => {
 				var avancement = item.attributes;
@@ -53,6 +53,8 @@ const getQuestionApi = async (urlQuestion, token) => {
 	}
 	return question;
 };
+
+
 
 const getAvancementApi = async (urlAvancement, token) => {
 	const data = await getData(urlAvancement + "?include=tentatives,sauvegardes", token);
@@ -91,6 +93,7 @@ const postTentative = async (params, token) => {
 	}
 
 	var tentative = data.data.attributes;
+	
 	tentative.liens = data.data.links;
 	tentative.resultats = [];
 	if (data.included) {
@@ -131,7 +134,9 @@ const postSauvegardeApi = async (params, token) => {
 };
 
 function construireAvancement(data) {
+	
 	var avancement = data.data.attributes;
+	
 	avancement.liens = data.data.links;
 	avancement.liens.sauvegardes = data.data.relationships.sauvegardes.links.related;
 	avancement.liens.tentatives = data.data.relationships.tentatives.links.related;
@@ -147,6 +152,7 @@ function construireAvancement(data) {
 			}
 		});
 	}
+	
 	return avancement;
 }
 
@@ -183,3 +189,6 @@ export {
 	postTentative,
 	postAuthKey,
 };
+
+
+
