@@ -77,7 +77,15 @@ export default {
 
 	methods: {
 		onChange( texte ){
-			this.$store.dispatch("mettreAjourCode", texte)
+			if (this.xray) {
+				const params = {
+					code: texte,
+					langage: this.$store.state.tentative.langage,
+				};
+				this.$store.dispatch("mettreAjourEbauche", params);
+			} else {
+				this.$store.dispatch("mettreAjourCode", texte);
+			}
 			this.texteModifié();
 		},
 

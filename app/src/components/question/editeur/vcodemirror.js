@@ -68,9 +68,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		VCodeMirrorComp.ro.observe(this.$el);
 		this.updateMode(this.mode);
 		this.updateTheme(this.theme);
-		if(!this.xray){
-			this.updateZones();
-		}
+		this.updateXray();
 	}
 
 	beforeUnmount() {
@@ -82,7 +80,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateValue(value) {
 		if (value != this.editor.getValue()) {
 			this.editor.setValue(value);
-
 			if(!this.xray){
 				this.updateZones();
 			}
@@ -115,13 +112,15 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		zones.cacherHorsVisible(this.editor.doc);
 		zones.désactiverHorsTodo(this.editor.doc);
 	}
-	
+
 	updateXray() {
 		if(this.xray){
 			//Enlève le marquage
-			this.editor.setValue(this.editor.getValue());
+			const langage = this.$store.state.tentative.langage;
+			this.editor.setValue(this.$store.state.question.ebauches[langage].code);
 		}
 		else{
+			//this.editor.setValue(this.$store.state.tentative.code);
 			this.updateZones();
 		}
 	}
