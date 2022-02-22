@@ -22,3 +22,56 @@
 .progress{
 	height: 40px;
 }
+
+/* Tooltip container */
+.conseil {
+	position: relative;
+	float:right;
+	top: -540px;
+	right: 22px;
+	z-index: 3;
+	font-size: 30px;
+  }
+  
+  /* Tooltip text */
+  .conseil .conseiltext {
+	visibility: hidden;
+	color: #5f9ea0;
+	background-color: #555;
+	opacity:75%;
+	color: #fff;
+	text-align: center;
+	padding: 5px 10px;
+	border-radius: 6px;
+	font-size: 14px;
+	top:3rem;
+  
+	/* Position the tooltip text */
+	position: absolute;
+	z-index: 1;
+	
+	margin-left: -4.1rem;
+  
+	/* Fade in tooltip */
+	opacity: 0;
+	transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .conseil .conseiltext::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+  	left: 50%;
+	margin-left: -0.32rem;
+	opacity:75%;
+	border-width: 5px;
+	border-style: solid;
+	border-color:  transparent transparent #555 transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .conseil:hover .conseiltext {
+	visibility: visible;
+	opacity: 1;
+  }
