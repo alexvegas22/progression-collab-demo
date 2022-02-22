@@ -20,6 +20,8 @@ test_unitaires:
     alias: dind
   script:
     - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslint.json src/
+  except:
+    - master
 
 # Stage build_image
 
