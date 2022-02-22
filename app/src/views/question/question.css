@@ -24,3 +24,20 @@ body {
 .v-step__content {
 	text-align: left;
 }
+
+.flex-column {
+  display: flex;
+  flex-flow: column;
+}
+
+.flex-column.fill-height {
+  flex-grow: 1;
+}
+
+.barre-enonce {
+  height: calc(100vh - 56px);
+  padding: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}

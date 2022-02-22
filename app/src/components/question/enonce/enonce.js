@@ -2,6 +2,8 @@ import parseMD from "@/util/parse";
 
 export default {
 	name: "Enonce",
+  emits: ['cacherEnoncer'],
+  props: ['enoncerCacher'],
 	computed: {
 		état_réussi() {
 			return this.$store.state.avancement.état == 2;
