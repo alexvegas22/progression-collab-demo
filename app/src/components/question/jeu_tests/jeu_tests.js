@@ -41,5 +41,15 @@ export default {
 		select: function (index) {
 			this.index_select = index;
 		},
+		montrerAjouterTest : function(){
+			const divAjoute = document.getElementById("champAjouterTest");
+			var display = divAjoute.style.display;
+			if(display == "none"){
+				divAjoute.style.display = "block";
+			}else if(display == "block"){
+				divAjoute.style.display = "none";
+			}
+			
+		}
 	},
 };
