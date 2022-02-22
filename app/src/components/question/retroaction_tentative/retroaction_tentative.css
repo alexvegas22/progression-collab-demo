@@ -25,7 +25,14 @@
 .svg_ampoule{
 	
 	fill:#8D8C8C;
-	width: 2rem;
-	height: 2rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	animation: blink .5s 20 alternate;
+	animation-iteration-count: 10;
 }
+
+@keyframes blink {
+	from { fill: #8D8C8C; }
+	to { fill: rgb(0, 238, 255); }
+  }
 

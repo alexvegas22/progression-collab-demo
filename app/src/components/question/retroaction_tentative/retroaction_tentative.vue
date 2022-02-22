@@ -5,15 +5,16 @@
 			<div v-bind:style="testsRatésPct" class="progress-bar test_non_réussi" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"/>
 		</div>
 
-		<div v-show="retroactionTentative && retroactionTentative.feedback">
-			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
+
+		<div v-if="retroactionTentative && retroactionTentative.feedback">
+			<Tippy ref="tippy" :aria="true" :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" @show="montrerConseil()"  présentation_étape="2.1">
 			<a id="btn_conseil">
-				<svg class="svg_ampoule">
+				<svg  class="svg_ampoule">
 					<use xlink:href="./svg_ampoule/light-bulb.svg#icon-light-bulb"></use>
 				</svg>
 			</a>
 
-			<template #content>
+			<template  #content>
 				💡 {{$t('retroaction_tentative.conseil')}} <div class="feedback" v-html="retroactionTentative.feedback"/>
 			</template>
 			</Tippy>
