@@ -7,13 +7,11 @@ const axios = require("axios");
  */
 
 const getData = async (lien, token = null) => {
-	const config = token
-		? {
-				headers: {
-					Authorization: "Bearer " + token,
-				},
-		  }
-		: {};
+	const config = token ? {
+		headers: {
+			Authorization: "Bearer " + token,
+		},
+	} : {};
 
 	return axios.get(lien, config).then((réponse) => {
 		return réponse.data;
@@ -27,13 +25,11 @@ const getData = async (lien, token = null) => {
  * @returns {Promise<unknown>}, a traiter a l'appel
  */
 const postData = async (lien, body, token = null) => {
-	const config = token
-		? {
-				headers: {
-					Authorization: "Bearer " + token,
-				},
-		  }
-		: {};
+	const config = token ? {
+		headers: {
+			Authorization: "Bearer " + token,
+		},
+	} : {};
 
 	return axios.post(lien, body, config).then((réponse) => {
 		return réponse.data;
