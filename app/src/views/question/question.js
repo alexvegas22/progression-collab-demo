@@ -8,6 +8,11 @@ import Présentation from "@/components/question/présentation/présentation.vue
 const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
+  data() {
+    return {
+      enonceCacher: false
+    };
+  },
 	name: "Question",
 	components: {
 		Enonce,
@@ -80,6 +85,8 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-
+    cacherEnoncer() {
+      this.enonceCacher = !this.enonceCacher;
+    }
 	},
 };

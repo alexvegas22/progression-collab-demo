@@ -21,4 +21,5 @@
 
 .progress{
 	height: 40px;
+  position: relative;
 }
