@@ -6,19 +6,22 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Exercice</th>
+                    <th>Titre de l'exercice</th>
                     <th>Difficulté</th>
+                    <th>Date de dernière modification</th>
                     <th>État</th>
-                    <th>Date</th>
+                    <th>Date de réussite</th>
                 </tr>
             </thead>
             <tbody>
                     <tr v-for="avancement in avancements" :key="avancement.id">
-                                                 
-                        <td></td>
-                        <td></td>
+
+                        <td>{{avancement.titre}}</td>
+                        <td>{{avancement.niveau}}</td>
+                        <td>{{timestampVersDate(avancement.date_avancement)}}</td>
                         <td>{{ etat(avancement.état)}}</td>
-                        <td>{{avancement.tentatives}}</td>
+                        <td>{{timestampVersDate(avancement.date_réussite)}}</td> 
+                        
                     </tr>
             </tbody>
         </table>
