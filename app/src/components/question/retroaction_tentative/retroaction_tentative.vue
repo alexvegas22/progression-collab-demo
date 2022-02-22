@@ -6,7 +6,7 @@
 		</div>
 
 		<div v-show="retroactionTentative && retroactionTentative.feedback">
-			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
+			<Tippy v-if="retroactionTentative" :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
 			<a id="btn_conseil">💡</a>
 
 			<template #content>

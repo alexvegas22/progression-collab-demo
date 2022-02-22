@@ -65,6 +65,9 @@ export const mutations = {
 	updateLangageTentative(state, langage) {
 		state.tentative.langage = langage;
 	},
+	updateCodeEbauche(state, params) {
+		state.question.ebauches[params.langage].code = params.code;
+	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
