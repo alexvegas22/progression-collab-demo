@@ -7,7 +7,11 @@
 
 		<div v-show="retroactionTentative && retroactionTentative.feedback">
 			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
-			<a id="btn_conseil">💡</a>
+			<a id="btn_conseil">
+				<svg class="svg_ampoule">
+					<use xlink:href="./svg_ampoule/light-bulb.svg#icon-light-bulb"></use>
+				</svg>
+			</a>
 
 			<template #content>
 				💡 {{$t('retroaction_tentative.conseil')}} <div class="feedback" v-html="retroactionTentative.feedback"/>
