@@ -7,10 +7,10 @@
 
 
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
-			<Tippy ref="tippy" :aria="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" v-on:show="montrerConseil" présentation_étape="2.1">
+			<Tippy ref="tippy" :aria="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" @show="montrerConseil" @click="montrerConseil" présentation_étape="2.1">
 			<a id="btn_conseil" >
 				<svg  class="svg_ampoule">
-					<use xlink:href="./svg_ampoule/light-bulb.svg#icon-light-bulb"></use>
+					<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
 				</svg>
 			</a>
 

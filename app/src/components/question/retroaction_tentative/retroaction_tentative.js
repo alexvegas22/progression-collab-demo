@@ -55,7 +55,7 @@ export default {
 	methods:{
 		montrerConseil(){
 			
-			if(this.affiché=false){
+			if(this.affiché===false){
 				this.affiché=true;
 				this.$refs.tippy.show();
 			}
