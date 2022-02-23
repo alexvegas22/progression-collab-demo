@@ -20,6 +20,8 @@ test_unitaires:
     alias: dind
   script:
     - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslint.json src/
+  except:
+    - master
 
 # Stage build_image
 
@@ -33,7 +35,7 @@ const_image:
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
-    - \[\[ "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="build-stage" || target="production-stage"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
     - echo TARGET $target
     - docker build --build-arg NODE_ENV=dev --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
