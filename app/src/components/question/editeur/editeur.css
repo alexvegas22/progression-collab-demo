@@ -55,6 +55,12 @@
 	z-index:100;
 }
 
+.btn-doc{
+	position: relative;
+	top:-28px;
+	z-index:100;
+}
+
 .btn-valider{
 	border-radius: 50%;
 	position:relative;

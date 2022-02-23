@@ -3,6 +3,15 @@
 		<div class="container" style="padding-left: 0px; padding-right: 0px" >
 			<div class="row align-items-end" style="height: 0px">
 				<div class="col"></div>
+				<div v-if="xray" class="col-auto">
+					<div class="btn-doc">
+						<a 
+							href="https://progression.pages.dti.crosemont.quebec/documentation/contenu/cr%C3%A9action_de_conteu.html#org5fbcefb"
+							target="_blank"
+							class="btn-primary btn-sm"
+						>?</a>
+					</div>
+				</div>
 				<div class="col-auto">
 					<div class="form-check form-switch btn-thème" présentation_étape="1.0">
 						<input class="form-check-input" type="checkbox"
