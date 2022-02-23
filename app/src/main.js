@@ -27,11 +27,12 @@ const app = createApp(App)
 	.use(metaPlugin)
 	.use(Vue3Tour)
 
-const authentificationErreurHandler = function(err) {
+const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != 'LoginView' ) {
-		router.push({name: 'LoginView',
-					 query: window.location.search,
-					 params: { origine: window.location.href }});
+		router.push({
+			name: 'LoginView',
+			query: window.location.search,
+			params: { origine: window.location.href }});
 	}
 };
 
