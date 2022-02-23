@@ -1,5 +1,5 @@
 export default {
-	name: "statisiqueTypesQuestions",
+	name: "statistiquesTypesQuestions",
 
 	computed: {
 
@@ -17,6 +17,9 @@ export default {
 		},
 		question_uri(){
 			return this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
+		},
+		langage() {
+			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
 		},
 	},
 
@@ -41,10 +44,22 @@ export default {
 			}
 			return etatString;
 		},
-		compteurRéussi: function (etat) {
+		compteurRéussiPython: function (langage,etat) {
 			let compteur = 0;
-			if(etat == 2) {
-				compteur+=1;
+			if (langage.equals("python")) {
+				if(etat == 2) {
+					compteur+=1;
+				}
+			}
+			
+			return compteur;
+		},
+		compteurRéussiJava: function (langage,etat) {
+			let compteur = 0;
+			if (langage.equals("java")) {
+				if(etat == 2) {
+					compteur+=1;
+				}
 			}
 			return compteur;
 		}

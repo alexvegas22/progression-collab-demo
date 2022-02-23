@@ -1,9 +1,9 @@
-import tableauExercices from "@/components/accomplissements/tableauExercices/tableauExercices.vue";
+import statistiquesTypesQuestions from "@/components/statistiquesTypesQuestions/statistiquesTypesQuestions.vue";
 
 export default {
-	name: "Accomplissements",
+	name: "statistiqueTest",
 	components: {
-		tableauExercices,
+		statistiquesTypesQuestions,
 	},
 	
 };

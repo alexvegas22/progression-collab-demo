@@ -23,6 +23,11 @@ const routes = [
 		name: "NotFound",
 		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
+	{
+	path: "/statistiqueTest",
+	name: "NotFound",
+	component: () => import("@/views/statistiqueTest/statistiqueTest.vue"),
+	},
 ];
 
 const pages_sans_connexion = [ "Home", "LoginView" ];

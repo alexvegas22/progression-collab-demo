@@ -12,9 +12,15 @@
             </thead>
             <tbody>
                     <tr v-for="avancement in avancements" :key="avancement.id">
-
-                        <td>{{avancement.titre}}</td>
-                        <td>{{ compteurRéussi(avancement.état)}}</td>       
+                      
+                        <td>Java</td>
+                        <td>{{ compteurRéussiJava(langage,avancement.état) }}</td>     
+            
+                    </tr>
+                     <tr v-for="avancement in avancements" :key="avancement.id">
+            
+                        <td>Python</td>
+                        <td>{{ compteurRéussiPython(langage,avancement.état) }}</td>       
                     </tr>
             </tbody>
         </table>
@@ -22,5 +28,5 @@
 </div>
 </template>
 
-<style src="./tableauExercices.css"></style>
-<script src="./tableauExercices.js"></script>
+
+<script src="./statistiquesTypesQuestions.js"></script>
