@@ -1,11 +1,4 @@
 import Login from "@/components/login/login.vue";
-const axios = require("axios");
-
-import {
-	callbackAuth,
-} from "@/services/index.js";
-
-import { postData } from "@/services/request_services";
 
 export default {
 	name: "LoginView",

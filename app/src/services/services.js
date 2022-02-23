@@ -20,7 +20,7 @@ const getUserApi = async (urlUser, token) => {
 		user.liens = data.data.links;
 		user.liens.avancements = data.data.relationships.avancements.links.related;
 		user.liens.clés = data.data.relationships.cles.links.related;
-		user.avancements = [];
+		user.avancements = {};
 		if (data.included) {
 			data.included.forEach((item) => {
 				var avancement = item.attributes;
@@ -37,7 +37,7 @@ const getQuestionApi = async (urlQuestion, token) => {
 	var question = data.data.attributes;
 	question.liens = data.data.links;
 	question.tests = [];
-	question.ebauches = [];
+	question.ebauches = {};
 	if (data.included) {
 		data.included.forEach((item) => {
 			if (item.type == "test") {
@@ -106,8 +106,9 @@ const postTentative = async (params, token) => {
 const postAuthKey = async( params, token ) =>
 	await postData( params.url, params.clé, token )
 		.then( (data) => {
-			return { nom: params.clé.nom,
-					 clé: data.data.attributes}
+			return {
+				nom: params.clé.nom,
+				clé: data.data.attributes}
 		});
 
 const callbackGrade = async (url, params) => {
@@ -136,7 +137,7 @@ function construireAvancement(data) {
 	avancement.liens.sauvegardes = data.data.relationships.sauvegardes.links.related;
 	avancement.liens.tentatives = data.data.relationships.tentatives.links.related;
 	avancement.tentatives = [];
-	avancement.sauvegardes = [];
+	avancement.sauvegardes = {};
 	if (data.included) {
 		data.included.forEach((item) => {
 			if (item.type == "tentative") {

@@ -1,11 +1,12 @@
 import parseMD from "@/util/parse";
-import VueTippy from "vue-tippy";
-import tippy, { roundArrow } from "tippy.js";
+
+import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
+import { Tippy } from "vue-tippy";
 import "tippy.js/dist/svg-arrow.css";
 
 export default {
 	name: "RetroactionTentative",
-	components: { VueTippy },
+	components: { Tippy },
 	computed: {
 		tentative() {
 			return this.$store.state.tentative;
@@ -13,13 +14,11 @@ export default {
 		retroactionTentative() {
 			let tentative = this.$store.state.retroactionTentative;
 
-			return tentative
-				? new Proxy(tentative, {
-						get: function (obj, prop) {
-							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-						},
-				  })
-				: null;
+			return tentative ? new Proxy(tentative, {
+				get: function (obj, prop) {
+					return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+				},
+			}) : null;
 		},
 		testsRéussisPct() {
 			if (!this.$store.state.retroactionTentative) return null;
