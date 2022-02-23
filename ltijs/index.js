@@ -84,8 +84,8 @@ lti.onConnect(async (idToken, req, res) => {
 //		}
 	);
 
-	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
-	lti.redirect(res, process.env.URL_BASE + "/#/question", {
+	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/question");
+	lti.redirect(res, process.env.URL_BASE + "/question", {
 		newResource: true,
 		query: query
 	});

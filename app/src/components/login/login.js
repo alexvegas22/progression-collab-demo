@@ -1,8 +1,6 @@
 import LoginForm from './login_form.vue';
 import Inscription from './inscription.vue';
 
-import {reactive, toRefs} from 'vue';
-
 export default {
 	components: {
 		LoginForm,
