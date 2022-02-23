@@ -16,6 +16,7 @@ export default createStore({
 		cb_auth_params: null,
 		username: null,
 		question: null,
+		ebauchesOrigine: null,
 		tentative: null,
 		retroactionTentative: null,
 		authentificationTentativeEnCours: false,
