@@ -118,7 +118,9 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"erreurNomVide":"Le nom du test ne peut être vide",
+		"erreurNomExiste":"Ce nom de test est déja pris"
 	},
 
 	"mode_affichage": "Mode d'affichage par différences",

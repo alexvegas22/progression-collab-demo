@@ -50,6 +50,37 @@ export default {
 				divAjoute.style.display = "none";
 			}
 			
+		},
+		AjouterTest : function(){
+			var lesTests= this.$store.state.question.tests;
+			var nomTest = document.getElementById("nomTestAjoute").value;
+			
+			if(nomTest=="") {
+				// ajouter internalisation
+				alert("Nom vide")
+				//alert($t("jeu_tests.erreurNomVide"))
+				return;	
+			};
+			
+			var testExiste = lesTests.find(test => test.nom == nomTest)
+			if(testExiste) {
+				// ajouter internalisation
+				alert("Nom Existe Deja")
+				//alert($t("jeu_tests.erreurNomExiste"))
+				return;	
+			};
+			let nouveauTest ={
+				nom:nomTest,
+				entrée:"",
+				sortie_attendue:"",
+				params:"",
+
+			}
+			
+			lesTests.push(nouveauTest);
+			this.select(lesTests.length-1);
+			
+
 		}
 	},
 };
