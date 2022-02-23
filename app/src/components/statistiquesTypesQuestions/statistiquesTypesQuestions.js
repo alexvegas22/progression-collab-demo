@@ -41,5 +41,12 @@ export default {
 			}
 			return etatString;
 		},
+		compteurRéussi: function (etat) {
+			let compteur = 0;
+			if(etat == 2) {
+				compteur+=1;
+			}
+			return compteur;
+		}
 	},
 };
