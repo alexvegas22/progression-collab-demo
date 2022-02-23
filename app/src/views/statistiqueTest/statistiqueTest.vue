@@ -1,7 +1,8 @@
 <template>
     <div>
-        <statistiqueTypesQuestions />
+        <statistiquesTypesQuestions />
     </div>
 </template>
 
 <script src="./statistiqueTest.js"></script>
+
