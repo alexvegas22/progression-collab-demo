@@ -7,8 +7,8 @@
 
 
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
-			<Tippy ref="tippy" :aria="true" :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" @show="montrerConseil()"  présentation_étape="2.1">
-			<a id="btn_conseil">
+			<Tippy ref="tippy" :aria="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" v-on:show="montrerConseil" présentation_étape="2.1">
+			<a id="btn_conseil" >
 				<svg  class="svg_ampoule">
 					<use xlink:href="./svg_ampoule/light-bulb.svg#icon-light-bulb"></use>
 				</svg>
