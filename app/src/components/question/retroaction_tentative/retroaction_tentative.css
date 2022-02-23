@@ -31,6 +31,11 @@
 	animation-iteration-count: 10;
 }
 
+.svg_ampoule:hover{
+	fill: rgb(0, 238, 255);
+	transition: ease-in .2s;
+}
+
 @keyframes blink {
 	from { fill: #8D8C8C; }
 	to { fill: rgb(0, 238, 255); }

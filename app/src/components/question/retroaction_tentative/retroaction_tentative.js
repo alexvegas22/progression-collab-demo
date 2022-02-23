@@ -58,12 +58,13 @@ export default {
 			if(this.affiché===false){
 				this.affiché=true;
 				this.$refs.tippy.show();
+				
 			}
 			else{
 				this.$refs.tippy.hide();
 				this.affiché=false;
 			}
-			 return;
+			
 		},
 		
 		

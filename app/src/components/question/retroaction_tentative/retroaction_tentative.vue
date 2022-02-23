@@ -7,7 +7,7 @@
 
 
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
-			<Tippy ref="tippy" :aria="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" @show="montrerConseil" @click="montrerConseil" présentation_étape="2.1">
+			<Tippy ref="tippy" v-tippy="{trigger : 'click', interactive : true }" :aria="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" @show="montrerConseil" présentation_étape="2.1">
 			<a id="btn_conseil" >
 				<svg  class="svg_ampoule">
 					<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
@@ -23,5 +23,12 @@
 
 </template>
 
-<script src="./retroaction_tentative.js"></script>
+<script src="./retroaction_tentative.js">
+
+	
+</script>
 <style src="./retroaction_tentative.css"></style>
+
+function newFunction() {
+  return 'toggle';
+}
