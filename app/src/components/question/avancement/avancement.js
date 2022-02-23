@@ -1,5 +1,10 @@
 export default {
 	name: "Avancement",
+	data() {
+		return {
+			xray: localStorage.getItem("xray") === "true",
+		};
+	},
 	computed: {
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
