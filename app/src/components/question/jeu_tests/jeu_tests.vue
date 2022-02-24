@@ -2,11 +2,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="container col-4">
-				<h3 style="text-align: left">{{ $t("jeu_tests.jeuTests") }}  <button v-on:click="montrerAjouterTest()">+</button> </h3>
+				<h3 style="text-align: left">{{ $t("jeu_tests.jeuTests") }} </h3>
 				<!-- Quand on clique sur le bouton le input ajout un test appartait -->
 				
 				<div class="row w-100 m-0 p-1" id="champAjouterTest"> 
 					<input class="col-11 test non_sélectionné p-0 m-0" placeholder="Ajouter un test" id="nomTestAjoute"> 
+					<button class="col-1" v-on:click="AjouterTest()">+</button>
 				</div>
 				
 				<div v-for="(test, index) in tests" :key="index">
