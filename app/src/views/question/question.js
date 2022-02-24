@@ -16,6 +16,13 @@ export default {
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
+		
+	},
+	data(){
+		return {
+			themeSombre: localStorage.getItem("themeSombreQuestion") === "true"
+		};
+		
 	},
 	computed: {
 		user() {
@@ -44,6 +51,10 @@ export default {
 		},
 	},
 	watch: {
+		themeSombre() {
+			localStorage.setItem( "themeSombreQuestion", this.themeSombre );
+			
+		},
 		uri: function () {
 			if (!this.question && this.uri && this.user) this.récupérerQuestion();
 		},
