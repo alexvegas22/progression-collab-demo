@@ -123,6 +123,11 @@
 		"erreurNomVide":"The name of the test cannot be empty",
 		"erreurNomExiste":"This name is already taken"
 	},
+	
+	"MessageErreursJeuxTest":{
+		"erreurNomVide":"The name of the test cannot be empty",
+		"erreurNomExiste":"This name is already taken"
+	},
 
 	"mode_affichage": "Differences display mode",
 

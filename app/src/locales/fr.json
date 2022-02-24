@@ -123,6 +123,11 @@
 		"erreurNomExiste":"Ce nom de test est déja pris"
 	},
 
+	"MessageErreursJeuxTest":{
+		"erreurNomVide":"The name of the test cannot be empty",
+		"erreurNomExiste":"This name is already taken"
+	}, 
+	
 	"mode_affichage": "Mode d'affichage par différences",
 	
 	"editeur": {

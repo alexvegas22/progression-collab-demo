@@ -41,6 +41,8 @@ export default {
 		select: function (index) {
 			this.index_select = index;
 		},
+		//Méthode pour ajouter un test...Enregistre pas dans la bd, mais visuellement près
+		//Cacher et montre le champs qui permet d'ajouter un test avec son nom lorsqu'on pèse le bouton +
 		montrerAjouterTest : function(){
 			const divAjoute = document.getElementById("champAjouterTest");
 			var display = divAjoute.style.display;
@@ -51,24 +53,36 @@ export default {
 			}
 			
 		},
+		//
 		AjouterTest : function(){
 			var lesTests= this.$store.state.question.tests;
 			var nomTest = document.getElementById("nomTestAjoute").value;
 			
+			//Si le nom du test est vide 
 			if(nomTest=="") {
-				// ajouter internalisation
+				//À TESTER 
 				alert("Nom vide")
-				//alert($t("jeu_tests.erreurNomVide"))
+				alert($t("MessageErreursJeuxTest.erreurNomVide"));
+				
 				return;	
 			};
-			
+			//Si le nom du test est null 
+			if(nomTest==null) {
+				//À TESTER 
+				alert("Nom vide")
+				alert($t("MessageErreursJeuxTest.erreurNomVide"));
+				
+				return;	
+			};
+			//Si le nom des test sont dèjà existant 
 			var testExiste = lesTests.find(test => test.nom == nomTest)
 			if(testExiste) {
-				// ajouter internalisation
+				//À TESTER
 				alert("Nom Existe Deja")
-				//alert($t("jeu_tests.erreurNomExiste"))
+				alert($t("MessageErreursJeuxTest.erreurNomExiste"));
 				return;	
 			};
+			//Création d'un test 
 			let nouveauTest ={
 				nom:nomTest,
 				entrée:"",
@@ -76,7 +90,7 @@ export default {
 				params:"",
 
 			}
-			
+			//Ajouter le nouveau test dans la liste de tests
 			lesTests.push(nouveauTest);
 			this.select(lesTests.length-1);
 			
