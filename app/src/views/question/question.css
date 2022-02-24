@@ -24,3 +24,8 @@ body {
 .v-step__content {
 	text-align: left;
 }
+
+.thème_Sombre{
+	background-color: #232121;
+	color:#E1E1E1;	
+}
