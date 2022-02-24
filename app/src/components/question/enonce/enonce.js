@@ -16,21 +16,34 @@ export default {
 	},
 	methods: {
 		cacher() {
-			var element = document.getElementById("hh").innerHTML;
-			if (element == "✎") {
-				document.getElementById("hh").innerHTML = "👁";
+			var element = document.getElementById("btn_aperçu").innerHTML;
+			if (element == "Modifier ✎") {
+				document.getElementById("btn_aperçu").innerHTML = "Aperçu 👁";
 			} else {
-				document.getElementById("hh").innerHTML = "✎";
+				document.getElementById("btn_aperçu").innerHTML = "Modifier ✎";
 			}
 
 		}
 	},
+
 	data() {
+
 		return {
+			énoncé: this.$store.state.question.énoncé,
 			count: 0,
+			titre: this.$store.state.question.titre,
 			niveau: this.$store.state.question.niveau,
 			aperçu: false,
+
+			toolbar: {
+				documentation: {
+					title: 'Documentation Markdown',
+					icon: 'v-md-icon-tip',
+					action() {
+						window.open('https://www.markdownguide.org/cheat-sheet', '_blank');
+					}
+				}
+			}
 		};
 	},
-
 };
