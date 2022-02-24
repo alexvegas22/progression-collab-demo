@@ -33,6 +33,7 @@ export default {
 			count: 0,
 			titre: this.$store.state.question.titre,
 			niveau: this.$store.state.question.niveau,
+			auteur: this.$store.state.question.auteur,
 			aperçu: false,
 
 			toolbar: {
