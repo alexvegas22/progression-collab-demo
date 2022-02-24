@@ -2,6 +2,10 @@
 	<div v-if="user">
 		<Présentation v-if="démo" présentation_étape="00" />
 	</div>
+	<div>
+		<input class="form-check-input" type="checkbox" />
+	</div>
+
 	<div class="container-fluid p-3">
 		<div class="row" v-if="avancement">
 			<div class="col-lg-4 col-md-6">
