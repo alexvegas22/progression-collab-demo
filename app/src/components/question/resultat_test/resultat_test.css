@@ -36,3 +36,6 @@
 	background-color: #FFB3B3;
 }
 
+pre {
+  margin: 0 !important;
+}

@@ -14,17 +14,15 @@
       >➜</button>
 		</div>
 
-		<tippy v-if="retroactionTentative" :interactive="true" :showOnCreate="true" :arrow="true" class="popup_conseil"   présentation_étape="2.1">
-			<a id="btn_conseil" v-show="retroactionTentative && retroactionTentative.feedback">💡</a>
+		<div v-show="retroactionTentative && retroactionTentative.feedback">
+			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
+			<a id="btn_conseil">💡</a>
 
 			<template #content>
-					<div v-if="retroactionTentative">
-						<div v-if="retroactionTentative.feedback">
-							💡 {{$t('retroaction_tentative.conseil')}} <div class="feedback" v-html="retroactionTentative.feedback"/>
-						</div>
-					</div>
+				💡 {{$t('retroaction_tentative.conseil')}} <div class="feedback" v-html="retroactionTentative.feedback"/>
 			</template>
-		</tippy>
+			</Tippy>
+		</div>
 	</div>
 
 </template>

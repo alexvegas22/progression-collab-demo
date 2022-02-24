@@ -11,7 +11,7 @@
           <Enonce présentation_étape="0" @cacherEnoncer="cacherEnoncer()" :enoncerCacher="enonceCacher"/>
         </div>
         
-        <div class="col-lg-8 col-md-6 flex-column fill-height">
+        <div class="col-lg-8 col-md-6 flex-column fill-height" style="padding-left:0;">
           <div class="col-12 flex-column" style="flex: 1 1 auto;">
             <Avancement présentation_étape="2" />
             <div class="flex-column fill-height" v-if="tentative">
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="col-12">
-            <JeuTests présentation_étape="4" class="p-2" />
+            <onglets-information présentation_étape="4"></onglets-information>
           </div>
         </div>
       </div>
