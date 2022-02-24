@@ -1,7 +1,8 @@
+
 <template>
 <div v-if="avancements">
-    <h1> Liste d'exercices </h1><br>
     <div class="container">
+    <br><h1> Statistiques exercices réussis </h1><br>
         <table class="table">
             <thead>
                 <tr>
@@ -10,17 +11,17 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr v-for="avancement in avancements" :key="avancement.id">
-                      
+                    <tr>
+                        <td>Python hola</td>
+                        <td>{{ this.récupérerTentativesPython() }}</td>     
+                    </tr>
+    
+                    <tr>
                         <td>Java</td>
-                        <td>{{ compteurRéussiJava(avancement.tetatives) }}</td>     
-            
+                        <td>{{ this.récupérerTentativesJava() }}</td>       
                     </tr>
-                     <tr v-for="avancement in avancements" :key="avancement.id">
-            
-                        <td>Python</td>
-                        <td>{{  }}</td>       
-                    </tr>
+
+                    
             </tbody>
         </table>
     </div>
