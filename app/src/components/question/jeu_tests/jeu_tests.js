@@ -61,8 +61,8 @@ export default {
 			//Si le nom du test est vide 
 			if(nomTest=="") {
 				//À TESTER 
-				alert("Nom vide")
-				alert($t("MessageErreursJeuxTest.erreurNomVide"));
+				//alert("Nom vide")
+				alert($locales.eng.MessageErreursJeuxTest.erreurNomVide);
 				
 				return;	
 			};
@@ -70,7 +70,7 @@ export default {
 			if(nomTest==null) {
 				//À TESTER 
 				alert("Nom vide")
-				alert($t("MessageErreursJeuxTest.erreurNomVide"));
+				alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
 				
 				return;	
 			};
@@ -78,8 +78,8 @@ export default {
 			var testExiste = lesTests.find(test => test.nom == nomTest)
 			if(testExiste) {
 				//À TESTER
-				alert("Nom Existe Deja")
-				alert($t("MessageErreursJeuxTest.erreurNomExiste"));
+				//alert("Nom Existe Deja")
+				alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
 				return;	
 			};
 			//Création d'un test 
