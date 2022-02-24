@@ -122,6 +122,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		else{
 			this.updateZones();
 		}
+		this.$store.state.xray = this.xray;
 	}
 
 	updateReadonly(value) {
