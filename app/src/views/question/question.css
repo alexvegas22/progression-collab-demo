@@ -25,9 +25,9 @@ body {
 	text-align: left;
 }
 
-.thème_sombre_global .thèmeSombre{
-    background-color: #232121;
-    color:#E1E1E1;  
+.thème_sombre_global .thème_sombre_section{
+    background-color: #232121 !important;
+    color:#E1E1E1 !important;  
 }
 
 .thème_sombre_global{
