@@ -14,4 +14,23 @@ export default {
 			});
 		},
 	},
+	methods: {
+		cacher() {
+			var element = document.getElementById("hh").innerHTML;
+			if (element == "✎") {
+				document.getElementById("hh").innerHTML = "👁";
+			} else {
+				document.getElementById("hh").innerHTML = "✎";
+			}
+
+		}
+	},
+	data() {
+		return {
+			count: 0,
+			niveau: this.$store.state.question.niveau,
+			aperçu: false,
+		};
+	},
+
 };
