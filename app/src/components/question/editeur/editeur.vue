@@ -5,7 +5,7 @@
 				<div class="col"></div>
 				<div v-if="xray" class="col-auto">
 					<div class="btn-doc">
-						<a 
+						<a
 							href="https://progression.pages.dti.crosemont.quebec/documentation/contenu/cr%C3%A9action_de_conteu.html#org5fbcefb"
 							target="_blank"
 							class="btn-primary btn-sm"
