@@ -31,7 +31,7 @@
       </div>
 
     </div>
-    <button @click="$emit('cacherEnoncer')" class="bouton-deroulable"> {{enoncerCacher ? 'Montrer' : 'Cacher'}}</button>
+    <button @click="$emit('cacherEnoncer')" class="bouton-deroulable"><strong> {{enoncerCacher ? 'Montrer' : 'Cacher'}}</strong></button>
 	</div>
 </template>
 

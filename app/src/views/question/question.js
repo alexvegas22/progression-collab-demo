@@ -1,3 +1,4 @@
+import OngletsInformation from '@/components/question/onglets_information/onglets_information.vue';
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
@@ -15,12 +16,14 @@ export default {
   },
 	name: "Question",
 	components: {
+    OngletsInformation,
 		Enonce,
 		Avancement,
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
+
 	},
 	computed: {
 		user() {
