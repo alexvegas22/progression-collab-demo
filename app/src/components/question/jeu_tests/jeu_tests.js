@@ -43,56 +43,56 @@ export default {
 		},
 		//Méthode pour ajouter un test...Enregistre pas dans la bd, mais visuellement près
 		//Cacher et montre le champs qui permet d'ajouter un test avec son nom lorsqu'on pèse le bouton +
-		montrerAjouterTest : function(){
+		montrerAjouterTest: function () {
 			const divAjoute = document.getElementById("champAjouterTest");
 			var display = divAjoute.style.display;
-			if(display == "none"){
+			if (display == "none") {
 				divAjoute.style.display = "block";
-			}else if(display == "block"){
+			} else if (display == "block") {
 				divAjoute.style.display = "none";
 			}
-			
+
 		},
 		//
-		AjouterTest : function(){
-			var lesTests= this.$store.state.question.tests;
+		AjouterTest: function () {
+			var lesTests = this.$store.state.question.tests;
 			var nomTest = document.getElementById("nomTestAjoute").value;
-			
+
 			//Si le nom du test est vide 
-			if(nomTest=="") {
-				//À TESTER 
-				//alert("Nom vide")
-				//alert($locales.eng.MessageErreursJeuxTest.erreurNomVide);
-				
-				return;	
-			}
+			if (nomTest == "") return;
+
+			//À TESTER 
+			//alert("Nom vide")
+			//alert($t("MessageErreursJeuxTest.erreurNomVide"));
+
+
 			//Si le nom du test est null 
-			if(nomTest==null) {
-				//À TESTER 
-				//alert("Nom vide")
-				//alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
-				return;	
-			}
+			if (nomTest == null) return;
+			//À TESTER 
+			//alert("Nom vide")
+			//alert($t("MessageErreursJeuxTest.erreurNomVide"));
+
+
 			//Si le nom des test sont dèjà existant 
 			var testExiste = lesTests.find(test => test.nom == nomTest)
-			if(testExiste) {
-				//À TESTER
-				//alert("Nom Existe Deja")
-				//alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
-				return;	
-			}
+			if (testExiste) return;
+			//À TESTER
+			//alert("Nom Existe Deja")
+			//alert($t("MessageErreursJeuxTest.erreurNomExiste"));
+
+
 			//Création d'un test 
-			let nouveauTest ={
-				nom:nomTest,
-				entrée:"",
-				sortie_attendue:"",
-				params:"",
+			let nouveauTest = {
+				nom: nomTest,
+				entrée: "",
+				sortie_attendue: "",
+				params: "",
 
 			}
 			//Ajouter le nouveau test dans la liste de tests
 			lesTests.push(nouveauTest);
-			this.select(lesTests.length-1);
-			
+			this.select(lesTests.length - 1);
+
 
 		}
 	},
