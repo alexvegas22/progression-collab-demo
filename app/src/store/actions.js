@@ -10,7 +10,7 @@ import {
 	postAvancementApi,
 	postSauvegardeApi,
 	postTentative,
-	postAuthKey
+	postAuthKey,
 } from "@/services/index.js";
 
 import tokenEstValide from "@/util/token.js";
@@ -262,6 +262,52 @@ export default {
 					return tentative;
 				}),
 		);
+	},
+
+	async getTentativesRéussiesPython({commit, state}, params){
+		return valider(
+			commit,
+			getToken({ commit, state })
+			.then((token) => getAvancementApi(params.url, token))
+			.then((avancement) => {	
+				var réussi = false;
+				while (réussi == false){
+					for(var t in avancement.tentatives)	{
+						if(t.langage == "python") {
+							if(t.réussi){
+								réussi = true;
+							}
+						}
+					}
+				}	
+					//langage_réussis["python"] = true;
+					//langage_réussis["java"] = false;
+					return réussi;
+				}),
+			);
+	},
+	async getTentativesRéussiesJava({commit, state}, params){
+		return valider(
+			commit,
+			getToken({ commit, state })
+			.then((token) => getAvancementApi(params.url, token))
+			.then((avancement) => {
+				var réussi = false;
+				while (réussi == false){
+					for(var t in avancement.tentatives)	{
+						if(t.langage == "java") {
+							if(t.réussi){
+								réussi = true;
+							}
+						}
+					}
+				}	
+				//langage_réussis["python"] = true;
+				//langage_réussis["java"] = false;
+				return réussi;
+			}),
+		);
+				
 	},
 
 	async soumettreTentative({ commit, state }, params) {
