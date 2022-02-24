@@ -1,11 +1,9 @@
 export default {
 	name: "Avancement",
-	data() {
-		return {
-			xray: localStorage.getItem("xray") === "true",
-		};
-	},
 	computed: {
+		xray() {
+			return this.$store.state.xray;
+		},
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
 		},
@@ -15,12 +13,16 @@ export default {
 		langages() {
 			return Object.keys(this.$store.state.question.ebauches);
 		},
+		ébauche() {
+			return this.$store.state.question.ebauches[langage].code;
+		}
 	},
 	methods: {
 		filtrerTentativesParLangage: function (langage) {
 			return this.tentatives.filter((item) => item.langage == langage);
 		},
-		chargerTentative: function () {
+
+		chargerTentative: function () { 
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("getTentative", event.target.value);
