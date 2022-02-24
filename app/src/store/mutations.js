@@ -55,6 +55,8 @@ export const mutations = {
 	},
 	setQuestion(state, question) {
 		state.question = question;
+		const cloneJSON = JSON.parse(JSON.stringify(question));
+		state.ebauchesOrigine = cloneJSON.ebauches;
 	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;
@@ -65,8 +67,8 @@ export const mutations = {
 	updateLangageTentative(state, langage) {
 		state.tentative.langage = langage;
 	},
-	updateCodeEbauche(state, params) {
-		state.question.ebauches[params.langage].code = params.code;
+	updateCodeEbauche(state, code) {
+		state.question.ebauches[state.tentative.langage].code = code;
 	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;

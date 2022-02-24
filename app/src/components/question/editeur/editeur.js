@@ -78,11 +78,7 @@ export default {
 	methods: {
 		onChange( texte ){
 			if (this.xray) {
-				const params = {
-					code: texte,
-					langage: this.$store.state.tentative.langage,
-				};
-				this.$store.dispatch("mettreAjourEbauche", params);
+				this.$store.dispatch("mettreAjourEbauche", texte);
 			} else {
 				this.$store.dispatch("mettreAjourCode", texte);
 			}

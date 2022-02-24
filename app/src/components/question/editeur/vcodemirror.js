@@ -120,7 +120,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			this.editor.setValue(this.$store.state.question.ebauches[langage].code);
 		}
 		else{
-			//this.editor.setValue(this.$store.state.tentative.code);
 			this.updateZones();
 		}
 	}
