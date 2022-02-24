@@ -47,7 +47,7 @@
 					<button
 						id="btn_soumettre_tentative"
 						type="button"
-						class="btn btn-success btn-valider"
+						class="btn btn-valider"
 						:class="{tentative_en_cours: envoiEnCours}"
 						:disabled="envoiEnCours"
 						@click="validerTentative"

@@ -59,7 +59,11 @@
 	position:relative;
 	top:0px;
 	right:16px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 	z-index:2;
+	background-color:#6c757d;
+	color: white;
 }
 
 /*.btn-valider.tentative_en_cours {
