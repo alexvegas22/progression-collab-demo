@@ -27,7 +27,7 @@ const app = createApp(App)
 	.use(metaPlugin)
 	.use(Vue3Tour)
 
-  app.component('fenetre-info', FenêtreInfo);
+app.component('fenetre-info', FenêtreInfo);
 
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != 'LoginView' ) {
