@@ -20,7 +20,7 @@ export default {
 	},
 	data(){
 		return {
-			thèmeSombre: localStorage.getItem("themeSombreQuestion") === "true"
+			//thèmeSombre: localStorage.getItem("themeSombreQuestion") === "true"
 		};
 		
 	},
@@ -51,10 +51,10 @@ export default {
 		},
 	},
 	watch: {
-		thèmeSombre() {
-			localStorage.setItem( "themeSombreQuestion", this.thèmeSombre );
+		//thèmeSombre() {
+			//localStorage.setItem( "themeSombreQuestion", this.thèmeSombre );
 			
-		},
+		//},
 		uri: function () {
 			if (!this.question && this.uri && this.user) this.récupérerQuestion();
 		},
