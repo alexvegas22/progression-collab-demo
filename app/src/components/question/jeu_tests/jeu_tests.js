@@ -65,23 +65,22 @@ export default {
 				//alert($locales.eng.MessageErreursJeuxTest.erreurNomVide);
 				
 				return;	
-			};
+			}
 			//Si le nom du test est null 
 			if(nomTest==null) {
 				//À TESTER 
 				//alert("Nom vide")
 				//alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
-				
 				return;	
-			};
+			}
 			//Si le nom des test sont dèjà existant 
 			var testExiste = lesTests.find(test => test.nom == nomTest)
 			if(testExiste) {
 				//À TESTER
 				//alert("Nom Existe Deja")
-			//	alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
+				//alert($locales.eng.MessageErreursJeuxTest.erreurNomExiste);
 				return;	
-			};
+			}
 			//Création d'un test 
 			let nouveauTest ={
 				nom:nomTest,
