@@ -12,16 +12,14 @@
             </thead>
             <tbody>
                     <tr>
-                        <td>Python hola</td>
+                        <td>Python </td>
                         <td>{{ this.récupérerTentativesPython() }}</td>     
                     </tr>
     
                     <tr>
                         <td>Java</td>
                         <td>{{ this.récupérerTentativesJava() }}</td>       
-                    </tr>
-
-                    
+                    </tr>  
             </tbody>
         </table>
     </div>
