@@ -12,6 +12,6 @@ export default {
 					return prop == "énoncé" ? parseMD(obj[prop]) : obj[prop];
 				},
 			});
-		},
+		}
 	},
 };
