@@ -43,6 +43,7 @@ export default {
 	props: {
 		test: null,
 		resultat: null,
+		modifiable:null,
 	},
 	computed: {
 		mode_affichage() {
