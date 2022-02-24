@@ -46,7 +46,7 @@ export default {
 			return this.$store.state.envoiTentativeEnCours;
 		},
     envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
+      return this.$store.state.envoiTentativeEnCours;
 		},
 	},
   methods: {
