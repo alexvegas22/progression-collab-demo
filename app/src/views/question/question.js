@@ -20,7 +20,7 @@ export default {
 	},
 	data(){
 		return {
-			themeSombre: localStorage.getItem("themeSombreQuestion") === "true"
+			thèmeSombre: localStorage.getItem("themeSombreQuestion") === "true"
 		};
 		
 	},
@@ -51,8 +51,8 @@ export default {
 		},
 	},
 	watch: {
-		themeSombre() {
-			localStorage.setItem( "themeSombreQuestion", this.themeSombre );
+		thèmeSombre() {
+			localStorage.setItem( "themeSombreQuestion", this.thèmeSombre );
 			
 		},
 		uri: function () {

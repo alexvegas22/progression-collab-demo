@@ -6,9 +6,8 @@
         :class="{thème_Sombre_bg: thèmeSombre}">
 		<input class="form-check-input" type="checkbox" v-model="thèmeSombre"/>
 		<div class="row" v-if="avancement">
-			<div class="col-lg-4 col-md-6"
-				:class="{thème_Sombre_section: thèmeSombre}">
-				<Enonce présentation_étape="0" />
+			<div class="col-lg-4 col-md-6">
+				<Enonce présentation_étape="0" :class="{thème_Sombre_section: thèmeSombre}"/>
 			</div>
 			
 			<div class="col-lg-8 col-md-6">
