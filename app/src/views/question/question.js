@@ -16,7 +16,7 @@ export default {
   },
 	name: "Question",
 	components: {
-    OngletsInformation,
+		OngletsInformation,
 		Enonce,
 		Avancement,
 		EditeurCode,
@@ -88,8 +88,8 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-    cacherEnoncer() {
-      this.enonceCacher = !this.enonceCacher;
-    }
+		cacherEnoncer() {
+			this.enonceCacher = !this.enonceCacher;
+		}
 	},
 };

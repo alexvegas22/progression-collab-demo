@@ -45,16 +45,16 @@ export default {
 		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
-    envoiEnCours() {
-      return this.$store.state.envoiTentativeEnCours;
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
 		},
 	},
-  methods: {
-    validerTentative() {
+	methods: {
+		validerTentative() {
 			this.$store.dispatch("soumettreTentative", {
 				langage: this.$store.state.tentative.langage,
 				code: this.$store.state.tentative.code,
 			});
 		},
-  }
+	}
 };
