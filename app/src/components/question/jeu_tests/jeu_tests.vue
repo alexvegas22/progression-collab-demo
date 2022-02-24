@@ -5,7 +5,7 @@
 				<h3 style="text-align: left">{{ $t("jeu_tests.jeuTests") }}  <button v-on:click="montrerAjouterTest()">+</button> </h3>
 				<!-- Quand on clique sur le bouton le input ajout un test appartait -->
 				
-				<div class="row w-100 m-0 p-1" id="champAjouterTest" style="display: none;"> 
+				<div class="row w-100 m-0 p-1" id="champAjouterTest"> 
 					<input class="col-11 test non_sélectionné p-0 m-0" placeholder="Ajouter un test" id="nomTestAjoute"> 
 				</div>
 				
