@@ -15,21 +15,7 @@ import Vue3Tour from 'vue3-tour';
 import 'vue3-tour/dist/vue3-tour.css';
 
 
-import VMdEditor from '@kangc/v-md-editor';
-import '@kangc/v-md-editor/lib/style/base-editor.css';
-import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
-import '@kangc/v-md-editor/lib/theme/style/vuepress.css'; 
 
-// Prism
-import Prism from 'prismjs';
-// highlight code
-import 'prismjs/components/prism-json';
-VMdEditor.use(vuepressTheme, {
-	Prism,
-  });
-  import frFR from '@kangc/v-md-editor/lib/lang/fr-FR';
-  
-  VMdEditor.lang.use('fr-FR', frFR);
   
 const app = createApp(App)
 	.use(router)
@@ -42,7 +28,6 @@ const app = createApp(App)
 	.use(Tabs)
 	.use(createMetaManager())
 	.use(metaPlugin)
-	.use(VMdEditor)
 	.use(Vue3Tour)
 	
 

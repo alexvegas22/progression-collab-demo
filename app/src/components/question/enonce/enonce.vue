@@ -19,21 +19,11 @@
 					<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
 				</h3>
 			</div>
-			<button id="hh" v-on:click="cacher(), (shown = !shown)">Modifier ✎</button>
-			<div class="row flex-grow-1">
-				<div style="color: red" v-if="shown">
-					<v-md-editor 
-						v-model="text" height="600px" mode="preview"></v-md-editor>
-				</div>
-				<div v-else>
-					<v-md-editor 
-					v-model="text" 
-					height="600px" 
-					mode="edit" 
-					left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation" :toolbar="toolbar"
-					right-toolbar="fullscreen">
-					</v-md-editor>
-				</div>
+			<div class="row flex-grow-1" >
+				<p  présentation_étape="0.3"
+										class="lead"
+					v-html="question.énoncé">
+				</p>
 			</div>
 
 			<div>
