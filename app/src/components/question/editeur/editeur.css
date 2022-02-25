@@ -56,18 +56,21 @@
 }
 
 .btn-valider{
-	border-radius: 50%;
 	position:relative;
 	top:0px;
 	right:16px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 	z-index:2;
+	background-color:#6c757d;
+	color: white;
 }
 
-.btn-valider.tentative_en_cours {
+/*.btn-valider.tentative_en_cours {
 	animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
-}
+}*/
