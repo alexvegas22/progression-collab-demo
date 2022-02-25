@@ -53,19 +53,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			}
 		});
 
-		if (!VCodeMirrorComp.ro) {
-			VCodeMirrorComp.ro = new ResizeObserver(function (entries) {
-				entries.forEach((entry) => {
-					const that = entry.target._component;
-					if (that.autoHeight) {
-						that.editor.refresh();
-					} else {
-						that.editor.setSize(entry.contentRect.width, entry.contentRect.height);
-					}
-				});
-			});
-		}
-		VCodeMirrorComp.ro.observe(this.$el);
 		this.updateMode(this.mode);
 		this.updateTheme(this.theme);
 		if(!this.xray){

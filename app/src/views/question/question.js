@@ -1,3 +1,4 @@
+import OngletsInformation from '@/components/question/onglets_information/onglets_information.vue';
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
@@ -8,14 +9,21 @@ import Présentation from "@/components/question/présentation/présentation.vue
 const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
+  data() {
+    return {
+      enonceCacher: false
+    };
+  },
 	name: "Question",
 	components: {
+		OngletsInformation,
 		Enonce,
 		Avancement,
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
+
 	},
 	computed: {
 		user() {
@@ -80,6 +88,8 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-
+		cacherEnoncer() {
+			this.enonceCacher = !this.enonceCacher;
+		}
 	},
 };

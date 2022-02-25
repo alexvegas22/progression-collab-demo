@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="container" style="padding-left: 0px; padding-right: 0px" >
+	<div style="flex-grow: 1;">
+		<div class="container p-0">
 			<div class="row align-items-end" style="height: 0px">
 				<div class="col"></div>
 				<div class="col-auto">
@@ -23,39 +23,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="container" style="padding-left: 0px; padding-right: 0px" >
+		<div class="container-fluid p-0 h-100">
 				<div class="row align-items-end" style="height: 0px">
 					<div class="col" ></div>
 				<div class="col-auto" :class="classeIndicateur">●</div>
 			</div>
 			
-			<div class="row" style="height: 500px" présentation_étape="1.1">
-				<v-code-mirror
-					id="editor"
-
-						:value="code"
-					:mode="mode"
-					:theme="thème"
-					:xray="xray"
-					@update:value="onChange"
-				/>
-			</div>
-			
-			<div class="row align-items-end" style="height: 0px">
-				<div class="col"></div>
-				<div class="col-auto">
-					<button
-						id="btn_soumettre_tentative"
-						type="button"
-						class="btn btn-success btn-valider"
-						:class="{tentative_en_cours: envoiEnCours}"
-						:disabled="envoiEnCours"
-						@click="validerTentative"
-						présentation_étape="1.2"
-					>➜</button>
-				</div>
-			</div>
-			
+      <v-code-mirror présentation_étape="1.1"
+        id="editor"
+        style="height: 99%;"
+        :value="code"
+        :mode="mode"
+        :theme="thème"
+        :xray="xray"
+        @update:value="onChange"
+      />
 		</div>	
 	</div>
 </template>
