@@ -14,11 +14,16 @@
       >➜</button>
 		</div>
 
-		<div v-show="retroactionTentative && retroactionTentative.feedback">
-			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
-			<a id="btn_conseil">💡</a>
 
-			<template #content>
+		<div v-if="retroactionTentative && retroactionTentative.feedback">
+			<Tippy ref="tippy" v-tippy="{trigger : 'click', interactive : true }" :aria="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil" @show="montrerConseil" présentation_étape="2.1">
+			<a id="btn_conseil" >
+				<svg  class="svg_ampoule">
+					<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
+				</svg>
+			</a>
+
+			<template  #content>
 				💡 {{$t('retroaction_tentative.conseil')}} <div class="feedback" v-html="retroactionTentative.feedback"/>
 			</template>
 			</Tippy>
@@ -27,5 +32,12 @@
 
 </template>
 
-<script src="./retroaction_tentative.js"></script>
+<script src="./retroaction_tentative.js">
+
+	
+</script>
 <style src="./retroaction_tentative.css"></style>
+
+function newFunction() {
+  return 'toggle';
+}
