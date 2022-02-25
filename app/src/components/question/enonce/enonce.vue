@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%">
-    <div class="p-3 section-enoncer-text" :style="{opacity: enoncerCacher ? '0.0' : '1'}">
+    <perfect-scrollbar class="p-3 section-enoncer-text" :style="{opacity: enoncerCacher ? '0.0' : '1'}">
       <div v-if = "état_réussi" class="crochet icon icon--order-success svg">
         <svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
           <g>
@@ -29,9 +29,10 @@
           {{question.auteur}} {{question.licence}}
         </p>
       </div>
-
-    </div>
-    <button @click="$emit('cacherEnoncer')" class="bouton-deroulable"><strong> {{enoncerCacher ? 'Montrer' : 'Cacher'}}</strong></button>
+    </perfect-scrollbar>
+    <button @click="$emit('cacherEnoncer')" class="bouton-deroulable">
+      <i class="fa" :class="{'fa-angle-double-left': !enoncerCacher, 'fa-angle-double-right': enoncerCacher}" aria-hidden="true"></i>
+    </button>
 	</div>
 </template>
 

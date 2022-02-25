@@ -1,6 +1,6 @@
 <template>
 	<div style="flex-grow: 1;">
-		<div class="container" style="padding-left: 0px; padding-right: 0px" >
+		<div class="container p-0">
 			<div class="row align-items-end" style="height: 0px">
 				<div class="col"></div>
 				<div class="col-auto">
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid" style="padding-left: 0px; padding-right: 0px; height: 100%;" >
+		<div class="container-fluid p-0 h-100">
 				<div class="row align-items-end" style="height: 0px">
 					<div class="col" ></div>
 				<div class="col-auto" :class="classeIndicateur">●</div>

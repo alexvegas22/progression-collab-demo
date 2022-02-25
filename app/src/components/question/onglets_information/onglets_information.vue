@@ -18,13 +18,16 @@
             <strong>Commentaires</strong>
       </div>
 
-      <div @click="changementVisibilité()" class="boutton-basculable">+</div>
+      <div @click="changementVisibilité()" class="boutton-basculable">
+        <i class="fa" :class="{'fa-angle-double-down': sectionVisible, 'fa-angle-double-up': !sectionVisible}" aria-hidden="true"></i>
+      </div>
     </div>
 
     <keep-alive>
      <component 
         :is="ongletSelectionner" 
-        :style="{display: sectionVisible ? '' : 'none', height: '350px'}"
+        :style="{height: sectionVisible ? '350px' : '0'}"
+        class="section-bas"
         :test="test_select"
         :resultat="resultat_select"
       ></component>
@@ -113,5 +116,12 @@ export default {
     padding: 3px;
     color: rgba(0, 0, 0, 0.5);
     background: rgba(0, 0, 0, 0.05);
+  }
+
+  .section-bas {
+    overflow: hidden;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 </style>

@@ -32,16 +32,6 @@
 					</pre>
       </fenetre-info>
 		</div>
-		
-		<div>
-			<div v-show="resultat.feedback" class="bg-light col card device-card" v-if="resultat">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-center card-title">{{ $t("resultat_test.rétroaction") }}</h5>
-					<p class="card-text" v-html="feedback"></p>
-				</div>
-			</div>
-		</div>
-		
 	</div>
 	
 </template>

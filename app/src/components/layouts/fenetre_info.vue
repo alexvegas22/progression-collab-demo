@@ -3,7 +3,9 @@
     <header class="bordure-titre p-1">
       <strong>{{ titre }}</strong>
     </header>
-    <slot></slot>
+    <perfect-scrollbar>
+      <slot></slot>
+    </perfect-scrollbar>
   </div>
 </template>
 
@@ -22,5 +24,9 @@ export default {
   .bordure-titre {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     color: rgba(0, 0, 0, 0.5);
+  }
+
+  .ps {
+    height: 100%;
   }
 </style>
