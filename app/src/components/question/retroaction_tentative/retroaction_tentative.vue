@@ -6,12 +6,15 @@
       <button
         id="btn_soumettre_tentative"
         type="button"
-        class="btn btn-success btn-valider"
+        class="btn btn-valider"
         :class="{tentative_en_cours: envoiEnCours}"
         :disabled="envoiEnCours"
         @click="validerTentative"
-        présentation_étape="1.2"
-      >➜</button>
+        présentation_étape="1.2">
+
+        <i v-if="!envoiEnCours" class="fa fa-arrow-right" aria-hidden="true"></i>
+        <i v-else class="fas fa-circle-notch fa-spin" aria-hidden="true"></i>
+      </button>
 		</div>
 
 
