@@ -26,10 +26,10 @@
       </fenetre-info>
       
       <fenetre-info :titre="$t('resultat_test.sortieConsole')" v-if="resultat">
-        <pre v-if="sortie_observée"><p class="card-text" v-html="sortie_observée"></p></pre>
-					<pre v-else>
-						<p class="card-text sortie vide p-3">{{$t("resultat_test.vide")}}</p>
-					</pre>
+        <pre v-if="sortie_observée"><p class="card-text p-3" v-html="sortie_observée"></p></pre>
+        <pre v-else>
+          <p class="card-text sortie vide p-3">{{$t("resultat_test.vide")}}</p>
+        </pre>
       </fenetre-info>
 		</div>
 	</div>
