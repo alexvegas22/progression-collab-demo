@@ -39,10 +39,10 @@ h3 {
 
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size: 15px;
-	background-color: #0dcaf0;
+	font-size: 20px;
+	background-color: #1d3fd4;
 	position: relative;
-	top: -20px
+	top: -5px
 }
 
 /* animations */
