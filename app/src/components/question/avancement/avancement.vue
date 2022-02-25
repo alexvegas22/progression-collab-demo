@@ -5,11 +5,11 @@
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="menu_historique">
 			<li v-for="langage in this.langages" key="langage">
-				<button class="dropdown-item disabled">{{langage}}</button>
+				<button class="dropdown-item disabled" présentation_étape="4.0">{{langage}}</button>
 				<ul>
-					<li><button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">{{ $t('avancement.ébauche_initiale') }}</button></li>
+					<li><button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)"  présentation_étape="4.1">{{ $t('avancement.ébauche_initiale') }}</button></li>
 					<li v-for="elem in this.filtrerTentativesParLangage(langage)">
-						<button class="dropdown-item" @click="this.chargerTentative()" :value="elem.liens.self">
+						<button class="dropdown-item" @click="this.chargerTentative()" :value="elem.liens.self"  présentation_étape="4.2">
 							{{ this.timestampVersDate(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}							
 						</button>
 					</li>

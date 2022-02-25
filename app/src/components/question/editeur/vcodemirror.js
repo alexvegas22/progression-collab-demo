@@ -3,9 +3,10 @@ import CodeMirror from "codemirror";
 import "codemirror/addon/fold/brace-fold";
 import "codemirror/addon/fold/foldgutter";
 import "codemirror/addon/fold/foldgutter.css";
-import "codemirror/mode/clike/clike/";
-import "codemirror/mode/shell/shell/";
+import "codemirror/mode/clike/clike";
+import "codemirror/mode/shell/shell";
 import "codemirror/mode/python/python";
+import "codemirror/mode/javascript/javascript";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
 import { capitalize, h, markRaw } from "vue";
@@ -35,9 +36,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				foldGutter: true,
 				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 				...this.options,
-				indentUnit: 4,
 				smartIndent: false,
-				extraKeys: { Tab: "indentAuto" },
 			})
 			));
 
@@ -93,6 +92,10 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateMode(value) {
 		if (value === "java") {
 			this.editor.setOption("mode", "text/x-java");
+		} else if (value === "javascript") {
+			this.editor.setOption("mode", "javascript");
+		} else if (value === "typescript") {
+			this.editor.setOption("mode", "text/typescript");
 		} else if (value === "python") {
 			this.editor.setOption("mode", "python");
 		} else if (value === "bash") {
@@ -113,7 +116,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		zones.désactiverHorsTodo(this.editor.doc);
 	}
 	
-	updateXray(value) {
+	updateXray() {
 		if(this.xray){
 			//Enlève le marquage
 			this.editor.setValue(this.editor.getValue());

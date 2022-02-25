@@ -1,21 +1,58 @@
-# This file is a template, and might need editing before it works on your project.
-# Official framework image. Look for the different tagged releases at:
-# https://hub.docker.com/r/library/node/tags/
-image: node:latest
- 
-cache:
-  paths:
-    - node_modules/
+image: docker:latest
 
-test_vue:
-  before_script:
-  - npm install json-server
-  - json-server -w db.json -r routes.json -m middleware.js >/dev/null &
+stages:
+  - build_image
+  - test
+  - deploy_image
 
+variables:
+  PROGRESSION_DIR: $CI_PROJECT_DIR
+  DOCKER_HOST: "tcp://dind:2375"
+
+# Stage test
+
+# Tests unitaires
+test_unitaires:
+  stage: test
+  services:
+  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
+    command: ["--tls=false"]
+    alias: dind
   script:
-    - npm install
-    - npm test
-    - killall json-server >/dev/null
+    - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslint.json src/
+  except:
+    - master
 
-  after_script:
-    - /bin/bash -c '/usr/bin/killall -q json-server; exit 0'
+# Stage build_image
+
+# Construction de l'image
+const_image:
+  stage: build_image
+  services:
+  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
+    command: ["--tls=false"]
+    alias: dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
+    - echo TARGET $target
+    - docker build --build-arg NODE_ENV=dev --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
+    - docker push $CI_REGISTRY/progression/progression_frontend:test
+
+# Stage deploy_image
+
+# Déploiement sur /staging
+deploy:
+  stage: deploy_image
+  needs: [const_image]
+  services:
+  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
+    command: ["--tls=false"]
+    alias: dind
+  script:
+    - chmod 400 /builds/progression/progression_frontend.tmp/ID_RSA
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $CD_USER@$CD_HOST -p $CD_PORT $CD_COMMAND test $( [ "$CI_COMMIT_REF_NAME" = "master" ] && echo "staging" || echo $CI_COMMIT_REF_NAME )
+  only:
+    - master
+    - dev

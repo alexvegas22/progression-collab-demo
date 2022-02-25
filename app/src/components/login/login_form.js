@@ -1,5 +1,3 @@
-const API_URL = process.env.VUE_APP_API_URL;
-
 export default {
 	name: "LoginLDAP",
 	emits: {
@@ -8,7 +6,6 @@ export default {
 	props : {
 		domaine: String,
 		url_mdp_reinit: String,
-		password_req: Boolean,
 	},
 	data() {
 		return {
@@ -16,40 +13,28 @@ export default {
 			password: "",
 			persister: true,
 			username_vide: false,
+			username_invalide: false,
 			password_vide: false,
 		};
 	},
 	computed: {
 		placeholder: function(){
 			return this.domaine ? '@'+this.domaine : ""
-		}
+		},
+		authentificationEnCours: function(){
+			return this.$store.state.authentificationEnCours;
+		},
 	},
 	methods: {
 		login() {
 			this.username_vide = this.username == "";
-			this.password_vide = this.password_req && this.password == "";
+			this.username_invalide = !this.username_vide && !this.username.match(/^[-a-zA-Z0-9_]+$/);
+			this.password_vide = this.password == "";
 
-			if (this.username_vide || this.password_vide) return;
+			if (this.username_vide || this.username_invalide || this.password_vide) return;
 
-			this.$store
-				.dispatch("authentifier", {
-					urlAuth: process.env.VUE_APP_API_URL + "/auth",
-					nom_utilisateur: this.username,
-					mdp: this.password,
-					domaine: this.domaine,
-				})
-				.then((token) => {
-					this.$emit("onLogin", { username: this.username, token: token, persister: this.persister });
-				})
-				.catch((err) => {
-					console.log(err);
-					if (err.response.status == 401) {
-						this.$store.dispatch("deleteToken");
-						this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
-					} else {
-						this.$store.dispatch("setErreurs", { détails: err });
-					}
-				});
+			this.$emit("onLogin", { username: this.username, password: this.password, persister: this.persister, domaine: this.domaine });
+			
 		},
 	},
 };

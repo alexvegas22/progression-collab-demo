@@ -19,6 +19,10 @@ export const mutations = {
 		state.uri = uri;
 	},
 
+	setDémo(state, val) {
+		state.démo = val;
+	},
+
 	setLangageDéfaut(state, langageDéfaut) {
 		state.langageDéfaut = langageDéfaut;
 	},
@@ -63,6 +67,9 @@ export const mutations = {
 	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
+	},
+	updateAuthentificationEnCours(state, bool) {
+		state.authentificationEnCours = bool;
 	},
 	setSauvegarde(state, sauvegarde) {
 		state.sauvegardes[sauvegarde.langage] = sauvegarde;

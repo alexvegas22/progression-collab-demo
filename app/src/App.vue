@@ -21,10 +21,14 @@
 			</div>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a href="/" class="navbar-brand text-light">
+	<nav class="navbar justify-content-between navbar-dark bg-dark">
+		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
+		<div v-show="!page_login">
+			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+		</div>
 	</nav>
 	<router-view />
 </template>
@@ -44,8 +48,8 @@
 		 })
 	 },
 	 created() {
-		 this.traiterParamètresURL( window.location.search );
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
+		 this.traiterParamètresURL( window.location.search );
 	 },
 	 data() {
 		 return {
@@ -53,15 +57,15 @@
 			 cb_auth_params: null,
 		 } },
 	 computed: {
+		 page_login(){
+			 return this.$route.name=='LoginView';
+		 },
 		 token() {
 			 return this.$store.state.token;
 		 },
 		 erreurs() {
 			 return this.$store.state.erreurs;
 		 },
-		 username() {
-			 return this.$store.state.username;
-		 }
 	 },
 
 	 methods: {
@@ -74,6 +78,10 @@
 			 
 			 if(urlParams.has('lang')){
 				 this.$store.dispatch("setLangageDéfaut", urlParams.get('lang'));
+			 }
+
+			 if(urlParams.has('demo')){
+				 this.$store.dispatch("setDémo", true);
 			 }
 
 			 if(urlParams.has('cb_succes')){
@@ -90,40 +98,21 @@
 				 }
 			 }
 		 },
-		 récupérerUserInfos(){
-			 const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-			 const username = sessionStorage.getItem("username") || localStorage.getItem("username");
-			 this.$store.dispatch("setToken", token);
-			 this.$store.dispatch("setUsername", username);
-
-			 return username;
-		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
+		 },
+		 connexion(){
+			 this.$router.push({name: "LoginView"});
+		 },
+		 déconnexion(){
+			 sessionStorage.removeItem("authKey_nom");
+			 sessionStorage.removeItem("authKey_secret");
+			 localStorage.removeItem("authKey_nom");
+			 localStorage.removeItem("authKey_secret");
+			 sessionStorage.removeItem("token");
+			 this.$store.dispatch("deleteToken");
+			 this.$router.push({name: "Home"});
 		 }
 	 }
  };
 </script>
-
-<style src="./css/style.css">
- #app {
-	 font-family: Avenir, Helvetica, Arial, sans-serif;
-	 -webkit-font-smoothing: antialiased;
-	 -moz-osx-font-smoothing: grayscale;
-	 text-align: center;
-	 color: #2c3e50;
- }
-
- #nav {
-	 padding: 30px;
- }
-
- #nav a {
-	 font-weight: bold;
-	 color: #2c3e50;
- }
-
- #nav a.router-link-exact-active {
-	 color: #42b983;
- }
-</style>

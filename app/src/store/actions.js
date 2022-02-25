@@ -10,6 +10,7 @@ import {
 	postAvancementApi,
 	postSauvegardeApi,
 	postTentative,
+	postAuthKey
 } from "@/services/index.js";
 
 import tokenEstValide from "@/util/token.js";
@@ -74,16 +75,33 @@ function sauvegarderToken(token) {
 	else sessionStorage.setItem("token", token);
 }
 
+function générerAuthKey(user, token, expiration=0) {
+	const clé_id = "LTIauthKey_" + randomID();
+
+	return {
+		nom: clé_id,
+		portée: 1,
+		expiration: expiration,
+	}
+}
+
+function randomID() {
+	// Math.random should be unique because of its seeding algorithm.
+	// Convert it to base 36 (numbers + letters), and grab the first 9 characters
+	// after the decimal.
+	return Math.random().toString(36).substr(2, 9);
+}
+
 export default {
 	async setValidateur( v ){
 		validateur = v;
 	},
 	
-	async setErreurs({ commit, state }, erreurs) {
+	async setErreurs({ commit }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
 
-	async getConfigServeur({commit, state }, urlConfig){
+	async getConfigServeur({commit }, urlConfig){
 		return valider(commit, getConfigServeurApi(urlConfig)
 			.then((config)=>{
 				commit("setConfigServeur", config);
@@ -92,16 +110,42 @@ export default {
 		);
 	},
 
-	async authentifier({ commit, state }, params) {
-		const urlAuth = params.urlAuth;
-		const nom_utilisateur = params.nom_utilisateur;
-		const mdp = params.mdp;
+	async authentifier({ commit }, params) {
+		const urlAuth = process.env.VUE_APP_API_URL + (params.inscrire ? "/inscription" : "/auth");
+		const username = params.username;
+		const password = params.password;
+		const persister = params.persister;
 		const domaine = params.domaine;
+		commit("updateAuthentificationEnCours", true);
 
-		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp, domaine));
+		return valider(commit, (async () => {
+			const token = await authentifierApi(urlAuth, username, password, domaine)
+
+			commit("setUsername", username);
+			commit("setToken", token);
+
+			sessionStorage.setItem("token", token);
+
+			// Obtenir l'utilisateur
+			const user = await this.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username);
+
+			// Obtenir la clé d'authentification
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+
+			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
+
+			const storage = persister ? localStorage : sessionStorage;
+			storage.setItem("username", username);
+			storage.setItem("authKey_nom", authKey.nom);
+			storage.setItem("authKey_secret", authKey.clé.secret);
+		})());
 	},
 
-	async inscription({ commit, state }, params) {
+	async setAuthentificationEnCours({ commit }, état){
+		commit("updateAuthentificationEnCours", état);
+	},
+	
+	async inscription({ commit }, params) {
 		const urlAuth = params.urlInscription;
 		const nom_utilisateur = params.nom_utilisateur;
 		const mdp = params.mdp;
@@ -272,15 +316,15 @@ export default {
 		);
 	},
 
-	mettreAjourCode({ commit, state }, code) {
+	mettreAjourCode({ commit }, code) {
 		commit("updateCodeTentative", code);
 	},
 
-	mettreAjourLangageSelectionne({ commit, state }, langage) {
+	mettreAjourLangageSelectionne({ commit }, langage) {
 		commit("updateLangageTentative", langage);
 	},
 
-	réinitialiser({ commit, state }, langage_p) {
+	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
 		commit("setTentative", {
 			langage: langage,
@@ -290,7 +334,7 @@ export default {
 		commit("updateRetroaction", null);
 	},
 
-	setToken({ commit, state }, token) {
+	setToken({ commit }, token) {
 		try {
 			const token_décodé = jwt_decode(token);
 			if (token_décodé.username) {
@@ -304,40 +348,44 @@ export default {
 		}
 	},
 
-	setUri({ commit, state }, uri) {
+	setUri({ commit }, uri) {
 		commit("setUri", uri);
 	},
 
-	setLangageDéfaut({ commit, state }, langageDéfaut) {
+	setLangageDéfaut({ commit }, langageDéfaut) {
 		commit("setLangageDéfaut", langageDéfaut);
 	},
 
-	setCallbackSucces({ commit, state }, cb_succes) {
+	setDémo({ commit }, val) {
+		commit("setDémo", val);
+	},
+
+	setCallbackSucces({ commit }, cb_succes) {
 		commit("setCallbackSucces", cb_succes);
 	},
 
-	setCallbackSuccesParams({ commit, state }, cb_succes_params) {
+	setCallbackSuccesParams({ commit }, cb_succes_params) {
 		commit("setCallbackSuccesParams", cb_succes_params);
 	},
 
-	setCallbackAuth({ commit, state }, cb_auth) {
+	setCallbackAuth({ commit }, cb_auth) {
 		commit("setCallbackAuth", cb_auth);
 	},
 
-	setCallbackAuthParams({ commit, state }, cb_auth_params) {
+	setCallbackAuthParams({ commit }, cb_auth_params) {
 		commit("setCallbackAuthParams", cb_auth_params);
 	},
 
-	deleteToken({ commit, state }) {
+	deleteToken({ commit }) {
 		commit("setToken", null);
 		commit("setUsername", null);
 	},
 
-	setUsername({ commit, state }, username) {
+	setUsername({ commit }, username) {
 		commit("setUsername", username);
 	},
 
-	setAuthentificationErreurHandler({ commit, state }, authentificationErreurHandler ){
+	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
 };
