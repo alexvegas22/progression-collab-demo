@@ -4,12 +4,13 @@
 			<div class="row align-items-end" style="height: 0px">
 				<div class="col"></div>
 				<div v-if="xray" class="col-auto">
-					<div class="btn-doc">
+					<div>
 						<a
 							href="https://progression.pages.dti.crosemont.quebec/documentation/contenu/cr%C3%A9action_de_conteu.html#org5fbcefb"
 							target="_blank"
-							class="btn-primary btn-sm"
-						>?</a>
+							class="btn-primary btn-sm btn-doc text-decoration-none"
+							text="?"							
+						></a>
 					</div>
 				</div>
 				<div class="col-auto">
