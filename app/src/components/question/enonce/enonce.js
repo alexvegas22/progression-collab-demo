@@ -34,6 +34,7 @@ export default {
 			titre: this.$store.state.question.titre,
 			niveau: this.$store.state.question.niveau,
 			auteur: this.$store.state.question.auteur,
+			licence: this.$store.state.question.licence,
 			aperçu: false,
 
 			toolbar: {

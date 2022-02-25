@@ -28,7 +28,7 @@
 				</div>
 
 				<div>
-					<p class="footer-copyright text-center py-3">{{ auteur }} {{ question.licence }}</p>
+					<p class="footer-copyright text-center py-3">{{ auteur }} {{ licence }}</p>
 				</div>
 			</div>
 
@@ -62,7 +62,7 @@
 				<div>
 					<p class="footer-copyright text-center py-3">
 						<input id="auteur" type="text" placeholder="Auteur"  v-model="auteur" />
-						{{ question.licence }}
+						<input id="licence" type="text" placeholder="Licence"  v-model="licence" />
 					</p>
 				</div>
 			</div>
