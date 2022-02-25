@@ -3,8 +3,9 @@
 		<div>
 			<div class="row w-100 m-0 p-1" v-on:click="toggleVisibilite">
 				<div class="col-11 test" :class="{sélectionné, non_sélectionné: !sélectionné}" v-bind:class="{réussi, non_réussi}" >
-					<input class="w-100 m-0 border-0" v-model="test.nom" style="outline: none;"/>
-					<!-- <p class="p-0 m-0" v-html="(index+1) + '. ' + test.nom"></p> -->
+
+					<input v-if="modifiable" class="w-100 m-0 border-0" v-model="test.nom" style="outline: none;"/>
+					<p v-else class="p-0 m-0" v-html="(index+1) + '. ' + test.nom"></p>
 				</div>				
 				<div class="col-1" style="visibility:hidden" :class="{visible: sélectionné}">
 				▶

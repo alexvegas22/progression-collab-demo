@@ -35,6 +35,7 @@ export default {
 	data() {
 		return {
 			index_select: 0,
+			modifiable:false
 		};
 	},
 	methods: {
@@ -51,6 +52,9 @@ export default {
 			} else if (display == "block") {
 				divAjoute.style.display = "none";
 			}
+			
+			this.modifiable=!this.modifiable;
+			
 
 		},
 		//

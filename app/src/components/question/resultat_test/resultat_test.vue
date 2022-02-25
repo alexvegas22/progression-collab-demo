@@ -4,17 +4,15 @@
 			<div class="bg-light col card device-card">
 				<div class="card-body" présentation_étape="3.1">
 					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
-					
+
 					<!--resize: none;  -->
-					<textarea class="w-100 border-0" v-model=test.entrée style="outline: none;"></textarea>
-					
-					
-					<!-- {{ test.entrée }} <pre class="card-text" v-html="test.entrée"></pre> -->
+					<textarea v-if="modifiable" class="w-100 border-0" v-model="test.entrée" style="outline: none"></textarea>
+					<pre v-else class="card-text" v-html="test.entrée"></pre>
 				</div>
 			</div>
 		</div>
 
-		<!-- v-if="test.params" -->
+		<!--  -->
 		<!-- ajouter cette verification quand ce n'est pas en mode edition -->
 		<div class="row">
 			<div class="bg-light col card device-card">
@@ -22,8 +20,8 @@
 					<h5 class="text-black-50 font-weight-bold text-left card-title">
 						{{ $t("resultat_test.params") }}
 					</h5>
-					<textarea class="w-100 border-0" v-model=test.params style="outline: none;"></textarea>
-					<!-- <pre class="card-text" v-html="test.params"></pre> -->
+					<textarea v-if="modifiable" class="w-100 border-0" v-model="test.params" style="outline: none"></textarea>
+					<div v-else><pre class="card-text" v-html="test.params"></pre></div>
 				</div>
 			</div>
 		</div>
@@ -34,18 +32,22 @@
 					<h5 class="text-black-50 font-weight-bold text-left card-title">
 						{{ $t("resultat_test.sortieAttendue") }}
 					</h5>
-					
-					<textarea class="w-100 border-0" v-model=test.sortie_attendue style="outline: none;"></textarea>
-					
-					 <!--<pre v-if="sortie_attendue">
-						
-						 <p class="card-text" v-html="sortie_attendue"></p>
-						
-					</pre> 
-					<pre v-else>
-						
-						<p class="card-text sortie vide">{{ $t("resultat_test.vide") }}</p>
-					</pre> -->
+
+					<textarea
+						v-if="modifiable"
+						class="w-100 border-0"
+						v-model="test.sortie_attendue"
+						style="outline: none"
+					></textarea>
+
+					<div v-else>
+						<pre v-if="sortie_attendue">
+						 	<p class="card-text" v-html="sortie_attendue"></p>
+						</pre>
+						<pre v-else>
+							<p class="card-text sortie vide">{{ $t("resultat_test.vide") }}</p>
+						</pre>
+					</div>
 				</div>
 			</div>
 
@@ -64,7 +66,6 @@
 
 		<div class="row">
 			<div v-show="resultat.sortie_erreur" class="bg-light col card device-card" v-if="resultat">
-				>
 				<div class="card-body">
 					<h5 class="text-danger font-weight-bold text-left card-title">
 						{{ $t("resultat_test.sortieErreur") }}

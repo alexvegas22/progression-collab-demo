@@ -38,12 +38,13 @@ export default {
 			sortie_attendue: null,
 			params: null,
 			feedback: null,
+
 		};
 	},
 	props: {
 		test: null,
 		resultat: null,
-		modifiable:null,
+		modifiable: false
 	},
 	computed: {
 		mode_affichage() {
