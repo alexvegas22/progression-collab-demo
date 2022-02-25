@@ -12,10 +12,7 @@ export default {
 			return this.$store.state.user.avancements;
 		},
 		tentatives() {
-			return this.$store.state.avancement.tentatives ?? [];
-		},
-		tentative() {
-			return this.$store.state.tentative;
+			return this.$store.state.user.liens.self + "?include=tentatives";
 		},
 		date_soumission() {
 			return this.$store.state.tentative.date_soumission;
@@ -28,6 +25,9 @@ export default {
 
 	methods: {
 		timestampVersDate: function (timestamp) {
+			if (timestamp == 0){
+				return "Pas encore réussi"
+			}
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");
 		},
 		etat: function (etat) {
@@ -40,6 +40,11 @@ export default {
 					etatString = "En cours";
 			}
 			return etatString;
+		},
+		ordreModification: function (){
+			//Array.from(this.avancements).sort((a,b)=>{return a.date_modification - b.date_modification;});
+			//console.log(Array.from(this.avancements).sort((a,b)=>{return a.date_modification - b.date_modification;}));
+			console.log(this.avancements);
 		},
 		redirigerVersLogin(ref) {
 			this.$router.push({

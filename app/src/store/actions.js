@@ -178,6 +178,17 @@ export default {
 				}),
 		);
 	},
+
+	async getTentativesRéussites({ commit, state }, params) {
+		return valider(
+			commit,
+			getToken({ commit, state })
+				.then((token) => getAvancementApi(params.url, token))
+				.then((avancement) => {
+
+	
+	}))},
+
 	//getListeAvancements
 	async getAvancement({ commit, state }, params) {
 		return valider(

@@ -24,11 +24,6 @@ const getUserApi = async (urlUser, token) => {
 		if (data.included) {
 			data.included.forEach((item) => {
 				var avancement = item.attributes;
-
-				avancement.titre = "Boucle";
-				avancement.niveau = "Intermédiaire";
-				avancement.date_avancement = 0;
-				avancement.date_réussite = 0;
 				
 				avancement.liens = item.links;
 				user.avancements[item.id] = avancement;
