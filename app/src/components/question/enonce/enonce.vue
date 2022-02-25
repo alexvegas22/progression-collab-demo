@@ -29,6 +29,12 @@
 					{{question.auteur}} {{question.licence}}
 				</p>
 			</div>
+			<div class="row flex-grow-1">
+				<label>Rétroactions générales</label>
+				<input type = 'text' placeholder="Rétroaction positive" id='retropos' v-model="retropos" >
+				<input type = 'text' placeholder="Rétroaction négative" id='retroneg' v-model="retroneg" >
+				<input type = 'text' placeholder="Rétroaction erronée" id='retroerr' v-model="retroerr" >
+			</div>
 		</div>
 	</div>
 </template>

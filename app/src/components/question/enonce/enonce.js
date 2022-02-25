@@ -14,4 +14,12 @@ export default {
 			});
 		},
 	},
+
+	data() {
+		return {
+			retropos: this.$store.state.question.feedback.positive,
+			retroneg: this.$store.state.question.feedback.négative,
+			retroerr: this.$store.state.question.feedback.erreur,
+		};
+	},
 };
