@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="thème_sombre_section">
     <div class="section-onglets">
       <div @click="changementOnglet('jeu-tests')"
            :class="{onglets: true, sélectionné: ongletSelectionner === 'jeu-tests'}">

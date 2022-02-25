@@ -49,3 +49,13 @@ body {
 .m-n-0 {
   min-height: 0;
 }
+
+.thème_sombre_global .thème_sombre_section{
+    background-color: #232121 !important;
+    color:#E1E1E1 !important;  
+}
+
+.thème_sombre_global{
+	background-color: #434343 !important;
+	color:#E1E1E1 !important;	
+}

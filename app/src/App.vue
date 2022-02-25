@@ -29,6 +29,7 @@
 			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
 			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
 		</div>
+		<input class="form-check-input" type="checkbox" v-model="thèmeSombre"/>
 	</nav>
 	<router-view />
 </template>
@@ -50,12 +51,20 @@
 	 created() {
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
 		 this.traiterParamètresURL( window.location.search );
+		 this.traiterThemeSombre();
 	 },
 	 data() {
 		 return {
 			 cb_auth: null,
 			 cb_auth_params: null,
+			 thèmeSombre: localStorage.getItem("thèmeSombreGlobal") === "true",
 		 } },
+	watch: {		
+		thèmeSombre() {
+			localStorage.setItem("thèmeSombreGlobal", this.thèmeSombre);		
+			this.traiterThemeSombre();	
+		},
+	},
 	 computed: {
 		 page_login(){
 			 return this.$route.name=='LoginView';
@@ -112,7 +121,14 @@
 			 sessionStorage.removeItem("token");
 			 this.$store.dispatch("deleteToken");
 			 this.$router.push({name: "Home"});
-		 }
+		 },		
+		traiterThemeSombre(){
+			if (!this.thèmeSombre) {
+				document.body.classList.replace("thème_sombre_global","bg-light");
+			} else{
+				document.body.classList.replace("bg-light","thème_sombre_global");
+			}
+		},
 	 }
  };
 </script>

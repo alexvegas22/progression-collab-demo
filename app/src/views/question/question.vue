@@ -5,7 +5,7 @@
     </div>
     <div class="container-fluid taille-ecran">
       <div class="row h-100" v-if="avancement">
-        <div class="col-lg-4 col-md-6 barre-enonce" 
+        <div class="col-lg-4 col-md-6 barre-enonce thème_sombre_section" 
             :style="{width: enonceCacher ? '50px' : ''}"
           >
           <Enonce présentation_étape="0" @cacherEnoncer="cacherEnoncer()" :enoncerCacher="enonceCacher"/>
