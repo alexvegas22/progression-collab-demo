@@ -18,7 +18,7 @@ import 'vue3-tour/dist/vue3-tour.css';
 import VMdEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
-import '@kangc/v-md-editor/lib/theme/style/vuepress.css'; 
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 
 // Prism
 import Prism from 'prismjs';
@@ -26,11 +26,11 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
 VMdEditor.use(vuepressTheme, {
 	Prism,
-  });
-  import frFR from '@kangc/v-md-editor/lib/lang/fr-FR';
-  
-  VMdEditor.lang.use('fr-FR', frFR);
-  
+});
+import frFR from '@kangc/v-md-editor/lib/lang/fr-FR';
+
+VMdEditor.lang.use('fr-FR', frFR);
+
 const app = createApp(App)
 	.use(router)
 	.use(store)
@@ -44,34 +44,35 @@ const app = createApp(App)
 	.use(metaPlugin)
 	.use(VMdEditor)
 	.use(Vue3Tour)
-	
 
-const authentificationErreurHandler = function() {
-	if ( router.currentRoute.value.name != 'LoginView' ) {
+
+const authentificationErreurHandler = function () {
+	if (router.currentRoute.value.name != 'LoginView') {
 		router.push({
 			name: 'LoginView',
 			query: window.location.search,
-			params: { origine: window.location.href }});
+			params: { origine: window.location.href }
+		});
 	}
 };
 
-const valider = async function(promesse) {
+const valider = async function (promesse) {
 	return promesse
 		.then((résultat) => {
 			store.dispatch("setErreurs", null);
 			return résultat;
 		})
 		.catch((erreur) => {
-			if(erreur.response.status==401) {
+			if (erreur.response.status == 401) {
 				authentificationErreurHandler(erreur)
 			}
-			else{
+			else {
 				store.dispatch("setErreurs", { détails: erreur });
 			}
 			throw erreur;
 		});
 }
 
-actions.setValidateur( valider );
+actions.setValidateur(valider);
 
-router.isReady().then( () => app.mount("#app"));
+router.isReady().then(() => app.mount("#app"));
