@@ -4,8 +4,9 @@
 			<div v-bind:style="testsRéussisPct" class="progress-bar test_réussi" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"/>
 			<div v-bind:style="testsRatésPct" class="progress-bar test_non_réussi" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"/>
 		</div>
+
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
-			<Tippy ref="tippy" :interactive="true" :showOnCreate="true" :arrow="true" @click="alert('ok')" placement="bottom" class="popup_conseil" présentation_étape="2.1">
+			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
 			<a id="btn_conseil">💡</a>
 
 			<template #content>
