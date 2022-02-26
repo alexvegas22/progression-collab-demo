@@ -46,4 +46,9 @@ export default {
 			return this.$store.state.envoiTentativeEnCours;
 		},
 	},
+	methods: {
+		go(){
+			this.$refs.tippy.show();
+		}
+	}
 };
