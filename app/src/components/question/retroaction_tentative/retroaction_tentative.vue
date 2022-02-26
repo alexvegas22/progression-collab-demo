@@ -5,7 +5,7 @@
 			<div v-bind:style="testsRatésPct" class="progress-bar test_non_réussi" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"/>
 		</div>
 
-		<div v-show="retroactionTentative && retroactionTentative.feedback">
+		<div v-if="retroactionTentative && retroactionTentative.feedback">
 			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
 			<a id="btn_conseil">💡</a>
 
