@@ -1,0 +1,16 @@
+{
+	"extends": [
+		"plugin:vue/vue3-essential",
+		"eslint:recommended"
+	],
+	"parserOptions": {
+		"parser": "@babel/eslint-parser"
+	},
+	"plugins": [
+		"smarter-tabs"
+	],
+	"rules": {
+		"smarter-tabs/smarter-tabs": "error",
+		"no-mixed-spaces-and-tabs": "off"
+	}
+}

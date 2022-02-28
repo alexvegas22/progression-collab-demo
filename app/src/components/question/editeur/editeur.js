@@ -1,4 +1,5 @@
 import { VCodeMirror } from "./vcodemirror";
+import parseMD from "@/util/parse";
 
 export default {
 	name: "EditeurCode",
@@ -51,13 +52,11 @@ export default {
 		retroactionTentative() {
 			let tentative = this.$store.state.retroactionTentative;
 
-			return tentative
-				 ? new Proxy(tentative, {
-					 get: function (obj, prop) {
-						 return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-					 },
-				 })
-				 : null;
+			return tentative ? new Proxy(tentative, {
+				get: function (obj, prop) {
+					return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+				},
+			}) : null;
 		},
 		tentative_réussie() {
 			return this.$store.state.tentative.réussi;
@@ -100,15 +99,15 @@ export default {
 					this.indicateurSauvegardeEnCours = true;
 					this.indicateurModifié = false;
 					await this.$store
-							  .dispatch("mettreAjourSauvegarde")
-							  .catch((erreur) => {
-								  console.log("ERREUR de sauvegarde : " + erreur);
-								  this.indicateurModifié = true;
-							  })
-							  .finally(() => {
-								  this.indicateurSauvegardeEnCours = false;
-								  this.sauvegardeAutomatique = null;
-							  });
+					          .dispatch("mettreAjourSauvegarde")
+					          .catch((erreur) => {
+					              console.log("ERREUR de sauvegarde : " + erreur);
+					              this.indicateurModifié = true;
+					          })
+					          .finally(() => {
+					              this.indicateurSauvegardeEnCours = false;
+					              this.sauvegardeAutomatique = null;
+					          });
 				}, process.env.VUE_APP_DELAI_SAUVEGARDE);
 
 				this.indicateurModifié = true;

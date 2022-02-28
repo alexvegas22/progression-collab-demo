@@ -1,6 +1,7 @@
 import { useMeta } from 'vue-meta'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { bootstrap } from 'bootstrap'
 
 library.add(faUserSecret)
 
@@ -14,7 +15,7 @@ export default {
 			title: 'accueil',
 		})
 
-		window.addEventListener('DOMContentLoaded', event => {
+		window.addEventListener('DOMContentLoaded', () => {
 
 			// Navbar shrink function
 			var navbarShrink = function () {
@@ -43,7 +44,7 @@ export default {
 					target: '#mainNav',
 					offset: 74,
 				});
-			};
+			}
 
 			// Collapse responsive navbar when toggler is visible
 			const navbarToggler = document.body.querySelector('.navbar-toggler');
