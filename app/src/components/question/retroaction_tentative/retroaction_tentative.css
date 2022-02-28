@@ -34,6 +34,7 @@
 .svg_ampoule:hover{
 	fill: rgb(0, 238, 255);
 	transition: ease-in .2s;
+	cursor: pointer;
 }
 
 @keyframes blink {
