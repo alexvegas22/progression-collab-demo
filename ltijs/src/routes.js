@@ -139,12 +139,34 @@ const récupérerScore = async function (uri, token) {
 		},
 	};
 
+
+
 	const requête = process.env.API_URL + "/avancement/" + username + "/" + uri;
 
 	return axios.get(requête, config).then((res) => {
 		return res.data.data.attributes.état == 2 ? 100 : 0;
 	});
 };
+
+const récupérerTokenRessource = async function(token,typeRessource){
+	const username = jwt_decode(token).username;
+	const idRessource=jwt_decode(token).idRessource
+	const config = {
+		headers: {
+			Authorization: "Bearer " + token,
+		},
+		body: {
+			"idRessource": idRessource,
+			"typeRessource": typeRessource,
+		}
+	};
+
+	const requête = process.env.API_URL + "/jeton/" + username;
+
+	return axios.post(requête, config).then((res) => {
+		return res.data.data.attributes.token;
+	});
+}
 
 router.get("*", (req, res) => {
 	return res.sendFile(path.join(__dirname, "../public/404.html"));
