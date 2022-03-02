@@ -59,3 +59,17 @@ body {
 	background-color: #434343 !important;
 	color:#E1E1E1 !important;	
 }
+
+#navDroite {
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 10px;
+  }
+
+.navBtn{
+	margin-right: 10px;
+}
+
+input[type="checkbox"]:checked + .bi {
+	fill:rgb(18, 169, 189);
+}
