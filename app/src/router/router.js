@@ -24,9 +24,9 @@ const routes = [
 		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
 	{
-	path: "/statistiqueTest",
+	path: "/statistiquesParLangage",
 	name: "NotFound",
-	component: () => import("@/views/statistiqueTest/statistiqueTest.vue"),
+	component: () => import("@/views/statistiquesParLangage/statistiquesParLangage.vue"),
 	},
 ];
 
