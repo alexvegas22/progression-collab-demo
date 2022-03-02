@@ -425,4 +425,42 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
+	async getTentativeRéussiJava({ commit, state }, params) {
+		return valider(
+			commit,
+			getToken({ commit, state })
+				.then((token) => getAvancementApi(params.url, token))
+				.then((avancement) => {
+					var réussi = false;
+					for(tentative in avancement.tentatives){
+						if(!réussiJava  || !réussiPython){
+							if(tentative.langage == "java" && tentative.réussi){
+								réussi = true;
+							}
+						}
+					}
+					return réussi;
+				}
+			),
+		);
+	},
+	async getTentativeRéussiPython({ commit, state }, params) {
+		return valider(
+			commit,
+			getToken({ commit, state })
+				.then((token) => getAvancementApi(params.url, token))
+				.then((avancement) => {
+					var réussi = false;
+					for(tentative in avancement.tentatives){
+						if(!réussiJava  || !réussiPython){
+							if(tentative.langage == "python" && tentative.réussi){
+								réussiPython = true;
+							}
+						}
+					}
+					return réussi;
+				}
+			),
+		);
+	},
 };

@@ -1,9 +1,9 @@
-import statistiquesTypesQuestions from "@/components/statistiquesTypesQuestions/statistiquesTypesQuestions.vue";
+import statistiqueTypesQuestions from "@/components/statistiqueTypesQuestions/statistiqueTypesQuestions.vue";
 
 export default {
 	name: "statistiqueTest",
 	components: {
-		statistiquesTypesQuestions,
+		statistiqueTypesQuestions,
 	},
 	
 };

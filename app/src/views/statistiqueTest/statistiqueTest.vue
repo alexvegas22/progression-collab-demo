@@ -1,6 +1,6 @@
 <template>
     <div>
-        <statistiquesTypesQuestions />
+        <statistiqueTypesQuestions />
     </div>
 </template>
 
