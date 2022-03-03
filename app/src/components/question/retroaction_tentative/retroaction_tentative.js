@@ -19,13 +19,11 @@ export default {
 		retroactionTentative() {
 			let tentative = this.$store.state.retroactionTentative;
 
-			return tentative
-				? new Proxy(tentative, {
-						get: function (obj, prop) {
-							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-						},
-				  })
-				: null;
+			return tentative ? new Proxy(tentative, {
+				get: function (obj, prop) {
+					return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+				},
+			}) : null;
 		},
 		testsRéussisPct() {
 			if (!this.$store.state.retroactionTentative) return null;

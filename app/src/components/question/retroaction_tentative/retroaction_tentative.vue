@@ -39,7 +39,7 @@
 				<template #content>
 					<svg class="svg_ampoule_mini">
 						<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
-					</svg> 
+					</svg>
 					{{ $t("retroaction_tentative.conseil") }}
 					<div class="feedback" v-html="retroactionTentative.feedback" />
 				</template>
