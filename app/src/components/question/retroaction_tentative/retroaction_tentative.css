@@ -2,7 +2,7 @@
 	color: #5f9ea0;
 }
 
-.popup_conseil{
+.popup_conseil {
 	float: right;
 	position: relative;
 	top: -32.7rem;
@@ -10,35 +10,43 @@
 	z-index: 3;
 }
 
-.test_réussi{
+.test_réussi {
 	background-color: #80cc8e;
 }
 
-.test_non_réussi{
+.test_non_réussi {
 	background-color: #d88f90;
 }
 
-.progress{
+.progress {
 	height: 2.5rem;
 }
 
-.svg_ampoule{
-	
-	fill:#8D8C8C;
+.svg_ampoule {
+	fill: #8d8c8c;
 	width: 2.5rem;
 	height: 2.5rem;
-	animation: blink .5s 20 alternate;
+	animation: blink 0.5s 20 alternate;
 	animation-iteration-count: 10;
 }
 
-.svg_ampoule:hover{
+.svg_ampoule:hover {
 	fill: rgb(0, 238, 255);
-	transition: ease-in .2s;
+	transition: ease-in 0.2s;
 	cursor: pointer;
 }
 
-@keyframes blink {
-	from { fill: #8D8C8C; }
-	to { fill: rgb(0, 238, 255); }
-  }
+.svg_ampoule_mini {
+	fill: white;
+	width: 1rem;
+	height: 1rem;
+}
 
+@keyframes blink {
+	from {
+		fill: #8d8c8c;
+	}
+	to {
+		fill: rgb(0, 238, 255);
+	}
+}

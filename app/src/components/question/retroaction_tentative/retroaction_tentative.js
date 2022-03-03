@@ -7,10 +7,10 @@ import "tippy.js/dist/svg-arrow.css";
 export default {
 	name: "RetroactionTentative",
 	components: { Tippy },
-	data(){
-		return{
-			affiché:false
-		}
+	data() {
+		return {
+			conseilAffiché: false,
+		};
 	},
 	computed: {
 		tentative() {
@@ -19,11 +19,13 @@ export default {
 		retroactionTentative() {
 			let tentative = this.$store.state.retroactionTentative;
 
-			return tentative ? new Proxy(tentative, {
-				get: function (obj, prop) {
-					return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-				},
-			}) : null;
+			return tentative
+				? new Proxy(tentative, {
+						get: function (obj, prop) {
+							return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
+						},
+				  })
+				: null;
 		},
 		testsRéussisPct() {
 			if (!this.$store.state.retroactionTentative) return null;
@@ -50,24 +52,10 @@ export default {
 		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
-		
 	},
-	methods:{
-		montrerConseil(){
-			
-			if(this.affiché===false){
-				this.affiché=true;
-				this.$refs.tippy.show();
-				
-			}
-			else{
-				this.$refs.tippy.hide();
-				this.affiché=false;
-			}
-			
+	methods: {
+		basculerAffichageConseil() {
+			this.conseilAffiché = !this.conseilAffiché;
 		},
-		
-		
 	},
-	
 };
