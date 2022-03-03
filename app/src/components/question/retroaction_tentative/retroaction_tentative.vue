@@ -5,7 +5,6 @@
 				v-bind:style="testsRéussisPct"
 				class="progress-bar test_réussi"
 				role="progressbar"
-				aria-valuenow="10"
 				aria-valuemin="0"
 				aria-valuemax="100"
 			/>
@@ -13,7 +12,6 @@
 				v-bind:style="testsRatésPct"
 				class="progress-bar test_non_réussi"
 				role="progressbar"
-				aria-valuenow="10"
 				aria-valuemin="0"
 				aria-valuemax="100"
 			/>
@@ -26,9 +24,10 @@
 				:aria="true"
 				:showOnCreate="true"
 				:arrow="true"
+				:show="conseilAffiché"
 				placement="bottom"
 				class="popup_conseil"
-				@show="montrerConseil"
+				@show="basculerAffichageConseil"
 				présentation_étape="2.1"
 			>
 				<a id="btn_conseil">
@@ -38,7 +37,10 @@
 				</a>
 
 				<template #content>
-					💡 {{ $t("retroaction_tentative.conseil") }}
+					<svg class="svg_ampoule_mini">
+						<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
+					</svg>
+					{{ $t("retroaction_tentative.conseil") }}
 					<div class="feedback" v-html="retroactionTentative.feedback" />
 				</template>
 			</Tippy>
@@ -48,5 +50,3 @@
 
 <script src="./retroaction_tentative.js"></script>
 <style src="./retroaction_tentative.css"></style>
-
-function newFunction() { return 'toggle'; }
