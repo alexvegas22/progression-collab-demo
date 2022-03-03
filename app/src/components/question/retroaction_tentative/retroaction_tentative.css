@@ -1,14 +1,13 @@
 .feedback {
-	color: #5f9ea0
+	color: #5f9ea0;
 }
 
 .popup_conseil{
 	float: right;
 	position: relative;
-	top: -540px;
-	right: 22px;
+	top: -32.7rem;
+	right: 1.3rem;
 	z-index: 3;
-	font-size: 30px;
 }
 
 .test_réussi{
@@ -20,5 +19,26 @@
 }
 
 .progress{
-	height: 40px;
+	height: 2.5rem;
 }
+
+.svg_ampoule{
+	
+	fill:#8D8C8C;
+	width: 2.5rem;
+	height: 2.5rem;
+	animation: blink .5s 20 alternate;
+	animation-iteration-count: 10;
+}
+
+.svg_ampoule:hover{
+	fill: rgb(0, 238, 255);
+	transition: ease-in .2s;
+	cursor: pointer;
+}
+
+@keyframes blink {
+	from { fill: #8D8C8C; }
+	to { fill: rgb(0, 238, 255); }
+  }
+
