@@ -12,7 +12,6 @@
 			</div>
 		</div>
 
-		<!--  -->
 		<!-- ajouter cette verification quand ce n'est pas en mode edition -->
 		<div class="row">
 			<div class="bg-light col card device-card">
