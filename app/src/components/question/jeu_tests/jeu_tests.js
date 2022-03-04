@@ -34,8 +34,9 @@ export default {
 	},
 	data() {
 		return {
+			nouveauTestNom: "",
 			index_select: 0,
-			modifiable:false
+			modifiable: false
 		};
 	},
 	methods: {
@@ -43,24 +44,12 @@ export default {
 			this.index_select = index;
 		},
 		montrerAjouterTest: function () {
-			const divAjoute = document.getElementById("champAjouterTest");
-			var display = divAjoute.style.display;
-			if (display == "none") {
-				divAjoute.style.display = "block";
-			} else if (display == "block") {
-				divAjoute.style.display = "none";
-			}
-			this.modifiable=!this.modifiable;
+			this.modifiable = !this.modifiable;
 		},
 		AjouterTest: function () {
 			var lesTests = this.$store.state.question.tests;
-			var nomTest = document.getElementById("nomTestAjoute").value;
-			if (nomTest == "") return;
-			if (nomTest == null) return;
-			var testExiste = lesTests.find(test => test.nom == nomTest)
-			if (testExiste) return;
 			let nouveauTest = {
-				nom: nomTest,
+				nom: this.nouveauTestNom,
 				entrée: "",
 				sortie_attendue: "",
 				params: "",
