@@ -35,7 +35,6 @@
 						<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
 					</svg>
 				</a>
->>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156
 
 				<template #content>
 					<svg class="svg_ampoule_mini">
