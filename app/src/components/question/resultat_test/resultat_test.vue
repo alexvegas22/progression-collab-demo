@@ -5,14 +5,13 @@
 				<div class="card-body" présentation_étape="3.1">
 					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
 
-					<!--resize: none;  -->
+
 					<textarea v-if="modifiable" class="w-100 border-0" v-model="test.entrée" style="outline: none"></textarea>
 					<pre v-else class="card-text" v-html="test.entrée"></pre>
 				</div>
 			</div>
 		</div>
 
-		<!--  -->
 		<!-- ajouter cette verification quand ce n'est pas en mode edition -->
 		<div class="row">
 			<div class="bg-light col card device-card">
@@ -42,7 +41,7 @@
 
 					<div v-else>
 						<pre v-if="sortie_attendue">
-						 	<p class="card-text" v-html="sortie_attendue"></p>
+							<p class="card-text" v-html="sortie_attendue"></p>
 						</pre>
 						<pre v-else>
 							<p class="card-text sortie vide">{{ $t("resultat_test.vide") }}</p>
