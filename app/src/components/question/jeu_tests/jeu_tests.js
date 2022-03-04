@@ -50,8 +50,8 @@ export default {
 		},
 		//
 		AjouterTest: function () {
-			
-			
+			var lesTests = this.$store.state.question.tests;
+
 			//Création d'un test 
 			let nouveauTest = {
 				nom: this.nouveauTestNom,
@@ -61,7 +61,7 @@ export default {
 
 			}
 			//Ajouter le nouveau test dans la liste de tests
-			this.$store.state.question.tests.push(nouveauTest);
+			lesTests.push(nouveauTest);
 			this.select(lesTests.length - 1);
 
 
