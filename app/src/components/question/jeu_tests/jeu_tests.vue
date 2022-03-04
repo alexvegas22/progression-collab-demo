@@ -3,12 +3,12 @@
 		<div class="row">
 			<div class="container col-4">
 				<h3 style="text-align: left">
-					{{ $t("jeu_tests.jeuTests") }} <button v-on:click="montrerAjouterTest">✎</button>
+					{{ $t("jeu_tests.jeuTests") }} <button v-on:click="montrerAjouterTest"> ✎</button>
 				</h3>
 
-				<!-- Quand on clique sur le bouton le input ajout un test appartait -->
+				<!-- Quand on clique sur le bouton le input ajout un test appartait  -->
 
-				<div class="row w-100 m-0 p-1" id="champAjouterTest" style="display: none">
+				<div class="row w-100 m-0 p-1" id="champAjouterTest" v-show="modifiable" >
 					<input
 						class="col-11 test non_sélectionné p-0 m-0"
 						:placeholder="$t('jeu_tests.ajouterTest')"

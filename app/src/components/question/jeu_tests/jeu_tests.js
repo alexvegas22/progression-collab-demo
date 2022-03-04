@@ -45,13 +45,6 @@ export default {
 		//Méthode pour ajouter un test...Enregistre pas dans la bd, mais visuellement près
 		//Cacher et montre le champs qui permet d'ajouter un test avec son nom lorsqu'on pèse le bouton +
 		montrerAjouterTest: function () {
-			const divAjoute = document.getElementById("champAjouterTest");
-			var display = divAjoute.style.display;
-			if (display == "none") {
-				divAjoute.style.display = "block";
-			} else if (display == "block") {
-				divAjoute.style.display = "none";
-			}
 			
 			this.modifiable=!this.modifiable;
 			
