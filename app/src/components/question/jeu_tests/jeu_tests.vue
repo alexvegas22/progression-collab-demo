@@ -13,6 +13,7 @@
 						class="col-11 test non_sélectionné p-0 m-0"
 						:placeholder="$t('jeu_tests.ajouterTest')"
 						id="nomTestAjoute"
+						v-model="nouveauTestNom"
 					/>
 					<button class="col-1" v-on:click="AjouterTest()">+</button>
 				</div>

@@ -34,8 +34,9 @@ export default {
 	},
 	data() {
 		return {
+			nouveauTestNom: "",
 			index_select: 0,
-			modifiable:false
+			modifiable: false
 		};
 	},
 	methods: {
@@ -45,25 +46,22 @@ export default {
 		//Méthode pour ajouter un test...Enregistre pas dans la bd, mais visuellement près
 		//Cacher et montre le champs qui permet d'ajouter un test avec son nom lorsqu'on pèse le bouton +
 		montrerAjouterTest: function () {
-			
-			this.modifiable=!this.modifiable;
-			
-
+			this.modifiable = !this.modifiable;
 		},
 		//
 		AjouterTest: function () {
-			var lesTests = this.$store.state.question.tests;
-			var nomTest = document.getElementById("nomTestAjoute").value;
+			
+			
 			//Création d'un test 
 			let nouveauTest = {
-				nom: nomTest,
+				nom: this.nouveauTestNom,
 				entrée: "",
 				sortie_attendue: "",
 				params: "",
 
 			}
 			//Ajouter le nouveau test dans la liste de tests
-			lesTests.push(nouveauTest);
+			this.$store.state.question.tests.push(nouveauTest);
 			this.select(lesTests.length - 1);
 
 
