@@ -35,4 +35,7 @@
 .diff.différent.del.enabled{
 	background-color: #FFB3B3;
 }
+.enleverOutline{
+	outline: none;
+}
 
