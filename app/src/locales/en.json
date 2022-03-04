@@ -120,8 +120,6 @@
 
 	"jeu_tests": {
 		"jeuTests": "Test cases",
-		"erreurNomVide":"The name of the test cannot be empty",
-		"erreurNomExiste":"This name is already taken",
 		"ajouterTest":"Add a test"
 	},
 	
