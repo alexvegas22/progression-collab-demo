@@ -61,30 +61,6 @@ export default {
 		AjouterTest: function () {
 			var lesTests = this.$store.state.question.tests;
 			var nomTest = document.getElementById("nomTestAjoute").value;
-
-			//Si le nom du test est vide 
-			if (nomTest == "") return;
-
-			//À TESTER 
-			//alert("Nom vide")
-			//alert($t("MessageErreursJeuxTest.erreurNomVide"));
-
-
-			//Si le nom du test est null 
-			if (nomTest == null) return;
-			//À TESTER 
-			//alert("Nom vide")
-			//alert($t("MessageErreursJeuxTest.erreurNomVide"));
-
-
-			//Si le nom des test sont dèjà existant 
-			var testExiste = lesTests.find(test => test.nom == nomTest)
-			if (testExiste) return;
-			//À TESTER
-			//alert("Nom Existe Deja")
-			//alert($t("MessageErreursJeuxTest.erreurNomExiste"));
-
-
 			//Création d'un test 
 			let nouveauTest = {
 				nom: nomTest,
