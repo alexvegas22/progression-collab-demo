@@ -17,11 +17,6 @@
 			/>
 		</div>
 
-<<<<<<< HEAD
-		<div v-show="retroactionTentative && retroactionTentative.feedback">
-			<Tippy v-if="retroactionTentative" :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
-			<a id="btn_conseil">💡</a>
-=======
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
 			<Tippy
 				ref="tippy"
