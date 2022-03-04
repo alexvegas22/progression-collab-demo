@@ -6,7 +6,7 @@
 					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
 
 
-					<textarea v-if="modifiable" class="w-100 border-0" v-model="test.entrée" style="outline: none"></textarea>
+					<textarea v-if="modifiable" class="w-100 border-0 enleverOutline" v-model="test.entrée"></textarea>
 					<pre v-else class="card-text" v-html="test.entrée"></pre>
 				</div>
 			</div>
