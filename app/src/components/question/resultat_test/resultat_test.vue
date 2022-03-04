@@ -6,7 +6,7 @@
 					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
 
 					<!--resize: none;  -->
-					<textarea v-if="modifiable" class="w-100 border-0" v-model="test.entrée" style="outline: none"></textarea>
+					<textarea v-if="modifiable" class="w-100 border-0 enleverOutline" v-model="test.entrée" ></textarea>
 					<pre v-else class="card-text" v-html="test.entrée"></pre>
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 					<h5 class="text-black-50 font-weight-bold text-left card-title">
 						{{ $t("resultat_test.params") }}
 					</h5>
-					<textarea v-if="modifiable" class="w-100 border-0" v-model="test.params" style="outline: none"></textarea>
+					<textarea v-if="modifiable" class="w-100 border-0 enleverOutline" v-model="test.params"></textarea>
 					<div v-else><pre class="card-text" v-html="test.params"></pre></div>
 				</div>
 			</div>
