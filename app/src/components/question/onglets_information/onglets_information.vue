@@ -3,7 +3,7 @@
     <div class="section-onglets">
       <div @click="changementOnglet('jeu-tests')"
            :class="{onglets: true, sélectionné: ongletSelectionner === 'jeu-tests'}">
-           <strong>Information</strong>
+           <strong class="thème_sombre_section">Information</strong>
       </div>
       
       <div @click="changementOnglet('section-erreur')"

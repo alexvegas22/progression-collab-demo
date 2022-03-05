@@ -25,19 +25,26 @@
 		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
-		<div v-show="!page_login">
-			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+		<div id="navDroite">
+			<div v-show="!page_login">
+				<button v-if="token" type="button" class="btn btn-outline-secondary navBtn" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+				<button v-else type="button" class="btn btn-outline-secondary navBtn" @click="connexion">{{ $t('menu.connexion') }}</button>
+			</div>
+			<label>
+				<input type="checkbox" v-model="thèmeSombre" style="opacity:0;"/>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-circle-half navBtn" viewBox="0 0 16 16">
+					<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+				</svg>
+			</label>		
 		</div>
-		<input class="form-check-input" type="checkbox" v-model="thèmeSombre"/>
 	</nav>
 	<router-view />
 </template>
 
 <script>
  import tokenEstValide from "@/util/token";
- import { useMeta } from 'vue-meta'
- 
+ import { useMeta } from 'vue-meta';
+
  const API_URL = process.env.VUE_APP_API_URL;
  
  export default {
