@@ -69,11 +69,17 @@ export default {
 				this.listeAvancements.sort((a,b)=>{return a.date_modification - b.date_modification;});
 			}
 
-			console.log(this.listeAvancements[0].date_modification);
+			console.log(this.avancements);
 		},
 		ordreReussite: function (){
 			
-			this.listeAvancements.sort((a,b)=>{return b.date_réussite - a.date_réussite;});
+			if (this.estCroissant(this.listeAvancements[0].date_réussite,this.listeAvancements[1].date_réussite)){
+
+				this.listeAvancements.sort((a,b)=>{return b.date_réussite - a.date_réussite;});
+			}
+			else{
+				this.listeAvancements.sort((a,b)=>{return a.date_réussite - b.date_réussite;});
+			}
 		},
 		redirigerVersLogin(ref) {
 			this.$router.push({

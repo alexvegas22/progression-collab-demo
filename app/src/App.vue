@@ -73,15 +73,15 @@
 			 cb_auth_params: null,
 		 } },
 	 computed: {
+		 page_login(){
+			 return this.$route.name=='LoginView';
+		 },
 		 token() {
 			 return this.$store.state.token;
 		 },
 		 erreurs() {
 			 return this.$store.state.erreurs;
 		 },
-		 username() {
-			 return this.$store.state.username;
-		 }
 	 },
 
 	
@@ -115,14 +115,6 @@
 				 }
 			 }
 		 },
-		 récupérerUserInfos(){
-			 const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-			 const username = sessionStorage.getItem("username") || localStorage.getItem("username");
-			 this.$store.dispatch("setToken", token);
-			 this.$store.dispatch("setUsername", username);
-
-			 return username;
-		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
 		 },
@@ -142,26 +134,4 @@
  };
 </script>
 
-<style src="./css/style.css">
- #app {
-	 font-family: Avenir, Helvetica, Arial, sans-serif;
-	 -webkit-font-smoothing: antialiased;
-	 -moz-osx-font-smoothing: grayscale;
-	 text-align: center;
-	 color: #2c3e50;
- }
-
- #nav {
-	 padding: 30px;
- }
-
- #nav a {
-	 font-weight: bold;
-	 color: #2c3e50;
- }
-
- #nav a.router-link-exact-active {
-	 color: #42b983;
- }
-</style>
 <style src="./css/mainMenu.css"></style>

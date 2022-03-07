@@ -20,7 +20,7 @@ const routes = [
 	},
 	{
 		path: "/accomplissements",
-		name: "Accomplissement",
+		name: "Accomplissements",
 		component: () => import("@/views/accomplissements/accomplissements.vue"),
 	},
 	{
@@ -80,6 +80,9 @@ router.beforeEach( (to, from, next ) => {
 	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
 	     .then( () => next() )
 	     .catch( () => {
+
+	         sessionStorage.removeItem("username");
+	         localStorage.removeItem("username");
 	         //En cas de problème, si l'utilisateur est requis
 	         if (pages_sans_connexion.indexOf(to.name) != -1){
 	             next();
