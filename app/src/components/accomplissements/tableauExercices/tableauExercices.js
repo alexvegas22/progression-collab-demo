@@ -11,15 +11,22 @@ export default {
 		avancements(){
 			return this.$store.state.user.avancements;
 		},
+		listeAvancements(){
+
+			var listeAvancements = [];
+
+			for(var avancement in this.avancements){
+
+				listeAvancements.push(this.avancements[avancement]);
+			}
+
+			return listeAvancements;
+		},
 		tentatives() {
 			return this.$store.state.user.liens.self + "?include=tentatives";
 		},
 		date_soumission() {
 			return this.$store.state.tentative.date_soumission;
-		},
-	
-		question_uri(){
-			return this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 	},
 
@@ -41,10 +48,32 @@ export default {
 			}
 			return etatString;
 		},
+		allerQuestion(uri){
+
+			console.log("/question?uri=" + uri);
+		},
+		estCroissant(info1, info2){
+			if (info1 < info2){
+				return true;
+			}
+
+			return false;
+		},
 		ordreModification: function (){
-			//Array.from(this.avancements).sort((a,b)=>{return a.date_modification - b.date_modification;});
-			//console.log(Array.from(this.avancements).sort((a,b)=>{return a.date_modification - b.date_modification;}));
-			console.log(this.avancements);
+
+			if (this.estCroissant(this.listeAvancements[0].date_modification,this.listeAvancements[1].date_modification)){
+
+				this.listeAvancements.sort((a,b)=>{return b.date_modification - a.date_modification;});
+			}
+			else{
+				this.listeAvancements.sort((a,b)=>{return a.date_modification - b.date_modification;});
+			}
+
+			console.log(this.listeAvancements[0].date_modification);
+		},
+		ordreReussite: function (){
+			
+			this.listeAvancements.sort((a,b)=>{return b.date_réussite - a.date_réussite;});
 		},
 		redirigerVersLogin(ref) {
 			this.$router.push({
