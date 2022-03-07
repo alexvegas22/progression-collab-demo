@@ -26,11 +26,13 @@
 			
 			<div >
 				<p class="footer-copyright text-center py-3">
-					{{question.auteur}} {{question.licence}}
+					{{question.auteur}} {{question.licence}} {{question.titre}}
 				</p>
 			</div>
 		</div>
 	</div>
+	<button id="btn" v-on:click="download">Sauvegarder</button>
+
 </template>
 
 <script src="./enonce.js"></script>
