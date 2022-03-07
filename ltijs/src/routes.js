@@ -66,10 +66,13 @@ router.post("/lti/grade", async (req, res) => {
 
 		const score = await récupérerScore(uri, token);
 
+		const url = await récupérerTokenRessource(uri, "avancement");
+	
 		// Note
 		const gradeObj = {
 			userId: idToken.user,
 			scoreGiven: score,
+			comment: url,
 			scoreMaximum: 100,
 			activityProgress: "Completed",
 			gradingProgress: "FullyGraded",
@@ -82,6 +85,8 @@ router.post("/lti/grade", async (req, res) => {
 		if (!lineItemId) {
 			const response = await lti.Grade.getLineItems(idToken, { resourceLinkId: true });
 			const lineItems = response.lineItems;
+		provMainDebug("lineItem: " + idToken.platformContext.endpoint.lineitem);
+		provMainDebug(lineItems);
 			if (lineItems.length === 0) {
 				// Creating line item if there is none
 				provMainDebug("Création d'un item de notation");
