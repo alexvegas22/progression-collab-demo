@@ -43,8 +43,27 @@ h3 {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
 	font-size: 15px;
 	background-color: #0dcaf0;
-	position: relative;
-	top: -20px
+	width: fit-content;
+}
+
+.contenu {
+	margin: 0px;
+}
+
+.contenu[contenteditable] {
+	outline: 0px solid transparent;
+}
+
+.contenu[contenteditable]:empty::before {
+    content: attr(data-placeholder);
+}
+
+.contenu[contenteditable]:empty:focus::before {
+	color:lightgrey;
+}
+
+#niveau::placeholder {
+	color: white;
 }
 
 /* animations */

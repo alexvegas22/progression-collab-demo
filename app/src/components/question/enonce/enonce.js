@@ -22,19 +22,26 @@ export default {
 			} else {
 				document.getElementById("btn_aperçu").innerHTML = "Modifier ✎";
 			}
-
+		},
+		modifierContenu(e, indice) {
+			this.contenu[indice].texte = e.target.innerText;
 		}
 	},
 
 	data() {
 
 		return {
+			contenu:
+				[
+					{ texte: this.$store.state.question.niveau },
+					{ texte: this.$store.state.question.titre },
+					{ texte: this.$store.state.question.auteur },
+					{ texte: this.$store.state.question.licence }
+				]
+			,
 			énoncé: this.$store.state.question.énoncé,
 			count: 0,
-			titre: this.$store.state.question.titre,
-			niveau: this.$store.state.question.niveau,
-			auteur: this.$store.state.question.auteur,
-			licence: this.$store.state.question.licence,
+
 			aperçu: false,
 
 			toolbar: {
