@@ -6,9 +6,9 @@
 
 					<input v-if="modifiable" class="w-100 m-0 border-0 enleverOutline" v-model="test.nom"/>
 					<p v-else class="p-0 m-0" v-html="(index+1) + '. ' + test.nom"></p>
-				</div>				
+				</div>			
 				<div class="col-1" style="visibility:hidden" :class="{visible: sélectionné}">
-				▶
+				<button class="border-0 bg-transparent col-11 test">ⓧ</button>
 				</div>
 			</div>
 		</div>
