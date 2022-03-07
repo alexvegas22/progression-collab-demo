@@ -7,3 +7,7 @@
 	background-color: #434343 !important;
 	color:#E1E1E1 !important;	
 }
+
+input[type="checkbox"]:checked + .bi {
+	fill:rgb(18, 169, 189);
+}
