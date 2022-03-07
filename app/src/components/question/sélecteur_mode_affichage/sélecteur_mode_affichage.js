@@ -1,5 +1,3 @@
-const diff = require("diff");
-
 export default {
 	name: "SélecteurModeAffichage",
 	computed: {

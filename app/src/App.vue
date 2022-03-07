@@ -26,6 +26,7 @@
 		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
+<<<<<<< HEAD
 
 		<div class="dropdown">
 		<button class="modBarbtn dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,6 +45,11 @@
 				<button v-else type="button" class="btn btnDDI" @click="connexion">{{ $t('menu.connexion') }}</button>
 			</li>
 		</ul>
+=======
+		<div v-show="!page_login">
+			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+>>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156
 		</div>
 	</nav>
 	<router-view />
@@ -73,15 +79,15 @@
 			 cb_auth_params: null,
 		 } },
 	 computed: {
+		 page_login(){
+			 return this.$route.name=='LoginView';
+		 },
 		 token() {
 			 return this.$store.state.token;
 		 },
 		 erreurs() {
 			 return this.$store.state.erreurs;
 		 },
-		 username() {
-			 return this.$store.state.username;
-		 }
 	 },
 
 	
@@ -115,14 +121,6 @@
 				 }
 			 }
 		 },
-		 récupérerUserInfos(){
-			 const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-			 const username = sessionStorage.getItem("username") || localStorage.getItem("username");
-			 this.$store.dispatch("setToken", token);
-			 this.$store.dispatch("setUsername", username);
-
-			 return username;
-		 },
 		 effacerErreurs(){
 			 this.$store.dispatch("setErreurs", null);
 		 },
@@ -141,6 +139,7 @@
 	 }
  };
 </script>
+<<<<<<< HEAD
 
 <style src="./css/style.css">
  #app {
@@ -165,3 +164,5 @@
  }
 </style>
 <style src="./css/mainMenu.css"></style>
+=======
+>>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156

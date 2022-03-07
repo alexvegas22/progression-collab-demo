@@ -80,6 +80,11 @@ router.beforeEach( (to, from, next ) => {
 	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
 	     .then( () => next() )
 	     .catch( () => {
+<<<<<<< HEAD
+=======
+	         sessionStorage.removeItem("username");
+	         localStorage.removeItem("username");
+>>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156
 	         //En cas de problème, si l'utilisateur est requis
 	         if (pages_sans_connexion.indexOf(to.name) != -1){
 	             next();
