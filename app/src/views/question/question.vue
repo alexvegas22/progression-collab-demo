@@ -23,3 +23,5 @@
 <script src="./question.js"></script>
 
 <style src="./question.css"></style>
+
+<style src="../../theme-sombre.css"></style>

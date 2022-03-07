@@ -1,5 +1,5 @@
 <template>
-	<div class="container thème_sombre_login" id="login">
+	<div class="container thème_sombre_section" id="login">
 		<tabs v-model="tabSélectionné">
 			<tab v-if="auth_ldap" :label="ldap_domaine" val="LDAP" key="0" class="tab" :class="{activeTab: estActif('LDAP')}" >
 					{{ldap_domaine}}
