@@ -20,7 +20,7 @@
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
 			<Tippy
 				ref="tippy"
-				v-tippy="{ trigger: 'click', interactive: true }"
+				v-tippy="{ trigger: 'click', interactive: true, inlinePositioning: true }"
 				:aria="true"
 				:showOnCreate="true"
 				:arrow="true"

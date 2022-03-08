@@ -1,6 +1,6 @@
 <template>
 	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
+		<button class="btn btn-secondary dropdown-toggle bouton_langage" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
 			{{this.langage}}
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="menu_historique">
@@ -20,3 +20,4 @@
 </template>
 
 <script src="./avancement.js"></script>
+<style src="./avancement.css"></style>
