@@ -36,9 +36,9 @@
 <script>
  import tokenEstValide from "@/util/token";
  import { useMeta } from 'vue-meta'
- 
+
  const API_URL = process.env.VUE_APP_API_URL;
- 
+
  export default {
 	 name: "App",
 	 setup () {
@@ -75,7 +75,11 @@
 			 if(urlParams.has('uri')){
 				 this.$store.dispatch("setUri", urlParams.get('uri'));
 			 }
-			 
+
+			 if(urlParams.has('edit')){
+				 this.$store.dispatch("setModeÉdition", urlParams.get('edit'));
+			 }
+
 			 if(urlParams.has('lang')){
 				 this.$store.dispatch("setLangageDéfaut", urlParams.get('lang'));
 			 }

@@ -19,6 +19,10 @@ export const mutations = {
 		state.uri = uri;
 	},
 
+	setModeÉdition(state, edit) {
+		state.mode_édition = edit;
+	},
+
 	setDémo(state, val) {
 		state.démo = val;
 	},

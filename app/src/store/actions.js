@@ -96,7 +96,7 @@ export default {
 	async setValidateur( v ){
 		validateur = v;
 	},
-	
+
 	async setErreurs({ commit }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
@@ -144,7 +144,7 @@ export default {
 	async setAuthentificationEnCours({ commit }, état){
 		commit("updateAuthentificationEnCours", état);
 	},
-	
+
 	async inscription({ commit }, params) {
 		const urlAuth = params.urlInscription;
 		const nom_utilisateur = params.nom_utilisateur;
@@ -152,7 +152,7 @@ export default {
 
 		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp));
 	},
-	
+
 	async getUser({ commit, state }, urlUser) {
 		return valider(
 			commit,
@@ -351,6 +351,10 @@ export default {
 
 	setUri({ commit }, uri) {
 		commit("setUri", uri);
+	},
+
+	setModeÉdition({ commit }, edit) {
+		commit("setModeÉdition", edit);
 	},
 
 	setLangageDéfaut({ commit }, langageDéfaut) {
