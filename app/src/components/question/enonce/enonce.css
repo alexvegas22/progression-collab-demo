@@ -4,36 +4,42 @@
 .enonce {
 	font-size: 1em;
 }
+
 .titre {
 	font-size: 2em;
 	color: black;
 	font-weight: bold;
 	z-index: 1;
 }
+
 .crochet {
 	position: relative;
-	left: -40px;
-	top: -38px;
-	height: 0px;
+	left: -2.5rem;
+	top: -2.188rem;
+	height: 0;
 	z-index: 0;
+	
 }
+
 h3 {
 	font-size: 1em;
 	color: black;
 	font-weight: bold;
 }
+
 .encadré{
-	padding-top:5px;
+	padding-top:0.313rem;
 }
 
 .état{
 	position: relative;
-	left: -30px;
-	top: 20px;
+	left: -1.875rem;
+	top: 1.25rem;
 	font-size: 2em;
 	visibility: hidden;
 	color: green
 }
+
 
 .état.réussi{
 	visibility: visible;
@@ -41,12 +47,205 @@ h3 {
 
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size: 15px;
+	font-size:  0.94rem;
 	background-color: #0dcaf0;
 	position: relative;
-	top: -20px
+	top: -1.25rem;
 }
 
+
+/* Media Queries */
+
+/* 0 - 36rem (0 - 576px) */
+@media (max-width: 36rem) {
+	.badge.niveau{
+
+		font-size: 0.75rem;
+	}
+}
+
+@media (max-width: 36rem) {
+	p{
+		font-size: 0.95rem;
+	}
+}
+@media (max-width: 36rem) {
+	p.footer-copyright{
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 36rem) {
+	.crochet{
+		left: -40px;
+		top: -35px;
+		font-size: 1.5em;
+	}
+}
+
+@media (max-width: 36rem) {
+	.titre{
+		font-size: 1.5em;
+	}
+}
+@media (max-width: 36rem){
+	h3{
+		font-size: 1rem;
+	}
+}
+
+  /* 36rem - 48rem (576px - 768px) */
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.badge.niveau{
+
+		font-size: 0.78rem;
+	}
+}
+
+@media (min-width: 36rem) and (max-width: 48rem) {
+	p{
+		font-size: 1.04rem;
+	}
+}
+@media (min-width: 36rem) and (max-width: 48rem) {
+	p.footer-copyright{
+		font-size: 0.87rem;
+	}
+}
+
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.crochet{
+		left: -40px;
+		top: -35px;
+		font-size: 1.6em;
+	}
+}
+
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.titre{
+		font-size: 1.6em;
+	}
+}
+
+@media (min-width: 36rem) and (max-width: 48rem){
+	h3{
+		font-size: 1.09rem;
+	}
+}
+
+/* 48rem - 62rem (768px - 992px) */
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.badge.niveau{
+
+		font-size: 0.82rem;
+	}
+}
+
+@media (min-width: 48rem) and (max-width: 62rem) {
+	p{
+		font-size: 1.09rem;
+	}
+}
+@media (min-width: 48rem) and (max-width: 62rem) {
+	p.footer-copyright{
+		font-size: 0.97rem;
+	}
+}
+
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.crochet{
+		left: -40px;
+		top: -35px;
+		font-size: 1.6em;
+	}
+}
+
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.titre{
+		font-size: 1.8em;
+	}
+}
+@media (min-width: 48rem) and (max-width: 62rem){
+	h3{
+		font-size: 1.14rem;
+	}
+}
+
+/* 62rem - 75rem (992px - 1200px) */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.badge.niveau{
+
+		font-size: 0.87rem;
+	}
+}
+
+@media (min-width: 62rem) and (max-width: 75rem) {
+	p{
+		font-size: 1.1rem;
+	}
+}
+@media (min-width: 62rem) and (max-width: 75rem) {
+	p.footer-copyright{
+		font-size: 0.99rem;
+	}
+}
+
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.crochet{
+		left: -40px;
+		top: -35px;
+		font-size: 1.6em;
+	}
+}
+
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.titre{
+		font-size: 1.9em;
+	}
+}
+@media (min-width: 62rem) and (max-width: 75rem) {
+	h3{
+		font-size: 1.16rem;
+	}
+}
+
+/* 75rem et + (1200px et +) */
+@media (min-width: 75rem){
+	.badge.niveau{
+
+		font-size: 0.94rem;
+	}
+}
+
+@media (min-width: 75rem) {
+	p{
+		font-size: 1.2rem;
+	}
+}
+@media (min-width: 75rem) {
+	p.footer-copyright{
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 75rem) {
+	.crochet{
+		left: -40px;
+		top: -35px;
+		font-size: 1.6em;
+	}
+}
+
+@media (min-width: 75rem) {
+	.titre{
+		font-size: 2em;
+	}
+}
+@media (min-width: 75rem) {
+	h3{
+		font-size: 1em;
+	}
+}
 /* animations */
 
 @-webkit-keyframes checkmark {
@@ -71,7 +270,7 @@ h3 {
 
 @keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 3.125rem
 	}
 
 	100% {
@@ -85,7 +284,7 @@ h3 {
 	}
 
 	100% {
-		r: 32px
+		r: 2rem
 	}
 }
 
@@ -95,7 +294,7 @@ h3 {
 	}
 
 	100% {
-		r: 32px
+		r: 2rem
 	}
 }
 
@@ -105,7 +304,7 @@ h3 {
 	}
 
 	100% {
-		r: 32px
+		r: 2rem
 	}
 }
 
