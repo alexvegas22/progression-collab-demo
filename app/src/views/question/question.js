@@ -80,62 +80,57 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-		download(){
-			alert(this.tentative.code);
-			alert(this.question.type);
-			alert(this.question.niveau);
-			alert(this.question.titre);
-			alert(this.question.description);
-			alert(this.question.énoncé);
-			alert(this.question.ébauche);
-			alert(this.question.rétroaction);
-			alert(this.question.tests);
-			///////////////////////////////////////////////////////////  A enlever
-			var question = new Map();
-			question.set("type","Prog");
-			question.set("niveau",this.question.niveau);
-			question.set("titre",this.question.titre);
-			question.set("description",this.question.description);
-			question.set("énoncé",this.question.énoncé);
-			question.set("ébauche",this.tentative.code);
-			question.set("description",this.tentative.feedback);
+		download() {
 
-			/////////////////////////////////////////////////////////// A enlever
-	  
+			var question = new Map();
+			question.set("type", this.question.type);
+			question.set("niveau", this.question.niveau);
+			question.set("titre", this.question.titre);
+			question.set("description", this.question.description);
+			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
+			question.set("ébauche", this.question.ebauches);
+			question.set("rétroaction", this.tentative.feedback);
+			question.set("tests", "");//this.tests.tests);
+			question.set("auteur", this.question.auteur);
+			question.set("licence", this.question.licence);
+
 			var element = document.createElement('a');
-			//element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(formater(question)));
-			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(formater(question)));
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.écrire(question)));
 			element.setAttribute('download', "test.yml");
-	  
+
 			element.style.display = 'none';
 			document.body.appendChild(element);
-	  
+
 			element.click();
-	  
+
 			document.body.removeChild(element);
-	  
-		}
+		},
+		écrire(données){
+			var texte = "";
+			var question = new Map();
+			question.set("type","type: ");
+			question.set("niveau","niveau: ");
+			question.set("titre","titre: ");
+			question.set("description","description: ");
+			question.set("énoncé","énoncé: |\n ");
+			question.set("ébauche","ébauche:\n    python:\n    java:\n");
+			question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
+			question.set("tests","tests:\n    - ");
+			question.set("auteur", "auteur: ");
+			question.set("licence", "licence: ");
+		
+			const iterateur = données.keys();
+		
+			for (var element of iterateur){
+			  //alert(element);
+			  texte += question.get(element) + données.get(element) +"\n\n"
+			}
+			  return texte;
+		},
+		formaterÉnoncé(données){
+			var énoncéFormaté = données.replace(":", "':'");
+			//var énoncéFormaté = "'"+données+"'";
+			return énoncéFormaté;
+		  }		
 	},
 };
-
-function formater(données){
-
-
-	var texte = "";
-	var question = new Map();
-	question.set("type","type: ");
-	question.set("niveau","niveau: ");
-	question.set("titre","titre: ");
-	question.set("description","description: ");
-	question.set("énoncé","énoncé: |\n ");
-	question.set("ébauche","ébauche:\n    python:\n    java:\n");
-	question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
-	question.set("tests","tests:\n    - ");
-
-	const iterateur = données.keys();
-	for (var element of iterateur){
-	  texte += question.get(element) + données.get(element) +"\n\n"
-	}
-	  return texte;
-  }
-
