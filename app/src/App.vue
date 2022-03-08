@@ -26,7 +26,6 @@
 		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
-<<<<<<< HEAD
 
 		<div class="dropdown">
 		<button class="modBarbtn dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,11 +44,7 @@
 				<button v-else type="button" class="btn btnDDI" @click="connexion">{{ $t('menu.connexion') }}</button>
 			</li>
 		</ul>
-=======
-		<div v-show="!page_login">
-			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
->>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156
+
 		</div>
 	</nav>
 	<router-view />
@@ -139,30 +134,5 @@
 	 }
  };
 </script>
-<<<<<<< HEAD
 
-<style src="./css/style.css">
- #app {
-	 font-family: Avenir, Helvetica, Arial, sans-serif;
-	 -webkit-font-smoothing: antialiased;
-	 -moz-osx-font-smoothing: grayscale;
-	 text-align: center;
-	 color: #2c3e50;
- }
-
- #nav {
-	 padding: 30px;
- }
-
- #nav a {
-	 font-weight: bold;
-	 color: #2c3e50;
- }
-
- #nav a.router-link-exact-active {
-	 color: #42b983;
- }
-</style>
 <style src="./css/mainMenu.css"></style>
-=======
->>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156

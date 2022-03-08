@@ -20,11 +20,7 @@ const getUserApi = async (urlUser, token) => {
 		user.liens = data.data.links;
 		user.liens.avancements = data.data.relationships.avancements.links.related;
 		user.liens.clés = data.data.relationships.cles.links.related;
-<<<<<<< HEAD
-		user.avancements = new Object();
-=======
 		user.avancements = {};
->>>>>>> 5f79c3ca7d55a0c4809797eacf79e40622964156
 		if (data.included) {
 			data.included.forEach((item) => {
 				var avancement = item.attributes;
