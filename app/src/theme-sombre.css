@@ -18,5 +18,5 @@ input[type="checkbox"]:checked + .bi {
 }
 
 .topnav-left {
-float: left;
+	float: left;
 }
