@@ -8,13 +8,15 @@
                 <tr>
                     <th>Langage</th>
                     <th>Nombre d'exercices réussis</th>
+                    <th>Porcentage</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(nombre, langage) in this.tentativesRéussies">
                     <td>{{ langage }}</td>
-                    <td>{{ nombre }}</td>             
-                    </tr>
+                    <td>{{ nombre }}</td>  
+                    <td>{{ this.récupererPorcentageReussi(this.tentativesRéussies, langage) }}%</td>           
+                </tr>
             </tbody>
         </table>
     </div>
