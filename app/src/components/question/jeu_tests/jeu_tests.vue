@@ -26,6 +26,7 @@
 						v-on:select="select(index)"
 						présentation_étape="3.0"
 					/>
+					<button v-show="modifiable" type="button" v-on:click="tests.splice(index, 1)" class="btn border-0 bg-transparent">✘ Supprimer cette question</button>
 				</div>
 			</div>
 			<div class="col-8">
