@@ -19,6 +19,20 @@
         </table>
     </div>
 </div>
+
+<div id="bar-1" class="bar-main-container azure">
+    <div class="wrap">
+      <div class="bar-percentage" data-percentage="38"></div>
+      <div class="bar-container">
+        <div class="bar"></div>
+      </div>
+    </div>
+</div>
+
+<div>
+    <pie-chart :data="[['Blueberry', 44], ['Strawberry', 23]]"></pie-chart>
+</div>
+
 </template>
 
 <script src="./statistiquesParLangage.js"></script>
