@@ -279,25 +279,27 @@ export default {
 					for (var id in user.avancements) {
 						var avancement = user.avancements[id];
 						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives
-						console.log(tentatives)
+						var confirmationLangageRéussi = new Object();
 						for (id in tentatives) {
-							
 							var tentative = tentatives[id];
-							console.log(tentative)
-
+							confirmationLangageRéussi[tentative.langage] = false;
 							if (tentative.réussi) {
+								
 								if (tentative.langage in langageRéussi) {
 									langageRéussi[tentative.langage] += 1;
+									
 
 								}
 								else {
 									langageRéussi[tentative.langage] = 1;
+									
 								}	
 								break;	
 							}
 						}
 					}
 					commit("setTentativesRéussies", langageRéussi);
+					console.log(confirmationLangageRéussi);
 					return langageRéussi;
 				}),
 		);
