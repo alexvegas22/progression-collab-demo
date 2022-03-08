@@ -15,8 +15,8 @@
 					<EditeurCode présentation_étape="1" style="height: 500px" />
 					<RetroactionTentative présentation_étape="3" />
 				</div>
-				<JeuTests présentation_étape="4" class="p-2" />
 			</div>
+			<button id="btn" v-on:click="download">Sauvegarder</button>
 		</div>
 	</div>
 </template>
