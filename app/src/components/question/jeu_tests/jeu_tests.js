@@ -42,21 +42,42 @@ export default {
 	methods: {
 		select: function (index) {
 			this.index_select = index;
+
+
+
+
 		},
 		montrerAjouterTest: function () {
 			this.modifiable = !this.modifiable;
 		},
 		AjouterTest: function () {
 			var lesTests = this.$store.state.question.tests;
-			let nouveauTest = {
-				nom: this.nouveauTestNom,
-				entrée: "",
-				sortie_attendue: "",
-				params: "",
+
+			if (this.nouveauTestNom.length == 1) {
+
+				let nouveauTest = {
+					nom: this.nouveauTestNom,
+					entrée: "",
+					sortie_attendue: "",
+					params: "",
+
+				}
+				lesTests.push(nouveauTest);
+				this.nouveauTestNom = "";
+				this.$refs.inputAjouterTest.blur();
 
 			}
-			lesTests.push(nouveauTest);
-			this.select(lesTests.length - 1);
+			let index = lesTests.length - 1;
+
+			this.$nextTick(() => {
+				let input = this.$refs.unTest[index].$refs.unTestInput;
+				input.focus();
+			});
+
+			this.select(index);
+
+
+
 		}
 	},
 };
