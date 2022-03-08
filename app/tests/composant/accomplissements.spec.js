@@ -11,5 +11,5 @@ test('displays message', () => {
   const titre = wrapper.find('h1');
 
   // Faire valoir le texte rendu du composant
-  expect(titre.text()).toContain('Hello world')
+  expect(titre.text()).toContain("Liste d'exercices")
 })
