@@ -16,7 +16,6 @@ export default {
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
-		
 	},
 	computed: {
 		user() {

@@ -10,7 +10,7 @@
 			
 			<div class="col-lg-8 col-md-6">
 				<Avancement présentation_étape="2" />
-				<div v-if="tentative" >
+				<div v-if="tentative">
 					<EditeurCode présentation_étape="1" style="height: 500px" />
 					<RetroactionTentative présentation_étape="3" />
 				</div>
