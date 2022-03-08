@@ -131,6 +131,6 @@ export default {
 			var énoncéFormaté = données.replace(":", "':'");
 			//var énoncéFormaté = "'"+données+"'";
 			return énoncéFormaté;
-		  }		
+		}		
 	},
 };
