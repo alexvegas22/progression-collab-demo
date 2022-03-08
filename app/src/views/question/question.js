@@ -80,6 +80,62 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
+		download(){
+			alert(this.tentative.code);
+			alert(this.question.type);
+			alert(this.question.niveau);
+			alert(this.question.titre);
+			alert(this.question.description);
+			alert(this.question.énoncé);
+			alert(this.question.ébauche);
+			alert(this.question.rétroaction);
+			alert(this.question.tests);
+			///////////////////////////////////////////////////////////  A enlever
+			var question = new Map();
+			question.set("type","Prog");
+			question.set("niveau",this.question.niveau);
+			question.set("titre",this.question.titre);
+			question.set("description",this.question.description);
+			question.set("énoncé",this.question.énoncé);
+			question.set("ébauche",this.tentative.code);
+			question.set("description",this.tentative.feedback);
 
+			/////////////////////////////////////////////////////////// A enlever
+	  
+			var element = document.createElement('a');
+			//element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(formater(question)));
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(formater(question)));
+			element.setAttribute('download', "test.yml");
+	  
+			element.style.display = 'none';
+			document.body.appendChild(element);
+	  
+			element.click();
+	  
+			document.body.removeChild(element);
+	  
+		}
 	},
 };
+
+function formater(données){
+
+
+	var texte = "";
+	var question = new Map();
+	question.set("type","type: ");
+	question.set("niveau","niveau: ");
+	question.set("titre","titre: ");
+	question.set("description","description: ");
+	question.set("énoncé","énoncé: |\n ");
+	question.set("ébauche","ébauche:\n    python:\n    java:\n");
+	question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
+	question.set("tests","tests:\n    - ");
+
+	const iterateur = données.keys();
+	for (var element of iterateur){
+	  texte += question.get(element) + données.get(element) +"\n\n"
+	}
+	  return texte;
+  }
+
