@@ -65,6 +65,13 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
+
+  --bp-XXL-large: 87.5rem;
+  --bp-XL-large:75rem;
+  --bp-lg: 62rem;
+  --bp-med: 48rem;
+  --bp-sm: 37.5rem;
+
 }
 
 *,
