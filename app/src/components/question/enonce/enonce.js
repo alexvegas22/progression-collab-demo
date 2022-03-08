@@ -16,9 +16,9 @@ export default {
 	}, methods: {
 		download(question) {
 
-			alert(this.$store.state.uri);
+			alert(this.$store.state.question.uri );
 			///////////////////////////////////////////////////////////  A enlever
-			//var question = new Map();
+			/*var question = new Map();
 			question.set("type","Prog");
 			question.set("niveau","Facile");
 			question.set("titre","Test de d'écriture YML");
@@ -35,7 +35,7 @@ export default {
 	  
 			element.click();
 	  
-			document.body.removeChild(element);
+			document.body.removeChild(element);*/
 		  },
 	  
 	}
