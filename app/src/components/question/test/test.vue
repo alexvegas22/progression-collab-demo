@@ -3,7 +3,7 @@
 		<div>
 			<div class="row w-100 m-0 p-1" v-on:click="toggleVisibilite">
 				<div class="col-11 test" :class="{sélectionné, non_sélectionné: !sélectionné}" v-bind:class="{réussi, non_réussi}" >
-					<input v-if="modifiable" class="w-100 m-0 border-0 enleverOutline" v-model="test.nom"/>
+					<input ref="unTestInput" v-if="modifiable" class="w-100 m-0 border-0 enleverOutline" v-model="test.nom"/>
 					<p v-else class="p-0 m-0" v-html="(index+1) + '. ' + test.nom"></p>
 				</div>			
 			</div>
