@@ -6,6 +6,7 @@
 		<div class="row" v-if="avancement">
 			<div class="col-lg-4 col-md-6">
 				<Enonce présentation_étape="0" />
+				<button id="btn" @click="download">Sauvegarder</button>
 			</div>
 			
 			<div class="col-lg-8 col-md-6">

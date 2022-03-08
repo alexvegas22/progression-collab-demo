@@ -31,8 +31,6 @@
 			</div>
 		</div>
 	</div>
-	<button id="btn" v-on:click="download">Sauvegarder</button>
-
 </template>
 
 <script src="./enonce.js"></script>
