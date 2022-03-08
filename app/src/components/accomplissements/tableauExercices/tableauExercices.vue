@@ -4,7 +4,7 @@
         <h1> Liste d'exercices </h1>
         <br>
         <div class="container">
-            <table class="table">
+            <v-table class="table">
                 <thead>
                     <tr >
                         <th >Titre de l'exercice </th>
@@ -25,7 +25,7 @@
                         
                     </tr>
                 </tbody>
-            </table>
+            </v-table>
         </div>
     </div>
 </template>
