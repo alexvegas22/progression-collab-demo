@@ -25,6 +25,7 @@ export default createStore({
 		sauvegardes: [],
 		erreurs: null,
 		configServeur: null,
+		thèmeTest: false,
 	},
 	getters,
 	actions,

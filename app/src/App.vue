@@ -134,8 +134,10 @@
 		traiterThemeSombre(){
 			if (!this.thèmeSombre) {
 				document.body.classList.replace("thème_sombre_global","bg-light");
+				this.$store.state.thèmeTest = false;
 			} else{
 				document.body.classList.replace("bg-light","thème_sombre_global");
+				this.$store.state.thèmeTest = true;
 			}
 		},
 	 }

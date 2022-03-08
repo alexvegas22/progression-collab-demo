@@ -29,7 +29,8 @@ export default {
 			return this.$store.state.tentative.code;
 		},
 		thème(){
-			return this.thèmeSombre?"monokai":"default";
+			//return this.thèmeSombre?"monokai":"default";
+			return this.$store.state.thèmeTest?"monokai":"default";
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
