@@ -105,7 +105,7 @@ export default {
 
 			document.body.removeChild(element);
 		},
-		écrire(données){
+		écrire(données) {
 			var texte = "";
 			var question = new Map();
 			question.set("type","type: ");
@@ -127,10 +127,10 @@ export default {
 			}
 			  return texte;
 		},
-		formaterÉnoncé(données){
+		formaterÉnoncé(données) {
 			var énoncéFormaté = données.replace(":", "':'");
 			//var énoncéFormaté = "'"+données+"'";
 			return énoncéFormaté;
-		}		
+		},		
 	},
 };
