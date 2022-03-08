@@ -6,10 +6,16 @@
 					{{ $t("jeu_tests.jeuTests") }} <button v-on:click="montrerAjouterTest">✎</button>
 				</h3>
 
-				
+				<div class="row w-100 m-0 p-1" v-show="modifiable">
+					<input
+						class="col-11 test non_sélectionné p-0 m-0"
+						:placeholder="$t('jeu_tests.ajouterTest')"
+						v-model="nouveauTestNom"
+					/>
+					<button class="col-1" v-on:click="AjouterTest()">+</button>
+				</div>
 
 				<div v-for="(test, index) in tests" :key="index">
-					
 					<Test
 						v-bind:test="test"
 						v-bind:index="index"
@@ -19,19 +25,8 @@
 						v-bind:modifiable="modifiable"
 						v-on:select="select(index)"
 						présentation_étape="3.0"
-						ref="unTest" 
 					/>
-				</div>
-				<div class="row w-100 m-0 p-1" v-show="modifiable">
-					<input
-						class="col-11 test non_sélectionné p-0 m-0"
-						:placeholder="$t('jeu_tests.ajouterTest')"
-						v-model="nouveauTestNom"
-						@input="AjouterTest()"
-						ref="inputAjouterTest"
-
-					/>
-					
+					<button v-show="modifiable" type="button" v-on:click="tests.splice(index, 1)" class="btn border-0 bg-transparent">✘ Supprimer cette question</button>
 				</div>
 			</div>
 			<div class="col-8">

@@ -13,7 +13,7 @@ services:
       NODE_ENV: dev
     networks:
       default:
-        ipv4_address: 172.20.0.6
+        ipv4_address: 172.13.0.6
 
   mongo:
     image: mongo
@@ -23,7 +23,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     networks:
       default:
-        ipv4_address: 172.20.0.4
+        ipv4_address: 172.13.0.4
 
   mongo-express:
     image: mongo-express
@@ -37,7 +37,7 @@ services:
       - 8081:8081    
     networks:
       default:
-        ipv4_address: 172.20.0.10
+        ipv4_address: 172.13.0.10
 
   ltijs:
     build: ltijs/
@@ -45,7 +45,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      DB_HOST: 172.20.0.4
+      DB_HOST: 172.13.0.4
       DB_NAME: ltijs
       DB_USER: root
       DB_PASS: example
@@ -54,12 +54,12 @@ services:
     depends_on:
       - mongo
     extra_hosts:
-      - "rocinante.lamancha:172.20.0.1"
+      - "rocinante.lamancha:172.13.0.1"
     volumes:
       - "./ltijs:/app"
     networks:
       default:
-        ipv4_address: 172.20.0.7
+        ipv4_address: 172.13.0.7
 
 
 networks:
