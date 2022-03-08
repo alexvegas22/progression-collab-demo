@@ -8,15 +8,15 @@ export default {
 	},
 	data(){
 		return {
-			sélection: null
+			sélection: null,
+			key_panneaux: 1,
+			animation: true
 		};
 	},
 	computed: {
 		tabSélectionné: {
 			get(){
-				if(this.sélection) return this.sélection;
-
-				return this.auth_ldap ? "LDAP" : !this.auth_ldap && this.auth_local ? "STANDARD" : "INSCRIPTION"
+				return this.sélection ?? (this.auth_ldap ? "LDAP" : !this.auth_ldap && this.auth_local ? "STANDARD" : "INSCRIPTION")
 			},
 			set(val){
 				this.sélection=val;
@@ -32,14 +32,24 @@ export default {
 			return this.config_serveur.AUTH.LDAP;
 		},
 		ldap_domaine(){
-			return this.config_serveur.AUTH.LDAP ? this.config_serveur.LDAP.DOMAINE : "";
+			return this.config_serveur.LDAP ? this.config_serveur.LDAP.DOMAINE ?? "" : "";
 		},
 		ldap_url_mdp_reinit(){
-			return this.config_serveur.AUTH.LDAP ? this.config_serveur.LDAP.URL_MDP_REINIT : "";
+			return this.config_serveur.LDAP ? this.config_serveur.LDAP.URL_MDP_REINIT ?? "" : "";
 		},
 	},
 	emits: {
 		onLogin: Object,
+	},
+	mounted(){
+		//Hack pour contourner un bogue d'affichage sur Windows/Chrome
+		//https://git.dti.crosemont.quebec/progression/progression_frontend/-/issues/69
+		if(! this.config_serveur.AUTH.LOCAL && !this.config_serveur.AUTH.LDAP){
+			this.animation=false;
+			setTimeout(()=>{
+				this.key_panneaux+=1;
+			},100);
+		}
 	},
 	methods: {
 		onLogin(event){
