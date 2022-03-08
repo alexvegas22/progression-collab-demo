@@ -42,10 +42,6 @@ export default {
 	methods: {
 		select: function (index) {
 			this.index_select = index;
-
-
-
-
 		},
 		montrerAjouterTest: function () {
 			this.modifiable = !this.modifiable;
@@ -78,6 +74,10 @@ export default {
 
 
 
+		},
+		SupprimerTest: function (index) {
+			this.$store.state.question.tests.splice(index, 1);
 		}
+
 	},
 };
