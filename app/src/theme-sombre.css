@@ -11,3 +11,12 @@
 input[type="checkbox"]:checked + .bi {
 	fill:rgb(18, 169, 189);
 }
+
+.topnav-right {
+	float: right;
+	margin-right: 5px;
+}
+
+.topnav-left {
+float: left;
+}
