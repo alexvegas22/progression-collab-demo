@@ -62,7 +62,7 @@ h3 {
 
 		font-size: 0.75rem;
 	}
-	p{
+	p.texte_énoncé{
 		font-size: 0.95rem;
 	}
 	p.footer-copyright{
@@ -89,7 +89,7 @@ h3 {
 
 		font-size: 0.78rem;
 	}
-	p{
+	p.texte_énoncé{
 		font-size: 1.04rem;
 	}
 	p.footer-copyright{
@@ -115,7 +115,7 @@ h3 {
 
 		font-size: 0.82rem;
 	}
-	p{
+	p.texte_énoncé{
 		font-size: 1.09rem;
 	}
 	p.footer-copyright{
@@ -141,7 +141,7 @@ h3 {
 
 		font-size: 0.87rem;
 	}
-	p{
+	p.texte_énoncé{
 		font-size: 1.1rem;
 	}
 	p.footer-copyright{
@@ -167,7 +167,7 @@ h3 {
 
 		font-size: 0.94rem;
 	}
-	p{
+	p.texte_énoncé{
 		font-size: 1.2rem;
 	}
 	p.footer-copyright{

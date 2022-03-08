@@ -19,7 +19,7 @@
 			
 			<div class="row flex-grow-1" >
 				<p  présentation_étape="0.3"
-										class="lead"
+										class="lead texte_énoncé"
 					v-html="question.énoncé">
 				</p>
 			</div>
