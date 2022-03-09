@@ -29,7 +29,7 @@
 				<div class="col-auto" :class="classeIndicateur">●</div>
 			</div>
 			
-			<div class="row" style="height: 500px" présentation_étape="1.1">
+			<div class="row" présentation_étape="1.1">
 				<v-code-mirror
 					id="editor"
 
@@ -37,6 +37,7 @@
 					:mode="mode"
 					:theme="thème"
 					:xray="xray"
+					class="taille_texte"
 					@update:value="onChange"
 				/>
 			</div>
