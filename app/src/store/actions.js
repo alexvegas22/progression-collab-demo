@@ -10,7 +10,7 @@ import {
 	postAvancementApi,
 	postSauvegardeApi,
 	postTentative,
-	postAuthKey,
+	postAuthKey
 } from "@/services/index.js";
 
 import tokenEstValide from "@/util/token.js";
@@ -266,6 +266,7 @@ export default {
 
 	async getTentativesRéussies({ commit, state }, params) {
 		var langageRéussi = new Object();
+		var confirmationLangageRéussi = new Object();
 		var userToken
 		return valider(
 			commit,
@@ -276,22 +277,28 @@ export default {
 					return user;
 				})
 				.then(async (user) => {
-					console.log(user)
 					for (var id in user.avancements) {
 						var avancement = user.avancements[id];
-						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives
+						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
 						for (id in tentatives) {
 							var tentative = tentatives[id];
-
+							confirmationLangageRéussi[tentative.langage] = false;
+						}
+						for (id in tentatives) {
+							tentative = tentatives[id];
 							if (tentative.réussi) {
 								if (tentative.langage in langageRéussi) {
-									langageRéussi[tentative.langage] += 1;
-
+									if (confirmationLangageRéussi[tentative.langage] == false) {
+										langageRéussi[tentative.langage] += 1;
+										confirmationLangageRéussi[tentative.langage] = true;
+									}
 								}
 								else {
-									langageRéussi[tentative.langage] = 1;
+									if (confirmationLangageRéussi[tentative.langage] == false) {
+										langageRéussi[tentative.langage] = 1;
+										confirmationLangageRéussi[tentative.langage] = true;
+									}
 								}
-								break;
 							}
 						}
 					}
