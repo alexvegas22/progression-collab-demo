@@ -22,7 +22,7 @@
       <div class="section-onglets">
         <div @click="changementOnglet('resultat-test')"
             :class="{onglets: true, sélectionné: ongletSelectionner === 'resultat-test'}">
-            <strong>Information</strong>
+            <strong>Entrées / Sorties</strong>
         </div>
         
         <div @click="changementOnglet('section-erreur')"
@@ -88,7 +88,6 @@ export default {
 			return res;
 		},
     test_select() {
-      console.log("test_select");
 			return this.$store.state.question.tests[this.index_select];
 		},
     resultat_select() {
