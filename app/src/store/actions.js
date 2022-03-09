@@ -266,6 +266,7 @@ export default {
 
 	async getTentativesRéussies({ commit, state }, params) {
 		var langageRéussi = new Object();
+		var confirmationLangageRéussi = new Object();
 		var userToken
 		return valider(
 			commit,
@@ -278,28 +279,30 @@ export default {
 				.then(async (user) => {
 					for (var id in user.avancements) {
 						var avancement = user.avancements[id];
-						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives
-						var confirmationLangageRéussi = new Object();
-						for (id in tentatives) {
+						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
+						for(id in tentatives){
 							var tentative = tentatives[id];
 							confirmationLangageRéussi[tentative.langage] = false;
+						}
+						for (id in tentatives) {
+							var tentative = tentatives[id];
 							if (tentative.réussi) {
-								
 								if (tentative.langage in langageRéussi) {
-									langageRéussi[tentative.langage] += 1;
-									
-
+									if(confirmationLangageRéussi[tentative.langage] == false){
+										langageRéussi[tentative.langage] += 1;
+									confirmationLangageRéussi[tentative.langage] = true;
+									}
 								}
 								else {
-									langageRéussi[tentative.langage] = 1;
-									
-								}	
-								break;	
+									if(confirmationLangageRéussi[tentative.langage] == false){
+										langageRéussi[tentative.langage] = 1;
+										confirmationLangageRéussi[tentative.langage] = true;
+									}					
+								}		
 							}
-						}
+						}		
 					}
 					commit("setTentativesRéussies", langageRéussi);
-					console.log(confirmationLangageRéussi);
 					return langageRéussi;
 				}),
 		);
