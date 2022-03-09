@@ -87,7 +87,7 @@ export default {
 			question.set("niveau",this.question.niveau);
 			question.set("titre",this.question.titre);
 			question.set("description",this.question.description);
-			question.set("énoncé",this.question.énoncé);
+			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
 			question.set("ébauche",this.tentative.code);
 			question.set("rétroaction",this.tentative.feedback);
 			question.set("tests",this.question.tests);
@@ -112,10 +112,10 @@ export default {
 			question.set("niveau","niveau: ");
 			question.set("titre","titre: ");
 			question.set("description","description: ");
-			question.set("énoncé","énoncé: |\n ");
+			question.set("énoncé","énoncé: |\n");
 			question.set("ébauche","ébauche:\n    python:\n    java:\n");
 			question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
-			question.set("tests","tests:\n    - ");
+			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
 			question.set("licence", "licence: ");
 		
@@ -144,37 +144,3 @@ export default {
 		},
 	},
 };
-
-function formater(données){
-
-
-	var texte = "";
-	var question = new Map();
-	question.set("type","type: ");
-	question.set("niveau","niveau: ");
-	question.set("titre","titre: ");
-	question.set("description","description: ");
-	question.set("énoncé","énoncé: |\n ");
-	question.set("ébauche","ébauche:\n    python:\n    java:\n");
-	question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
-	question.set("tests","tests:\n");
-	question.set("auteur","auteur: ");
-	question.set("licence","licence: ");
-
-	const iterateur = données.keys();
-	for (var element of iterateur){
-		if(données.get(element) != null){
-			if(element === "tests"){
-				texte += question.get(element);
-				for(var i of données.get(element)){
-					texte += "    - nom: "+i.nom +
-					"\n      entrée: "+i.entrée+
-					"\n      sortie: | \n     "+i.sortie_attendue+"\n\n" ;
-				}
-			}else{
-				texte += question.get(element) + données.get(element) +"\n\n" ;
-			}
-		}
-	}
-	  return texte;
-  }
