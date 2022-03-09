@@ -285,12 +285,12 @@ export default {
 							confirmationLangageRéussi[tentative.langage] = false;
 						}
 						for (id in tentatives) {
-							var tentative = tentatives[id];
+							tentative = tentatives[id];
 							if (tentative.réussi) {
 								if (tentative.langage in langageRéussi) {
 									if(confirmationLangageRéussi[tentative.langage] == false){
 										langageRéussi[tentative.langage] += 1;
-									confirmationLangageRéussi[tentative.langage] = true;
+										confirmationLangageRéussi[tentative.langage] = true;
 									}
 								}
 								else {
