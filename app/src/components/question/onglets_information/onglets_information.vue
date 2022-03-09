@@ -1,55 +1,77 @@
 <template>
-	<div>
-    <div class="section-onglets">
-      <div @click="changementOnglet('jeu-tests')"
-           :class="{onglets: true, sélectionné: ongletSelectionner === 'jeu-tests'}">
-           <strong>Information</strong>
+	<div class="row g-0">
+    <div class="col-3">
+      <div class="bordure-titre p-1">
+        {{ $t('jeu_tests.jeuTests') }}
       </div>
-      
-      <div @click="changementOnglet('section-erreur')"
-           :class="{onglets: true, sélectionné: ongletSelectionner === 'section-erreur'}"
-           v-if="resultat_select && resultat_select.sortie_erreur">
-           <strong>Erreurs</strong>
-      </div>
-      
-      <div @click="changementOnglet('commentaires')" 
-            :class="{onglets: true, sélectionné: ongletSelectionner === 'commentaires'}"
-            v-if="resultat_select && resultat_select.feedback">
-            <strong>Commentaires</strong>
-      </div>
+      <fenetre-info :style="{height: sectionVisible ? '350px' : '0'}" class="section-bas">
+        <div v-for="(test, index) in tests" :key="index">
+          <Test v-bind:test="test"
+              v-bind:index="index"
+              v-bind:réussi="resultats[index]"
+              v-bind:non_réussi="resultats[index] == false"
+              v-bind:sélectionné="index==index_select"
 
-      <div @click="changementVisibilité()" class="boutton-basculable">
-        <i class="fa" :class="{'fa-angle-double-down': sectionVisible, 'fa-angle-double-up': !sectionVisible}" aria-hidden="true"></i>
-      </div>
+              v-on:select="select(index)"
+              présentation_étape="3.0"
+            />
+        </div>
+      </fenetre-info>
     </div>
+    <div class="col-9">
+      <div class="section-onglets">
+        <div @click="changementOnglet('resultat-test')"
+            :class="{onglets: true, sélectionné: ongletSelectionner === 'resultat-test'}">
+            <strong>Information</strong>
+        </div>
+        
+        <div @click="changementOnglet('section-erreur')"
+            :class="{onglets: true, sélectionné: ongletSelectionner === 'section-erreur'}"
+            v-if="resultat_select && resultat_select.sortie_erreur">
+            <strong>Erreurs</strong>
+        </div>
+        
+        <div @click="changementOnglet('commentaires')" 
+              :class="{onglets: true, sélectionné: ongletSelectionner === 'commentaires'}"
+              v-if="resultat_select && resultat_select.feedback">
+              <strong>Commentaires</strong>
+        </div>
 
-    <keep-alive>
-     <component 
-        :is="ongletSelectionner" 
-        :style="{height: sectionVisible ? '350px' : '0'}"
-        class="section-bas"
-        :test="test_select"
-        :resultat="resultat_select"
-      ></component>
-    </keep-alive>
+        <div @click="changementVisibilité()" class="boutton-basculable">
+          <i class="fa" :class="{'fa-angle-double-down': sectionVisible, 'fa-angle-double-up': !sectionVisible}" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <keep-alive>
+        <component 
+          :is="ongletSelectionner" 
+          :style="{height: sectionVisible ? '350px' : '0'}"
+          class="section-bas"
+          :test="test_select"
+          :resultat="resultat_select"
+        ></component>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
-import JeuTests from "@/components/question/jeu_tests/jeu_tests.vue";
+import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
 import SectionErreur from "@/components/question/section_erreurs/section_erreurs.vue";
 import Commentaires from "@/components/question/commentaires/commentaires.vue";
+import Test from "@/components/question/test/test.vue";
 
 export default {
   components: {
-    JeuTests,
+    Test,
+    ResultatTest,
     SectionErreur,
     Commentaires
   },
   data() {
     return {
       sectionVisible: true,
-      ongletSelectionner: 'jeu-tests',
+      ongletSelectionner: 'resultat-test',
       index_select: 0
     };
   },
@@ -66,6 +88,7 @@ export default {
 			return res;
 		},
     test_select() {
+      console.log("test_select");
 			return this.$store.state.question.tests[this.index_select];
 		},
     resultat_select() {
@@ -76,6 +99,9 @@ export default {
     tentative() {
 			return this.$store.state.retroactionTentative;
 		},
+    tests() {
+			return this.$store.state.question.tests;
+		},
   },
   methods: {
     changementOnglet(onglet) {
@@ -84,7 +110,10 @@ export default {
     },
     changementVisibilité() {
       this.sectionVisible = !this.sectionVisible;
-    }
+    },
+    select(index) {
+			this.index_select = index;
+		},
   }
 }
 </script>
@@ -123,5 +152,15 @@ export default {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+  }
+
+  .bordure-fenetre {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: none;
+  }
+
+  .bordure-titre {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    color: rgba(0, 0, 0, 0.5);
   }
 </style>
