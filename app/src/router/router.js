@@ -20,7 +20,7 @@ const routes = [
 	},
 	{
 		path: "/accomplissements",
-		name: "Accomplissement",
+		name: "Accomplissements",
 		component: () => import("@/views/accomplissements/accomplissements.vue"),
 	},
 	{
@@ -81,8 +81,13 @@ router.beforeEach( (to, from, next ) => {
 	     .then( () => next() )
 	     .catch( () => {
 
+<<<<<<< HEAD
 			sessionStorage.removeItem("username");
 			localStorage.removeItem("username");
+=======
+	         sessionStorage.removeItem("username");
+	         localStorage.removeItem("username");
+>>>>>>> bb40123e47abe9195ba2375cd06d3fb48ebe4e32
 	         //En cas de problème, si l'utilisateur est requis
 	         if (pages_sans_connexion.indexOf(to.name) != -1){
 	             next();
