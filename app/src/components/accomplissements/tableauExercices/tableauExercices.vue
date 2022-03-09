@@ -4,7 +4,7 @@
         <h1> Liste d'exercices </h1>
         <br>
         <div class="container">
-            <v-table class="table">
+            <table class="table">
                 <thead>
                     <tr >
                         <th >Titre de l'exercice </th>
@@ -17,7 +17,7 @@
                 <tbody>
                     <tr v-for="avancement in listeAvancements" :key="avancement.id">
 
-                        <td @click="this.allerQuestion(avancement.id)">{{avancement.titre}}</td>
+                        <td @click="this.allerQuestion(avancement.liens.self)">{{avancement.titre}}</td>
                         <td>{{avancement.niveau}}</td>
                         <td>{{timestampVersDate(avancement.date_modification)}}</td>
                         <td>{{ etat(avancement.état)}}</td>
@@ -25,7 +25,7 @@
                         
                     </tr>
                 </tbody>
-            </v-table>
+            </table>
         </div>
     </div>
 </template>

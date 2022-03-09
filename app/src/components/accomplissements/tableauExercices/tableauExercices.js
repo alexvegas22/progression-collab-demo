@@ -1,10 +1,10 @@
+
+const API_URL = process.env.VUE_APP_API_URL;
+
 export default {
 	name: "TableauExercices",
 
 	computed: {
-		niveau(){
-			return this.$store.state.question.niveau;
-		},
 		user(){
 			return this.$store.state.user;
 		},
@@ -21,12 +21,6 @@ export default {
 			}
 
 			return listeAvancements;
-		},
-		tentatives() {
-			return this.$store.state.user.liens.self + "?include=tentatives";
-		},
-		date_soumission() {
-			return this.$store.state.tentative.date_soumission;
 		},
 	},
 
@@ -48,9 +42,12 @@ export default {
 			}
 			return etatString;
 		},
-		allerQuestion(uri){
+		allerQuestion(lien){
 
-			console.log("/question?uri=" + uri);
+			var avancementDivise = lien.split("/");
+			var uri = avancementDivise[5];
+
+			window.location.href = API_URL.replace(":9",":8") + "/question?uri=" + uri;
 		},
 		estCroissant(info1, info2){
 			if (info1 < info2){
