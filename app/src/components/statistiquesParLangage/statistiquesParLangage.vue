@@ -29,8 +29,9 @@
     </div>
 </div>
 
-<div>
-    <pie-chart :data="[['Blueberry', 44], ['Strawberry', 23]]"></pie-chart>
+
+<div >
+<pie-chart :data="[['java',this.tentativesRéussies['java']], ['python',this.tentativesRéussies['python']]]"></pie-chart>
 </div>
 
 </template>
