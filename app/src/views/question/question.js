@@ -93,20 +93,55 @@ export default {
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
 			question.set("licence",this.question.licence);
-	  
+
 			var element = document.createElement('a');
-			//element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(formater(question)));
-			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(formater(question)));
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.écrire(question)));
 			element.setAttribute('download', "test.yml");
-	  
+
 			element.style.display = 'none';
 			document.body.appendChild(element);
-	  
+
 			element.click();
-	  
+
 			document.body.removeChild(element);
-	  
-		}
+		},
+		écrire(données) {
+			var texte = "";
+			var question = new Map();
+			question.set("type","type: ");
+			question.set("niveau","niveau: ");
+			question.set("titre","titre: ");
+			question.set("description","description: ");
+			question.set("énoncé","énoncé: |\n ");
+			question.set("ébauche","ébauche:\n    python:\n    java:\n");
+			question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
+			question.set("tests","tests:\n    - ");
+			question.set("auteur", "auteur: ");
+			question.set("licence", "licence: ");
+		
+			const iterateur = données.keys();
+		
+			for (var element of iterateur){
+				if(données.get(element) != null){
+					if(element === "tests"){
+						texte += question.get(element);
+						for(var i of données.get(element)){
+							texte += "    - nom: "+i.nom +
+							"\n      entrée: "+i.entrée+
+							"\n      sortie: | \n     "+i.sortie_attendue+"\n\n" ;
+						}
+					}else{
+						texte += question.get(element) + données.get(element) +"\n\n" ;
+					}
+				}
+			}
+			  return texte;
+		},
+		formaterÉnoncé(données) {
+			var énoncéFormaté = données.replace(":", "':'");
+			//var énoncéFormaté = "'"+données+"'";
+			return énoncéFormaté;
+		},
 	},
 };
 
@@ -143,4 +178,3 @@ function formater(données){
 	}
 	  return texte;
   }
-
