@@ -7,6 +7,11 @@ import "tippy.js/dist/svg-arrow.css";
 export default {
 	name: "RetroactionTentative",
 	components: { Tippy },
+	data() {
+		return {
+			conseilAffiché: false,
+		};
+	},
 	computed: {
 		tentative() {
 			return this.$store.state.tentative;
@@ -55,6 +60,9 @@ export default {
 				langage: this.$store.state.tentative.langage,
 				code: this.$store.state.tentative.code,
 			});
+		},
+    basculerAffichageConseil() {
+			this.conseilAffiché = !this.conseilAffiché;
 		},
 	}
 };

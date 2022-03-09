@@ -2,7 +2,7 @@ module.exports = {
 	lintOnSave: false,
     devServer: {
 		compress: true,
-       allowedHosts: 'all'
+        allowedHosts: "all",
 	},
     transpileDependencies: [
         'vue-meta',
