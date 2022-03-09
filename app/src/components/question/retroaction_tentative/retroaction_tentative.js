@@ -61,7 +61,7 @@ export default {
 				code: this.$store.state.tentative.code,
 			});
 		},
-    		basculerAffichageConseil() {
+		basculerAffichageConseil() {
 			this.conseilAffiché = !this.conseilAffiché;
 		},
 	}
