@@ -22,7 +22,7 @@ export default {
 			return this.tentatives.filter((item) => item.langage == langage);
 		},
 
-		chargerTentative: function () { 
+		chargerTentative: function () {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("getTentative", event.target.value);
@@ -50,7 +50,13 @@ export default {
 		},
 		reinitialiserCodeEditeur(langage) {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
-			if (confirm(msgAvertissement) == true) {
+			var confirmation;
+			if (this.xray == true) {
+				confirmation = true;
+			} else {
+				confirmation = confirm(msgAvertissement);
+			}
+			if (confirmation == true) {
 				this.$store.dispatch("réinitialiser", langage);
 			}
 		},
