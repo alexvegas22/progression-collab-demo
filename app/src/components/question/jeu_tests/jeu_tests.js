@@ -81,11 +81,3 @@ export default {
 
 	},
 };
-var onReloadCheck = function () {
-        $(window).on('beforeunload', function () {
-            var modal = $('#myModal').hasClass('show');
-            if (modal) {
-                return "If you leave before saving, your changes will be lost.";
-            }
-        });
-    }
