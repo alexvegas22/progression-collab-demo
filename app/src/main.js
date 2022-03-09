@@ -28,7 +28,7 @@ const app = createApp(App)
 	.use(createMetaManager())
 	.use(metaPlugin)
 	.use(Vue3Tour)
-  .use(PerfectScrollbar)
+  	.use(PerfectScrollbar)
 
 app.component('fenetre-info', FenetreInfo);
 
