@@ -27,6 +27,9 @@ export default {
 		avancement() {
 			return this.$store.state.avancement;
 		},
+		retroactionTentative() {
+			return this.$store.state.retroactionTentative;
+		},
 		tentative() {
 			return this.$store.state.tentative;
 		},
@@ -80,7 +83,7 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-		download(){
+		télécharger(){
 			//alert(this.question.tests[0].nom)
 			var question = new Map();
 			question.set("type","Prog");
@@ -89,7 +92,8 @@ export default {
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
 			question.set("ébauche",this.tentative.code);
-			question.set("rétroaction",this.tentative.feedback);
+			question.set("rétroaction",this.retroactionTentative.feedback);
+			//question.set("rétroaction",this.question.feedback_pos);
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
 			question.set("licence",this.question.licence);
@@ -114,7 +118,7 @@ export default {
 			question.set("description","description: ");
 			question.set("énoncé","énoncé: |\n");
 			question.set("ébauche","ébauche:\n    python:\n    java:\n");
-			question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
+			question.set("rétroaction","rétroaction:\n");//    positive: \n    négative: \n    erreur: ");
 			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
 			question.set("licence", "licence: ");
@@ -122,7 +126,7 @@ export default {
 			const iterateur = données.keys();
 		
 			for (var element of iterateur){
-				if(données.get(element) != null){
+				//if(données.get(element) != null){
 					if(element === "tests"){
 						texte += question.get(element);
 						for(var i of données.get(element)){
@@ -133,7 +137,7 @@ export default {
 					}else{
 						texte += question.get(element) + données.get(element) +"\n\n" ;
 					}
-				}
+				//}
 			}
 			  return texte;
 		},

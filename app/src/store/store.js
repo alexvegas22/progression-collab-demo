@@ -18,6 +18,7 @@ export default createStore({
 		question: null,
 		tentative: null,
 		retroactionTentative: null,
+		//retroactionPosQuestion: null,
 		authentificationTentativeEnCours: false,
 		envoiTentativeEnCours: false,
 		mode_affichage: 0,
