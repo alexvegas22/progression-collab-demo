@@ -1,4 +1,5 @@
 <template>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 	<div class="jumbotron encadré">
 		<div class="container">
 			<div v-if="état_réussi" class="crochet icon icon--order-success svg">
@@ -17,25 +18,22 @@
 
 			<div class="row" présentation_étape="0.1" style="justify-content: flex-end">
 				<span class="badge niveau" présentation_étape="0.2">
-					<!--
 					<p
 						class="contenu"
 						contenteditable
 						@input="(e) => modifierContenu(e, 0)"
 						data-placeholder="Niveau"
-						style="text-align: left"
+						style="text-align: left; display: inline"
 					>
 						{{ contenu[0].texte }}
 					</p>
-					
-					!-->
-					<input id="niveau" placeholder="Niveau" type="text" v-model="contenu[0].texte" list="niveaux" style="border:0px; background-color:transparent; color:white; width: fit-content;"/>
-						<datalist id="niveaux">
-							<option>base</option>
-							<option>débutant</option>
-							<option>intermédiaire</option>
-							<option>avancé</option>
-						</datalist>
+					<button v-on:click="dropdown()" style="border: 0px; background-color: transparent; color: dark;">v</button>
+					<div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
+						<option v-on:click="dropdownChoix('base')" class="w3-bar-item w3-button">base</option>
+						<option v-on:click="dropdownChoix('débutant')" class="w3-bar-item w3-button">débutant</option>
+						<option v-on:click="dropdownChoix('intermédiaire')" class="w3-bar-item w3-button">intermédiaire</option>
+						<option v-on:click="dropdownChoix('avancé')" class="w3-bar-item w3-button">avancé</option>
+					</div>
 				</span>
 				<h3
 					class="titre align-self-start contenu"
