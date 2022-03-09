@@ -121,3 +121,11 @@ export default {
 		},
 	},
 };
+
+
+window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = 'It looks like you are trahs';
+
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+});
