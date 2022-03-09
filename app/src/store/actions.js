@@ -18,7 +18,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
-const valider = async function(commit, promesse){
+const valider = async function (commit, promesse) {
 	return validateur(promesse)
 }
 
@@ -46,7 +46,7 @@ async function rafraîchirToken() {
 				sauvegarderToken(token);
 				return token;
 			})
-			.catch( (err) => {
+			.catch((err) => {
 				sauvegarderToken(null);
 				throw err;
 			});
@@ -75,7 +75,7 @@ function sauvegarderToken(token) {
 	else sessionStorage.setItem("token", token);
 }
 
-function générerAuthKey(user, token, expiration=0) {
+function générerAuthKey(user, token, expiration = 0) {
 	const clé_id = "LTIauthKey_" + randomID();
 
 	return {
@@ -93,17 +93,17 @@ function randomID() {
 }
 
 export default {
-	async setValidateur( v ){
+	async setValidateur(v) {
 		validateur = v;
 	},
-	
+
 	async setErreurs({ commit }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
 
-	async getConfigServeur({commit }, urlConfig){
+	async getConfigServeur({ commit }, urlConfig) {
 		return valider(commit, getConfigServeurApi(urlConfig)
-			.then((config)=>{
+			.then((config) => {
 				commit("setConfigServeur", config);
 				return config;
 			})
@@ -130,9 +130,9 @@ export default {
 			const user = await this.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username);
 
 			// Obtenir la clé d'authentification
-			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
 
-			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
+			const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
 
 			const storage = persister ? localStorage : sessionStorage;
 			storage.setItem("username", username);
@@ -141,10 +141,10 @@ export default {
 		})());
 	},
 
-	async setAuthentificationEnCours({ commit }, état){
+	async setAuthentificationEnCours({ commit }, état) {
 		commit("updateAuthentificationEnCours", état);
 	},
-	
+
 	async inscription({ commit }, params) {
 		const urlAuth = params.urlInscription;
 		const nom_utilisateur = params.nom_utilisateur;
@@ -152,7 +152,7 @@ export default {
 
 		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp));
 	},
-	
+
 	async getUser({ commit, state }, urlUser) {
 		return valider(
 			commit,
@@ -280,7 +280,7 @@ export default {
 					for (var id in user.avancements) {
 						var avancement = user.avancements[id];
 						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
-						for(id in tentatives){
+						for (id in tentatives) {
 							var tentative = tentatives[id];
 							confirmationLangageRéussi[tentative.langage] = false;
 						}
@@ -288,19 +288,19 @@ export default {
 							tentative = tentatives[id];
 							if (tentative.réussi) {
 								if (tentative.langage in langageRéussi) {
-									if(confirmationLangageRéussi[tentative.langage] == false){
+									if (confirmationLangageRéussi[tentative.langage] == false) {
 										langageRéussi[tentative.langage] += 1;
 										confirmationLangageRéussi[tentative.langage] = true;
 									}
 								}
 								else {
-									if(confirmationLangageRéussi[tentative.langage] == false){
+									if (confirmationLangageRéussi[tentative.langage] == false) {
 										langageRéussi[tentative.langage] = 1;
 										confirmationLangageRéussi[tentative.langage] = true;
-									}					
-								}		
+									}
+								}
 							}
-						}		
+						}
 					}
 					commit("setTentativesRéussies", langageRéussi);
 					return langageRéussi;
@@ -325,7 +325,7 @@ export default {
 						this.state.avancement.état = retroactionTentative.réussi ? 2 : 1;
 					}
 
-					if( this.state.cb_succes && this.state.cb_succes_params ) {
+					if (this.state.cb_succes && this.state.cb_succes_params) {
 						callbackGrade(this.state.cb_succes, {
 							...this.state.cb_succes_params,
 							uri: this.state.uri,
@@ -335,7 +335,7 @@ export default {
 				})
 				.catch((e) => {
 					commit("updateEnvoieTentativeEnCours", false);
-					throw(e);
+					throw (e);
 				}),
 		);
 	},
@@ -429,7 +429,7 @@ export default {
 		commit("setUsername", username);
 	},
 
-	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
+	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
 };
