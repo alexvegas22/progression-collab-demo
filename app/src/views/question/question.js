@@ -81,14 +81,13 @@ export default {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 		download(){
-			//alert(this.question.tests[0].nom)
 			var question = new Map();
 			question.set("type","Prog");
 			question.set("niveau",this.question.niveau);
 			question.set("titre",this.question.titre);
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
-			question.set("ébauche",this.tentative.code);
+			question.set("ébauche",this.question.ebauches);
 			question.set("rétroaction",this.tentative.feedback);
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
@@ -113,7 +112,7 @@ export default {
 			question.set("titre","titre: ");
 			question.set("description","description: ");
 			question.set("énoncé","énoncé: |\n");
-			question.set("ébauche","ébauche:\n    python:\n    java:\n");
+			question.set("ébauche","ébauche:\n");
 			question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
 			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
@@ -124,13 +123,20 @@ export default {
 			for (var element of iterateur){
 				if(données.get(element) != null){
 					if(element === "tests"){
-						texte += question.get(element);
+						texte +="\n"+ question.get(element);
 						for(var i of données.get(element)){
 							texte += "    - nom: "+i.nom +
 							"\n      entrée: "+i.entrée+
-							"\n      sortie: | \n     "+i.sortie_attendue+"\n\n" ;
+							"\n      sortie: | \n     "+i.sortie_attendue+"\n" ;
+						} 
+					}else if(element === "ébauche"){
+						texte += question.get(element);
+						var langues = Object.getOwnPropertyNames(this.question.ebauches).toString();
+						const tableauLangues = langues.split(",");
+						for(var langue of tableauLangues){
+							texte += "    "+langue+": |\n    "+this.question.ebauches[langue].code.replaceAll("\n","\n    ");
 						}
-					}else{
+					}else {
 						texte += question.get(element) + données.get(element) +"\n\n" ;
 					}
 				}
