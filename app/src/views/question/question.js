@@ -90,7 +90,7 @@ export default {
 			question.set("titre",this.question.titre);
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
-			question.set("ébauches",this.question.ebauches);// + " :\n"+this.question.ebauches.code);
+			question.set("ébauches",this.question.ebauches);
 			question.set("rétroaction",this.question.feedback_pos + "\n" + this.question.feedback_neg + "\n" + this.question.feedback_err);
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
@@ -116,7 +116,7 @@ export default {
 			question.set("description","description: ");
 			question.set("énoncé","énoncé: |\n");
 			question.set("ébauches","ébauches: |\n");
-			question.set("rétroaction","rétroaction:\n");//    positive: \n    négative: \n    erreur: ");
+			question.set("rétroaction","\nrétroaction:\n");
 			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
 			question.set("licence", "licence: ");
@@ -132,7 +132,7 @@ export default {
 							"\n      entrée: "+i.entrée+
 							"\n      sortie: | \n     "+i.sortie_attendue+"\n" ;
 						} 
-					}else if(element === "ébauche"){
+					}else if(element === "ébauches"){
 						texte += question.get(element);
 						var langues = Object.getOwnPropertyNames(this.question.ebauches).toString();
 						const tableauLangues = langues.split(",");
@@ -142,10 +142,11 @@ export default {
 					}else {
 						texte += question.get(element) + données.get(element) +"\n\n" ;
 					}
-				//}
+				}
 			}
 			  return texte;
 		},
+
 		formaterÉnoncé(données) {
 			var énoncéFormaté = données.replace(":", "':'");
 			//var énoncéFormaté = "'"+données+"'";
