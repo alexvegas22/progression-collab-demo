@@ -15,54 +15,162 @@
 
 			<button id="btn_aperçu" v-on:click="cacher(), (aperçu = !aperçu)">Aperçu 👁</button>
 
-			<div v-if="aperçu">
-				<div class="row" présentation_étape="0.1">
-					<h3 class="titre align-self-start">
-						{{ titre }}
-						<span class="badge niveau" présentation_étape="0.2"> {{ niveau }} </span>
-					</h3>
-				</div>
-
-				<div class="row flex-grow-1">
-					<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
-				</div>
-
-				<div>
-					<p class="footer-copyright text-center py-3">{{ auteur }} {{ licence }}</p>
-				</div>
+			<div class="row" présentation_étape="0.1" style="justify-content: flex-end">
+				<span class="badge niveau" présentation_étape="0.2">
+					<!--
+					<p
+						class="contenu"
+						contenteditable
+						@input="(e) => modifierContenu(e, 0)"
+						data-placeholder="Niveau"
+						style="text-align: left"
+					>
+						{{ contenu[0].texte }}
+					</p>
+					
+					!-->
+					<input
+						id="niveau"
+						placeholder="Niveau"
+						type="text"
+						v-model="contenu[0].texte"
+						list="niveaux"
+						style="border: 0px; background-color: transparent; color: white;"
+						onkeypress="
+						if(this.value.length != 0){
+							this.style.width = ((this.value.length + 3) * 8) + 'px';
+						}else{
+							this.style.width = ((this.placeholder.length + 3) * 8) + 'px';
+						}"
+					/>
+					<datalist id="niveaux">
+						<option>base</option>
+						<option>débutant</option>
+						<option>intermédiaire</option>
+						<option>avancé</option>
+					</datalist>
+				</span>
+				<h3
+					class="titre align-self-start contenu"
+					contenteditable
+					@input="(e) => modifierContenu(e, 1)"
+					data-placeholder="Titre"
+				>
+					{{ contenu[1].texte }}
+				</h3>
 			</div>
 
-			<div v-else>
-				<div class="row flex-grow-1" présentation_étape="0.1">
-					<input type="text" placeholder="Titre" id="titre" v-model="titre" />
-				</div>
-				
-				<div class="row flex-grow-1">
-						<input id="niveau" placeholder="Niveau" type="text" v-model="niveau" list="niveaux" />
-						<datalist id="niveaux">
-							<option>base</option>
-							<option>débutant</option>
-							<option>intermédiaire</option>
-							<option>avancé</option>
-						</datalist>
-				</div>
+			<tab-nav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
+				<tab :isSelected="selected === 'Énoncé'">
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="énoncé"
+								height="600px"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
+								:toolbar="toolbar"
+								right-toolbar="fullscreen"
+							>
+							</v-md-editor>
+						</div>
+					</div>
+				</tab>
 
-				<div class="row flex-grow-1">
-					<v-md-editor
-						v-model="énoncé"
-						height="600px"
-						mode="edit"
-						left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
-						:toolbar="toolbar"
-						right-toolbar="fullscreen"
-					>
-					</v-md-editor>
-				</div>
+				<tab :isSelected="selected === 'Rétroactions'">
+					<label> Rétroaction positive </label>
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="positive" height="30%" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="positive"
+								height="30%"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol | documentation"
+								:toolbar="toolbar"
+								right-toolbar=""
+							>
+							</v-md-editor>
+						</div>
+					</div>
+					<label> Rétroaction négative</label>
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="négative" height="30%" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="négative"
+								height="30%"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol | documentation"
+								:toolbar="toolbar"
+								right-toolbar=""
+							>
+							</v-md-editor>
+						</div>
+					</div>
+					<label> Rétroaction erreur</label>
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="erreur" height="30%" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="erreur"
+								height="30%"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol | documentation"
+								:toolbar="toolbar"
+								right-toolbar=""
+							>
+							</v-md-editor>
+						</div>
+					</div>
+				</tab>
 
-				<div>
-					<p class="footer-copyright text-center py-3">
-						<input id="auteur" type="text" placeholder="Auteur"  v-model="auteur" />
-						<input id="licence" type="text" placeholder="Licence"  v-model="licence" />
+				<tab :isSelected="selected === 'Description'">
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="description" height="600px" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="description"
+								height="600px"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
+								:toolbar="toolbar"
+								right-toolbar="fullscreen"
+							>
+							</v-md-editor>
+						</div>
+					</div>
+				</tab>
+			</tab-nav>
+
+			<div>
+				<div class="footer-copyright py-3">
+					<p class="contenu" contenteditable @input="(e) => modifierContenu(e, 2)" data-placeholder="Auteur">
+						{{ contenu[2].texte }}
+					</p>
+					<p class="contenu" contenteditable @input="(e) => modifierContenu(e, 3)" data-placeholder="Licence">
+						{{ contenu[3].texte }}
 					</p>
 				</div>
 			</div>
