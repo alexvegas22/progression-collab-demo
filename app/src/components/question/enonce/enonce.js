@@ -26,25 +26,10 @@ export default {
 		modifierContenu(e, indice) {
 			this.contenu[indice].texte = e.target.innerText;
 		},
-		dropdown() {
-			var x = document.getElementById("Demo");
-			if (x.className.indexOf("w3-show") == -1) {
-				x.className += " w3-show";
-			}
-			else {
-				this.quitter();
-			}
-		},
-		quitter() {
-			var x = document.getElementById("Demo");
-			x.className = x.className.replace(" w3-show", "");
-		},
 		dropdownChoix(choix) {
 			this.contenu[0].texte = choix;
-			this.quitter();
 		}
 	},
-
 
 	data() {
 

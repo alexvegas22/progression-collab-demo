@@ -23,16 +23,24 @@
 						contenteditable
 						@input="(e) => modifierContenu(e, 0)"
 						data-placeholder="Niveau"
-						style="text-align: left; display: inline"
+						style="text-align: left; display: inline; margin-right: 8px;"
 					>
 						{{ contenu[0].texte }}
 					</p>
-					<button v-on:click="dropdown()" style="border: 0px; background-color: transparent; color: dark;">v</button>
-					<div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-						<option v-on:click="dropdownChoix('base')" class="w3-bar-item w3-button">base</option>
-						<option v-on:click="dropdownChoix('débutant')" class="w3-bar-item w3-button">débutant</option>
-						<option v-on:click="dropdownChoix('intermédiaire')" class="w3-bar-item w3-button">intermédiaire</option>
-						<option v-on:click="dropdownChoix('avancé')" class="w3-bar-item w3-button">avancé</option>
+					<button
+						id="menu_niveau"
+						type="button"
+						class="btn dropdown-toggle"
+						data-bs-toggle="dropdown"
+						aria-expanded="true"
+						style="padding: 0px; border: 0px; background-color: transparent; color: dark;"
+					>
+					</button>
+					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="menu_niveau">
+						<button v-on:click="dropdownChoix('base')" class="dropdown-item">base</button>
+						<button v-on:click="dropdownChoix('débutant')" class="dropdown-item">débutant</button>
+						<button v-on:click="dropdownChoix('intermédiaire')" class="dropdown-item">intermédiaire</button>
+						<button v-on:click="dropdownChoix('avancé')" class="dropdown-item">avancé</button>
 					</div>
 				</span>
 				<h3
