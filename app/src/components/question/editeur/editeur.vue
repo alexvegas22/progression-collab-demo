@@ -29,7 +29,7 @@
 				<div class="col-auto" :class="classeIndicateur">●</div>
 			</div>
 			
-			<div class="row" présentation_étape="1.1">
+			<div class="row taille_éditeur" présentation_étape="1.1">
 				<v-code-mirror
 					id="editor"
 
