@@ -180,6 +180,7 @@ export default {
 	async getAvancement({ commit, state }, params) {
 		return valider(
 			commit,
+			//verifier token dans params
 			getToken({ commit, state })
 				.then((token) => getAvancementApi(params.url, token))
 				.then((avancement) => {

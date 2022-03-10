@@ -66,6 +66,7 @@ export default {
 					.dispatch("getAvancement", {
 						url: this.user.avancements[id_avancement].liens.self,
 						lang_défaut: this.lang,
+						token_ressource: this.tokenRessource,
 					})
 			} else {
 				this.$store
