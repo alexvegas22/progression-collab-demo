@@ -152,10 +152,10 @@ export default {
 			return énoncéFormaté;
 		},
 		formaterRétroactions(pos, neg, err) {
-			var rétroFormatée = "    positive: " + this.question.feedback_pos + "\n" + 
-								"    négative: " + this.question.feedback_neg + "\n" + 
-								"    erreur: " + this.question.feedback_err;
-			
+			var rétroFormatée = 
+				"    positive: " + pos + "\n" + 
+				"    négative: " + neg + "\n" + 
+				"    erreur: " + err;
 			return rétroFormatée;
 		},
 	},
