@@ -91,9 +91,11 @@ export default {
 			question.set("titre",this.question.titre);
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
-			question.set("ébauche",this.tentative.code);
-			question.set("rétroaction",this.retroactionTentative.feedback);
-			//question.set("rétroaction",this.question.feedback_pos);
+			question.set("ébauches",this.question.ebauches);// + " :\n"+this.question.ebauches.code);
+			alert(Object.getOwnPropertyNames(this.question.ebauches));
+			alert(this.question.ebauches["java"].code);
+			alert(this.question.ebauches["python"].code);
+			question.set("rétroaction",this.question.feedback_pos + "\n" + this.question.feedback_neg + "\n" + this.question.feedback_err);
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
 			question.set("licence",this.question.licence);
@@ -117,26 +119,36 @@ export default {
 			question.set("titre","titre: ");
 			question.set("description","description: ");
 			question.set("énoncé","énoncé: |\n");
-			question.set("ébauche","ébauche:\n    python:\n    java:\n");
+			question.set("ébauches","ébauches: |\n");
 			question.set("rétroaction","rétroaction:\n");//    positive: \n    négative: \n    erreur: ");
 			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
 			question.set("licence", "licence: ");
 		
-			const iterateur = données.keys();
+			const iterateur = données.keys();	
 		
 			for (var element of iterateur){
 				//if(données.get(element) != null){
-					if(element === "tests"){
-						texte += question.get(element);
-						for(var i of données.get(element)){
-							texte += "    - nom: "+i.nom +
-							"\n      entrée: "+i.entrée+
-							"\n      sortie: | \n     "+i.sortie_attendue+"\n\n" ;
+					if(element === "tests" || element === "ébauches"){
+						if(element === "tests"){
+							texte += question.get(element);
+							for(var i of données.get(element)){
+								texte += "    - nom: "+i.nom +
+								"\n      entrée: "+i.entrée+
+								"\n      sortie: |\n    "+i.sortie_attendue.replaceAll("\n", "\n    ")+"\n" ;
+							}
 						}
-					}else{
-						texte += question.get(element) + données.get(element) +"\n\n" ;
+						if(element === "ébauches"){
+							texte += question.get(element);
+							//for(let i = 0; i < this.question.ebauches.count; i++){
+								const langages = Object.getOwnPropertyNames(this.question.ebauches).toString();
+								texte += "    "+langages.replaceAll(",", ":\n    \n\n");							
+							//}							
+						}
 					}
+					else{
+						texte += question.get(element) + données.get(element) +"\n\n" ;
+					}					
 				//}
 			}
 			  return texte;
