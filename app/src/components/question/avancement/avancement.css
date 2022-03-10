@@ -6,3 +6,8 @@
 ul{
     list-style-type: "> ";
 }
+
+.dropdown-item.disabled{
+    background-color: darkgray;
+    color: white;
+}
