@@ -268,6 +268,7 @@ export default {
 		commit("updateEnvoieTentativeEnCours", true);
 
 		params.urlTentative = this.state.avancement.liens.tentatives;
+		commit("updateRetroaction", null);
 		return valider(
 			commit,
 			getToken({ commit, state })
@@ -387,5 +388,9 @@ export default {
 
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
+	},
+
+	setThèmeSombre({ commit }, val) {
+		commit("setThèmeSombre", val);
 	},
 };
