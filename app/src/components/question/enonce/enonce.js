@@ -47,8 +47,10 @@ export default {
 				]
 			,
 			énoncé: this.$store.state.question.énoncé,
-			count: 0,
-
+			positive: this.$store.state.question.feedback.positive,
+			négative: this.$store.state.question.feedback.négative,
+			erreur: this.$store.state.question.feedback.erreur,
+			description: this.$store.state.question.description,
 			aperçu: false,
 
 			toolbar: {
