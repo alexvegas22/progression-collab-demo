@@ -91,7 +91,7 @@ export default {
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
 			question.set("ébauches",this.question.ebauches);
-			question.set("rétroaction",this.question.feedback_pos + "\n" + this.question.feedback_neg + "\n" + this.question.feedback_err);
+			question.set("rétroaction",this.formaterRétroactions(this.question.feedback_pos, this.question.feedback_neg, this.question.feedback_err));
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
 			question.set("licence",this.question.licence);
@@ -117,8 +117,8 @@ export default {
 			question.set("énoncé","énoncé: |\n");
 			question.set("ébauches","ébauches: \n");
 			question.set("rétroaction","\nrétroaction:\n");
-			question.set("tests","tests:\n");
-			question.set("auteur", "auteur: ");
+			question.set("tests","tests:");
+			question.set("auteur","\nauteur: ");
 			question.set("licence", "licence: ");
 		
 			const iterateur = données.keys();
@@ -128,9 +128,10 @@ export default {
 					if(element === "tests"){
 						texte +="\n"+ question.get(element);
 						for(var i of données.get(element)){
-							texte += "    - nom: "+i.nom +
-							"\n      entrée: "+i.entrée+
-							"\n      sortie: | \n     "+i.sortie_attendue+"\n" ;
+							texte += 
+							"\n    - nom: "+i.nom +
+							"\n      entrée: \n        "+i.entrée.replaceAll("\n","\n        ")+
+							"\n      sortie: | \n        "+i.sortie_attendue.replaceAll("\n","\n        ") ;
 						} 
 					}else if(element === "ébauches"){
 						texte += question.get(element)+ "\n    ";
@@ -147,11 +148,16 @@ export default {
 			}
 			  return texte;
 		},
-
 		formaterÉnoncé(données) {
-			var énoncéFormaté = données.replace(":", "':'");
-			//var énoncéFormaté = "'"+données+"'";
+			var énoncéFormaté = données.replaceAll(":", "':'");
 			return énoncéFormaté;
+		},
+		formaterRétroactions(pos, neg, err) {
+			var rétroFormatée = 
+				"    positive: " + pos + "\n" + 
+				"    négative: " + neg + "\n" + 
+				"    erreur: " + err;
+			return rétroFormatée;
 		},
 	},
 };
