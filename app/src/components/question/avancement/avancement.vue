@@ -4,7 +4,7 @@
 			{{this.langage}}
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="menu_historique">
-			<li v-for="langage in this.langages" v-bind:key="langage">
+			<li v-for="langage in this.langages" :key="langage">
 				<button class="dropdown-item disabled" présentation_étape="4.0">{{langage}}</button>
 				<ul>
 					<li><button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)"  présentation_étape="4.1">{{ $t('avancement.ébauche_initiale') }}</button></li>
@@ -14,6 +14,9 @@
 						</button>
 					</li>
 				</ul>
+			</li>
+			<li>
+				{{this.xray}}
 			</li>
 		</ul>
 	</div>

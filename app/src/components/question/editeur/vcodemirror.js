@@ -122,6 +122,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		else{
 			this.updateZones();
 		}
+		//this.$store.dispatch("setXray", this.xray);
 		this.$store.state.xray = this.xray;
 	}
 

@@ -50,13 +50,7 @@ export default {
 		},
 		reinitialiserCodeEditeur(langage) {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
-			var confirmation;
-			if (this.xray == true) {
-				confirmation = true;
-			} else {
-				confirmation = confirm(msgAvertissement);
-			}
-			if (confirmation == true) {
+			if (this.xray || confirm(msgAvertissement)) {
 				this.$store.dispatch("réinitialiser", langage);
 			}
 		},
