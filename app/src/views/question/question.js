@@ -135,10 +135,10 @@ export default {
 						} 
 					}else if(element === "ébauches"){
 						texte += question.get(element)+ "\n    ";
-						var langues = Object.getOwnPropertyNames(this.question.ebauches).toString();
-						const tableauLangues = langues.split(",");
-						for(var langue of tableauLangues){
-							texte += langue+": |\n      "+this.question.ebauches[langue].code.replaceAll("\n","\n      ");
+						var langages = Object.getOwnPropertyNames(this.question.ebauches).toString();
+						const tableauLangages = langages.split(",");
+						for(var langage of tableauLangages){
+							texte += langage+": |\n      "+this.question.ebauches[langage].code.replaceAll("\n","\n      ");
 							texte+="\n    ";
 						}
 					}else {
