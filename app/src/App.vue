@@ -65,7 +65,7 @@
 	 created() {
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
 		 this.traiterParamètresURL( window.location.search );
-		 this.$store.dispatch("setThème", localStorage.getItem("estThèmeSombre") === "true");
+		 this.$store.dispatch("setThème", this.thèmeSombre);
 	 },
 	 data() {
 		 return {
@@ -76,7 +76,7 @@
 	watch: {		
 		thèmeSombre() {
 			localStorage.setItem("estThèmeSombre", this.thèmeSombre);	
-			this.$store.dispatch("setThème", localStorage.getItem("estThèmeSombre") === "true");
+			this.$store.dispatch("setThème", this.thèmeSombre);
 		},
 	},
 	 computed: {
@@ -135,7 +135,7 @@
 			 sessionStorage.removeItem("token");
 			 this.$store.dispatch("deleteToken");
 			 this.$router.push({name: "Home"});
-		 },	
+		 }
 	 }
  };
 </script>

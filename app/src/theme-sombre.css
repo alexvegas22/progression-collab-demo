@@ -12,8 +12,8 @@ html,body {
 }
 
 .thème_sombre input{
-    background-color: #232121 !important;
-    color:#E1E1E1 !important;  
+	background-color: #232121 !important;
+	color:#E1E1E1 !important;  
 }
 
 input[type="checkbox"]:checked + .bi {
@@ -30,5 +30,5 @@ input[type="checkbox"]:checked + .bi {
 }
 
 .thème_sombre .btn-primary{
-    background-color:#0dcaf0 !important;
+	background-color:#0dcaf0 !important;
 }
