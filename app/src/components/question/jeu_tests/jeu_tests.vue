@@ -2,8 +2,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="container col-4">
-				<h3 style="text-align: left">{{ $t("jeu_tests.jeuTests") }}</h3>
-				<div v-for="(test, index) in tests" :key="index">
+				<h3 class="titre_test">{{ $t("jeu_tests.jeuTests") }}</h3>
+				<div class="texte_test" v-for="(test, index) in tests" :key="index">
 					<Test v-bind:test="test"
 						  v-bind:index="index"
 						  v-bind:réussi="resultats[index]"
@@ -27,3 +27,4 @@
 </template>
 
 <script src="./jeu_tests.js"></script>
+<style src="./jeu_tests.css"></style>
