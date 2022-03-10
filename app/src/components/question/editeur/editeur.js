@@ -40,9 +40,6 @@ export default {
 		tentative() {
 			return this.$store.state.tentative;
 		},
-		rôleÉditeur() {
-			return this.$store.state.user.rôle==2;
-		},
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
 		},

@@ -55,8 +55,6 @@ export const mutations = {
 	},
 	setQuestion(state, question) {
 		state.question = question;
-		const cloneJSON = JSON.parse(JSON.stringify(question));
-		state.ebauchesOrigine = cloneJSON.ebauches;
 	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;
