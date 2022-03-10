@@ -68,7 +68,7 @@ router.post("/lti/grade", async (req, res) => {
 
         const score = await récupérerScore(uri, token);
 
-        const url = await récupérerTokenRessource(uri, "avancement");
+        const url = await récupérerTokenRessource(token, "avancement");
 
         // Note
         const gradeObj = {
