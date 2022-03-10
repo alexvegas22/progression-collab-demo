@@ -125,7 +125,7 @@ export default {
 			question.set("auteur", "auteur: ");
 			question.set("licence", "licence: ");
 		
-			const iterateur = données.keys();	
+			const iterateur = données.keys();
 		
 			for (var element of iterateur){
 				//if(données.get(element) != null){
@@ -142,13 +142,13 @@ export default {
 							texte += question.get(element);
 							//for(let i = 0; i < this.question.ebauches.count; i++){
 								const langages = Object.getOwnPropertyNames(this.question.ebauches).toString();
-								texte += "    "+langages.replaceAll(",", ":\n    \n\n");							
-							//}							
+								texte += "    "+langages.replaceAll(",", ":\n    \n\n");
+							//}
 						}
 					}
 					else{
 						texte += question.get(element) + données.get(element) +"\n\n" ;
-					}					
+					}
 				//}
 			}
 			  return texte;

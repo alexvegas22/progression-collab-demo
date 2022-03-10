@@ -37,7 +37,7 @@ const getQuestionApi = async (urlQuestion, token) => {
 	var question = data.data.attributes;
 	question.liens = data.data.links;
 	question.tests = [];
-	question.ebauches = {};	
+	question.ebauches = {};
 	if (data.included) {
 		data.included.forEach((item) => {
 			if (item.type == "test") {
