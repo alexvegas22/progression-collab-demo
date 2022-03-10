@@ -29,13 +29,20 @@
 					</p>
 					
 					!-->
-					<input id="niveau" placeholder="Niveau" type="text" v-model="contenu[0].texte" list="niveaux" style="border:0px; background-color:transparent; color:white; width: fit-content;"/>
-						<datalist id="niveaux">
-							<option>base</option>
-							<option>débutant</option>
-							<option>intermédiaire</option>
-							<option>avancé</option>
-						</datalist>
+					<input
+						id="niveau"
+						placeholder="Niveau"
+						type="text"
+						v-model="contenu[0].texte"
+						list="niveaux"
+						style="border: 0px; background-color: transparent; color: white; width: fit-content"
+					/>
+					<datalist id="niveaux">
+						<option>base</option>
+						<option>débutant</option>
+						<option>intermédiaire</option>
+						<option>avancé</option>
+					</datalist>
 				</span>
 				<h3
 					class="titre align-self-start contenu"
@@ -47,24 +54,36 @@
 				</h3>
 			</div>
 
-			<div v-if="aperçu">
-				<div class="row flex-grow-1">
-					<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
-				</div>
-			</div>
-			<div v-else>
-				<div class="row flex-grow-1">
-					<v-md-editor
-						v-model="énoncé"
-						height="600px"
-						mode="edit"
-						left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
-						:toolbar="toolbar"
-						right-toolbar="fullscreen"
-					>
-					</v-md-editor>
-				</div>
-			</div>
+			<tab-nav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
+				<tab :isSelected="selected === 'Énoncé'">
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="énoncé"
+								height="600px"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
+								:toolbar="toolbar"
+								right-toolbar="fullscreen"
+							>
+							</v-md-editor>
+						</div>
+					</div>
+				</tab>
+
+				<tab :isSelected="selected === 'Rétroactions'">
+					<p>test rétroactions.</p>
+				</tab>
+
+				<tab :isSelected="selected === 'Description'">
+					<p>test description.</p>
+				</tab>
+			</tab-nav>
 
 			<div>
 				<div class="footer-copyright py-3">

@@ -1,7 +1,10 @@
 import parseMD from "@/util/parse";
+import TabNav from "./TabNav.vue"
+import Tab from "./Tab.vue"
 
 export default {
 	name: "Enonce",
+	components: { TabNav, Tab },
 	computed: {
 		état_réussi() {
 			return this.$store.state.avancement.état == 2;
@@ -25,12 +28,16 @@ export default {
 		},
 		modifierContenu(e, indice) {
 			this.contenu[indice].texte = e.target.innerText;
+		},
+		setSelected(tab) {
+			this.selected = tab;
 		}
 	},
 
 	data() {
 
 		return {
+			selected: 'Énoncé',
 			contenu:
 				[
 					{ texte: this.$store.state.question.niveau },
