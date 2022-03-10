@@ -46,13 +46,8 @@ const getQuestionApi = async (urlQuestion, token) => {
 				question.tests.push(test);
 			} else if (item.type == "ebauche") {
 				var ebauche = item.attributes;
-				//alert(Object.getOwnPropertyNames(ebauche));
 				ebauche.liens = item.links;
 				question.ebauches[ebauche.langage] = ebauche;
-				//alert("2 "+Object.getOwnPropertyNames(question.ebauches));
-				//alert(Object.getOwnPropertyNames(question.ebauches));
-				//alert(ebauche.langage);
-				//alert(ebauche.code);
 			}
 		});
 	}
