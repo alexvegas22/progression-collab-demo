@@ -65,7 +65,7 @@
 	 created() {
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
 		 this.traiterParamètresURL( window.location.search );
-		 this.$store.dispatch("setThème", localStorage.getItem("estThèmeSombre") === "true");
+		 this.$store.dispatch("setThème", this.thèmeSombre);
 	 },
 	 data() {
 		 return {
