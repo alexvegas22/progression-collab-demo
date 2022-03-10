@@ -52,9 +52,6 @@ export default {
 			erreur: this.$store.state.question.feedback.erreur,
 			description: this.$store.state.question.description,
 			aperçu: false,
-			retropos: this.$store.state.question.feedback.positive,
-			retroneg: this.$store.state.question.feedback.négative,
-			retroerr: this.$store.state.question.feedback.erreur,
 
 			toolbar: {
 				documentation: {
