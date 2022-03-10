@@ -35,7 +35,6 @@ const getUserApi = async (urlUser, token) => {
 const getQuestionApi = async (urlQuestion, token) => {
 	const data = await getData(urlQuestion + "?include=tests,ebauches", token);
 	var question = data.data.attributes;
-	question.feedback = { "positive": "une rétro positive", "négative": "une rétro négative", "erreur": "une rétro d'erreur" }
 	question.liens = data.data.links;
 	question.tests = [];
 	question.ebauches = {};
