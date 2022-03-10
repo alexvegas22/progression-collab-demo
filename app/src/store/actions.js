@@ -389,4 +389,8 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
+
+	setThème({ commit }, val) {
+		commit("setThème", val);
+	},
 };

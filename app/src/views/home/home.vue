@@ -281,5 +281,3 @@
 
 <!-- Google fonts-->
 
-<!-- Thème Sombre-->
-<style src="../../theme-sombre.css"></style>

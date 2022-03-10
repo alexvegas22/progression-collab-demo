@@ -2,7 +2,7 @@
 	<metainfo>
 		<template v-slot:title="{ content }">{{ content ? `${content} | Progression` : `Progression` }}</template>
 	</metainfo>
-	<div :class="{thème_sombre_global: thèmeSombre}">
+	<div :class="{thème_sombre: thèmeSombre}">
 		<nav class="navbar justify-content-between navbar-dark bg-dark">
 			<a href="/" class="navbar-brand text-light mr-auto">
 				<span class="text-info"> Prog</span>ression
@@ -45,6 +45,9 @@
 	</div>
 </template>
 
+
+<style src="./theme-sombre.css"></style>
+
 <script>
  import tokenEstValide from "@/util/token";
  import { useMeta } from 'vue-meta'
@@ -62,18 +65,18 @@
 	 created() {
 		 this.$store.dispatch("getConfigServeur", API_URL + "/config" );
 		 this.traiterParamètresURL( window.location.search );
-		 this.traiterThemeSombre();
+		 this.$store.dispatch("setThème", localStorage.getItem("estThèmeSombre") === "true");
 	 },
 	 data() {
 		 return {
 			 cb_auth: null,
 			 cb_auth_params: null,
-			 thèmeSombre: localStorage.getItem("thèmeSombreGlobal") === "true",
+			 thèmeSombre: localStorage.getItem("estThèmeSombre") === "true",
 		 } },
 	watch: {		
 		thèmeSombre() {
-			localStorage.setItem("thèmeSombreGlobal", this.thèmeSombre);		
-			this.traiterThemeSombre();	
+			localStorage.setItem("estThèmeSombre", this.thèmeSombre);	
+			this.$store.dispatch("setThème", localStorage.getItem("estThèmeSombre") === "true");
 		},
 	},
 	 computed: {
@@ -132,10 +135,7 @@
 			 sessionStorage.removeItem("token");
 			 this.$store.dispatch("deleteToken");
 			 this.$router.push({name: "Home"});
-		 },		
-		traiterThemeSombre(){
-			this.$store.state.thèmeSombre = this.thèmeSombre;
-		},
+		 },	
 	 }
  };
 </script>
