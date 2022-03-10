@@ -14,7 +14,7 @@ export default {
 			return Object.keys(this.$store.state.question.ebauches);
 		},
 		ébauche() {
-			return this.$store.state.question.ebauches[this.langage].code;
+			return this.$store.state.question.ebauches[this?.langage].code ?? " ";
 		}
 	},
 	methods: {
