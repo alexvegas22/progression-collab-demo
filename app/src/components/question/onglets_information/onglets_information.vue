@@ -4,7 +4,7 @@
       <div class="bordure-titre p-1">
         {{ $t('jeu_tests.jeuTests') }}
       </div>
-      <fenetre-info :style="{height: sectionVisible ? '350px' : '0'}" class="section-bas">
+      <fenetre-info :style="{height: afficherPanneau ? '350px' : '0'}" class="section-bas">
         <div v-for="(test, index) in tests" :key="index">
           <Test v-bind:test="test"
               v-bind:index="index"
@@ -37,15 +37,15 @@
               <strong>Commentaires</strong>
         </div>
 
-        <div @click="changementVisibilité()" class="boutton-basculable">
-          <i class="fa" :class="{'fa-angle-double-down': sectionVisible, 'fa-angle-double-up': !sectionVisible}" aria-hidden="true"></i>
+        <div @click="$emit('ajusterPanneau')" class="boutton-basculable">
+          <i class="fa" :class="{'fa fa-window-minimize': afficherPanneau, 'fa fa-window-maximize': !afficherPanneau}" aria-hidden="true"></i>
         </div>
       </div>
 
       <keep-alive>
         <component 
           :is="ongletSelectionner" 
-          :style="{height: sectionVisible ? '350px' : '0'}"
+          :style="{height: afficherPanneau ? '350px' : '0'}"
           class="section-bas"
           :test="test_select"
           :resultat="resultat_select"
@@ -70,11 +70,11 @@ export default {
   },
   data() {
     return {
-      sectionVisible: true,
       ongletSelectionner: 'resultat-test',
       index_select: 0
     };
   },
+  props: ['afficherPanneau'],
   computed: {
     resultats() {
 			var res = [];
@@ -105,10 +105,6 @@ export default {
   methods: {
     changementOnglet(onglet) {
       this.ongletSelectionner = onglet;
-      this.sectionVisible = true;
-    },
-    changementVisibilité() {
-      this.sectionVisible = !this.sectionVisible;
     },
     select(index) {
 			this.index_select = index;

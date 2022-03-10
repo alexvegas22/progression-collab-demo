@@ -1,6 +1,11 @@
 <template>
   <div style="height: 100%">
-    <perfect-scrollbar class="p-3 section-enoncer-text" :style="{opacity: enoncerCacher ? '0.0' : '1'}">
+    <div style="height: 3.5%;">
+      <i style="float:right;" @click="$emit('changerAffichage', 'plein')" class="fa fa fa-window-maximize" aria-hidden="true" v-if="énoncéSemiÉcran"></i>
+      <i style="float:right;" @click="$emit('changerAffichage', 'semi')" class="fa fa fa-window-maximize" aria-hidden="true" v-else></i>
+      <i style="float:right;" @click="$emit('changerAffichage', 'cacher')" class="fa fa fa-window-minimize" aria-hidden="true"></i>
+    </div>
+    <perfect-scrollbar class="p-3 section-enoncer-text">
       <div v-if = "état_réussi" class="crochet icon icon--order-success svg">
         <svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
           <g>
@@ -30,9 +35,6 @@
         </p>
       </div>
     </perfect-scrollbar>
-    <button @click="$emit('cacherEnoncer')" class="bouton-deroulable">
-      <i class="fa" :class="{'fa-angle-double-left': !enoncerCacher, 'fa-angle-double-right': enoncerCacher}" aria-hidden="true"></i>
-    </button>
 	</div>
 </template>
 

@@ -11,7 +11,9 @@ const API_URL = process.env.VUE_APP_API_URL;
 export default {
   data() {
     return {
-      enonceCacher: false
+      afficherPanneau: true,
+      énoncéSemiÉcran: true,
+      énoncéPleinÉcran: false,
     };
   },
 	name: "Question",
@@ -88,8 +90,45 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-		cacherEnoncer() {
-			this.enonceCacher = !this.enonceCacher;
-		}
+    ajusterÉnoncé(type) {
+      console.log(type);
+      if (type === 'semi') {
+        this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
+        if (this.énoncéSemiÉcran)
+          this.énoncéPleinÉcran = false;
+      }
+      else if (type === 'plein') {
+        this.afficherPanneau = false;
+        this.énoncéPleinÉcran = true;
+        this.énoncéSemiÉcran = false;
+      }
+      else {
+        this.énoncéPleinÉcran = false;
+        this.énoncéSemiÉcran = false;
+      }
+      console.log('semi: ' + this.énoncéSemiÉcran);
+      console.log('plein: ' + this.énoncéPleinÉcran);
+    },
+    ajusterPanneau() {
+      console.log('test');
+      this.afficherPanneau = !this.afficherPanneau;
+      if (this.énoncéPleinÉcran && this.afficherPanneau) {
+        this.énoncéPleinÉcran = false;
+        this.énoncéSemiÉcran = true;
+      }
+      console.log('panneau: ' + this.afficherPanneau);
+    },
+    éditeurPleinÉcran() {
+      if (this.énoncéPleinÉcran || this.énoncéSemiÉcran || this.afficherPanneau) {
+        this.énoncéSemiÉcran = false;
+        this.afficherPanneau = false;
+      }
+      else {
+        this.énoncéSemiÉcran = true;
+        this.afficherPanneau = true;
+      }
+      this.énoncéPleinÉcra
+    },
+
 	},
 };
