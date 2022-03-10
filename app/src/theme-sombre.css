@@ -13,6 +13,7 @@ html,body {
 .thème_sombre_global .thème_sombre_section{
     background-color: #232121 !important;
     color:#E1E1E1 !important;  
+	border-color: #434343 !important;
 }
 
 input[type="checkbox"]:checked + .bi {
