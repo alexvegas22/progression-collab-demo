@@ -80,7 +80,7 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
-	setXray(state, xray) {
-		state.xray = xray;
+	setModeCréation(state, modeCréation) {
+		state.modeCréation = modeCréation;
 	},
 };

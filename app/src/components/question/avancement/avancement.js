@@ -1,8 +1,8 @@
 export default {
 	name: "Avancement",
 	computed: {
-		xray() {
-			return this.$store.state.xray;
+		modeCréation() {
+			return this.$store.state.modeCréation;
 		},
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
@@ -50,7 +50,7 @@ export default {
 		},
 		reinitialiserCodeEditeur(langage) {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
-			if (this.xray || confirm(msgAvertissement)) {
+			if (this.modeCréation || confirm(msgAvertissement)) {
 				this.$store.dispatch("réinitialiser", langage);
 			}
 		},

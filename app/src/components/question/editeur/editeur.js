@@ -13,15 +13,15 @@ export default {
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
 			thèmeSombre: localStorage.getItem("thème") === "true",
-			xray: localStorage.getItem("xray") === "true",
+			modeCréation: localStorage.getItem("modeCréation") === "true",
 		};
 	},
 	watch: {
 		thèmeSombre() {
 			localStorage.setItem( "thème", this.thèmeSombre );
 		},
-		xray() {
-			localStorage.setItem( "xray", this.xray );
+		modeCréation() {
+			localStorage.setItem( "modeCréation", this.modeCréation );
 		},
 	},
 	computed: {
@@ -74,7 +74,7 @@ export default {
 
 	methods: {
 		onChange( texte ){
-			if (this.xray) {
+			if (this.modeCréation) {
 				this.$store.dispatch("mettreAjourEbauche", texte);
 			} else {
 				this.$store.dispatch("mettreAjourCode", texte);

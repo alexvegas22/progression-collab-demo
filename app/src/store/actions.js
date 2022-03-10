@@ -329,6 +329,10 @@ export default {
 		commit("updateLangageTentative", langage);
 	},
 
+	setModeCréation({ commit }, modeCréation) {
+		commit("setModeCréation", modeCréation);
+	},
+
 	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
 		commit("setTentative", {

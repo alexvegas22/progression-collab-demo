@@ -68,7 +68,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		VCodeMirrorComp.ro.observe(this.$el);
 		this.updateMode(this.mode);
 		this.updateTheme(this.theme);
-		this.updateXray();
+		this.updateModeCréation();
 	}
 
 	beforeUnmount() {
@@ -80,7 +80,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateValue(value) {
 		if (value != this.editor.getValue()) {
 			this.editor.setValue(value);
-			if(!this.xray){
+			if(!this.modeCréation){
 				this.updateZones();
 			}
 		}
@@ -113,17 +113,16 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		zones.désactiverHorsTodo(this.editor.doc);
 	}
 
-	updateXray() {
-		if(this.xray){
-			//Enlève le marquage
+	updateModeCréation() {
+		if(this.modeCréation){
 			const langage = this.$store.state.tentative.langage;
 			this.editor.setValue(this.$store.state.question.ebauches[langage].code);
 		}
 		else{
 			this.updateZones();
 		}
-		//this.$store.dispatch("setXray", this.xray);
-		this.$store.state.xray = this.xray;
+		//this.$store.dispatch("setmodeCréation", this.modeCréation);
+		this.$store.state.modeCréation = this.modeCréation;
 	}
 
 	updateReadonly(value) {
@@ -142,7 +141,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 __decorate([Prop({ required: true }), __metadata("design:type", String)], VCodeMirror.prototype, "value", void 0);
 __decorate([Prop({ default: null }), __metadata("design:type", String)], VCodeMirror.prototype, "mode", void 0);
 __decorate([Prop(), __metadata("design:type", String)], VCodeMirror.prototype, "theme", void 0);
-__decorate([Prop(), __metadata("design:type", Boolean)], VCodeMirror.prototype, "xray", void 0);
+__decorate([Prop(), __metadata("design:type", Boolean)], VCodeMirror.prototype, "modeCréation", void 0);
 __decorate([Prop(), __metadata("design:type", Boolean)], VCodeMirror.prototype, "readonly", void 0);
 __decorate([Prop({ default: true }), __metadata("design:type", Boolean)], VCodeMirror.prototype, "wrap", void 0);
 __decorate([Prop(), __metadata("design:type", Object)], VCodeMirror.prototype, "options", void 0);
@@ -186,13 +185,13 @@ __decorate(
 );
 __decorate(
 	[
-		Watch("xray"),
+		Watch("modeCréation"),
 		__metadata("design:type", Function),
 		__metadata("design:paramtypes", [Boolean]),
 		__metadata("design:returntype", void 0),
 	],
 	VCodeMirror.prototype,
-	"updateXray",
+	"updateModeCréation",
 	null,
 );
 __decorate(

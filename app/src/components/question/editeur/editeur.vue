@@ -3,13 +3,13 @@
 		<div class="container" style="padding-left: 0px; padding-right: 0px" >
 			<div class="row align-items-end" style="height: 0px">
 				<div class="col"></div>
-				<div v-if="xray" class="col-auto">
+				<div v-if="modeCréation" class="col-auto">
 					<div>
 						<a
 							href="https://progression.pages.dti.crosemont.quebec/documentation/contenu/cr%C3%A9action_de_conteu.html#org5fbcefb"
 							target="_blank"
 							class="btn-primary btn-sm btn-doc text-decoration-none"
-							text="?"							
+							text="?"
 						></a>
 					</div>
 				</div>
@@ -23,12 +23,12 @@
 					</div>
 				</div>
 				<div class="col-auto">
-					<div class="form-check form-switch btn-xray">
+					<div class="form-check form-switch btn-modeCréation">
 						<input class="form-check-input" type="checkbox"
-							   id="btn_xray"
-							   name="btn_xray"
-							   v-model="xray" />
-						<label class="form-check-label" for="btn_xray">Mode édition</label>
+							   id="btn_modeCréation"
+							   name="btn_modeCréation"
+							   v-model="modeCréation" />
+						<label class="form-check-label" for="btn_modeCréation">Mode édition</label>
 					</div>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 						:value="code"
 					:mode="mode"
 					:theme="thème"
-					:xray="xray"
+					:modeCréation="modeCréation"
 					@update:value="onChange"
 				/>
 			</div>
