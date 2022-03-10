@@ -18,7 +18,7 @@
 				    <JeuTests présentation_étape="4" class="p-2" />
 			</div>
 		</div>
-		<button id="btn" v-on:click="download">Sauvegarder</button>
+		<button id="btn" v-on:click="télécharger">Sauvegarder</button>
 	</div>
 	</div>
 </template>

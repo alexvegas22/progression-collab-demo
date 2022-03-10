@@ -27,6 +27,9 @@ export default {
 		avancement() {
 			return this.$store.state.avancement;
 		},
+		retroactionTentative() {
+			return this.$store.state.retroactionTentative;
+		},
 		tentative() {
 			return this.$store.state.tentative;
 		},
@@ -80,15 +83,15 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-		download(){
+		télécharger(){
 			var question = new Map();
 			question.set("type","Prog");
 			question.set("niveau",this.question.niveau);
 			question.set("titre",this.question.titre);
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
-			question.set("ébauche",this.question.ebauches);
-			question.set("rétroaction",this.tentative.feedback);
+			question.set("ébauches",this.question.ebauches);// + " :\n"+this.question.ebauches.code);
+			question.set("rétroaction",this.question.feedback_pos + "\n" + this.question.feedback_neg + "\n" + this.question.feedback_err);
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
 			question.set("licence",this.question.licence);
@@ -112,8 +115,8 @@ export default {
 			question.set("titre","titre: ");
 			question.set("description","description: ");
 			question.set("énoncé","énoncé: |\n");
-			question.set("ébauche","ébauche:\n");
-			question.set("rétroaction","rétroaction:\n    positive: \n    négative: \n    erreur: ");
+			question.set("ébauches","ébauches: |\n");
+			question.set("rétroaction","rétroaction:\n");//    positive: \n    négative: \n    erreur: ");
 			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
 			question.set("licence", "licence: ");
@@ -139,7 +142,7 @@ export default {
 					}else {
 						texte += question.get(element) + données.get(element) +"\n\n" ;
 					}
-				}
+				//}
 			}
 			  return texte;
 		},
