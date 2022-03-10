@@ -115,7 +115,7 @@ export default {
 			question.set("titre","titre: ");
 			question.set("description","description: ");
 			question.set("énoncé","énoncé: |\n");
-			question.set("ébauches","ébauches: |\n");
+			question.set("ébauches","ébauches: \n");
 			question.set("rétroaction","\nrétroaction:\n");
 			question.set("tests","tests:\n");
 			question.set("auteur", "auteur: ");
@@ -133,11 +133,12 @@ export default {
 							"\n      sortie: | \n     "+i.sortie_attendue+"\n" ;
 						} 
 					}else if(element === "ébauches"){
-						texte += question.get(element);
+						texte += question.get(element)+ "\n    ";
 						var langues = Object.getOwnPropertyNames(this.question.ebauches).toString();
 						const tableauLangues = langues.split(",");
 						for(var langue of tableauLangues){
-							texte += "    "+langue+": |\n    "+this.question.ebauches[langue].code.replaceAll("\n","\n    ");
+							texte += langue+": |\n      "+this.question.ebauches[langue].code.replaceAll("\n","\n      ");
+							texte+="\n    ";
 						}
 					}else {
 						texte += question.get(element) + données.get(element) +"\n\n" ;
