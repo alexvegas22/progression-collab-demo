@@ -84,7 +84,6 @@ export default {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 		télécharger(){
-			//alert(this.question.tests[0].nom)
 			var question = new Map();
 			question.set("type","Prog");
 			question.set("niveau",this.question.niveau);
@@ -92,9 +91,6 @@ export default {
 			question.set("description",this.question.description);
 			question.set("énoncé", this.formaterÉnoncé(this.question.énoncé));
 			question.set("ébauches",this.question.ebauches);// + " :\n"+this.question.ebauches.code);
-			alert(Object.getOwnPropertyNames(this.question.ebauches));
-			alert(this.question.ebauches["java"].code);
-			alert(this.question.ebauches["python"].code);
 			question.set("rétroaction",this.question.feedback_pos + "\n" + this.question.feedback_neg + "\n" + this.question.feedback_err);
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
@@ -128,25 +124,22 @@ export default {
 			const iterateur = données.keys();
 		
 			for (var element of iterateur){
-				//if(données.get(element) != null){
-					if(element === "tests" || element === "ébauches"){
-						if(element === "tests"){
-							texte += question.get(element);
-							for(var i of données.get(element)){
-								texte += "    - nom: "+i.nom +
-								"\n      entrée: "+i.entrée+
-								"\n      sortie: |\n    "+i.sortie_attendue.replaceAll("\n", "\n    ")+"\n" ;
-							}
+				if(données.get(element) != null){
+					if(element === "tests"){
+						texte +="\n"+ question.get(element);
+						for(var i of données.get(element)){
+							texte += "    - nom: "+i.nom +
+							"\n      entrée: "+i.entrée+
+							"\n      sortie: | \n     "+i.sortie_attendue+"\n" ;
+						} 
+					}else if(element === "ébauche"){
+						texte += question.get(element);
+						var langues = Object.getOwnPropertyNames(this.question.ebauches).toString();
+						const tableauLangues = langues.split(",");
+						for(var langue of tableauLangues){
+							texte += "    "+langue+": |\n    "+this.question.ebauches[langue].code.replaceAll("\n","\n    ");
 						}
-						if(element === "ébauches"){
-							texte += question.get(element);
-							//for(let i = 0; i < this.question.ebauches.count; i++){
-								const langages = Object.getOwnPropertyNames(this.question.ebauches).toString();
-								texte += "    "+langages.replaceAll(",", ":\n    \n\n");
-							//}
-						}
-					}
-					else{
+					}else {
 						texte += question.get(element) + données.get(element) +"\n\n" ;
 					}
 				//}
