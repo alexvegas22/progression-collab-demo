@@ -25,6 +25,9 @@ export default createStore({
 		sauvegardes: [],
 		erreurs: null,
 		configServeur: null,
+    afficherPanneau: true,
+    énoncéPleinÉcran: false,
+    énoncéSemiÉcran: true
 	},
 	getters,
 	actions,

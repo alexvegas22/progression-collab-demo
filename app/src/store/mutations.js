@@ -77,4 +77,35 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
+  ajusterÉnoncé(state, type) {
+    if (type === 'semi') {
+      state.énoncéSemiÉcran = !state.énoncéSemiÉcran;
+      if (state.énoncéSemiÉcran)
+        state.énoncéPleinÉcran = false;
+    }
+    else {
+      state.afficherPanneau = false;
+      state.énoncéPleinÉcran = !state.énoncéPleinÉcran;
+      if (state.énoncéPleinÉcran)
+        state.énoncéSemiÉcran = false;
+    }
+  },
+  ajusterPanneau(state) {
+    state.afficherPanneau = !state.afficherPanneau;
+    if (state.énoncéPleinÉcran && state.afficherPanneau) {
+      state.énoncéPleinÉcran = false;
+      state.énoncéSemiÉcran = true;
+    }
+  },
+  éditeurPleinÉcran(state) {
+    if (state.énoncéPleinÉcran || state.énoncéSemiÉcran || state.afficherPanneau) {
+      state.énoncéSemiÉcran = false;
+      state.afficherPanneau = false;
+    }
+    else {
+      state.énoncéSemiÉcran = true;
+      state.afficherPanneau = true;
+    }
+    state.énoncéPleinÉcran = false;
+  }
 };

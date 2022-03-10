@@ -1,25 +1,19 @@
 import OngletsInformation from '@/components/question/onglets_information/onglets_information.vue';
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
-import Avancement from "@/components/question/avancement/avancement.vue";
 import JeuTests from "@/components/question/jeu_tests/jeu_tests.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
-import BarreNavigation from "@/components/barre_navigation/barre_navigation.vue";
+import BarreNavigation from "@/components/question/barre_navigation/barre_navigation.vue";
+import { computed } from 'vue';
 
 const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
-  data() {
-    return {
-      enonceCacher: false
-    };
-  },
 	name: "Question",
 	components: {
 		OngletsInformation,
 		Enonce,
-		Avancement,
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
@@ -27,6 +21,9 @@ export default {
     BarreNavigation
 	},
 	computed: {
+    testerPanneau() {
+      return this.afficherPanneau;
+    },
 		user() {
 			return this.$store.state.user;
 		},
@@ -34,6 +31,7 @@ export default {
 			return this.$store.state.question;
 		},
 		avancement() {
+      console.log(this.$store.state.avancement);
 			return this.$store.state.avancement;
 		},
 		tentative() {
@@ -51,6 +49,15 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
+    afficherPanneau() {
+      return this.$store.state.afficherPanneau;
+    },
+    énoncéPleinÉcran() {
+      return this.$store.state.énoncéPleinÉcran;
+    },
+    énoncéSemiÉcran() {
+      return this.$store.state.énoncéSemiÉcran;
+    }
 	},
 	watch: {
 		uri: function () {
@@ -66,6 +73,11 @@ export default {
 	mounted() {
 		if(this.uri && this.user) this.récupérerQuestion();
 	},
+  provide() {
+    return {
+      avancement: this.avancemen
+    };
+  },
 	methods: {
 		récupérerAvancement() {
 			const id_avancement = this.user.username + "/" + this.uri;
@@ -89,13 +101,5 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-		cacherEnoncer() {
-			this.enonceCacher = !this.enonceCacher;
-		}
 	},
-  provide() {
-    return {
-      avancement: this.avancement
-    };
-  }
 };

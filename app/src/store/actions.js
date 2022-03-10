@@ -389,4 +389,14 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
+  setAffichageÉnoncé({ commit }, type) {
+    commit('ajusterÉnoncé', type);
+  },
+  setAffichagePanneau({ commit }) {
+    console.log("action");
+    commit('ajusterPanneau');
+  },
+  setAffichageÉditeur({ commit }) {
+    commit('éditeurPleinÉcran');
+  }
 };

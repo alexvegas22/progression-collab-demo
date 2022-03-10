@@ -4,7 +4,7 @@
       <div class="bordure-titre p-1">
         {{ $t('jeu_tests.jeuTests') }}
       </div>
-      <fenetre-info :style="{height: sectionVisible ? '350px' : '0'}" class="section-bas">
+      <fenetre-info :style="{height: afficherPanneau ? '350px' : '0'}" class="section-bas">
         <div v-for="(test, index) in tests" :key="index">
           <Test v-bind:test="test"
               v-bind:index="index"
@@ -36,16 +36,12 @@
               v-if="resultat_select && resultat_select.feedback">
               Commentaires
         </div>
-
-        <div @click="changementVisibilité()" class="boutton-basculable">
-          <i class="fa" :class="{'fa fa-window-minimize': sectionVisible, 'fa fa-window-maximize': !sectionVisible}" aria-hidden="true"></i>
-        </div>
       </div>
 
       <keep-alive>
         <component 
           :is="ongletSelectionner" 
-          :style="{height: sectionVisible ? '350px' : '0'}"
+          :style="{height: afficherPanneau ? '350px' : '0'}"
           class="section-bas"
           :test="test_select"
           :resultat="resultat_select"
@@ -68,6 +64,7 @@ export default {
     SectionErreur,
     Commentaires
   },
+  props: ['afficherPanneau'],
   data() {
     return {
       sectionVisible: true,
