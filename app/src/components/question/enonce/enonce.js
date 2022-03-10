@@ -12,7 +12,10 @@ export default {
 					return prop == "énoncé" ? parseMD(obj[prop]) : obj[prop];
 				},
 			});
-		}
+		},
+		niveaux() {
+			return ['base', 'débutant', 'intermédiaire', 'avancé'];
+		},
 	},
 	methods: {
 		cacher() {
@@ -26,7 +29,7 @@ export default {
 		modifierContenu(e, indice) {
 			this.contenu[indice].texte = e.target.innerText;
 		},
-		dropdownChoix(choix) {
+		dropdownChoixNiveau(choix) {
 			this.contenu[0].texte = choix;
 		}
 	},

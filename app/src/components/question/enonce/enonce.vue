@@ -23,7 +23,7 @@
 						contenteditable
 						@input="(e) => modifierContenu(e, 0)"
 						data-placeholder="Niveau"
-						style="text-align: left; display: inline; margin-right: 8px;"
+						style="text-align: left; display: inline; margin-right: 8px"
 					>
 						{{ contenu[0].texte }}
 					</p>
@@ -33,14 +33,17 @@
 						class="btn dropdown-toggle"
 						data-bs-toggle="dropdown"
 						aria-expanded="true"
-						style="padding: 0px; border: 0px; background-color: transparent; color: dark;"
-					>
-					</button>
+						style="padding: 0px; border: 0px; color: dark"
+					></button>
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="menu_niveau">
-						<button v-on:click="dropdownChoix('base')" class="dropdown-item">base</button>
-						<button v-on:click="dropdownChoix('débutant')" class="dropdown-item">débutant</button>
-						<button v-on:click="dropdownChoix('intermédiaire')" class="dropdown-item">intermédiaire</button>
-						<button v-on:click="dropdownChoix('avancé')" class="dropdown-item">avancé</button>
+						<button
+							v-for="niveau in this.niveaux"
+							:key="niveau"
+							@click="dropdownChoixNiveau(niveau)"
+							class="dropdown-item"
+						>
+							{{ niveau }}
+						</button>
 					</div>
 				</span>
 				<h3
