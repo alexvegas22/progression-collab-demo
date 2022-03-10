@@ -2,45 +2,47 @@
 	<metainfo>
 		<template v-slot:title="{ content }">{{ content ? `${content} | Progression` : `Progression` }}</template>
 	</metainfo>
-	<div id="app">
-		<div v-show="erreurs" class="alert alert-danger">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="effacerErreurs()">
-				×
-			</button>
-			<div v-if="erreurs && erreurs.message">
-				{{erreurs.message}}
+	<div :class="{thème_sombre_global: thèmeSombre}">
+		<nav class="navbar justify-content-between navbar-dark bg-dark">
+			<a href="/" class="navbar-brand text-light mr-auto">
+				<span class="text-info"> Prog</span>ression
+			</a>
+			<div>
+				<div v-show="!page_login" class="topnav-left">
+					<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+					<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+				</div>
+				<div class="topnav-right">
+				<label>
+					<input type="checkbox" v-model="thèmeSombre" style="opacity:0;"/>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-circle-half navBtn" viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+					</svg>
+				</label>	
+				</div>
 			</div>
-			<div v-if="erreurs && erreurs.détails">
-        		{{$t("erreur.réseau")}}
-				<details >
-					<summary>
-						détails
-					</summary>
-					{{ erreurs.détails }}
-				</details>
+		</nav>
+		<div>
+			<div v-show="erreurs" class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="effacerErreurs()">
+					×
+				</button>
+				<div v-if="erreurs && erreurs.message">
+					{{erreurs.message}}
+				</div>
+				<div v-if="erreurs && erreurs.détails">
+					{{$t("erreur.réseau")}}
+					<details >
+						<summary>
+							détails
+						</summary>
+						{{ erreurs.détails }}
+					</details>
+				</div>
 			</div>
+			<router-view />
 		</div>
 	</div>
-	<nav class="navbar justify-content-between navbar-dark bg-dark">
-		<a href="/" class="navbar-brand text-light mr-auto">
-			<span class="text-info"> Prog</span>ression
-		</a>
-		<div>
-			<div v-show="!page_login" class="topnav-left">
-				<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-				<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
-			</div>
-			<div class="topnav-right">
-			<label>
-				<input type="checkbox" v-model="thèmeSombre" style="opacity:0;"/>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-circle-half navBtn" viewBox="0 0 16 16">
-					<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-				</svg>
-			</label>	
-			</div>
-		</div>
-	</nav>
-	<router-view />
 </template>
 
 <script>
@@ -132,13 +134,7 @@
 			 this.$router.push({name: "Home"});
 		 },		
 		traiterThemeSombre(){
-			if (!this.thèmeSombre) {
-				document.body.classList.replace("thème_sombre_global","bg-light");
-				this.$store.state.thèmeSombre = false;
-			} else{
-				document.body.classList.replace("bg-light","thème_sombre_global");
-				this.$store.state.thèmeSombre = true;
-			}
+			this.$store.state.thèmeSombre = this.thèmeSombre;
 		},
 	 }
  };

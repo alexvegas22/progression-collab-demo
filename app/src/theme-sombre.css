@@ -1,11 +1,18 @@
-.thème_sombre_global .thème_sombre_section{
-    background-color: #232121 !important;
-    color:#E1E1E1 !important;  
+/*Css pour le thème */
+html,body {
+	height: 100%;
+	max-height: 100%;
 }
 
 .thème_sombre_global{
 	background-color: #434343 !important;
 	color:#E1E1E1 !important;	
+	height: 100%;
+}
+
+.thème_sombre_global .thème_sombre_section{
+    background-color: #232121 !important;
+    color:#E1E1E1 !important;  
 }
 
 input[type="checkbox"]:checked + .bi {

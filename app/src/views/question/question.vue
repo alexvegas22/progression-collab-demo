@@ -2,7 +2,7 @@
 	<div v-if="user">
 		<Présentation v-if="démo" présentation_étape="00" />
 	</div>
-	<div class="container-fluid p-3">
+	<div class="container-fluid p-3" :class="{thème_sombre_global: $store.state.thèmeSombre}">
 		<div class="row" v-if="avancement">
 			<div class="col-lg-4 col-md-6 thème_sombre_section">
 				<Enonce présentation_étape="0" />
