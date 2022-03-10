@@ -24,3 +24,5 @@ pnpm-debug.log*
 
 *~
 #*#
+#Videos des tests Cypress
+app/cypress/videos/*
