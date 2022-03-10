@@ -34,7 +34,7 @@
 		"vue3-component-base": "0.0.9",
 		"vue3-tabs": "^0.1.12",
 		"vue3-tour": "^0.2.0",
-		"vuejs-smart-table": "0.0.8",
+		"vuejs-smart-table": "^1.0.0-beta.6",
 		"vuex": "^4.0.0"
 	},
 	"devDependencies": {

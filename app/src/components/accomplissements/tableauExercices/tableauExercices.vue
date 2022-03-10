@@ -1,9 +1,28 @@
 
+
 <template>
     <div v-if="avancements">
         <h1> Liste d'exercices </h1>
         <br>
         <div class="container">
+            <V-table :data="listeAvancements" class="table">
+                <template #head>
+                    <th>Titre de l'exercice</th>
+                    <th>Difficulté</th>
+                    <th>Date de dernière modification</th>
+                    <th>État</th>
+                    <th>Date de réussite</th>
+                </template>
+                <template #body slot-scope="{listeAvancements}">
+                    <tr v-for="avancement in listeAvancements" :key="avancement.titre">
+                        <td @click="allerQuestion(avancement.liens.self)">{{avancement.titre}}</td>
+                        <td>{{avancement.niveau}}</td>
+                        <td>{{timestampVersDate(avancement.date_modification)}}</td>
+                        <td>{{ etat(avancement.état)}}</td>
+                        <td>{{timestampVersDate(avancement.date_réussite)}}</td>
+                    </tr>
+                </template>
+            </V-table>
             <table class="table">
                 <thead>
                     <tr >
@@ -17,7 +36,7 @@
                 <tbody>
                     <tr v-for="avancement in listeAvancements" :key="avancement.id">
 
-                        <td @click="this.allerQuestion(avancement.liens.self)">{{avancement.titre}}</td>
+                        <td @click="allerQuestion(avancement.liens.self)">{{avancement.titre}}</td>
                         <td>{{avancement.niveau}}</td>
                         <td>{{timestampVersDate(avancement.date_modification)}}</td>
                         <td>{{ etat(avancement.état)}}</td>
