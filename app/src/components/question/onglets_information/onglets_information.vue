@@ -22,23 +22,23 @@
       <div class="section-onglets">
         <div @click="changementOnglet('resultat-test')"
             :class="{onglets: true, sélectionné: ongletSelectionner === 'resultat-test'}">
-            <strong>Entrées / Sorties</strong>
+            Entrées / Sorties
         </div>
         
         <div @click="changementOnglet('section-erreur')"
             :class="{onglets: true, sélectionné: ongletSelectionner === 'section-erreur'}"
             v-if="resultat_select && resultat_select.sortie_erreur">
-            <strong>Erreurs</strong>
+            Erreurs
         </div>
         
         <div @click="changementOnglet('commentaires')" 
               :class="{onglets: true, sélectionné: ongletSelectionner === 'commentaires'}"
               v-if="resultat_select && resultat_select.feedback">
-              <strong>Commentaires</strong>
+              Commentaires
         </div>
 
         <div @click="changementVisibilité()" class="boutton-basculable">
-          <i class="fa" :class="{'fa-angle-double-down': sectionVisible, 'fa-angle-double-up': !sectionVisible}" aria-hidden="true"></i>
+          <i class="fa" :class="{'fa fa-window-minimize': sectionVisible, 'fa fa-window-maximize': !sectionVisible}" aria-hidden="true"></i>
         </div>
       </div>
 
@@ -153,13 +153,10 @@ export default {
     transition: all 0.2s ease-in-out;
   }
 
-  .bordure-fenetre {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-top: none;
-  }
-
   .bordure-titre {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-right: none;
+    border-top: none;
     color: rgba(0, 0, 0, 0.5);
   }
 </style>

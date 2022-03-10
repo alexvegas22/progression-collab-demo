@@ -1,22 +1,21 @@
 <template>
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
-			{{this.langage}}
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="menu_historique">
-			<li v-for="langage in this.langages" key="langage">
-				<button class="dropdown-item disabled" présentation_étape="4.0">{{langage}}</button>
-				<ul>
-					<li><button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)"  présentation_étape="4.1">{{ $t('avancement.ébauche_initiale') }}</button></li>
-					<li v-for="elem in this.filtrerTentativesParLangage(langage)">
-						<button class="dropdown-item" @click="this.chargerTentative()" :value="elem.liens.self"  présentation_étape="4.2">
-							{{ this.timestampVersDate(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}							
-						</button>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="testeurite" data-bs-toggle="dropdown" aria-expanded="false">
+      Langues
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="testeurite">
+      <li class="dropdown-item dropdown-submenu" v-for="langage in langages" :key="langage">
+        <a>{{langage}}</a>
+        <div class="dropdown-menu" style="max-height:">
+          <button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">{{ $t('avancement.ébauche_initiale') }}</button>
+          <button class="dropdown-item" v-for="elem in this.filtrerTentativesParLangage(langage)" @click="this.chargerTentative()" :value="elem.liens.self">
+            {{ this.timestampVersDate(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
+          </button>
+        </div>
+      </li>
+    </ul>
+  </li>
 </template>
 
 <script src="./avancement.js"></script>
+

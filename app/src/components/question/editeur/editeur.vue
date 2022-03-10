@@ -31,7 +31,7 @@
 			
       <v-code-mirror présentation_étape="1.1"
         id="editor"
-        style="height: 99%;"
+        style="height: 100%;"
         :value="code"
         :mode="mode"
         :theme="thème"

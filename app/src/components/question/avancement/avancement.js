@@ -1,5 +1,6 @@
 export default {
 	name: "Avancement",
+  inject: ['avancement'],
 	computed: {
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;

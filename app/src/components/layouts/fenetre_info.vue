@@ -1,7 +1,7 @@
 <template>
   <div style="flex: 1 1 0; min-height: 0; flex-flow: column;" class="bordure-fenetre d-flex">
     <header class="bordure-titre p-1" v-if="titre">
-      <strong>{{ titre }}</strong>
+      {{ titre }}
     </header>
     <perfect-scrollbar>
       <slot></slot>

@@ -5,6 +5,7 @@ import Avancement from "@/components/question/avancement/avancement.vue";
 import JeuTests from "@/components/question/jeu_tests/jeu_tests.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
+import BarreNavigation from "@/components/barre_navigation/barre_navigation.vue";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -23,7 +24,7 @@ export default {
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
-
+    BarreNavigation
 	},
 	computed: {
 		user() {
@@ -92,4 +93,9 @@ export default {
 			this.enonceCacher = !this.enonceCacher;
 		}
 	},
+  provide() {
+    return {
+      avancement: this.avancement
+    };
+  }
 };
