@@ -35,7 +35,13 @@
 						type="text"
 						v-model="contenu[0].texte"
 						list="niveaux"
-						style="border: 0px; background-color: transparent; color: white; width: fit-content"
+						style="border: 0px; background-color: transparent; color: white;"
+						onkeypress="
+						if(this.value.length != 0){
+							this.style.width = ((this.value.length + 3) * 8) + 'px';
+						}else{
+							this.style.width = ((this.placeholder.length + 3) * 8) + 'px';
+						}"
 					/>
 					<datalist id="niveaux">
 						<option>base</option>
