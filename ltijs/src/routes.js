@@ -68,14 +68,14 @@ router.post("/lti/grade", async (req, res) => {
 
         const score = await récupérerScore(uri, token);
 
-        const url = await récupérerTokenRessource(token,uri, "avancement");
+        const tokenRessource = await récupérerTokenRessource(token,uri, "avancement");
 
         // Note
         const gradeObj = {
             userId: idToken.user,
             scoreGiven: score,
             scoreMaximum: 100,
-            comment: url,
+            comment: tokenRessource,
             activityProgress: "Completed",
             gradingProgress: "FullyGraded",
         };
