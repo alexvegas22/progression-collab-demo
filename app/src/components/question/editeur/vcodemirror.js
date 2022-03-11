@@ -121,8 +121,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		else{
 			this.updateZones();
 		}
-		//this.$store.dispatch("setmodeCréation", this.modeCréation);
-		this.$store.state.modeCréation = this.modeCréation;
+		this.$store.dispatch("setModeCréation", this.modeCréation);
 	}
 
 	updateReadonly(value) {
