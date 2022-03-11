@@ -15,6 +15,7 @@
 			<div class="row" présentation_étape="0.1" style="justify-content: flex-end">
 				<span class="badge niveau" présentation_étape="0.2">
 					<p
+						id="niveau"
 						class="contenu"
 						contenteditable
 						@input="(évènement) => modifierContenu(évènement, 0)"
@@ -30,14 +31,16 @@
 						data-bs-toggle="dropdown"
 						aria-expanded="true"
 						style="padding: 0px; border: 0px; color: dark"
+						v-if="modeÉdition"
 					></button>
-					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="menu_niveau">
+					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="menu_niveau" v-if="modeÉdition">
 						<button v-for="niveau in this.niveaux" :key="niveau" @click="modifierNiveau(niveau)" class="dropdown-item">
 							{{ niveau }}
 						</button>
 					</div>
 				</span>
 				<h3
+					id="titre"
 					class="titre align-self-start contenu"
 					contenteditable
 					@input="(évènement) => modifierContenu(évènement, 1)"
@@ -46,14 +49,9 @@
 					{{ contenu[1].texte }}
 				</h3>
 			</div>
-			<br /><button v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Aperçu 👁</button>
+			<br /><button v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
 
 			<div v-if="aperçu">
-				<div class="row flex-grow-1">
-					<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
-				</div>
-			</div>
-			<div v-else>
 				<div class="row flex-grow-1">
 					<v-md-editor
 						v-model="énoncé"
@@ -66,10 +64,16 @@
 					</v-md-editor>
 				</div>
 			</div>
+			<div v-else>
+				<div class="row flex-grow-1">
+					<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
+				</div>
+			</div>
 
 			<div>
 				<div class="footer-copyright py-3">
 					<p
+						id="auteur"
 						class="contenu"
 						contenteditable
 						@input="(évènement) => modifierContenu(évènement, 2)"
@@ -78,6 +82,7 @@
 						{{ contenu[2].texte }}
 					</p>
 					<p
+						id="licence"
 						class="contenu"
 						contenteditable
 						@input="(évènement) => modifierContenu(évènement, 3)"

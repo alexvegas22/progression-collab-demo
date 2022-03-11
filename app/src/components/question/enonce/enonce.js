@@ -30,6 +30,19 @@ export default {
 		},
 		modifierNiveau(niveau) {
 			this.contenu[0].texte = niveau;
+		},
+
+	},
+	mounted() {
+		const contenuEditable = ["niveau", "titre", "auteur", "licence"];
+		let élément;
+		for (let i in contenuEditable) {
+			élément = document.getElementById(contenuEditable[i]);
+			élément.setAttribute("contenteditable", this.modeÉdition);
+
+			if (contenuEditable[i] == "niveau" && !this.modeÉdition) {
+				élément.setAttribute("style", "text-align: left; display: inline;");
+			}
 		}
 	},
 
