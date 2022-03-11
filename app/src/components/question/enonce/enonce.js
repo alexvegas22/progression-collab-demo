@@ -18,24 +18,19 @@ export default {
 		},
 	},
 	methods: {
-		cacher() {
-			var element = document.getElementById("btn_aperçu").innerHTML;
-			if (element == "Modifier ✎") {
-				document.getElementById("btn_aperçu").innerHTML = "Aperçu 👁";
-			} else {
-				document.getElementById("btn_aperçu").innerHTML = "Modifier ✎";
-			}
+		basculerBtnAperçu() {
+			var btnAperçu = document.getElementById("btn_aperçu");
+			btnAperçu.innerHTML == "Modifier ✎" ? btnAperçu.innerHTML = "Aperçu 👁" : btnAperçu.innerHTML = "Modifier ✎";
 		},
-		modifierContenu(e, indice) {
-			this.contenu[indice].texte = e.target.innerText;
+		modifierContenu(évènement, indice) {
+			this.contenu[indice].texte = évènement.target.innerText;
 		},
-		dropdownChoixNiveau(choix) {
-			this.contenu[0].texte = choix;
+		modifierNiveau(niveau) {
+			this.contenu[0].texte = niveau;
 		}
 	},
 
 	data() {
-
 		return {
 			contenu:
 				[
@@ -46,10 +41,7 @@ export default {
 				]
 			,
 			énoncé: this.$store.state.question.énoncé,
-			count: 0,
-
 			aperçu: false,
-
 			toolbar: {
 				documentation: {
 					title: 'Documentation Markdown',

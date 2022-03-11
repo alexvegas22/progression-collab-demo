@@ -14,14 +14,12 @@
 				</svg>
 			</div>
 
-			<button id="btn_aperçu" v-on:click="cacher(), (aperçu = !aperçu)">Aperçu 👁</button>
-
 			<div class="row" présentation_étape="0.1" style="justify-content: flex-end">
 				<span class="badge niveau" présentation_étape="0.2">
 					<p
 						class="contenu"
 						contenteditable
-						@input="(e) => modifierContenu(e, 0)"
+						@input="(évènement) => modifierContenu(évènement, 0)"
 						data-placeholder="Niveau"
 						style="text-align: left; display: inline; margin-right: 8px"
 					>
@@ -39,7 +37,7 @@
 						<button
 							v-for="niveau in this.niveaux"
 							:key="niveau"
-							@click="dropdownChoixNiveau(niveau)"
+							@click="modifierNiveau(niveau)"
 							class="dropdown-item"
 						>
 							{{ niveau }}
@@ -49,12 +47,13 @@
 				<h3
 					class="titre align-self-start contenu"
 					contenteditable
-					@input="(e) => modifierContenu(e, 1)"
+					@input="(évènement) => modifierContenu(évènement, 1)"
 					data-placeholder="Titre"
 				>
 					{{ contenu[1].texte }}
 				</h3>
 			</div>
+			<br><button id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Aperçu 👁</button>
 
 			<div v-if="aperçu">
 				<div class="row flex-grow-1">
@@ -77,10 +76,10 @@
 
 			<div>
 				<div class="footer-copyright py-3">
-					<p class="contenu" contenteditable @input="(e) => modifierContenu(e, 2)" data-placeholder="Auteur">
+					<p class="contenu" contenteditable @input="(évènement) => modifierContenu(évènement, 2)" data-placeholder="Auteur">
 						{{ contenu[2].texte }}
 					</p>
-					<p class="contenu" contenteditable @input="(e) => modifierContenu(e, 3)" data-placeholder="Licence">
+					<p class="contenu" contenteditable @input="(évènement) => modifierContenu(évènement, 3)" data-placeholder="Licence">
 						{{ contenu[3].texte }}
 					</p>
 				</div>
