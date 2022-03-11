@@ -1,5 +1,5 @@
 <template>
-	<v-tour name="Présentation" :steps="étapes_présentation" :options="options_présentation" />zz
+	<v-tour name="Présentation" :steps="étapes_présentation" :options="options_présentation" />
 </template>
 <script>
  export default {
