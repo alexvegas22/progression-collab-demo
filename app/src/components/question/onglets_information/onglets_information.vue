@@ -1,7 +1,7 @@
 <template>
 	<div class="row g-0">
     <div class="col-3">
-      <div class="bordure-titre p-1">
+      <div class="bordure-titre p-1" :class="{thème_sombre: thèmeSombre}">
         {{ $t('jeu_tests.jeuTests') }}
       </div>
       <fenetre-info :style="{height: afficherPanneau ? '350px' : '0'}" class="section-bas">
@@ -19,20 +19,20 @@
       </fenetre-info>
     </div>
     <div class="col-9">
-      <div class="section-onglets">
+      <div class="section-onglets" >
         <div @click="changementOnglet('resultat-test')"
-            :class="{onglets: true, sélectionné: ongletSelectionner === 'resultat-test'}">
+            :class="{onglets: true, sélectionné: ongletSelectionner === 'resultat-test', thème_sombre: thèmeSombre}">
             Entrées / Sorties
         </div>
         
         <div @click="changementOnglet('section-erreur')"
-            :class="{onglets: true, sélectionné: ongletSelectionner === 'section-erreur'}"
+            :class="{onglets: true, sélectionné: ongletSelectionner === 'section-erreur', thème_sombre: thèmeSombre}"
             v-if="resultat_select && resultat_select.sortie_erreur">
             Erreurs
         </div>
         
         <div @click="changementOnglet('commentaires')" 
-              :class="{onglets: true, sélectionné: ongletSelectionner === 'commentaires'}"
+              :class="{onglets: true, sélectionné: ongletSelectionner === 'commentaires', thème_sombre: thèmeSombre}"
               v-if="resultat_select && resultat_select.feedback">
               Commentaires
         </div>
@@ -98,6 +98,9 @@ export default {
     tests() {
 			return this.$store.state.question.tests;
 		},
+    thèmeSombre(){
+			return this.$store.state.thèmeSombre;
+		}
   },
   methods: {
     changementOnglet(onglet) {
