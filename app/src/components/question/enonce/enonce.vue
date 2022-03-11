@@ -26,7 +26,7 @@
 			
 			<div >
 				<p class="footer-copyright text-center py-3">
-					{{question.auteur}} {{question.licence}} {{question.titre}}
+					{{question.auteur}} {{question.licence}}
 				</p>
 			</div>
 		</div>

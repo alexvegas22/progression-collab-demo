@@ -6,6 +6,7 @@ import RetroactionTentative from "@/components/question/retroaction_tentative/re
 import Présentation from "@/components/question/présentation/présentation.vue";
 
 const API_URL = process.env.VUE_APP_API_URL;
+const éléments = new Map();
 
 export default {
 	name: "Question",
@@ -26,9 +27,6 @@ export default {
 		},
 		avancement() {
 			return this.$store.state.avancement;
-		},
-		retroactionTentative() {
-			return this.$store.state.retroactionTentative;
 		},
 		tentative() {
 			return this.$store.state.tentative;
@@ -84,8 +82,76 @@ export default {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 		télécharger(){
+			var question = this.créerHashMapQuestion();
+
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.écrire(question)));
+			element.setAttribute('download', "test.yml");
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			element.click();
+			document.body.removeChild(element);
+		},
+		écrire(données) {
+			var texte = "";
+			éléments.set("type","type: ");
+			éléments.set("niveau","niveau: ");
+			éléments.set("titre","titre: ");
+			éléments.set("description","description: ");
+			éléments.set("énoncé","énoncé: |\n");
+			éléments.set("ébauches","ébauches:\n");
+			éléments.set("rétroaction","rétroaction:\n");
+			éléments.set("tests","tests:");
+			éléments.set("auteur","auteur: ");
+			éléments.set("licence", "licence: ");
+		
+			const iterateur = données.keys();
+		
+			for (var element of iterateur){
+				if(données.get(element) != null){
+					if(element === "tests"){
+						texte = this.formaterTests(texte,element,données);
+					}else if(element === "ébauches"){
+						texte = this.formaterÉbauche(texte,element);
+					}else {
+						texte += éléments.get(element) + données.get(element) +"\n\n" ;
+					}
+				}
+			}
+			return texte;
+		},
+		formaterÉnoncé(données) {
+			var énoncéFormaté = données.replaceAll(":", "':'");
+			return énoncéFormaté;
+		},
+		formaterRétroactions(pos, neg, err) {
+			return "    positive: " + pos + "\n" + 
+					"    négative: " + neg + "\n" + 
+					"    erreur: " + err +"\n";
+		},
+		formaterTests(chaîne,element,données){
+			chaîne +="\n"+ éléments.get(element)+"\n";
+			for(var i of données.get(element)){
+				chaîne += "    - nom: "+i.nom +
+						"\n      entrée: \n        "+this.indenter(i.entrée)+
+						"\n      sortie: | \n        "+this.indenter(i.sortie_attendue) ;
+					}
+					
+			return chaîne + "\n";
+		},
+		formaterÉbauche(chaîne,element){
+			chaîne += éléments.get(element)+ "\n    ";
+						var langages = Object.getOwnPropertyNames(this.question.ebauches).toString();
+						const tableauLangages = langages.split(",");
+						for(var langage of tableauLangages){
+							chaîne += langage+": |\n      "+this.question.ebauches[langage].code.replaceAll("\n","\n      ");
+							chaîne +="\n    ";
+						}
+						return chaîne + "\n";
+		},
+		créerHashMapQuestion(){
 			var question = new Map();
-			question.set("type","Prog");
+			question.set("type","prog");
 			question.set("niveau",this.question.niveau);
 			question.set("titre",this.question.titre);
 			question.set("description",this.question.description);
@@ -95,69 +161,10 @@ export default {
 			question.set("tests",this.question.tests);
 			question.set("auteur",this.question.auteur);
 			question.set("licence",this.question.licence);
-
-			var element = document.createElement('a');
-			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.écrire(question)));
-			element.setAttribute('download', "test.yml");
-
-			element.style.display = 'none';
-			document.body.appendChild(element);
-
-			element.click();
-
-			document.body.removeChild(element);
+			return question;
 		},
-		écrire(données) {
-			var texte = "";
-			var question = new Map();
-			question.set("type","type: ");
-			question.set("niveau","niveau: ");
-			question.set("titre","titre: ");
-			question.set("description","description: ");
-			question.set("énoncé","énoncé: |\n");
-			question.set("ébauches","ébauches: \n");
-			question.set("rétroaction","\nrétroaction:\n");
-			question.set("tests","tests:");
-			question.set("auteur","\nauteur: ");
-			question.set("licence", "licence: ");
-		
-			const iterateur = données.keys();
-		
-			for (var element of iterateur){
-				if(données.get(element) != null){
-					if(element === "tests"){
-						texte +="\n"+ question.get(element);
-						for(var i of données.get(element)){
-							texte += 
-							"\n    - nom: "+i.nom +
-							"\n      entrée: \n        "+i.entrée.replaceAll("\n","\n        ")+
-							"\n      sortie: | \n        "+i.sortie_attendue.replaceAll("\n","\n        ") ;
-						} 
-					}else if(element === "ébauches"){
-						texte += question.get(element)+ "\n    ";
-						var langages = Object.getOwnPropertyNames(this.question.ebauches).toString();
-						const tableauLangages = langages.split(",");
-						for(var langage of tableauLangages){
-							texte += langage+": |\n      "+this.question.ebauches[langage].code.replaceAll("\n","\n      ");
-							texte+="\n    ";
-						}
-					}else {
-						texte += question.get(element) + données.get(element) +"\n\n" ;
-					}
-				}
-			}
-			  return texte;
-		},
-		formaterÉnoncé(données) {
-			var énoncéFormaté = données.replaceAll(":", "':'");
-			return énoncéFormaté;
-		},
-		formaterRétroactions(pos, neg, err) {
-			var rétroFormatée = 
-				"    positive: " + pos + "\n" + 
-				"    négative: " + neg + "\n" + 
-				"    erreur: " + err;
-			return rétroFormatée;
-		},
+		indenter(chaîne){
+			return chaîne.replaceAll("\n","\n        ");
+		}
 	},
 };

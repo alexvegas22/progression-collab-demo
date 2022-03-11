@@ -15,10 +15,10 @@
 					<EditeurCode présentation_étape="1" style="height: 500px" />
 					<RetroactionTentative présentation_étape="3" />
 				</div>
-				    <JeuTests présentation_étape="4" class="p-2" />
+				<JeuTests présentation_étape="4" class="p-2" />
 			</div>
 		</div>
-		<button id="btn" v-on:click="télécharger">Sauvegarder</button>
+		<button id="btn" v-on:click="télécharger">{{ $t('question.téléchargerLocalement') }}</button>
 	</div>
 	</div>
 </template>
