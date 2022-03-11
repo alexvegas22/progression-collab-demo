@@ -25,6 +25,9 @@ export default {
 		},
 	},
 	computed: {
+		modeÉdition() {
+			return this.$store.state.mode_édition;
+		},
 		code() {
 			return this.$store.state.tentative.code;
 		},

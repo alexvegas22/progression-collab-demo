@@ -22,7 +22,7 @@
 						<label class="form-check-label" for="btn_thème">🕶</label>
 					</div>
 				</div>
-				<div class="col-auto">
+				<div v-if="this.modeÉdition" class="col-auto">
 					<div class="form-check form-switch btn-modeCréation">
 						<input class="form-check-input" type="checkbox"
 							   id="btn_modeCréation"
