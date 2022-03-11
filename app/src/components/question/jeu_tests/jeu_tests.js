@@ -48,20 +48,16 @@ export default {
 		},
 		AjouterTest: function () {
 			var lesTests = this.$store.state.question.tests;
-
 			if (this.nouveauTestNom.length == 1) {
-
 				let nouveauTest = {
 					nom: this.nouveauTestNom,
 					entrée: "",
 					sortie_attendue: "",
 					params: "",
-
 				}
 				lesTests.push(nouveauTest);
 				this.nouveauTestNom = "";
 				this.$refs.inputAjouterTest.blur();
-
 			}
 			let index = lesTests.length - 1;
 
@@ -69,15 +65,12 @@ export default {
 				let input = this.$refs.unTest[index].$refs.unTestInput;
 				input.focus();
 			});
-
 			this.select(index);
-
-
-
 		},
 		SupprimerTest: function (index) {
-			this.$store.state.question.tests.splice(index, 1);
+			if (confirm("Voulez-vous vraiment supprimer ce test?!") == true) {
+				this.$store.state.question.tests.splice(index, 1);
+			}
 		}
-
 	},
 };
