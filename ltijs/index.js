@@ -138,4 +138,12 @@ const setup = async () => {
 	});
 };
 
+lti.onDeepLinking((token,req,res) => {
+	lti.redirect(res, "/deeplink")
+})
+
+//lti.app.get("/deeplink", async (res,req) => {
+//	res.redirect("https://progression.pages.dti.crosemont.quebec/contenu/prog_1/liste_questions.html")
+//}
+
 setup();
