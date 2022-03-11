@@ -121,8 +121,6 @@ export default {
 		},
 	},
 };
-
-
 window.addEventListener("beforeunload", function (e) {
     var confirmationMessage = 'Voulez-vous vraiment quitter? Vos changements seront perdus!';
 
