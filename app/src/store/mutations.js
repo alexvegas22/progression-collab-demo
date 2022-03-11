@@ -87,4 +87,7 @@ export const mutations = {
 	setModeCréation(state, modeCréation) {
 		state.modeCréation = modeCréation;
 	},
+	setThèmeSombre(state, val) {
+		state.thèmeSombre = val;
+	},
 };
