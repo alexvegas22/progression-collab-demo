@@ -1,9 +1,9 @@
-
 <template>
     <div v-if="avancements">
         <h1> Liste d'exercices </h1>
-        <br>
-        <div class="container">
+
+        <div class="container-fluid">
+            <input type="text" v-model="inputFilter" class="form-control">
             <table class="table">
                 <thead>
                     <tr >
@@ -14,8 +14,9 @@
                         <th >Date de réussite <i type="button" @click="this.ordreReussite(); this.$forceUpdate();" class="arrow"></i></th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    <tr v-for="avancement in listeAvancements" :key="avancement.id">
+                    <tr v-for="avancement in filtreAvancement" :key="avancement.titre">
 
                         <td @click="this.allerQuestion(avancement.id)">{{avancement.titre}}</td>
                         <td>{{avancement.niveau}}</td>
@@ -26,7 +27,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+            </div>
     </div>
 </template>
 

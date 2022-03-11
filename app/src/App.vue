@@ -44,10 +44,7 @@
 				<button v-else type="button" class="btn btnDDI" @click="connexion">{{ $t('menu.connexion') }}</button>
 			</li>
 		</ul>
-<<<<<<< HEAD
 
-=======
->>>>>>> bb40123e47abe9195ba2375cd06d3fb48ebe4e32
 		</div>
 	</nav>
 	<router-view />

@@ -1,5 +1,14 @@
+import avancement from "../question/avancement/avancement";
+
 export default {
 	name: "TableauExercices",
+
+	data(){
+		return{
+			uneListeAvancements: [],
+			inputFilter: ''
+		}
+	},
 
 	computed: {
 		niveau(){
@@ -12,7 +21,6 @@ export default {
 			return this.$store.state.user.avancements;
 		},
 		listeAvancements(){
-
 			var listeAvancements = [];
 
 			for(var avancement in this.avancements){
@@ -28,6 +36,14 @@ export default {
 		date_soumission() {
 			return this.$store.state.tentative.date_soumission;
 		},
+		filtreAvancement(){
+			this.uneListeAvancements = this.listeAvancements;
+
+
+			return this.uneListeAvancements.filter((avancement) => {
+				return avancement.titre.toLowerCase().includes(this.inputFilter.toLowerCase());
+			});
+		}
 	},
 
 	methods: {
