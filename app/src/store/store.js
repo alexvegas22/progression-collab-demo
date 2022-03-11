@@ -27,7 +27,8 @@ export default createStore({
 		configServeur: null,
     afficherPanneau: true,
     énoncéPleinÉcran: false,
-    énoncéSemiÉcran: true
+    énoncéSemiÉcran: true,
+		thèmeSombre: false,
 	},
 	getters,
 	actions,

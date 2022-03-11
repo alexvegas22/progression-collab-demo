@@ -107,5 +107,8 @@ export const mutations = {
       state.afficherPanneau = true;
     }
     state.énoncéPleinÉcran = false;
-  }
+  },
+	setThèmeSombre(state, val) {
+		state.thèmeSombre = val;
+	},
 };

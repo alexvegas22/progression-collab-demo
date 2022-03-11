@@ -5,7 +5,7 @@
     </div>
     <BarreNavigation v-if="avancement"/>
 
-    <div class="container-fluid taille-ecran">
+    <div class="container-fluid taille-ecran" :class="{thème_sombre: thèmeSombre}">
       <div class="row h-100" v-if="avancement">
         <div 
           class="barre-enonce" 
@@ -33,3 +33,4 @@
 <script src="./question.js"></script>
 
 <style src="./question.css"></style>
+

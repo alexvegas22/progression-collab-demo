@@ -57,7 +57,10 @@ export default {
     },
     énoncéSemiÉcran() {
       return this.$store.state.énoncéSemiÉcran;
-    }
+    },
+		thèmeSombre(){
+			return this.$store.state.thèmeSombre;
+		}
 	},
 	watch: {
 		uri: function () {
