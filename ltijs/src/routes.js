@@ -68,7 +68,7 @@ router.post("/lti/grade", async (req, res) => {
 
         const score = await récupérerScore(uri, token);
 
-        const url = await récupérerTokenRessource(token, "avancement");
+        const url = await récupérerTokenRessource(token,uri, "avancement");
 
         // Note
         const gradeObj = {
@@ -152,9 +152,9 @@ const récupérerScore = async function (uri, token) {
     });
 };
 
-const récupérerTokenRessource = async function (token, type_ressource) {
+const récupérerTokenRessource = async function (token,uri, type_ressource) {
     const username = jwt_decode(token).username;
-    const id_ressource = jwt_decode(token).idRessource
+    const id_ressource = username+"/"+uri;
     const config = {
         headers: {
             Authorization: "Bearer " + token,
