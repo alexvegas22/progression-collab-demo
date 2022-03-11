@@ -69,6 +69,9 @@ export const mutations = {
 	updateLangageTentative(state, langage) {
 		state.tentative.langage = langage;
 	},
+	updateCodeEbauche(state, code) {
+		state.question.ebauches[state.tentative.langage].code = code;
+	},
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
@@ -80,5 +83,8 @@ export const mutations = {
 	},
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
+	},
+	setModeCréation(state, modeCréation) {
+		state.modeCréation = modeCréation;
 	},
 };

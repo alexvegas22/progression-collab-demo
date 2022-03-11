@@ -321,8 +321,16 @@ export default {
 		commit("updateCodeTentative", code);
 	},
 
+	mettreAjourEbauche({ commit }, params) {
+		commit("updateCodeEbauche", params);
+	},
+
 	mettreAjourLangageSelectionne({ commit }, langage) {
 		commit("updateLangageTentative", langage);
+	},
+
+	setModeCréation({ commit }, modeCréation) {
+		commit("setModeCréation", modeCréation);
 	},
 
 	réinitialiser({ commit }, langage_p) {
@@ -331,7 +339,6 @@ export default {
 			langage: langage,
 			code: this.state.question.ebauches[langage].code,
 		});
-
 		commit("updateRetroaction", null);
 	},
 
