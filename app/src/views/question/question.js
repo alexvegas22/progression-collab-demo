@@ -18,6 +18,9 @@ export default {
 		Présentation,
 	},
 	computed: {
+		modeÉdition() {
+			return this.$store.state.mode_édition;
+		},
 		user() {
 			return this.$store.state.user;
 		},
