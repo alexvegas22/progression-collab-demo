@@ -5,7 +5,6 @@
 				<h3 style="text-align: left">
 					{{ $t("jeu_tests.jeuTests") }} <button v-on:click="montrerAjouterTest">✎</button>
 				</h3>
-
 				<div v-for="(test, index) in tests" :key="index">
 					<Test
 						v-bind:test="test"
@@ -39,5 +38,4 @@
 		</div>
 	</div>
 </template>
-
 <script src="./jeu_tests.js"></script>
