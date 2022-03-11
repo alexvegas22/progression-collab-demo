@@ -212,7 +212,7 @@ export default {
                 commit("setTentative", tentative);
                 commit("updateRetroaction", tentative);
                 return avancement;
-            }
+            }()
         );
     },
 
