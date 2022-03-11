@@ -1,4 +1,4 @@
-FROM node:lts-alpine as build-stage
+FROM cypress/included:9.5.1 as build-stage
 ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
 
 # install simple http server for serving static content
@@ -15,7 +15,7 @@ RUN npm install
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY app/ .
-
+RUN apt install -y default-mysql-client xvfb
 #EXPOSE 8080
 
 # Serveur de développement

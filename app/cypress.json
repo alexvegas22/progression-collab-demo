@@ -1,7 +1,7 @@
 {
-    "baseUrl": "http://ordralphabetix.dti.crosemont.quebec:8018",
+    "baseUrl": "http://ordralphabetix.dti.crosemont.quebec:8022",
     "env": {
-        "backend_url": "http://ordralphabetix.dti.crosemont.quebec:9018",
+        "backend_url": "http://ordralphabetix.dti.crosemont.quebec:9022",
         "endpoint_auth": "/auth",
         "page_login": "/login"
     }
