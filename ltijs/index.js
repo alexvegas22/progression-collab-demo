@@ -129,12 +129,12 @@ const setup = async () => {
 	 */
 
 	await lti.registerPlatform({
-		url: "http://rocinante.lamancha:82",
-		name: "Moodle local",
-		clientId: "oShV5G8qB6WuqHx",
-		authenticationEndpoint: "http://rocinante.lamancha:82/mod/lti/auth.php",
-		accesstokenEndpoint: "http://rocinante.lamancha:82/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "http://rocinante.lamancha:82/mod/lti/certs.php" },
+		url: "https://moodle.progression.dti.crosemont.quebec",
+		name: "Moodle test",
+		clientId: "9ZhuwvH41k8bfoe",
+		authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
+		accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
+		authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php" },
 	});
 };
 
