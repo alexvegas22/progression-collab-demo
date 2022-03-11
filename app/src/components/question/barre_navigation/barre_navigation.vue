@@ -40,6 +40,11 @@ export default {
     background-color: #999 !important;
   }
 
+  .thème_sombre .diff.différent.ins,
+  .thème_sombre .diff.différent.del {
+    background-color: transparent;
+  }
+
   .dropdown-menu {
     border-radius: 0;
     margin-top: 0;
