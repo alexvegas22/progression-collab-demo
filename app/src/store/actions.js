@@ -1,3 +1,6 @@
+
+
+
 import {
 	authentifierApi,
 	callbackGrade,
@@ -177,6 +180,17 @@ export default {
 		);
 	},
 
+	async getTentativesRéussites({ commit, state }, params) {
+		return valider(
+			commit,
+			getToken({ commit, state })
+				.then((token) => getAvancementApi(params.url, token))
+				.then((avancement) => {
+
+	
+	}))},
+
+	//getListeAvancements
 	async getAvancement({ commit, state }, params) {
 		return valider(
 			commit,
@@ -185,7 +199,7 @@ export default {
 				.then((avancement) => {
 					commit("setAvancement", avancement);
 					var tentative;
-
+					
 					if (Object.keys(avancement.sauvegardes).length > 0) {
 						var datePlusRecente = 0;
 						for (var key in avancement.sauvegardes) {
@@ -434,3 +448,9 @@ export default {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
 };
+
+
+
+
+
+

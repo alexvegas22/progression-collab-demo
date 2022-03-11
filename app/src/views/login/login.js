@@ -37,7 +37,7 @@ export default {
 						})
 					}
 					else{
-						this.$router.push({name: 'Home'})
+						this.$router.push({name: 'Accomplissements'})
 					}
 				}
 				catch(err){

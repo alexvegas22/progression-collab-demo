@@ -19,6 +19,11 @@ const routes = [
 		component: () => import("@/views/question/question.vue"),
 	},
 	{
+		path: "/accomplissements",
+		name: "Accomplissements",
+		component: () => import("@/views/accomplissements/accomplissements.vue"),
+	},
+	{
 		path: "/:catchAll(.+)",
 		name: "NotFound",
 		component: () => import("@/views/erreurs/404NotFound.vue"),
@@ -80,6 +85,7 @@ router.beforeEach( (to, from, next ) => {
 	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
 	     .then( () => next() )
 	     .catch( () => {
+
 	         sessionStorage.removeItem("username");
 	         localStorage.removeItem("username");
 	         //En cas de problème, si l'utilisateur est requis

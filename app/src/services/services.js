@@ -24,6 +24,7 @@ const getUserApi = async (urlUser, token) => {
 		if (data.included) {
 			data.included.forEach((item) => {
 				var avancement = item.attributes;
+				
 				avancement.liens = item.links;
 				user.avancements[item.id] = avancement;
 			});
@@ -53,6 +54,8 @@ const getQuestionApi = async (urlQuestion, token) => {
 	}
 	return question;
 };
+
+
 
 const getAvancementApi = async (urlAvancement, token) => {
 	const data = await getData(urlAvancement + "?include=tentatives,sauvegardes", token);
@@ -91,6 +94,7 @@ const postTentative = async (params, token) => {
 	}
 
 	var tentative = data.data.attributes;
+	
 	tentative.liens = data.data.links;
 	tentative.resultats = [];
 	if (data.included) {
@@ -132,7 +136,9 @@ const postSauvegardeApi = async (params, token) => {
 };
 
 function construireAvancement(data) {
+	
 	var avancement = data.data.attributes;
+
 	avancement.liens = data.data.links;
 	avancement.liens.sauvegardes = data.data.relationships.sauvegardes.links.related;
 	avancement.liens.tentatives = data.data.relationships.tentatives.links.related;
@@ -148,6 +154,7 @@ function construireAvancement(data) {
 			}
 		});
 	}
+	
 	return avancement;
 }
 
@@ -184,3 +191,6 @@ export {
 	postTentative,
 	postAuthKey,
 };
+
+
+

@@ -22,12 +22,28 @@
 		</div>
 	</div>
 	<nav class="navbar justify-content-between navbar-dark bg-dark">
+
 		<a href="/" class="navbar-brand text-light mr-auto">
 			<span class="text-info"> Prog</span>ression
 		</a>
-		<div v-show="!page_login">
-			<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-			<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
+
+		<div class="dropdown">
+		<button class="modBarbtn dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
+			<div class="barBtn"></div>
+			<div class="barBtn"></div>
+			<div class="barBtn"></div>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="menu_historique">
+			<li>
+				<a href="/accomplissements">
+					<button type="button" class="btn btnDDI">Accomplissements</button>
+				</a>
+			</li>
+			<li>
+				<button v-if="token" type="button" class="btn btnDDI" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+				<button v-else type="button" class="btn btnDDI" @click="connexion">{{ $t('menu.connexion') }}</button>
+			</li>
+		</ul>
 		</div>
 	</nav>
 	<router-view />
@@ -68,6 +84,7 @@
 		 },
 	 },
 
+	
 	 methods: {
 		 traiterParamètresURL( paramètres ){
 			 var urlParams = new URLSearchParams(paramètres);
@@ -116,3 +133,5 @@
 	 }
  };
 </script>
+
+<style src="./css/mainMenu.css"></style>
