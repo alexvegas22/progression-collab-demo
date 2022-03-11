@@ -164,9 +164,8 @@ const récupérerTokenRessource = async function (token,uri, type_ressource) {
 
     const requête = process.env.API_URL + "/jeton/" + username;
 
-    return axios.post(requête, {idRessource: id_ressource, typeRessource: type_ressource}, config).then((res) => {
-        return res;
-    });
+    const response= await axios.post(requête, {idRessource: id_ressource, typeRessource: type_ressource}, config) ;
+	return response.data;
 };
 
 router.get("*", (req, res) => {
