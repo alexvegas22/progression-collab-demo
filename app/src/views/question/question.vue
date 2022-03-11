@@ -15,7 +15,7 @@
         </div>
         
         <div class="col-lg-8 col-md-6 flex-column fill-height h-100 p-0" v-show="!énoncéPleinÉcran" style="padding-left:0;">
-          <div class="col-12 flex-column fill-height m-n-0" style="flex: 1 1 auto;">
+          <div class="col-12 flex-column fill-height m-n-0" style="flex: 1 1 auto; position: relative;" id="carre-editeur">
             <div class="flex-column overflow-hidden" style="flex: 1 1 auto;" v-if="tentative">
               <EditeurCode présentation_étape="1" class="flex-grow-1 m-n-0"/>
               <RetroactionTentative présentation_étape="3" />

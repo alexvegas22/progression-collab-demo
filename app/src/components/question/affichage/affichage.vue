@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  props: ['thèmeSombre'],
   computed: {
     afficherPanneau() {
       return this.$store.state.afficherPanneau;

@@ -5,9 +5,10 @@
 .popup_conseil {
 	float: right;
 	position: relative;
-	top: -32.7rem;
 	right: 1.3rem;
 	z-index: 3;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .test_réussi {
@@ -41,6 +42,16 @@
 	fill: white;
 	width: 1rem;
 	height: 1rem;
+}
+
+.espace-ampoule {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  pointer-events: none;
 }
 
 @keyframes blink {
