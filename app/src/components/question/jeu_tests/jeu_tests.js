@@ -34,12 +34,50 @@ export default {
 	},
 	data() {
 		return {
+			nouveauTestNom: "",
 			index_select: 0,
+			modifiable: false
 		};
 	},
 	methods: {
 		select: function (index) {
 			this.index_select = index;
 		},
+		montrerAjouterTest: function () {
+			this.modifiable = !this.modifiable;
+		},
+		AjouterTest: function () {
+			var lesTests = this.$store.state.question.tests;
+
+			if (this.nouveauTestNom.length == 1) {
+
+				let nouveauTest = {
+					nom: this.nouveauTestNom,
+					entrée: "",
+					sortie_attendue: "",
+					params: "",
+
+				}
+				lesTests.push(nouveauTest);
+				this.nouveauTestNom = "";
+				this.$refs.inputAjouterTest.blur();
+
+			}
+			let index = lesTests.length - 1;
+
+			this.$nextTick(() => {
+				let input = this.$refs.unTest[index].$refs.unTestInput;
+				input.focus();
+			});
+
+			this.select(index);
+
+
+
+		},
+		SupprimerTest: function (index) {
+			this.$store.state.question.tests.splice(index, 1);
+		}
+
 	},
 };
