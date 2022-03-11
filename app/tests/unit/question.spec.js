@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 
-import Question from '../../src/views/Question.vue'
+import Question from '@/views/question/question.js'
 
 test('Mise a jour du texte par clique', async () => {
   const spy = jest.spyOn(Question.methods, 'obtenirRetroaction');
