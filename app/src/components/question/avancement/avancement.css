@@ -1,13 +1,13 @@
 .dropdown-menu {
-    max-height:800px;
+    max-height:40rem;
     overflow:auto;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
-.dropdown-item.disabled{
+.dropdown-item.disabled {
     background-color: darkgray;
     color: white;
 }
