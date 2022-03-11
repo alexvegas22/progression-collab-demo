@@ -1,5 +1,4 @@
 <template>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 	<div class="jumbotron encadré">
 		<div class="container">
 			<div v-if="état_réussi" class="crochet icon icon--order-success svg">
