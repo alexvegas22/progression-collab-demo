@@ -14,22 +14,18 @@ import "tippy.js/dist/tippy.css"; // optional for styling
 import Vue3Tour from 'vue3-tour';
 import 'vue3-tour/dist/vue3-tour.css';
 
-
 import VMdEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
+import frFR from '@kangc/v-md-editor/lib/lang/fr-FR';
+VMdEditor.lang.use('fr-FR', frFR);
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 
-// Prism
 import Prism from 'prismjs';
-// highlight code
 import 'prismjs/components/prism-json';
 VMdEditor.use(vuepressTheme, {
 	Prism,
 });
-import frFR from '@kangc/v-md-editor/lib/lang/fr-FR';
-
-VMdEditor.lang.use('fr-FR', frFR);
 
 const app = createApp(App)
 	.use(router)
@@ -45,9 +41,8 @@ const app = createApp(App)
 	.use(VMdEditor)
 	.use(Vue3Tour)
 
-
 const authentificationErreurHandler = function () {
-	if (router.currentRoute.value.name != 'LoginView') {
+	if ( router.currentRoute.value.name != 'LoginView' ) {
 		router.push({
 			name: 'LoginView',
 			query: window.location.search,
@@ -56,7 +51,7 @@ const authentificationErreurHandler = function () {
 	}
 };
 
-const valider = async function (promesse) {
+const valider = async function(promesse) {
 	return promesse
 		.then((résultat) => {
 			store.dispatch("setErreurs", null);
@@ -73,6 +68,6 @@ const valider = async function (promesse) {
 		});
 }
 
-actions.setValidateur(valider);
+actions.setValidateur( valider );
 
-router.isReady().then(() => app.mount("#app"));
+router.isReady().then( () => app.mount("#app"));
