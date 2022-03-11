@@ -13,12 +13,9 @@ import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
 import Vue3Tour from 'vue3-tour';
 import 'vue3-tour/dist/vue3-tour.css';
-<<<<<<< HEAD
 import VueChartkick from 'vue-chartkick';
 import 'chartkick/chart.js';
-=======
 import SmartTable from 'vuejs-smart-table';
->>>>>>> 77b18958ccfe1412dde927444c61c78fa2adc230
 
 const app = createApp(App)
 	.use(router)
