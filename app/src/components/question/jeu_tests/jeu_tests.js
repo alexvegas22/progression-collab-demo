@@ -6,6 +6,9 @@ export default {
 	components: { Test, ResultatTest, SélecteurModeAffichage },
 	name: "JeuTests",
 	computed: {
+		modeÉdition() {
+			return this.$store.state.mode_édition;
+		},
 		tests() {
 			return this.$store.state.question.tests;
 		},
@@ -36,7 +39,7 @@ export default {
 		return {
 			nouveauTestNom: "",
 			index_select: 0,
-			modifiable: false
+			modifiable: this.modeÉdition,
 		};
 	},
 	methods: {

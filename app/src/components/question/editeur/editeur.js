@@ -124,9 +124,6 @@ export default {
 			});
 		},
 	},
-<<<<<<< HEAD
-};
-=======
 };
 window.addEventListener("beforeunload", function (e) {
     var confirmationMessage = 'Voulez-vous vraiment quitter? Vos changements seront perdus!';
@@ -134,4 +131,3 @@ window.addEventListener("beforeunload", function (e) {
     (e || window.event).returnValue = confirmationMessage; 
     return confirmationMessage;
 });
->>>>>>> a77bc6e93abe892f5de2f88626884733095cb7e0
