@@ -28,11 +28,6 @@ const routes = [
 		name: "NotFound",
 		component: () => import("@/views/erreurs/404NotFound.vue"),
 	},
-	{
-	path: "/statistiquesParLangage",
-	name: "NotFound",
-	component: () => import("@/views/statistiquesParLangage/statistiquesParLangage.vue"),
-	},
 ];
 
 const pages_sans_connexion = [ "Home", "LoginView" ];
