@@ -11,11 +11,11 @@ describe('La page question', () => {
         cy.get('div[val="STANDARD"]').within(() => {
             cy.get('#username')
                 .clear()
-                .type('root').should('have.value', 'root')
+                .type('utilisateurTest').should('have.value', 'utilisateurTest')
 
             cy.get('#passwd')
                 .clear()
-                .type('root').should('have.value', 'root')
+                .type('utilisateurTest').should('have.value', 'utilisateurTest')
 
             cy.get('input[type="submit"]').click()
         })

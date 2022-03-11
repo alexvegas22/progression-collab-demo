@@ -51,6 +51,7 @@ describe('Page Login', () => {
     });
 
     it('type() - bon username', () => {
+
         cy.get('div[val="STANDARD"]').within(() => {
             cy.get('#username')
             .clear()
@@ -62,6 +63,6 @@ describe('Page Login', () => {
 
             cy.get('input[type="submit"]').click();
         })
-        cy.location('pathname').should('match', /\/$/);
+        cy.location('pathname').should('match', /\/?$/);
     })
 })
