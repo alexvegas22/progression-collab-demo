@@ -19,6 +19,10 @@ export const mutations = {
 		state.uri = uri;
 	},
 
+	setTokenRessource(state, tokenRessource) {
+		state.tokenRessource = tokenRessource;
+	},
+
 	setDémo(state, val) {
 		state.démo = val;
 	},

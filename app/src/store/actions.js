@@ -174,10 +174,7 @@ export default {
         return valider(
             commit,
             async function () {
-                var token = params.token_ressource;
-                if (token === null) {
-                    token = await getToken({commit, state});
-                }
+                const token = params.token_ressource?? await getToken({commit, state});
                 const avancement = await getAvancementApi(params.url, token);
                 commit("setAvancement", avancement);
                 var tentative;
@@ -205,7 +202,7 @@ export default {
                 commit("setTentative", tentative);
                 commit("updateRetroaction", tentative);
                 return avancement;
-            }
+            }()
         );
     },
 
@@ -346,6 +343,11 @@ export default {
     setUri({commit}, uri) {
         commit("setUri", uri);
     },
+
+    setTokenRessource({commit}, tokenRessource) {
+        commit("setTokenRessource", tokenRessource);
+    },
+
 
     setLangageDéfaut({commit}, langageDéfaut) {
         commit("setLangageDéfaut", langageDéfaut);

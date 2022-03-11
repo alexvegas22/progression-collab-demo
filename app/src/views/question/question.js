@@ -33,6 +33,9 @@ export default {
 		uri() {
 			return this.$store.state.uri;
 		},
+		tokenRessource() {
+			return this.$store.state.tokenRessource;
+		},
 		lang() {
 			return this.$store.state.langageDéfaut;
 		},

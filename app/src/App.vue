@@ -87,7 +87,6 @@ export default {
       }
 
       if (urlParams.has('token')) {
-        this.$store.dispatch("setToken", urlParams.get('token'));
         this.$store.dispatch("setTokenRessource", urlParams.get('token'));
       }
 
