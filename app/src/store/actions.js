@@ -149,14 +149,6 @@ export default {
 		commit("updateAuthentificationEnCours", état);
 	},
 	
-	async inscription({ commit }, params) {
-		const urlAuth = params.urlInscription;
-		const nom_utilisateur = params.nom_utilisateur;
-		const mdp = params.mdp;
-
-		return valider( authentifierApi(urlAuth, nom_utilisateur, mdp) );
-	},
-	
 	async getUser({ commit, state }, urlUser) {
 		return valider( async function() {
 			const token = await getToken({ commit, state });
@@ -202,7 +194,7 @@ export default {
 				} else if (avancement.tentatives.length > 0) {
 					tentative = avancement.tentatives[0];
 				} else {
-					var ebauches = this.state.question.ebauches;
+					var ebauches = state.question.ebauches;
 					if (ebauches[params.lang_défaut]) {
 						tentative = ebauches[params.lang_défaut];
 					} else {
@@ -237,7 +229,7 @@ export default {
 					}
 				}
 			} else {
-				var ebauches = this.state.question.ebauches;
+				var ebauches = state.question.ebauches;
 				if (ebauches[params.lang_défaut]) {
 					tentative = ebauches[params.lang_défaut];
 				} else {
@@ -267,7 +259,7 @@ export default {
 	async soumettreTentative({ commit, state }, params) {
 		commit("updateEnvoieTentativeEnCours", true);
 
-		params.urlTentative = this.state.avancement.liens.tentatives;
+		params.urlTentative = state.avancement.liens.tentatives;
 		commit("updateRetroaction", null);
 
 		return valider( async function() {
@@ -303,9 +295,9 @@ export default {
 
 	async mettreAjourSauvegarde({ commit, state }) {
 		const params = {
-			url: this.state.avancement.liens.sauvegardes,
-			code: this.state.tentative.code,
-			langage: this.state.tentative.langage,
+			url: state.avancement.liens.sauvegardes,
+			code: state.tentative.code,
+			langage: state.tentative.langage,
 		};
 
 		return valider( async function() {
