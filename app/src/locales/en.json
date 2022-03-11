@@ -119,10 +119,10 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases",
+		"jeuTests": "Test cases"
 		"ajouterTest":"Add a test"
 	},
-	
+
 	"mode_affichage": "Differences display mode",
 
 	"editeur": {
