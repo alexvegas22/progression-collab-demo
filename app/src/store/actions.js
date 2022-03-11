@@ -18,8 +18,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
-const valider = async function (commit, promesse) {
-    return validateur(promesse)
+const valider = async function(promesse){
 }
 
 const API_URL = process.env.VUE_APP_API_URL;
@@ -93,89 +92,83 @@ function randomID() {
 }
 
 export default {
-    async setValidateur(v) {
-        validateur = v;
-    },
+	async setValidateur( v ){
+		validateur = v;
+	},
 
-    async setErreurs({commit}, erreurs) {
-        commit("setErreurs", erreurs);
-    },
+	async setErreurs({ commit }, erreurs) {
+		commit("setErreurs", erreurs);
+	},
 
-    async getConfigServeur({commit}, urlConfig) {
-        return valider(commit, getConfigServeurApi(urlConfig)
-            .then((config) => {
-                commit("setConfigServeur", config);
-                return config;
-            })
-        );
-    },
+	async getConfigServeur({commit }, urlConfig){
+		return valider( async function() {
+			const config = await getConfigServeurApi(urlConfig);
 
-    async authentifier({commit}, params) {
-        const urlAuth = process.env.VUE_APP_API_URL + (params.inscrire ? "/inscription" : "/auth");
-        const username = params.username;
-        const password = params.password;
-        const persister = params.persister;
-        const domaine = params.domaine;
-        commit("updateAuthentificationEnCours", true);
+			commit("setConfigServeur", config);
+			return config;
+		}()
+		);
+	},
 
-        return valider(commit, (async () => {
-            const token = await authentifierApi(urlAuth, username, password, domaine)
+	async authentifier({ commit }, params) {
+		const urlAuth = process.env.VUE_APP_API_URL + (params.inscrire ? "/inscription" : "/auth");
+		const username = params.username;
+		const password = params.password;
+		const persister = params.persister;
+		const domaine = params.domaine;
+		commit("updateAuthentificationEnCours", true);
 
-            commit("setUsername", username);
-            commit("setToken", token);
+		return valider( async function() {
+			const token = await authentifierApi(urlAuth, username, password, domaine)
 
-            sessionStorage.setItem("token", token);
+			commit("setUsername", username);
+			commit("setToken", token);
 
-            // Obtenir l'utilisateur
-            const user = await this.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username);
+			sessionStorage.setItem("token", token);
 
-            // Obtenir la clé d'authentification
-            var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+			// Obtenir l'utilisateur
+			const user = await getUserApi( process.env.VUE_APP_API_URL + "/user/" + username, token);
 
-            const authKey = await postAuthKey({url: user.liens.clés, clé: clé}, token);
+			// Obtenir la clé d'authentification
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
 
-            const storage = persister ? localStorage : sessionStorage;
-            storage.setItem("username", username);
-            storage.setItem("authKey_nom", authKey.nom);
-            storage.setItem("authKey_secret", authKey.clé.secret);
-        })());
-    },
+			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
 
-    async setAuthentificationEnCours({commit}, état) {
-        commit("updateAuthentificationEnCours", état);
-    },
+			const storage = persister ? localStorage : sessionStorage;
+			storage.setItem("username", username);
+			storage.setItem("authKey_nom", authKey.nom);
+			storage.setItem("authKey_secret", authKey.clé.secret);
 
-    async inscription({commit}, params) {
-        const urlAuth = params.urlInscription;
-        const nom_utilisateur = params.nom_utilisateur;
-        const mdp = params.mdp;
+			return token;
+		}()
+		);
+	},
 
-        return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp));
-    },
+	async setAuthentificationEnCours({ commit }, état){
+		commit("updateAuthentificationEnCours", état);
+	},
 
-    async getUser({commit, state}, urlUser) {
-        return valider(
-            commit,
-            getToken({commit, state})
-                .then((token) => getUserApi(urlUser, token))
-                .then((user) => {
-                    commit("setUser", user);
-                    return user;
-                }),
-        );
-    },
+	async getUser({ commit, state }, urlUser) {
+		return valider( async function() {
+			const token = await getToken({ commit, state });
+			const user = await getUserApi(urlUser, token);
 
-    async getQuestion({commit, state}, urlQuestion) {
-        return valider(
-            commit,
-            getToken({commit, state})
-                .then((token) => getQuestionApi(urlQuestion, token))
-                .then((question) => {
-                    commit("setQuestion", question);
-                    return question;
-                }),
-        );
-    },
+			commit("setUser", user);
+			return user;
+		}()
+		);
+	},
+
+	async getQuestion({ commit, state }, urlQuestion) {
+		return valider( async function() {
+			const token = await getToken({ commit, state });
+			const question = await getQuestionApi(urlQuestion, token);
+
+			commit("setQuestion", question);
+			return question;
+		}()
+		);
+	},
 
     async getAvancement({commit, state}, params) {
         return valider(
@@ -212,7 +205,7 @@ export default {
                 commit("setTentative", tentative);
                 commit("updateRetroaction", tentative);
                 return avancement;
-            }()
+            }
         );
     },
 

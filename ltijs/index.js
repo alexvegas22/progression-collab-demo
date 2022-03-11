@@ -6,11 +6,10 @@ const provMainDebug = require("debug")("provider:main");
 const lti = require("ltijs").Provider;
 const mongoose = require("mongoose");
 const routes = require("./src/routes");
-const Mustache = require("mustache");
 const jwt_decode = require("jwt-decode");
 const services = require("./src/services.js");
 
-mongoose.set("useCreateIndex", true);
+const consolidate = require('consolidate');
 
 const userSchema = new mongoose.Schema({
 	userId: String, // Id de la plateforme
@@ -19,6 +18,7 @@ const userSchema = new mongoose.Schema({
 	authKey_nom: String, // Clé d'authentification Progression
 	authKey_secret: String,
 });
+
 userSchema.index({ userId: 1 }, { unique: true });
 
 try {
@@ -84,11 +84,25 @@ lti.onConnect(async (idToken, req, res) => {
 //		}
 	);
 
-	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/question");
-	lti.redirect(res, process.env.URL_BASE + "/question", {
-		newResource: true,
-		query: query
-	});
+	if(res.locals.context.roles == 'http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor'){
+		const resLocalsToken = res.locals.token;
+		const membres = await services.récupérerMembres( resLocalsToken );
+		const scores = await services.récupérerScores( resLocalsToken );
+
+		for(const [id,membre] of Object.entries(membres)){
+			membre["score"] = scores[membre.user_id];
+		};
+
+		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
+		res.status(200);
+	}
+	else{
+		provMainDebug("Redirection vers : " + process.env.URL_BASE + "/question");
+		lti.redirect(res, process.env.URL_BASE + "/question", {
+			newResource: true,
+			query: query
+		});
+	}
 });
 	
 const btoa_url = (s) =>
@@ -102,6 +116,12 @@ lti.app.use(routes);
 
 // Setup function
 const setup = async () => {
+
+	const app = lti.app;
+	app.engine('html', consolidate.mustache);
+	app.set('view engine', 'html');
+	app.set('views', __dirname + '/templates');
+
 	await lti.deploy({ port: process.env.PORT });
 
 	/**
@@ -109,13 +129,21 @@ const setup = async () => {
 	 */
 
 	await lti.registerPlatform({
-		url: "http://rocinante.lamancha:82",
-		name: "Moodle local",
-		clientId: "oShV5G8qB6WuqHx",
-		authenticationEndpoint: "http://rocinante.lamancha:82/mod/lti/auth.php",
-		accesstokenEndpoint: "http://rocinante.lamancha:82/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "http://rocinante.lamancha:82/mod/lti/certs.php" },
+		url: "https://moodle.progression.dti.crosemont.quebec",
+		name: "Moodle test",
+		clientId: "9ZhuwvH41k8bfoe",
+		authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
+		accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
+		authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php" },
 	});
 };
+
+lti.onDeepLinking((token,req,res) => {
+	lti.redirect(res, "/deeplink")
+})
+
+//lti.app.get("/deeplink", async (res,req) => {
+//	res.redirect("https://progression.pages.dti.crosemont.quebec/contenu/prog_1/liste_questions.html")
+//}
 
 setup();
