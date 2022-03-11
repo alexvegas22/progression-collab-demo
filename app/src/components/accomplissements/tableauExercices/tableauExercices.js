@@ -4,6 +4,18 @@ const API_URL = process.env.VUE_APP_API_URL;
 export default {
 	name: "TableauExercices",
 
+	data(){
+
+		return{
+
+			uneListeAvancements: [],
+
+			inputFilter: ''
+
+		}
+
+	},
+
 	computed: {
 
 		avancements(){
@@ -32,6 +44,20 @@ export default {
 
 			return listeAvancements;
 		},
+		filtreAvancement(){
+
+            this.uneListeAvancements = this.listeAvancements;
+
+
+
+
+            return this.uneListeAvancements.filter((avancement) => {
+
+                return avancement.titre.toLowerCase().includes(this.inputFilter.toLowerCase());
+
+            });
+
+        }
 	},
 
 	methods: {

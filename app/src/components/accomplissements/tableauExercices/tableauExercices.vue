@@ -4,8 +4,12 @@
     <div v-if="avancements">
         <h1> Liste d'exercices </h1>
         <br>
+        <div>
+            <input type="text" v-model="inputFilter" class="form-control barRecherhe">
+        </div>
+        <br>
         <div class="container">
-            <V-table :data="this.listeAvancements" class="table">
+            <V-table :data="this.filtreAvancement" class="table">
                 <template #head>
                     <V-th sortKey="titre">Titre de l'exercice</V-th>
                     <V-th sortKey="niveau">Difficulté</V-th>
