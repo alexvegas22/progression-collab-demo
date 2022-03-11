@@ -1,0 +1,16 @@
+<html>
+	<body>
+		<table>
+			{{#membres}}
+			<tr>
+				{{#score}}
+				<td><a href="/question?uri={{query.uri}}&lang={{query.lang}}&token={{comment}}">{{name}}</a></td><td>{{resultScore}}</td>
+				{{/score}}
+				{{^score}}
+				<td>{{name}}</a></td><td>{{resultScore}}</td>
+				{{/score}}
+			</tr>
+			{{/membres}}
+		</table>
+	</body>
+</html>

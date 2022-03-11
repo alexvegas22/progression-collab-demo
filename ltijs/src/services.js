@@ -40,8 +40,36 @@ const récupérerUser = function (userId) {
 	});
 };
 
+const récupérerMembres = async function(token){
+	const context = await lti.NamesAndRoles.getMembers(token,
+													   { resourceLinkId: true, role: 'Learner'}
+	)
+	provMainDebug(context.members.length + " membres récupérés");
+
+	const membres = new Object();
+
+	context.members.forEach( (membre) => {
+		membres[membre.user_id] = membre;
+	} );
+
+	return membres;
+}
+
+const récupérerScores = async function(token){
+	const scores = await lti.Grade.getScores(token, token.platformContext.endpoint.lineitem);
+	provMainDebug(scores.scores.length + " scores récupérés");
+
+	const userScore = new Object();
+	scores.scores.forEach( (score) => {
+		userScore[score.userId] = score;
+	});
+
+	return userScore;
+}
+
 const tokenEstValide = function (token, délais = 300) {
 	const token_décodé = jwt_decode(token);
+	
 	return Math.floor(Date.now() / 1000) + délais < token_décodé.expired;
 };
 
@@ -98,6 +126,8 @@ const sauvegarderUser = function (user) {
 module.exports = {
 	récupérerToken,
 	récupérerUser,
+	récupérerMembres,
+	récupérerScores,
 	sauvegarderToken,
 	sauvegarderUser,
 }
