@@ -24,7 +24,11 @@ const valider = async function(promesse){
 const API_URL = process.env.VUE_APP_API_URL;
 
 async function getToken({commit, state}) {
-    if (tokenEstValide(state.token)) {
+    var tokenChoisi=state.token;
+    if(state.tokenRessource !=undefined){
+        tokenChoisi=state.tokenRessource;
+    }
+    if (tokenEstValide(tokenChoisi)) {
         return state.token;
     } else {
         commit("setToken", null);
