@@ -12,14 +12,10 @@ export default {
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
-			thèmeSombre: localStorage.getItem("thème") === "true",
 			xray: localStorage.getItem("xray") === "true",
 		};
 	},
 	watch: {
-		thèmeSombre() {
-			localStorage.setItem( "thème", this.thèmeSombre );
-		},
 		xray() {
 			localStorage.setItem( "xray", this.xray );
 		},
@@ -29,7 +25,7 @@ export default {
 			return this.$store.state.tentative.code;
 		},
 		thème(){
-			return this.thèmeSombre?"monokai":"default";
+			return this.$store.state.thèmeSombre?"monokai":"default";
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
