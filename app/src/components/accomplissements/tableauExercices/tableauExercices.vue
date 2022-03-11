@@ -5,46 +5,24 @@
         <h1> Liste d'exercices </h1>
         <br>
         <div class="container">
-            <V-table :data="listeAvancements" class="table">
+            <V-table :data="this.listeAvancements" class="table">
                 <template #head>
-                    <th>Titre de l'exercice</th>
-                    <th>Difficulté</th>
-                    <th>Date de dernière modification</th>
-                    <th>État</th>
-                    <th>Date de réussite</th>
+                    <V-th sortKey="titre">Titre de l'exercice</V-th>
+                    <V-th sortKey="niveau">Difficulté</V-th>
+                    <V-th sortKey="date_modification">Date de dernière modification</V-th>
+                    <V-th sortKey="état">État</V-th>
+                    <V-th sortKey="date_réussite">Date de réussite</V-th>
                 </template>
-                <template #body slot-scope="{listeAvancements}">
-                    <tr v-for="avancement in listeAvancements" :key="avancement.titre">
-                        <td @click="allerQuestion(avancement.liens.self)">{{avancement.titre}}</td>
-                        <td>{{avancement.niveau}}</td>
+                <template #body="{ rows }">
+                    <tr v-for="avancement in rows" :key="avancement.titre">
+                        <td @click="allerVersQuestion(avancement.liens.self)">{{avancement.titre}}</td>
+                        <td>{{afficherNiveau(avancement.niveau)}}</td>
                         <td>{{timestampVersDate(avancement.date_modification)}}</td>
-                        <td>{{ etat(avancement.état)}}</td>
+                        <td>{{ afficherEtat(avancement.état)}}</td>
                         <td>{{timestampVersDate(avancement.date_réussite)}}</td>
                     </tr>
                 </template>
             </V-table>
-            <table class="table">
-                <thead>
-                    <tr >
-                        <th >Titre de l'exercice </th>
-                        <th >Difficulté </th>
-                        <th >Date de dernière modification <i type="button" @click="this.ordreModification(); this.$forceUpdate();" class="arrow"></i></th>
-                        <th >État </th>
-                        <th >Date de réussite <i type="button" @click="this.ordreReussite(); this.$forceUpdate();" class="arrow"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="avancement in listeAvancements" :key="avancement.id">
-
-                        <td @click="allerQuestion(avancement.liens.self)">{{avancement.titre}}</td>
-                        <td>{{avancement.niveau}}</td>
-                        <td>{{timestampVersDate(avancement.date_modification)}}</td>
-                        <td>{{ etat(avancement.état)}}</td>
-                        <td>{{timestampVersDate(avancement.date_réussite)}}</td> 
-                        
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </template>

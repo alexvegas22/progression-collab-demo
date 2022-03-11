@@ -5,9 +5,7 @@ export default {
 	name: "TableauExercices",
 
 	computed: {
-		user(){
-			return this.$store.state.user;
-		},
+
 		avancements(){
 			return this.$store.state.user.avancements;
 		},
@@ -16,8 +14,20 @@ export default {
 			var listeAvancements = [];
 
 			for(var avancement in this.avancements){
+				
+				if (this.avancements[avancement].niveau == "base"){
+
+					this.avancements[avancement].niveau = 1;
+				} else if (this.avancements[avancement].niveau == "intermédiaire"){
+
+					this.avancements[avancement].niveau = 2;
+				} else if (this.avancements[avancement].niveau == "défi"){
+
+					this.avancements[avancement].niveau = 3;
+				}
 
 				listeAvancements.push(this.avancements[avancement]);
+				console.log(this.avancements[avancement].niveau);
 			}
 
 			return listeAvancements;
@@ -31,7 +41,7 @@ export default {
 			}
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");
 		},
-		etat: function (etat) {
+		afficherEtat: function (etat) {
 			let etatString;
 			switch (etat) {
 				case 2:
@@ -42,41 +52,30 @@ export default {
 			}
 			return etatString;
 		},
-		allerQuestion(lien){
+		afficherNiveau: function (niveau) {
+
+			let niveauString;
+			switch (niveau) {
+				case 1:
+					niveauString = "Base";
+					break;
+				case 2:
+					niveauString = "Intermédiaire";
+					break;
+				case 3:
+					niveauString = "Défi";
+					break;
+				default:
+					niveauString = "Inconnu";
+			}
+			return niveauString;
+		},
+		allerVersQuestion: function (lien){
 
 			var avancementDivise = lien.split("/");
 			var uri = avancementDivise[5];
 
 			window.location.href = API_URL.replace(":9",":8") + "/question?uri=" + uri;
-		},
-		estCroissant(info1, info2){
-			if (info1 < info2){
-				return true;
-			}
-
-			return false;
-		},
-		ordreModification: function (){
-
-			if (this.estCroissant(this.listeAvancements[0].date_modification,this.listeAvancements[1].date_modification)){
-
-				this.listeAvancements.sort((a,b)=>{return b.date_modification - a.date_modification;});
-			}
-			else{
-				this.listeAvancements.sort((a,b)=>{return a.date_modification - b.date_modification;});
-			}
-
-			console.log(this.avancements);
-		},
-		ordreReussite: function (){
-			
-			if (this.estCroissant(this.listeAvancements[0].date_réussite,this.listeAvancements[1].date_réussite)){
-
-				this.listeAvancements.sort((a,b)=>{return b.date_réussite - a.date_réussite;});
-			}
-			else{
-				this.listeAvancements.sort((a,b)=>{return a.date_réussite - b.date_réussite;});
-			}
 		},
 		redirigerVersLogin(ref) {
 			this.$router.push({
