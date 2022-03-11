@@ -42,6 +42,9 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
+		thèmeSombre(){
+			return this.$store.state.thèmeSombre;
+		}
 	},
 	watch: {
 		uri: function () {

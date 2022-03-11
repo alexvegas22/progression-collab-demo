@@ -77,4 +77,7 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
+	setThèmeSombre(state, val) {
+		state.thèmeSombre = val;
+	},
 };
