@@ -6,7 +6,6 @@ const tokenEstValide = function (token, délais = 60) {
 	var token_décodé = null;
 	try {
 		token_décodé = jwt_decode(token);
-		console.log(token_décodé);
 		if (token_décodé.expired === undefined) return true;
 	} catch (e) {
 		return false;

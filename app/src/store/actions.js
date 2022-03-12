@@ -25,11 +25,11 @@ const API_URL = process.env.VUE_APP_API_URL;
 
 async function getToken({commit, state}) {
     var tokenChoisi=state.token;
-    if(state.tokenRessource !=undefined){
+    if(state.tokenRessource !==undefined){
         tokenChoisi=state.tokenRessource;
     }
     if (tokenEstValide(tokenChoisi)) {
-        return state.token;
+        return tokenChoisi;
     } else {
         commit("setToken", null);
         return rafraîchirToken().then((token) => {
