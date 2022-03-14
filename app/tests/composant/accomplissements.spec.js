@@ -1,6 +1,6 @@
 // Importation de la méthode `mount()` de Vue Test Utils
 import { mount } from '@vue/test-utils'
-import Accomplissement from "@/components/accomplissements/tableauExercices.vue";
+import Accomplissement from "../../src/components/accomplissements/tableauExercices.vue";
 
 // Le composant à tester
 
