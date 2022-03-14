@@ -1,10 +1,12 @@
 <template>
-    <div>
-        <tableauExercices />
-    </div>
+    <div class="accomplissementContainer">
+        <div class="accomplissementItem">
+            <tableauExercices />
+        </div>
 
-    <div>
-        <graphiqueStatistiques />
+        <div class="accomplissementItem">
+            <graphiqueStatistiques />
+        </div>
     </div>
 </template>
 

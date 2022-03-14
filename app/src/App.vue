@@ -28,7 +28,7 @@
 		</a>
 
 		<div class="dropdown">
-		<button class="modBarbtn dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
+		<button class="modBarbtn" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
 			<div class="barBtn"></div>
 			<div class="barBtn"></div>
 			<div class="barBtn"></div>
@@ -36,12 +36,12 @@
 		<ul class="dropdown-menu" aria-labelledby="menu_historique">
 			<li>
 				<a href="/accomplissements">
-					<button type="button" class="btn btnDDI">Accomplissements</button>
+					<button type="button" class="btn" style="color:white;">Accomplissements</button>
 				</a>
 			</li>
 			<li>
-				<button v-if="token" type="button" class="btn btnDDI" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-				<button v-else type="button" class="btn btnDDI" @click="connexion">{{ $t('menu.connexion') }}</button>
+				<button v-if="token" type="button" class="btn" style="color:white;" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+				<button v-else type="button" class="btn" style="color:white;" @click="connexion">{{ $t('menu.connexion') }}</button>
 			</li>
 		</ul>
 		</div>
