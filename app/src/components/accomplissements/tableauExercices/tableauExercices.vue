@@ -11,18 +11,16 @@
         <div class="container">
             <V-table :data="this.filtreAvancement" class="table">
                 <template #head>
-                    <V-th sortKey="titre">Titre de l'exercice</V-th>
-                    <V-th sortKey="niveau">Difficulté</V-th>
-                    <V-th sortKey="date_modification">Date de dernière modification</V-th>
-                    <V-th sortKey="état">État</V-th>
-                    <V-th sortKey="date_réussite">Date de réussite</V-th>
+                    <V-th id="tglTitre" class="triTh" sortKey="titre" @click="styleTh('tglTitre')">Titre de l'exercice</V-th>
+                    <V-th id="tglNiveau" class="triTh" sortKey="niveau" @click="styleTh('tglNiveau')">Difficulté</V-th>
+                    <V-th id="tglDateM" class="triTh" sortKey="date_modification" @click="styleTh('tglDateM')">Date de dernière modification</V-th>
+                    <V-th id="tglDateR" class="triTh" sortKey="date_réussite" @click="styleTh('tglDateR')">Date de réussite</V-th>
                 </template>
                 <template #body="{ rows }">
-                    <tr v-for="avancement in rows" :key="avancement.titre">
-                        <td class="lienQuestion" @click="allerVersQuestion(avancement.liens.self)">{{avancement.titre}}</td>
+                    <tr @click="allerVersQuestion(avancement.liens.self)" v-for="avancement in rows" :key="avancement.titre" class="lienQuestion">
+                        <td>{{avancement.titre}}</td>
                         <td>{{afficherNiveau(avancement.niveau)}}</td>
                         <td>{{timestampVersDate(avancement.date_modification)}}</td>
-                        <td>{{ afficherEtat(avancement.état)}}</td>
                         <td>{{timestampVersDate(avancement.date_réussite)}}</td>
                     </tr>
                 </template>

@@ -30,23 +30,12 @@ td, th {
     align-items: center;
     justify-content: center
 }
-
-.arrow {
-    border: solid black;
-    border-width: 0 5px 5px 0;
-    padding: 5px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    float: right;
-}
-
-.btnTable {
-    border: 1px solid #dddddd;
-    text-align: left;
-    color:black;
-    width: 100%;
-}
-
 .lienQuestion:hover{
+    background-color: #eeeeee;
     color:#0082e6;
+    cursor:pointer;
+}
+
+.triTh{
+    background-color: #eeeeee;
 }

@@ -57,22 +57,26 @@ export default {
 	},
 
 	methods: {
+		styleTh: function (id) {
+
+			if (id == "tglTitre") {
+
+  				document.getElementById(id).classList.toggle("triTh");
+			} else if (id == "tglTitre") {
+
+				document.getElementById(id).classList.toggle("triTh");
+			} else if (id == "tglTitre") {
+
+				document.getElementById(id).classList.toggle("triTh");
+			} else if (id == "tglTitre") {
+				document.getElementById(id).classList.toggle("triTh");
+			}
+		},
 		timestampVersDate: function (timestamp) {
 			if (timestamp == 0){
-				return "Pas encore réussi"
+				return ""
 			}
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");
-		},
-		afficherEtat: function (etat) {
-			let etatString;
-			switch (etat) {
-				case 2:
-					etatString = "Réussi !!";
-					break;
-				default:
-					etatString = "En cours";
-			}
-			return etatString;
 		},
 		afficherNiveau: function (niveau) {
 
@@ -88,7 +92,7 @@ export default {
 					niveauString = "Défi";
 					break;
 				default:
-					niveauString = "Inconnu";
+					niveauString = "";
 			}
 			return niveauString;
 		},
