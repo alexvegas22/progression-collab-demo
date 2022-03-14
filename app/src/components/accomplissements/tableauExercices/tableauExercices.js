@@ -6,15 +6,15 @@ export default {
 
 	data(){
 
-		return{
-
-			uneListeAvancements: [],
-
-			inputFilter: ''
-
-		}
-
-	},
+			return{
+	
+				uneListeAvancements: [],
+	
+				inputFilter: ''
+	
+			}
+	
+		},
 
 	computed: {
 
@@ -22,8 +22,6 @@ export default {
 			return this.$store.state.user.avancements;
 		},
 		listeAvancements(){
-
-			var listeAvancements = [];
 
 			for(var avancement in this.avancements){
 				
@@ -38,18 +36,16 @@ export default {
 					this.avancements[avancement].niveau = 3;
 				}
 
-				listeAvancements.push(this.avancements[avancement]);
+				if (this.avancements[avancement].titre != ""){
+
+					this.uneListeAvancements.push(this.avancements[avancement]);
+				}
 				console.log(this.avancements[avancement].niveau);
 			}
-
-			return listeAvancements;
 		},
 		filtreAvancement(){
 
-            this.uneListeAvancements = this.listeAvancements;
-
-
-
+			this.listeAvancements;
 
             return this.uneListeAvancements.filter((avancement) => {
 
