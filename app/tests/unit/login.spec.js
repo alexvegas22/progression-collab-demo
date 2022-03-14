@@ -6,6 +6,10 @@ describe('login.js: ', () => {
     console.log(wrapper)
 
     it('Login exist', () => {
+        expect(true).toBe(true);
+    })
+
+    it('Login exist', () => {
         expect(wrapper.exists).toBeTruthy();
     })
     it('login.js function', () => {

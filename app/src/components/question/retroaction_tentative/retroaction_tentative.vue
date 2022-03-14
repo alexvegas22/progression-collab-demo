@@ -18,10 +18,7 @@
 		</div>
 
 		<div v-if="retroactionTentative && retroactionTentative.feedback">
-<<<<<<< HEAD
-			<Tippy :interactive="true" :showOnCreate="true" :arrow="true" placement="bottom" class="popup_conseil"   présentation_étape="2.1">
-			<a id="btn_conseil">💡</a>
-=======
+		
 			<Tippy
 				ref="tippy"
 				v-tippy="{ trigger: 'click', interactive: true }"
@@ -39,7 +36,6 @@
 						<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
 					</svg>
 				</a>
->>>>>>> 02e981496a806345b0c756da310c9d9699d2f27d
 
 				<template #content>
 					<svg class="svg_ampoule_mini">
