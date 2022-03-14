@@ -153,9 +153,9 @@ const récupérerScore = async function (uri, token) {
     });
 };
 
-const récupérerTokenRessource = async function (token,uri, type_ressource) {
+const récupérerTokenRessource = async function (token, uri, typeRessource) {
     const username = jwt_decode(token).username;
-    const id_ressource = username+"/"+uri;
+    const idRessource = username + "/" + uri;
     const config = {
         headers: {
             Authorization: "Bearer " + token,
@@ -164,7 +164,7 @@ const récupérerTokenRessource = async function (token,uri, type_ressource) {
 
     const requête = process.env.API_URL + "/jeton/" + username;
 
-    const reponse= await axios.post(requête, {idRessource: id_ressource, typeRessource: type_ressource}, config) ;
+    const reponse= await axios.post(requête, {idRessource: idRessource, typeRessource: typeRessource}, config) ;
     return reponse.data;
 
 };

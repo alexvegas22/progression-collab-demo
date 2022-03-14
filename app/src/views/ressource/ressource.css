@@ -1,0 +1,26 @@
+.editeur-container {
+	display: flex;
+	height: auto;
+	padding: 20px;
+	padding-top: 0px;
+	flex-direction: row;
+}
+body {
+	font-family: "Avenir", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+.ebauche {
+	display: flex;
+	padding: 1rem;
+	margin: 1rem;
+	background: darkgray;
+}
+
+.v-tour__target--highlighted {
+	box-shadow: 0 0 0 99999px rgba(0,0,0,.4);
+}
+
+.v-step__content {
+	text-align: left;
+}

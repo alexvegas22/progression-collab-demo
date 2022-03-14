@@ -18,8 +18,8 @@ export default {
 		Présentation,
 	},
 	computed: {
-		user() {
-			return this.$store.state.user;
+		userRessource() {
+			return this.$store.state.userRessource;
 		},
 		question() {
 			return this.$store.state.question;
@@ -30,17 +30,14 @@ export default {
 		tentative() {
 			return this.$store.state.tentative;
 		},
-		uri() {
-			return this.$store.state.uri;
+		uriRessource() {
+			return this.$store.state.uriRessource;
 		},
 		tokenRessource() {
 			return this.$store.state.tokenRessource;
 		},
 		lang() {
 			return this.$store.state.langageDéfaut;
-		},
-		démo() {
-			return this.$store.state.démo;
 		},
 		erreurs() {
 			return this.$store.state.erreurs;
@@ -50,14 +47,9 @@ export default {
 		}
 	},
 	watch: {
-		uri: function () {
-			if (!this.question && this.uri && this.user) this.récupérerQuestion();
-		},
-		user: function () {
-			if (!this.question && this.uri && this.user) this.récupérerQuestion();
-		},
 		question: function () {
 			this.récupérerAvancement();
+			this.récupérerQuestion();
 		},
 	},
 	mounted() {
@@ -65,27 +57,16 @@ export default {
 	},
 	methods: {
 		récupérerAvancement() {
-			const id_avancement = this.user.username + "/" + this.uri;
-
-			if (id_avancement in this.user.avancements) {
+			const id_avancement = this.userRessource + "/" + this.uriRessource;
 				this.$store
 					.dispatch("getAvancement", {
-						url: this.user.avancements[id_avancement].liens.self,
+						url: this.user.avancements[userRessource + uriRessource].liens.self,
 						lang_défaut: this.lang,
 						token_ressource: this.tokenRessource,
 					})
-			} else {
-				this.$store
-					.dispatch("postAvancement", {
-						url: this.user.liens.avancements,
-						question_uri: this.uri,
-						avancement: {},
-						lang_défaut: this.lang,
-					})
-			}
 		},
 		récupérerQuestion() {
-			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
+			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uriRessource);
 		},
 	},
 };
