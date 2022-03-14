@@ -18,6 +18,8 @@
 		"@testing-library/vue": "^6.4.0",
 		"axios": "^0.26.0",
 		"bootstrap": "^5.0.1",
+		"chart.js": "^3.7.1",
+		"chartkick": "^4.1.1",
 		"codemirror": "^5.65.1",
 		"diff": "^5.0.0",
 		"highlight.js": "^11.3.1",
