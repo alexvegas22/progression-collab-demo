@@ -1,6 +1,3 @@
-
-
-
 import {
 	authentifierApi,
 	callbackGrade,
@@ -180,7 +177,6 @@ export default {
 		);
 	},
 
-	//getListeAvancements
 	async getAvancement({ commit, state }, params) {
 		return valider(
 			commit,
@@ -264,49 +260,6 @@ export default {
 					commit("setTentative", tentative);
 					commit("updateRetroaction", tentative);
 					return tentative;
-				}),
-		);
-	},
-
-	async getTentativesRéussies({ commit, state }, params) {
-		var langageRéussi = new Object();
-		var confirmationLangageRéussi = new Object();
-		var userToken
-		return valider(
-			commit,
-			getToken({ commit, state })
-				.then(async (token) => {
-					userToken = token;
-					return await getUserApi(params.url, token);
-				})
-				.then(async (user) => {
-					for (const idAvancement in user.avancements) {
-						var avancement = user.avancements[idAvancement];
-						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
-						for (var idTentative in tentatives) {
-							var tentative = tentatives[idTentative];
-							confirmationLangageRéussi[tentative.langage] = false;
-						}
-						for (idTentative in tentatives) {
-							tentative = tentatives[idTentative];
-							if (tentative.réussi) {
-								if (tentative.langage in langageRéussi) {
-									if (confirmationLangageRéussi[tentative.langage] == false) {
-										langageRéussi[tentative.langage] += 1;
-										confirmationLangageRéussi[tentative.langage] = true;
-									}
-								}
-								else {
-									if (confirmationLangageRéussi[tentative.langage] == false) {
-										langageRéussi[tentative.langage] = 1;
-										confirmationLangageRéussi[tentative.langage] = true;
-									}
-								}
-							}
-						}
-					}
-					commit("setTentativesRéussies", langageRéussi);
-					return langageRéussi;
 				}),
 		);
 	},
@@ -436,10 +389,46 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
+	async getTentativesRéussies({ commit, state }, params) {
+		var langageRéussi = new Object();
+		var confirmationLangageRéussi = new Object();
+		var userToken
+		return valider(
+			commit,
+			getToken({ commit, state })
+				.then(async (token) => {
+					userToken = token;
+					return await getUserApi(params.url, token);
+				})
+				.then(async (user) => {
+					for (const idAvancement in user.avancements) {
+						var avancement = user.avancements[idAvancement];
+						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
+						for (var idTentative in tentatives) {
+							var tentative = tentatives[idTentative];
+							confirmationLangageRéussi[tentative.langage] = false;
+						}
+						for (idTentative in tentatives) {
+							tentative = tentatives[idTentative];
+							if (tentative.réussi) {
+								if (tentative.langage in langageRéussi) {
+									if (confirmationLangageRéussi[tentative.langage] == false) {
+										langageRéussi[tentative.langage] += 1;
+										confirmationLangageRéussi[tentative.langage] = true;
+									}
+								}
+								else {
+									if (confirmationLangageRéussi[tentative.langage] == false) {
+										langageRéussi[tentative.langage] = 1;
+										confirmationLangageRéussi[tentative.langage] = true;
+									}
+								}
+							}
+						}
+					}
+					commit("setTentativesRéussies", langageRéussi);
+					return langageRéussi;
+				}),
+		);
+	},
 };
-
-
-
-
-
-
