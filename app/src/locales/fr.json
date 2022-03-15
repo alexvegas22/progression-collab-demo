@@ -158,5 +158,9 @@
 		"choisirTentative": "Choisir une tentative précédente",
 		"dateTentative": "Tentative du ",
 		"ébauche_initiale": "Revenir à l'ébauche initiale"
+	},
+
+	"question": {
+		"téléchargerLocalement": "Télécharger"
 	}
 }

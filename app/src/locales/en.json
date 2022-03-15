@@ -159,5 +159,9 @@
 		"choisirTentative": "Choose a previous attempt",
 		"dateTentative": "Attempt from ",
 		"ébauche_initiale": "Reset initial draft"
+	},
+
+	"question": {
+		"téléchargerLocalement": "Download"
 	}
 }
