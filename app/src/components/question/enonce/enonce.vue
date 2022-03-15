@@ -66,7 +66,6 @@
 					<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
 				</div>
 			</div>
-<<<<<<< HEAD
 
 			<div>
 				<div class="footer-copyright py-3">
@@ -89,13 +88,6 @@
 						{{ contenu[3].texte }}
 					</p>
 				</div>
-=======
-			
-			<div >
-				<p class="footer-copyright text-center py-3">
-					{{question.auteur}} {{question.licence}}
-				</p>
->>>>>>> 53bdfecdca6fbb487fdb2a0372ae725a29ba649f
 			</div>
 		</div>
 	</div>
