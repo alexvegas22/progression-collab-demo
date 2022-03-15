@@ -189,7 +189,7 @@ export default {
 				.then((avancement) => {
 					commit("setAvancement", avancement);
 					var tentative;
-					
+
 					if (Object.keys(avancement.sauvegardes).length > 0) {
 						var datePlusRecente = 0;
 						for (var key in avancement.sauvegardes) {
@@ -439,7 +439,6 @@ export default {
 
 	async getDifficultésRéussies({ commit, state }, params) {
 		var difficultéRéussi = new Object();
-		var userToken
 		return valider(
 			commit,
 			getToken({ commit, state })
@@ -458,7 +457,7 @@ export default {
 							else {
 								difficultéRéussi[avancement.niveua] = 1;
 							}
-						}	
+						}
 					}
 					commit("setDifficultésRéussies", difficultéRéussi);
 					return difficultéRéussi;
