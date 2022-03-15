@@ -38,7 +38,6 @@ export default {
 			sortie_attendue: null,
 			params: null,
 			feedback: null,
-
 		};
 	},
 	props: {

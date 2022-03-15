@@ -39,7 +39,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				smartIndent: false,
 			})
 			));
-
+			
 		this.$el._component = this;
 
 		editor.on("changes", () => {

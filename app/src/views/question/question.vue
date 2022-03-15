@@ -1,4 +1,5 @@
 <template>
+<div>
 	<div v-if="user">
 		<Présentation v-if="démo" présentation_étape="00" />
 	</div>
@@ -17,6 +18,8 @@
 				<JeuTests présentation_étape="4" class="p-2" />
 			</div>
 		</div>
+		<button v-if="this.modeÉdition" id="btn" v-on:click="télécharger">Sauvegarder</button>
+	</div>
 	</div>
 </template>
 

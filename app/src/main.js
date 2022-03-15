@@ -13,7 +13,20 @@ import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
 import Vue3Tour from 'vue3-tour';
 import 'vue3-tour/dist/vue3-tour.css';
- 
+
+import VMdEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import frFR from '@kangc/v-md-editor/lib/lang/fr-FR';
+VMdEditor.lang.use('fr-FR', frFR);
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+
+import Prism from 'prismjs';
+import 'prismjs/components/prism-json';
+VMdEditor.use(vuepressTheme, {
+	Prism,
+});
+
 const app = createApp(App)
 	.use(router)
 	.use(store)
@@ -25,14 +38,16 @@ const app = createApp(App)
 	.use(Tabs)
 	.use(createMetaManager())
 	.use(metaPlugin)
+	.use(VMdEditor)
 	.use(Vue3Tour)
 
-const authentificationErreurHandler = function() {
+const authentificationErreurHandler = function () {
 	if ( router.currentRoute.value.name != 'LoginView' ) {
 		router.push({
 			name: 'LoginView',
 			query: window.location.search,
-			params: { origine: window.location.href }});
+			params: { origine: window.location.href }
+		});
 	}
 };
 
@@ -43,10 +58,10 @@ const valider = async function(promesse) {
 			return résultat;
 		})
 		.catch((erreur) => {
-			if(erreur.response.status==401) {
+			if (erreur.response.status == 401) {
 				authentificationErreurHandler(erreur)
 			}
-			else{
+			else {
 				store.dispatch("setErreurs", { détails: erreur });
 			}
 			throw erreur;

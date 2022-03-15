@@ -76,7 +76,9 @@ export default {
 
 		},
 		SupprimerTest: function (index) {
+
 			this.$store.state.question.tests.splice(index, 1);
+
 		}
 
 	},

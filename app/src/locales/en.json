@@ -123,11 +123,6 @@
 		"ajouterTest":"Add a test"
 	},
 	
-	"MessageErreursJeuxTest":{
-		"erreurNomVide":"The name of the test cannot be empty",
-		"erreurNomExiste":"This name is already taken"
-	},
-
 	"mode_affichage": "Differences display mode",
 
 	"editeur": {
