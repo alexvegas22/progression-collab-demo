@@ -17,3 +17,6 @@
 .visible{
 	visibility: visible;
 }
+.enleverOutline{
+	outline: none;
+}

@@ -12,15 +12,22 @@ export default {
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
-			xray: localStorage.getItem("xray") === "true",
+			thèmeSombre: localStorage.getItem("thème") === "true",
+			modeCréation: localStorage.getItem("modeCréation") === "false",
 		};
 	},
 	watch: {
-		xray() {
-			localStorage.setItem( "xray", this.xray );
+		thèmeSombre() {
+			localStorage.setItem( "thème", this.thèmeSombre );
+		},
+		modeCréation() {
+			localStorage.setItem( "modeCréation", this.modeCréation );
 		},
 	},
 	computed: {
+		modeÉdition() {
+			return this.$store.state.mode_édition;
+		},
 		code() {
 			return this.$store.state.tentative.code;
 		},
@@ -35,9 +42,6 @@ export default {
 		},
 		tentative() {
 			return this.$store.state.tentative;
-		},
-		rôleÉditeur() {
-			return this.$store.state.user.rôle==2;
 		},
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
@@ -73,7 +77,11 @@ export default {
 
 	methods: {
 		onChange( texte ){
-			this.$store.dispatch("mettreAjourCode", texte)
+			if (this.modeCréation) {
+				this.$store.dispatch("mettreAjourEbauche", texte);
+			} else {
+				this.$store.dispatch("mettreAjourCode", texte);
+			}
 			this.texteModifié();
 		},
 
@@ -117,3 +125,9 @@ export default {
 		},
 	},
 };
+window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = 'Voulez-vous vraiment quitter? Vos changements seront perdus!';
+
+    (e || window.event).returnValue = confirmationMessage; 
+    return confirmationMessage;
+});

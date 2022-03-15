@@ -1,4 +1,5 @@
 <template>
+<div>
 	<div v-if="user">
 		<Présentation v-if="démo" présentation_étape="00" />
 	</div>
@@ -13,10 +14,12 @@
 				<div v-if="tentative">
 					<EditeurCode présentation_étape="1" style="height: 500px" />
 					<RetroactionTentative présentation_étape="3" />
-				</div>
-				<JeuTests présentation_étape="4" class="p-2"/>
+				</div>	
+				<JeuTests présentation_étape="4" class="p-2" />
 			</div>
 		</div>
+		<button v-if="this.modeÉdition" id="btn" v-on:click="télécharger">Sauvegarder</button>
+	</div>
 	</div>
 </template>
 
