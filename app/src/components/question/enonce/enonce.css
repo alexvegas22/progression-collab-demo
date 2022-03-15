@@ -120,6 +120,7 @@ h3 {
    display: none
    } */
 
+
 .icon--order-success svg path {
 	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
 	animation: checkmark 0.25s ease-in-out 0.7s backwards
@@ -132,9 +133,20 @@ h3 {
 
 .section-enoncer-text {
   opacity: 1;
-  -webkit-transition: opacity 0.2s ease-in-out;
-  -moz-transition: opacity 0.2s ease-in-out;
-  transition: opacity 0.2s ease-in-out;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+.enonce-semi {
+  width: 550px;
+}
+
+.enonce-plein {
+  width: 100%;
+}
+
+.enonce-cacher {
+  width: 0;
 }
 
 .ps {

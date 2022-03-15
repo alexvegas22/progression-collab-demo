@@ -36,6 +36,13 @@
               v-if="resultat_select && resultat_select.feedback">
               Commentaires
         </div>
+        <div style="margin-left: auto;">
+          <i style="height:100%;"
+             @click="$emit('ajusterPanneau')" 
+             class="fa fa btn-affichage"
+             :class="{'fa-window-minimize': afficherPanneau, 'fa-window-maximize': !afficherPanneau}"
+          ></i>
+        </div>
       </div>
 
       <keep-alive>
@@ -107,9 +114,6 @@ export default {
       this.ongletSelectionner = onglet;
       this.sectionVisible = true;
     },
-    changementVisibilité() {
-      this.sectionVisible = !this.sectionVisible;
-    },
     select(index) {
 			this.index_select = index;
 		},
@@ -121,19 +125,22 @@ export default {
   .section-onglets {
     display:flex;
     flex-flow: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   }
 
   .onglets {
-    flex: 1 1 auto;
+    border-radius: 0 10px 0 0;
     border: 1px solid rgba(0, 0, 0, 0.125);
     padding: 3px;
     color: rgba(0, 0, 0, 0.5);
     background: rgba(0, 0, 0, 0.05);
+    position: relative;
   }
 
   .sélectionné {
     border-bottom: none;
-    background: none !important;
+    background-color: white;
+    top: 1px;
   }
 
   .boutton-basculable {

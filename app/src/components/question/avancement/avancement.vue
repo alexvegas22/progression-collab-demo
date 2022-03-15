@@ -1,8 +1,8 @@
 <template>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="testeurite" data-bs-toggle="dropdown" aria-expanded="false">
-      Langues
-    </a>
+  <div class="dropdown">
+		<div class="dropdown-toggle" style="display:inline-block;" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
+			Langages ({{this.langage}})
+		</div>
     <ul class="dropdown-menu" aria-labelledby="testeurite" :class="{thème_sombre: thèmeSombre}">
       <li class="dropdown-item dropdown-submenu" v-for="langage in langages" :key="langage">
         <a>{{langage}}</a>
@@ -14,8 +14,10 @@
         </div>
       </li>
     </ul>
-  </li>
+  </div>
 </template>
 
 <script src="./avancement.js"></script>
+
+<style src="./avancement.css"></style>
 

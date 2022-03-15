@@ -4,7 +4,7 @@ import EditeurCode from "@/components/question/editeur/editeur.vue";
 import JeuTests from "@/components/question/jeu_tests/jeu_tests.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
-import BarreNavigation from "@/components/question/barre_navigation/barre_navigation.vue";
+import Avancement from "@/components/question/avancement/avancement.vue";
 import { computed } from 'vue';
 
 const API_URL = process.env.VUE_APP_API_URL;
@@ -18,7 +18,7 @@ export default {
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
-    BarreNavigation
+    Avancement
 	},
 	computed: {
     testerPanneau() {
@@ -78,7 +78,10 @@ export default {
 	},
   provide() {
     return {
-      avancement: this.avancemen
+      énoncéPleinÉcran: this.énoncéPleinÉcran,
+      énoncéSemiÉcran: this.énoncéSemiÉcran,
+      afficherPanneau: this.afficherPanneau,
+      avancement: this.avancement
     };
   },
 	methods: {
@@ -104,5 +107,11 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
+    ajusterÉnoncé(type) {
+      this.$store.dispatch('setAffichageÉnoncé', type);
+    },
+    ajusterPanneau() {
+      this.$store.dispatch('setAffichagePanneau');
+    },
 	},
 };

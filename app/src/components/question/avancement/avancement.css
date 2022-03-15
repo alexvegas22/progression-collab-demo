@@ -1,0 +1,38 @@
+.thème_sombre li a,
+.thème_sombre li button,
+.thème_sombre li {
+  color: white !important;
+}
+
+.thème_sombre .dropdown-item:hover {
+  background-color: #999 !important;
+}
+
+.thème_sombre .diff.différent.ins,
+.thème_sombre .diff.différent.del {
+  background-color: transparent;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  margin-top: 0;
+  border-color: black;
+}
+
+.dropdown-toggle {
+  padding: 10px;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle.show {
+  background-color: lightgrey;
+}
+
+.thème_sombre .dropdown-toggle:hover,
+.thème_sombre .dropdown-toggle.show {
+  background-color: #999 !important;
+}
+
+.section-avancement {
+  border: 1px solid lightgrey;
+}

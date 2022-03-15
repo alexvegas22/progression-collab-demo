@@ -78,16 +78,20 @@ export const mutations = {
 		state.sauvegardes = sauvegardes;
 	},
   ajusterÉnoncé(state, type) {
+    console.log(type);
     if (type === 'semi') {
       state.énoncéSemiÉcran = !state.énoncéSemiÉcran;
       if (state.énoncéSemiÉcran)
         state.énoncéPleinÉcran = false;
     }
-    else {
+    else if (type === 'plein') {
       state.afficherPanneau = false;
-      state.énoncéPleinÉcran = !state.énoncéPleinÉcran;
-      if (state.énoncéPleinÉcran)
-        state.énoncéSemiÉcran = false;
+      state.énoncéPleinÉcran = true;
+      state.énoncéSemiÉcran = false;
+    }
+    else {
+      state.énoncéPleinÉcran = false;
+      state.énoncéSemiÉcran = false;
     }
   },
   ajusterPanneau(state) {
