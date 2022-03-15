@@ -77,42 +77,41 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
-  ajusterÉnoncé(state, type) {
-    console.log(type);
-    if (type === 'semi') {
-      state.énoncéSemiÉcran = !state.énoncéSemiÉcran;
-      if (state.énoncéSemiÉcran)
-        state.énoncéPleinÉcran = false;
-    }
-    else if (type === 'plein') {
-      state.afficherPanneau = false;
-      state.énoncéPleinÉcran = true;
-      state.énoncéSemiÉcran = false;
-    }
-    else {
-      state.énoncéPleinÉcran = false;
-      state.énoncéSemiÉcran = false;
-    }
-  },
-  ajusterPanneau(state) {
-    state.afficherPanneau = !state.afficherPanneau;
-    if (state.énoncéPleinÉcran && state.afficherPanneau) {
-      state.énoncéPleinÉcran = false;
-      state.énoncéSemiÉcran = true;
-    }
-  },
-  éditeurPleinÉcran(state) {
-    if (state.énoncéPleinÉcran || state.énoncéSemiÉcran || state.afficherPanneau) {
-      state.énoncéSemiÉcran = false;
-      state.afficherPanneau = false;
-    }
-    else {
-      state.énoncéSemiÉcran = true;
-      state.afficherPanneau = true;
-    }
-    state.énoncéPleinÉcran = false;
-  },
+	ajusterÉnoncé(state, type) {
+		if (type === 'semi') {
+			state.énoncéSemiÉcran = !state.énoncéSemiÉcran;
+			if (state.énoncéSemiÉcran)
+				state.énoncéPleinÉcran = false;
+		}
+		else if (type === 'plein') {
+			state.afficherPanneau = false;
+			state.énoncéPleinÉcran = true;
+			state.énoncéSemiÉcran = false;
+		}
+		else {
+			state.énoncéPleinÉcran = false;
+			state.énoncéSemiÉcran = false;
+		}
+	},
+	ajusterPanneau(state) {
+		state.afficherPanneau = !state.afficherPanneau;
+		if (state.énoncéPleinÉcran && state.afficherPanneau) {
+			state.énoncéPleinÉcran = false;
+			state.énoncéSemiÉcran = true;
+		}
+	},
+	éditeurPleinÉcran(state) {
+		if (state.énoncéPleinÉcran || state.énoncéSemiÉcran || state.afficherPanneau) {
+			state.énoncéSemiÉcran = false;
+			state.afficherPanneau = false;
+		}
+		else {
+			state.énoncéSemiÉcran = true;
+			state.afficherPanneau = true;
+		}
+		state.énoncéPleinÉcran = false;
+	},
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
-};
+}

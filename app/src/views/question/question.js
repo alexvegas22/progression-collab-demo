@@ -18,12 +18,12 @@ export default {
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
-    Avancement
+		Avancement
 	},
 	computed: {
-    testerPanneau() {
-      return this.afficherPanneau;
-    },
+		testerPanneau() {
+			return this.afficherPanneau;
+		},
 		user() {
 			return this.$store.state.user;
 		},
@@ -31,7 +31,6 @@ export default {
 			return this.$store.state.question;
 		},
 		avancement() {
-      console.log(this.$store.state.avancement);
 			return this.$store.state.avancement;
 		},
 		tentative() {
@@ -49,15 +48,15 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
-    afficherPanneau() {
-      return this.$store.state.afficherPanneau;
-    },
-    énoncéPleinÉcran() {
-      return this.$store.state.énoncéPleinÉcran;
-    },
-    énoncéSemiÉcran() {
-      return this.$store.state.énoncéSemiÉcran;
-    },
+		afficherPanneau() {
+			return this.$store.state.afficherPanneau;
+		},
+		énoncéPleinÉcran() {
+			return this.$store.state.énoncéPleinÉcran;
+		},
+		énoncéSemiÉcran() {
+			return this.$store.state.énoncéSemiÉcran;
+		},
 		thèmeSombre(){
 			return this.$store.state.thèmeSombre;
 		}
@@ -76,14 +75,14 @@ export default {
 	mounted() {
 		if(this.uri && this.user) this.récupérerQuestion();
 	},
-  provide() {
-    return {
-      énoncéPleinÉcran: this.énoncéPleinÉcran,
-      énoncéSemiÉcran: this.énoncéSemiÉcran,
-      afficherPanneau: this.afficherPanneau,
-      avancement: this.avancement
-    };
-  },
+	provide() {
+		return {
+			énoncéPleinÉcran: this.énoncéPleinÉcran,
+			énoncéSemiÉcran: this.énoncéSemiÉcran,
+			afficherPanneau: this.afficherPanneau,
+			avancement: this.avancement
+		};
+	},
 	methods: {
 		récupérerAvancement() {
 			const id_avancement = this.user.username + "/" + this.uri;
@@ -107,11 +106,11 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
-    ajusterÉnoncé(type) {
-      this.$store.dispatch('setAffichageÉnoncé', type);
-    },
-    ajusterPanneau() {
-      this.$store.dispatch('setAffichagePanneau');
-    },
+		ajusterÉnoncé(type) {
+			this.$store.dispatch('setAffichageÉnoncé', type);
+		},
+		ajusterPanneau() {
+			this.$store.dispatch('setAffichagePanneau');
+		},
 	},
 };
