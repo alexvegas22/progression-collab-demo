@@ -36,7 +36,7 @@ export default {
 		return {
 			nouveauTestNom: "",
 			index_select: 0,
-			modifiable: false
+			modifiable: this.$store.state.mode_édition,
 		};
 	},
 	methods: {
