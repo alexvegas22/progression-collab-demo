@@ -347,6 +347,10 @@ export default {
 		commit("setUri", uri);
 	},
 
+	setTokenRessource({commit}, tokenRessource) {
+        	commit("setTokenRessource", tokenRessource);
+    	},
+
 	setLangageDéfaut({ commit }, langageDéfaut) {
 		commit("setLangageDéfaut", langageDéfaut);
 	},

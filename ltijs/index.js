@@ -47,6 +47,8 @@ lti.setup(
 	},
 );
 
+
+
 // When receiving successful LTI launch redirects to app
 lti.onConnect(async (idToken, req, res) => {
 	provMainDebug("onConnect");
@@ -111,6 +113,32 @@ const btoa_url = (s) =>
 		.replace(/\+/g, "-")
 		.replace(/=/g, "");
 
+
+
+lti.onDeepLinking(async (token, req, res) => {
+  return lti.redirect(res, 'https://mchevalier.pages.dti.crosemont.quebec/prog-1-0/liste_questions.html', { newResource: true })
+})
+
+
+lti.app.post('/deeplink', async (req, res) => {
+  const resource = req.body
+
+  const items = [
+    {
+      type: 'ltiResourceLink',
+      title: resource.title,
+      custom: {
+        resourceurl: resource.path,
+        resourcename: resource.title
+      }
+    }
+  ]
+
+  // Creates the deep linking request form
+  const form = await lti.DeepLinking.createDeepLinkingForm(res.locals.token, items, { message: 'Successfully registered resource!' })
+
+  return res.send(form)
+})
 // Setting up routes
 lti.app.use(routes);
 
@@ -138,12 +166,8 @@ const setup = async () => {
 	});
 };
 
-lti.onDeepLinking((token,req,res) => {
-	lti.redirect(res, "/deeplink")
-})
 
-//lti.app.get("/deeplink", async (res,req) => {
-//	res.redirect("https://progression.pages.dti.crosemont.quebec/contenu/prog_1/liste_questions.html")
-//}
+
+
 
 setup();
