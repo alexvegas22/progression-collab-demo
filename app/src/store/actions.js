@@ -287,7 +287,7 @@ export default {
 							var tentative = tentatives[idTentative];
 							confirmationLangageRéussi[tentative.langage] = false;
 						}
-						for (var idTentative in tentatives) {
+						for (idTentative in tentatives) {
 							tentative = tentatives[idTentative];
 							if (tentative.réussi) {
 								if (tentative.langage in langageRéussi) {
@@ -435,34 +435,6 @@ export default {
 
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
-	},
-
-	async getDifficultésRéussies({ commit, state }, params) {
-		var difficultéRéussi = new Object();
-		return valider(
-			commit,
-			getToken({ commit, state })
-				.then(async (token) => {
-					userToken = token;
-					var user = await getUserApi(params.url, token)
-					return user;
-				})
-				.then(async (user) => {
-					for (var id in user.avancements) {
-						var avancement = user.avancements[id];
-						if (avancement.état == 2) {
-							if (avancement.niveua in difficultéRéussi) {
-								difficultéRéussi[avancement.niveua] += 1;
-							}
-							else {
-								difficultéRéussi[avancement.niveua] = 1;
-							}
-						}
-					}
-					commit("setDifficultésRéussies", difficultéRéussi);
-					return difficultéRéussi;
-				}),
-		);
 	},
 };
 
