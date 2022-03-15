@@ -59,17 +59,22 @@ export default {
 	methods: {
 		styleTh: function (id) {
 
+			var element = document.getElementById(id);
+
+			Array.from(document.getElementsByClassName("triTh")).forEach( className => {className.classList.remove("triTh")});
+
 			if (id == "tglTitre") {
 
-  				document.getElementById(id).classList.toggle("triTh");
-			} else if (id == "tglTitre") {
+				element.classList.toggle("triTh");
+			} else if (id == "tglNiveau") {
 
-				document.getElementById(id).classList.toggle("triTh");
-			} else if (id == "tglTitre") {
+				element.classList.toggle("triTh");
+			} else if (id == "tglDateM") {
 
-				document.getElementById(id).classList.toggle("triTh");
-			} else if (id == "tglTitre") {
-				document.getElementById(id).classList.toggle("triTh");
+				element.classList.toggle("triTh");
+			} else if (id == "tglDateR") {
+
+				element.classList.toggle("triTh");
 			}
 		},
 		timestampVersDate: function (timestamp) {

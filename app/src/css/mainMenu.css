@@ -50,3 +50,12 @@
 .barRecherhe{
 	margin-left: 5x;
 }
+
+.btnDMM:hover{
+	border-right: solid #0082e6;
+	border-left: solid #0082e6;
+}
+
+.btnDMMB{
+	width:100%;
+}
