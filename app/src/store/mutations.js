@@ -56,6 +56,12 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
+	setLangagesÉbauches(state, langages) {		
+		state.langagesÉbauches = langages;
+	},
+	updateLangageSelectionneÉbauche(state, langage) {
+		state.langageSélectionné = langage;
+	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;
 	},

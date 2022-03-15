@@ -17,6 +17,8 @@ export default createStore({
 		username: null,
 		question: null,
 		tentative: null,
+		langagesÉbauches: ["Bash","C","C++","Clojure","Go","java","JavaScript","Perl","PHP","Powershell","python","Ruby","Scala","TypeScript"],
+		langageSélectionné: null,
 		retroactionTentative: null,
 		authentificationTentativeEnCours: false,
 		envoiTentativeEnCours: false,

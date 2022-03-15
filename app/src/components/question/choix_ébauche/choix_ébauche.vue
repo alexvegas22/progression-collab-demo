@@ -19,7 +19,7 @@
 				</a>
 			</li>
 			<li v-for="langage in this.langages" key="langage">
-				<a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">{{langage}}</a>
+				<a class="dropdown-item" @click="this.changerÉbauche(langage)">{{langage}}</a>
 			</li>
 		</ul>
 	</div>
