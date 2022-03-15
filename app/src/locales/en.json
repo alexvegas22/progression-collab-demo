@@ -158,5 +158,11 @@
 		"choisirTentative": "Choose a previous attempt",
 		"dateTentative": "Attempt from ",
 		"ébauche_initiale": "Reset initial draft"
+	},
+
+	"onglets_informations": {
+		"entrées/sorties": "Input / Output",
+		"erreurs": "Errors",
+		"commentaires": "Feedbacks"
 	}
 }

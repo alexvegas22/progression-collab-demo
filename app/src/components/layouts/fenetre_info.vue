@@ -22,12 +22,12 @@ export default {
 
 <style scoped>
   .bordure-fenetre {
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 0.063rem solid rgba(0, 0, 0, 0.125);
     border-top: none;
   }
 
   .bordure-titre {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-bottom: 0.063rem solid rgba(0, 0, 0, 0.125);
     color: rgba(0, 0, 0, 0.5);
   }
 

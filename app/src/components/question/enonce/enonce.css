@@ -131,7 +131,7 @@ h3 {
 	animation: checkmark-circle 0.6s ease-in-out backwards
 }
 
-.section-enoncer-text {
+.section-énoncé-texte {
   opacity: 1;
   flex-grow: 1;
   box-sizing: border-box;

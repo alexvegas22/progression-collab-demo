@@ -20,7 +20,7 @@
 }
 
 .dropdown-toggle {
-  padding: 10px;
+  padding: 0.625rem;
 }
 
 .dropdown-toggle:hover,
@@ -34,5 +34,5 @@
 }
 
 .section-avancement {
-  border: 1px solid lightgrey;
+  border: 0.063rem solid lightgrey;
 }

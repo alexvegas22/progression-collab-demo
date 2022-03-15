@@ -1,21 +1,9 @@
 <template>
-  <div class="section-commentaire">
-    <p class="card-text" v-html="resultats.feedback"></p>
-  </div>
+	<div class="section-commentaire">
+		<p class="card-text" v-html="resultats.feedback"></p>
+	</div>
 </template>
 
-<script>
-export default {
-  props: ['resultats']
-}
-</script>
+<script src="./commentaires.js"></script>
 
-<style scoped>
-  .section-commentaire {
-    flex: 1 1 0px;
-    min-height: 0px;
-    flex-flow: column;
-    height: 350px;
-    padding:10px;
-  }
-</style>
+<style src="./commentaires.css" scoped></style>

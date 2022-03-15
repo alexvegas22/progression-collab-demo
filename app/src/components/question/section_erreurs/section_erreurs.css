@@ -1,0 +1,7 @@
+.section-erreur {
+	flex: 1 1 0px;
+	min-height: 0px;
+	flex-flow: column;
+	height: 21.875rem;
+	padding: 0.625rem;
+}

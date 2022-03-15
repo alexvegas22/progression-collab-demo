@@ -1,6 +1,6 @@
 <template>
   <div class="barre-enonce">
-    <perfect-scrollbar class="section-enoncer-text" 
+    <perfect-scrollbar class="section-énoncé-texte" 
     :class="{'enonce-cacher': !énoncéSemiÉcran && !énoncéPleinÉcran, 'p-3': énoncéSemiÉcran || énoncéPleinÉcran}">
       <div v-if = "état_réussi" class="crochet icon icon--order-success svg">
         <svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
