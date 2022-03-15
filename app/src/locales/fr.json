@@ -156,6 +156,8 @@
 		"versionTentative": "Version de la tentative : ",
 		"choisirTentative": "Choisir une tentative précédente",
 		"dateTentative": "Tentative du ",
-		"ébauche_initiale": "Revenir à l'ébauche initiale"
+		"ébauche_initiale": "Revenir à l'ébauche initiale",
+		"langages_supportés": "Langages supportés",
+		"ébauches": "Ébauches"
 	}
 }

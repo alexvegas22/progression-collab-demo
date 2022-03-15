@@ -1,5 +1,5 @@
 <template>
-	<div class="dropdown">
+	<div class="dropdown" style="padding-bottom: 5px;">
 		<button class="btn btn-secondary dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
 			{{this.langage}}
 		</button>
@@ -15,7 +15,7 @@
 					</li>
 				</ul>
 			</li>
-		</ul>
+		</ul>				
 	</div>
 </template>
 

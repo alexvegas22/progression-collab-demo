@@ -157,6 +157,8 @@
 		"versionTentative": "Previous attempts : ",
 		"choisirTentative": "Choose a previous attempt",
 		"dateTentative": "Attempt from ",
-		"ébauche_initiale": "Reset initial draft"
+		"ébauche_initiale": "Reset initial draft",
+		"langages_supportés": "Supported languages",
+		"ébauches": "Drafts"
 	}
 }
