@@ -25,6 +25,7 @@ export default createStore({
 		sauvegardes: [],
 		erreurs: null,
 		configServeur: null,
+		listeLangages: ["Bash","C","C++","Clojure","Go","Java","JavaScript","Perl","PHP","Powershell","Python","Ruby","Scala","TypeScript"],
 	},
 	getters,
 	actions,

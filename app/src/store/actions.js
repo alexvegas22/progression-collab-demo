@@ -172,6 +172,7 @@ export default {
 				.then((token) => getQuestionApi(urlQuestion, token))
 				.then((question) => {
 					commit("setQuestion", question);
+					commit("setListeLangage", question);
 					return question;
 				}),
 		);
@@ -331,8 +332,8 @@ export default {
 			langage: langage,
 			code: this.state.question.ebauches[langage].code,
 		});
-
-		commit("updateRetroaction", null);
+		
+		commit("updateRetroaction", null);	
 	},
 
 	setToken({ commit }, token) {

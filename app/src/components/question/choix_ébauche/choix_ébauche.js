@@ -8,8 +8,7 @@ export default {
 			return Object.keys(this.$store.state.question.ebauches);
 		},*/
 		langages() {
-			const langs = ["Bash","C","C++","Clojure","Go","Java","JavaScript","Perl","PHP","Powershell","Python","Ruby","Scala","TypeScript"];
-			return langs;
+			return this.$store.state.listeLangages;
 		},
         tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
@@ -21,9 +20,12 @@ export default {
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("réinitialiser", langage);
 			}
+			this.$store.dispatch("réinitialiser", langage);
 		},		
-		nouvelleÉbauche(langage) {
-			this.$store.dispatch("mettreAjourLangageSelectionne", langage);			
+		nouvelleÉbauche(lang) {
+			const langage = lang.toLowerCase();
+			this.$store.dispatch("mettreAjourLangageSelectionne", langage);
+			this.reinitialiserCodeEditeur(langage);			
 		},
 	},
 };

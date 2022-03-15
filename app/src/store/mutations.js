@@ -56,6 +56,14 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
+	setListeLangage(state, question){
+		var listeLangs =  Object.getOwnPropertyNames(question.ebauches).toString().split(",");
+		for(var langage of listeLangs){
+			if(!state.listeLangages.includes(langage)){
+				state.listeLangages.push(langage);
+			}
+		}
+	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;
 	},
