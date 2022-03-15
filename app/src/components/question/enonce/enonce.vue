@@ -92,5 +92,7 @@
 		</div>
 	</div>
 </template>
+
 <script src="./enonce.js"></script>
+
 <style src="./enonce.css"></style>
