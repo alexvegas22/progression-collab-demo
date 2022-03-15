@@ -2,16 +2,6 @@
 	<div>
 		<div class="container" style="padding-left: 0px; padding-right: 0px" >
 			<div class="row align-items-end" style="height: 0px">
-				<div class="col"></div>
-				<div class="col-auto">
-					<div class="form-check form-switch btn-thème" présentation_étape="1.0">
-						<input class="form-check-input" type="checkbox"
-							   id="btn_thème"
-							   name="btn_thème"
-							   v-model="thèmeSombre" />
-						<label class="form-check-label" for="btn_thème">🕶</label>
-					</div>
-				</div>
 				<div class="col-auto" v-if="rôleÉditeur">
 					<div class="form-check form-switch btn-xray">
 						<input class="form-check-input" type="checkbox"
