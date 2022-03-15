@@ -12,12 +12,16 @@ export default {
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
-			xray: localStorage.getItem("xray") === "true",
+			thèmeSombre: localStorage.getItem("thème") === "true",
+			modeCréation: localStorage.getItem("modeCréation") === "true",
 		};
 	},
 	watch: {
-		xray() {
-			localStorage.setItem( "xray", this.xray );
+		thèmeSombre() {
+			localStorage.setItem( "thème", this.thèmeSombre );
+		},
+		modeCréation() {
+			localStorage.setItem( "modeCréation", this.modeCréation );
 		},
 	},
 	computed: {
@@ -35,9 +39,6 @@ export default {
 		},
 		tentative() {
 			return this.$store.state.tentative;
-		},
-		rôleÉditeur() {
-			return this.$store.state.user.rôle==2;
 		},
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
@@ -73,7 +74,11 @@ export default {
 
 	methods: {
 		onChange( texte ){
-			this.$store.dispatch("mettreAjourCode", texte)
+			if (this.modeCréation) {
+				this.$store.dispatch("mettreAjourEbauche", texte);
+			} else {
+				this.$store.dispatch("mettreAjourCode", texte);
+			}
 			this.texteModifié();
 		},
 

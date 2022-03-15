@@ -148,7 +148,6 @@ export default {
 	async setAuthentificationEnCours({ commit }, état){
 		commit("updateAuthentificationEnCours", état);
 	},
-<<<<<<< HEAD
 
 	async inscription({ commit }, params) {
 		const urlAuth = params.urlInscription;
@@ -158,9 +157,6 @@ export default {
 		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp));
 	},
 
-=======
-	
->>>>>>> 79ec44dda1fec20d0763202ccb59c79adb88bbf5
 	async getUser({ commit, state }, urlUser) {
 		return valider( async function() {
 			const token = await getToken({ commit, state });
@@ -329,8 +325,16 @@ export default {
 		commit("updateCodeTentative", code);
 	},
 
+	mettreAjourEbauche({ commit }, params) {
+		commit("updateCodeEbauche", params);
+	},
+
 	mettreAjourLangageSelectionne({ commit }, langage) {
 		commit("updateLangageTentative", langage);
+	},
+
+	setModeCréation({ commit }, modeCréation) {
+		commit("setModeCréation", modeCréation);
 	},
 
 	réinitialiser({ commit }, langage_p) {
@@ -339,7 +343,6 @@ export default {
 			langage: langage,
 			code: this.state.question.ebauches[langage].code,
 		});
-
 		commit("updateRetroaction", null);
 	},
 
