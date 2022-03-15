@@ -55,7 +55,7 @@ export default {
 			var langagesStore = this.$store.state.langagesÉbauches;
 			var listeLangs = Object.keys(this.$store.state.question.ebauches);
 			for(var langage of listeLangs){
-				if(!state.langagesÉbauches.includes(langage)){
+				if(!this.$store.state.langagesÉbauches.includes(langage)){
 					langagesStore.push(langage);
 				}
 			}
