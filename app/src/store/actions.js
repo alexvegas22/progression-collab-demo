@@ -281,7 +281,6 @@ export default {
 					return user;
 				})
 				.then(async (user) => {
-					console.log(JSON.stringify(user.avancements));
 					for (var id in user.avancements) {
 						
 						var avancement = user.avancements[id];
@@ -442,12 +441,10 @@ export default {
 
 	async getDifficultésRéussies({ commit, state }, params) {
 		var difficultéRéussi = new Object();
-		var userToken
 		return valider(
 			commit,
 			getToken({ commit, state })
 				.then(async (token) => {
-					userToken = token;
 					var user = await getUserApi(params.url, token)
 					return user;
 				})
