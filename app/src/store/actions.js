@@ -277,19 +277,18 @@ export default {
 			getToken({ commit, state })
 				.then(async (token) => {
 					userToken = token;
-					var user = await getUserApi(params.url, token)
-					return user;
+					return await getUserApi(params.url, token);
 				})
 				.then(async (user) => {
-					for (var id in user.avancements) {
-						var avancement = user.avancements[id];
+					for (const idAvancement in user.avancements) {
+						var avancement = user.avancements[idAvancement];
 						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
-						for (id in tentatives) {
-							var tentative = tentatives[id];
+						for (var idTentative in tentatives) {
+							var tentative = tentatives[idTentative];
 							confirmationLangageRéussi[tentative.langage] = false;
 						}
-						for (id in tentatives) {
-							tentative = tentatives[id];
+						for (var idTentative in tentatives) {
+							tentative = tentatives[idTentative];
 							if (tentative.réussi) {
 								if (tentative.langage in langageRéussi) {
 									if (confirmationLangageRéussi[tentative.langage] == false) {
