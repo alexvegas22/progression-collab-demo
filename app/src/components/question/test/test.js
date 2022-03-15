@@ -9,15 +9,24 @@ export default {
 		réussi: null,
 		non_réussi: null,
 		sélectionné: false,
+		modifiable: false
+
 	},
 	data() {
 		return {
 			visible: false,
+
 		};
 	},
 	methods: {
 		toggleVisibilite() {
 			this.$emit("select");
+
 		},
+		btnSupprimer() {
+			this.$emit("supprimer");
+		}
+
+
 	},
 };

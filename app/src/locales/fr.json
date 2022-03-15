@@ -118,9 +118,15 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"ajouterTest":"Ajouter un test"
 	},
 
+	"MessageErreursJeuxTest":{
+		"erreurNomVide":"The name of the test cannot be empty",
+		"erreurNomExiste":"This name is already taken"
+	}, 
+	
 	"mode_affichage": "Mode d'affichage par différences",
 	
 	"editeur": {
