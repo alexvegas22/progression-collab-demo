@@ -1,34 +1,32 @@
 <template>
-	<div style="flex-grow: 1;">
+	<div style="flex-grow: 1">
 		<div class="container p-0">
 			<div class="row align-items-end" style="height: 0px">
 				<div class="col-auto" v-if="rôleÉditeur">
 					<div class="form-check form-switch btn-xray">
-						<input class="form-check-input" type="checkbox"
-							   id="btn_xray"
-							   name="btn_xray"
-							   v-model="xray" />
+						<input class="form-check-input" type="checkbox" id="btn_xray" name="btn_xray" v-model="xray" />
 						<label class="form-check-label" for="btn_xray">Tout voir</label>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="container-fluid p-0 h-100">
-				<div class="row align-items-end" style="height: 0px">
-					<div class="col" ></div>
+			<div class="row align-items-end" style="height: 0px">
+				<div class="col"></div>
 				<div class="col-auto" :class="classeIndicateur">●</div>
 			</div>
-			
-      <v-code-mirror présentation_étape="1.1"
-        id="editor"
-        style="height: 100%;"
-        :value="code"
-        :mode="mode"
-        :theme="thème"
-        :xray="xray"
-        @update:value="onChange"
-      />
-		</div>	
+
+			<v-code-mirror
+				présentation_étape="1.1"
+				id="editor"
+				style="height: 100%"
+				:value="code"
+				:mode="mode"
+				:theme="thème"
+				:xray="xray"
+				@update:value="onChange"
+			/>
+		</div>
 	</div>
 </template>
 

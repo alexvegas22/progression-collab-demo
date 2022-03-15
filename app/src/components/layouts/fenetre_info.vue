@@ -9,29 +9,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ['titre','codeTest'],
-  computed: {
-    thèmeSombre(){
-      return this.$store.state.thèmeSombre;
-    }
-  }
-}
-</script>
+<script src="./fenetre_info.js"></script>
 
-<style scoped>
-  .bordure-fenetre {
-    border: 0.063rem solid rgba(0, 0, 0, 0.125);
-    border-top: none;
-  }
-
-  .bordure-titre {
-    border-bottom: 0.063rem solid rgba(0, 0, 0, 0.125);
-    color: rgba(0, 0, 0, 0.5);
-  }
-
-  .ps {
-    height: 100%;
-  }
-</style>
+<style scoped src="./fenetre_info.css"></style>
