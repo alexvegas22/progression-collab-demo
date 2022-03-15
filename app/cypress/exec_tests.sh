@@ -20,7 +20,3 @@ fi
 # Suppression des données de tests
 echo "Suppression des données de tests"
 mysql --default-character-set=utf8 -h $DB_SERVERNAME -uroot -p$DB_PASSWORD $DB_DBNAME < $DIR/./suppr_données_de_test.sql || exit 2
-
-# Suppression de la BD
-#echo Suppression de la BD
-#echo "DROP DATABASE $DB_DBNAME" | mysql -h $DB_SERVERNAME -uroot -p$DB_PASSWORD || exit 2
