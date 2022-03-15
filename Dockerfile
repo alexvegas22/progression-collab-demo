@@ -1,5 +1,6 @@
 #FROM allthings/nightwatch:latest as build-stage
 FROM mycargus/nightwatch:master as build-stage
+FROM blueimp/geckodriver:master as build-stage2
 #FROM seleniumHQ/docker-selenium:master as build-stage2
 USER root
 ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
