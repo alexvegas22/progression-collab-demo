@@ -180,16 +180,6 @@ export default {
 		);
 	},
 
-	async getTentativesRéussites({ commit, state }, params) {
-		return valider(
-			commit,
-			getToken({ commit, state })
-				.then((token) => getAvancementApi(params.url, token))
-				.then((avancement) => {
-
-	
-	}))},
-
 	//getListeAvancements
 	async getAvancement({ commit, state }, params) {
 		return valider(
@@ -291,7 +281,9 @@ export default {
 					return user;
 				})
 				.then(async (user) => {
+					console.log(JSON.stringify(user.avancements));
 					for (var id in user.avancements) {
+						
 						var avancement = user.avancements[id];
 						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
 						for (id in tentatives) {
@@ -446,6 +438,35 @@ export default {
 
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
+	},
+
+	async getDifficultésRéussies({ commit, state }, params) {
+		var difficultéRéussi = new Object();
+		var userToken
+		return valider(
+			commit,
+			getToken({ commit, state })
+				.then(async (token) => {
+					userToken = token;
+					var user = await getUserApi(params.url, token)
+					return user;
+				})
+				.then(async (user) => {
+					for (var id in user.avancements) {
+						var avancement = user.avancements[id];
+						if (avancement.état == 2) {
+							if (avancement.niveua in difficultéRéussi) {
+								difficultéRéussi[avancement.niveua] += 1;
+							}
+							else {
+								difficultéRéussi[avancement.niveua] = 1;
+							}
+						}	
+					}
+					commit("setDifficultésRéussies", difficultéRéussi);
+					return difficultéRéussi;
+				}),
+		);
 	},
 };
 
