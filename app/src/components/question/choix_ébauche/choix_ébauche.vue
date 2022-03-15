@@ -18,20 +18,9 @@
 					</div>
 				</a>
 			</li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Bash</a></li>	
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">C</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">C++</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Clojure</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Go</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Java</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">JavaScript</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Perl</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">PHP</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Powershell</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Python</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Ruby</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">Scala</a></li>
-			<li><a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">TypeScript</a></li>					
+			<li v-for="langage in this.langages" key="langage">
+				<a class="dropdown-item" @click="this.nouvelleÉbauche(langage)">{{langage}}</a>
+			</li>
 		</ul>
 	</div>
 </template>

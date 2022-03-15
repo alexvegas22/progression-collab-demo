@@ -4,8 +4,12 @@ export default {
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
 		},
-		langages() {
+		/*langages() {
 			return Object.keys(this.$store.state.question.ebauches);
+		},*/
+		langages() {
+			const langs = ["Bash","C","C++","Clojure","Go","Java","JavaScript","Perl","PHP","Powershell","Python","Ruby","Scala","TypeScript"];
+			return langs;
 		},
         tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
@@ -19,7 +23,7 @@ export default {
 			}
 		},		
 		nouvelleÉbauche(langage) {
-			this.$store.dispatch("mettreAjourLangageSelectionne", "test");			
+			this.$store.dispatch("mettreAjourLangageSelectionne", langage);			
 		},
 	},
 };
