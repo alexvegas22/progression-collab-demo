@@ -13,7 +13,7 @@ export default {
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
 			thèmeSombre: localStorage.getItem("thème") === "true",
-			modeCréation: localStorage.getItem("modeCréation") === "true",
+			modeCréation: localStorage.getItem("modeCréation") === "false",
 		};
 	},
 	watch: {
@@ -25,6 +25,9 @@ export default {
 		},
 	},
 	computed: {
+		modeÉdition() {
+			return this.$store.state.mode_édition;
+		},
 		code() {
 			return this.$store.state.tentative.code;
 		},
