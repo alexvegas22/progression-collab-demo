@@ -1,31 +1,65 @@
 export default {
 	name: "ChoixÉbauche",
     computed: {
-		langage() {
+		/*langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
-		},
-		/*langages() {
-			return Object.keys(this.$store.state.question.ebauches);
 		},*/
-		langages() {
-			return this.$store.state.listeLangages;
+		langage() {
+			if (this.$store.state.langageSélectionné === null) {
+				var langageDéfaut = this.langageParDéfaut();
+				this.sélectionnerÉbauche(langageDéfaut);
+				return this.$store.state.langageSélectionné;
+			} else {
+				return this.$store.state.langageSélectionné;
+			}
 		},
+
+		langages() {
+			this.créerListeLangages();
+			return this.$store.state.langagesÉbauches;
+		},
+
         tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
     },
     methods: {		
 		reinitialiserCodeEditeur(langage) {
-			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
-			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("réinitialiser", langage);
-			}
-			this.$store.dispatch("réinitialiser", langage);
+			this.$store.dispatch("réinitialiserÉbauche", langage);
 		},		
-		nouvelleÉbauche(lang) {
-			const langage = lang.toLowerCase();
-			this.$store.dispatch("mettreAjourLangageSelectionne", langage);
-			this.reinitialiserCodeEditeur(langage);			
+		sélectionnerÉbauche(langage) {
+			this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);			
+		},
+		changerÉbauche(langage) {
+			this.sélectionnerÉbauche(langage);
+			this.reinitialiserCodeEditeur(langage);
+		},
+		nouveauLangage() {
+			var lang = document.getElementById("nouveauLangage").value;
+			if(!this.estVideOuInvisible(lang)){
+				const langsCourants = this.langages;
+				langsCourants.push(lang);
+				this.$store.dispatch("ajouterLangageÉbauche", langsCourants);
+				document.getElementById("nouveauLangage").value = "";
+			} else {
+				document.getElementById("nouveauLangage").value = "";
+			}
+		},
+		langageParDéfaut() {
+			return Object.keys(this.$store.state.question.ebauches)[0];
+		},
+		estVideOuInvisible(langage){
+			return langage === null || langage.match(/^ *$/) !== null;
+		},
+		créerListeLangages(){
+			var langagesStore = this.$store.state.langagesÉbauches;
+			var listeLangs = Object.keys(this.$store.state.question.ebauches);
+			for(var langage of listeLangs){
+				if(!state.langagesÉbauches.includes(langage)){
+					langagesStore.push(langage);
+				}
+			}
+			this.$store.dispatch("créerListeLangage", langagesStore);
 		},
 	},
 };

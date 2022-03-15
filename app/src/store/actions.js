@@ -172,7 +172,6 @@ export default {
 				.then((token) => getQuestionApi(urlQuestion, token))
 				.then((question) => {
 					commit("setQuestion", question);
-					commit("setListeLangage", question);
 					return question;
 				}),
 		);
@@ -322,8 +321,12 @@ export default {
 		commit("updateCodeTentative", code);
 	},
 
-	mettreAjourLangageSelectionne({ commit }, langage) {
+	mettreAJourLangageSelectionne({ commit }, langage) {
 		commit("updateLangageTentative", langage);
+	},
+
+	mettreAJourLangageSelectionneÉbauche({ commit }, langage) {
+		commit("updateLangageSelectionneÉbauche", langage);
 	},
 
 	réinitialiser({ commit }, langage_p) {
@@ -334,6 +337,30 @@ export default {
 		});
 		
 		commit("updateRetroaction", null);	
+	},
+
+	réinitialiserÉbauche({ commit }, langage_p) {
+		const langage = langage_p;
+		if (!this.state.question.ebauches[langage]){
+			commit("setTentative", {
+				langage: langage,
+				code: "",
+			});
+		} else {
+			commit("setTentative", {
+				langage: langage,
+				code: this.state.question.ebauches[langage].code,
+			});
+		}
+		commit("updateRetroaction", null);
+	},
+
+	ajouterLangageÉbauche({ commit }, langages_p) {
+		commit("setLangagesÉbauches", langages_p);
+	},
+
+	créerListeLangage({ commit }, langages){
+		commit("créerListeLangage", langages);
 	},
 
 	setToken({ commit }, token) {
