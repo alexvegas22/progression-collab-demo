@@ -4,7 +4,7 @@
 			<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
 				{{ $t("jeu_tests.jeuTests") }}
 			</div>
-			<fenetre-info :style="{ height: afficherPanneau ? '350px' : '0' }" class="section-bas">
+			<fenetre-info :style="{ height: panneauAfficher ? '350px' : '0' }" class="section-bas">
 				<div v-for="(test, index) in tests" :key="index">
 					<Test
 						v-bind:test="test"
@@ -47,7 +47,7 @@
 						style="height: 100%"
 						@click="$emit('ajusterPanneau')"
 						class="fa fa btn-affichage"
-						:class="{ 'fa-window-minimize': afficherPanneau, 'fa-window-maximize': !afficherPanneau }"
+						:class="{ 'fa-window-minimize': panneauAfficher, 'fa-window-maximize': !panneauAfficher }"
 					></i>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 			<keep-alive>
 				<component
 					:is="ongletActif"
-					:style="{ height: afficherPanneau ? '350px' : '0' }"
+					:style="{ height: panneauAfficher ? '350px' : '0' }"
 					class="section-bas"
 					:test="test_select"
 					:resultat="resultat_select"

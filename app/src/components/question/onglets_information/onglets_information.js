@@ -10,7 +10,7 @@ export default {
 		SectionErreur,
 		Commentaires,
 	},
-	props: ["afficherPanneau"],
+	props: ["panneauAfficher"],
 	data() {
 		return {
 			sectionVisible: true,

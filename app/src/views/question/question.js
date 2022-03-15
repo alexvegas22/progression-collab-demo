@@ -21,7 +21,7 @@ export default {
 	},
 	computed: {
 		testerPanneau() {
-			return this.afficherPanneau;
+			return this.panneauAfficher;
 		},
 		user() {
 			return this.$store.state.user;
@@ -47,8 +47,8 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
-		afficherPanneau() {
-			return this.$store.state.afficherPanneau;
+		panneauAfficher() {
+			return this.$store.state.panneauAfficher;
 		},
 		énoncéPleinÉcran() {
 			return this.$store.state.énoncéPleinÉcran;
@@ -78,7 +78,7 @@ export default {
 		return {
 			énoncéPleinÉcran: this.énoncéPleinÉcran,
 			énoncéSemiÉcran: this.énoncéSemiÉcran,
-			afficherPanneau: this.afficherPanneau,
+			panneauAfficher: this.panneauAfficher,
 			avancement: this.avancement
 		};
 	},

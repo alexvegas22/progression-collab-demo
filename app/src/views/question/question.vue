@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="col-12">
-            <onglets-information :afficherPanneau="afficherPanneau" @ajuster-panneau="ajusterPanneau" présentation_étape="4"></onglets-information>
+            <onglets-information :panneauAfficher="panneauAfficher" @ajuster-panneau="ajusterPanneau" présentation_étape="4"></onglets-information>
           </div>
         </div>
       </div>

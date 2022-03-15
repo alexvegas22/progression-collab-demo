@@ -84,7 +84,7 @@ export const mutations = {
 				state.énoncéPleinÉcran = false;
 		}
 		else if (type === 'plein') {
-			state.afficherPanneau = false;
+			state.panneauAfficher = false;
 			state.énoncéPleinÉcran = true;
 			state.énoncéSemiÉcran = false;
 		}
@@ -94,20 +94,20 @@ export const mutations = {
 		}
 	},
 	ajusterPanneau(state) {
-		state.afficherPanneau = !state.afficherPanneau;
-		if (state.énoncéPleinÉcran && state.afficherPanneau) {
+		state.panneauAfficher = !state.panneauAfficher;
+		if (state.énoncéPleinÉcran && state.panneauAfficher) {
 			state.énoncéPleinÉcran = false;
 			state.énoncéSemiÉcran = true;
 		}
 	},
 	éditeurPleinÉcran(state) {
-		if (state.énoncéPleinÉcran || state.énoncéSemiÉcran || state.afficherPanneau) {
+		if (state.énoncéPleinÉcran || state.énoncéSemiÉcran || state.panneauAfficher) {
 			state.énoncéSemiÉcran = false;
-			state.afficherPanneau = false;
+			state.panneauAfficher = false;
 		}
 		else {
 			state.énoncéSemiÉcran = true;
-			state.afficherPanneau = true;
+			state.panneauAfficher = true;
 		}
 		state.énoncéPleinÉcran = false;
 	},
