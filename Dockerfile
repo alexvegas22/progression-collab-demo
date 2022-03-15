@@ -1,8 +1,22 @@
-FROM node:lts-alpine as build-stage
+#FROM allthings/nightwatch:latest as build-stage
+FROM mycargus/nightwatch:master as build-stage
+#FROM seleniumHQ/docker-selenium:master as build-stage2
+USER root
 ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
 
+
+
+
+
+
+
+#RUN npm config set unsafe-perm true
+#RUN npm install npm@latest -g
+#https://hub.docker.com/r/allthings/nightwatch/tags
 # install simple http server for serving static content
 RUN npm install -g http-server
+
+
 
 # make the 'app' folder the current working directory
 WORKDIR /app
@@ -21,6 +35,7 @@ COPY app/ .
 # Serveur de développement
 CMD [ "npm", "run", "serve" ]
 
+#RUN npm install npm@latest -g
 #Production  build app for production with minification
 RUN npm run build
 
@@ -34,4 +49,5 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/
 COPY 25-envsubst-vue-app.sh /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/25-envsubst-vue-app.sh
+
 

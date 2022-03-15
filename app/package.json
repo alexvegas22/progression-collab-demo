@@ -21,6 +21,7 @@
 		"codemirror": "^5.65.1",
 		"diff": "^5.0.0",
 		"highlight.js": "^11.3.1",
+		"i": "^0.3.7",
 		"jwt-decode": "^3.1.2",
 		"markdown-it": "^12.0.4",
 		"resize-observer-polyfill": "^1.5.1",
@@ -37,21 +38,24 @@
 		"vuex": "^4.0.0"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "^5.0.1",
-		"@vue/cli-plugin-eslint": "^5.0.1",
-		"@vue/cli-plugin-router": "^5.0.1",
-		"@vue/cli-plugin-unit-jest": "^5.0.1",
 		"@babel/core": "^7.17.5",
 		"@babel/eslint-parser": "^7.17.0",
 		"@babel/preset-env": "^7.16.11",
 		"@testing-library/vue": "^6.4.0",
+		"@vue/cli-plugin-babel": "^5.0.1",
+		"@vue/cli-plugin-eslint": "^5.0.1",
+		"@vue/cli-plugin-router": "^5.0.1",
+		"@vue/cli-plugin-unit-jest": "^5.0.1",
 		"@vue/cli-service": "^5.0.1",
 		"@vue/compiler-sfc": "^3.0.5",
 		"@vue/test-utils": "^2.0.0-rc.17",
 		"babel-jest": "^27.5.1",
+		"chromedriver": "^99.0.0",
 		"eslint": "^8.9.0",
 		"eslint-plugin-smarter-tabs": "^1.2.0",
-		"eslint-plugin-vue": "^8.4.1"
+		"eslint-plugin-vue": "^8.4.1",
+		"geckodriver": "^3.0.1",
+		"nightwatch": "^2.0.10"
 	},
 	"eslintConfig": {
 		"root": true,
