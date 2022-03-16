@@ -355,8 +355,8 @@ export default {
 		commit("updateRetroaction", null);
 	},
 
-	ajouterLangageÉbauche({ commit }, langages_p) {
-		commit("setLangagesÉbauches", langages_p);
+	ajouterLangagesSupportés({ commit }, langages_p) {
+		commit("setLangagesSupportés", langages_p);
 	},
 
 	créerListeLangage({ commit }, langages){
