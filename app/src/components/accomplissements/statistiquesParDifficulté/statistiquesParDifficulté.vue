@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{this.difficultésReussies}}
+        <pie-chart :data="[['base',this.récupererPorcentageReussi(this.difficultésReussies, 'base')]]"></pie-chart>
     </div>
 </template>
 

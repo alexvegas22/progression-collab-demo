@@ -189,7 +189,7 @@ export default {
 				.then((avancement) => {
 					commit("setAvancement", avancement);
 					var tentative;
-					
+
 					if (Object.keys(avancement.sauvegardes).length > 0) {
 						var datePlusRecente = 0;
 						for (var key in avancement.sauvegardes) {
@@ -282,7 +282,7 @@ export default {
 				})
 				.then(async (user) => {
 					for (var id in user.avancements) {
-						
+
 						var avancement = user.avancements[id];
 						var tentatives = (await getAvancementApi(avancement.liens.self, userToken)).tentatives;
 						for (id in tentatives) {
@@ -458,7 +458,7 @@ export default {
 							else {
 								difficultésRéussies[avancement.niveua] = 1;
 							}
-						}	
+						}
 					}
 					commit("setDifficultésRéussies", difficultésRéussies);
 					return difficultésRéussies;

@@ -18,13 +18,15 @@ export default {
 			})
 	},
 	methods: {
-		récupererPorcentageReussi : function (difficultésReussies, difficulté){
+		récupererPorcentageReussi: function (difficultésReussies, niveauDifficulté) {
 			var totalReussi = null;
-			var porcentage = 50.0;
-			/*for(var tentative in tentativesReussi){
-				totalReussi = totalReussi + tentativesReussi[tentative];
+			var porcentage = 0.0;
+			for (var difficulté in difficultésReussies) {
+				totalReussi = totalReussi + difficultésReussies[difficulté];
 			}
-			porcentage = (100 / totalReussi) * tentativesReussi[langage];*/
+			if (niveauDifficulté == "base") {
+				porcentage = (100 / totalReussi) * difficultésReussies[difficulté];
+			}
 			return porcentage.toFixed(2);
 		}
 	}
