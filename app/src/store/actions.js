@@ -445,18 +445,17 @@ export default {
 			commit,
 			getToken({ commit, state })
 				.then(async (token) => {
-					var user = await getUserApi(params.url, token)
-					return user;
+					return await getUserApi(params.url, token);
 				})
 				.then(async (user) => {
-					for (var id in user.avancements) {
-						var avancement = user.avancements[id];
+					for (const idAvancement in user.avancements) {
+						let avancement = user.avancements[idAvancement];
 						if (avancement.état == 2) {
-							if (avancement.niveua in difficultésRéussies) {
-								difficultésRéussies[avancement.niveua] += 1;
+							if (avancement.niveau in difficultésRéussies) {
+								difficultésRéussies[avancement.niveau] += 1;
 							}
 							else {
-								difficultésRéussies[avancement.niveua] = 1;
+								difficultésRéussies[avancement.niveau] = 1;
 							}
 						}
 					}
@@ -466,9 +465,3 @@ export default {
 		);
 	},
 };
-
-
-
-
-
-

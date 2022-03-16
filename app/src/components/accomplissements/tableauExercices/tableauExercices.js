@@ -40,7 +40,6 @@ export default {
 
 					this.uneListeAvancements.push(this.avancements[avancement]);
 				}
-				console.log(this.avancements[avancement].niveau);
 			}
 		},
 		filtreAvancement(){
