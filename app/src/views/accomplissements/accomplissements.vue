@@ -1,9 +1,5 @@
 <template>
     <div>
-        <tableauExercices />
-    </div>
-
-    <div>
         <graphiqueStatistiques />
     </div>
 </template>
