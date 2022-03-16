@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{this.difficultésRéussies}}
+        {{this.difficultésReussies}}
     </div>
 </template>
 

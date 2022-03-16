@@ -81,6 +81,6 @@ export const mutations = {
 		state.tentativesRéussies = tentativesRéussies;
 	},
 	setDifficultésRéussies(state, difficultésRéussies) {
-		state.difficultésRéussies = difficultésRéussies;
+		state.difficultésReussies = difficultésRéussies;
 	},
 };

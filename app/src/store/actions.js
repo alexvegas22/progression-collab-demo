@@ -440,7 +440,7 @@ export default {
 	},
 
 	async getDifficultésRéussies({ commit, state }, params) {
-		var difficultéRéussi = new Object();
+		var difficultésRéussies = new Object();
 		return valider(
 			commit,
 			getToken({ commit, state })
@@ -452,16 +452,16 @@ export default {
 					for (var id in user.avancements) {
 						var avancement = user.avancements[id];
 						if (avancement.état == 2) {
-							if (avancement.niveua in difficultéRéussi) {
-								difficultéRéussi[avancement.niveua] += 1;
+							if (avancement.niveua in difficultésRéussies) {
+								difficultésRéussies[avancement.niveua] += 1;
 							}
 							else {
-								difficultéRéussi[avancement.niveua] = 1;
+								difficultésRéussies[avancement.niveua] = 1;
 							}
 						}	
 					}
-					commit("setDifficultésRéussies", difficultéRéussi);
-					return difficultéRéussi;
+					commit("setDifficultésRéussies", difficultésRéussies);
+					return difficultésRéussies;
 				}),
 		);
 	},
