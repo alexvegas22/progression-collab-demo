@@ -10,7 +10,7 @@
 					:class="{ 'enonce-plein': énoncéPleinÉcran, 'enonce-semi': énoncéSemiÉcran }"
 					:énoncéPleinÉcran="énoncéPleinÉcran"
 					:énoncéSemiÉcran="énoncéSemiÉcran"
-					@ajuster-enonce="ajusterÉnoncé;"
+					@ajuster-enoncer="ajusterÉnoncé"
 					présentation_étape="0"
 				/>
 

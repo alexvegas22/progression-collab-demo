@@ -33,6 +33,4 @@
 </template>
 
 <script src="./avancement.js"></script>
-
 <style src="./avancement.css"></style>
-

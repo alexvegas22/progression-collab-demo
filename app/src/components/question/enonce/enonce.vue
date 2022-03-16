@@ -43,21 +43,21 @@
 		<div class="section-boutton-affichage">
 			<i
 				style="float: right"
-				@click="$emit('ajusterEnonce', 'plein')"
+				@click="$emit('ajusterEnoncer', 'plein')"
 				class="fa fa-arrows-alt btn-affichage"
 				aria-hidden="true"
 				v-if="énoncéSemiÉcran"
 			></i>
 			<i
 				style="float: right"
-				@click="$emit('ajusterEnonce', 'semi')"
+				@click="$emit('ajusterEnoncer', 'semi')"
 				class="fa fa fa-window-maximize btn-affichage"
 				aria-hidden="true"
 				v-else
 			></i>
 			<i
 				style="float: right"
-				@click="$emit('ajusterEnonce', 'cacher')"
+				@click="$emit('ajusterEnoncer', 'cacher')"
 				class="fa fa fa-window-minimize btn-affichage"
 				aria-hidden="true"
 				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
