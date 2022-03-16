@@ -24,9 +24,7 @@ export default {
 			for (var difficulté in difficultésReussies) {
 				totalReussi = totalReussi + difficultésReussies[difficulté];
 			}
-			if (niveauDifficulté == "base") {
-				porcentage = (100 / totalReussi) * difficultésReussies[difficulté];
-			}
+			porcentage = (100 / totalReussi) * difficultésReussies[niveauDifficulté];
 			return porcentage.toFixed(2);
 		}
 	}
