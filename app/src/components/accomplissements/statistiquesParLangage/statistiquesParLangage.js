@@ -25,7 +25,7 @@ export default {
 				totalReussi = totalReussi + tentativesReussi[tentative];
 			}
 			porcentage = (100 / totalReussi) * tentativesReussi[langage];
-			return porcentage.toFixed(2);
+			return porcentage.toFixed(1);
 		}
 	}
 };

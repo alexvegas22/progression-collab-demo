@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <pie-chart :data="[['java',this.récupererPorcentageReussi(this.tentativesRéussies, 'java')], ['python',this.récupererPorcentageReussi(this.tentativesRéussies, 'python')]]"></pie-chart>
+        <pie-chart width="500px" legend="right" suffix="%" :data="[['java',this.récupererPorcentageReussi(this.tentativesRéussies, 'java')], ['python',this.récupererPorcentageReussi(this.tentativesRéussies, 'python')]]"></pie-chart>
     </div>
 </template>
 
