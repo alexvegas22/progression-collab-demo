@@ -59,7 +59,7 @@ export default {
 					langagesStore.push(langage);
 				}
 			}
-			this.$store.dispatch("créerListeLangage", langagesStore);
+			this.$store.dispatch("setLangageDéfaut", langagesStore);
 		},
 	},
 };

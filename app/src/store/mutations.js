@@ -56,9 +56,6 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
-	créerListeLangage(state, langages){
-		state.langagesÉbauches = langages;
-	},
 	setLangagesÉbauches(state, langages) {		
 		state.langagesÉbauches = langages;
 	},
@@ -85,5 +82,10 @@ export const mutations = {
 	},
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
+	},
+	addÉbauche(state, ébauche){
+		alert(Object.keys(state.question.ebauches));
+		state.question.ebauches[ébauche.langage] = ébauche.code+"alooo";
+		alert(state.question.ebauches[ébauche.langage]);
 	},
 };

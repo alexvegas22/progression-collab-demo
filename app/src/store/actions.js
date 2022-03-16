@@ -346,6 +346,10 @@ export default {
 				langage: langage,
 				code: "",
 			});
+			commit("addÉbauche",{
+				langage: langage,
+				code: "",
+			});
 		} else {
 			commit("setTentative", {
 				langage: langage,
@@ -357,10 +361,6 @@ export default {
 
 	ajouterLangageÉbauche({ commit }, langages_p) {
 		commit("setLangagesÉbauches", langages_p);
-	},
-
-	créerListeLangage({ commit }, langages){
-		commit("créerListeLangage", langages);
 	},
 
 	setToken({ commit }, token) {
