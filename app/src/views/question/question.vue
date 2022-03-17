@@ -7,7 +7,7 @@
 		<div class="container-fluid taille-ecran p-0" :class="{ thème_sombre: thèmeSombre }">
 			<div class="d-flex h-100" v-if="avancement">
 				<Enonce
-					:class="{ 'enonce-plein': énoncéPleinÉcran, 'enonce-semi': énoncéSemiÉcran }"
+					:class="{ 'énoncé-plein': énoncéPleinÉcran, 'énoncé-semi': énoncéSemiÉcran }"
 					:énoncéPleinÉcran="énoncéPleinÉcran"
 					:énoncéSemiÉcran="énoncéSemiÉcran"
 					@ajuster-enoncer="ajusterÉnoncé"

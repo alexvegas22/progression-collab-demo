@@ -103,6 +103,12 @@ body {
 	width: 2.5rem;
 	padding: 0.25rem;
 	border-right: 0.06rem solid lightgray;
+	flex: 0 0 auto;
+}
+
+.énoncé-semi .section-boutton-affichage,
+.énoncé-plein .section-boutton-affichage  {
+	width: 4.5rem !important;
 }
 
 .btn-affichage {

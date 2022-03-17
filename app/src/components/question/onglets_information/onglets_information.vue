@@ -36,11 +36,11 @@
 				</div>
 
 				<div
-					@click="changementOnglet('commentaires')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'commentaires', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('rétroactions')"
+					:class="{ onglets: true, sélectionné: ongletActif === 'rétroactions', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.feedback"
 				>
-					{{ $t("onglets_informations.commentaires") }}
+					{{ $t("onglets_informations.rétroactions") }}
 				</div>
 				<div style="margin-left: auto">
 					<i

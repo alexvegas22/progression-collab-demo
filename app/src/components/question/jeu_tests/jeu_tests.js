@@ -5,7 +5,10 @@ import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affic
 export default {
 	components: { Test, ResultatTest, SélecteurModeAffichage },
 	name: "JeuTests",
-	props: ['test', 'resultat'],
+	props: {
+		test: Array,
+		resultats: Array
+	},
 	computed: {
 		tests() {
 			return this.$store.state.question.tests;

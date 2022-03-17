@@ -385,15 +385,6 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
-	setAffichageÉnoncé({ commit }, type) {
-		commit('ajusterÉnoncé', type);
-	},
-	setAffichagePanneau({ commit }) {
-		commit('ajusterPanneau');
-	},
-	setAffichageÉditeur({ commit }) {
-		commit('éditeurPleinÉcran');
-	},
 	setThèmeSombre({ commit }, val) {
 		commit("setThèmeSombre", val);
 	},

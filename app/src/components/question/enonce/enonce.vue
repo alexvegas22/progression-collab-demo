@@ -3,7 +3,7 @@
 		<perfect-scrollbar
 			class="section-énoncé-texte"
 			:class="{
-				'enonce-cacher': !énoncéSemiÉcran && !énoncéPleinÉcran,
+				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
 				'p-3': énoncéSemiÉcran || énoncéPleinÉcran,
 			}"
 		>

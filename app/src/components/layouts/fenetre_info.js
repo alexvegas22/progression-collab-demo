@@ -1,5 +1,7 @@
 export default {
-    props: ['titre', 'codeTest'],
+    props: {
+        titre: String,
+    },
     computed: {
         thèmeSombre() {
             return this.$store.state.thèmeSombre;

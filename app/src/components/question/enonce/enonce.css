@@ -139,19 +139,19 @@ h3 {
 
 .section-énoncé-texte {
 	opacity: 1;
-	flex-grow: 1;
+	flex: 1;
 	box-sizing: border-box;
 }
 
-.enonce-semi {
+.énoncé-semi {
 	width: 550px;
 }
 
-.enonce-plein {
+.énoncé-plein {
 	width: 100%;
 }
 
-.enonce-cacher {
+.énoncé-caché {
 	width: 0;
 }
 
