@@ -13,6 +13,7 @@ import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
 import Vue3Tour from 'vue3-tour';
 import 'vue3-tour/dist/vue3-tour.css';
+import VueMousetrapPlugin from "vue-mousetrap";
 
 const app = createApp(App)
 	.use(router)
@@ -26,7 +27,8 @@ const app = createApp(App)
 	.use(createMetaManager())
 	.use(metaPlugin)
 	.use(Vue3Tour)
-
+	
+	app.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != 'LoginView' ) {
 		router.push({

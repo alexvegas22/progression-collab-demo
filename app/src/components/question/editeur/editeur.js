@@ -6,7 +6,9 @@ export default {
 	components: {
 		VCodeMirror,
 	},
-
+	mounted() {
+		this.$mousetrap.bind('ctrl+enter', this.validerTentative);
+	},
 	data() {
 		return {
 			indicateurSauvegardeEnCours: false,
