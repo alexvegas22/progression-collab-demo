@@ -49,7 +49,7 @@
 					{{ contenu[1].texte }}
 				</h3>
 			</div>
-			<br /><button v-if="modeÉdition" class="btn btn-info" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
+			<br /><button v-if="modeÉdition" class="btn btn-info text-white" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
 
 			<div v-if="aperçu">
 				<div class="row flex-grow-1">
