@@ -19,8 +19,8 @@
 				</a>
 			</li>
 			<li v-for="langage in this.langages" :key="langage">
-				<a 
-					:id="langage" 
+				<a
+					:id="langage"
 					class="dropdown-item"
 					@click="this.changerÉbauche(langage)">{{langage}}</a>
 			</li>
