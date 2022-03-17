@@ -60,8 +60,8 @@
 				</h3>
 			</div>
 
-			<tab-nav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
-				<tab :isSelected="selected === 'Énoncé'">
+			<TabNav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
+				<Tab :isSelected="selected === 'Énoncé'">
 					<div v-if="aperçu">
 						<div class="row flex-grow-1">
 							<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
@@ -80,13 +80,13 @@
 							</v-md-editor>
 						</div>
 					</div>
-				</tab>
+				</Tab>
 
-				<tab :isSelected="selected === 'Rétroactions'">
+				<Tab :isSelected="selected === 'Rétroactions'">
 					<rétroaction></rétroaction>
-				</tab>
+				</Tab>
 
-				<tab :isSelected="selected === 'Description'">
+				<Tab :isSelected="selected === 'Description'">
 
 						<div class="row flex-grow-1">
 							<v-md-editor
@@ -99,8 +99,8 @@
 							</v-md-editor>
 						</div>
 
-				</tab>
-			</tab-nav>
+				</Tab>
+			</TabNav>
 
 			<div>
 				<div class="footer-copyright py-3">
