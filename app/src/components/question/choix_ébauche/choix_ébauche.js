@@ -10,7 +10,6 @@ export default {
 				this.sélectionnerÉbauche(langageDéfaut);
 				return this.$store.state.langageSélectionné;
 			} else {
-				//console.log("Sélectionné: "+this.$store.state.langageSélectionné)
 				return this.$store.state.langageSélectionné;
 			}
 		},
@@ -44,7 +43,7 @@ export default {
 			const nouveauLang = document.getElementById("nouveauLangage").value;
 			var lang = {langageAffiché: nouveauLang, langageYML: nouveauLang};
 
-			if(!this.estVideOuInvisible(lang)) {
+			if(!this.estVideOuInvisible(lang)) {//or != existe
 				const langsCourants = this.langagesSupportés;
 				langsCourants.push(lang);
 				this.$store.dispatch("ajouterLangagesSupportés", langsCourants);
