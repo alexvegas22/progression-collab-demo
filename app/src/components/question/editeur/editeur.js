@@ -103,11 +103,11 @@ export default {
 					this.indicateurModifié = false;
 					if(langagesQuestion.includes(langageSelectionné) && !this.$store.state.sauvegardesTemporaires.has(langageSelectionné)){
 						await this.$store
-					          .dispatch("mettreAjourSauvegarde")
-					          .catch((erreur) => {
-					              console.log("ERREUR de sauvegarde : " + erreur);
-					              this.indicateurModifié = true;
-					          })
+						.dispatch("mettreAjourSauvegarde")
+						.catch((erreur) => {
+							console.log("ERREUR de sauvegarde : " + erreur);
+							this.indicateurModifié = true;
+						})
 					}
 					this.$store.dispatch("sauvegardeTemporaire");
 					this.indicateurSauvegardeEnCours = false;

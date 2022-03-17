@@ -1,9 +1,6 @@
 export default {
 	name: "ChoixÉbauche",
-    computed: {
-		/*langage() {
-			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
-		},*/
+	computed: {
 		langage() {
 			if (this.$store.state.langageSélectionné === null) {
 				var langageDéfaut = this.langageParDéfaut();
@@ -23,7 +20,7 @@ export default {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
     },
-    methods: {		
+	methods: {
 		reinitialiserCodeEditeur(langage) {
 			this.$store.dispatch("réinitialiserÉbauche", langage);
 		},
@@ -62,10 +59,10 @@ export default {
 		},
 		créerListeLangages(){
 			const langagesStore = this.$store.state.langagesÉbauches;
-			const mapLangages = this.getMap();
+			/*const mapLangages = this.getMap();
 			const langagesQuestion = Object.keys(this.$store.state.question.ebauches);
 
-			/*for(var langage of langagesQuestion){
+			for(var langage of langagesQuestion){
 				if(!mapLangages.has(this.getLangage(langage)) && !langagesStore.includes(langage)){
 					langagesStore.push(langage);
 				}
