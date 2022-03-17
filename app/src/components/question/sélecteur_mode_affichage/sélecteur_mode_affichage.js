@@ -11,6 +11,11 @@ export default {
 		},
 	},
 	mounted() {
-		this.$mousetrap.bind('ctrl+shift+d', this.mode_affichage);
-	},	
+		this.$mousetrap.bind("shift+d", this.changerModeAffichage);
+	},
+	methods:{
+		changerModeAffichage(){
+			this.$store.state.mode_affichage = !this.$store.state.mode_affichage;
+		}
+	}
 };
