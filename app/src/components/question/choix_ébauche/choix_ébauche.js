@@ -22,9 +22,6 @@ export default {
     },
     methods: {		
 		changerÉbauche(langage) {
-			this.sélectionnerÉbauche(langage);
-		},
-		sélectionnerÉbauche(langage) {
 			this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);
 			this.reinitialiserCodeEditeur(langage);
 		},
