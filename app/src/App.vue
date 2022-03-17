@@ -36,7 +36,7 @@
 		<ul class="dropdown-menu" aria-labelledby="menu_historique">
 			<li class="btnDMM">
 				<a href="/accomplissements">
-					<button type="button" class="btn btnDMMB" style="color:white;">Accomplissements</button>
+					<button type="button" class="btn btnDMMB" style="color:white;">{{$t('menu.accomplissement')}}</button>
 				</a>
 			</li>
 			<li class="btnDMM">
