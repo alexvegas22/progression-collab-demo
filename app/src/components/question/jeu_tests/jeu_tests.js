@@ -32,6 +32,9 @@ export default {
 				: null;
 		},
 	},
+	mounted() {
+		this.$mousetrap.bind('ctrl+alt+t', this.basculer_test)
+	},
 	data() {
 		return {
 			index_select: 0,
@@ -40,6 +43,12 @@ export default {
 	methods: {
 		select: function (index) {
 			this.index_select = index;
+		},
+		basculer_test(){
+			this.index_select++;
+			if(this.index_select == this.$store.state.question.tests.length) {
+				this.index_select = 0;
+			}
 		},
 	},
 };
