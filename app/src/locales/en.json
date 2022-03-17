@@ -12,9 +12,9 @@
 
 	"accomplissements": {
 		"titrePage": "My Accomplishments",
-		"titreQuestion": "Exercise title",
+		"titreQuestion": "Exercises title",
 		"difficulté": "Difficulty",
-		"dateDernièreTentative": "Last attempt date",
+		"dateDernièreTentative": "Date of last attempt",
 		"dateRéussite": "Date of success"
 	},
 
