@@ -62,3 +62,54 @@
 		fill: rgb(0, 238, 255);
 	}
 }
+
+/* ------------------------------ Media Queries ---------------------------------*/
+
+/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
+@media (max-width: 36rem) {
+	.svg_ampoule{
+		width: 2rem;
+		height: 2rem;
+	}
+	
+}
+
+
+/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.svg_ampoule{
+		width: 2.15rem;
+		height: 2.15rem;
+	}
+	
+}
+
+
+/* ------------- 48rem - 62rem (768px - 992px) ---------------- */
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.svg_ampoule{
+		width: 2.25rem;
+		height: 2.25rem;
+	}
+	
+}
+
+
+/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.svg_ampoule{
+		width: 2.4rem;
+		height: 2.4rem;
+	}
+	
+}
+
+
+/* ---------- 75rem et + (1200px et +) ---------------- */
+@media (min-width: 75rem){
+	.svg_ampoule{
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	
+}

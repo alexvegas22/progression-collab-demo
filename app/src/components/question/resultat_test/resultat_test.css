@@ -42,9 +42,63 @@ pre {
 
 .resultat-test pre {
 	height: 100%;
+	overflow: visible;
 }
 
 .resultat-test pre p {
 	height: inherit;
 	white-space: break-spaces;	
+}
+
+/* ------------------------------ Media Queries ---------------------------------*/
+
+/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
+@media (max-width: 36rem) {
+	.titre_résultat_test{
+		font-size: 0.75rem;
+		
+	}
+    .texte_résultat_test{
+        font-size: 0.72rem;
+    }
+	
+}
+
+
+/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.titre_résultat_test{
+		font-size: 0.85rem;
+		
+	}
+    .texte_résultat_test{
+        font-size: 0.77rem;
+    }
+	
+}
+
+
+/* ------------- 48rem - 62rem (768px - 992px) ---------------- */
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.titre_résultat_test{
+		font-size: 1rem;
+		
+	}
+    .texte_résultat_test{
+        font-size: 0.77rem;
+    }
+	
+}
+
+
+/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.titre_résultat_test{
+		font-size: 1.1rem;
+		
+	}
+    .texte_résultat_test{
+        font-size: 0.80rem;
+    }
+	
 }

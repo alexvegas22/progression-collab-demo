@@ -20,6 +20,7 @@
 				présentation_étape="1.1"
 				id="editor"
 				style="height: 100%"
+				class="taille_texte"
 				:value="code"
 				:mode="mode"
 				:theme="thème"

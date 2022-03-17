@@ -24,14 +24,14 @@
 			<div class="section-onglets">
 				<div
 					@click="changementOnglet('resultat-test')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'resultat-test', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'resultat-test', thème_sombre: thèmeSombre }"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 				</div>
 
 				<div
 					@click="changementOnglet('section-erreur')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'section-erreur', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'section-erreur', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.sortie_erreur"
 				>
 					{{ $t("onglets_informations.erreurs") }}
@@ -39,7 +39,7 @@
 
 				<div
 					@click="changementOnglet('commentaires')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'commentaires', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'commentaires', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.feedback"
 				>
 					{{ $t("onglets_informations.commentaires") }}

@@ -1,8 +1,7 @@
 <template>
 	<div class="dropdown">
 		<div
-			class="dropdown-toggle"
-			style="display: inline-block"
+			class="dropdown-toggle d-inline-block"
 			type="button"
 			id="menu_historique"
 			data-bs-toggle="dropdown"

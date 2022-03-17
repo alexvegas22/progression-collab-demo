@@ -9,3 +9,4 @@
 </template>
 
 <script src="./jeu_tests.js"></script>
+<style src="./jeu_tests.css"></style>

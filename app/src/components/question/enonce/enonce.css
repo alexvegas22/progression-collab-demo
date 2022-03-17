@@ -14,10 +14,11 @@
 
 .crochet {
 	position: relative;
-	left: -40px;
-	top: -38px;
-	height: 0px;
+	left: -2.5rem;
+	top: -2.188rem;
+	height: 0;
 	z-index: 0;
+	
 }
 
 h3 {
@@ -25,18 +26,19 @@ h3 {
 	font-weight: bold;
 }
 
-.encadré {
-	padding-top: 5px;
+.encadré{
+	padding-top:0.313rem;
 }
 
 .état {
 	position: relative;
-	left: -30px;
-	top: 20px;
+	left: -1.875rem;
+	top: 1.25rem;
 	font-size: 2em;
 	visibility: hidden;
 	color: green
 }
+
 
 .état.réussi {
 	visibility: visible;
@@ -44,17 +46,151 @@ h3 {
 
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size: 15px;
+	font-size:  0.94rem;
 	background-color: #0dcaf0;
 	position: relative;
-	top: -20px
+	top: -1.25rem;
 }
+
+
+/* ------------------------------ Media Queries ---------------------------------*/
+
+/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
+@media (max-width: 36rem) {
+	.badge.niveau{
+
+		font-size: 0.75rem;
+	}
+	p.texte_énoncé{
+		font-size: 0.95rem;
+	}
+	p.footer-copyright{
+		font-size: 0.8rem;
+	}
+	.crochet{
+		left: -2.5rem;
+		top: -2.188rem;
+		font-size: 1.5em;
+	}
+	.titre{
+		font-size: 1.5em;
+	}
+	h3{
+		font-size: 1rem;
+	}
+}
+
+
+
+/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.badge.niveau{
+
+		font-size: 0.78rem;
+	}
+	p.texte_énoncé{
+		font-size: 1.04rem;
+	}
+	p.footer-copyright{
+		font-size: 0.87rem;
+	}
+	.crochet{
+		left: -2.5rem;
+		top: -2.188rem;
+		font-size: 1.6em;
+	}
+	.titre{
+		font-size: 1.6em;
+	}
+	h3{
+		font-size: 1.09rem;
+	}
+}
+
+
+/* ------------- 48rem - 62rem (768px - 992px) ---------------- */
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.badge.niveau{
+
+		font-size: 0.82rem;
+	}
+	p.texte_énoncé{
+		font-size: 1.09rem;
+	}
+	p.footer-copyright{
+		font-size: 0.97rem;
+	}
+	.crochet{
+		left: -2.5rem;
+		top: -2.188rem;
+		font-size: 1.6em;
+	}
+	.titre{
+		font-size: 1.8em;
+	}
+	h3{
+		font-size: 1.14rem;
+	}
+}
+
+
+/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.badge.niveau{
+
+		font-size: 0.87rem;
+	}
+	p.texte_énoncé{
+		font-size: 1.1rem;
+	}
+	p.footer-copyright{
+		font-size: 0.99rem;
+	}
+	.crochet{
+		left: -2.5rem;
+		top: -2.188rem;
+		font-size: 1.6em;
+	}
+	.titre{
+		font-size: 1.9em;
+	}
+	h3{
+		font-size: 1.16rem;
+	}
+}
+
+
+/* ---------- 75rem et + (1200px et +) ---------------- */
+@media (min-width: 75rem){
+	.badge.niveau{
+
+		font-size: 0.94rem;
+	}
+	p.texte_énoncé{
+		font-size: 1.2rem;
+	}
+	p.footer-copyright{
+		font-size: 1rem;
+	}
+	.crochet{
+		left: -2.5rem;
+		top: -2.188rem;
+		font-size: 1.6em;
+	}
+	.titre{
+		font-size: 2em;
+	}
+	h3{
+		font-size: 1em;
+	}
+}
+
 
 /* animations */
 
 @-webkit-keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 3.125rem
 	}
 
 	100% {
@@ -64,7 +200,7 @@ h3 {
 
 @-ms-keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 3.125rem
 	}
 
 	100% {
@@ -74,7 +210,7 @@ h3 {
 
 @keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 3.125rem
 	}
 
 	100% {
@@ -89,7 +225,7 @@ h3 {
 	}
 
 	100% {
-		r: 32px
+		r: 2rem
 	}
 }
 
@@ -99,7 +235,7 @@ h3 {
 	}
 
 	100% {
-		r: 32px
+		r: 2rem
 	}
 }
 
@@ -109,7 +245,7 @@ h3 {
 	}
 
 	100% {
-		r: 32px
+		r: 2rem
 	}
 }
 
@@ -149,7 +285,6 @@ h3 {
 
 .section-boutton-affichage {
 	padding: 0.25rem;
-	border-bottom: 0.06rem solid lightgray;
 	position: sticky;
 }
 

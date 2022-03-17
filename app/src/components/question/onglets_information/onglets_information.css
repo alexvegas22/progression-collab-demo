@@ -13,7 +13,7 @@
 	position: relative;
 }
 
-.sélectionné {
+.onglet-sélectionné {
 	border-bottom: none;
 	background-color: white;
 	top: 0.05rem;

@@ -31,9 +31,12 @@
 					<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
 				</h3>
 			</div>
-
-			<div class="row flex-grow-1">
-				<p présentation_étape="0.3" class="lead" v-html="question.énoncé"></p>
+			
+			<div class="row flex-grow-1" >
+				<p  présentation_étape="0.3"
+										class="lead texte_énoncé"
+					v-html="question.énoncé">
+				</p>
 			</div>
 
 			<div>
