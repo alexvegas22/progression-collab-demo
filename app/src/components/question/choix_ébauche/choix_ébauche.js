@@ -65,11 +65,11 @@ export default {
 			const mapLangages = this.getMap();
 			const langagesQuestion = Object.keys(this.$store.state.question.ebauches);
 
-			for(var ele of langagesQuestion){
-				if(!mapLangages.has(ele)){
-					langagesStore.push(ele);
+			/*for(var langage of langagesQuestion){
+				if(!mapLangages.has(this.getLangage(langage)) && !langagesStore.includes(langage)){
+					langagesStore.push(langage);
 				}
-			}
+			}*/
 			this.$store.dispatch("setLangageDéfaut", langagesStore);
 		},
 		getLangage(langage){

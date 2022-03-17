@@ -344,7 +344,7 @@ export default {
 			langage: langage,
 			code: this.state.sauvegardesTemporaires.get(langage),
 		});
-		if(!this.state.sauvegardesTemporaires.has(langage)){
+		if(!Object.keys(this.state.question.ebauches).includes(langage)){
 			commit("addÉbauche",{
 				langage: langage,
 				code: this.state.sauvegardesTemporaires.get(langage),
