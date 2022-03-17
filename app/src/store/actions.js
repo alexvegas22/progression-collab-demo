@@ -372,6 +372,10 @@ export default {
 			code: this.state.tentative.code,
 		});
 	},
+	
+	ajouterLangagesSupportés({ commit }, langages_p) {
+		commit("setLangagesSupportés", langages_p);
+	},
 
 	ajouterLangageÉbauche({ commit }, langages_p) {
 		commit("setLangagesÉbauches", langages_p);
