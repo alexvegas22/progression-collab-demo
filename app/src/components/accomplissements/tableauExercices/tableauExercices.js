@@ -4,60 +4,60 @@ const API_URL = process.env.VUE_APP_API_URL;
 export default {
 	name: "TableauExercices",
 
-	data(){
+	data() {
 
-			return{
-	
-				uneListeAvancements: [],
-	
-				inputFilter: ''
-	
-			}
-	
-		},
+		return {
+
+			uneListeAvancements: [],
+
+			inputFilter: ''
+
+		}
+
+	},
 
 	computed: {
 
-		avancements(){
+		avancements() {
 			return this.$store.state.user.avancements;
 		},
-		listeAvancements(){
+		listeAvancements() {
 
-			for(var avancement in this.avancements){
-				
-				if (this.avancements[avancement].niveau == "base"){
+			for (var avancement in this.avancements) {
+
+				if (this.avancements[avancement].niveau == "base") {
 
 					this.avancements[avancement].niveau = 1;
-				} else if (this.avancements[avancement].niveau == "intermédiaire"){
+				} else if (this.avancements[avancement].niveau == "intermédiaire") {
 
 					this.avancements[avancement].niveau = 2;
-				} else if (this.avancements[avancement].niveau == "défi"){
+				} else if (this.avancements[avancement].niveau == "défi") {
 
 					this.avancements[avancement].niveau = 3;
 				}
 
-				if (this.avancements[avancement].titre != ""){
+				if (this.avancements[avancement].titre != "") {
 
 					this.uneListeAvancements.push(this.avancements[avancement]);
 				}
 			}
 		},
-		filtreAvancement(){
+		filtreAvancement() {
 
 			this.listeAvancements;
 
-            return this.uneListeAvancements.filter((avancement) => {
+			return this.uneListeAvancements.filter((avancement) => {
 
-                return avancement.titre.toLowerCase().includes(this.inputFilter.toLowerCase());
+				return avancement.titre.toLowerCase().includes(this.inputFilter.toLowerCase());
 
-            });
+			});
 
-        }
+		}
 	},
 
 	methods: {
 		timestampVersDate: function (timestamp) {
-			if (timestamp == 0){
+			if (timestamp == 0) {
 				return "Pas encore réussi"
 			}
 			return new Date(timestamp * 1000).toLocaleString("fr-CA");
@@ -91,12 +91,12 @@ export default {
 			}
 			return niveauString;
 		},
-		allerVersQuestion: function (lien){
+		allerVersQuestion: function (lien) {
 
 			var avancementDivise = lien.split("/");
 			var uri = avancementDivise[5];
 
-			window.location.href = API_URL.replace(":9",":8") + "/question?uri=" + uri;
+			window.location.href = API_URL.replace(":9", ":8") + "/question?uri=" + uri;
 		},
 		redirigerVersLogin(ref) {
 			this.$router.push({
