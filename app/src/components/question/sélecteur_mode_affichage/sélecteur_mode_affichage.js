@@ -10,4 +10,7 @@ export default {
 			},
 		},
 	},
+	mounted() {
+		this.$mousetrap.bind('shift+d', this.mode_affichage);
+	},	
 };
