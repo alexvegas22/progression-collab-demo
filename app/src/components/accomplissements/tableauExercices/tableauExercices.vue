@@ -12,8 +12,8 @@
                 <template #head>
                     <V-th id="tglTitre" class="!triTh" sortKey="titre" @click="styleTh('tglTitre')">{{ $t('accomplissements.titreQuestion') }}</V-th>
                     <V-th id="tglNiveau" class="!triTh" sortKey="niveau" @click="styleTh('tglNiveau')">{{ $t('accomplissements.difficulté') }}</V-th>
-                    <V-th id="tglDateM" class="!triTh" sortKey="date_modification" @click="styleTh('tglDateM')">{{ $t('accomplissements.dateDernièreTentative') }}</V-th>
-                    <V-th id="tglDateR" class="!triTh" sortKey="date_réussite" @click="styleTh('tglDateR')">{{ $t('accomplissements.dateRéussite') }}</V-th>
+                    <V-th id="tglDateM" class="!triTh" sortKey="date_modification" @click="styleTh('tglDateM')">{{ $t('accomplissements.dateDeDernièreTentative') }}</V-th>
+                    <V-th id="tglDateR" class="!triTh" sortKey="date_réussite" @click="styleTh('tglDateR')">{{ $t('accomplissements.dateDeRéussite') }}</V-th>
                 </template>
                 <template #body="{ rows }">
                     <tr @click="allerVersQuestion(avancement.liens.self)" v-for="avancement in rows" :key="avancement.titre" class="lienQuestion">

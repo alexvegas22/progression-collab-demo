@@ -14,8 +14,8 @@
 		"titrePage": "My Accomplishments",
 		"titreQuestion": "Exercises title",
 		"difficulté": "Difficulty",
-		"dateDernièreTentative": "Date of last attempt",
-		"dateRéussite": "Date of success"
+		"dateDeDernièreTentative": "Date of last attempt",
+		"dateDeRéussite": "Date of success"
 	},
 
 	"login": {

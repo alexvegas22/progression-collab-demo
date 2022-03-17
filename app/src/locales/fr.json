@@ -14,8 +14,8 @@
 		"titrePage": "Mes Accomplissements",
 		"titreQuestion": "Titre de l'exercice",
 		"difficulté": "Difficulté",
-		"dateDernièreTentative": "Date de dernière tentative",
-		"dateRéussite": "Date de réussite"
+		"dateDeDernièreTentative": "Date de dernière tentative",
+		"dateDeRéussite": "Date de réussite"
 	},
 
 	"login": {
