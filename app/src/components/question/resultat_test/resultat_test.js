@@ -1,4 +1,5 @@
 import parseMD from "@/util/parse";
+
 const diff = require("diff");
 
 const différence = function (orig = "", modif = "", mode_affichage) {
@@ -34,6 +35,7 @@ export default {
 	name: "ResultatTest",
 	data() {
 		return {
+			selected: 'Tests',
 			sortie_observée: null,
 			sortie_attendue: null,
 			params: null,

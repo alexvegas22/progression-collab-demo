@@ -21,7 +21,6 @@
 		</div>
 
 		<div class="row">
-			
 			<div class="bg-light col card device-card">
 				<div class="card-body" présentation_étape="3.2">
 					<h5 class="text-black-50 font-weight-bold text-left card-title">
@@ -45,11 +44,11 @@
 					</pre>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="row">
-			<div v-show="resultat.sortie_erreur" class="bg-light col card device-card" v-if="resultat">>
+			<div v-show="resultat.sortie_erreur" class="bg-light col card device-card" v-if="resultat">
+				>
 				<div class="card-body">
 					<h5 class="text-danger font-weight-bold text-left card-title">
 						{{ $t("resultat_test.sortieErreur") }}
@@ -58,18 +57,18 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div v-show="resultat.feedback" class="bg-light col card device-card" v-if="resultat">
 				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-center card-title">{{ $t("resultat_test.rétroaction") }}</h5>
+					<h5 class="text-black-50 font-weight-bold text-center card-title">
+						{{ $t("resultat_test.rétroaction") }}
+					</h5>
 					<p class="card-text" v-html="feedback"></p>
 				</div>
 			</div>
 		</div>
-		
 	</div>
-	
 </template>
 
 <script src="./resultat_test.js"></script>
