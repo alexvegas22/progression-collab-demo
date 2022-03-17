@@ -20,11 +20,11 @@ export default {
 	components: {
 		OngletsInformation,
 		Enonce,
+		Avancement,
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
-		Avancement
 	},
 	computed: {
 		testerPanneau() {

@@ -11,10 +11,10 @@
 		>
 			{{ this.langage }}
 		</div>
-		<ul class="dropdown-menu" aria-labelledby="langage-dropdown" :class="{ thème_sombre: thèmeSombre }">
+		<ul id="langage-dropdown" class="dropdown-menu" aria-labelledby="langage-dropdown" :class="{ thème_sombre: thèmeSombre }">
 			<li class="dropdown-item dropdown-submenu" v-for="langage in langages" :key="langage">
 				<a>{{ langage }}</a>
-				<div class="dropdown-menu" :class="{ thème_sombre: thèmeSombre }" style="max-height: ">
+				<div class="dropdown-menu langage-submenu" :class="{ thème_sombre: thèmeSombre }">
 					<button présentation_étape="4.1" class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">
 						{{ $t("avancement.ébauche_initiale") }}
 					</button>

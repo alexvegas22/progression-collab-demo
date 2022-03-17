@@ -80,4 +80,4 @@ export const mutations = {
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
-}
+};

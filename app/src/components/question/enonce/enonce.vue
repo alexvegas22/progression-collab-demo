@@ -1,10 +1,10 @@
 <template>
-	<div class="barre-enonce">
+	<div class="barre-énoncé">
 		<perfect-scrollbar
 			class="section-énoncé-texte"
 			:class="{
 				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
-				'p-3': énoncéSemiÉcran || énoncéPleinÉcran,
+				'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
 			}"
 		>
 			<div v-if="état_réussi" class="crochet icon icon--order-success svg">

@@ -52,6 +52,7 @@
 	justify-content: right;
 	pointer-events: none;
 	padding-top: 60px;
+	align-items: flex-start;
 }
 
 @keyframes blink {
