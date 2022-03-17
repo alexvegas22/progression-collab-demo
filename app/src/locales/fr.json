@@ -10,6 +10,11 @@
 		"déconnexion": "Déconnexion"
 	},
 
+	"accomplissements": {
+		"titrePage": "Accomplissements",
+		"titreGraphParLangage": "Statistiques des exercices réussis par langage"
+	},
+
 	"login": {
 		"courriel": "Nom d'utilisateur",
 		"motDePasse": "Mot de passe",

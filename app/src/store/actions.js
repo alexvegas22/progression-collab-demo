@@ -18,7 +18,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
-const valider = async function(promesse){
+const valider = async function (promesse) {
 	return validateur(promesse)
 }
 
@@ -46,7 +46,7 @@ async function rafraîchirToken() {
 				sauvegarderToken(token);
 				return token;
 			})
-			.catch( (err) => {
+			.catch((err) => {
 				sauvegarderToken(null);
 				throw err;
 			});
@@ -75,7 +75,7 @@ function sauvegarderToken(token) {
 	else sessionStorage.setItem("token", token);
 }
 
-function générerAuthKey(user, token, expiration=0) {
+function générerAuthKey(user, token, expiration = 0) {
 	const clé_id = "LTIauthKey_" + randomID();
 
 	return {
@@ -93,16 +93,16 @@ function randomID() {
 }
 
 export default {
-	async setValidateur( v ){
+	async setValidateur(v) {
 		validateur = v;
 	},
-	
+
 	async setErreurs({ commit }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
 
-	async getConfigServeur({commit }, urlConfig){
-		return valider( async function() {
+	async getConfigServeur({ commit }, urlConfig) {
+		return valider(async function () {
 			const config = await getConfigServeurApi(urlConfig);
 
 			commit("setConfigServeur", config);
@@ -119,7 +119,7 @@ export default {
 		const domaine = params.domaine;
 		commit("updateAuthentificationEnCours", true);
 
-		return valider( async function() {
+		return valider(async function () {
 			const token = await authentifierApi(urlAuth, username, password, domaine)
 
 			commit("setUsername", username);
@@ -128,12 +128,12 @@ export default {
 			sessionStorage.setItem("token", token);
 
 			// Obtenir l'utilisateur
-			const user = await getUserApi( process.env.VUE_APP_API_URL + "/user/" + username, token);
+			const user = await getUserApi(process.env.VUE_APP_API_URL + "/user/" + username, token);
 
 			// Obtenir la clé d'authentification
-			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
 
-			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
+			const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
 
 			const storage = persister ? localStorage : sessionStorage;
 			storage.setItem("username", username);
@@ -145,12 +145,12 @@ export default {
 		);
 	},
 
-	async setAuthentificationEnCours({ commit }, état){
+	async setAuthentificationEnCours({ commit }, état) {
 		commit("updateAuthentificationEnCours", état);
 	},
-	
+
 	async getUser({ commit, state }, urlUser) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const user = await getUserApi(urlUser, token);
 
@@ -161,7 +161,7 @@ export default {
 	},
 
 	async getQuestion({ commit, state }, urlQuestion) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const question = await getQuestionApi(urlQuestion, token);
 
@@ -173,7 +173,7 @@ export default {
 
 	async getAvancement({ commit, state }, params) {
 		return valider(
-			async function() {
+			async function () {
 				const token = await getToken({ commit, state });
 				const avancement = await getAvancementApi(params.url, token);
 
@@ -210,7 +210,7 @@ export default {
 	},
 
 	async postAvancement({ commit, state }, params) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const avancement = await postAvancementApi(params, token);
 
@@ -244,8 +244,47 @@ export default {
 		);
 	},
 
+	async getTentativesRéussies({ commit, state }, params) {
+		var langageRéussi = new Object();
+		var confirmationLangageRéussi = new Object();
+
+		return valider(async function () {
+			const token = await getToken({ commit, state })
+			const user = await getUserApi(params.url, token)
+
+			for (const idAvancement in user.avancements) {
+				const avancement = user.avancements[idAvancement];
+				const tentatives = (await getAvancementApi(avancement.liens.self, token)).tentatives;
+				for (const idTentative in tentatives) {
+					const tentative = tentatives[idTentative];
+					confirmationLangageRéussi[tentative.langage] = false;
+				}
+				for (const idTentative in tentatives) {
+					const tentative = tentatives[idTentative];
+					if (tentative.réussi) {
+						if (tentative.langage in langageRéussi) {
+							if (confirmationLangageRéussi[tentative.langage] == false) {
+								langageRéussi[tentative.langage] += 1;
+								confirmationLangageRéussi[tentative.langage] = true;
+							}
+						}
+						else {
+							if (confirmationLangageRéussi[tentative.langage] == false) {
+								langageRéussi[tentative.langage] = 1;
+								confirmationLangageRéussi[tentative.langage] = true;
+							}
+						}
+					}
+				}
+			}
+			commit("setTentativesRéussies", langageRéussi);
+			return langageRéussi;
+		}()
+		);
+	},
+
 	async getTentative({ commit, state }, urlTentative) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const tentative = await getTentativeApi(urlTentative, token);
 
@@ -262,8 +301,8 @@ export default {
 		params.urlTentative = state.avancement.liens.tentatives;
 		commit("updateRetroaction", null);
 
-		return valider( async function() {
-			try{
+		return valider(async function () {
+			try {
 				const token = await getToken({ commit, state });
 				const retroactionTentative = await postTentative(params, token);
 
@@ -275,7 +314,7 @@ export default {
 					state.avancement.état = retroactionTentative.réussi ? 2 : 1;
 				}
 
-				if( state.cb_succes && state.cb_succes_params ) {
+				if (state.cb_succes && state.cb_succes_params) {
 					callbackGrade(state.cb_succes, {
 						...state.cb_succes_params,
 						uri: state.uri,
@@ -284,11 +323,11 @@ export default {
 				}
 				return retroactionTentative;
 			}
-			catch(e) {
+			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
-				throw(e);
+				throw (e);
 			}
-			
+
 		}()
 		);
 	},
@@ -300,7 +339,7 @@ export default {
 			langage: state.tentative.langage,
 		};
 
-		return valider( async function() {
+		return valider(async function () {
 
 			const token = await getToken({ commit, state });
 			const sauvegarde = await postSauvegardeApi(params, token);
@@ -382,7 +421,7 @@ export default {
 		commit("setUsername", username);
 	},
 
-	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler ){
+	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
 

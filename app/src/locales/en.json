@@ -10,6 +10,11 @@
 		"déconnexion": "Logout"
 	},
 
+	"accomplissements": {
+		"titrePage": "Achievements",
+		"titreGraphParLangage": "Statistics of successful exercises by language"
+	},
+
 	"login": {
 		"courriel": "Username",
 		"motDePasse": "Password",
