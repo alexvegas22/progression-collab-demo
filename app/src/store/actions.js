@@ -21,7 +21,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
-const valider = async function(promesse){
+const valider = async function (promesse) {
 	return validateur(promesse)
 }
 
@@ -104,8 +104,8 @@ export default {
 		commit("setErreurs", erreurs);
 	},
 
-	async getConfigServeur({commit }, urlConfig){
-		return valider( async function() {
+	async getConfigServeur({ commit }, urlConfig) {
+		return valider(async function () {
 			const config = await getConfigServeurApi(urlConfig);
 
 			commit("setConfigServeur", config);
@@ -122,7 +122,7 @@ export default {
 		const domaine = params.domaine;
 		commit("updateAuthentificationEnCours", true);
 
-		return valider( async function() {
+		return valider(async function () {
 			const token = await authentifierApi(urlAuth, username, password, domaine)
 
 			commit("setUsername", username);
@@ -131,7 +131,7 @@ export default {
 			sessionStorage.setItem("token", token);
 
 			// Obtenir l'utilisateur
-			const user = await getUserApi( process.env.VUE_APP_API_URL + "/user/" + username, token);
+			const user = await getUserApi(process.env.VUE_APP_API_URL + "/user/" + username, token);
 
 			// Obtenir la clé d'authentification
 			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
@@ -153,7 +153,7 @@ export default {
 	},
 
 	async getUser({ commit, state }, urlUser) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const user = await getUserApi(urlUser, token);
 
@@ -164,7 +164,7 @@ export default {
 	},
 
 	async getQuestion({ commit, state }, urlQuestion) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const question = await getQuestionApi(urlQuestion, token);
 
@@ -174,20 +174,10 @@ export default {
 		);
 	},
 
-	async getTentativesRéussites({ commit, state }, params) {
-		return valider(
-			commit,
-			getToken({ commit, state })
-				.then((token) => getAvancementApi(params.url, token))
-				.then((avancement) => {
-
-	
-	}))},
-
 	//getListeAvancements
 	async getAvancement({ commit, state }, params) {
 		return valider(
-			async function() {
+			async function () {
 				const token = await getToken({ commit, state });
 				const avancement = await getAvancementApi(params.url, token);
 
@@ -224,7 +214,7 @@ export default {
 	},
 
 	async postAvancement({ commit, state }, params) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const avancement = await postAvancementApi(params, token);
 
@@ -259,7 +249,7 @@ export default {
 	},
 
 	async getTentative({ commit, state }, urlTentative) {
-		return valider( async function() {
+		return valider(async function () {
 			const token = await getToken({ commit, state });
 			const tentative = await getTentativeApi(urlTentative, token);
 
@@ -320,8 +310,8 @@ export default {
 		params.urlTentative = state.avancement.liens.tentatives;
 		commit("updateRetroaction", null);
 
-		return valider( async function() {
-			try{
+		return valider(async function () {
+			try {
 				const token = await getToken({ commit, state });
 				const retroactionTentative = await postTentative(params, token);
 
@@ -333,7 +323,7 @@ export default {
 					state.avancement.état = retroactionTentative.réussi ? 2 : 1;
 				}
 
-				if( state.cb_succes && state.cb_succes_params ) {
+				if (state.cb_succes && state.cb_succes_params) {
 					callbackGrade(state.cb_succes, {
 						...state.cb_succes_params,
 						uri: state.uri,
@@ -342,11 +332,11 @@ export default {
 				}
 				return retroactionTentative;
 			}
-			catch(e) {
+			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
-				throw(e);
+				throw (e);
 			}
-			
+
 		}()
 		);
 	},
@@ -358,7 +348,7 @@ export default {
 			langage: state.tentative.langage,
 		};
 
-		return valider( async function() {
+		return valider(async function () {
 
 			const token = await getToken({ commit, state });
 			const sauvegarde = await postSauvegardeApi(params, token);
