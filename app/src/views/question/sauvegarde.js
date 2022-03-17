@@ -34,7 +34,7 @@ export const sauvegarde = {
                 if(item === "ébauches"){
                     texte += this.formaterÉbauche(item,question.ebauches);
                 }else if(item === "tests"){
-                    texte = this.formaterTests(texte,question);
+                    texte = this.formaterTests(texte,question.tests);
                 }else {
                     texte += champs.get(item) + donnéesQuestion.get(item) +"\n\n" ;
                 }
@@ -49,7 +49,7 @@ export const sauvegarde = {
 
     formaterTests(chaîne,données){
         chaîne +="\nTests:\n";
-        for(var test of données.tests){
+        for(var test of données){
             chaîne += "    - nom: "+test.nom +"\n      "+
                     "entrée: \n        "+this.indenter(test.entrée,"\n","\n        ")+"\n      "+
                     "sortie: |\n        "+this.indenter(test.sortie_attendue,"\n","\n        ")+"\n";
