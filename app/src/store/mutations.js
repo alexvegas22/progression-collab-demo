@@ -56,10 +56,7 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
-	créerListeLangage(state, langages){
-		state.langagesÉbauches = langages;
-	},
-	setLangagesÉbauches(state, langages) {		
+	setLangagesÉbauches(state, langages) {
 		state.langagesÉbauches = langages;
 	},
 	updateLangageSelectionneÉbauche(state, langage) {
@@ -85,5 +82,11 @@ export const mutations = {
 	},
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
+	},
+	addÉbauche(state, ébauche){
+		state.question.ebauches[ébauche.langage] = ébauche.code;
+	},
+	setSauvegardeTemporaire(state, sauvegarde){
+		state.sauvegardesTemporaires.set(sauvegarde.langage,sauvegarde.code);
 	},
 };
