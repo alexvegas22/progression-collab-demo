@@ -19,7 +19,7 @@ export default {
         tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
-    },
+	},
 	methods: {
 		reinitialiserCodeEditeur(langage) {
 			this.$store.dispatch("réinitialiserÉbauche", langage);

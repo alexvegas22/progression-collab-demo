@@ -335,7 +335,6 @@ export default {
 			langage: langage,
 			code: this.state.question.ebauches[langage].code,
 		});
-		
 		commit("updateRetroaction", null);	
 	},
 
