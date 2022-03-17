@@ -1,24 +1,26 @@
 <template>
 	<div class="row g-0">
-		<div class="col-3">
-			<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
-				{{ $t("jeu_tests.jeuTests") }}
-			</div>
-			<fenetre-info :style="{ height: panneauAfficher ? '350px' : '0' }" class="section-bas">
-				<div v-for="(test, index) in tests" :key="index">
-					<Test
-						v-bind:test="test"
-						v-bind:index="index"
-						v-bind:réussi="resultats[index]"
-						v-bind:non_réussi="resultats[index] == false"
-						v-bind:sélectionné="index == index_select"
-						v-on:select="select(index)"
-						présentation_étape="3.0"
-					/>
+		<div class="col-xl-3 col-lg-4 col-4">
+			<div class="section-tests">
+				<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
+					{{ $t("jeu_tests.jeuTests") }}
 				</div>
-			</fenetre-info>
+				<fenetre-info class="panneau" :class="{'panneau-afficher': panneauAfficher}">
+					<div v-for="(test, index) in tests" :key="index">
+						<Test
+							v-bind:test="test"
+							v-bind:index="index"
+							v-bind:réussi="resultats[index]"
+							v-bind:non_réussi="resultats[index] == false"
+							v-bind:sélectionné="index == index_select"
+							v-on:select="select(index)"
+							présentation_étape="3.0"
+						/>
+					</div>
+				</fenetre-info>
+			</div>
 		</div>
-		<div class="col-9">
+		<div class="col-xl-9 col-lg-8 col-8">
 			<div class="section-onglets">
 				<div
 					@click="changementOnglet('resultat-test')"
@@ -55,8 +57,8 @@
 			<keep-alive>
 				<component
 					:is="ongletActif"
-					:style="{ height: panneauAfficher ? '350px' : '0' }"
-					class="section-bas"
+					class="panneau"
+					:class="{'panneau-afficher': panneauAfficher}"
 					:test="test_select"
 					:resultat="resultat_select"
 				></component>

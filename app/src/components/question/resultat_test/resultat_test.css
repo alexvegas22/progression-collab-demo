@@ -39,3 +39,12 @@
 pre {
 	margin: 0 !important;
 }
+
+.resultat-test pre {
+	height: 100%;
+}
+
+.resultat-test pre p {
+	height: inherit;
+	white-space: break-spaces;	
+}
