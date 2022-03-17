@@ -1,7 +1,3 @@
-import parseMD from "@/util/parse";
-import test from "../test/test";
-
-
 export default {
 	name: "Rétroaction",
 	props: {

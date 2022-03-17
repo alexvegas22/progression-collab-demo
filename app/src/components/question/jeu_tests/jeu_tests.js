@@ -59,7 +59,7 @@ export default {
 					this.$store.state.question.tests[i].feedback.négative = "";
 				}
 				if(this.$store.state.question.tests[i].feedback.erreur == null){
-					this.$store.state.question.tests[i].feedback.erreur = "";;
+					this.$store.state.question.tests[i].feedback.erreur = "";
 				}
 			}
 		}
