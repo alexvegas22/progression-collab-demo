@@ -118,7 +118,8 @@
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"ajouterTest":"Ajouter un test"
 	},
 
 	"mode_affichage": "Mode d'affichage par différences",

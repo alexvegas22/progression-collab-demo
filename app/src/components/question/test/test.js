@@ -9,6 +9,7 @@ export default {
 		réussi: null,
 		non_réussi: null,
 		sélectionné: false,
+		modifiable: false
 	},
 	data() {
 		return {
@@ -19,5 +20,8 @@ export default {
 		toggleVisibilite() {
 			this.$emit("select");
 		},
+		btnSupprimer() {
+			this.$emit("supprimer");
+		}
 	},
 };
