@@ -1,7 +1,9 @@
-
-<template>
-    <div>
-        <pie-chart :data="[['java',this.récupererPorcentageReussi(this.tentativesRéussies, 'java')], ['python',this.récupererPorcentageReussi(this.tentativesRéussies, 'python')]]"></pie-chart>
+<template>    
+    <h1>Statistiques des exercices réussis par langage</h1>        
+    <div>            
+        <pie-chart width="500px" legend="right" suffix="%" :data="
+                                                                [['java',this.récupérerPourcentageRéussi(this.tentativesRéussies, 'java')], 
+                                                                ['python',this.récupérerPourcentageRéussi(this.tentativesRéussies, 'python')]]"></pie-chart>        
     </div>
 </template>
 

@@ -25,7 +25,7 @@ export default {
 				totalReussi = totalReussi + difficultésReussies[difficulté];
 			}
 			porcentage = (100 / totalReussi) * difficultésReussies[niveauDifficulté];
-			return porcentage.toFixed(2);
+			return porcentage.toFixed(1);
 		}
 	}
 };
