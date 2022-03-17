@@ -1,7 +1,4 @@
 import parseMD from "@/util/parse";
-import TabNav from "@/components/question/onglets/TabNav.vue"
-import Tab from "@/components/question/onglets/Tab.vue"
-import Rétroaction from "@/components/question/rétroactions/rétroaction.vue"
 
 const diff = require("diff");
 
@@ -36,7 +33,6 @@ const différence = function (orig = "", modif = "", mode_affichage) {
 
 export default {
 	name: "ResultatTest",
-	components: { TabNav, Tab, Rétroaction },
 	data() {
 		return {
 			selected: 'Tests',
@@ -76,9 +72,6 @@ export default {
 				this.feedback = parseMD(this.resultat.feedback);
 			}
 		},
-		setSelected(tab) {
-			this.selected = tab;
-		}
 	},
 	watch: {
 		resultat: function () {
