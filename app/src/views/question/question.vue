@@ -18,7 +18,7 @@
 				<JeuTests présentation_étape="4" class="p-2" />
 			</div>
 		</div>
-		<button id="btn" v-on:click="télécharger">{{ $t('question.téléchargerLocalement') }}</button>
+		<button id="btn" v-on:click="télécharger">{{ $t('édition.téléchargerLocalement') }}</button>
 	</div>
 	</div>
 </template>
