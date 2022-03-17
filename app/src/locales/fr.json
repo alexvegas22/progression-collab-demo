@@ -12,7 +12,10 @@
 
 	"accomplissements": {
 		"titrePage": "Mes Accomplissements",
-		"titreQuestion": ""
+		"titreQuestion": "Titre de l'exercice",
+		"difficulté": "Difficulté",
+		"dateDernièreTentative": "Date de dernière tentative",
+		"dateRéussite": "Date de réussite"
 	},
 
 	"login": {

@@ -11,7 +11,11 @@
 	},
 
 	"accomplissements": {
-		"titre": "Mes Accomplissements"
+		"titrePage": "My Accomplishments",
+		"titreQuestion": "Exercise title",
+		"difficulté": "Difficulty",
+		"dateDernièreTentative": "Last attempt date",
+		"dateRéussite": "Date of success"
 	},
 
 	"login": {
