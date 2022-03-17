@@ -17,7 +17,7 @@ export default {
 		},
 
         tentatives() {
-			return this.$store.state.avancement.tentatives??[];
+		return this.$store.state.avancement.tentatives??[];
 		},
 	},
 	methods: {
