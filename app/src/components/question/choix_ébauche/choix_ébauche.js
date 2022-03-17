@@ -17,7 +17,7 @@ export default {
 		},
 
         tentatives() {
-			return this.$store.state.avancement.tentatives ?? [];
+			return this.$store.state.avancement.tentatives??[];
 		},
 	},
 	methods: {
@@ -28,7 +28,7 @@ export default {
 			this.$store.dispatch("réinitialiserÉbaucheTemporaire", langage);
 		},
 		sélectionnerÉbauche(langage) {
-			this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);			
+			this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);
 		},
 		changerÉbauche(langage) {
 			const donnéeTemporaire = this.$store.state.sauvegardesTemporaires;
