@@ -49,5 +49,22 @@ export default {
 		setSelected(tab) {
 			this.selected = tab;
 		}
+		,
+		chargerTests(){
+			for(var i = 0; i<this.$store.state.question.tests.length;i++){
+				if(this.$store.state.question.tests[i].feedback.positive == null){
+					this.$store.state.question.tests[i].feedback.positive = "";
+				}
+				if(this.$store.state.question.tests[i].feedback.négative == null){
+					this.$store.state.question.tests[i].feedback.négative = "";
+				}
+				if(this.$store.state.question.tests[i].feedback.erreur == null){
+					this.$store.state.question.tests[i].feedback.erreur = "";;
+				}
+			}
+		}
 	},
+	mounted(){
+		this.chargerTests();
+	}
 };

@@ -16,14 +16,14 @@
 				</div>
 			</div>
 			<div class="col-8">
-				<tab-nav :tabs="['Tests', 'Rétroactions']" :selected="selected" @selected="setSelected">
-					<tab :isSelected="selected === 'Tests'">
+				<TabNav :tabs="['Tests', 'Rétroactions']" :selected="selected" @selected="setSelected">
+					<Tab :isSelected="selected === 'Tests'">
 						<ResultatTest v-bind:test="test_select" v-bind:resultat="resultat_select" />
-					</tab>
-					<tab :isSelected="selected === 'Rétroactions'">
-						<rétroaction></rétroaction>
-					</tab>
-				</tab-nav>
+					</Tab>
+					<Tab :isSelected="selected === 'Rétroactions'">
+						<Rétroaction v-bind:test="test_select" v-bind:générale="null"/>
+					</Tab>
+				</TabNav>
 			</div>
 			<div class="col-md-12">
 				<SélecteurModeAffichage />
