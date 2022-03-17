@@ -2,7 +2,7 @@ const champs = new Map();
 
 export const sauvegarde = {
 
-    écrire(question) {
+    écrire(state,question) {
         var texte = "";
         champs.set("type","type: ");
         champs.set("niveau","niveau: ");
@@ -22,7 +22,7 @@ export const sauvegarde = {
         donnéesQuestion.set("description",question.description);
         donnéesQuestion.set("énoncé", this.indenter(question.énoncé,":","':'"));
         donnéesQuestion.set("ébauches",question.ebauches);
-        donnéesQuestion.set("rétroaction",this.formaterRétroactions(question.feedback_pos, question.feedback_neg, question.feedback_err));
+        donnéesQuestion.set("rétroaction",this.formaterRétroactions(state.retroactions));
         donnéesQuestion.set("tests",question.tests);
         donnéesQuestion.set("auteur",question.auteur);
         donnéesQuestion.set("licence",question.licence);
@@ -43,8 +43,8 @@ export const sauvegarde = {
         return texte;
     },
 
-    formaterRétroactions(pos, neg, err) {
-        return `    positive: ${pos}\n    négative: ${neg}\n    erreur: ${err}\n`;
+    formaterRétroactions(rétroaction) {
+        return "    positive: "+rétroaction.positif+"\n    négative: "+rétroaction.négatif+"\n    erreur: "+rétroaction.erreur+"\n";
     },
 
     formaterTests(chaîne,données){
@@ -65,7 +65,7 @@ export const sauvegarde = {
         }
         return texte + "\n";
     },
-    
+
     indenter(chaîne,ancien, nouveau){
         return chaîne.replaceAll(ancien,nouveau);
     }

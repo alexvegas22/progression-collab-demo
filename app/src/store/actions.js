@@ -172,6 +172,11 @@ export default {
 				.then((token) => getQuestionApi(urlQuestion, token))
 				.then((question) => {
 					commit("setQuestion", question);
+					commit("setRétroactions", {
+						positif: question.feedback_pos,
+						négatif: question.feedback_neg,
+						erreur: question.feedback_err,
+					});
 					return question;
 				}),
 		);
