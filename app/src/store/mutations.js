@@ -84,8 +84,9 @@ export const mutations = {
 		state.sauvegardes = sauvegardes;
 	},
 	addÉbauche(state, ébauche){
-		alert(Object.keys(state.question.ebauches));
-		state.question.ebauches[ébauche.langage] = ébauche.code+"alooo";
-		alert(state.question.ebauches[ébauche.langage]);
+		state.question.ebauches[ébauche.langage] = ébauche.code;
+	},
+	setSauvegardeTemporaire(state, sauvegarde){
+		state.sauvegardesTemporaires.set(sauvegarde.langage,sauvegarde.code);
 	},
 };

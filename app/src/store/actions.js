@@ -339,14 +339,22 @@ export default {
 		commit("updateRetroaction", null);	
 	},
 
-	réinitialiserÉbauche({ commit }, langage_p) {
-		const langage = langage_p;
+	réinitialiserÉbaucheTemporaire({ commit }, langage){
+		commit("setTentative", {
+			langage: langage,
+			code: this.state.sauvegardesTemporaires.get(langage),
+		});
+		if(!this.state.sauvegardesTemporaires.has(langage)){
+			commit("addÉbauche",{
+				langage: langage,
+				code: this.state.sauvegardesTemporaires.get(langage),
+			});
+		}
+	},
+
+	réinitialiserÉbauche({ commit }, langage) {
 		if (!this.state.question.ebauches[langage]){
 			commit("setTentative", {
-				langage: langage,
-				code: "",
-			});
-			commit("addÉbauche",{
 				langage: langage,
 				code: "",
 			});
@@ -357,6 +365,13 @@ export default {
 			});
 		}
 		commit("updateRetroaction", null);
+	},
+
+	sauvegardeTemporaire({ commit }){
+		commit("setSauvegardeTemporaire", {
+			langage: this.state.langageSélectionné,
+			code: this.state.tentative.code,
+		});
 	},
 
 	ajouterLangageÉbauche({ commit }, langages_p) {

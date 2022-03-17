@@ -26,13 +26,22 @@ export default {
     methods: {		
 		reinitialiserCodeEditeur(langage) {
 			this.$store.dispatch("réinitialiserÉbauche", langage);
-		},		
+		},
+		chargerÉbaucheTemporaire(langage){
+			this.$store.dispatch("réinitialiserÉbaucheTemporaire", langage);
+		},
 		sélectionnerÉbauche(langage) {
 			this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);			
 		},
 		changerÉbauche(langage) {
+			const donnéeTemporaire = this.$store.state.sauvegardesTemporaires;
 			this.sélectionnerÉbauche(langage);
-			this.reinitialiserCodeEditeur(langage);
+			
+			if(donnéeTemporaire.has(langage)){
+				this.chargerÉbaucheTemporaire(langage);
+			}else{
+				this.reinitialiserCodeEditeur(this.getLangage(langage));
+			}
 		},
 		nouveauLangage() {
 			var lang = document.getElementById("nouveauLangage").value;
@@ -52,14 +61,43 @@ export default {
 			return langage === null || langage.match(/^ *$/) !== null;
 		},
 		créerListeLangages(){
-			var langagesStore = this.$store.state.langagesÉbauches;
-			var listeLangs = Object.keys(this.$store.state.question.ebauches);
-			for(var langage of listeLangs){
-				if(!this.$store.state.langagesÉbauches.includes(langage)){
-					langagesStore.push(langage);
+			const langagesStore = this.$store.state.langagesÉbauches;
+			const mapLangages = this.getMap();
+			const langagesQuestion = Object.keys(this.$store.state.question.ebauches);
+
+			for(var ele of langagesQuestion){
+				if(!mapLangages.has(ele)){
+					langagesStore.push(ele);
 				}
 			}
 			this.$store.dispatch("setLangageDéfaut", langagesStore);
 		},
+		getLangage(langage){
+			const mapLangages = this.getMap();
+			
+			for (let [key, value] of mapLangages.entries()) {
+				if (value === langage)
+				  return key;
+				}
+			return langage;
+		},
+		getMap(){
+			const map = new Map();
+			map.set("bash","Bash");
+			map.set("c","C");
+			map.set("cpp","C++");
+			map.set("clojure","Clojure");
+			map.set("go","Go");
+			map.set("java","Java");
+			map.set("javascript","JavaScript");
+			map.set("perl","Perl");
+			map.set("php","PHP");
+			map.set("powershell","Powershell");
+			map.set("python","Python");
+			map.set("ruby","Ruby");
+			map.set("scala","Scala");
+			map.set("typesript","Typesript");
+			return map;
+		}
 	},
 };
