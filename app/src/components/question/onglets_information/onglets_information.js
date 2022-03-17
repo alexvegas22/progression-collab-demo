@@ -14,7 +14,7 @@ export default {
 	data() {
 		return {
 			sectionVisible: true,
-			ongletActif: "resultat-test",
+			ongletActif: "ResultatTest",
 			index_select: 0,
 		};
 	},

@@ -21,23 +21,23 @@
 		<div class="col-9">
 			<div class="section-onglets">
 				<div
-					@click="changementOnglet('resultat-test')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'resultat-test', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('ResultatTest')"
+					:class="{ onglets: true, sélectionné: ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 				</div>
 
 				<div
-					@click="changementOnglet('section-erreur')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'section-erreur', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('SectionErreur')"
+					:class="{ onglets: true, sélectionné: ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.sortie_erreur"
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>
 
 				<div
-					@click="changementOnglet('rétroactions')"
-					:class="{ onglets: true, sélectionné: ongletActif === 'rétroactions', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('Rétroactions')"
+					:class="{ onglets: true, sélectionné: ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.feedback"
 				>
 					{{ $t("onglets_informations.rétroactions") }}
