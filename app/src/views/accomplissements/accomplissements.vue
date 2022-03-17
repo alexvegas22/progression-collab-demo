@@ -7,6 +7,10 @@
         <div class="accomplissementItem">
             <graphiqueStatistiques />
         </div>
+
+        <div class="accomplissementItem">
+            <graphiqueStatistiquesParDifficulté />
+        </div>
     </div>
 </template>
 

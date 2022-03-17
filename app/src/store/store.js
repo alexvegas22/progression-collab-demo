@@ -26,6 +26,7 @@ export default createStore({
 		erreurs: null,
 		configServeur: null,
 		tentativesRéussies: [],
+		difficultésReussies: [],
 	},
 	getters,
 	actions,
