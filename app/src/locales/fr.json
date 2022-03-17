@@ -10,6 +10,11 @@
 		"déconnexion": "Déconnexion"
 	},
 
+	"accomplissements": {
+		"titrePage": "Mes Accomplissements",
+		"titreQuestion": ""
+	},
+
 	"login": {
 		"courriel": "Nom d'utilisateur",
 		"motDePasse": "Mot de passe",

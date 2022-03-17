@@ -1,8 +1,16 @@
+import { useMeta } from 'vue-meta'
 
 const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
 	name: "TableauExercices",
+
+	setup () {
+		useMeta({
+			title: 'Accomplissements',
+			htmlAttrs: { lang: 'fr', amp: true }
+		})
+	},
 
 	data(){
 

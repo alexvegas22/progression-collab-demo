@@ -32,6 +32,7 @@
 	left: initial !important;
 	right: 0;
 	margin-top: 0.125rem;
+	width: 100%;
 	background-color: #212529;
 }
 
@@ -44,21 +45,13 @@
 
 .accomplissementItem {
     align-self: auto;
-    margin:10px;
     border: solid #0082e6;
     border-width: 0 0 0 5px;
-}
-
-.barRecherhe{
-	margin-left: 5x;
+	border-radius: 5px;
+	padding: 10px;
 }
 
 .btnDMM:hover{
 	border-right: solid #0082e6;
 	border-left: solid #0082e6;
-}
-
-.btnDMMB{
-	width:100%;
-	
 }
