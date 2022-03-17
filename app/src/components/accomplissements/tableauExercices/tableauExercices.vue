@@ -8,7 +8,7 @@
             <input type="text" v-model="inputFilter" class="form-control barRecherhe">
         </div>
         <br>
-        <div class="container">
+        <div>
             <V-table :data="this.filtreAvancement" class="table">
                 <template #head>
                     <V-th id="tglTitre" class="!triTh" sortKey="titre" @click="styleTh('tglTitre')">Titre de l'exercice</V-th>

@@ -37,6 +37,8 @@
 
 .accomplissementContainer {
 	display: flex;
+	align-items: center;
+    justify-content: center;
     flex-direction:row;
 }
 
@@ -58,4 +60,5 @@
 
 .btnDMMB{
 	width:100%;
+	
 }
