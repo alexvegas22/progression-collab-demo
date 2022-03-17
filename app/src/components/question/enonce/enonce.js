@@ -1,10 +1,11 @@
 import parseMD from "@/util/parse";
-import TabNav from "./TabNav.vue"
-import Tab from "./Tab.vue"
+import TabNav from "@/components/question/onglets/TabNav.vue"
+import Tab from "@/components/question/onglets/Tab.vue"
+import Rétroaction from "@/components/question/rétroactions/rétroaction.vue"
 
 export default {
 	name: "Enonce",
-	components: { TabNav, Tab },
+	components: { TabNav, Tab, Rétroaction },
 	computed: {
 		état_réussi() {
 			return this.$store.state.avancement.état == 2;
@@ -47,9 +48,6 @@ export default {
 				]
 			,
 			énoncé: this.$store.state.question.énoncé,
-			positive: this.$store.state.question.feedback.positive,
-			négative: this.$store.state.question.feedback.négative,
-			erreur: this.$store.state.question.feedback.erreur,
 			description: this.$store.state.question.description,
 			aperçu: false,
 
