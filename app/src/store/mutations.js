@@ -81,6 +81,7 @@ export const mutations = {
 		state.tentative.langage = langage;
 	},
 	updateCodeEbauche(state, code) {
+		console.log(state.tentative.langage);
 		state.question.ebauches[state.tentative.langage].code = code;
 	},
 	updateEnvoieTentativeEnCours(state, bool) {
@@ -105,7 +106,7 @@ export const mutations = {
 		state.retroactions = rétroactions;
 	},
 	addÉbauche(state, ébauche){
-		state.question.ebauches[ébauche.langage] = ébauche.code;
+		state.question.ebauches[ébauche.langage] = ébauche;
 	},
 	setSauvegardeTemporaire(state, sauvegarde){
 		state.sauvegardesTemporaires.set(sauvegarde.langage,sauvegarde.code);

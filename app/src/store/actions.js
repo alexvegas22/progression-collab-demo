@@ -169,19 +169,13 @@ export default {
 	},
 
 	async getQuestion({ commit, state }, urlQuestion) {
-		return valider(
-			commit,
-			getToken({ commit, state })
-				.then((token) => getQuestionApi(urlQuestion, token))
-				.then((question) => {
-					commit("setQuestion", question);
-					commit("setRétroactions", {
-						positif: question.feedback_pos,
-						négatif: question.feedback_neg,
-						erreur: question.feedback_err,
-					});
-					return question;
-				}),
+		return valider( async function() {
+			const token = await getToken({ commit, state });
+			const question = await getQuestionApi(urlQuestion, token);
+
+			commit("setQuestion", question);
+			return question;
+		}()
 		);
 	},
 
@@ -333,10 +327,6 @@ export default {
 
 	mettreAjourEbauche({ commit }, params) {
 		commit("updateCodeEbauche", params);
-	},
-
-	mettreAjourLangageSelectionne({ commit }, langage) {
-		commit("updateLangageTentative", langage);
 	},
 
 	setModeCréation({ commit }, modeCréation) {
