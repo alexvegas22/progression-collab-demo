@@ -342,6 +342,14 @@ export default {
 	setModeCréation({ commit }, modeCréation) {
 		commit("setModeCréation", modeCréation);
 	},
+	
+	mettreAJourLangageSelectionne({ commit }, langage) {
+		commit("updateLangageTentative", langage);
+	},
+
+	mettreAJourLangageSelectionneÉbauche({ commit }, langage) {
+		commit("updateLangageSelectionneÉbauche", langage);
+	},
 
 	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
@@ -350,6 +358,49 @@ export default {
 			code: this.state.question.ebauches[langage].code,
 		});
 		commit("updateRetroaction", null);
+	},
+
+	réinitialiserÉbaucheTemporaire({ commit }, langage){
+		commit("setTentative", {
+			langage: langage,
+			code: this.state.sauvegardesTemporaires.get(langage),
+		});
+		if(!Object.keys(this.state.question.ebauches).includes(langage)){
+			commit("addÉbauche",{
+				langage: langage,
+				code: this.state.sauvegardesTemporaires.get(langage),
+			});
+		}
+	},
+
+	réinitialiserÉbauche({ commit }, langage) {
+		if (!this.state.question.ebauches[langage]){
+			commit("setTentative", {
+				langage: langage,
+				code: "",
+			});
+		} else {
+			commit("setTentative", {
+				langage: langage,
+				code: this.state.question.ebauches[langage].code,
+			});
+		}
+		commit("updateRetroaction", null);
+	},
+
+	sauvegardeTemporaire({ commit }){
+		commit("setSauvegardeTemporaire", {
+			langage: this.state.langageSélectionné,
+			code: this.state.tentative.code,
+		});
+	},
+	
+	ajouterLangagesSupportés({ commit }, langages_p) {
+		commit("setLangagesSupportés", langages_p);
+	},
+
+	ajouterLangageÉbauche({ commit }, langages_p) {
+		commit("setLangagesÉbauches", langages_p);
 	},
 
 	setToken({ commit }, token) {

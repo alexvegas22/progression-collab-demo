@@ -162,6 +162,9 @@
 	},
 
 	"édition": {
-		"téléchargerLocalement": "Download"
+		"téléchargerLocalement": "Download",
+		"ébauche_initiale": "Reset initial draft",
+		"langages_supportés": "Supported languages",
+		"ébauches": "Drafts"
 	}
 }

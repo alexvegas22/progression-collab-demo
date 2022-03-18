@@ -5,6 +5,7 @@ import JeuTests from "@/components/question/jeu_tests/jeu_tests.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
 import { sauvegarde } from "./sauvegarde";
+import ChoixÉbauche from "@/components/question/choix_ébauche/choix_ébauche.vue";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -17,6 +18,7 @@ export default {
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
+		ChoixÉbauche,
 	},
 	computed: {
 		modeÉdition() {

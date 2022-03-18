@@ -10,7 +10,10 @@
 			</div>
 			
 			<div class="col-lg-8 col-md-6">
-				<Avancement présentation_étape="2" />
+				<div class="row">
+					<Avancement class="col-lg-1" présentation_étape="2" />
+					<ChoixÉbauche class="col-lg-1"/>
+				</div>
 				<div v-if="tentative">
 					<EditeurCode présentation_étape="1" style="height: 500px" />
 					<RetroactionTentative présentation_étape="3" />
@@ -18,7 +21,7 @@
 				<JeuTests présentation_étape="4" class="p-2" />
 			</div>
 		</div>
-		<a id="btn" v-on:click="télécharger" class="btn btn-primary" download="test.yml">{{ $t('édition.téléchargerLocalement') }}</a>
+		<a id="btn" v-if="modeÉdition" v-on:click="télécharger" class="btn btn-primary" download="test.yml">{{ $t('édition.téléchargerLocalement') }}</a>
 	</div>
 	</div>
 </template>

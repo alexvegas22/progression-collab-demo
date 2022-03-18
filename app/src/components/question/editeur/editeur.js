@@ -82,7 +82,7 @@ export default {
 			} else {
 				this.$store.dispatch("mettreAjourCode", texte);
 			}
-			this.texteModifié();
+			this.texteModifié();			
 		},
 
 		beforeWindowUnload() {
@@ -98,20 +98,24 @@ export default {
 		},
 
 		texteModifié() {
+			const langageSelectionné = this.$store.state.langageSélectionné;
+			const langagesQuestion = Object.keys(this.$store.state.question.ebauches);
+
 			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
 				this.sauvegardeAutomatique = setTimeout(async () => {
 					this.indicateurSauvegardeEnCours = true;
 					this.indicateurModifié = false;
-					await this.$store
-					          .dispatch("mettreAjourSauvegarde")
-					          .catch((erreur) => {
-					              console.log("ERREUR de sauvegarde : " + erreur);
-					              this.indicateurModifié = true;
-					          })
-					          .finally(() => {
-					              this.indicateurSauvegardeEnCours = false;
-					              this.sauvegardeAutomatique = null;
-					          });
+					if(langagesQuestion.includes(langageSelectionné) && !this.$store.state.sauvegardesTemporaires.has(langageSelectionné)){
+						await this.$store
+						.dispatch("mettreAjourSauvegarde")
+						.catch((erreur) => {
+							console.log("ERREUR de sauvegarde : " + erreur);
+							this.indicateurModifié = true;
+						})
+					}
+					this.$store.dispatch("sauvegardeTemporaire");
+					this.indicateurSauvegardeEnCours = false;
+					this.sauvegardeAutomatique = null;
 				}, process.env.VUE_APP_DELAI_SAUVEGARDE);
 
 				this.indicateurModifié = true;

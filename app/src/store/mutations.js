@@ -60,6 +60,17 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
+	/*setLangagesÉbauches(state, langages) {
+		state.langagesÉbauches = langages;*/
+	créerListeLangage(state, langages){
+		state.langagesÉbauches = langages;
+	},
+	setLangagesSupportés(state, langages) {		
+		state.langagesSupportés = langages;
+	},
+	updateLangageSelectionneÉbauche(state, langage) {
+		state.langageSélectionné = langage;
+	},
 	updateRetroaction(state, retroactionTentative) {
 		state.retroactionTentative = retroactionTentative;
 	},
@@ -92,5 +103,11 @@ export const mutations = {
 	},
 	setRétroactions(state, rétroactions){
 		state.retroactions = rétroactions;
-	}
+	},
+	addÉbauche(state, ébauche){
+		state.question.ebauches[ébauche.langage] = ébauche.code;
+	},
+	setSauvegardeTemporaire(state, sauvegarde){
+		state.sauvegardesTemporaires.set(sauvegarde.langage,sauvegarde.code);
+	},
 };
