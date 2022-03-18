@@ -90,4 +90,7 @@ export const mutations = {
 	setModeCréation(state, modeCréation) {
 		state.modeCréation = modeCréation;
 	},
+	setRétroactions(state, rétroactions){
+		state.retroactions = rétroactions;
+	}
 };

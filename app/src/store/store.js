@@ -20,6 +20,7 @@ export default createStore({
 		ebauchesOrigine: null,
 		tentative: null,
 		retroactionTentative: null,
+		retroactions: null,
 		authentificationTentativeEnCours: false,
 		envoiTentativeEnCours: false,
 		mode_affichage: 0,

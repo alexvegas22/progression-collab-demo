@@ -88,15 +88,8 @@ export default {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 		télécharger(){
-			var questionMap = sauvegarde.créerHashMapQuestion(this.question);
-
-			var element = document.createElement('a');
-			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(sauvegarde.écrire(questionMap,this.question)));
-			element.setAttribute('download', "test.yml");
-			element.style.display = 'none';
-			document.body.appendChild(element);
-			element.click();
-			document.body.removeChild(element);
-		}
+			var element = document.getElementById("btn");
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(sauvegarde.écrire(this.$store.state,this.question)));
+		},
 	},
 };
