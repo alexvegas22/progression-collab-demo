@@ -2,13 +2,13 @@
 	display: flex;
 	align-items: center;
     justify-content: center;
-    flex-direction:row;
+    flex-wrap: wrap;
 }
 
 .accomplissementItem {
     align-self: auto;
-    border: solid #0082e6;
-    border-width: 0 0 0 5px;
+    border: solid rgba(220, 220, 220, 0.377);
+    border-width: 0 5px 0 5px;
 	border-radius: 5px;
 	padding: 10px;
 }

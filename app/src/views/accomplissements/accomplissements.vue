@@ -1,15 +1,13 @@
 <template>
-    <h1> {{ $t('accomplissements.titrePage') }} </h1>
     <br>
-    <div class="accomplissementContainer">
-        <div class="accomplissementItem">
+    <div class="accomplissementContainer row">
+        <div class="accomplissementItem col-lg-12">
             <tableauExercices />
         </div>
-        <div class="accomplissementItem">
+        <div class="accomplissementItem col-lg-6">
             <graphiqueStatistiques />
         </div>
-
-        <div class="accomplissementItem">
+        <div class="accomplissementItem col-lg-6">
             <graphiqueStatistiquesParDifficulté />
         </div>
     </div>

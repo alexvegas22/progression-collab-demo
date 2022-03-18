@@ -1,6 +1,7 @@
 
 <template>
     <div v-if="avancements">
+        <h1> {{ $t('accomplissements.titrePage') }} </h1>
         <div>
             <input type="text" v-model="inputFilter" class="form-control barRecherhe">
         </div>

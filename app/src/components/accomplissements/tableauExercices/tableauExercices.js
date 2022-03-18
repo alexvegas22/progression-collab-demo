@@ -78,6 +78,7 @@ export default {
 			}
 		},
 		timestampVersDate: function (timestamp) {
+			console.log(timestamp);
 			if (timestamp == 0){
 				return ""
 			}
