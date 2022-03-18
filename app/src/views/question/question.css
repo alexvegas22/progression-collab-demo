@@ -80,6 +80,27 @@ body {
 	flex: 0 0 auto;
 }
 
+@media only screen and (min-width: 1300px) {
+	.énoncé-semi {
+		width: 550px;
+		height: 100%;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+	.énoncé-semi {
+		width: 450px;
+		height: 100%;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+	.énoncé-semi {
+		width: 350px;
+		height: 100%;
+	}
+}
+
 @media only screen and (min-width: 768px) {
 	.taille-écran {
 		height: calc(100vh - 56px);
@@ -94,11 +115,6 @@ body {
 		height:100%;
 		flex-flow:row;
 		border-bottom: none;
-	}
-
-	.énoncé-semi {
-		width: 550px;
-		height: 100%;
 	}
 
 	.énoncé-plein {
