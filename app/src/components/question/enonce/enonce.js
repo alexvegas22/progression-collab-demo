@@ -38,12 +38,20 @@ export default {
 			switch (indice) {
 				case 0:
 					this.$store.state.question.niveau = this.contenu[indice].texte;
+					break;
+
 				case 1:
 					this.$store.state.question.titre = this.contenu[indice].texte;
+					break;
+
 				case 2:
 					this.$store.state.question.auteur = this.contenu[indice].texte;
+					break;
+
 				case 3:
 					this.$store.state.question.licence = this.contenu[indice].texte;
+					break;
+
 			}
 		},
 		setSelected(tab) {
@@ -56,14 +64,20 @@ export default {
 					if (feedback.positive == null) {
 						this.$store.state.question.feedback.positive = "";
 					}
+					break;
+
 				case 1:
 					if (feedback.négative == null) {
 						this.$store.state.question.feedback.négative = "";
 					}
+					break;
+
 				case 2:
 					if (feedback.erreur == null) {
 						this.$store.state.question.feedback.erreur = "";
 					}
+					break;
+
 			}
 			return this.feedbacks_valeur[index] != null ? this.feedbacks_valeur[index] : "";
 		},

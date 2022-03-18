@@ -1,6 +1,3 @@
-import parseMD from "@/util/parse";
-
-
 export default {
 	name: "Rétroaction",
 	props: {
@@ -16,19 +13,31 @@ export default {
 				switch (i) {
 					case 0:
 						this.$store.state.question.tests[this.test_index].feedback.positive = this.feedback[0];
+						break;
+
 					case 1:
 						this.$store.state.question.tests[this.test_index].feedback.négative = this.feedback[1];
+						break;
+
 					case 2:
 						this.$store.state.question.tests[this.test_index].feedback.erreur = this.feedback[2];
+						break;
+
 				}
 			} else {
 				switch (i) {
 					case 0:
 						this.$store.state.question.feedback.positive = this.feedback[0];
+						break;
+
 					case 1:
 						this.$store.state.question.feedback.négative = this.feedback[1];
+						break;
+
 					case 2:
 						this.$store.state.question.feedback.erreur = this.feedback[2];
+						break;
+
 				}
 			}
 		}
@@ -64,6 +73,6 @@ export default {
 					this.$store.state.question.feedback.erreur,
 				]
 			}
-		};
+		}
 	},
 };

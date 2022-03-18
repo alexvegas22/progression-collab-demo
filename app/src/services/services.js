@@ -38,7 +38,6 @@ const getQuestionApi = async (urlQuestion, token) => {
 	question.liens = data.data.links;
 	question.tests = [];
 	question.ebauches = {};
-	question.feedback = { "positive": "une rétro positive", "négative": "une rétro négative", "erreur": "une rétro d'erreur" }
 	if (data.included) {
 		data.included.forEach((item) => {
 			if (item.type == "test") {
