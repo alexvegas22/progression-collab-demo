@@ -26,6 +26,18 @@ export default {
 			}
 			porcentage = (100 / totalReussi) * tentativesReussi[langage];
 			return porcentage.toFixed(1);
+		},
+		récupérerLangage: function(tentativesReussi){
+			let keys = Object.keys(tentativesReussi)
+			let arrayLength = keys.length
+			let listeLangage = []
+			for(let i = 0; i < arrayLength; i++){
+				let pourcentage = this.récupérerPourcentageRéussi(tentativesReussi, keys[i]);
+				listeLangage.push([keys[i], pourcentage])
+				console.log(listeLangage)
+			}
+			return listeLangage
+			
 		}
 	}
 };
