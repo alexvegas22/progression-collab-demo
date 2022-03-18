@@ -48,7 +48,7 @@
 			<br /><button v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
 
 			<TabNav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
-				<Tab :isSelected="selected === 'Énoncé'">
+				<Tab :isSelected="selected === 'Énoncé'"	>
 					<div v-if="aperçu">
 						<div class="row flex-grow-1">
 							<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>

@@ -38,7 +38,6 @@ export default createStore({
 			{langageAffiché: "TypeScript", langageYML: "typescript"}],
 		langageSélectionné: null,
 		retroactionTentative: null,
-		retroactions: null,
 		authentificationTentativeEnCours: false,
 		envoiTentativeEnCours: false,
 		mode_affichage: 0,
