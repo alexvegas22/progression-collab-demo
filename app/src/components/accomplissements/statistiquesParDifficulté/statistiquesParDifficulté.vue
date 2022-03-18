@@ -4,10 +4,7 @@
     <br>
     <br>
     <div>
-        <pie-chart width="500px" legend="right" suffix="%" :data="[
-        ['base',this.récupererPorcentageReussi(this.difficultésReussies, 'base')],
-        ['intermédiaire',this.récupererPorcentageReussi(this.difficultésReussies, 'intermédiaire')],
-        ['défi',this.récupererPorcentageReussi(this.difficultésReussies, 'défi')]]"></pie-chart>
+        <pie-chart width="500px" legend="right" suffix="%" :data="this.récupérerDifficulté(this.difficultésReussies)"></pie-chart>
     </div>
 </template>
 
