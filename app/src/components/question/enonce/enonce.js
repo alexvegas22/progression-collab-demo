@@ -25,7 +25,7 @@ export default {
 		},
 	},
 	methods: {
-		cacher() {
+		basculeBoutonAperçu() {
 			var element = document.getElementById("btn_aperçu").innerHTML;
 			if (element == "Modifier ✎") {
 				document.getElementById("btn_aperçu").innerHTML = "Aperçu 👁";
@@ -35,6 +35,16 @@ export default {
 		},
 		modifierContenu(e, indice) {
 			this.contenu[indice].texte = e.target.innerText;
+			switch (indice) {
+				case 0:
+					this.$store.state.question.niveau = this.contenu[indice].texte;
+				case 1:
+					this.$store.state.question.titre = this.contenu[indice].texte;
+				case 2:
+					this.$store.state.question.auteur = this.contenu[indice].texte;
+				case 3:
+					this.$store.state.question.licence = this.contenu[indice].texte;
+			}
 		},
 		setSelected(tab) {
 			this.selected = tab;
@@ -57,6 +67,12 @@ export default {
 			}
 			return this.feedbacks_valeur[index] != null ? this.feedbacks_valeur[index] : "";
 		},
+		modifierÉnoncé(){
+			this.$store.state.question.énoncé = this.énoncé;
+		},
+		modifierDescription(){
+			this.$store.state.question.description = this.description;
+		}
 	},
 
 	data() {

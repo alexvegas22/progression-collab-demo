@@ -13,7 +13,7 @@
 				</svg>
 			</div>
 
-			<button id="btn_aperçu" v-on:click="cacher(), (aperçu = !aperçu)">Aperçu 👁</button>
+			<button id="btn_aperçu" v-on:click="basculeBoutonAperçu(), (aperçu = !aperçu)">Aperçu 👁</button>
 
 			<div class="row" présentation_étape="0.1" style="justify-content: flex-end">
 				<span class="badge niveau" présentation_étape="0.2">
@@ -42,6 +42,7 @@
 						}else{
 							this.style.width = ((this.placeholder.length + 3) * 8) + 'px';
 						}"
+						@change="modifierÉnoncé()"
 					/>
 					<datalist id="niveaux">
 						<option>base</option>
@@ -55,6 +56,7 @@
 					contenteditable
 					@input="(e) => modifierContenu(e, 1)"
 					data-placeholder="Titre"
+					@change="modifierÉnoncé()"
 				>
 					{{ contenu[1].texte }}
 				</h3>
@@ -76,6 +78,7 @@
 								left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
 								:toolbar="toolbar"
 								right-toolbar="fullscreen"
+								@change="modifierÉnoncé()"
 							>
 							</v-md-editor>
 						</div>
@@ -96,7 +99,7 @@
 
 				<Tab :isSelected="selected === 'Description'">
 					<div class="row flex-grow-1">
-						<v-md-editor v-model="description" height="600px" mode="edit" left-toolbar="" right-toolbar="">
+						<v-md-editor v-model="description" height="600px" mode="edit" left-toolbar="" right-toolbar="" @change="modifierDescription()">
 						</v-md-editor>
 					</div>
 				</Tab>
