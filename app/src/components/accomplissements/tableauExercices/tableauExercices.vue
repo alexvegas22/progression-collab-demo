@@ -17,7 +17,7 @@
                 <template #body="{ rows }">
                     <tr @click="allerVersQuestion(avancement.liens.self)" v-for="avancement in rows" :key="avancement.titre" class="lienQuestion">
                         <td>{{avancement.titre}}</td>
-                        <td>{{afficherNiveau(avancement.niveau)}}</td>
+                        <td>{{avancement.niveau}}</td>
                         <td>{{timestampVersDate(avancement.date_modification)}}</td>
                         <td>{{timestampVersDate(avancement.date_réussie)}}</td>
                     </tr>

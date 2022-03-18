@@ -26,17 +26,6 @@ export default {
 
 			for (var avancement in this.avancements) {
 
-				if (this.avancements[avancement].niveau == "base") {
-
-					this.avancements[avancement].niveau = 1;
-				} else if (this.avancements[avancement].niveau == "intermédiaire") {
-
-					this.avancements[avancement].niveau = 2;
-				} else if (this.avancements[avancement].niveau == "défi") {
-
-					this.avancements[avancement].niveau = 3;
-				}
-
 				if (this.avancements[avancement].titre != "") {
 
 					this.uneListeAvancements.push(this.avancements[avancement]);
@@ -78,30 +67,12 @@ export default {
 			}
 		},
 		timestampVersDate: function (timestamp) {
-			console.log(timestamp);
 			if (timestamp == 0){
 				return ""
 			}
-			return new Date(timestamp * 1000).toLocaleString("fr-CA");
+			return new Date(timestamp * 1000).toUTCString().substring(0,22);
 		},
-		afficherNiveau: function (niveau) {
 
-			let niveauString;
-			switch (niveau) {
-				case 1:
-					niveauString = "Base";
-					break;
-				case 2:
-					niveauString = "Intermédiaire";
-					break;
-				case 3:
-					niveauString = "Défi";
-					break;
-				default:
-					niveauString = "";
-			}
-			return niveauString;
-		},
 		allerVersQuestion: function (lien) {
 
 			var avancementDivise = lien.split("/");
