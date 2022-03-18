@@ -1,6 +1,9 @@
 <template>
+    <h1>Statistiques par difficulté</h1>
+    <br>
+    <br>
+    <br>
     <div>
-        <h1>Statistiques par difficulté</h1>
         <pie-chart width="500px" legend="right" suffix="%" :data="[
         ['base',this.récupererPorcentageReussi(this.difficultésReussies, 'base')],
         ['intermédiaire',this.récupererPorcentageReussi(this.difficultésReussies, 'intermédiaire')],

@@ -6,8 +6,17 @@
 	},
 
 	"menu": {
+		"accomplissement":"Achievements",
 		"connexion": "Login",
 		"déconnexion": "Logout"
+	},
+
+	"accomplissements": {
+		"titrePage": "My Achievements",
+		"titreQuestion": "Exercises title",
+		"difficulté": "Difficulty",
+		"dateDeDernièreTentative": "Date of last attempt",
+		"dateDeRéussite": "Date of success"
 	},
 
 	"login": {

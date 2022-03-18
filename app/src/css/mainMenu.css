@@ -35,18 +35,13 @@
 	background-color: #212529;
 }
 
-.accomplissementContainer {
-	display: flex;
-    flex-direction:row;
+.btnDMM:hover{
+	border-left-color: #0082e6;
+	border-right-color: #0082e6;
 }
 
-.accomplissementItem {
-    align-self: auto;
-    margin:10px;
-    border: solid #0082e6;
-    border-width: 0 0 0 5px;
-}
-
-.barRecherhe{
-	margin-left: 5x;
+.btnDMM{
+	margin-left: -2px;
+	border-left: solid transparent;
+	border-right: solid transparent;
 }
