@@ -40,7 +40,7 @@ export default {
 				? this.$store.state.retroactionTentative.resultats[this.index_select]
 				: null;
 		},
-		
+
 	},
 	data() {
 		return {
@@ -67,7 +67,7 @@ export default {
 				case 1:
 					if (feedback.négative == null) {
 						this.$store.state.question.tests[this.index_select].feedback.négative = "";
-					}					
+					}
 					break;
 
 				case 2:
