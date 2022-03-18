@@ -1,6 +1,6 @@
 import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
 import SectionErreur from "@/components/question/section_erreurs/section_erreurs.vue";
-import Commentaires from "@/components/question/commentaires/commentaires.vue";
+import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
 
 export default {
@@ -8,13 +8,13 @@ export default {
 		Test,
 		ResultatTest,
 		SectionErreur,
-		Commentaires,
+		Rétroactions,
 	},
 	props: ["panneauAfficher"],
 	data() {
 		return {
 			sectionVisible: true,
-			ongletActif: "resultat-test",
+			ongletActif: "ResultatTest",
 			index_select: 0,
 		};
 	},

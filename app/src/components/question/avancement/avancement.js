@@ -1,6 +1,8 @@
 export default {
 	name: "Avancement",
-	props: ['thèmeSombre'],
+	props: {
+		thèmeSombre: Boolean
+	},
 	inject: ['avancement'],
 	computed: {
 		langage() {

@@ -10,14 +10,21 @@ const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
 	name: "Question",
+	data() {
+		return {
+			panneauAfficher: true,
+			énoncéPleinÉcran: false,
+			énoncéSemiÉcran: true,
+		};
+	},
 	components: {
 		OngletsInformation,
 		Enonce,
+		Avancement,
 		EditeurCode,
 		JeuTests,
 		RetroactionTentative,
 		Présentation,
-		Avancement
 	},
 	computed: {
 		testerPanneau() {
@@ -46,15 +53,6 @@ export default {
 		},
 		erreurs() {
 			return this.$store.state.erreurs;
-		},
-		panneauAfficher() {
-			return this.$store.state.panneauAfficher;
-		},
-		énoncéPleinÉcran() {
-			return this.$store.state.énoncéPleinÉcran;
-		},
-		énoncéSemiÉcran() {
-			return this.$store.state.énoncéSemiÉcran;
 		},
 		thèmeSombre(){
 			return this.$store.state.thèmeSombre;
@@ -106,10 +104,27 @@ export default {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 		ajusterÉnoncé(type) {
-			this.$store.dispatch('setAffichageÉnoncé', type);
+			if (type === 'semi') {
+				this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
+				if (this.énoncéSemiÉcran)
+					this.énoncéPleinÉcran = false;
+			}
+			else if (type === 'plein') {
+				this.panneauAfficher = false;
+				this.énoncéPleinÉcran = true;
+				this.énoncéSemiÉcran = false;
+			}
+			else {
+				this.énoncéPleinÉcran = false;
+				this.énoncéSemiÉcran = false;
+			}
 		},
 		ajusterPanneau() {
-			this.$store.dispatch('setAffichagePanneau');
+			this.panneauAfficher = !this.panneauAfficher;
+			if (this.énoncéPleinÉcran && this.panneauAfficher) {
+				this.énoncéPleinÉcran = false;
+				this.énoncéSemiÉcran = true;
+			}
 		},
 	},
 };

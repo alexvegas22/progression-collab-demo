@@ -50,8 +50,9 @@
 	width: 100%;
 	display: flex;
 	justify-content: right;
-	align-items: center;
 	pointer-events: none;
+	padding-top: 60px;
+	align-items: flex-start;
 }
 
 @keyframes blink {

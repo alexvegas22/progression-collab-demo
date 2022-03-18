@@ -2,8 +2,11 @@ import parseMD from "@/util/parse";
 
 export default {
 	name: "Enonce",
-	props: ['énoncéPleinÉcran', 'énoncéSemiÉcran'],
-	emits: ['ajusterEnoncer'],
+	props: {
+		énoncéPleinÉcran: Boolean,
+		énoncéSemiÉcran: Boolean
+	},
+	emits: ['ajustéÉnoncé'],
 	computed: {
 		état_réussi() {
 			return this.$store.state.avancement.état == 2;

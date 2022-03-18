@@ -77,41 +77,7 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
-	ajusterÉnoncé(state, type) {
-		if (type === 'semi') {
-			state.énoncéSemiÉcran = !state.énoncéSemiÉcran;
-			if (state.énoncéSemiÉcran)
-				state.énoncéPleinÉcran = false;
-		}
-		else if (type === 'plein') {
-			state.panneauAfficher = false;
-			state.énoncéPleinÉcran = true;
-			state.énoncéSemiÉcran = false;
-		}
-		else {
-			state.énoncéPleinÉcran = false;
-			state.énoncéSemiÉcran = false;
-		}
-	},
-	ajusterPanneau(state) {
-		state.panneauAfficher = !state.panneauAfficher;
-		if (state.énoncéPleinÉcran && state.panneauAfficher) {
-			state.énoncéPleinÉcran = false;
-			state.énoncéSemiÉcran = true;
-		}
-	},
-	éditeurPleinÉcran(state) {
-		if (state.énoncéPleinÉcran || state.énoncéSemiÉcran || state.panneauAfficher) {
-			state.énoncéSemiÉcran = false;
-			state.panneauAfficher = false;
-		}
-		else {
-			state.énoncéSemiÉcran = true;
-			state.panneauAfficher = true;
-		}
-		state.énoncéPleinÉcran = false;
-	},
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
-}
+};

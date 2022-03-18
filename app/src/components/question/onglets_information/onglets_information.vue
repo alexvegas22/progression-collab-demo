@@ -23,26 +23,26 @@
 		<div class="col-xl-9 col-lg-8 col-8">
 			<div class="section-onglets">
 				<div
-					@click="changementOnglet('resultat-test')"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'resultat-test', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('ResultatTest')"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 				</div>
 
 				<div
-					@click="changementOnglet('section-erreur')"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'section-erreur', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('SectionErreur')"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.sortie_erreur"
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>
 
 				<div
-					@click="changementOnglet('commentaires')"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'commentaires', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('Rétroactions')"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.feedback"
 				>
-					{{ $t("onglets_informations.commentaires") }}
+					{{ $t("onglets_informations.rétroactions") }}
 				</div>
 				<div style="margin-left: auto">
 					<i

@@ -1,23 +1,25 @@
 <template>
 	<div class="dropdown">
 		<div
+			présentation_étape="4.0"
 			class="dropdown-toggle d-inline-block"
 			type="button"
 			id="menu_historique"
 			data-bs-toggle="dropdown"
 			aria-expanded="false"
 		>
-			Langages ({{ this.langage }})
+			{{ this.langage }}
 		</div>
-		<ul class="dropdown-menu" aria-labelledby="testeurite" :class="{ thème_sombre: thèmeSombre }">
+		<ul id="langage-dropdown" class="dropdown-menu" aria-labelledby="langage-dropdown" :class="{ thème_sombre: thèmeSombre }">
 			<li class="dropdown-item dropdown-submenu" v-for="langage in langages" :key="langage">
 				<a>{{ langage }}</a>
-				<div class="dropdown-menu" :class="{ thème_sombre: thèmeSombre }">
+				<div class="dropdown-menu langage-submenu" :class="{ thème_sombre: thèmeSombre }">
 					<perfect-scrollbar>
-						<button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">
+						<button présentation_étape="4.1" class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">
 							{{ $t("avancement.ébauche_initiale") }}
 						</button>
 						<button
+							présentation_étape="4.2"
 							class="dropdown-item"
 							v-for="elem in this.filtrerTentativesParLangage(langage)"
 							@click="this.chargerTentative()"

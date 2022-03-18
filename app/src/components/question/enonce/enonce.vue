@@ -1,10 +1,10 @@
 <template>
-	<div class="barre-enonce">
+	<div class="barre-énoncé">
 		<perfect-scrollbar
 			class="section-énoncé-texte"
 			:class="{
-				'enonce-cacher': !énoncéSemiÉcran && !énoncéPleinÉcran,
-				'p-3': énoncéSemiÉcran || énoncéPleinÉcran,
+				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
+				'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
 			}"
 		>
 			<div v-if="état_réussi" class="crochet icon icon--order-success svg">
@@ -46,21 +46,21 @@
 		<div class="section-boutton-affichage">
 			<i
 				style="float: right"
-				@click="$emit('ajusterEnoncer', 'plein')"
+				@click="$emit('ajustéÉnoncé', 'plein')"
 				class="fa fa-arrows-alt btn-affichage"
 				aria-hidden="true"
 				v-if="énoncéSemiÉcran"
 			></i>
 			<i
 				style="float: right"
-				@click="$emit('ajusterEnoncer', 'semi')"
+				@click="$emit('ajustéÉnoncé', 'semi')"
 				class="fa fa fa-window-maximize btn-affichage"
 				aria-hidden="true"
 				v-else
 			></i>
 			<i
 				style="float: right"
-				@click="$emit('ajusterEnoncer', 'cacher')"
+				@click="$emit('ajustéÉnoncé', 'cacher')"
 				class="fa fa fa-window-minimize btn-affichage"
 				aria-hidden="true"
 				v-if="énoncéSemiÉcran || énoncéPleinÉcran"

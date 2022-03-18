@@ -127,17 +127,6 @@
 					 scrolling: false,
 					 header: { "title": this.$t('présentation.avancement.titre') },
 					 content: this.$t('présentation.avancement.contenu'),
-					 before: type => new Promise((resolve, reject) => {
-						 if(type=="next"){
-							 var dropdown = document.getElementById('menu_historique');
-							 var event;
-							 event = document.createEvent('MouseEvents');
-							 event.initMouseEvent('click', true, true, window);
-							 dropdown.dispatchEvent(event);
-							 console.log("click");
-						 }
-						 resolve();
-					 }),
 					 params:{
 						 placement: "left"
 					 }					
@@ -147,6 +136,11 @@
 					 scrolling: false,
 					 header: { "title": this.$t('présentation.ébauche_initiale.titre') },
 					 content: this.$t('présentation.ébauche_initiale.contenu'),
+					 before: type => new Promise((resolve, reject) => {
+						 document.getElementById('langage-dropdown').classList.toggle('d-block');
+						 document.getElementsByClassName('langage-submenu')[0].classList.toggle('d-block');
+						 resolve();
+					 }),
 					 params:{
 						 placement: "left"
 					 }					
@@ -165,6 +159,11 @@
 					 scrolling: false,
 					 header: { "title": this.$t('présentation.fin.titre') },
 					 content: this.$t('présentation.fin.contenu'),
+					 before: type => new Promise((resolve, reject) => {
+						 document.getElementsByClassName('langage-submenu')[0].classList.toggle('d-block');
+						 document.getElementById('langage-dropdown').classList.toggle('d-block');
+						 resolve();
+					 }),
 					 params:{
 						 placement: "center"
 					 }					

@@ -45,22 +45,22 @@ body {
 	height: inherit;
 }
 
-.enonce-semi {
+.énoncé-semi {
 	width: 100%;
 	height: 150px;
 }
 
-.enonce-plein {
-	height: calc(100vh - 56px);
+.énoncé-plein {
+	height: 100vh;
 	width: 100%;
 }
 
-.enonce-cacher {
+.énoncé-caché {
 	width: 100%;
 	height: 36px;
 }
 
-.barre-enonce {
+.barre-énoncé {
 	display: flex;
 	padding: 0;
 	flex-flow: column-reverse;
@@ -70,12 +70,18 @@ body {
 	border-bottom: 0.06rem solid lightgray;
 }
 
-.taille-ecran {
+.taille-écran {
 	height: 100vh;
 }
 
+.section-boutton-affichage {
+	padding: 0.25rem;
+	border-right: 0.06rem solid lightgray;
+	flex: 0 0 auto;
+}
+
 @media only screen and (min-width: 768px) {
-	.taille-ecran {
+	.taille-écran {
 		height: calc(100vh - 56px);
 	}
 
@@ -84,24 +90,32 @@ body {
 		flex-flow: row;
 	}
 
-	.barre-enonce {
+	.barre-énoncé {
 		height:100%;
 		flex-flow:row;
 		border-bottom: none;
 	}
 
-	.enonce-semi {
+	.énoncé-semi {
 		width: 550px;
 		height: 100%;
 	}
 
-	.enonce-plein {
+	.énoncé-plein {
 		height: 100%;
 		width: 100%;
 	}
 
-	.enonce-cacher {
+	.énoncé-caché {
 		width: 37px;
 		height: 100%;
+	}
+
+	.énoncé-semi .section-boutton-affichage {
+		width: 4rem !important;
+	}
+	
+	.énoncé-plein .section-boutton-affichage {
+		width: 4.5rem !important;
 	}
 }

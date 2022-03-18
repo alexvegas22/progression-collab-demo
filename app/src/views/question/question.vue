@@ -4,13 +4,13 @@
 			<Présentation v-if="démo" présentation_étape="00" />
 		</div>
 
-		<div class="container-fluid taille-ecran p-0" :class="{ thème_sombre: thèmeSombre }">
+		<div class="container-fluid taille-écran p-0" :class="{ thème_sombre: thèmeSombre }">
 			<div class="conteneur-question" v-if="avancement">
 				<Enonce
-					:class="{ 'enonce-plein': énoncéPleinÉcran, 'enonce-semi': énoncéSemiÉcran, 'enonce-cacher': !énoncéPleinÉcran && !énoncéSemiÉcran}"
+					:class="{ 'énoncé-plein': énoncéPleinÉcran, 'énoncé-semi': énoncéSemiÉcran, 'énoncé-caché': !énoncéPleinÉcran && !énoncéSemiÉcran}"
 					:énoncéPleinÉcran="énoncéPleinÉcran"
 					:énoncéSemiÉcran="énoncéSemiÉcran"
-					@ajuster-enoncer="ajusterÉnoncé"
+					@ajustéÉnoncé="ajusterÉnoncé"
 					présentation_étape="0"
 				/>
 

@@ -41,10 +41,9 @@
 						placement="bottom"
 						class="popup_conseil"
 						@show="basculerAffichageConseil"
-						présentation_étape="2.1"
 					>
 						<a id="btn_conseil">
-							<svg class="svg_ampoule">
+							<svg class="svg_ampoule" présentation_étape="2.1">
 								<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
 							</svg>
 						</a>
