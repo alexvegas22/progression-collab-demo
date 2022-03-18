@@ -1,0 +1,19 @@
+.accomplissementContainer {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    flex-direction:row;
+}
+
+.accomplissementItem {
+    align-self: auto;
+    border: solid #0082e6;
+    border-width: 0 0 0 5px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+h1{
+    text-align: center;
+    font-weight: bolder;
+}
