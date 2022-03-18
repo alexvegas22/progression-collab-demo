@@ -50,9 +50,9 @@
 				</h3>
 			</div>
 			<br />
-			<div class="form-check form-switch btn-modeCréation">
+			<div v-show="modeÉdition" class="form-check form-switch btn-modeCréation">
 						<input class="form-check-input" type="checkbox"
-							   v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)" />
+							    id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)" />
 						<label id="toggleText" class="form-check-label" for="btn_modeCréation">✎</label>
 					</div>
 			<div v-if="aperçu">
