@@ -3,25 +3,38 @@ import parseMD from "@/util/parse";
 
 export default {
 	name: "Rétroaction",
-	computed: {
-		état_réussi() {
-			return this.$store.state.avancement.état == 2;
-		},
-		question() {
-			return new Proxy(this.$store.state.question, {
-				get: function (obj, prop) {
-					return prop == "énoncé" ? parseMD(obj[prop]) : obj[prop];
-				},
-			});
-		},
+	props: {
+		feedback_label: null,
+		feedback_valeur: null,
+		feedback_index: null,
+		test_index: null,	
 	},
-
+	methods: {
+		modifierFeedback(i) {
+			switch(i) {
+				case 0:
+					this.$store.state.question.tests[this.test_index].feedback.positive = this.feedback[0];
+				case 1:
+					this.$store.state.question.tests[this.test_index].feedback.négative = this.feedback[1];
+				case 2:
+					this.$store.state.question.tests[this.test_index].feedback.erreur = this.feedback[2];
+			}
+		}
+	},
+	watch: {
+		feedback_valeur: function() {
+			this.feedback[0] = this.$store.state.question.tests[this.test_index].feedback.positive;
+			this.feedback[1] = this.$store.state.question.tests[this.test_index].feedback.négative;
+			this.feedback[2] = this.$store.state.question.tests[this.test_index].feedback.erreur;
+		}
+	},
 	data() {
-
 		return {
-			positive: this.$store.state.question.feedback.positive,
-			négative: this.$store.state.question.feedback.négative,
-			erreur: this.$store.state.question.feedback.erreur,
+			feedback: [
+				this.$store.state.question.tests[this.test_index].feedback.positive,
+				this.$store.state.question.tests[this.test_index].feedback.négative,
+				this.$store.state.question.tests[this.test_index].feedback.erreur,
+			],
 		};
 	},
 };
