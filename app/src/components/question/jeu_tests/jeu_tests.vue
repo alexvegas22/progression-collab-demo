@@ -29,8 +29,10 @@
 					/>
 				</div>
 			</div>
-
-			<div class="col-8">
+			<div v-if="!modifiable" class="col-8">
+				<ResultatTest v-bind:test="test_select" v-bind:resultat="resultat_select" />
+			</div>
+			<div v-if="modifiable" class="col-8">
 				<TabNav :tabs="['Résultats', 'Rétroactions']" :selected="selected" @selected="setSelected">
 					<Tab :isSelected="selected === 'Résultats'">
 						<ResultatTest v-bind:test="test_select" v-bind:resultat="resultat_select" />

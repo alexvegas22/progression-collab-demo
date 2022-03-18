@@ -29,12 +29,8 @@ export default {
 	},
 	methods: {
 		basculerBtnAperçu() {
-			var element = document.getElementById("btn_aperçu").innerHTML;
-			if (element == "Modifier ✎") {
-				document.getElementById("btn_aperçu").innerHTML = "Aperçu 👁";
-			} else {
-				document.getElementById("btn_aperçu").innerHTML = "Modifier ✎";
-			}
+			var btnAperçu = document.getElementById("toggleText");
+			btnAperçu.innerHTML == "✎" ? btnAperçu.innerHTML = "👁" : btnAperçu.innerHTML = "✎";
 		},
 		modifierContenu(e, indice) {
 			this.contenu[indice].texte = e.target.innerText;

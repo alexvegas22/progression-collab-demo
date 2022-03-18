@@ -111,7 +111,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	updateZones() {
 		zones.cacherHorsVisible(this.editor.doc);
 		zones.désactiverHorsTodo(this.editor.doc);
-	}
+	}	
 
 	updateModeCréation() {
 		if(this.modeCréation){

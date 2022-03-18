@@ -21,7 +21,11 @@ export default {
 			localStorage.setItem( "thème", this.thèmeSombre );
 		},
 		modeCréation() {
-			localStorage.setItem( "modeCréation", this.modeCréation );
+			if (this.modeÉdition) {
+				localStorage.setItem( "modeCréation", this.modeÉdition );
+			} else {
+				localStorage.setItem( "modeCréation", false );
+			}
 		},
 	},
 	computed: {

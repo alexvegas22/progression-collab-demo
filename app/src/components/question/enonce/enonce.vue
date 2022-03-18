@@ -45,9 +45,16 @@
 					{{ contenu[1].texte }}
 				</h3>
 			</div>
-			<br /><button v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
+			<br />
+			<div v-show="modeÉdition" class="form-check form-switch btn-modeCréation">
+				<input class="form-check-input" type="checkbox"
+					id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)" />
+				<label id="toggleText" class="form-check-label" for="btn_modeCréation">✎</label>
+			</div>
 
-			<TabNav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
+			<v-md-editor v-if="!modeÉdition" v-model="énoncé" height="600px" mode="preview"></v-md-editor>
+
+			<TabNav v-else :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
 				<Tab :isSelected="selected === 'Énoncé'"	>
 					<div v-if="aperçu">
 						<div class="row flex-grow-1">
