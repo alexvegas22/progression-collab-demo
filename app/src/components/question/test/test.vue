@@ -3,7 +3,7 @@
 		<div>
 			<div class="row w-100 m-0 p-1" v-on:click="toggleVisibilite">
 				<div class="col-1 m-0 p-0" v-show="modifiable">
-					<button type="button" v-on:click="btnSupprimer" class="btn p-0 m-0 text-center">✘</button>
+					<button type="button" v-on:click="btnSupprimer" class="btn p-0 m-0 text-center">❌</button>
 				</div>
 				<div
 					class="col-10 test"
