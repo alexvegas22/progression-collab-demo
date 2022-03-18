@@ -34,7 +34,6 @@ export default {
 			for(let i = 0; i < arrayLength; i++){
 				let pourcentage = this.récupérerPourcentageRéussi(tentativesReussi, keys[i]);
 				listeLangage.push([keys[i], pourcentage])
-				console.log(listeLangage)
 			}
 			return listeLangage
 			
