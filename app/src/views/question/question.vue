@@ -11,8 +11,8 @@
 			
 			<div class="col-lg-8 col-md-6">
 				<div class="row">
-					<Avancement class="col-lg-1" présentation_étape="2" />
-					<ChoixÉbauche class="col-lg-1"/>
+					<Avancement v-if="!modeÉdition" class="col-lg-1" présentation_étape="2" />
+					<ChoixÉbauche v-if="modeÉdition" class="col-lg-1"/>
 				</div>
 				<div v-if="tentative">
 					<EditeurCode présentation_étape="1" style="height: 500px" />

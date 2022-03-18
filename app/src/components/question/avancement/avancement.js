@@ -4,6 +4,9 @@ export default {
 		modeCréation() {
 			return this.$store.state.modeCréation;
 		},
+		modeÉdition() {
+			return this.$store.state.mode_édition;
+		},
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
 		},

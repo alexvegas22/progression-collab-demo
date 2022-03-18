@@ -22,7 +22,7 @@ export const sauvegarde = {
         donnéesQuestion.set("description",question.description);
         donnéesQuestion.set("énoncé", this.indenter(question.énoncé,":","':'"));
         donnéesQuestion.set("ébauches",question.ebauches);
-        donnéesQuestion.set("rétroaction",this.formaterRétroactions(state.retroactions));
+        donnéesQuestion.set("rétroactions",this.formaterRétroactions(state.feedback));
         donnéesQuestion.set("tests",question.tests);
         donnéesQuestion.set("auteur",question.auteur);
         donnéesQuestion.set("licence",question.licence);
@@ -44,7 +44,7 @@ export const sauvegarde = {
     },
 
     formaterRétroactions(rétroaction) {
-        return "    positive: "+rétroaction.positif+"\n    négative: "+rétroaction.négatif+"\n    erreur: "+rétroaction.erreur+"\n";
+        return "    positive: "+rétroaction[positive]+"\n    négative: "+rétroaction[négative]+"\n    erreur: "+rétroaction[erreur]+"\n";
     },
 
     formaterTests(chaîne,données){

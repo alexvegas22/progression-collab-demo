@@ -29,9 +29,26 @@
 					/>
 				</div>
 			</div>
+
 			<div class="col-8">
-				<ResultatTest v-bind:test="test_select" v-bind:resultat="resultat_select" v-bind:modifiable="modifiable" />
+				<TabNav :tabs="['Résultats', 'Rétroactions']" :selected="selected" @selected="setSelected">
+					<Tab :isSelected="selected === 'Résultats'">
+						<ResultatTest v-bind:test="test_select" v-bind:resultat="resultat_select" />
+					</Tab>
+					<Tab :isSelected="selected === 'Rétroactions'">
+						<div v-for="(feedback, index) in feedbacks_label" :key="index">
+							<Rétroaction
+								:test="true"
+								:feedback_label="feedbacks_label[index]"
+								:feedback_valeur="feedback_select(index)"
+								:feedback_index="index"
+								:test_index="index_select"
+							/>
+						</div>
+					</Tab>
+				</TabNav>
 			</div>
+
 			<div class="col-md-12">
 				<SélecteurModeAffichage />
 			</div>

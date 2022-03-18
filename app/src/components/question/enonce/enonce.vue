@@ -9,32 +9,30 @@
 					</g>
 				</svg>
 			</div>
+
 			<div class="row" présentation_étape="0.1" style="justify-content: flex-end">
 				<span class="badge niveau" présentation_étape="0.2">
-					<p
+					<input
 						id="niveau"
-						class="contenu"
-						contenteditable
-						@input="(évènement) => modifierContenu(évènement, 0)"
-						data-placeholder="Niveau"
-						style="text-align: left; display: inline; margin-right: 8px"
-					>
-						{{ contenu[0].texte }}
-					</p>
-					<button
-						id="menu_niveau"
-						type="button"
-						class="btn dropdown-toggle"
-						data-bs-toggle="dropdown"
-						aria-expanded="true"
-						style="padding: 0px; border: 0px; color: dark"
-						v-if="modeÉdition"
-					></button>
-					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="menu_niveau" v-if="modeÉdition">
-						<button v-for="niveau in this.niveaux" :key="niveau" @click="modifierNiveau(niveau)" class="dropdown-item">
-							{{ niveau }}
-						</button>
-					</div>
+						placeholder="Niveau"
+						type="text"
+						v-model="contenu[0].texte"
+						list="niveaux"
+						style="border: 0px; background-color: transparent; color: white"
+						onkeypress="
+						if(this.value.length != 0){
+							this.style.width = ((this.value.length + 3) * 8) + 'px';
+						}else{
+							this.style.width = ((this.placeholder.length + 3) * 8) + 'px';
+						}"
+						@change="modifierÉnoncé()"
+					/>
+					<datalist id="niveaux">
+						<option>base</option>
+						<option>débutant</option>
+						<option>intermédiaire</option>
+						<option>avancé</option>
+					</datalist>
 				</span>
 				<h3
 					id="titre"
@@ -42,30 +40,55 @@
 					contenteditable
 					@input="(évènement) => modifierContenu(évènement, 1)"
 					data-placeholder="Titre"
+					@change="modifierÉnoncé()"
 				>
 					{{ contenu[1].texte }}
 				</h3>
 			</div>
 			<br /><button v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
 
-			<div v-if="aperçu">
-				<div class="row flex-grow-1">
-					<v-md-editor
-						v-model="énoncé"
-						height="600px"
-						mode="edit"
-						left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
-						:toolbar="toolbar"
-						right-toolbar="fullscreen"
-					>
-					</v-md-editor>
-				</div>
-			</div>
-			<div v-else>
-				<div class="row flex-grow-1">
-					<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
-				</div>
-			</div>
+			<TabNav :tabs="['Énoncé', 'Rétroactions', 'Description']" :selected="selected" @selected="setSelected">
+				<Tab :isSelected="selected === 'Énoncé'">
+					<div v-if="aperçu">
+						<div class="row flex-grow-1">
+							<v-md-editor v-model="énoncé" height="600px" mode="preview"></v-md-editor>
+						</div>
+					</div>
+					<div v-else>
+						<div class="row flex-grow-1">
+							<v-md-editor
+								v-model="énoncé"
+								height="600px"
+								mode="edit"
+								left-toolbar="undo redo | bold italic strikethrough | quote ul ol table link code | documentation"
+								:toolbar="toolbar"
+								right-toolbar="fullscreen"
+								@change="modifierÉnoncé()"
+							>
+							</v-md-editor>
+						</div>
+					</div>
+				</Tab>
+
+				<Tab :isSelected="selected === 'Rétroactions'">
+					<div v-for="(feedback, index) in feedbacks_label" :key="index">
+						<Rétroaction
+							:test="false"
+							:feedback_label="feedbacks_label[index]"
+							:feedback_valeur="feedback_select(index)"
+							:feedback_index="index"
+							:test_index="null"
+						/>
+					</div>
+				</Tab>
+
+				<Tab :isSelected="selected === 'Description'">
+					<div class="row flex-grow-1">
+						<v-md-editor v-model="description" height="600px" mode="edit" left-toolbar="" right-toolbar="" @change="modifierDescription()">
+						</v-md-editor>
+					</div>
+				</Tab>
+			</TabNav>
 
 			<div>
 				<div class="footer-copyright py-3">
