@@ -62,14 +62,20 @@ export default {
 					if (feedback.positive == null) {
 						this.$store.state.question.tests[this.index_select].feedback.positive = "";
 					}
+					break;
+
 				case 1:
 					if (feedback.négative == null) {
 						this.$store.state.question.tests[this.index_select].feedback.négative = "";
-					}
+					}					
+					break;
+
 				case 2:
 					if (feedback.erreur == null) {
 						this.$store.state.question.tests[this.index_select].feedback.erreur = "";
 					}
+					break;
+
 			}
 			return this.feedbacks_valeur[index] != null ? this.feedbacks_valeur[index] : "";
 		},
