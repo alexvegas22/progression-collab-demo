@@ -24,6 +24,7 @@
 					<Tab :isSelected="selected === 'Rétroactions'">
 						<div v-for="(feedback, index) in feedbacks_label" :key="index">
 							<Rétroaction
+								:test="true"
 								:feedback_label="feedbacks_label[index]"
 								:feedback_valeur="feedback_select(index)"
 								:feedback_index="index"
