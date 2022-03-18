@@ -2,10 +2,12 @@ export default {
 	name: "ChoixÉbauche",
 	mounted() {
 		this.aUneÉbauche();
+		//this.aUnBrouillon();
 	},
     computed: {
 		langage() {
 			if (this.$store.state.langageSélectionné === null) {
+				console.log("yé null");
 				var langageDéfaut = this.langageParDéfaut();
 				this.changerÉbauche(langageDéfaut);
 				return this.$store.state.langageSélectionné;
@@ -16,12 +18,8 @@ export default {
 		langages() {
 			return this.créerListeLangages();
 		},
-		
-		/*tentatives() {
-		return this.$store.state.avancement.tentatives??[];
-		},*/
 	
-	langagesSupportés() {
+		langagesSupportés() {
 			return this.$store.state.langagesSupportés;
 		}
     },
@@ -36,26 +34,15 @@ export default {
 		changerÉbauche(langage) {
 			const donnéeTemporaire = this.$store.state.sauvegardesTemporaires;
 			this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);
-			
+			//console.log(donnéeTemporaire);
 			if(donnéeTemporaire.has(langage)){
 				this.chargerÉbaucheTemporaire(langage);
+				console.log(langage);
+				//document.getElementById(langage).style.background='#4287f5';
 			}else{
 				this.reinitialiserCodeEditeur(langage);
 			}
-
-			var langagesSupportés = this.langagesSupportés;
-			var langagesAffichés = langagesSupportés.map(this.extraireLangagesAffichésSupportés);
-			var langagesYML = langagesSupportés.map(this.extraireLangagesYMLSupportés);
-			var langagesBrouillon = Object.keys(this.$store.state.sauvegardesTemporaires);
-			
-			console.log(langagesBrouillon);
-			for (let i = 0; i < langagesYML.length; i++) {
-				for (let o = 0; o < langagesBrouillon.length; o++) {
-					if (langagesYML[i] === langagesBrouillon[o]) {
-						document.getElementById(langagesAffichés[i]).style.background='#4287f5';
-					}
-				}
-			}
+			this.aUnBrouillon(langage);
 		},
 		/*sélectionnerÉbauche(langage) {
             this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);
@@ -120,13 +107,34 @@ export default {
 			var langagesÉbauchesQuestion = Object.keys(this.$store.state.question.ebauches);
 			var langagesAffichés = langagesSupportés.map(this.extraireLangagesAffichésSupportés);
 			var langagesYML = langagesSupportés.map(this.extraireLangagesYMLSupportés);
-			var langagesBrouillon = Object.keys(this.$store.state.sauvegardesTemporaires);
 
 			for (let i = 0; i < langagesYML.length; i++) {
 				for (let o = 0; o < langagesÉbauchesQuestion.length; o++) {
 					if (langagesYML[i] === langagesÉbauchesQuestion[o]) {
 						document.getElementById(langagesAffichés[i]).style.background='#6cd162';
 					}
+				}
+			}
+		},
+		aUnBrouillon(langage) {
+			const donnéeTemporaire = this.$store.state.sauvegardesTemporaires;
+			var langagesSupportés = this.langagesSupportés;
+			var langagesAffichés = langagesSupportés.map(this.extraireLangagesAffichésSupportés);
+
+			//this.$store.dispatch("mettreAJourLangageSelectionneÉbauche", langage);
+			console.log(langagesAffichés);
+			console.log(donnéeTemporaire);
+			console.log(langage);
+
+			for (let i = 0; i < langagesAffichés.length; i++) {
+				console.log("=====");
+				if(donnéeTemporaire.has(langagesAffichés[i])){
+					console.log("-----");
+					//if (langagesAffichés[i] === langage) {
+						console.log("oui !");
+						document.getElementById(langagesAffichés[i]).style.background='#4287f5';
+					//}
+					console.log("woops");
 				}
 			}
 		},
