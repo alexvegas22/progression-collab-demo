@@ -1,4 +1,4 @@
-label {
+.custom-control-label {
 	display: inline-flex;
 	margin-right: 10px;
 	color: #394a56;
