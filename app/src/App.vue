@@ -40,8 +40,10 @@
 				</a>
 			</li>
 			<li class="btnDMM">
-				<button v-if="token" type="button" class="btn btnDMMB" style="color:white;" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
-				<button v-else type="button" class="btn btnDMMB" style="color:white;" @click="connexion">{{ $t('menu.connexion') }}</button>
+				<a>
+					<button v-if="token" class="btn btnDMMB" style="color:white;" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
+					<button v-else class="btn btnDMMB" style="color:white;" @click="connexion">{{ $t('menu.connexion') }}</button>
+				</a>
 			</li>
 		</ul>
 		</div>

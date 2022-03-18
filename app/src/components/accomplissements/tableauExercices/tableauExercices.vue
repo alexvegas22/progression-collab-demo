@@ -1,8 +1,6 @@
 
 <template>
     <div v-if="avancements">
-        <h1> {{ $t('accomplissements.titrePage') }} </h1>
-        <br>
         <div>
             <input type="text" v-model="inputFilter" class="form-control barRecherhe">
         </div>
@@ -29,5 +27,5 @@
 </template>
 
 
-<style src="./tableauExercices.css"></style>
+<style scoped src="./tableauExercices.css"></style>
 <script src="./tableauExercices.js"></script>
