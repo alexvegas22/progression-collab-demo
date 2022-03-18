@@ -15,23 +15,23 @@ export default {
 			})
 	},
 	methods: {
-		récupérerPourcentageRéussi : function (langage){
+		récupérerPourcentageRéussi: function (langage) {
 			let totalRéussi = 0.0;
 			let pourcentage = 0.0;
-			for(let tentative in this.tentativesRéussies){
+			for (let tentative in this.tentativesRéussies) {
 				totalRéussi += this.tentativesRéussies[tentative];
 			}
 			pourcentage = this.tentativesRéussies[langage] / totalRéussi * 100;
 			return pourcentage.toFixed(1);
 		},
-		récupérerRéussi: function(){
-			let keys = Object.keys(this.tentativesRéussies) 
+		récupérerRéussi: function () {
+			let keys = Object.keys(this.tentativesRéussies)
 			let listeRéussi = []
-			for(let i = 0; i < keys.length; i++){
+			for (let i = 0; i < keys.length; i++) {
 				let pourcentage = this.récupérerPourcentageRéussi(keys[i]);
 				listeRéussi.push([keys[i], pourcentage])
 			}
-			return listeRéussi		
+			return listeRéussi;
 		}
 	}
 };
