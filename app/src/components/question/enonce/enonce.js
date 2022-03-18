@@ -1,7 +1,7 @@
 import parseMD from "@/util/parse";
-import TabNav from "@/components/question/onglets/TabNav.vue"
-import Tab from "@/components/question/onglets/Tab.vue"
-import Rétroaction from "@/components/question/rétroactions/rétroaction.vue"
+import TabNav from "@/components/question/onglets/TabNav.vue";
+import Tab from "@/components/question/onglets/Tab.vue";
+import Rétroaction from "@/components/question/rétroactions/rétroaction.vue";
 
 export default {
 	name: "Enonce",
@@ -16,6 +16,12 @@ export default {
 					return prop == "énoncé" ? parseMD(obj[prop]) : obj[prop];
 				},
 			});
+		},
+		feedbacks_label() {
+			return Object.keys(this.$store.state.question.feedback);
+		},
+		feedbacks_valeur() {
+			return Object.values(this.$store.state.question.feedback);
 		},
 	},
 	methods: {
@@ -32,7 +38,25 @@ export default {
 		},
 		setSelected(tab) {
 			this.selected = tab;
-		}
+		},
+		feedback_select: function (index) {
+			let feedback = this.$store.state.question.feedback;
+			switch (index) {
+				case 0:
+					if (feedback.positive == null) {
+						this.$store.state.question.feedback.positive = "";
+					}
+				case 1:
+					if (feedback.négative == null) {
+						this.$store.state.question.feedback.négative = "";
+					}
+				case 2:
+					if (feedback.erreur == null) {
+						this.$store.state.question.feedback.erreur = "";
+					}
+			}
+			return this.feedbacks_valeur[index] != null ? this.feedbacks_valeur[index] : "";
+		},
 	},
 
 	data() {

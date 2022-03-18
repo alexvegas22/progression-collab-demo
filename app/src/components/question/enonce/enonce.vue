@@ -35,7 +35,7 @@
 						type="text"
 						v-model="contenu[0].texte"
 						list="niveaux"
-						style="border: 0px; background-color: transparent; color: white;"
+						style="border: 0px; background-color: transparent; color: white"
 						onkeypress="
 						if(this.value.length != 0){
 							this.style.width = ((this.value.length + 3) * 8) + 'px';
@@ -83,22 +83,22 @@
 				</Tab>
 
 				<Tab :isSelected="selected === 'Rétroactions'">
-					<rétroaction></rétroaction>
+					<div v-for="(feedback, index) in feedbacks_label" :key="index">
+						<Rétroaction
+							:test="false"
+							:feedback_label="feedbacks_label[index]"
+							:feedback_valeur="feedback_select(index)"
+							:feedback_index="index"
+							:test_index="null"
+						/>
+					</div>
 				</Tab>
 
 				<Tab :isSelected="selected === 'Description'">
-
-						<div class="row flex-grow-1">
-							<v-md-editor
-								v-model="description"
-								height="600px"
-								mode="edit"
-								left-toolbar=""
-								right-toolbar=""
-							>
-							</v-md-editor>
-						</div>
-
+					<div class="row flex-grow-1">
+						<v-md-editor v-model="description" height="600px" mode="edit" left-toolbar="" right-toolbar="">
+						</v-md-editor>
+					</div>
 				</Tab>
 			</TabNav>
 
