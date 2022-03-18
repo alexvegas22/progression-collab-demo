@@ -156,7 +156,7 @@ export default {
 
 		return valider(commit, authentifierApi(urlAuth, nom_utilisateur, mdp));
 	},
-
+		
 	async getUser({ commit, state }, urlUser) {
 		return valider( async function() {
 			const token = await getToken({ commit, state });
