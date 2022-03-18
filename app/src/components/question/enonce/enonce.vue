@@ -49,8 +49,12 @@
 					{{ contenu[1].texte }}
 				</h3>
 			</div>
-			<br /><button v-if="modeÉdition" class="btn btn-info text-white" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)">Modifier ✎</button>
-
+			<br />
+			<div class="form-check form-switch btn-modeCréation">
+						<input class="form-check-input" type="checkbox"
+							   v-if="modeÉdition" id="btn_aperçu" @click="basculerBtnAperçu(), (aperçu = !aperçu)" />
+						<label id="toggleText" class="form-check-label" for="btn_modeCréation">✎</label>
+					</div>
 			<div v-if="aperçu">
 				<div class="row flex-grow-1">
 					<v-md-editor
