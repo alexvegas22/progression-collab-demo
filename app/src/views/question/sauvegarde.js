@@ -10,7 +10,7 @@ export const sauvegarde = {
         champs.set("description","description: ");
         champs.set("énoncé","énoncé: |\n");
         champs.set("ébauches","ébauches:\n");
-        champs.set("rétroaction","rétroaction:\n");
+        champs.set("rétroactions","rétroactions:\n");
         champs.set("tests","tests:");
         champs.set("auteur","auteur: ");
         champs.set("licence", "licence: ");
@@ -22,7 +22,7 @@ export const sauvegarde = {
         donnéesQuestion.set("description",question.description);
         donnéesQuestion.set("énoncé", this.indenter(question.énoncé,":","':'"));
         donnéesQuestion.set("ébauches",question.ebauches);
-        donnéesQuestion.set("rétroaction",this.formaterRétroactions(state.retroactions));
+        donnéesQuestion.set("rétroactions",this.formaterRétroactions(question.retroactions));
         donnéesQuestion.set("tests",question.tests);
         donnéesQuestion.set("auteur",question.auteur);
         donnéesQuestion.set("licence",question.licence);
