@@ -1,30 +1,40 @@
 .text-question {
 	font-weight: bold;
 }
+
 .enonce {
 	font-size: 1em;
 }
+
+.énoncé-padding {
+	padding-top: 30px;
+	padding-left: 40px;
+}
+
 .titre {
 	font-size: 2em;
 	font-weight: bold;
 	z-index: 1;
 }
+
 .crochet {
-	position: relative;
-	left: -40px;
-	top: -38px;
+	position: absolute;
+	top: -10px;
+	left: 0;
 	height: 0px;
 	z-index: 0;
 }
+
 h3 {
 	font-size: 1em;
 	font-weight: bold;
 }
-.encadré{
-	padding-top:5px;
+
+.encadré {
+	padding-top: 5px;
 }
 
-.état{
+.état {
 	position: relative;
 	left: -30px;
 	top: 20px;
@@ -33,7 +43,7 @@ h3 {
 	color: green
 }
 
-.état.réussi{
+.état.réussi {
 	visibility: visible;
 }
 
@@ -77,6 +87,7 @@ h3 {
 	}
 
 }
+
 @-webkit-keyframes checkmark-circle {
 	0% {
 		r: 0
@@ -120,6 +131,7 @@ h3 {
    display: none
    } */
 
+
 .icon--order-success svg path {
 	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
 	animation: checkmark 0.25s ease-in-out 0.7s backwards
@@ -130,3 +142,25 @@ h3 {
 	animation: checkmark-circle 0.6s ease-in-out backwards
 }
 
+.section-énoncé-texte {
+	opacity: 1;
+	flex: 1;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.énoncé-semi {
+	width: 550px;
+}
+
+.énoncé-plein {
+	width: 100%;
+}
+
+.énoncé-caché {
+	width: 0;
+}
+
+.ps {
+	height: 100%;
+}

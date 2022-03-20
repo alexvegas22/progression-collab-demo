@@ -1,5 +1,9 @@
 export default {
 	name: "Avancement",
+	props: {
+		thèmeSombre: Boolean
+	},
+	inject: ['avancement'],
 	computed: {
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
