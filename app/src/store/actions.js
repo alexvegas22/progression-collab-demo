@@ -277,7 +277,7 @@ export default {
 					}
 				}
 			}
-			commit("setTentativesRéussies", langageRéussi);
+			commit("setNbRéussitesParLangage", langageRéussi);
 			return langageRéussi;
 		}()
 		);
