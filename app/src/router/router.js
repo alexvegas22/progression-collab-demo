@@ -18,6 +18,7 @@ const routes = [
 		name: "Question",
 		component: () => import("@/views/question/question.vue"),
 	},
+
 	{
 		path: "/accomplissements",
 		name: "Accomplissements",
