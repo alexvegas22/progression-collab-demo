@@ -9,8 +9,8 @@ const routes = require("./src/routes");
 const Mustache = require("mustache");
 const jwt_decode = require("jwt-decode");
 const services = require("./src/services.js");
+const consolidate = require('consolidate');
 
-mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
 	userId: String, // Id de la plateforme
@@ -97,6 +97,30 @@ const btoa_url = (s) =>
 		.replace(/\+/g, "-")
 		.replace(/=/g, "");
 
+
+lti.onDeepLinking(async (token, req, res) => {
+  return lti.redirect(res, 'https://eviziale.pages.dti.crosemont.quebec/prog-1-0-version-elian-2/liste_questions.html')
+})
+
+
+lti.app.post('/lti/deeplink', async (req, res) => {
+  
+  const resource = req.body
+  const items = [
+    {
+      type: 'ltiResourceLink',
+      title: resource.title,
+      text: resource.description,
+      custom: {
+        src: resource.src,
+      }
+    }
+  ]
+  // Creates the deep linking request form
+  const form = await lti.DeepLinking.createDeepLinkingForm(res.locals.token, items, { message: 'Successfully registered resource!' })
+
+  return res.send(form)
+})
 // Setting up routes
 lti.app.use(routes);
 
@@ -109,12 +133,12 @@ const setup = async () => {
 	 */
 
 	await lti.registerPlatform({
-		url: "http://rocinante.lamancha:82",
-		name: "Moodle local",
-		clientId: "oShV5G8qB6WuqHx",
-		authenticationEndpoint: "http://rocinante.lamancha:82/mod/lti/auth.php",
-		accesstokenEndpoint: "http://rocinante.lamancha:82/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "http://rocinante.lamancha:82/mod/lti/certs.php" },
+		url: "https://moodle.progression.dti.crosemont.quebec",
+		name: "Moodle test",
+		clientId: "VN6pIq55GhWZlwQ",
+		authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
+		accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
+		authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php" },
 	});
 };
 
