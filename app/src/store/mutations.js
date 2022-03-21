@@ -80,8 +80,8 @@ export const mutations = {
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
-	setTentativesRéussies(state, tentativesRéussies) {
-		state.tentativesRéussies = tentativesRéussies;
+	setNbRéussitesParLangage(state, tentativesRéussies) {
+		state.nbRéussitesParLangage = tentativesRéussies;
 	},
 
 };
