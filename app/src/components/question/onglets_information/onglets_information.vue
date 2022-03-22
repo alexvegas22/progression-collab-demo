@@ -1,10 +1,11 @@
 <template>
 	<div class="row g-0">
 		<div class="col-3">
-			<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
-				{{ $t("jeu_tests.jeuTests") }}
-			</div>
-			<fenetre-info :style="{ height: panneauAfficher ? '350px' : '0' }" class="section-bas">
+			<div class="section-tests">
+				<fenetre-info :style="{ height: panneauAfficher ? '350px' : '0' }" class="section-bas">
+				<template v-slot:titre>
+					{{ $t("jeu_tests.jeuTests") }}
+				</template>
 				<div v-for="(test, index) in tests" :key="index">
 					<Test
 						v-bind:test="test"
@@ -17,6 +18,7 @@
 					/>
 				</div>
 			</fenetre-info>
+			</div>
 		</div>
 		<div class="col-9">
 			<div class="section-onglets">

@@ -121,7 +121,7 @@
 		"jeuTests": "Jeu de tests"
 	},
 
-	"mode_affichage": "Mode d'affichage par différences",
+	"mode_affichage": "Diff",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
