@@ -244,7 +244,7 @@ export default {
 		);
 	},
 
-	async getTentativesRéussies({ commit, state }, params) {
+	async getNbRéussitesParLangage({ commit, state }, params) {
 		var langageRéussi = new Object();
 		var confirmationLangageRéussi = new Object();
 
@@ -277,7 +277,7 @@ export default {
 					}
 				}
 			}
-			commit("setTentativesRéussies", langageRéussi);
+			commit("setNbRéussitesParLangage", langageRéussi);
 			return langageRéussi;
 		}()
 		);
