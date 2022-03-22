@@ -46,13 +46,29 @@ h3 {
 .état.réussi {
 	visibility: visible;
 }
-
+.énoncéPlacement{
+	width:fit-content; 
+	max-width:75%;
+	z-index:1;
+}
+.énoncéPlacement.PasDeDifficulté{
+	width:fit-content; 
+	max-width:100%;
+	z-index:1;
+}
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size: 15px;
+	font-size: 0.9375rem;
 	background-color: #0dcaf0;
 	position: relative;
-	top: -20px
+	float: left;
+	right:0.625rem;
+	top:-0.625rem;
+	width:fit-content;
+	height:fit-content;
+	white-space:normal;
+	max-width:25%;
+	word-wrap: break-word;
 }
 
 /* animations */

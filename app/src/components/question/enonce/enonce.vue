@@ -24,20 +24,24 @@
 					</g>
 				</svg>
 			</div>
-
 			<div class="row" présentation_étape="0.1">
-				<h3 class="titre align-self-start">
-					{{ question.titre }}
-					<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
-				</h3>
+				<div class="énoncéPlacement" v-bind:class="{'PasDeDifficulté':question.niveau==null}">	
+					<h3 class="titre align-self-start">	{{ question.titre }} </h3>	
+				</div>		
+				<span id="niveauQuestion" class="badge niveau"  présentation_étape="0.2">
+					{{ question.niveau }}
+				</span>	
+			</div>	
+			<div class="row flex-grow-1" >
+				<p  présentation_étape="0.3"
+										class="lead"
+					v-html="question.énoncé">
+				</p>
 			</div>
-
-			<div class="row flex-grow-1">
-				<p présentation_étape="0.3" class="lead" v-html="question.énoncé"></p>
-			</div>
-
-			<div>
-				<p class="footer-copyright text-center py-3">{{ question.auteur }} {{ question.licence }}</p>
+			<div >
+				<p class="footer-copyright text-center py-3">
+					{{question.auteur}} {{question.licence}}
+				</p>
 			</div>
 		</perfect-scrollbar>
 		<div class="section-boutton-affichage">
