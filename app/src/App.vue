@@ -12,7 +12,7 @@
 					<button v-if="token" type="button" class="btn btn-outline-secondary" @click="déconnexion">{{ $t('menu.déconnexion') }}</button>
 					<button v-else type="button" class="btn btn-outline-secondary" @click="connexion">{{ $t('menu.connexion') }}</button>
 				</div>
-				<div class="topnav-right">
+				<div class="topnav-right" présentation_étape="1.0">
 				<label>
 					<input type="checkbox" v-model="thèmeSombre" style="opacity:0;"/>
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-circle-half navBtn" viewBox="0 0 16 16">

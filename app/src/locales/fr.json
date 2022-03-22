@@ -162,5 +162,11 @@
 		"choisirTentative": "Choisir une tentative précédente",
 		"dateTentative": "Tentative du ",
 		"ébauche_initiale": "Revenir à l'ébauche initiale"
+	},
+
+	"onglets_informations": {
+		"entrées/sorties": "Éntrées / Sorties",
+		"erreurs": "Erreurs",
+		"rétroactions": "Rétroaction"
 	}
 }

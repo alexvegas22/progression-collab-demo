@@ -8,14 +8,15 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import Tabs from 'vue3-tabs';
 import { createMetaManager, plugin as metaPlugin } from 'vue-meta'
-
+import FenetreInfo from './components/layouts/fenetre_info.vue';
 import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
 import Vue3Tour from 'vue3-tour';
 import 'vue3-tour/dist/vue3-tour.css';
 import VueChartkick from 'vue-chartkick';
 import 'chartkick/chart.js';
-
+import PerfectScrollbar from 'vue3-perfect-scrollbar'
+import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 
 const app = createApp(App)
 	.use(router)
@@ -30,6 +31,8 @@ const app = createApp(App)
 	.use(metaPlugin)
 	.use(Vue3Tour)
 	.use(VueChartkick)
+	.use(PerfectScrollbar)
+app.component('fenetre-info', FenetreInfo);
 
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != 'LoginView' ) {
