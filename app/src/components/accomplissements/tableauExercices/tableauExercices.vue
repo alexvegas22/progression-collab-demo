@@ -1,7 +1,7 @@
 
 <template>
     <div v-if="avancements">
-        <h1 id="titre"> Liste d'exercices </h1>
+        <h1>Liste d'exercices</h1>
         <br>
         <div class="container">
             <v-table class="table">
