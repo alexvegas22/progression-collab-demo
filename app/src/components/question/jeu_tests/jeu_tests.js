@@ -1,9 +1,9 @@
 import Test from "@/components/question/test/test.vue";
 import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
-import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
+
 
 export default {
-	components: { Test, ResultatTest, SélecteurModeAffichage },
+	components: { Test, ResultatTest },
 	name: "JeuTests",
 	props: {
 		test: Array,
