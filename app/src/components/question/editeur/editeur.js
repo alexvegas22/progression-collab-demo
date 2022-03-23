@@ -72,6 +72,12 @@ export default {
 	},
 
 	methods: {
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
+			});
+		},
 		onChange( texte ){
 			this.$store.dispatch("mettreAjourCode", texte)
 			this.texteModifié();

@@ -58,25 +58,42 @@
 	z-index: 100;
 }
 
+.btn-valider:hover{
+    transform: scale(1.05);
+    transition: ease-in 0.2s;
+}
+
 .btn-valider {
-	border-radius: 50%;
+	position:absolute;
+	bottom: 0rem;
+	right: 0rem;
+	height: 5rem;
+	width: 5rem;
+	z-index:2;
+	fill: rgb(37,177,34);
+}
+
+.spin {
+	z-index: 100;
 	position: absolute;
-	top: 0px;
-	right: 16px;
-	z-index: 2;
+	height: 3.35rem;
+	width: 3.35rem;
+	bottom: 14px;
+    right: 13px;
+	border: 7px solid #c6c6c6;
+	border-radius: 50%;
+	border-top-color: rgb(37,177,34);
+	animation: spin 1s ease-in-out infinite;
+	-webkit-animation: spin 1s ease-in-out infinite;
 }
-
-.btn-valider.tentative_en_cours {
-	animation: spin 2s linear infinite;
-}
-
 @keyframes spin {
-	0% {
-		transform: rotate(0deg);
+	to {
+		-webkit-transform: rotate(360deg);
 	}
-
-	100% {
-		transform: rotate(360deg);
+	}
+	@-webkit-keyframes spin {
+	to {
+		-webkit-transform: rotate(360deg);
 	}
 }
 
