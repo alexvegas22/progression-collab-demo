@@ -114,6 +114,11 @@
 		"mdpDifférents": "Passwords must match"
 	},
 
+	"énoncé": {
+		"auteur": "Author",
+		"licence": "License"
+	},
+
 	"validation_tentative": {
 		"boutonValider": "Validate"
 	},

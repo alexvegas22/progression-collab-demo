@@ -37,13 +37,22 @@
 
 			<div class="row flex-grow-1" >
 				<p  présentation_étape="0.3"
-										class="lead"
+										class="enonce"
 										v-html="question.énoncé">
 				</p>
 			</div>
-			<div >
-				<p class="footer-copyright text-center py-3">
-					{{question.auteur}} {{question.licence}}
+			<div class="d-flex" :title="$t('énoncé.auteur')">
+				<i
+					class="icone fas fa-user-friends"/>
+				<p class="footer-auteur">
+					{{question.auteur}}
+				</p>
+			</div>
+			
+			<div class="d-flex" :title="$t('énoncé.licence')">
+				<i class="icone fas fa-copyright"/>
+				<p class="footer-license">
+					{{question.licence}}
 				</p>
 			</div>
 		</perfect-scrollbar>
