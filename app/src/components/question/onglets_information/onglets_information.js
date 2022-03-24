@@ -26,8 +26,8 @@ export default {
 			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
 				var résultat =
 					this.tentative && this.tentative.resultats && i < this.tentative.resultats.length
-																	? this.tentative.resultats[i].résultat
-																	: null;
+						? this.tentative.resultats[i].résultat
+						: null;
 				res.push(résultat);
 			}
 			return res;
