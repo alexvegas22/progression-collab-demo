@@ -129,7 +129,7 @@
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/5.jpg" alt="Pourquoi" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>Esasaye-le maintenant! </h4>
+                                <h4>Essaye-le maintenant! </h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">
 								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">Essaye un exercice de démo ici</a>
@@ -237,7 +237,7 @@
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="./assets/img/5.jpg" alt="Pourquoi" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>Esasayez-le maintenant! </h4>
+                                <h4>Essayez-le maintenant! </h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">
 								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">Essayez un exercice de démo ici</a>
