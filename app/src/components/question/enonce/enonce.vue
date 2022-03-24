@@ -41,7 +41,7 @@
 										v-html="question.énoncé">
 				</p>
 			</div>
-			<div class="d-flex" :title="$t('énoncé.auteur')">
+			<div class="d-flex" :title="$t('énoncé.auteur')" v-if="question.auteur">
 				<i
 					class="icone fas fa-user-friends"/>
 				<p class="footer-auteur">
@@ -49,7 +49,7 @@
 				</p>
 			</div>
 			
-			<div class="d-flex" :title="$t('énoncé.licence')">
+			<div class="d-flex" :title="$t('énoncé.licence')" v-if="question.licence">
 				<i class="icone fas fa-copyright"/>
 				<p class="footer-license">
 					{{question.licence}}
