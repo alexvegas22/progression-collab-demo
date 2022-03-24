@@ -6,6 +6,9 @@
 									class="dropdown-toggle"
 									type="button"
 									id="menu_historique"
+									style="display: inline-block"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
 			>
 				{{ this.langage }}
 			</div>
