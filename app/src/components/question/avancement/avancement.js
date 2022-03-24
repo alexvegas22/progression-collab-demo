@@ -1,8 +1,10 @@
 export default {
 	name: "Avancement",
 	props: {
-		thèmeSombre: Boolean
+		thèmeSombre: Boolean,
+		pleinÉcran: Boolean,
 	},
+	emits: ["basculéPanneauÉditeur"],
 	inject: ['avancement'],
 	computed: {
 		langage() {

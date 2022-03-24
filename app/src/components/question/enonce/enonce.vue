@@ -14,16 +14,17 @@
 						<path
 							d="M21.417,40.778l9.93,9.909l20.444-20.393"
 							style="
-								stroke-dasharray: 50px, 50px;
-								stroke-dashoffset: 0px;
-								stroke-width: 6;
-								stroke: white;
-								fill: none;
-							"
+							   stroke-dasharray: 50px, 50px;
+							   stroke-dashoffset: 0px;
+							   stroke-width: 6;
+							   stroke: white;
+							   fill: none;
+							   "
 						></path>
 					</g>
 				</svg>
 			</div>
+
 			<div class="row" présentation_étape="0.1">
 				<div class="énoncéPlacement" v-bind:class="{'PasDeDifficulté':question.niveau==null}">	
 					<h3 class="titre align-self-start">	{{ question.titre }} </h3>	
@@ -32,10 +33,12 @@
 					{{ question.niveau }}
 				</span>	
 			</div>	
+
+
 			<div class="row flex-grow-1" >
 				<p  présentation_étape="0.3"
 										class="lead"
-					v-html="question.énoncé">
+										v-html="question.énoncé">
 				</p>
 			</div>
 			<div >
@@ -45,24 +48,22 @@
 			</div>
 		</perfect-scrollbar>
 		<div class="section-boutton-affichage">
+			
 			<i
-				style="float: right"
-				@click="$emit('ajustéÉnoncé', 'plein')"
-				class="fa fa-arrows-alt btn-affichage"
+				@click="$emit('ajustéPanneauÉnoncé', 'max')"
+				class="fa fa-window-maximize btn-affichage"
 				aria-hidden="true"
 				v-if="énoncéSemiÉcran"
 			></i>
 			<i
-				style="float: right"
-				@click="$emit('ajustéÉnoncé', 'semi')"
-				class="fa fa fa-window-maximize btn-affichage"
+				@click="$emit('ajustéPanneauÉnoncé', 'normal')"
+				class="fa fa-window-restore btn-affichage"
 				aria-hidden="true"
-				v-else
+				v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
 			></i>
 			<i
-				style="float: right"
-				@click="$emit('ajustéÉnoncé', 'cacher')"
-				class="fa fa fa-window-minimize btn-affichage"
+				@click="$emit('ajustéPanneauÉnoncé', 'min')"
+				class="fa fa-window-minimize btn-affichage"
 				aria-hidden="true"
 				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
 			></i>

@@ -180,3 +180,8 @@ h3 {
 .ps {
 	height: 100%;
 }
+
+i {
+	float: right;
+	font-size: 0.75rem;
+}
