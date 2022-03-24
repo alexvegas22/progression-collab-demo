@@ -47,7 +47,7 @@
 				</p>
 			</div>
 		</perfect-scrollbar>
-		<div class="section-boutton-affichage">
+		<div class="section-bouton-affichage">
 			
 			<i
 				@click="$emit('ajustéPanneauÉnoncé', 'max')"

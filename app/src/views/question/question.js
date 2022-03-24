@@ -11,7 +11,7 @@ export default {
 	name: "Question",
 	data() {
 		return {
-			panneauTestsAffiché: true,
+			panneauTestsAffiché: false,
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,

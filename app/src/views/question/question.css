@@ -99,15 +99,18 @@ body {
 	border-radius: 0.375rem 0 0.375rem 0.375rem;
 }
 
-.section-boutton-affichage {
-	width: 2.5rem;
+.section-bouton-affichage {
 	padding: 0.25rem;
 	border-right: 0.06rem solid lightgray;
 	flex: 0 0 auto;
 }
 
+.thème_sombre .section-bouton-affichage {
+	border-right: 0 solid #555555;
+}
+
 .énoncé-semi .section-boutton-affichage {
-	width: 4rem !important;
+	width: 4.5rem !important;
 }
 
 .énoncé-plein .section-boutton-affichage {
