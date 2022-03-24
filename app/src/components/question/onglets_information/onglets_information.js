@@ -37,8 +37,8 @@ export default {
 		},
 		resultat_select() {
 			return this.tentative?.resultats
-				 ? this.tentative.resultats[this.index_select]
-				 : null;
+				? this.tentative.resultats[this.index_select]
+				: null;
 		},
 		tentative() {
 			return this.$store.state.retroactionTentative;
@@ -55,12 +55,12 @@ export default {
 			if(this.tentative?.resultats){
 				for(var resultat in this.tentative.resultats){
 					if(this.tentative.resultats[resultat].sortie_erreur){
-						this.index_select=resultat
+						this.index_select=resultat;
 						this.changementOnglet("SectionErreur");
 						break;
 					}
 					else if (!this.tentative.resultats[resultat].résultat){
-						this.index_select=resultat
+						this.index_select=resultat;
 						this.changementOnglet("ResultatTest");
 						break;
 					}
@@ -68,7 +68,7 @@ export default {
 				}
 			}
 			else{
-				this.index_select=0
+				this.index_select=0;
 				this.changementOnglet("ResultatTest");
 			}
 		}
@@ -87,7 +87,7 @@ export default {
 			}
 		},
 		basculerPanneau(){
-			this.$emit('basculéPanneauTests');
+			this.$emit("basculéPanneauTests");
 		}
 	},
 };

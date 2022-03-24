@@ -5,7 +5,7 @@ export default {
 		pleinÉcran: Boolean,
 	},
 	emits: ["basculéPanneauÉditeur"],
-	inject: ['avancement'],
+	inject: ["avancement"],
 	computed: {
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
@@ -33,17 +33,17 @@ export default {
 		étatVersChaîne: function (etat) {
 			let etatString;
 			switch (etat) {
-				case 0:
-					etatString = "premièreTentative";
-					break;
-				case 1:
-					etatString = "questionNonRésolue";
-					break;
-				case 2:
-					etatString = "questionRésolue";
-					break;
-				default:
-					etatString = "questionIndéterminée";
+			case 0:
+				etatString = "premièreTentative";
+				break;
+			case 1:
+				etatString = "questionNonRésolue";
+				break;
+			case 2:
+				etatString = "questionRésolue";
+				break;
+			default:
+				etatString = "questionIndéterminée";
 			}
 			return etatString;
 		},

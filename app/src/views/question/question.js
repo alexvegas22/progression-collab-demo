@@ -1,4 +1,4 @@
-import OngletsInformation from '@/components/question/onglets_information/onglets_information.vue';
+import OngletsInformation from "@/components/question/onglets_information/onglets_information.vue";
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
@@ -96,7 +96,7 @@ export default {
 					.dispatch("getAvancement", {
 						url: this.user.avancements[id_avancement].liens.self,
 						lang_défaut: this.lang,
-					})
+					});
 			} else {
 				this.$store
 					.dispatch("postAvancement", {
@@ -104,19 +104,19 @@ export default {
 						question_uri: this.uri,
 						avancement: {},
 						lang_défaut: this.lang,
-					})
+					});
 			}
 		},
 		récupérerQuestion() {
 			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
 		},
 		ajusterPanneauÉnoncé( dimension ) {
-			if ( dimension === 'normal') {
+			if ( dimension === "normal") {
 				this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
 				if (this.énoncéSemiÉcran)
 					this.énoncéPleinÉcran = false;
 			}
-			else if ( dimension === 'max') {
+			else if ( dimension === "max") {
 				this.énoncéPleinÉcran = true;
 				this.énoncéSemiÉcran = false;
 			}
@@ -137,7 +137,7 @@ export default {
 		basculerPanneauÉditeur(){
 			this.éditeurPleinÉcran = !this.éditeurPleinÉcran;
 			this.panneauTestsAffiché = !this.éditeurPleinÉcran;
-			this.énoncéPleinÉcran = false
+			this.énoncéPleinÉcran = false;
 			this.énoncéSemiÉcran = !this.éditeurPleinÉcran;
 		},
 		redimensionnerÉditeur(){

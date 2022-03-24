@@ -37,7 +37,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				...this.options,
 				smartIndent: false,
 			})
-			));
+		));
 
 		this.$el._component = this;
 
