@@ -1,21 +1,28 @@
-.enonce {
-	font-size: 1em;
+.barre-énoncé {
+	display: flex;
+	flex-flow: column;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 .énoncé-padding {
-	padding-top: 30px;
-	padding-left: 40px;
+	padding-left: 2.5rem;
+}
+
+.entête {
+	padding-right: 2rem;
 }
 
 .titre {
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: bold;
 	z-index: 1;
 }
 
 .crochet {
 	position: absolute;
-	top: -10px;
+	top: 3rem;
 	left: 0;
 	height: 0px;
 	z-index: 0;
@@ -42,29 +49,29 @@ h3 {
 .état.réussi {
 	visibility: visible;
 }
+
 .énoncéPlacement{
 	width:fit-content; 
 	max-width:75%;
 	z-index:1;
 }
+
 .énoncéPlacement.PasDeDifficulté{
 	width:fit-content; 
 	max-width:100%;
 	z-index:1;
 }
+
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size: 0.9375rem;
 	background-color: #0dcaf0;
 	position: relative;
-	float: left;
-	right:0.625rem;
-	top:-0.625rem;
 	width:fit-content;
 	height:fit-content;
 	white-space:normal;
 	max-width:25%;
 	word-wrap: break-word;
+	margin-left: auto;
 }
 
 /* animations */
@@ -159,6 +166,7 @@ h3 {
 	flex: 1;
 	box-sizing: border-box;
 	position: relative;
+	padding-right: 1rem;
 }
 
 .énoncé-semi {
@@ -170,7 +178,7 @@ h3 {
 }
 
 .énoncé-caché {
-	width: 0;
+	width: 2rem;
 }
 
 .ps {
