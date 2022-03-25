@@ -1,5 +1,27 @@
 <template>
 	<div class="barre-énoncé">
+
+		<div class="section-bouton-affichage">
+			<i
+				@click="$emit('ajustéPanneauÉnoncé', 'max')"
+				class="fa fa-window-maximize btn-affichage"
+					   aria-hidden="true"
+					   v-if="énoncéSemiÉcran"
+			></i>
+			<i
+				@click="$emit('ajustéPanneauÉnoncé', 'normal')"
+				class="fa fa-window-restore btn-affichage"
+					   aria-hidden="true"
+					   v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
+			></i>
+			<i
+				@click="$emit('ajustéPanneauÉnoncé', 'min')"
+				class="fa fa-window-minimize btn-affichage"
+				aria-hidden="true"
+				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
+			></i>
+		</div>
+
 		<perfect-scrollbar
 			class="section-énoncé-texte"
 			:class="{
@@ -13,7 +35,7 @@
 						<circle cx="35" cy="40" r="25" style="fill: #8ec343; stroke: #8ec343"></circle>
 						<path
 							d="M21.417,40.778l9.93,9.909l20.444-20.393"
-							style="
+							   style="
 							   stroke-dasharray: 50px, 50px;
 							   stroke-dashoffset: 0px;
 							   stroke-width: 6;
@@ -56,27 +78,7 @@
 				</p>
 			</div>
 		</perfect-scrollbar>
-		<div class="section-bouton-affichage">
-			
-			<i
-				@click="$emit('ajustéPanneauÉnoncé', 'max')"
-				class="fa fa-window-maximize btn-affichage"
-				aria-hidden="true"
-				v-if="énoncéSemiÉcran"
-			></i>
-			<i
-				@click="$emit('ajustéPanneauÉnoncé', 'normal')"
-				class="fa fa-window-restore btn-affichage"
-				aria-hidden="true"
-				v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
-			></i>
-			<i
-				@click="$emit('ajustéPanneauÉnoncé', 'min')"
-				class="fa fa-window-minimize btn-affichage"
-				aria-hidden="true"
-				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
-			></i>
-		</div>
+
 	</div>
 </template>
 

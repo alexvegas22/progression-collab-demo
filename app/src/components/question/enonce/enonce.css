@@ -1,10 +1,19 @@
+.barre-énoncé {
+	display: flex;
+	flex-flow: column;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
 .enonce {
 	font-size: 1em;
 }
 
 .énoncé-padding {
-	padding-top: 30px;
-	padding-left: 40px;
+	padding-top: 0.75rem;
+	padding-left: 2.5rem;
+	padding-right: 1rem;
 }
 
 .titre {
