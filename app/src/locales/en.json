@@ -114,6 +114,11 @@
 		"mdpDifférents": "Passwords must match"
 	},
 
+	"énoncé": {
+		"auteur": "Author",
+		"licence": "License"
+	},
+
 	"validation_tentative": {
 		"boutonValider": "Validate"
 	},
@@ -122,7 +127,7 @@
 		"jeuTests": "Test cases"
 	},
 
-	"mode_affichage": "Differences display mode",
+	"mode_affichage": "Diff",
 
 	"editeur": {
 		"langageÉbauche": "Language : ",
@@ -158,5 +163,11 @@
 		"choisirTentative": "Choose a previous attempt",
 		"dateTentative": "Attempt from ",
 		"ébauche_initiale": "Reset initial draft"
+	},
+
+	"onglets_informations": {
+		"entrées/sorties": "Input / Output",
+		"erreurs": "Errors",
+		"rétroactions": "Feedback"
 	}
 }

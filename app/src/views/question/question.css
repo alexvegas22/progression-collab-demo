@@ -1,10 +1,11 @@
 .editeur-container {
 	display: flex;
 	height: auto;
-	padding: 20px;
+	padding: 1.25rem;
 	padding-top: 0px;
 	flex-direction: row;
 }
+
 body {
 	font-family: "Avenir", Arial, Helvetica, sans-serif;
 	font-size: 16px;
@@ -18,9 +19,111 @@ body {
 }
 
 .v-tour__target--highlighted {
-	box-shadow: 0 0 0 99999px rgba(0,0,0,.4);
+	box-shadow: 0 0 0 99999px rgba(0, 0, 0, .4);
 }
 
 .v-step__content {
 	text-align: left;
+}
+
+.flex-column {
+	display: flex;
+	flex-flow: column;
+}
+
+.flex-column.fill-height {
+	flex-grow: 1;
+}
+
+.barre-énoncé {
+	display: flex;
+	padding: 0;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.taille-ecran {
+	height: calc(100vh - 56px);
+}
+
+.m-n-0 {
+	min-height: 0;
+}
+
+.dropdown-submenu {
+	position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+	top: 0;
+	left: 100%;
+	margin-top: -0.375rem;
+	margin-left: -0.063rem;
+	-webkit-border-radius: 0 0.375rem 0.375rem 0.375rem;
+	-moz-border-radius: 0 0.375rem 0.375rem;
+	border-radius: 0 0.375rem 0.375rem 0.375rem;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+	display: block;
+}
+
+.dropdown-submenu>a:after {
+	display: block;
+	content: " ";
+	float: right;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 0.313rem 0 0.313rem 0.313rem;
+	border-left-color: #ccc;
+	margin-top: 0.313rem;
+	margin-right: -0.625rem;
+}
+
+.dropdown-submenu:hover>a:after {
+	border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+	float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+	left: -100%;
+	margin-left: 0.625rem;
+	-webkit-border-radius: 0.375rem 0 0.375rem 0.375rem;
+	-moz-border-radius: 0.375rem 0 0.375rem 0.375rem;
+	border-radius: 0.375rem 0 0.375rem 0.375rem;
+}
+
+.section-bouton-affichage {
+	padding: 0.25rem;
+	border-right: 0.06rem solid lightgray;
+	flex: 0 0 auto;
+}
+
+.thème_sombre .section-bouton-affichage {
+	border-right: 0 solid #555555;
+}
+
+.énoncé-semi .section-boutton-affichage {
+	width: 4.5rem !important;
+}
+
+.énoncé-plein .section-boutton-affichage {
+	width: 4.5rem !important;
+}
+
+.btn-affichage {
+	padding: 0.375rem;
+	float: right;
+	font-size: 0.75rem;
+}
+
+.btn-affichage:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
 }

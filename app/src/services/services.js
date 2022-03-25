@@ -108,7 +108,7 @@ const postAuthKey = async( params, token ) =>
 		.then( (data) => {
 			return {
 				nom: params.clé.nom,
-				clé: data.data.attributes}
+				clé: data.data.attributes};
 		});
 
 const callbackGrade = async (url, params) => {

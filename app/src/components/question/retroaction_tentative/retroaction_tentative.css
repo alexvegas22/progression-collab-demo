@@ -5,9 +5,10 @@
 .popup_conseil {
 	float: right;
 	position: relative;
-	top: -32.7rem;
 	right: 1.3rem;
 	z-index: 3;
+	cursor: pointer;
+	pointer-events: auto;
 }
 
 .test_réussi {
@@ -15,11 +16,12 @@
 }
 
 .test_non_réussi {
-	background-color: #d88f90;
+	background-color: #cd5c5c;
 }
 
 .progress {
-	height: 2.5rem;
+	height: 0.75rem;
+	border-radius: 0;
 }
 
 .svg_ampoule {
@@ -40,6 +42,17 @@
 	fill: white;
 	width: 1rem;
 	height: 1rem;
+}
+
+.espace-ampoule {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: right;
+	pointer-events: none;
+	padding-top: 60px;
+	align-items: flex-start;
 }
 
 @keyframes blink {
