@@ -1,4 +1,5 @@
 import parseMD from "@/util/parse";
+import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
 const diff = require("diff");
 
 const différence = function (orig = "", modif = "", mode_affichage) {
@@ -31,6 +32,7 @@ const différence = function (orig = "", modif = "", mode_affichage) {
 };
 
 export default {
+	components: { SélecteurModeAffichage },
 	name: "ResultatTest",
 	data() {
 		return {

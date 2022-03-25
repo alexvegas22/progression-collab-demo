@@ -30,14 +30,14 @@ export default {
 					if(this.origine){
 						this.$router.push(this.origine);
 					}
-					else if(new URLSearchParams(window.location.search).has('uri')){
+					else if(new URLSearchParams(window.location.search).has("uri")){
 						this.$router.push({
-							name: 'Question',
+							name: "Question",
 							query: this.$route.query,
-						})
+						});
 					}
 					else{
-						this.$router.push({name: 'Home'})
+						this.$router.push({name: "Home"});
 					}
 				}
 				catch(err){
@@ -54,8 +54,8 @@ export default {
 				finally{
 					this.$store.dispatch("setAuthentificationEnCours", false);
 				}
-			})()
+			})();
 		},
 
 	}
-}
+};

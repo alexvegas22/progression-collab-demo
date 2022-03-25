@@ -50,10 +50,13 @@ export default {
 		tentativeEnCoursDeSoumission() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
+		},
 	},
 	methods: {
 		basculerAffichageConseil() {
 			this.conseilAffiché = !this.conseilAffiché;
 		},
-	},
+	}
 };

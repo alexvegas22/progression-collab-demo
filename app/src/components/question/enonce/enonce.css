@@ -1,32 +1,36 @@
-.text-question {
-	font-weight: bold;
-}
 .enonce {
 	font-size: 1em;
 }
+
+.énoncé-padding {
+	padding-top: 30px;
+	padding-left: 40px;
+}
+
 .titre {
 	font-size: 2em;
-	color: black;
 	font-weight: bold;
 	z-index: 1;
 }
+
 .crochet {
-	position: relative;
-	left: -40px;
-	top: -38px;
+	position: absolute;
+	top: -10px;
+	left: 0;
 	height: 0px;
 	z-index: 0;
 }
+
 h3 {
 	font-size: 1em;
-	color: black;
 	font-weight: bold;
 }
-.encadré{
-	padding-top:5px;
+
+.encadré {
+	padding-top: 5px;
 }
 
-.état{
+.état {
 	position: relative;
 	left: -30px;
 	top: 20px;
@@ -35,16 +39,32 @@ h3 {
 	color: green
 }
 
-.état.réussi{
+.état.réussi {
 	visibility: visible;
 }
-
+.énoncéPlacement{
+	width:fit-content; 
+	max-width:75%;
+	z-index:1;
+}
+.énoncéPlacement.PasDeDifficulté{
+	width:fit-content; 
+	max-width:100%;
+	z-index:1;
+}
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size: 15px;
+	font-size: 0.9375rem;
 	background-color: #0dcaf0;
 	position: relative;
-	top: -20px
+	float: left;
+	right:0.625rem;
+	top:-0.625rem;
+	width:fit-content;
+	height:fit-content;
+	white-space:normal;
+	max-width:25%;
+	word-wrap: break-word;
 }
 
 /* animations */
@@ -79,6 +99,7 @@ h3 {
 	}
 
 }
+
 @-webkit-keyframes checkmark-circle {
 	0% {
 		r: 0
@@ -122,6 +143,7 @@ h3 {
    display: none
    } */
 
+
 .icon--order-success svg path {
 	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
 	animation: checkmark 0.25s ease-in-out 0.7s backwards
@@ -132,3 +154,44 @@ h3 {
 	animation: checkmark-circle 0.6s ease-in-out backwards
 }
 
+.section-énoncé-texte {
+	opacity: 1;
+	flex: 1;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.énoncé-semi {
+	width: 550px;
+}
+
+.énoncé-plein {
+	width: 100%;
+}
+
+.énoncé-caché {
+	width: 0;
+}
+
+.ps {
+	height: 100%;
+}
+
+p.footer-auteur {
+	font-size: 0.8rem;
+	color: #80808080;
+	margin-bottom: 0.25rem;
+}
+
+.icone{
+	position: relative;
+	top: 0.2rem;
+	font-size: 0.75rem;
+	padding-right: 0.5rem;
+	opacity: 50%;
+}
+
+p.footer-license {
+	font-size: 0.8rem;
+	color: #80808080;
+}

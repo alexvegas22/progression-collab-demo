@@ -1,17 +1,30 @@
 .test.réussi{
-	background-color: #80cc8e;
+	background-color: transparent;
+	color: green;
+}
+
+.thème_sombre .test.réussi{
+	background-color: transparent;
+	color: #80cc8e;
 }
 
 .test.non_réussi{
-	background-color: #d88f90;
+	background-color: transparent;
+	color: #b22222;
+}
+
+.thème_sombre .test.non_réussi{
+	background-color: transparent;
+	color: #cd5c5c;
 }
 
 .sélectionné{
-	border: 2px solid black;
+	border: 2px solid;
 }
 
 .non_sélectionné{
-	border: 2px solid lightgrey;
+	border: 1px solid;
+	padding: 1px;
 }
 
 .visible{

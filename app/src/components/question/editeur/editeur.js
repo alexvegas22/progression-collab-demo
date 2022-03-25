@@ -12,14 +12,10 @@ export default {
 			indicateurSauvegardeEnCours: false,
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
-			thèmeSombre: localStorage.getItem("thème") === "true",
 			xray: localStorage.getItem("xray") === "true",
 		};
 	},
 	watch: {
-		thèmeSombre() {
-			localStorage.setItem( "thème", this.thèmeSombre );
-		},
 		xray() {
 			localStorage.setItem( "xray", this.xray );
 		},
@@ -29,7 +25,7 @@ export default {
 			return this.$store.state.tentative.code;
 		},
 		thème(){
-			return this.thèmeSombre?"monokai":"default";
+			return this.$store.state.thèmeSombre?"monokai":"default";
 		},
 		ebauches() {
 			return this.$store.state.question.ebauches ?? [];
@@ -76,8 +72,14 @@ export default {
 	},
 
 	methods: {
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
+			});
+		},
 		onChange( texte ){
-			this.$store.dispatch("mettreAjourCode", texte)
+			this.$store.dispatch("mettreAjourCode", texte);
 			this.texteModifié();
 		},
 
@@ -99,25 +101,19 @@ export default {
 					this.indicateurSauvegardeEnCours = true;
 					this.indicateurModifié = false;
 					await this.$store
-					          .dispatch("mettreAjourSauvegarde")
-					          .catch((erreur) => {
-					              console.log("ERREUR de sauvegarde : " + erreur);
-					              this.indicateurModifié = true;
-					          })
-					          .finally(() => {
-					              this.indicateurSauvegardeEnCours = false;
-					              this.sauvegardeAutomatique = null;
-					          });
+						.dispatch("mettreAjourSauvegarde")
+						.catch((erreur) => {
+							console.log("ERREUR de sauvegarde : " + erreur);
+							this.indicateurModifié = true;
+						})
+						.finally(() => {
+							this.indicateurSauvegardeEnCours = false;
+							this.sauvegardeAutomatique = null;
+						});
 				}, process.env.VUE_APP_DELAI_SAUVEGARDE);
 
 				this.indicateurModifié = true;
 			}
-		},
-		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {
-				langage: this.$store.state.tentative.langage,
-				code: this.$store.state.tentative.code,
-			});
 		},
 	},
 };
