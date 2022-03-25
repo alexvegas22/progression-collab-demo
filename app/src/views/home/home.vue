@@ -73,7 +73,7 @@
 			</div>
 			<div class="row text-center">
 				<h4 class="my-4">
-					<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">TL;DR ➙ Essayez un exercice de démo ici</a>
+					<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">TL;DR ➙ Essayez un exercice de démo ici</a>
 				</h4>
 			</div>
 		</section>
@@ -137,7 +137,7 @@
                                 <h4>Essaye-le maintenant! </h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">
-								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">Essaye un exercice de démo ici</a>
+								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essaye un exercice de démo ici</a>
 							</p>
 							</div>
 						</div>
@@ -245,7 +245,7 @@
                                 <h4>Essayez-le maintenant! </h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">
-								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">Essayez un exercice de démo ici</a>
+								<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essayez un exercice de démo ici</a>
 							</p>
 							</div>
 						</div>
