@@ -15,18 +15,15 @@
 				id="btn_soumettre_tentative"
 				type="button"
 				class="btn btn-valider"
-				:class="{tentative_en_cours: envoiEnCours}"
 				:disabled="envoiEnCours"
 				@click="validerTentative"
 				présentation_étape="1.2"
 			> 
 				<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2"></use>
 			</svg>
-			<div v-if="envoiEnCours" class="spin"></div>
-			<div class="row align-items-end" style="height: 0px">
-				<div class="col"></div>
-				<div class="col-auto" :class="classeIndicateur">●</div>
-			</div>
+			<div :class="{spin: envoiEnCours}"></div>
+
+			<div class="indicateur_sauvegarde" :class="classeIndicateur" style="z-index: 1">●</div>
 
 			<v-code-mirror
 				présentation_étape="1.1"

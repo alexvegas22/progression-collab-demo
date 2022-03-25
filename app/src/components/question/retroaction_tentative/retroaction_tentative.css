@@ -20,7 +20,8 @@
 }
 
 .progress {
-	height: 1.563rem;
+	height: 0.75rem;
+	border-radius: 0;
 }
 
 .svg_ampoule {
