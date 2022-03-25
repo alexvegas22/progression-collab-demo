@@ -1,18 +1,22 @@
 <template>
-	<div class="barre-énoncé">
+	<div class="barre-énoncé"
+		 :class="{
+			 'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
+			 'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
+		 }" >
 
 		<div class="section-bouton-affichage">
 			<i
 				@click="$emit('ajustéPanneauÉnoncé', 'max')"
 				class="fa fa-window-maximize btn-affichage"
-					   aria-hidden="true"
-					   v-if="énoncéSemiÉcran"
+				aria-hidden="true"
+				v-if="énoncéSemiÉcran"
 			></i>
 			<i
 				@click="$emit('ajustéPanneauÉnoncé', 'normal')"
 				class="fa fa-window-restore btn-affichage"
-					   aria-hidden="true"
-					   v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
+				aria-hidden="true"
+				v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
 			></i>
 			<i
 				@click="$emit('ajustéPanneauÉnoncé', 'min')"
@@ -22,13 +26,17 @@
 			></i>
 		</div>
 
-		<perfect-scrollbar
-			class="section-énoncé-texte"
-			:class="{
-				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
-				'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
-			}"
-		>
+		<div v-show="énoncéSemiÉcran || énoncéPleinÉcran">
+
+			<div class="entête row" présentation_étape="0.1">
+				<div class="énoncéPlacement" v-bind:class="{'PasDeDifficulté':question.niveau==null}">	
+					<h3 class="titre align-self-start">	{{ question.titre }} </h3>	
+				</div>		
+				<span id="niveauQuestion" class="badge niveau"  présentation_étape="0.2">
+					{{ question.niveau }}
+				</span>	
+			</div>	
+
 			<div v-if="état_réussi" class="crochet icon icon--order-success svg">
 				<svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
 					<g>
@@ -47,38 +55,28 @@
 				</svg>
 			</div>
 
-			<div class="row" présentation_étape="0.1">
-				<div class="énoncéPlacement" v-bind:class="{'PasDeDifficulté':question.niveau==null}">	
-					<h3 class="titre align-self-start">	{{ question.titre }} </h3>	
-				</div>		
-				<span id="niveauQuestion" class="badge niveau"  présentation_étape="0.2">
-					{{ question.niveau }}
-				</span>	
-			</div>	
+			<perfect-scrollbar class="section-énoncé-texte">
+				<div class="row flex-grow-1" >
+					<p  présentation_étape="0.3"
+											v-html="question.énoncé">
+					</p>
+				</div>
 
-
-			<div class="row flex-grow-1" >
-				<p  présentation_étape="0.3"
-										class="enonce"
-										v-html="question.énoncé">
-				</p>
-			</div>
-
-			<div class="d-flex" :title="$t('énoncé.auteur')" v-if="question.auteur">
-				<i class="icone fas fa-user-friends"/>
-				<p class="footer-auteur">
-					{{question.auteur}}
-				</p>
-			</div>
-			
-			<div class="d-flex" :title="$t('énoncé.licence')" v-if="question.licence">
-				<i class="icone fas fa-copyright"/>
-				<p class="footer-license">
-					{{question.licence}}
-				</p>
-			</div>
-		</perfect-scrollbar>
-
+				<div class="d-flex" :title="$t('énoncé.auteur')" v-if="question.auteur">
+					<i class="icone fas fa-user-friends"/>
+					<p class="footer-auteur">
+						{{question.auteur}}
+					</p>
+				</div>
+				
+				<div class="d-flex" :title="$t('énoncé.licence')" v-if="question.licence">
+					<i class="icone fas fa-copyright"/>
+					<p class="footer-license">
+						{{question.licence}}
+					</p>
+				</div>
+			</perfect-scrollbar>
+		</div>
 	</div>
 </template>
 
