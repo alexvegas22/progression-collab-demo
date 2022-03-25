@@ -71,6 +71,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="row text-center">
+				<h4 class="my-4">
+					<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=python&demo=true">TL;DR ➙ Essayez un exercice de démo ici</a>
+				</h4>
+			</div>
 		</section>
 
 
