@@ -41,9 +41,9 @@
 										v-html="question.énoncé">
 				</p>
 			</div>
+
 			<div class="d-flex" :title="$t('énoncé.auteur')" v-if="question.auteur">
-				<i
-					class="icone fas fa-user-friends"/>
+				<i class="icone fas fa-user-friends"/>
 				<p class="footer-auteur">
 					{{question.auteur}}
 				</p>

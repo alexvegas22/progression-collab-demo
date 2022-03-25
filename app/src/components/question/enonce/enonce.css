@@ -180,11 +180,14 @@ h3 {
 p.footer-auteur {
 	font-size: 0.8rem;
 	color: #80808080;
+	margin-bottom: 0.25rem;
 }
 
 .icone{
+	position: relative;
+	top: 0.2rem;
 	font-size: 0.75rem;
-	padding-right: 3px;
+	padding-right: 0.5rem;
 	opacity: 50%;
 }
 
