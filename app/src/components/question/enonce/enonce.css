@@ -1,30 +1,31 @@
-.text-question {
-	font-weight: bold;
-}
-
-.enonce {
-	font-size: 1em;
+.barre-énoncé {
+	display: flex;
+	flex-flow: column;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 .énoncé-padding {
-	padding-top: 30px;
-    padding-left: 35px;
-    padding-right: 35px;
+	padding-left: 2.5rem;
+}
+
+.entête {
+	padding-right: 2rem;
 }
 
 .titre {
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: bold;
 	z-index: 1;
 }
 
 .crochet {
 	position: absolute;
-	top: -10px;
+	top: -0.89rem;
 	left: 0;
 	height: 0px;
 	z-index: 0;
-	
 }
 
 h3 {
@@ -32,14 +33,14 @@ h3 {
 	font-weight: bold;
 }
 
-.encadré{
-	padding-top:0.313rem;
+.encadré {
+	padding-top: 5px;
 }
 
 .état {
 	position: relative;
-	left: -1.875rem;
-	top: 1.25rem;
+	left: -30px;
+	top: 20px;
 	font-size: 2em;
 	visibility: hidden;
 	color: green
@@ -49,13 +50,147 @@ h3 {
 	visibility: visible;
 }
 
+.énoncéPlacement{
+	width:fit-content; 
+	max-width:75%;
+	z-index:1;
+}
+
+.énoncéPlacement.PasDeDifficulté{
+	width:fit-content; 
+	max-width:100%;
+	z-index:1;
+}
+
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	font-size:  0.94rem;
 	background-color: #0dcaf0;
 	position: relative;
-	top: -1.25rem;
+	width:fit-content;
+	height:fit-content;
+	white-space:normal;
+	max-width:25%;
+	word-wrap: break-word;
+	margin-left: auto;
 }
+
+/* animations */
+
+@-webkit-keyframes checkmark {
+	0% {
+		stroke-dashoffset: 50px
+	}
+
+	100% {
+		stroke-dashoffset: 0
+	}
+}
+
+@-ms-keyframes checkmark {
+	0% {
+		stroke-dashoffset: 50px
+	}
+
+	100% {
+		stroke-dashoffset: 0
+	}
+}
+
+@keyframes checkmark {
+	0% {
+		stroke-dashoffset: 50px
+	}
+
+	100% {
+		stroke-dashoffset: 0
+	}
+
+}
+
+@-webkit-keyframes checkmark-circle {
+	0% {
+		r: 0
+	}
+
+	100% {
+		r: 32px
+	}
+}
+
+@-ms-keyframes checkmark-circle {
+	0% {
+		r: 0
+	}
+
+	100% {
+		r: 32px
+	}
+}
+
+@keyframes checkmark-circle {
+	0% {
+		r: 0
+	}
+
+	100% {
+		r: 32px
+	}
+}
+
+.inlinesvg .svg svg {
+	display: inline
+}
+
+
+.icon--order-success svg path {
+	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+	animation: checkmark 0.25s ease-in-out 0.7s backwards
+}
+
+.icon--order-success svg circle {
+	-webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
+	animation: checkmark-circle 0.6s ease-in-out backwards
+}
+
+.section-énoncé-texte {
+	opacity: 1;
+	flex: 1;
+	box-sizing: border-box;
+	position: relative;
+	padding-right: 1rem;
+	top: 0.7rem;
+}
+
+.ps {
+	height: 100%;
+}
+
+p.footer-auteur {
+	font-size: 0.8rem;
+	color: #80808080;
+	margin-bottom: 0.25rem;
+}
+
+.icone{
+	position: relative;
+	top: 0.2rem;
+	font-size: 0.75rem;
+	padding-right: 0.5rem;
+	opacity: 50%;
+}
+
+p.footer-license {
+	font-size: 0.8rem;
+	color: #80808080;
+}
+
+.section-bouton-affichage {
+	padding: 0.25rem;
+	position: sticky;
+	float:right;
+}
+
+
 
 
 /* ------------------------------ Media Queries ---------------------------------*/
@@ -63,7 +198,7 @@ h3 {
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {
 	.badge.niveau{
-
+		margin-top: 0.8rem;
 		font-size: 0.75rem;
 	}
 	p.texte_énoncé{
@@ -74,10 +209,24 @@ h3 {
 	}
 
 	.titre{
+		padding-top: 0.8rem;
 		font-size: 1.5em;
 	}
 	h3{
 		font-size: 1rem;
+	}
+	.section-énoncé-texte {
+		opacity: 1;
+		flex: 1;
+		box-sizing: border-box;
+		position: relative;
+		padding-right: 0.5rem;
+		top: 0.7rem;
+	}
+	.section-bouton-affichage {
+		width: 2.5rem;
+		padding: 0.25rem;
+		padding-bottom: -1rem;
 	}
 }
 
@@ -86,7 +235,7 @@ h3 {
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
 @media (min-width: 36rem) and (max-width: 48rem) {
 	.badge.niveau{
-
+		margin-top: 0.3rem;
 		font-size: 0.78rem;
 	}
 	p.texte_énoncé{
@@ -96,6 +245,7 @@ h3 {
 		font-size: 0.87rem;
 	}
 	.titre{
+		padding-top: 0.6rem;
 		font-size: 1.6em;
 	}
 	h3{
@@ -107,7 +257,7 @@ h3 {
 /* ------------- 48rem - 62rem (768px - 992px) ---------------- */
 @media (min-width: 48rem) and (max-width: 62rem) {
 	.badge.niveau{
-
+		margin-top: 0.2rem;
 		font-size: 0.82rem;
 	}
 	p.texte_énoncé{
@@ -117,7 +267,8 @@ h3 {
 		font-size: 0.97rem;
 	}
 	.titre{
-		font-size: 1.8em;
+		padding-top: 0.6rem;
+		font-size: 1.7em;
 	}
 	h3{
 		font-size: 1.14rem;
@@ -166,125 +317,14 @@ h3 {
 	}
 }
 
-
-/* animations */
-
-@-webkit-keyframes checkmark {
-	0% {
-		stroke-dashoffset: 3.125rem
-	}
-
-	100% {
-		stroke-dashoffset: 0
-	}
-}
-
-@-ms-keyframes checkmark {
-	0% {
-		stroke-dashoffset: 3.125rem
-	}
-
-	100% {
-		stroke-dashoffset: 0
-	}
-}
-
-@keyframes checkmark {
-	0% {
-		stroke-dashoffset: 3.125rem
-	}
-
-	100% {
-		stroke-dashoffset: 0
-	}
-
-}
-
-@-webkit-keyframes checkmark-circle {
-	0% {
-		r: 0
-	}
-
-	100% {
-		r: 2rem
-	}
-}
-
-@-ms-keyframes checkmark-circle {
-	0% {
-		r: 0
-	}
-
-	100% {
-		r: 2rem
-	}
-}
-
-@keyframes checkmark-circle {
-	0% {
-		r: 0
-	}
-
-	100% {
-		r: 2rem
-	}
-}
-
-/* other styles */
-/* .svg svg {
-   display: none
-   }
- */
-.inlinesvg .svg svg {
-	display: inline
-}
-
-/* .svg img {
-   display: none
-   } */
-
-
-.icon--order-success svg path {
-	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
-	animation: checkmark 0.25s ease-in-out 0.7s backwards
-}
-
-.icon--order-success svg circle {
-	-webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
-	animation: checkmark-circle 0.6s ease-in-out backwards
-}
-
-.section-énoncé-texte {
-	opacity: 1;
-	flex: 1;
-	box-sizing: border-box;
-	position: relative;
-}
-
-.barre-énoncé .ps {
-	height: 100%;
-}
-
-.section-boutton-affichage {
-	padding: 0.25rem;
-	position: sticky;
-}
-
-.btn-affichage {
-	padding: 0.375rem;
-}
-
-.btn-affichage:hover {
-	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
 @media only screen and (min-width: 768px) {
-	.section-boutton-affichage {
+	.section-bouton-affichage {
 		width: 2.5rem;
 		padding: 0.25rem;
-		border-right: 0.06rem solid lightgray;
 		border-bottom: none;
+	}
+	.barre-énoncé{
+		border-right: 0.09rem solid lightgray;
 	}
 
 	.énoncé-padding {

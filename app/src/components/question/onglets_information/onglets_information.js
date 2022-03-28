@@ -10,10 +10,12 @@ export default {
 		SectionErreur,
 		Rétroactions,
 	},
-	props: ["panneauAfficher"],
+	props: {
+		panneauAffiché: Boolean,
+	},
+	emits: ["basculéPanneauTests"],
 	data() {
 		return {
-			sectionVisible: true,
 			ongletActif: "ResultatTest",
 			index_select: 0,
 		};
@@ -34,8 +36,8 @@ export default {
 			return this.$store.state.question.tests[this.index_select];
 		},
 		resultat_select() {
-			return this.tentative && this.tentative.resultats
-				? this.$store.state.retroactionTentative.resultats[this.index_select]
+			return this.tentative?.resultats
+				? this.tentative.resultats[this.index_select]
 				: null;
 		},
 		tentative() {
@@ -48,13 +50,44 @@ export default {
 			return this.$store.state.thèmeSombre;
 		},
 	},
+	watch:{
+		resultats(){
+			if(this.tentative?.resultats){
+				for(var resultat in this.tentative.resultats){
+					if(this.tentative.resultats[resultat].sortie_erreur){
+						this.index_select=resultat;
+						this.changementOnglet("SectionErreur");
+						break;
+					}
+					else if (!this.tentative.resultats[resultat].résultat){
+						this.index_select=resultat;
+						this.changementOnglet("ResultatTest");
+						break;
+					}
+					this.changementOnglet("ResultatTest");
+				}
+			}
+			else{
+				this.index_select=0;
+				this.changementOnglet("ResultatTest");
+			}
+		}
+	},
 	methods: {
 		changementOnglet(onglet) {
 			this.ongletActif = onglet;
-			this.sectionVisible = true;
 		},
 		select(index) {
 			this.index_select = index;
+			if(this.tentative?.resultats[index].sortie_erreur){
+				this.changementOnglet("SectionErreur");
+			}
+			else{
+				this.changementOnglet("ResultatTest");
+			}
 		},
+		basculerPanneau(){
+			this.$emit("basculéPanneauTests");
+		}
 	},
 };

@@ -15,11 +15,11 @@ export const zones = {
 			}
 		}
 
-		let premierTodoPlus = doc.getValue().indexOf("+TODO")
-		let premierTodoMoins = doc.getValue().indexOf("-TODO")
+		let premierTodoPlus = doc.getValue().indexOf("+TODO");
+		let premierTodoMoins = doc.getValue().indexOf("-TODO");
 
 		// Pas de balises, on laisse tout modifiable
-		if (premierTodoPlus == -1 && premierTodoMoins == -1) return
+		if (premierTodoPlus == -1 && premierTodoMoins == -1) return;
 
 		var posDébut = 0;
 		var posFin = 0;
@@ -27,7 +27,7 @@ export const zones = {
 		// S'il n'y a pas de +TODO ou s'il est après le premier -TODO,
 		// la première zone non-éditable commence là
 		if ( premierTodoMoins > 0 && (premierTodoPlus == -1 || premierTodoPlus > premierTodoMoins ) ) {
-			posDébut = premierTodoMoins
+			posDébut = premierTodoMoins;
 		}
 
 		while (posDébut > -1) {
@@ -62,22 +62,22 @@ export const zones = {
 
 			posDébut = doc.getValue().indexOf("-TODO", posFin);
 				
-			}
+		}
 	},
 
 	cacherHorsVisible(doc) {
-		let premierVisiblePlus = doc.getValue().indexOf("+VISIBLE")
-		let premierVisibleMoins = doc.getValue().indexOf("-VISIBLE")
+		let premierVisiblePlus = doc.getValue().indexOf("+VISIBLE");
+		let premierVisibleMoins = doc.getValue().indexOf("-VISIBLE");
 
-		if (premierVisiblePlus == -1 && premierVisibleMoins == -1) return
+		if (premierVisiblePlus == -1 && premierVisibleMoins == -1) return;
 		
-		var posDébut = 0
+		var posDébut = 0;
 		var posFin = 0;
 
 		// S'il n'y a pas de +VISIBLE ou s'il est après le premier -VISIBLE,
 		// la première zone non-éditable commence là
 		if ( premierVisibleMoins > 0 && ( premierVisiblePlus == -1 || premierVisiblePlus > premierVisibleMoins ) ) {
-			posDébut = premierVisibleMoins
+			posDébut = premierVisibleMoins;
 		}
 		
 		while (posDébut > -1) {
@@ -97,7 +97,7 @@ export const zones = {
 					collapsed: "true",
 					atomic: true,
 					selectRight: false,
-			});
+				});
 
 			//Remplace les lignes non visibles par des lignes vides.
 			//Utile pour éviter que les lignes invisibles n'influencent l'indentation automatique.

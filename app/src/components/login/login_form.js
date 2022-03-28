@@ -19,7 +19,7 @@ export default {
 	},
 	computed: {
 		placeholder: function(){
-			return this.domaine ? '@'+this.domaine : ""
+			return this.domaine ? "@"+this.domaine : "";
 		},
 		authentificationEnCours: function(){
 			return this.$store.state.authentificationEnCours;

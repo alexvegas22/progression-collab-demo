@@ -72,8 +72,14 @@ export default {
 	},
 
 	methods: {
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
+			});
+		},
 		onChange( texte ){
-			this.$store.dispatch("mettreAjourCode", texte)
+			this.$store.dispatch("mettreAjourCode", texte);
 			this.texteModifié();
 		},
 
@@ -95,15 +101,15 @@ export default {
 					this.indicateurSauvegardeEnCours = true;
 					this.indicateurModifié = false;
 					await this.$store
-					          .dispatch("mettreAjourSauvegarde")
-					          .catch((erreur) => {
-					              console.log("ERREUR de sauvegarde : " + erreur);
-					              this.indicateurModifié = true;
-					          })
-					          .finally(() => {
-					              this.indicateurSauvegardeEnCours = false;
-					              this.sauvegardeAutomatique = null;
-					          });
+						.dispatch("mettreAjourSauvegarde")
+						.catch((erreur) => {
+							console.log("ERREUR de sauvegarde : " + erreur);
+							this.indicateurModifié = true;
+						})
+						.finally(() => {
+							this.indicateurSauvegardeEnCours = false;
+							this.sauvegardeAutomatique = null;
+						});
 				}, process.env.VUE_APP_DELAI_SAUVEGARDE);
 
 				this.indicateurModifié = true;

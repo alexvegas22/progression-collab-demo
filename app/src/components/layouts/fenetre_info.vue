@@ -4,8 +4,8 @@
 		:class="{ thème_sombre: thèmeSombre }"
 		class="bordure-fenetre d-flex"
 	>
-		<header class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }" v-if="titre">
-			{{ titre }}
+		<header class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
+			<slot name="titre"></slot>
 		</header>
 		<perfect-scrollbar>
 			<slot></slot>

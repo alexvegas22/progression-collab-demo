@@ -16,12 +16,12 @@
 }
 
 .test_non_réussi {
-	background-color: #d88f90;
+	background-color: #cd5c5c;
 }
 
 .progress {
-	height: 2.5rem;
-  	position: relative;
+	height: 0.75rem;
+	border-radius: 0;
 }
 
 .svg_ampoule {

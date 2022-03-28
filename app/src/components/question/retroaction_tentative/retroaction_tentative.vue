@@ -15,17 +15,6 @@
 				aria-valuemin="0"
 				aria-valuemax="100"
 			/>
-			<button
-				id="btn_soumettre_tentative"
-				type="button"
-				class="btn btn-success btn-valider"
-				:class="{ tentative_en_cours: envoiEnCours }"
-				:disabled="envoiEnCours"
-				@click="validerTentative"
-				présentation_étape="1.2"
-			>
-				➜
-			</button>
 		</div>
 
 		<div v-if="retroactionTentative && retroactionTentative.feedback">

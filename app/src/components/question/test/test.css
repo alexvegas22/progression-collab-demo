@@ -1,9 +1,21 @@
 .test.réussi{
-	background-color: #80cc8e;
+	background-color: transparent;
+	color: green;
+}
+
+.thème_sombre .test.réussi{
+	background-color: transparent;
+	color: #80cc8e;
 }
 
 .test.non_réussi{
-	background-color: #d88f90;
+	
+	color: #b22222;
+}
+
+.thème_sombre .test.non_réussi{
+	
+	color: #cd5c5c;
 }
 
 .sélectionné{
@@ -14,7 +26,6 @@
 	place-content:left;
 	position:relative;
 	z-index:1;
-	color:aliceblue;
 }
 
 .sélectionné:before{
@@ -22,7 +33,7 @@
 	position:absolute;
 	inset:0;
 	z-index:-1;
-	background:rgb(0,0,0,50%);
+	background:rgb(0,0,0,33%);
 }
 
 .non_sélectionné{

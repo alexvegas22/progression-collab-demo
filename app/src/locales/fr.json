@@ -112,6 +112,11 @@
 		"boutonInscription": "S'inscrire",
 		"mdpDifférents": "Les deux mots de passe doivent correspondre"
 	},
+
+	"énoncé": {
+		"auteur": "Auteur",
+		"licence": "Licence"
+	},
 	
 	"validation_tentative": {
 		"boutonValider": "Valider"
@@ -121,7 +126,7 @@
 		"jeuTests": "Jeu de tests"
 	},
 
-	"mode_affichage": "Mode d'affichage par différences",
+	"mode_affichage": "Diff",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",

@@ -15,24 +15,26 @@
 
 .diff.normal {
 	text-decoration: none;
-	background-color: #ffffff;
+	background-color: transparent;
 }
 
 .diff.différent.ins{
 	text-decoration: none;
-	background-color: #ffffff;
+	background-color: transparent;
 }
 
 .diff.différent.del{
 	text-decoration: none;
-	background-color: #ffffff;
+	background-color: transparent;
 }
 
 .diff.différent.ins.enabled{
-	background-color: #80cc8e;
+	color: black;
+	background-color: #98fb98;
 }
 
 .diff.différent.del.enabled{
+	color: black;
 	background-color: #FFB3B3;
 }
 

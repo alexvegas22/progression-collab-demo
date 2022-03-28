@@ -1,5 +1,5 @@
 <template>
-	<div class="row g-0">
+    <div class="row g-0">
 		<div class="col-xl-3 col-lg-4 col-4">
 			<div class="section-tests">
 				<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
@@ -20,6 +20,7 @@
 				</fenetre-info>
 			</div>
 		</div>
+
 		<div class="col-xl-9 col-lg-8 col-8">
 			<div class="section-onglets">
 				<div
@@ -47,9 +48,9 @@
 				<div style="margin-left: auto">
 					<i
 						style="height: 100%"
-						@click="$emit('ajusterPanneau')"
+						@click="basculerPanneau()"
 						class="fa fa btn-affichage"
-						:class="{ 'fa-window-minimize': panneauAfficher, 'fa-window-maximize': !panneauAfficher }"
+						:class="{ 'fa-window-minimize': panneauAffiché, 'fa-window-restore': !panneauAffiché }"
 					></i>
 				</div>
 			</div>
@@ -57,14 +58,14 @@
 			<keep-alive>
 				<component
 					:is="ongletActif"
-					class="panneau"
-					:class="{'panneau-afficher': panneauAfficher}"
+					:style="{ height: panneauAffiché ? '20rem' : '0' }"
+					class="section-bas"
 					:test="test_select"
 					:resultat="resultat_select"
 				></component>
 			</keep-alive>
 		</div>
-	</div>
+    </div>
 </template>
 
 <script src="./onglets_information.js"></script>

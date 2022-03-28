@@ -6,9 +6,9 @@ html,body {
 
 .thème_sombre,
 .thème_sombre .dropdown-menu{
-	background-color: #434343 !important;
+	background-color: #353535 !important;
 	color:#E1E1E1 !important;	
-	border-color: #232121 !important;
+	border-color: #555555 !important;
 }
 
 .thème_sombre input{
