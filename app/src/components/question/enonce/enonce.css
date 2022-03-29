@@ -170,15 +170,11 @@ h3 {
 }
 
 .énoncé-semi {
-	width: 550px;
+	width: 30rem;
 }
 
 .énoncé-plein {
 	width: 100%;
-}
-
-.énoncé-caché {
-	width: 2rem;
 }
 
 .ps {
