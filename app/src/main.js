@@ -27,7 +27,7 @@ const app = createApp(App)
 	.use(createMetaManager())
 	.use(metaPlugin)
 	.use(Vue3Tour)
-  	.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
+	app.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
 
 	
 const authentificationErreurHandler = function() {

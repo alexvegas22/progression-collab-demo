@@ -15,7 +15,7 @@ export default {
 	},
 	methods:{
 		changer_mode_affichage(){
-			this.$store.dispatch("setModeAffichage");
+			this.$store.dispatch("setModeAffichage",!this.$store.state.mode_affichage);
 		}
 	}
 };
