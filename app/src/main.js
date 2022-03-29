@@ -51,9 +51,6 @@ const valider = async (promesse) => {
 			if(erreur?.response?.status==401) {
 				authentificationErreurHandler(erreur);
 			}
-			else if(erreur?.response?.status==400) {
-				store.dispatch("setErreurs", { message: i18n.global.t("erreur.tentative_intraitable") });
-			}
 			else if(typeof(erreur)=="string"){
 				store.dispatch("setErreurs", { message: erreur });
 			}
