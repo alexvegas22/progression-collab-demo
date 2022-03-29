@@ -6,7 +6,7 @@ var md = require("markdown-it")({
 		if (lang && hljs.getLanguage(lang)) {
 			try {
 				return (
-					'<pre class="hljs"><code>' +
+					"<pre class=\"hljs\"><code>" +
 					hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
 					"</code></pre>"
 				);
