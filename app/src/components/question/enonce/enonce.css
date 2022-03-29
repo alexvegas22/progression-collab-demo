@@ -50,13 +50,13 @@ h3 {
 	visibility: visible;
 }
 
-.énoncéPlacement{
+.énoncéPlacement {
 	width:fit-content; 
 	max-width:75%;
 	z-index:1;
 }
 
-.énoncéPlacement.PasDeDifficulté{
+.énoncéPlacement.PasDeDifficulté {
 	width:fit-content; 
 	max-width:100%;
 	z-index:1;
@@ -171,7 +171,7 @@ p.footer-auteur {
 	margin-bottom: 0.25rem;
 }
 
-.icone{
+.icone {
 	position: relative;
 	top: 0.2rem;
 	font-size: 0.75rem;
@@ -190,29 +190,25 @@ p.footer-license {
 	float:right;
 }
 
-
-
-
 /* ------------------------------ Media Queries ---------------------------------*/
-
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {
-	.badge.niveau{
+	.badge.niveau {
 		margin-top: 0.8rem;
 		font-size: 0.75rem;
 	}
-	p.texte_énoncé{
+	p.texte_énoncé {
 		font-size: 0.95rem;
 	}
-	p.footer-copyright{
+	p.footer-copyright {
 		font-size: 0.8rem;
 	}
 
-	.titre{
+	.titre {
 		padding-top: 0.8rem;
 		font-size: 1.5em;
 	}
-	h3{
+	h3 {
 		font-size: 1rem;
 	}
 	.section-énoncé-texte {
@@ -223,111 +219,103 @@ p.footer-license {
 		padding-right: 0.5rem;
 		top: 0.7rem;
 	}
-	.section-bouton-affichage {
-		width: 2.5rem;
-		padding: 0.25rem;
-		padding-bottom: -1rem;
-	}
+	
 }
-
-
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
 @media (min-width: 36rem) and (max-width: 48rem) {
-	.badge.niveau{
+	.badge.niveau {
 		margin-top: 0.3rem;
 		font-size: 0.78rem;
 	}
-	p.texte_énoncé{
+	p.texte_énoncé {
 		font-size: 1.04rem;
 	}
-	p.footer-copyright{
+	p.footer-copyright {
 		font-size: 0.87rem;
 	}
-	.titre{
+	.titre {
 		padding-top: 0.6rem;
 		font-size: 1.6em;
 	}
-	h3{
+	h3 {
 		font-size: 1.09rem;
 	}
 }
 
-
 /* ------------- 48rem - 62rem (768px - 992px) ---------------- */
 @media (min-width: 48rem) and (max-width: 62rem) {
-	.badge.niveau{
+	.badge.niveau {
 		margin-top: 0.2rem;
 		font-size: 0.82rem;
 	}
-	p.texte_énoncé{
+	p.texte_énoncé {
 		font-size: 1.09rem;
 	}
-	p.footer-copyright{
+	p.footer-copyright {
 		font-size: 0.97rem;
 	}
-	.titre{
+	.titre {
 		padding-top: 0.6rem;
 		font-size: 1.7em;
 	}
-	h3{
+	h3 {
 		font-size: 1.14rem;
 	}
 }
 
-
 /* ---------- 62rem - 75rem (992px - 1200px) -------------- */
 @media (min-width: 62rem) and (max-width: 75rem) {
-	.badge.niveau{
+	.badge.niveau {
 
 		font-size: 0.87rem;
 	}
-	p.texte_énoncé{
+	p.texte_énoncé {
 		font-size: 1.1rem;
 	}
-	p.footer-copyright{
+	p.footer-copyright {
 		font-size: 0.99rem;
 	}
-	.titre{
+	.titre {
 		font-size: 1.9em;
 	}
-	h3{
+	h3 {
 		font-size: 1.16rem;
 	}
 }
 
-
 /* ---------- 75rem et + (1200px et +) ---------------- */
 @media (min-width: 75rem){
-	.badge.niveau{
+	.badge.niveau {
 
 		font-size: 0.94rem;
 	}
-	p.texte_énoncé{
+	p.texte_énoncé {
 		font-size: 1.2rem;
 	}
-	p.footer-copyright{
+	p.footer-copyright {
 		font-size: 1rem;
 	}
-	.titre{
+	.titre {
 		font-size: 2em;
 	}
-	h3{
+	h3 {
 		font-size: 1em;
 	}
 }
 
-@media only screen and (min-width: 768px) {
+/* ---------- 75rem et + (768px et +) ---------------- */
+@media only screen and (min-width: 48rem) {
 	.section-bouton-affichage {
 		width: 2.5rem;
 		padding: 0.25rem;
 		border-bottom: none;
 	}
-	.barre-énoncé{
+	.barre-énoncé {
 		border-right: 0.09rem solid lightgray;
 	}
 
 	.énoncé-padding {
-		padding-right: 15px;
+		padding-right: 0.938rem;
 	}
 }

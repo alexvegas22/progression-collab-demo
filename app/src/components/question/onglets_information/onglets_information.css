@@ -34,9 +34,8 @@
 	transition: all 0.2s ease-in-out;
 }
 
-
 .panneau-afficher {
-	height: 250px;
+	height: 15.625rem;
 }
 
 .bordure-titre {
@@ -52,8 +51,10 @@
 	flex-flow: column;
 }
 
-@media only screen and (min-width: 768px) and (min-height: 865px) {
+/* ------------- Media Queries ----------------- */
+/* ------------- Entre 768px et 865px (48rem - 54.063rem) ----------------- */
+@media only screen and (min-width: 48rem) and (min-height: 54.063rem) {
 	.panneau-afficher {
-		height: 350px;
+		height: 21.875rem;
 	}
 }

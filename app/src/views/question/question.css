@@ -94,34 +94,51 @@ body {
 	width: 4.5rem !important;
 }
 
-@media only screen and (min-width: 1300px) {
+.btn-affichage {
+	padding: 0.375rem;
+	float: right;
+	font-size: 0.656rem;
+}
+
+.btn-affichage:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* -------------- Media Queries ----------------------*/
+/* -------------- Écrans de 1300px et + (81.25rem et +) ----------------------*/
+@media only screen and (min-width: 81.25rem) {
 	.énoncé-semi {
 		width: 34.375rem;
 		height: 100%;
 	}
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1300px){
+/* -------------- Écrans de 1200px à 1300px (75rem à 81.25rem) ----------------------*/
+@media only screen and (min-width: 75rem) and (max-width: 81.25rem){
 	.énoncé-semi {
 		width: 28.125rem;
 		height: 100%;
 	}
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
+/* -------------- Écrans de 768px à 1200px (48rem à 75rem) ----------------------*/
+@media only screen and (min-width: 48rem) and (max-width: 75rem) {
 	.énoncé-semi {
 		width: 28.125rem;
 		height: 100%;
 	}
 }
-@media only screen and (max-width: 767px) {
+
+/* -------------- Écrans de 0 à 767px (0 à 47.938rem) ----------------------*/
+@media only screen and (max-width: 47.938rem) {
 	.énoncé-caché {
-		padding-bottom: 1.35rem ;
-		
+		padding-bottom: 1.35rem;
 	}
 }
 
-@media only screen and (min-width: 768px) {
+/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
+@media only screen and (min-width: 48rem) {
 	.taille-écran {
 		height: calc(100vh - 56px);
 	}
@@ -146,24 +163,12 @@ body {
 		width: 2.313rem;
 		height: 100%;
 	}
-	
 
 	.énoncé-semi .section-bouton-affichage {
 		width: 4rem !important;
-		
 	}
 	
 	.énoncé-plein .section-bouton-affichage {
 		width: 4.5rem !important;
 	}
-}
-.btn-affichage {
-	padding: 0.375rem;
-	float: right;
-	font-size: 0.656rem;
-}
-
-.btn-affichage:hover {
-	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.1);
 }

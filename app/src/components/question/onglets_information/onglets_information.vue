@@ -20,7 +20,6 @@
 				</fenetre-info>
 			</div>
 		</div>
-
 		<div class="col-xl-9 col-lg-8 col-8">
 			<div class="section-onglets">
 				<div
@@ -29,7 +28,6 @@
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 				</div>
-
 				<div
 					@click="changementOnglet('SectionErreur')"
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
@@ -37,7 +35,6 @@
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>
-
 				<div
 					@click="changementOnglet('Rétroactions')"
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
@@ -54,7 +51,6 @@
 					></i>
 				</div>
 			</div>
-
 			<keep-alive>
 				<component
 					:is="ongletActif"
@@ -69,5 +65,4 @@
 </template>
 
 <script src="./onglets_information.js"></script>
-
 <style scoped src="./onglets_information.css"></style>

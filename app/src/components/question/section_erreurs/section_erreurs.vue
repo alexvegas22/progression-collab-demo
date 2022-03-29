@@ -10,5 +10,4 @@
 </template>
 
 <script src="./section_erreurs.js"></script>
-
 <style scoped src="./section_erreurs.css"></style>

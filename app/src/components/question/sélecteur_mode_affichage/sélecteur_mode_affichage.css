@@ -14,7 +14,7 @@
   }
 
   .switch input {
-	display:none;
+	display: none;
   }
 
   .slider {
@@ -54,11 +54,11 @@
 .slider.round:before {
   border-radius: 50%;
 }
- .custom-control-label{
+ .custom-control-label {
 	display: inline-block;
-	position:relative;
+	position: relative;
  }
 
- .custom-control-label{
+ .custom-control-label {
 	 bottom: 0.125rem;
  }

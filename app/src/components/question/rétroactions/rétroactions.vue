@@ -5,5 +5,4 @@
 </template>
 
 <script src="./rétroactions.js"></script>
-
 <style src="./rétroactions.css" scoped></style>
