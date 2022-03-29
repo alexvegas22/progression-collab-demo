@@ -97,12 +97,24 @@
 	.taille_texte {
 		font-size: 0.7rem;
 	}
+	.btn-valider {
+		right: 1.50rem;
+	}
+	.spin {
+		right: 2.25rem;
+	}
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
 @media (min-width: 36rem) and (max-width: 48rem) {
 	.taille_texte {
 		font-size: 0.7rem;
+	}
+	.btn-valider {
+		right: 1.50rem;
+	}
+	.spin {
+		right: 2.25rem;
 	}
 }
 
@@ -111,6 +123,12 @@
 	.taille_texte {
 		font-size: 0.7rem;
 	}
+	.btn-valider {
+		right: 1.50rem;
+	}
+	.spin {
+		right: 2.25rem;
+	}
 }
 
 /* ---------- 62rem - 75rem (992px - 1200px) -------------- */
@@ -118,11 +136,24 @@
 	.taille_texte {
 		font-size: 0.75rem;
 	}
+	.btn-valider {
+		right: 1.75rem;
+	}
+	.spin {
+		right: 2.5rem;
+	}
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
 @media (min-width: 75rem){
 	.taille_texte {
 		font-size: 0.8rem;
+	}
+
+	.btn-valider {
+		right: 1.75rem;
+	}
+	.spin {
+		right: 2.5rem;
 	}
 }

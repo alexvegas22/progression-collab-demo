@@ -51,7 +51,7 @@
 	display: flex;
 	justify-content: right;
 	pointer-events: none;
-	padding-top: 60px;
+	padding-top: 3.75rem;
 	align-items: flex-start;
 }
 
@@ -71,6 +71,9 @@
 		width: 2rem;
 		height: 2rem;
 	}
+	.espace-ampoule {
+		padding-right: 1.7rem;
+	}
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
@@ -78,6 +81,9 @@
 	.svg_ampoule {
 		width: 2.15rem;
 		height: 2.15rem;
+	}
+	.espace-ampoule {
+		padding-right: 1.7rem;
 	}
 }
 
@@ -87,6 +93,9 @@
 		width: 2.25rem;
 		height: 2.25rem;
 	}
+	.espace-ampoule {
+		padding-right: 1.7rem;
+	}
 }
 
 /* ---------- 62rem - 75rem (992px - 1200px) -------------- */
@@ -95,6 +104,9 @@
 		width: 2.4rem;
 		height: 2.4rem;
 	}
+	.espace-ampoule {
+		padding-right: 2rem;
+	}
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
@@ -102,5 +114,8 @@
 	.svg_ampoule {
 		width: 2.5rem;
 		height: 2.5rem;
+	}
+	.espace-ampoule {
+		padding-right: 2rem;
 	}
 }
