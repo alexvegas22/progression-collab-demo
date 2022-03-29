@@ -52,10 +52,7 @@ export default {
 			}
 		},
 		basculer_test_bas(){
-			this.index_select++;
-			if(this.index_select == this.$store.state.question.tests.length) {
-				this.index_select = 0;
-			}
+			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length
 		},
 	},
 };

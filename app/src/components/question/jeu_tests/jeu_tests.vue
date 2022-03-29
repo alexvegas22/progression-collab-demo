@@ -9,7 +9,6 @@
 						  v-bind:réussi="resultats[index]"
 						  v-bind:non_réussi="resultats[index] == false"
 						  v-bind:sélectionné="index==index_select"
-
 						  v-on:select="select(index)"
 						  présentation_étape="3.0"
 						/>
@@ -21,7 +20,6 @@
 			<div class="col-md-12">
 				<SélecteurModeAffichage />
 			</div>
-			
 		</div>
 	</div>
 </template>

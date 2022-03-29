@@ -80,4 +80,7 @@ export const mutations = {
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
+	setModeAffichage(state, val) {
+		state.mode_affichage = val;
+	},
 };

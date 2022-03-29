@@ -26,8 +26,9 @@ const app = createApp(App)
 	.use(Tabs)
 	.use(createMetaManager())
 	.use(metaPlugin)
-	.use(Vue3Tour)	
-	app.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
+	.use(Vue3Tour)
+  	.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
+
 	
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != 'LoginView' ) {

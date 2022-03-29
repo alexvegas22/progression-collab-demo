@@ -389,4 +389,8 @@ export default {
 	setThèmeSombre({ commit }, val) {
 		commit("setThèmeSombre", val);
 	},
+
+	setModeAffichage({ commit }, val){
+		commit("setModeAffichage", val);
+	}
 };
