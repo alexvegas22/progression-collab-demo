@@ -15,7 +15,7 @@ var md = require("markdown-it")({
 			}
 		}
 
-		return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>";
+		return "<pre class=\"hljs\"><code>"  + md.utils.escapeHtml(str) + "</code></pre>";
 	},
 	// Évite les attaques XSS qui pourraient être introduites dans des questions malveillantes.
 	html: false,
