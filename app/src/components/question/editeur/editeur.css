@@ -88,27 +88,41 @@
 
 .CodeMirror {
 	height: inherit;
-	font-size: 13px;
+	
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {
-	.taille_texte{
-		font-size: 0.8rem;
+	.taille_texte {
+		font-size: 0.7rem;
 	}
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
 @media (min-width: 36rem) and (max-width: 48rem) {
-	.taille_texte{
-		font-size: 0.8rem;
+	.taille_texte {
+		font-size: 0.7rem;
 	}
 }
 
 /* ------------- 48rem - 62rem (768px - 992px) ---------------- */
 @media (min-width: 48rem) and (max-width: 62rem) {
-	.taille_texte{
-		font-size: 0.93rem;
+	.taille_texte {
+		font-size: 0.7rem;
+	}
+}
+
+/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.taille_texte {
+		font-size: 0.75rem;
+	}
+}
+
+/* ---------- 75rem et + (1200px et +) ---------------- */
+@media (min-width: 75rem){
+	.taille_texte {
+		font-size: 0.8rem;
 	}
 }

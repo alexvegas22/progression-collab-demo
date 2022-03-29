@@ -267,7 +267,7 @@ p.footer-license {
 /* ---------- 62rem - 75rem (992px - 1200px) -------------- */
 @media (min-width: 62rem) and (max-width: 75rem) {
 	.badge.niveau {
-
+		margin-top: 0.2rem;
 		font-size: 0.87rem;
 	}
 	p.texte_énoncé {
@@ -277,6 +277,7 @@ p.footer-license {
 		font-size: 0.99rem;
 	}
 	.titre {
+		padding-top: 0.4rem;
 		font-size: 1.9em;
 	}
 	h3 {
@@ -287,7 +288,6 @@ p.footer-license {
 /* ---------- 75rem et + (1200px et +) ---------------- */
 @media (min-width: 75rem){
 	.badge.niveau {
-
 		font-size: 0.94rem;
 	}
 	p.texte_énoncé {
@@ -297,6 +297,7 @@ p.footer-license {
 		font-size: 1rem;
 	}
 	.titre {
+		padding-top: 0.35rem;
 		font-size: 2em;
 	}
 	h3 {
