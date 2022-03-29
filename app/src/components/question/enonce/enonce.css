@@ -43,7 +43,7 @@ h3 {
 	top: 20px;
 	font-size: 2em;
 	visibility: hidden;
-	color: green
+	color: green;
 }
 
 .état.réussi {
@@ -51,25 +51,25 @@ h3 {
 }
 
 .énoncéPlacement {
-	width:fit-content; 
-	max-width:75%;
-	z-index:1;
+	width: fit-content;
+	max-width: 75%;
+	z-index: 1;
 }
 
 .énoncéPlacement.PasDeDifficulté {
-	width:fit-content; 
-	max-width:100%;
-	z-index:1;
+	width: fit-content;
+	max-width: 100%;
+	z-index: 1;
 }
 
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
 	background-color: #0dcaf0;
 	position: relative;
-	width:fit-content;
-	height:fit-content;
-	white-space:normal;
-	max-width:25%;
+	width: fit-content;
+	height: fit-content;
+	white-space: normal;
+	max-width: 25%;
 	word-wrap: break-word;
 	margin-left: auto;
 }
@@ -78,78 +78,76 @@ h3 {
 
 @-webkit-keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 50px;
 	}
 
 	100% {
-		stroke-dashoffset: 0
+		stroke-dashoffset: 0;
 	}
 }
 
 @-ms-keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 50px;
 	}
 
 	100% {
-		stroke-dashoffset: 0
+		stroke-dashoffset: 0;
 	}
 }
 
 @keyframes checkmark {
 	0% {
-		stroke-dashoffset: 50px
+		stroke-dashoffset: 50px;
 	}
 
 	100% {
-		stroke-dashoffset: 0
+		stroke-dashoffset: 0;
 	}
-
 }
 
 @-webkit-keyframes checkmark-circle {
 	0% {
-		r: 0
+		r: 0;
 	}
 
 	100% {
-		r: 32px
+		r: 32px;
 	}
 }
 
 @-ms-keyframes checkmark-circle {
 	0% {
-		r: 0
+		r: 0;
 	}
 
 	100% {
-		r: 32px
+		r: 32px;
 	}
 }
 
 @keyframes checkmark-circle {
 	0% {
-		r: 0
+		r: 0;
 	}
 
 	100% {
-		r: 32px
+		r: 32px;
 	}
 }
 
 .inlinesvg .svg svg {
-	display: inline
+	display: inline;
 }
-
 
 .icon--order-success svg path {
 	-webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
-	animation: checkmark 0.25s ease-in-out 0.7s backwards
+	animation: checkmark 0.25s ease-in-out 0.7s backwards;
 }
 
 .icon--order-success svg circle {
 	-webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
-	animation: checkmark-circle 0.6s ease-in-out backwards
+	animation: checkmark-circle 0.6s ease-in-out backwards;
 }
 
 .section-énoncé-texte {
@@ -187,7 +185,7 @@ p.footer-license {
 .section-bouton-affichage {
 	padding: 0.25rem;
 	position: sticky;
-	float:right;
+	float: right;
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/
@@ -210,7 +208,7 @@ p.footer-license {
 		font-size: 0.7rem;
 	}
 
-	.icone{
+	.icone {
 		font-size: 0.6rem;
 	}
 
@@ -231,7 +229,6 @@ p.footer-license {
 		padding-right: 0.5rem;
 		top: 0.7rem;
 	}
-	
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
@@ -253,7 +250,7 @@ p.footer-license {
 		font-size: 0.7rem;
 	}
 
-	.icone{
+	.icone {
 		font-size: 0.6rem;
 	}
 
@@ -272,6 +269,7 @@ p.footer-license {
 		margin-top: 0.2rem;
 		font-size: 0.82rem;
 	}
+
 	p.texte_énoncé {
 		font-size: 1.09rem;
 	}
@@ -280,6 +278,7 @@ p.footer-license {
 		padding-top: 0.6rem;
 		font-size: 1.7em;
 	}
+
 	h3 {
 		font-size: 1.14rem;
 	}
@@ -291,7 +290,7 @@ p.footer-license {
 		margin-top: 0.2rem;
 		font-size: 0.87rem;
 	}
-	
+
 	p.texte_énoncé {
 		font-size: 1.1rem;
 	}
@@ -307,7 +306,7 @@ p.footer-license {
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
-@media (min-width: 75rem){
+@media (min-width: 75rem) {
 	.badge.niveau {
 		font-size: 0.94rem;
 	}

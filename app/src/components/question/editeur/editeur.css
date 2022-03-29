@@ -4,15 +4,15 @@
 
 .gutter-non-editable {
 	background:
-		/* top, transparent black, faked with gradient */
-		linear-gradient(
-			to right,
-			transparent 80%,
-			rgba(127, 127, 127, 0.3) 80% 100%);
+		/* top, transparent black, faked with gradient */ linear-gradient(
+		to right,
+		transparent 80%,
+		rgba(127, 127, 127, 0.3) 80% 100%
+	);
 }
 
 .ligne-non-editable {
-	background: rgba(127, 127, 127, 0.05)
+	background: rgba(127, 127, 127, 0.05);
 }
 
 .ligne-cache {
@@ -23,6 +23,7 @@
 	float: right;
 	font-size: 1rem;
 }
+
 .non-sauvegardé {
 	color: red;
 }
@@ -48,13 +49,13 @@
 }
 
 .btn-valider {
-	position:absolute;
+	position: absolute;
 	bottom: 0rem;
 	right: 1rem;
 	height: 5rem;
 	width: 5rem;
-	z-index:2;
-	fill: rgb(37,177,34);
+	z-index: 2;
+	fill: rgb(37, 177, 34);
 }
 
 .btn-valider:hover {
@@ -70,7 +71,7 @@
 	right: 1.75rem;
 	border: 0.438rem solid #c6c6c6;
 	border-radius: 50%;
-	border-top-color: rgb(37,177,34);
+	border-top-color: rgb(37, 177, 34);
 	animation: spin 1s ease-in-out infinite;
 	-webkit-animation: spin 1s ease-in-out infinite;
 }
@@ -79,8 +80,8 @@
 	to {
 		-webkit-transform: rotate(360deg);
 	}
-	}
-	@-webkit-keyframes spin {
+}
+@-webkit-keyframes spin {
 	to {
 		-webkit-transform: rotate(360deg);
 	}
@@ -88,7 +89,6 @@
 
 .CodeMirror {
 	height: inherit;
-	
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/
@@ -97,9 +97,11 @@
 	.taille_texte {
 		font-size: 0.7rem;
 	}
+
 	.btn-valider {
-		right: 1.50rem;
+		right: 1.5rem;
 	}
+
 	.spin {
 		right: 2.25rem;
 	}
@@ -110,9 +112,11 @@
 	.taille_texte {
 		font-size: 0.7rem;
 	}
+
 	.btn-valider {
-		right: 1.50rem;
+		right: 1.5rem;
 	}
+
 	.spin {
 		right: 2.25rem;
 	}
@@ -123,9 +127,11 @@
 	.taille_texte {
 		font-size: 0.7rem;
 	}
+
 	.btn-valider {
-		right: 1.50rem;
+		right: 1.5rem;
 	}
+
 	.spin {
 		right: 2.25rem;
 	}
@@ -136,16 +142,18 @@
 	.taille_texte {
 		font-size: 0.75rem;
 	}
+
 	.btn-valider {
 		right: 1.75rem;
 	}
+
 	.spin {
 		right: 2.5rem;
 	}
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
-@media (min-width: 75rem){
+@media (min-width: 75rem) {
 	.taille_texte {
 		font-size: 0.8rem;
 	}
@@ -153,6 +161,7 @@
 	.btn-valider {
 		right: 1.75rem;
 	}
+
 	.spin {
 		right: 2.5rem;
 	}
