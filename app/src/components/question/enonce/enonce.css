@@ -197,20 +197,32 @@ p.footer-license {
 		margin-top: 0.8rem;
 		font-size: 0.75rem;
 	}
+
 	p.texte_énoncé {
 		font-size: 0.95rem;
 	}
-	p.footer-copyright {
-		font-size: 0.8rem;
+
+	p.footer-license {
+		font-size: 0.7rem;
+	}
+
+	p.footer-auteur {
+		font-size: 0.7rem;
+	}
+
+	.icone{
+		font-size: 0.6rem;
 	}
 
 	.titre {
 		padding-top: 0.8rem;
 		font-size: 1.5em;
 	}
+
 	h3 {
 		font-size: 1rem;
 	}
+
 	.section-énoncé-texte {
 		opacity: 1;
 		flex: 1;
@@ -228,12 +240,23 @@ p.footer-license {
 		margin-top: 0.3rem;
 		font-size: 0.78rem;
 	}
+
 	p.texte_énoncé {
 		font-size: 1.04rem;
 	}
-	p.footer-copyright {
-		font-size: 0.87rem;
+
+	p.footer-license {
+		font-size: 0.7rem;
 	}
+
+	p.footer-auteur {
+		font-size: 0.7rem;
+	}
+
+	.icone{
+		font-size: 0.6rem;
+	}
+
 	.titre {
 		padding-top: 0.6rem;
 		font-size: 1.6em;
@@ -252,9 +275,7 @@ p.footer-license {
 	p.texte_énoncé {
 		font-size: 1.09rem;
 	}
-	p.footer-copyright {
-		font-size: 0.97rem;
-	}
+
 	.titre {
 		padding-top: 0.6rem;
 		font-size: 1.7em;
@@ -270,16 +291,16 @@ p.footer-license {
 		margin-top: 0.2rem;
 		font-size: 0.87rem;
 	}
+	
 	p.texte_énoncé {
 		font-size: 1.1rem;
 	}
-	p.footer-copyright {
-		font-size: 0.99rem;
-	}
+
 	.titre {
 		padding-top: 0.4rem;
 		font-size: 1.9em;
 	}
+
 	h3 {
 		font-size: 1.16rem;
 	}
@@ -290,16 +311,16 @@ p.footer-license {
 	.badge.niveau {
 		font-size: 0.94rem;
 	}
+
 	p.texte_énoncé {
 		font-size: 1.2rem;
 	}
-	p.footer-copyright {
-		font-size: 1rem;
-	}
+
 	.titre {
 		padding-top: 0.35rem;
 		font-size: 2em;
 	}
+
 	h3 {
 		font-size: 1em;
 	}
@@ -312,6 +333,7 @@ p.footer-license {
 		padding: 0.25rem;
 		border-bottom: none;
 	}
+
 	.barre-énoncé {
 		border-right: 0.09rem solid lightgray;
 	}
