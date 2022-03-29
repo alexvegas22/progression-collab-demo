@@ -10,7 +10,6 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
 import { capitalize, h, markRaw } from "vue";
-import ResizeObserver from "resize-observer-polyfill";
 import { Component, Inreactive, Prop, VueComponentBase, Watch } from "vue3-component-base";
 import { zones } from "./zones";
 
@@ -38,7 +37,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				...this.options,
 				smartIndent: false,
 			})
-			));
+		));
 
 		this.$el._component = this;
 
@@ -53,19 +52,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			}
 		});
 
-		if (!VCodeMirrorComp.ro) {
-			VCodeMirrorComp.ro = new ResizeObserver(function (entries) {
-				entries.forEach((entry) => {
-					const that = entry.target._component;
-					if (that.autoHeight) {
-						that.editor.refresh();
-					} else {
-						that.editor.setSize(entry.contentRect.width, entry.contentRect.height);
-					}
-				});
-			});
-		}
-		VCodeMirrorComp.ro.observe(this.$el);
 		this.updateMode(this.mode);
 		this.updateTheme(this.theme);
 		if(!this.xray){
