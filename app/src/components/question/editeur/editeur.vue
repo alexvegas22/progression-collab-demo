@@ -26,6 +26,7 @@
 					:theme="thème"
 					:xray="xray"
 					@update:value="onChange"
+					@ctrl-enter="validerTentative"
 				/>
 			</div>
 			<div class="row align-items-end" style="height: 0px">
@@ -47,6 +48,12 @@
 	</div>
 </template>
 
-<script src="./editeur.js"></script>
+<script src="./editeur.js">
+
+export function validerTentative()  {
+	this.validerTentative();
+};
+
+</script>
 <style src="./editeur.css"></style>
 
