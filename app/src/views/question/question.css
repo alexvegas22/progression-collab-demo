@@ -19,7 +19,7 @@ body {
 }
 
 .v-tour__target--highlighted {
-	box-shadow: 0 0 0 6249.938rem rgba(0, 0, 0, .4);
+	box-shadow: 0 0 0 6249.938rem rgba(0, 0, 0, 0.4);
 }
 
 .v-step__content {
@@ -35,7 +35,6 @@ body {
 	flex-grow: 1;
 }
 
-
 .m-n-0 {
 	min-height: 0;
 }
@@ -48,7 +47,6 @@ body {
 
 .énoncé-semi {
 	width: 100%;
-	height: 9.375rem;
 }
 
 .énoncé-plein {
@@ -60,6 +58,7 @@ body {
 	width: 100%;
 	height: 2.25rem;
 	left: 0.65rem;
+	margin-left: 0;
 }
 
 .barre-énoncé {
@@ -79,10 +78,10 @@ body {
 
 .section-bouton-affichage {
 	padding: 0.25rem;
-	border:none;
+	border: none;
 	flex: 0 0 auto;
+	margin-left: auto;
 }
-
 
 .thème_sombre .section-bouton-affichage {
 	border-right: 0 solid #555555;
@@ -103,17 +102,27 @@ body {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 
+.section-énoncé-texte {
+	opacity: 1;
+	flex: 1;
+	box-sizing: border-box;
+	position: relative;
+	padding-right: 0.5rem;
+	top: 0.7rem;
+	height: 83vh;
+}
+
 /* -------------- Media Queries ----------------------*/
 /* -------------- Écrans de 1300px et + (81.25rem et +) ----------------------*/
 @media only screen and (min-width: 81.25rem) {
 	.énoncé-semi {
 		width: 34.375rem;
-		height: 100%;
+		height: 95%;
 	}
 }
 
 /* -------------- Écrans de 1200px à 1300px (75rem à 81.25rem) ----------------------*/
-@media only screen and (min-width: 75rem) and (max-width: 81.25rem){
+@media only screen and (min-width: 75rem) and (max-width: 81.25rem) {
 	.énoncé-semi {
 		width: 28.125rem;
 		height: 100%;
@@ -126,12 +135,45 @@ body {
 		width: 28.125rem;
 		height: 100%;
 	}
+
+	.énoncé-caché .barre-énoncé {
+		margin-left: 0 !important;
+	}
 }
 
 /* -------------- Écrans de 0 à 767px (0 à 47.938rem) ----------------------*/
 @media only screen and (max-width: 47.938rem) {
 	.énoncé-caché {
 		padding-bottom: 1.35rem;
+	}
+	.barre-énoncé {
+		flex-flow:column;
+	}
+
+	.section-bouton-affichage {
+		margin-right:2rem;
+	}
+}
+
+/* -------------- Écrans de 0 à 567px (0 à 47.938rem) ----------------------*/
+@media only screen and (max-width: 36rem) {
+	.énoncé-plein .barre-énoncé {
+		height: 100vh;
+	}
+
+	.énoncé-semi .section-énoncé-texte {
+		height: 25vh;
+	}
+}
+/* -------------- Écrans de 0 à 567px (0 à 47.938rem) ----------------------*/
+@media only screen and (min-width: 36rem) and (max-width: 48rem) {
+	.énoncé-plein .barre-énoncé {
+		height: 100vh;
+		overflow:auto;
+	}
+
+	.énoncé-semi .section-énoncé-texte {
+		height: 35vh;
 	}
 }
 
@@ -147,14 +189,19 @@ body {
 	}
 
 	.barre-énoncé {
-		height:100%;
-		flex-flow:row;
+		height: 100%;
+		flex-flow: column;
 		border-bottom: none;
 	}
 
 	.énoncé-plein {
 		height: 100%;
 		width: 100%;
+	}
+
+	.énoncé-plein .barre-énoncé {
+		height: 100%;
+		overflow:auto;
 	}
 
 	.énoncé-caché {
@@ -165,7 +212,7 @@ body {
 	.énoncé-semi .section-bouton-affichage {
 		width: 4rem !important;
 	}
-	
+
 	.énoncé-plein .section-bouton-affichage {
 		width: 4.5rem !important;
 	}

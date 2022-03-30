@@ -1,13 +1,12 @@
 <template>
-	<div class="barre-énoncé">
-		<perfect-scrollbar
-		 	class="section-énoncé-texte"
+	<div class="barre-énoncé"
+			>
+			
+			<div class="section-bouton-affichage"
 			:class="{
 				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
 				'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
-			}"
-		>
-			<div class="section-bouton-affichage">
+			}">
 				<i
 					@click="$emit('ajustéPanneauÉnoncé', 'max')"
 					class="fa fa-window-maximize btn-affichage"
@@ -27,7 +26,7 @@
 					v-if="énoncéSemiÉcran || énoncéPleinÉcran"
 				></i>
 			</div>
-			<div v-show="énoncéSemiÉcran || énoncéPleinÉcran">
+			<div v-show="énoncéSemiÉcran || énoncéPleinÉcran" >
 				<div v-if="état_réussi" class="crochet icon icon--order-success svg">
 					<svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
 						<g>
@@ -52,7 +51,9 @@
 					<span id="niveauQuestion" class="badge niveau"  présentation_étape="0.2">
 						{{ question.niveau }}
 					</span>	
-				</div>	
+				</div>
+				<div class="section-énoncé-texte">
+				<perfect-scrollbar>	
 				<div class="row flex-grow-1" >
 					<p  
 						class="texte_énoncé" 
@@ -72,8 +73,10 @@
 						{{question.licence}}
 					</p>
 				</div>
+				</perfect-scrollbar>
+				</div>
 			</div>
-		</perfect-scrollbar>
+		
 	</div>
 </template>
 
