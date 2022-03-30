@@ -37,11 +37,16 @@
 						<template #titre>
 							{{ $t('resultat_test.sortieAttendue') }}
 						</template>
-						<pre v-if="sortie_attendue" class="card-text p-3" v-html="sortie_attendue"/>
+						<!-- eslint-disable -->
+						<pre
+							v-if="sortie_attendue"
+							class="card-text p-3"
+							v-html="sortie_attendue"
+						/>
+						<!-- eslint-enable -->
 						<pre v-else>
 							<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 						</pre>
-
 					</FenêtreInfo>
 
 					<FenêtreInfo
@@ -55,7 +60,13 @@
 								<sélecteur-mode-affichage />
 							</div>
 						</template>
-						<pre v-if="sortie_observée" class="card-text p-3" v-html="sortie_observée"/>
+						<!-- eslint-disable -->
+						<pre
+							v-if="sortie_observée"
+								  class="card-text p-3"
+								  v-html="sortie_observée"
+						/>
+						<!-- eslint-enable -->
 						<pre v-else>
 							<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 						</pre>
