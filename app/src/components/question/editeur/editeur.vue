@@ -36,8 +36,14 @@
 			> 
 				<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2" />
 			</svg>
-			<div :class="{spin: envoiEnCours}"></div>
-			<div class="indicateur_sauvegarde" :class="classeIndicateur" style="z-index: 1">●</div>
+			<div :class="{spin: envoiEnCours}" />
+			<div
+				class="indicateur_sauvegarde"
+				:class="classeIndicateur"
+				style="z-index: 1"
+			>
+				●
+			</div>
 			<v-code-mirror
 				id="editor"
 				présentation_étape="1.1"

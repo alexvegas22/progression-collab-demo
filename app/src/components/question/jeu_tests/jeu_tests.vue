@@ -2,7 +2,10 @@
 	<div>
 		<div class="row h-100 g-0">
 			<div class="col-12 h-100">
-				<ResultatTest v-bind:test="test" v-bind:resultat="resultat" />
+				<ResultatTest
+					:test="test"
+					:resultat="resultat"
+				/>
 			</div>
 		</div>
 	</div>

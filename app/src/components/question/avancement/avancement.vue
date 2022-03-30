@@ -9,7 +9,6 @@
 				présentation_étape="4.0"
 				class="dropdown-toggle"
 				type="button"
-				id="menu_historique"
 				style="display: inline-block"
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
@@ -29,19 +28,27 @@
 				>
 					<a>{{ langage }}</a>
 					
-					<div class="dropdown-menu langage-submenu" :class="{ thème_sombre: thèmeSombre }">
+					<div
+						class="dropdown-menu langage-submenu"
+						:class="{ thème_sombre: thèmeSombre }"
+					>
 						<perfect-scrollbar>
-							<button présentation_étape="4.1" class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">
+							<button
+								présentation_étape="4.1"
+								class="dropdown-item"
+								@click="reinitialiserCodeEditeur(langage)"
+							>
 								{{ $t("avancement.ébauche_initiale") }}
 							</button>
 							<button
+								v-for="elem in filtrerTentativesParLangage(langage)"
+								:key="elem.liens.self"
 								présentation_étape="4.2"
 								class="dropdown-item"
-								v-for="elem in this.filtrerTentativesParLangage(langage)"
-								@click="this.chargerTentative()"
 								:value="elem.liens.self"
+								@click="chargerTentative()"
 							>
-								{{ this.timestampVersDate(elem.date_soumission) }}
+								{{ timestampVersDate(elem.date_soumission) }}
 								{{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
 							</button>
 						</perfect-scrollbar>
@@ -51,10 +58,10 @@
 		</div>
 		<div style="margin-left: auto">
 			<i
+				@click="$emit('basculéPanneauÉditeur')"
 				class="fa btn-affichage"
 				:class="{ 'fa-window-restore': pleinÉcran, 'fa-window-maximize': !pleinÉcran }"
-			>
-			</i>
+			/>
 		</div>
 	</div>
 </template>

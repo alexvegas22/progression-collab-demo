@@ -1,12 +1,21 @@
 <template>
-    <div class="row g-0">
+	<div class="row g-0">
 		<div class="col-xl-3 col-lg-4 col-4">
 			<div class="section-tests">
-				<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
+				<div
+					class="bordure-titre p-1"
+					:class="{ thème_sombre: thèmeSombre }"
+				>
 					{{ $t("jeu_tests.jeuTests") }}
 				</div>
-				<fenetre-info class="panneau" :class="{'panneau-affiché': panneauAffiché}">
-					<div v-for="(test, index) in tests" :key="index">
+				<FenêtreInfo
+					class="panneau"
+					:class="{'panneau-affiché': panneauAffiché}"
+				>
+					<div
+						v-for="(test, index) in tests"
+						:key="index"
+					>
 						<Test
 							:test="test"
 							:index="index"
@@ -23,25 +32,21 @@
 		<div class="col-xl-9 col-lg-8 col-8">
 			<div class="section-onglets">
 				<div
-					@click="changementOnglet('ResultatTest')"
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
+					@click="changementOnglet('ResultatTest')"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 				</div>
 				<div
-					@click="changementOnglet('SectionErreur')"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.sortie_erreur"
-					:class="{ onglets: true, sélectionné: ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
 					@click="changementOnglet('SectionErreur')"
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>
 				<div
-					@click="changementOnglet('Rétroactions')"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
 					v-if="resultat_select && resultat_select.feedback"
-					:class="{ onglets: true, sélectionné: ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
 					@click="changementOnglet('Rétroactions')"
 				>
 					{{ $t("onglets_informations.rétroactions") }}
