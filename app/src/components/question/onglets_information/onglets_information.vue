@@ -2,7 +2,7 @@
 	<div class="row g-0">
 		<div class="col-3">
 			<div class="section-tests">
-				<fenetre-info
+				<FenêtreInfo
 					:style="{ height: panneauAffiché ? '20rem' : '0' }"
 					class="section-bas"
 				>
@@ -23,7 +23,7 @@
 							@select="select(index)"
 						/>
 					</div>
-				</fenetre-info>
+				</FenêtreInfo>
 			</div>
 		</div>
 		<div class="col-9">
