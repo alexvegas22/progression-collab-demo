@@ -5,7 +5,7 @@
 				<div class="bordure-titre p-1" :class="{ thème_sombre: thèmeSombre }">
 					{{ $t("jeu_tests.jeuTests") }}
 				</div>
-				<fenetre-info class="panneau" :class="{'panneau-afficher': panneauAfficher}">
+				<fenetre-info class="panneau" :class="{'panneau-affiché': panneauAfficher}">
 					<div v-for="(test, index) in tests" :key="index">
 						<Test
 							v-bind:test="test"

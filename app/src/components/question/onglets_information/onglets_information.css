@@ -34,7 +34,7 @@
 	transition: all 0.2s ease-in-out;
 }
 
-.panneau-afficher {
+.panneau-affiché {
 	height: 15.625rem;
 }
 
@@ -54,7 +54,7 @@
 /* ------------- Media Queries ----------------- */
 /* ------------- Entre 768px et 865px (48rem - 54.063rem) ----------------- */
 @media only screen and (min-width: 48rem) and (min-height: 54.063rem) {
-	.panneau-afficher {
+	.panneau-affiché {
 		height: 21.875rem;
 	}
 }
