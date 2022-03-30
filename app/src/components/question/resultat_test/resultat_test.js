@@ -1,6 +1,7 @@
 import parseMD from "@/util/parse";
 import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
 const diff = require("diff");
+const he = require("he");
 
 const différence = function (orig = "", modif = "", mode_affichage) {
 	const différences = diff.diffChars(orig, modif);
@@ -9,13 +10,15 @@ const différence = function (orig = "", modif = "", mode_affichage) {
 	var résultat_del = "";
 
 	différences.forEach((différence) => {
+		const texte_encodé = he.encode(différence.value);
+		
 		if (différence.added) {
-			résultat_ins += `<span class="diff différent ins ${mode_affichage ? " enabled" : ""}">${différence.value}</span>`;
+			résultat_ins += `<span class="diff différent ins ${mode_affichage ? " enabled" : ""}">${texte_encodé}</span>`;
 		} else if (différence.removed) {
-			résultat_del += `<span class="diff différent del ${mode_affichage ? " enabled" : ""}">${différence.value}</span>`;
+			résultat_del += `<span class="diff différent del ${mode_affichage ? " enabled" : ""}">${texte_encodé}</span>`;
 		} else {
-			résultat_ins += différence.value;
-			résultat_del += différence.value;
+			résultat_ins += texte_encodé;
+			résultat_del += texte_encodé;
 		}
 	});
 
@@ -59,7 +62,7 @@ export default {
 			if (!this.test) return;
 			if (!this.resultat) {
 				this.sortie_observée = null;
-				this.sortie_attendue = this.test.sortie_attendue;
+				this.sortie_attendue = he.encode(this.test.sortie_attendue);
 				this.feedback = null;
 			} else {
 				const résultats = différence(

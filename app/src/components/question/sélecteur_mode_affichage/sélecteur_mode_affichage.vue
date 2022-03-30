@@ -1,11 +1,17 @@
 <template>
-	<label class="switch" for="btn_mode_normal" :title="$t('mode_affichage')">
-		<input class="custom-control-input" type="checkbox" 
+	<label
+		class="switch"
+		for="btn_mode_normal"
+		:title="$t('mode_affichage')"
+	>
+		<input
 			id="btn_mode_normal"
+			v-model="mode_affichage" 
+			class="custom-control-input"
+			type="checkbox"
 			name="btn_mode_normal"
-			v-model="mode_affichage"
-		/>
-		<div class="slider round"></div>
+		>
+		<div class="slider round" />
 	</label>	
 </template>
 

@@ -13,6 +13,8 @@ import {
 	postAuthKey
 } from "@/services/index.js";
 
+import i18n from "@/util/i18n";
+
 import tokenEstValide from "@/util/token.js";
 
 import jwt_decode from "jwt-decode";
@@ -286,7 +288,13 @@ export default {
 			}
 			catch(e) {
 				commit("updateEnvoieTentativeEnCours", false);
-				throw(e);
+				
+				if(e?.response?.status==400) {
+					throw i18n.global.t("erreur.tentative_intraitable");
+				}
+				else{
+					throw(e);
+				}
 			}
 			
 		}()

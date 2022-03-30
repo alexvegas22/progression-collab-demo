@@ -1,7 +1,11 @@
 <template>
-	<div class="d-flex" style="flex-flow: row">
-		<div class="dropdown" >
+	<div
+		class="d-flex"
+		style="flex-flow: row"
+	>
+		<div class="dropdown">
 			<div
+				id="menu_historique"
 				présentation_étape="4.0"
 				class="dropdown-toggle"
 				type="button"
@@ -10,10 +14,19 @@
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
 			>
-				{{ this.langage }}
+				{{ langage }}
 			</div>
-			<ul id="langage-dropdown" class="dropdown-menu" aria-labelledby="langage-dropdown" :class="{ thème_sombre: thèmeSombre }">
-				<li class="dropdown-item dropdown-submenu" v-for="langage in langages" :key="langage">
+			<ul
+				id="langage-dropdown"
+				class="dropdown-menu"
+				aria-labelledby="langage-dropdown"
+				:class="{ thème_sombre: thèmeSombre }"
+			>
+				<li
+					v-for="langage in langages"
+					:key="langage"
+					class="dropdown-item dropdown-submenu"
+				>
 					<a>{{ langage }}</a>
 					
 					<div class="dropdown-menu langage-submenu" :class="{ thème_sombre: thèmeSombre }">
@@ -38,7 +51,6 @@
 		</div>
 		<div style="margin-left: auto">
 			<i
-				@click="$emit('basculéPanneauÉditeur')"
 				class="fa btn-affichage"
 				:class="{ 'fa-window-restore': pleinÉcran, 'fa-window-maximize': !pleinÉcran }"
 			>

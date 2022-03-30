@@ -64,13 +64,13 @@
 				<div class="d-flex" :title="$t('énoncé.auteur')" v-if="question.auteur">
 					<i class="icone fas fa-user-friends"/>
 					<p class="footer-auteur">
-						{{question.auteur}}
+						{{ question.auteur }}
 					</p>
 				</div>
 				<div class="d-flex" :title="$t('énoncé.licence')" v-if="question.licence">
 					<i class="icone fas fa-copyright"/>
 					<p class="footer-license">
-						{{question.licence}}
+						{{ question.licence }}
 					</p>
 				</div>
 				</perfect-scrollbar>
