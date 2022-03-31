@@ -54,6 +54,7 @@
 				:theme="thème"
 				:xray="xray"
 				@update:value="onChange"
+				@ctrl-enter="validerTentative"
 			/>
 		</div>
 	</div>
@@ -61,3 +62,4 @@
 
 <script src="./editeur.js"></script>
 <style src="./editeur.css"></style>
+

@@ -15,6 +15,7 @@ import Vue3Tour from "vue3-tour";
 import "vue3-tour/dist/vue3-tour.css";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
+import VueMousetrapPlugin from "vue-mousetrap";
 
 const app = createApp(App)
 	.use(router)
@@ -31,7 +32,9 @@ const app = createApp(App)
 	.use(PerfectScrollbar);
 
 app.component("FenêtreInfo", FenêtreInfo);
+app.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
 
+	
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != "LoginView" ) {
 		router.push({

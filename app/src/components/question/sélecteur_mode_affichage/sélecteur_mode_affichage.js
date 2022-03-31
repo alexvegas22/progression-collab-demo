@@ -10,4 +10,12 @@ export default {
 			},
 		},
 	},
+	mounted() {
+		this.$mousetrap.bind("ctrl+alt+d", this.changer_mode_affichage);
+	},
+	methods:{
+		changer_mode_affichage(){
+			this.$store.dispatch("setModeAffichage",!this.$store.state.mode_affichage);
+		}
+	}
 };

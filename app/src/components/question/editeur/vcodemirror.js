@@ -12,6 +12,7 @@ import "codemirror/theme/monokai.css";
 import { capitalize, h, markRaw } from "vue";
 import { Component, Inreactive, Prop, VueComponentBase, Watch } from "vue3-component-base";
 import { zones } from "./zones";
+import {} from "./editeur.vue";
 
 const Events = ["focus", "blur", "scroll"];
 var VCodeMirrorComp;
@@ -57,6 +58,12 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		if(!this.xray){
 			this.updateZones();
 		}
+
+		this.editor.setOption("extraKeys", {
+			"Ctrl-Enter": (cm) =>{
+			  this.$emit('ctrl-enter');
+			}
+		});
 	}
 
 	beforeUnmount() {

@@ -20,6 +20,10 @@ export default {
 			index_select: 0,
 		};
 	},
+	mounted() {
+		this.$mousetrap.bind('ctrl+alt+up', this.basculer_test_haut);
+		this.$mousetrap.bind('ctrl+alt+down', this.basculer_test_bas);
+	},
 	computed: {
 		resultats() {
 			var res = [];
@@ -88,6 +92,18 @@ export default {
 		},
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");
-		}
+		},
+		select: function (index) {
+			this.index_select = index;
+		},
+		basculer_test_haut(){
+			this.index_select--;
+			if(this.index_select == -1) {
+				this.index_select = this.$store.state.question.tests.length - 1;
+			}
+		},
+		basculer_test_bas(){
+			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length
+		},
 	},
 };

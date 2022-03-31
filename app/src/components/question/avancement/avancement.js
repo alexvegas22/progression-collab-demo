@@ -17,6 +17,9 @@ export default {
 			return Object.keys(this.$store.state.question.ebauches);
 		},
 	},
+	mounted() {
+		this.$mousetrap.bind('ctrl+alt+r', this.reinitialiserCodeEditeurRaccourcis);
+	},
 	methods: {
 		filtrerTentativesParLangage: function (langage) {
 			return this.tentatives.filter((item) => item.langage == langage);
@@ -60,6 +63,9 @@ export default {
 					ref: ref,
 				},
 			});
+		},
+		reinitialiserCodeEditeurRaccourcis(){
+			this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
 		},
 	},
 };
