@@ -24,6 +24,7 @@
 .crochet {
 	position: absolute;
 	top: 3rem;
+	opacity: 88%;
 	left: 0;
 	height: 0px;
 	z-index: 0;
@@ -65,7 +66,7 @@ h3 {
 
 .badge.niveau {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
-	background-color: #0dcaf0;
+	background-color: rgb(13, 202, 240);
 	position: relative;
 	width: fit-content;
 	height: fit-content;
@@ -73,10 +74,15 @@ h3 {
 	max-width: 25%;
 	word-wrap: break-word;
 }
- .row {
+
+.thème_sombre .badge.niveau {
+	background-color: rgb(13, 202, 240,70%);
+}
+
+.row {
 	margin-left: 0;
 	margin-right: 0;
- }
+}
 
 /* animations */
 
@@ -335,7 +341,11 @@ p.footer-license {
 	}
 
 	.barre-énoncé {
-		border-right: 0.09rem solid lightgray;
+		border-right: 0.063rem solid rgba(0, 0, 0, 0.125);
+	}
+
+	.thème_sombre .barre-énoncé {
+		border-right: 0.063rem solid #555555;
 	}
 
 	.énoncé-padding {

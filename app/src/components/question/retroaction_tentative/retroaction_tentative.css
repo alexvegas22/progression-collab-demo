@@ -25,17 +25,21 @@
 }
 
 .svg_ampoule {
-	fill: #8d8c8c;
+	fill: #a3a3a3;
 	width: 2.5rem;
 	height: 2.5rem;
 	animation: blink 0.5s 20 alternate;
 	animation-iteration-count: 10;
+	transition-delay: 0.1s; 
 }
 
 .svg_ampoule:hover {
-	fill: rgb(0, 238, 255);
-	transition: ease-in 0.2s;
+	fill: rgb(13, 202, 240, 70%);
+	transition: ease-in-out 0.2s;
 	cursor: pointer;
+	transform: scale(1.07); 
+	transition: 0.1s ease-in-out;
+	transition-delay: 0s; 
 }
 
 .svg_ampoule_mini {
@@ -60,7 +64,7 @@
 		fill: #8d8c8c;
 	}
 	to {
-		fill: rgb(0, 238, 255);
+		fill: rgb(13, 202, 240, 70%);
 	}
 }
 

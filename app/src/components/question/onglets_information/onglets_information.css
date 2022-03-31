@@ -2,6 +2,8 @@
 	display: flex;
 	flex-flow: row;
 	border-bottom: 0.01rem solid rgba(0, 0, 0, 0.125);
+	border-left: 0.01rem solid rgba(0, 0, 0, 0.125);
+	
 }
 
 .onglets {
@@ -11,6 +13,7 @@
 	color: rgba(0, 0, 0, 0.5);
 	background: rgba(0, 0, 0, 0.05);
 	position: relative;
+	right: 2px;
 }
 
 .onglet-sélectionné {
@@ -39,16 +42,22 @@
 }
 
 .bordure-titre {
-	border: 0.01rem solid rgba(0, 0, 0, 0.125);
-	border-right: none;
-	border-top: none;
+	margin-top: 0.25rem;
+	margin-bottom: -0.5rem;
 	color: rgba(0, 0, 0, 0.5);
+	border-right: none;
 }
 
 .section-tests {
 	height: 100%;
 	display: flex;
 	flex-flow: column;
+	border: none;
+}
+
+.onglets-subséquents {
+	border-left: none;
+	border-bottom: none;
 }
 
 /* ------------- Media Queries ----------------- */

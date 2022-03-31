@@ -41,6 +41,7 @@
 					v-if="resultat_select && resultat_select.sortie_erreur"
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
 					@click="changementOnglet('SectionErreur')"
+					class="onglets-subséquents"
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>

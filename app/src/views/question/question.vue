@@ -28,7 +28,7 @@
 				>
 					<div
 						id="carre-editeur"
-						class="col-12 flex-column fill-height m-n-0"
+						class="col-12 flex-column fill-height m-n-0 ligne-séparation-avec-énoncé"
 						style="flex: 1 1 auto; position: relative"
 					>
 						<Avancement 
@@ -49,7 +49,7 @@
 							<RetroactionTentative présentation_étape="3" />
 						</div>
 					</div>
-					<div class="col-12">
+					<div class="col-12 hauteur-onglets-information">
 						<onglets-information
 							:panneau-affiché="panneauTestsAffiché"
 							présentation_étape="4"

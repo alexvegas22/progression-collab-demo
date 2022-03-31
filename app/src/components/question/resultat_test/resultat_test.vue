@@ -51,9 +51,9 @@
 						présentation_étape="3.3"
 					>
 						<template #titre>
-							{{ $t('resultat_test.sortieConsole') }}
-							<div class="float-end">
-								<sélecteur-mode-affichage />
+							<div class="déplacer-titre-sortie-observée">
+								{{ $t('resultat_test.sortieConsole') }}
+								<sélecteur-mode-affichage class="déplacer-sélecteur"/>
 							</div>
 						</template>
 						<!-- eslint-disable -->

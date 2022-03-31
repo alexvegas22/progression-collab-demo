@@ -42,8 +42,16 @@
 	width: 89%;
 }
 
+.thème_sombre .non_sélectionné {
+	border: 1px solid lightgrey;
+}
+
 .visible {
 	visibility: visible;
+}
+
+.test {
+	margin-left: 0.7rem;
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/

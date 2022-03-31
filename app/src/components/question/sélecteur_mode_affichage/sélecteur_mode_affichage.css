@@ -39,6 +39,11 @@
 	width: 0.75rem;
   }
 
+  .thème_sombre .slider {
+	background-color: #8a8a8a;
+	
+  }
+
   input:checked + .slider {
 	background-color: #66bb6a;
   }

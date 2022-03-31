@@ -11,7 +11,7 @@
 				>
 					<p class="p-0 m-0">
 						{{ (index+1) + '. ' + test.nom }}
-					</p><p />	
+					</p>
 				</div>
 			</div>
 		</div>
