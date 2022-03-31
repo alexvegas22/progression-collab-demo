@@ -58,9 +58,9 @@
 		</div>
 		<div style="margin-left: auto">
 			<i
-				@click="$emit('basculéPanneauÉditeur')"
 				class="fa btn-affichage"
 				:class="{ 'fa-window-restore': pleinÉcran, 'fa-window-maximize': !pleinÉcran }"
+				@click="$emit('basculéPanneauÉditeur')"
 			/>
 		</div>
 	</div>

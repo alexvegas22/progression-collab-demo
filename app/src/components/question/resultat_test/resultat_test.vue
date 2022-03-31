@@ -53,7 +53,7 @@
 						<template #titre>
 							<div class="déplacer-titre-sortie-observée">
 								{{ $t('resultat_test.sortieConsole') }}
-								<sélecteur-mode-affichage class="déplacer-sélecteur"/>
+								<sélecteur-mode-affichage class="déplacer-sélecteur" />
 							</div>
 						</template>
 						<!-- eslint-disable -->

@@ -166,6 +166,10 @@ body {
 	.thème_sombre .ligne-séparation-avec-énoncé {
 		border-top: 1.5px solid #555555;
 	}
+
+	.énoncé-plein .section-énoncé-texte {
+		max-width: 95%;
+	}
 }
 
 /* -------------- Écrans de 0 à 567px (0 à 47.938rem) ----------------------*/
