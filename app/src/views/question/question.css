@@ -19,7 +19,7 @@ body {
 }
 
 .v-tour__target--highlighted {
-	box-shadow: 0 0 0 6249.938rem rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.4);
 }
 
 .v-step__content {
@@ -109,7 +109,7 @@ body {
 	position: relative;
 	padding-right: 0.5rem;
 	top: 0.7rem;
-	height: 83vh;
+	max-height: 95%;
 }
 
 /* -------------- Media Queries ----------------------*/
@@ -134,7 +134,6 @@ body {
 	.énoncé-semi {
 		width: 28.125rem;
 		height: 100%;
-		min-width: 13.3rem;
 	}
 
 	.énoncé-caché .barre-énoncé {
@@ -185,7 +184,7 @@ body {
 	}
 }
 /* -------------- Écrans de 567 à 768px (0 à 47.938rem) ----------------------*/
-@media only screen and (min-width: 36rem) and (max-width: 48rem) {
+@media only screen and (min-width: 36rem) and (max-width: 47.938rem) {
 	.énoncé-plein .barre-énoncé {
 		height: 100vh;
 		overflow:auto;
@@ -236,5 +235,11 @@ body {
 
 	.énoncé-plein .section-bouton-affichage {
 		width: 4.5rem !important;
+	}
+}
+/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
+@media only screen and (min-width: 48rem) and (max-width: 62rem) {
+	.énoncé-semi .section-énoncé-texte {
+		max-height: 95%;
 	}
 }

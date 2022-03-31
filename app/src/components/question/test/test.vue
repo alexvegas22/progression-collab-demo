@@ -2,7 +2,7 @@
 	<div class="pb-1">
 		<div>
 			<div
-				class="row w-100 m-0 p-1"
+				class="row w-100 m-0 p-1 texte"
 				@click="toggleVisibilite"
 			>
 				<div

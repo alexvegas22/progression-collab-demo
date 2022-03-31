@@ -26,7 +26,10 @@
 				@click="$emit('ajustéPanneauÉnoncé', 'min')"
 			/>
 		</div>
-		<div v-show="énoncéSemiÉcran || énoncéPleinÉcran">
+		<div
+			v-show="énoncéSemiÉcran || énoncéPleinÉcran"
+			class="max-height"
+		>
 			<div
 				v-if="état_réussi"
 				class="crochet icon icon--order-success svg"

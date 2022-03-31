@@ -3,7 +3,7 @@
 		<div class="col-xl-3 col-lg-4 col-4">
 			<div class="section-tests">
 				<div
-					class="bordure-titre p-1"
+					class="bordure-titre p-1 texte"
 					:class="{ thème_sombre: thèmeSombre }"
 				>
 					{{ $t("jeu_tests.jeuTests") }}
@@ -29,7 +29,7 @@
 				</FenêtreInfo>
 			</div>
 		</div>
-		<div class="col-xl-9 col-lg-8 col-8">
+		<div class="col-xl-9 col-lg-8 col-8 texte">
 			<div class="section-onglets">
 				<div
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"

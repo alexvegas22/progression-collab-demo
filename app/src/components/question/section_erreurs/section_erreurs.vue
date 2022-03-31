@@ -1,13 +1,11 @@
 <template>
 	<div class="section-erreur">
-		<div class="p-1">
+		<div class="p-1  height">
 			<h5 class="text-danger font-weight-bold text-left card-title">
 				{{ $t("resultat_test.sortieErreur") }}
 			</h5>
 			<pre>
-				<p
-				class="card-text"
->{{ resultat.sortie_erreur }}</p><p />
+				<p class="card-text">{{ resultat.sortie_erreur }}</p>
 			</pre>
 		</div>
 	</div>

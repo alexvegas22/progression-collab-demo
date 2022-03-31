@@ -73,6 +73,7 @@ h3 {
 	white-space: normal;
 	max-width: 25%;
 	word-wrap: break-word;
+	margin-left: auto;
 }
 
 .thème_sombre .badge.niveau {
@@ -201,17 +202,21 @@ p.footer-license {
 	float: right;
 }
 
+.max-height {
+	max-height: 90%;
+}
 
 /* ------------------------------ Media Queries ---------------------------------*/
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {
 	.badge.niveau {
-		margin-top: 0.8rem;
-		font-size: 0.75rem;
+		margin-right: 1rem;
+		padding-bottom: 0.1rem;
+		font-size: 0.7rem;
 	}
 
 	p.texte_énoncé {
-		font-size: 0.95rem;
+		font-size: 0.85em;
 	}
 
 	p.footer-license {
@@ -228,7 +233,7 @@ p.footer-license {
 
 	.titre {
 		padding-top: 0.8rem;
-		font-size: 1.5em;
+		font-size: 1.2em;
 	}
 
 	h3 {
@@ -241,12 +246,13 @@ p.footer-license {
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
 @media (min-width: 36rem) and (max-width: 48rem) {
 	.badge.niveau {
-		margin-top: 0.3rem;
-		font-size: 0.78rem;
+		margin-right: 1rem;
+		padding-bottom: 0.1rem;
+		font-size: 0.7rem;
 	}
 
 	p.texte_énoncé {
-		font-size: 1.04rem;
+		font-size: 0.9em;
 	}
 
 	p.footer-license {
@@ -262,9 +268,10 @@ p.footer-license {
 	}
 
 	.titre {
-		padding-top: 0.6rem;
-		font-size: 1.6em;
+		padding-top: 0.4rem;
+		font-size: 1.3em;
 	}
+
 	h3 {
 		font-size: 1.09rem;
 	}
@@ -274,20 +281,25 @@ p.footer-license {
 @media (min-width: 48rem) and (max-width: 62rem) {
 	.badge.niveau {
 		margin-top: 0.2rem;
-		font-size: 0.82rem;
+		padding-bottom: 0.1rem;
+		font-size: 0.8rem;
 	}
 
 	p.texte_énoncé {
-		font-size: 1.09rem;
+		font-size: 1em;
 	}
 
 	.titre {
-		padding-top: 0.6rem;
-		font-size: 1.7em;
+		padding-top: 0.4rem;
+		font-size: 1.5em;
 	}
 
 	h3 {
 		font-size: 1.14rem;
+	}
+
+	.max-height{
+		max-height: 70%;
 	}
 }
 
@@ -295,16 +307,17 @@ p.footer-license {
 @media (min-width: 62rem) and (max-width: 75rem) {
 	.badge.niveau {
 		margin-top: 0.2rem;
-		font-size: 0.87rem;
+		padding-bottom: 0.1rem;
+		font-size: 0.8rem;
 	}
 
 	p.texte_énoncé {
-		font-size: 1.1rem;
+		font-size: 1em;
 	}
 
 	.titre {
 		padding-top: 0.4rem;
-		font-size: 1.9em;
+		font-size: 1.5em;
 	}
 
 	h3 {
@@ -315,16 +328,18 @@ p.footer-license {
 /* ---------- 75rem et + (1200px et +) ---------------- */
 @media (min-width: 75rem) {
 	.badge.niveau {
-		font-size: 0.94rem;
+		margin-top: 0.2rem;
+		font-size: 0.8rem;
+		padding-bottom: 0.1rem;
 	}
 
 	p.texte_énoncé {
-		font-size: 1.2rem;
+		font-size: 1em;
 	}
 
 	.titre {
 		padding-top: 0.35rem;
-		font-size: 2em;
+		font-size: 1.5em;
 	}
 
 	h3 {

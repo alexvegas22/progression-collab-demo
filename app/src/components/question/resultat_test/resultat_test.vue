@@ -31,41 +31,49 @@
 					class="d-flex"
 					style="flex-flow: row; flex: 1 1 0; height: 50%"
 				>
-					<FenêtreInfo présentation_étape="3.2">
+					<FenêtreInfo
+						présentation_étape="3.2"
+						:class="{resultat: resultat-test}"
+					>
 						<template #titre>
 							{{ $t('resultat_test.sortieAttendue') }}
 						</template>
-						<!-- eslint-disable -->
-						<pre
-							v-if="sortie_attendue"
-							class="card-text p-3"
-							v-html="sortie_attendue"
-						/>
-						<!-- eslint-enable -->
-						<pre v-else>
-							<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-						</pre>
+						<perfect-scrollbar>
+							<!-- eslint-disable -->
+							<pre
+								v-if="sortie_attendue"
+								class="card-text p-3"
+								v-html="sortie_attendue"
+							/>
+							<!-- eslint-enable -->
+							<pre v-else>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+							</pre>
+						</perfect-scrollbar>
 					</FenêtreInfo>
 					<FenêtreInfo
 						v-if="resultat"
 						présentation_étape="3.3"
+						class="resultat-test"
 					>
 						<template #titre>
-							<div class="déplacer-titre-sortie-observée">
+							<div class="espace-titre-sortie-observée">
 								{{ $t('resultat_test.sortieConsole') }}
-								<sélecteur-mode-affichage class="déplacer-sélecteur" />
+								<sélecteur-mode-affichage class="espace-sélecteur" />
 							</div>
 						</template>
-						<!-- eslint-disable -->
-						<pre
-							v-if="sortie_observée"
-								  class="card-text p-3"
-								  v-html="sortie_observée"
-						/>
-						<!-- eslint-enable -->
-						<pre v-else>
-							<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-						</pre>
+						<perfect-scrollbar>
+							<!-- eslint-disable -->
+							<pre
+								v-if="sortie_observée"
+								class="card-text p-3"
+								v-html="sortie_observée"
+							/>
+							<!-- eslint-enable -->
+							<pre v-else>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+							</pre>
+						</perfect-scrollbar>
 					</FenêtreInfo>
 				</div>
 			</div>

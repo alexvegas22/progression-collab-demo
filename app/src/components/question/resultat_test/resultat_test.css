@@ -43,9 +43,16 @@ pre {
 	margin: 0 !important;
 }
 
+.resultat-test {
+	max-width: 50%;
+	padding-bottom: 1rem;
+}
+
 .resultat-test pre {
 	height: 100%;
 	overflow: visible;
+	overflow-y: visible;
+	max-width: 100%;
 }
 
 .resultat-test pre p {
@@ -53,11 +60,11 @@ pre {
 	white-space: break-spaces;	
 }
 
-.déplacer-sélecteur {
+.espace-sélecteur {
 	left: 1rem;
 	top: 0.07rem;
 }
-.déplacer-titre-sortie-observée {
+.espace-titre-sortie-observée {
 	margin-top: -2px;
 }
 
@@ -67,11 +74,17 @@ pre {
 	.titre_résultat_test {
 		font-size: 0.75rem;	
 	}
-    .texte_résultat_test {
+    
+	.texte_résultat_test {
         font-size: 0.72rem;
     }
+	
 	.sortie.vide {
 		margin-top: 0;
+	}
+	
+	.espace-titre-sortie-observée {
+		margin-bottom: -1px;
 	}
 }
 
@@ -85,6 +98,9 @@ pre {
     }
 	.sortie.vide {
 		margin-top: 0;
+	}
+	.espace-titre-sortie-observée {
+		margin-bottom: -1px;
 	}
 }
 
