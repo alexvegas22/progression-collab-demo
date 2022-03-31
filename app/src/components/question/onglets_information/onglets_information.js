@@ -21,8 +21,8 @@ export default {
 		};
 	},
 	mounted() {
-		this.$mousetrap.bind('ctrl+alt+up', this.basculer_test_haut);
-		this.$mousetrap.bind('ctrl+alt+down', this.basculer_test_bas);
+		this.$mousetrap.bind("ctrl+alt+up", this.basculer_test_haut);
+		this.$mousetrap.bind("ctrl+alt+down", this.basculer_test_bas);
 	},
 	computed: {
 		resultats() {
@@ -93,9 +93,6 @@ export default {
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");
 		},
-		select: function (index) {
-			this.index_select = index;
-		},
 		basculer_test_haut(){
 			this.index_select--;
 			if(this.index_select == -1) {
@@ -103,7 +100,7 @@ export default {
 			}
 		},
 		basculer_test_bas(){
-			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length
+			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
 	},
 };

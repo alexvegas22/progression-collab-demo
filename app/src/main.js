@@ -32,7 +32,7 @@ const app = createApp(App)
 	.use(PerfectScrollbar);
 
 app.component("FenêtreInfo", FenêtreInfo);
-app.use(VueMousetrapPlugin).provide('mousetrap', app.config.globalProperties.$mousetrap)
+app.use(VueMousetrapPlugin).provide("mousetrap", app.config.globalProperties.$mousetrap);
 
 	
 const authentificationErreurHandler = function() {

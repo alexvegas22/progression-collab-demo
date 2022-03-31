@@ -18,7 +18,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.$mousetrap.bind('ctrl+alt+r', this.reinitialiserCodeEditeurRaccourcis);
+		this.$mousetrap.bind("ctrl+alt+r", this.reinitialiserCodeEditeurRaccourcis);
 	},
 	methods: {
 		filtrerTentativesParLangage: function (langage) {
