@@ -3,13 +3,14 @@
 	flex-flow: row;
 	border-bottom: 0.01rem solid rgba(0, 0, 0, 0.125);
 	border-left: 0.01rem solid rgba(0, 0, 0, 0.125);
-	
 }
 
 .onglets {
 	border-radius: 0 0.6rem 0 0;
 	border: 0.01rem solid rgba(0, 0, 0, 0.125);
+	border-bottom: none;
 	padding: 0.3rem;
+	padding-bottom: 6px;
 	color: rgba(0, 0, 0, 0.5);
 	background: rgba(0, 0, 0, 0.05);
 	position: relative;
@@ -28,14 +29,6 @@
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
-}
-
-.panneau-affiché {
-	height: 21.875rem;
-}
-
-.panneau-non-affiché {
-	height: 0;
 }
 
 .section-bas {
@@ -61,7 +54,6 @@
 
 .onglets-subséquents {
 	border-left: none;
-	border-bottom: none;
 }
 
 /* ------------- Media Queries ----------------- */
@@ -69,9 +61,5 @@
 @media only screen and (max-width: 47.938rem) {
 	.texte {
 		font-size: 0.9rem;
-	}
-	
-	.panneau-affiché {
-		height: 15rem;
 	}
 }
