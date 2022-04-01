@@ -7,7 +7,7 @@ export default {
 		VCodeMirror,
 	},
 	mounted() {
-		this.$mousetrap.bind('ctrl+enter', this.validerTentative);
+		this.$mousetrap.bind("ctrl+enter", this.validerTentative);
 	},
 	data() {
 		return {
