@@ -119,19 +119,31 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
+		thèmeSombreModifiéAvecRaccourci() {
+			return this.$store.state.thèmeSombreModifiéAvecRaccourci;
+		}
 	},
 	watch: {
 		thèmeSombre() {
 			localStorage.setItem("estThèmeSombre", this.thèmeSombre);
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
+		thèmeSombreModifiéAvecRaccourci() {
+			if(this.thèmeSombreModifiéAvecRaccourci === true) {
+				this.changerThèmeSombreAvecRaccourci();
+				this.$store.dispatch("setThèmeSombreModifiéAvecRaccourci", false);
+			}
+		}
+	},
+	mounted(){
+		this.$mousetrap.bind(this.$store.state.ctrlAltS, this.changerThèmeSombreAvecRaccourci);
+		
 	},
 	created() {
 		this.$store.dispatch("getConfigServeur", API_URL + "/config" );
 		this.traiterParamètresURL( window.location.search );
 		this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 	},
-
 	methods: {
 		traiterParamètresURL( paramètres ){
 			var urlParams = new URLSearchParams(paramètres);
@@ -176,7 +188,10 @@ export default {
 			sessionStorage.removeItem("token");
 			this.$store.dispatch("deleteToken");
 			this.$router.push({name: "Home"});
-		}
+		},
+		changerThèmeSombreAvecRaccourci() {
+			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
+		},
 	}
 };
 </script>

@@ -411,4 +411,10 @@ export default {
 	setRéinitialiserTentativeAvecRaccourci({ commit }, val){
 		commit("setRéinitialiserTentativeAvecRaccourci", val);
 	},
+	setOngletCourant({ commit }, val){
+		commit("setOngletCourant", val);
+	},
+	setThèmeSombreModifiéAvecRaccourci({ commit }, val){
+		commit("setThèmeSombreModifiéAvecRaccourci", val);
+	},
 };

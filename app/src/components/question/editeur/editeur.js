@@ -6,9 +6,20 @@ export default {
 	components: {
 		VCodeMirror,
 	},
-	emits:["ctrl-alt-up","ctrl-alt-down","ctrl-alt-r"],
+	emits:[
+		"ctrl-alt-up",
+		"ctrl-alt-down",
+		"ctrl-alt-r",
+		"ctrl-alt-d",
+		"ctrl-alt-o",
+		"ctrl-alt-l",
+		"ctrl-alt-e",
+		"ctrl-alt-q",
+		"ctrl-alt-f",
+		"ctrl-alt-s"
+	],
 	mounted() {
-		this.$mousetrap.bind("ctrl+enter", this.validerTentative);
+		this.$mousetrap.bind(this.$store.state.ctrlEnter, this.validerTentative);
 	},
 	data() {
 		return {
@@ -118,18 +129,36 @@ export default {
 				this.indicateurModifié = true;
 			}
 		},
-		emitRaccourciTestHaut(){
+		emitRaccourciTestHaut() {
 			this.$emit("ctrl-alt-up");
 		},
-		emitRaccourciTestBas(){
+		emitRaccourciTestBas() {
 			this.$emit("ctrl-alt-down");
 		},
-		emitRaccourciModeAffichage(){
+		emitRaccourciModeAffichage() {
 			this.$emit("ctrl-alt-d");
 		},
-		emitRaccourciRéinitialisationTentative(){
+		emitRaccourciRéinitialisationTentative() {
 			this.$emit("ctrl-alt-r");
-		}
+		},
+		emitRaccourciChangerOnglet() {
+			this.$emit("ctrl-alt-o");
+		},
+		emitRaccourciBasculerPanneau() {
+			this.$emit("ctrl-alt-l");
+		},
+		emitRaccourciBasculerPanneauÉditeur() {
+			this.$emit("ctrl-alt-e");
+		},
+		emitRaccourciBasculerÉnoncéSemiÉcran() {
+			this.$emit("ctrl-alt-q");
+		},
+		emitRaccourciMettreÉnoncéEnPleinÉcran() {
+			this.$emit("ctrl-alt-f");
+		},
+		emitRaccourciBasculerThèmeSombre() {
+			this.$emit("ctrl-alt-s");
+		},
 	},
 };
 

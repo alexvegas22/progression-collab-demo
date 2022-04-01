@@ -11,7 +11,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.$mousetrap.bind("ctrl+alt+d", this.changer_mode_affichage);
+		this.$mousetrap.bind(this.$store.state.ctrlAltD, this.changer_mode_affichage);
 	},
 	methods:{
 		changer_mode_affichage(){

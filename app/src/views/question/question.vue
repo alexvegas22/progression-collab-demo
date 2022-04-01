@@ -49,6 +49,12 @@
 								@ctrl-alt-down="sélectionnerTestDuBasAvecRaccourci"
 								@ctrl-alt-d="changerModeAffichageAvecRaccourci"
 								@ctrl-alt-r="réinitialiserTentativeAvecRaccourci"
+								@ctrl-alt-o="changerOngletAvecRaccourci"
+								@ctrl-alt-l="basculerPanneauTests"
+								@ctrl-alt-e="basculerPanneauÉditeur"
+								@ctrl-alt-q="basculerÉnoncéSemiÉcranAvecRaccourci"
+								@ctrl-alt-f="mettreÉnoncéEnPleinÉcranAvecRaccourci"
+								@ctrl-alt-s="emitChangerThèmeSombreAvecRaccourci"
 							/>
 							<RetroactionTentative présentation_étape="3" />
 						</div>

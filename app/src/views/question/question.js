@@ -77,6 +77,9 @@ export default {
 	},
 	mounted() {
 		if(this.uri && this.user) this.récupérerQuestion();
+		this.$mousetrap.bind(this.$store.state.ctrlAltE, this.basculerPanneauÉditeur);
+		this.$mousetrap.bind(this.$store.state.ctrlAltF, this.mettreÉnoncéEnPleinÉcranAvecRaccourci);
+		this.$mousetrap.bind(this.$store.state.ctrlAltQ, this.basculerÉnoncéSemiÉcranAvecRaccourci);
 	},
 	provide() {
 		return {
@@ -127,6 +130,7 @@ export default {
 			this.redimensionnerÉditeur();
 		},
 		basculerPanneauTests() {
+			console.log("ici 2");
 			this.panneauTestsAffiché = !this.panneauTestsAffiché;
 			if (this.énoncéPleinÉcran && this.panneauTestsAffiché) {
 				this.énoncéPleinÉcran = false;
@@ -160,6 +164,18 @@ export default {
 		},
 		réinitialiserTentativeAvecRaccourci(){
 			this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",!this.$store.state.réinitialiserTentativeAvecRaccourci);
+		},
+		changerOngletAvecRaccourci(){
+			this.$store.dispatch("setOngletCourant", true);
+		},
+		basculerÉnoncéSemiÉcranAvecRaccourci() {
+			this.ajusterPanneauÉnoncé("normal");
+		},
+		mettreÉnoncéEnPleinÉcranAvecRaccourci() {
+			this.ajusterPanneauÉnoncé("max");
+		},
+		emitChangerThèmeSombreAvecRaccourci() {
+			this.$store.dispatch("setThèmeSombreModifiéAvecRaccourci", true);
 		}
 	},
 };

@@ -91,5 +91,11 @@ export const mutations = {
 	},
 	setRéinitialiserTentativeAvecRaccourci(state,val){
 		state.réinitialiserTentativeAvecRaccourci = val;
-	}
+	},
+	setOngletCourant(state,val){
+		state.ongletCourant = val;
+	},
+	setThèmeSombreModifiéAvecRaccourci(state,val){
+		state.thèmeSombreModifiéAvecRaccourci = val;
+	},
 };

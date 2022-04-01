@@ -21,7 +21,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$mousetrap.bind("ctrl+alt+r", this.reinitialiserCodeEditeurRaccourcis);
+		this.$mousetrap.bind(this.$store.state.ctrlAltR, this.reinitialiserCodeEditeurRaccourcis);
 	},
 	watch:{
 		réinitialiserTentativeAvecRaccourci() {
