@@ -6,6 +6,7 @@ export default {
 	components: {
 		VCodeMirror,
 	},
+	emits:["ctrl-alt-up","ctrl-alt-down","ctrl-alt-r"],
 	mounted() {
 		this.$mousetrap.bind("ctrl+enter", this.validerTentative);
 	},
@@ -117,6 +118,18 @@ export default {
 				this.indicateurModifié = true;
 			}
 		},
+		emitRaccourciTestHaut(){
+			this.$emit("ctrl-alt-up");
+		},
+		emitRaccourciTestBas(){
+			this.$emit("ctrl-alt-down");
+		},
+		emitRaccourciModeAffichage(){
+			this.$emit("ctrl-alt-d");
+		},
+		emitRaccourciRéinitialisationTentative(){
+			this.$emit("ctrl-alt-r");
+		}
 	},
 };
 

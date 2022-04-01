@@ -45,6 +45,10 @@
 							<EditeurCode
 								présentation_étape="1"
 								class="flex-grow-1 m-n-0"
+								@ctrl-alt-up="sélectionnerTestDuHautAvecRaccourci"
+								@ctrl-alt-down="sélectionnerTestDuBasAvecRaccourci"
+								@ctrl-alt-d="changerModeAffichageAvecRaccourci"
+								@ctrl-alt-r="réinitialiserTentativeAvecRaccourci"
 							/>
 							<RetroactionTentative présentation_étape="3" />
 						</div>

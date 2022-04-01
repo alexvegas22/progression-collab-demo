@@ -55,6 +55,10 @@
 				:xray="xray"
 				@update:value="onChange"
 				@ctrl-enter="validerTentative"
+				@ctrl-alt-up="emitRaccourciTestHaut"
+				@ctrl-alt-down="emitRaccourciTestBas"
+				@ctrl-alt-d="emitRaccourciModeAffichage"
+				@ctrl-alt-r="emitRaccourciRéinitialisationTentative"
 			/>
 		</div>
 	</div>

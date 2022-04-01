@@ -16,9 +16,20 @@ export default {
 		langages() {
 			return Object.keys(this.$store.state.question.ebauches);
 		},
+		réinitialiserTentativeAvecRaccourci() {
+			return this.$store.state.réinitialiserTentativeAvecRaccourci;
+		}
 	},
 	mounted() {
 		this.$mousetrap.bind("ctrl+alt+r", this.reinitialiserCodeEditeurRaccourcis);
+	},
+	watch:{
+		réinitialiserTentativeAvecRaccourci() {
+			if(this.réinitialiserTentativeAvecRaccourci === true){
+				this.reinitialiserCodeEditeurRaccourcis(this.langage);
+				this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",false);
+			}
+		}
 	},
 	methods: {
 		filtrerTentativesParLangage: function (langage) {

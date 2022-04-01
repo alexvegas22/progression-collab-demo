@@ -53,6 +53,12 @@ export default {
 		thèmeSombre() {
 			return this.$store.state.thèmeSombre;
 		},
+		sélectionnerTestHaut() {
+			return this.$store.state.sélectionnerTestHaut;
+		},
+		sélectionnerTestBas() {
+			return this.$store.state.sélectionnerTestBas;
+		}
 	},
 	watch:{
 		resultats(){
@@ -75,7 +81,19 @@ export default {
 				this.index_select=0;
 				this.changementOnglet("ResultatTest");
 			}
-		}
+		},
+		sélectionnerTestHaut(){
+			if(this.sélectionnerTestHaut === true){
+				this.basculer_test_haut();
+				this.$store.dispatch("setSélectionnerTestHaut", false);
+			}
+		},
+		sélectionnerTestBas(){
+			if(this.sélectionnerTestBas === true){
+				this.basculer_test_bas();
+				this.$store.dispatch("setSélectionnerTestBas", false);
+			}
+		},
 	},
 	methods: {
 		changementOnglet(onglet) {

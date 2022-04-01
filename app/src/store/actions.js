@@ -400,5 +400,15 @@ export default {
 
 	setModeAffichage({ commit }, val){
 		commit("setModeAffichage", val);
-	}
+	},
+
+	setSélectionnerTestHaut({ commit }, val){
+		commit("setSélectionnerTestHaut", val);
+	},
+	setSélectionnerTestBas({ commit }, val){
+		commit("setSélectionnerTestBas", val);
+	},
+	setRéinitialiserTentativeAvecRaccourci({ commit }, val){
+		commit("setRéinitialiserTentativeAvecRaccourci", val);
+	},
 };

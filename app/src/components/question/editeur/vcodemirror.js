@@ -62,6 +62,18 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		this.editor.setOption("extraKeys", {
 			"Ctrl-Enter": () =>{
 			  this.$emit("ctrl-enter");
+			},
+			"Ctrl-Alt-Up": () =>{
+				this.$emit("ctrl-alt-up");
+			},
+			"Ctrl-Alt-Down": () =>{
+				this.$emit("ctrl-alt-down");
+			},
+			"Ctrl-Alt-D": () =>{
+				this.$emit("ctrl-alt-d");
+			},
+			"Ctrl-Alt-R": () =>{
+				this.$emit("ctrl-alt-r");
 			}
 		});
 	}

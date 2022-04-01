@@ -148,6 +148,18 @@ export default {
 			else if(!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché){
 				this.éditeurPleinÉcran = true;
 			}
+		},
+		sélectionnerTestDuHautAvecRaccourci(){
+			this.$store.dispatch("setSélectionnerTestHaut", true);
+		},
+		sélectionnerTestDuBasAvecRaccourci(){
+			this.$store.dispatch("setSélectionnerTestBas", true);
+		},
+		changerModeAffichageAvecRaccourci(){
+			this.$store.dispatch("setModeAffichage",!this.$store.state.mode_affichage);
+		},
+		réinitialiserTentativeAvecRaccourci(){
+			this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",!this.$store.state.réinitialiserTentativeAvecRaccourci);
 		}
 	},
 };
