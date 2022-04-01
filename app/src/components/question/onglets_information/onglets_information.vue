@@ -64,7 +64,7 @@
 			<keep-alive>
 				<component
 					:is="ongletActif"
-					:style="{ height: panneauAffiché ? '20rem' : '0' }"
+					:style="{ height: panneauAffiché ? '18rem' : '0' }"
 					class="section-bas"
 					:test="test_select"
 					:resultat="resultat_select"

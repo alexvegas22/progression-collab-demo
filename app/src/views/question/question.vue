@@ -49,7 +49,7 @@
 							<RetroactionTentative présentation_étape="3" />
 						</div>
 					</div>
-					<div class="col-12 hauteur-onglets-information">
+					<div class="col-12">
 						<onglets-information
 							:panneau-affiché="panneauTestsAffiché"
 							présentation_étape="4"

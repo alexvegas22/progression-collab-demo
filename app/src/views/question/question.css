@@ -154,10 +154,6 @@ body {
 		margin-right:2rem;
 	}
 
-	.hauteur-onglets-information {
-		max-height: 20vh;
-	}
-
 	.ligne-séparation-avec-énoncé {
 		border-top: 1px solid lightgrey;
 	}
@@ -178,7 +174,7 @@ body {
 	}
 
 	.énoncé-semi .section-énoncé-texte {
-		height: 25vh;
+		height: 15vh;
 		max-width: 95%;
 		margin-left: none;
 	}
@@ -191,7 +187,7 @@ body {
 	}
 
 	.énoncé-semi .section-énoncé-texte {
-		height: 27vh;
+		height: 15vh;
 		max-width: 96%;
 		margin-left: none;
 	}

@@ -30,15 +30,19 @@
 	transition: all 0.2s ease-in-out;
 }
 
+.panneau-affiché {
+	height: 21.875rem;
+}
+
+.panneau-non-affiché {
+	height: 0;
+}
+
 .section-bas {
 	overflow: hidden;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
-}
-
-.panneau-affiché {
-	height: 15.625rem;
 }
 
 .bordure-titre {
@@ -61,16 +65,13 @@
 }
 
 /* ------------- Media Queries ----------------- */
-/* ------------- Entre 768px et 865px (48rem - 54.063rem) ----------------- */
-@media only screen and (min-width: 48rem) and (min-height: 54.063rem) {
-	.panneau-affiché {
-		height: 21.875rem;
-	}
-}
-
-/* ------------- Entre 768px et 865px (48rem - 54.063rem) ----------------- */
+/* ------------- Entre 0 et 767px (0 - 47.938rem) ----------------- */
 @media only screen and (max-width: 47.938rem) {
 	.texte {
 		font-size: 0.9rem;
+	}
+	
+	.panneau-affiché {
+		height: 15rem;
 	}
 }
