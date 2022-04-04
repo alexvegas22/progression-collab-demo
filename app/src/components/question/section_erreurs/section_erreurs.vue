@@ -6,9 +6,7 @@
 		<pre>
 	    <p
 		 class="card-text"
->
-		 {{ resultat.sortie_erreur }}
-	    </p>
+>{{ resultat.sortie_erreur }}</p>
 	</pre>
 	</div>
 </template>
