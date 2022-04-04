@@ -4,6 +4,8 @@ import EditeurCode from "@/components/question/editeur/editeur.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
+import Ampoule from "@/components/question/ampoule/ampoule.vue";
+
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -24,6 +26,7 @@ export default {
 		EditeurCode,
 		RetroactionTentative,
 		Présentation,
+		Ampoule
 	},
 	computed: {
 		user() {

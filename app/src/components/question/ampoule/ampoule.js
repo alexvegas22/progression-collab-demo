@@ -1,8 +1,16 @@
 import parseMD from "@/util/parse";
 import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
+import { Tippy } from "vue-tippy";
+import "tippy.js/dist/svg-arrow.css";
 
 export default {
-	name: "RetroactionTentative",
+	name: "Ampoule",
+	components: { Tippy },
+	data() {
+		return {
+			conseilAffiché: false,
+		};
+	},
 	computed: {
 		tentative() {
 			return this.$store.state.tentative;
@@ -16,25 +24,6 @@ export default {
 				},
 			}) : null;
 		},
-		testsRéussisPct() {
-			if (!this.$store.state.retroactionTentative) return null;
-			return {
-				width:
-					(this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100 + "%",
-			};
-		},
-		testsRatésPct() {
-			if (!this.$store.state.retroactionTentative) return null;
-			return {
-				width:
-					100 -
-					(this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100 +
-					"%",
-			};
-		},
-		nbTests() {
-			return this.$store.state.question.tests.length;
-		},
 		msgReponseApi() {
 			return this.$store.state.msgReponseApi;
 		},
@@ -45,4 +34,9 @@ export default {
 			return this.$store.state.envoiTentativeEnCours;
 		},
 	},
+	methods: {
+		basculerAffichageConseil() {
+			this.conseilAffiché = !this.conseilAffiché;
+		},
+	}
 };
