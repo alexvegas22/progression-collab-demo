@@ -1,6 +1,6 @@
 .sortie.vide {
 	margin-top: -1.2rem;
-	color: gray;
+	color: #808080;
 }
 .mode.diff {
 	color: #000 !important;
@@ -30,12 +30,12 @@
 }
 
 .diff.différent.ins.enabled {
-	color: black;
+	color: #000000;
 	background-color: #98fb98 !important;
 }
 
 .diff.différent.del.enabled {
-	color: black;
+	color: #000000;
 	background-color: #FFB3B3 !important;
 }
 
