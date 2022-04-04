@@ -56,6 +56,7 @@
 								@ctrl-alt-f="basculerÉnoncéPleinÉcranAvecRaccourci"
 								@ctrl-alt-s="emitBasculerThèmeSombreAvecRaccourci"
 							/>
+							<Ampoule />
 							<RetroactionTentative présentation_étape="3" />
 						</div>
 					</div>
