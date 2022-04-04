@@ -95,7 +95,7 @@ export const mutations = {
 	setOngletCourant(state,val){
 		state.ongletCourant = val;
 	},
-	setThèmeSombreModifiéAvecRaccourci(state,val){
-		state.thèmeSombreModifiéAvecRaccourci = val;
+	setThèmeSombreBasculéAvecRaccourci(state,val){
+		state.thèmeSombreBasculéAvecRaccourci = val;
 	},
 };

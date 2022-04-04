@@ -54,7 +54,7 @@
 								@ctrl-alt-e="basculerPanneauÉditeur"
 								@ctrl-alt-q="basculerÉnoncéSemiÉcranAvecRaccourci"
 								@ctrl-alt-f="basculerÉnoncéPleinÉcranAvecRaccourci"
-								@ctrl-alt-s="emitChangerThèmeSombreAvecRaccourci"
+								@ctrl-alt-s="emitBasculerThèmeSombreAvecRaccourci"
 							/>
 							<RetroactionTentative présentation_étape="3" />
 						</div>

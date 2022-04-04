@@ -180,7 +180,7 @@ export default {
 				this.ajusterPanneauÉnoncé("normal");
 			}
 		},
-		emitChangerThèmeSombreAvecRaccourci() {
+		emitBasculerThèmeSombreAvecRaccourci() {
 			this.$store.dispatch("setThèmeSombreModifiéAvecRaccourci", true);
 		}
 	},

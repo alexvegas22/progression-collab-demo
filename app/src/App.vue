@@ -119,8 +119,8 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
-		thèmeSombreModifiéAvecRaccourci() {
-			return this.$store.state.thèmeSombreModifiéAvecRaccourci;
+		setThèmeSombreBasculéAvecRaccourci() {
+			return this.$store.state.setThèmeSombreBasculéAvecRaccourci;
 		}
 	},
 	watch: {
@@ -128,15 +128,15 @@ export default {
 			localStorage.setItem("estThèmeSombre", this.thèmeSombre);
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
-		thèmeSombreModifiéAvecRaccourci() {
-			if(this.thèmeSombreModifiéAvecRaccourci === true) {
-				this.changerThèmeSombreAvecRaccourci();
-				this.$store.dispatch("setThèmeSombreModifiéAvecRaccourci", false);
+		setThèmeSombreBasculéAvecRaccourci() {
+			if(this.thèmeSombreBasculéAvecRaccourci === true) {
+				this.basculerThèmeSombreAvecRaccourci();
+				this.$store.dispatch("setThèmeSombreBasculéAvecRaccourci", false);
 			}
 		}
 	},
 	mounted(){
-		this.$mousetrap.bind(this.$store.state.ctrlAltS, this.changerThèmeSombreAvecRaccourci);
+		this.$mousetrap.bind(this.$store.state.ctrlAltS, this.basculerThèmeSombreAvecRaccourci);
 		
 	},
 	created() {
@@ -189,7 +189,7 @@ export default {
 			this.$store.dispatch("deleteToken");
 			this.$router.push({name: "Home"});
 		},
-		changerThèmeSombreAvecRaccourci() {
+		basculerThèmeSombreAvecRaccourci() {
 			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
 		},
 	}

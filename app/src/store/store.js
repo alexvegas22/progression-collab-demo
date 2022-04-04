@@ -30,7 +30,7 @@ export default createStore({
 		sélectionnerTestBas: false,
 		réinitialiserTentativeAvecRaccourci: false,
 		ongletCourant: null,
-		thèmeSombreModifiéAvecRaccourci: false,
+		thèmeSombreBasculéAvecRaccourci: false,
 		ctrlEnter: "ctrl+enter",
 		ctrlAltUp: "ctrl+alt+up",
 		ctrlAltDown: "ctrl+alt+down",

@@ -414,7 +414,7 @@ export default {
 	setOngletCourant({ commit }, val){
 		commit("setOngletCourant", val);
 	},
-	setThèmeSombreModifiéAvecRaccourci({ commit }, val){
-		commit("setThèmeSombreModifiéAvecRaccourci", val);
+	setThèmeSombreBasculéAvecRaccourci({ commit }, val){
+		commit("setThèmeSombreBasculéAvecRaccourci", val);
 	},
 };
