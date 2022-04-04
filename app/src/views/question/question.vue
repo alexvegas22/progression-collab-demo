@@ -53,7 +53,7 @@
 								@ctrl-alt-l="basculerPanneauTests"
 								@ctrl-alt-e="basculerPanneauÉditeur"
 								@ctrl-alt-q="basculerÉnoncéSemiÉcranAvecRaccourci"
-								@ctrl-alt-f="mettreÉnoncéEnPleinÉcranAvecRaccourci"
+								@ctrl-alt-f="basculerÉnoncéPleinÉcranAvecRaccourci"
 								@ctrl-alt-s="emitChangerThèmeSombreAvecRaccourci"
 							/>
 							<RetroactionTentative présentation_étape="3" />

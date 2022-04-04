@@ -78,7 +78,7 @@ export default {
 	mounted() {
 		if(this.uri && this.user) this.récupérerQuestion();
 		this.$mousetrap.bind(this.$store.state.ctrlAltE, this.basculerPanneauÉditeur);
-		this.$mousetrap.bind(this.$store.state.ctrlAltF, this.mettreÉnoncéEnPleinÉcranAvecRaccourci);
+		this.$mousetrap.bind(this.$store.state.ctrlAltF, this.basculerÉnoncéPleinÉcranAvecRaccourci);
 		this.$mousetrap.bind(this.$store.state.ctrlAltQ, this.basculerÉnoncéSemiÉcranAvecRaccourci);
 	},
 	provide() {
@@ -171,8 +171,14 @@ export default {
 		basculerÉnoncéSemiÉcranAvecRaccourci() {
 			this.ajusterPanneauÉnoncé("normal");
 		},
-		mettreÉnoncéEnPleinÉcranAvecRaccourci() {
-			this.ajusterPanneauÉnoncé("max");
+		basculerÉnoncéPleinÉcranAvecRaccourci() {
+			this.énoncéPleinÉcran = !this.énoncéPleinÉcran;
+			if (this.énoncéPleinÉcran){
+				this.ajusterPanneauÉnoncé("max");
+			}
+			else{
+				this.ajusterPanneauÉnoncé("normal");
+			}
 		},
 		emitChangerThèmeSombreAvecRaccourci() {
 			this.$store.dispatch("setThèmeSombreModifiéAvecRaccourci", true);
