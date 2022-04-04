@@ -119,25 +119,12 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
-		setThèmeSombreBasculéAvecRaccourci() {
-			return this.$store.state.setThèmeSombreBasculéAvecRaccourci;
-		}
 	},
 	watch: {
 		thèmeSombre() {
 			localStorage.setItem("estThèmeSombre", this.thèmeSombre);
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
-		setThèmeSombreBasculéAvecRaccourci() {
-			if(this.thèmeSombreBasculéAvecRaccourci === true) {
-				this.basculerThèmeSombreAvecRaccourci();
-				this.$store.dispatch("setThèmeSombreBasculéAvecRaccourci", false);
-			}
-		}
-	},
-	mounted(){
-		this.$mousetrap.bind(this.$store.state.ctrlAltS, this.basculerThèmeSombreAvecRaccourci);
-		
 	},
 	created() {
 		this.$store.dispatch("getConfigServeur", API_URL + "/config" );
@@ -189,11 +176,7 @@ export default {
 			this.$store.dispatch("deleteToken");
 			this.$router.push({name: "Home"});
 		},
-		basculerThèmeSombreAvecRaccourci() {
-			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
-		},
 	}
 };
 </script>
 <style src="./theme-sombre.css"></style>
-

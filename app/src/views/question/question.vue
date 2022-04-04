@@ -45,16 +45,6 @@
 							<EditeurCode
 								présentation_étape="1"
 								class="flex-grow-1 m-n-0"
-								@ctrl-alt-up="sélectionnerTestDuHautAvecRaccourci"
-								@ctrl-alt-down="sélectionnerTestDuBasAvecRaccourci"
-								@ctrl-alt-d="changerModeAffichageAvecRaccourci"
-								@ctrl-alt-r="réinitialiserTentativeAvecRaccourci"
-								@ctrl-alt-o="changerOngletAvecRaccourci"
-								@ctrl-alt-l="basculerPanneauTests"
-								@ctrl-alt-e="basculerPanneauÉditeur"
-								@ctrl-alt-q="basculerÉnoncéSemiÉcranAvecRaccourci"
-								@ctrl-alt-f="basculerÉnoncéPleinÉcranAvecRaccourci"
-								@ctrl-alt-s="emitBasculerThèmeSombreAvecRaccourci"
 							/>
 							<Ampoule />
 							<RetroactionTentative présentation_étape="3" />
@@ -75,4 +65,3 @@
 
 <script src="./question.js"></script>
 <style src="./question.css"></style>
-
