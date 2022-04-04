@@ -8,7 +8,7 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "vue3-tabs";
 import { createMetaManager, plugin as metaPlugin } from "vue-meta";
-import FenetreInfo from "./components/layouts/fenetre_info.vue";
+import FenêtreInfo from "@/components/layouts/fenetre_info.vue";
 import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
 import Vue3Tour from "vue3-tour";
@@ -30,7 +30,7 @@ const app = createApp(App)
 	.use(Vue3Tour)
 	.use(PerfectScrollbar);
 
-app.component("fenetre-info", FenetreInfo);
+app.component("FenêtreInfo", FenêtreInfo);
 
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != "LoginView" ) {
@@ -50,6 +50,9 @@ const valider = async (promesse) => {
 		.catch((erreur) => {
 			if(erreur?.response?.status==401) {
 				authentificationErreurHandler(erreur);
+			}
+			else if(erreur?.response?.status && erreur.response.status!=200){
+				store.dispatch("setErreurs", { détails: erreur.response.data.erreur + " (erreur " + erreur.response.status + ") "  });
 			}
 			else if(typeof(erreur)=="string"){
 				store.dispatch("setErreurs", { message: erreur });
