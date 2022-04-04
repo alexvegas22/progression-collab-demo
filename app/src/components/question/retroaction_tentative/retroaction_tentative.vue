@@ -1,15 +1,18 @@
 <template>
 	<div>
-		<div class="progress" présentation_étape="2.0">
+		<div
+			class="progress"
+			présentation_étape="2.0"
+		>
 			<div
-				v-bind:style="testsRéussisPct"
+				:style="testsRéussisPct"
 				class="progress-bar test_réussi"
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
 			/>
 			<div
-				v-bind:style="testsRatésPct"
+				:style="testsRatésPct"
 				class="progress-bar test_non_réussi"
 				role="progressbar"
 				aria-valuemin="0"
@@ -24,7 +27,7 @@
 						ref="tippy"
 						v-tippy="{ trigger: 'click', interactive: true }"
 						:aria="true"
-						:showOnCreate="true"
+						:show-on-create="true"
 						:arrow="true"
 						:show="conseilAffiché"
 						placement="bottom"
@@ -32,17 +35,25 @@
 						@show="basculerAffichageConseil"
 					>
 						<a id="btn_conseil">
-							<svg class="svg_ampoule" présentation_étape="2.1">
-								<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
+							<svg
+								class="svg_ampoule"
+								présentation_étape="2.1"
+							>
+								<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1" />
 							</svg>
 						</a>
 
 						<template #content>
 							<svg class="svg_ampoule_mini">
-								<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1"></use>
+								<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1" />
 							</svg>
 							{{ $t("retroaction_tentative.conseil") }}
-							<div class="feedback" v-html="retroactionTentative.feedback" />
+							<!-- eslint-disable -->
+							<div
+							    class="feedback"
+							    v-html="retroactionTentative.feedback"
+							/>
+							<!-- eslint-enable -->
 						</template>
 					</Tippy>
 				</div>

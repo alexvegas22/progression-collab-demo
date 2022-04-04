@@ -1,6 +1,11 @@
 <template>
 	<div class="section-rétroactions">
-		<p class="card-text" v-html="resultats.feedback"></p>
+		<!-- eslint-disable -->
+	<p
+	    class="card-text"
+	    v-html="resultats.feedback"
+	/>
+	<!-- eslint-enable -->
 	</div>
 </template>
 

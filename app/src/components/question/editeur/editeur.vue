@@ -1,11 +1,26 @@
 <template>
 	<div style="flex-grow: 1">
 		<div class="container p-0">
-			<div class="row align-items-end" style="height: 0px">
-				<div class="col-auto" v-if="rôleÉditeur">
+			<div
+				class="row align-items-end"
+				style="height: 0px"
+			>
+				<div
+					v-if="rôleÉditeur"
+					class="col-auto"
+				>
 					<div class="form-check form-switch btn-xray">
-						<input class="form-check-input" type="checkbox" id="btn_xray" name="btn_xray" v-model="xray" />
-						<label class="form-check-label" for="btn_xray">Tout voir</label>
+						<input
+							id="btn_xray"
+							v-model="xray"
+							class="form-check-input"
+							type="checkbox"
+							name="btn_xray"
+						>
+						<label
+							class="form-check-label"
+							for="btn_xray"
+						>Tout voir</label>
 					</div>
 				</div>
 			</div>
@@ -16,18 +31,24 @@
 				type="button"
 				class="btn btn-valider"
 				:disabled="envoiEnCours"
-				@click="validerTentative"
 				présentation_étape="1.2"
+				@click="validerTentative"
 			> 
-				<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2"></use>
+				<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2" />
 			</svg>
-			<div :class="{spin: envoiEnCours}"></div>
+			<div :class="{spin: envoiEnCours}" />
 
-			<div class="indicateur_sauvegarde" :class="classeIndicateur" style="z-index: 1">●</div>
+			<div
+				class="indicateur_sauvegarde"
+				:class="classeIndicateur"
+				style="z-index: 1"
+			>
+				●
+			</div>
 
 			<v-code-mirror
-				présentation_étape="1.1"
 				id="editor"
+				présentation_étape="1.1"
 				style="height: 100%"
 				:value="code"
 				:mode="mode"

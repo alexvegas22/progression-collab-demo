@@ -21,9 +21,9 @@
 }
 
 .crochet {
-	position: absolute;
-	top: 3rem;
-	left: 0;
+	position: relative;
+	top: -5rem;
+	left: -2.5rem;
 	height: 0px;
 	z-index: 0;
 }
@@ -170,15 +170,11 @@ h3 {
 }
 
 .énoncé-semi {
-	width: 550px;
+	width: 30rem;
 }
 
 .énoncé-plein {
 	width: 100%;
-}
-
-.énoncé-caché {
-	width: 2rem;
 }
 
 .ps {
