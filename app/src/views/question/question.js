@@ -77,9 +77,6 @@ export default {
 	},
 	mounted() {
 		if(this.uri && this.user) this.récupérerQuestion();
-		this.$mousetrap.bind(this.$store.state.ctrlAltE, this.basculerPanneauÉditeur);
-		this.$mousetrap.bind(this.$store.state.ctrlAltF, this.basculerÉnoncéPleinÉcranAvecRaccourci);
-		this.$mousetrap.bind(this.$store.state.ctrlAltQ, this.basculerÉnoncéSemiÉcranAvecRaccourci);
 	},
 	provide() {
 		return {
@@ -152,35 +149,5 @@ export default {
 				this.éditeurPleinÉcran = true;
 			}
 		},
-		sélectionnerTestDuHautAvecRaccourci(){
-			this.$store.dispatch("setSélectionnerTestHaut", true);
-		},
-		sélectionnerTestDuBasAvecRaccourci(){
-			this.$store.dispatch("setSélectionnerTestBas", true);
-		},
-		changerModeAffichageAvecRaccourci(){
-			this.$store.dispatch("setModeAffichage",!this.$store.state.mode_affichage);
-		},
-		réinitialiserTentativeAvecRaccourci(){
-			this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",!this.$store.state.réinitialiserTentativeAvecRaccourci);
-		},
-		changerOngletAvecRaccourci(){
-			this.$store.dispatch("setOngletCourant", true);
-		},
-		basculerÉnoncéSemiÉcranAvecRaccourci() {
-			this.ajusterPanneauÉnoncé("normal");
-		},
-		basculerÉnoncéPleinÉcranAvecRaccourci() {
-			this.énoncéPleinÉcran = !this.énoncéPleinÉcran;
-			if (this.énoncéPleinÉcran){
-				this.ajusterPanneauÉnoncé("max");
-			}
-			else{
-				this.ajusterPanneauÉnoncé("normal");
-			}
-		},
-		emitBasculerThèmeSombreAvecRaccourci() {
-			this.$store.dispatch("setThèmeSombreModifiéAvecRaccourci", true);
-		}
 	},
 };

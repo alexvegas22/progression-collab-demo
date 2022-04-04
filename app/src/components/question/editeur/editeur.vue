@@ -54,17 +54,6 @@
 				:theme="thème"
 				:xray="xray"
 				@update:value="onChange"
-				@ctrl-enter="validerTentative"
-				@ctrl-alt-up="emitRaccourciTestHaut"
-				@ctrl-alt-down="emitRaccourciTestBas"
-				@ctrl-alt-d="emitRaccourciModeAffichage"
-				@ctrl-alt-r="emitRaccourciRéinitialisationTentative"
-				@ctrl-alt-o="emitRaccourciChangerOnglet"
-				@ctrl-alt-l="emitRaccourciBasculerPanneau"
-				@ctrl-alt-e="emitRaccourciBasculerPanneauÉditeur"
-				@ctrl-alt-q="emitRaccourciBasculerÉnoncéSemiÉcran"
-				@ctrl-alt-f="emitRaccourciMettreÉnoncéEnPleinÉcran"
-				@ctrl-alt-s="emitRaccourciBasculerThèmeSombre"
 			/>
 		</div>
 	</div>

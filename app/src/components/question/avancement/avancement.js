@@ -20,9 +20,6 @@ export default {
 			return this.$store.state.réinitialiserTentativeAvecRaccourci;
 		}
 	},
-	mounted() {
-		this.$mousetrap.bind(this.$store.state.ctrlAltR, this.reinitialiserCodeEditeurRaccourcis);
-	},
 	watch:{
 		réinitialiserTentativeAvecRaccourci() {
 			if(this.réinitialiserTentativeAvecRaccourci === true){
@@ -74,9 +71,6 @@ export default {
 					ref: ref,
 				},
 			});
-		},
-		reinitialiserCodeEditeurRaccourcis(){
-			this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
 		},
 	},
 };

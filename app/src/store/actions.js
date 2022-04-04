@@ -401,20 +401,4 @@ export default {
 	setModeAffichage({ commit }, val){
 		commit("setModeAffichage", val);
 	},
-
-	setSélectionnerTestHaut({ commit }, val){
-		commit("setSélectionnerTestHaut", val);
-	},
-	setSélectionnerTestBas({ commit }, val){
-		commit("setSélectionnerTestBas", val);
-	},
-	setRéinitialiserTentativeAvecRaccourci({ commit }, val){
-		commit("setRéinitialiserTentativeAvecRaccourci", val);
-	},
-	setOngletCourant({ commit }, val){
-		commit("setOngletCourant", val);
-	},
-	setThèmeSombreBasculéAvecRaccourci({ commit }, val){
-		commit("setThèmeSombreBasculéAvecRaccourci", val);
-	},
 };
