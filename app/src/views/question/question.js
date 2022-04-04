@@ -130,7 +130,6 @@ export default {
 			this.redimensionnerÉditeur();
 		},
 		basculerPanneauTests() {
-			console.log("ici 2");
 			this.panneauTestsAffiché = !this.panneauTestsAffiché;
 			if (this.énoncéPleinÉcran && this.panneauTestsAffiché) {
 				this.énoncéPleinÉcran = false;
