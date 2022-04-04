@@ -26,11 +26,11 @@
 }
 
 .non-sauvegardé {
-	color: red;
+	color: #ff0000;
 }
 
 .en-cours {
-	color: blue;
+	color: #0000ff;
 }
 
 .sauvegardé {

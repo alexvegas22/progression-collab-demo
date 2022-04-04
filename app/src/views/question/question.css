@@ -15,7 +15,7 @@ body {
 	display: flex;
 	padding: 1rem;
 	margin: 1rem;
-	background: darkgray;
+	background: #a9a9a9;
 }
 
 .v-tour__target--highlighted {
@@ -155,7 +155,7 @@ body {
 	}
 
 	.ligne-séparation-avec-énoncé {
-		border-top: 1px solid lightgrey;
+		border-top: 1px solid #d3d3d3;
 	}
 
 	.thème_sombre .ligne-séparation-avec-énoncé {
