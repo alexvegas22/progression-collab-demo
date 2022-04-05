@@ -78,13 +78,6 @@ export default {
 				this.feedback = parseMD(this.resultat.feedback);
 			}
 		},
-		exécuterTest() {
-			this.$store.dispatch("exécuterTest", {
-				langage: this.$store.state.tentative.langage,
-				code: this.$store.state.tentative.code,
-				test: this.$store.indexTestSélectionné
-			});
-		},
 	},
 	watch: {
 		resultat: function () {

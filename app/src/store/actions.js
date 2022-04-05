@@ -339,44 +339,6 @@ export default {
 		commit("updateRetroaction", null);
 	},
 
-	async exécuterTest({ commit, state }, params) {
-		commit("updateExécutionTest", true);
-		params.urlTentative = state.avancement.liens.tentatives;
-		return valider( async function() {
-			try{
-				const token = await getToken({ commit, state });
-				const retroactionTest = await postTentative(params, token);
-
-				commit("updateExécutionTest", false);
-
-				state.avancement.tentatives.unshift(retroactionTest);
-				if (state.avancement.état != 2) {
-					state.avancement.état = retroactionTest.réussi ? 2 : 1;
-				}
-
-				if( state.cb_succes && state.cb_succes_params ) {
-					callbackGrade(state.cb_succes, {
-						...state.cb_succes_params,
-						uri: state.uri,
-						token: state.token,
-					});
-				}
-				return retroactionTest;
-			}
-			catch(e) {
-				commit("updateExécutionTest", false);
-				
-				if(e?.response?.status==400) {
-					throw i18n.global.t("erreur.tentative_intraitable");
-				}
-				else{
-					throw(e);
-				}
-			}
-			
-		}()
-		);
-	},
 	setToken({ commit }, token) {
 		try {
 			const token_décodé = jwt_decode(token);
@@ -439,4 +401,7 @@ export default {
 	setModeAffichage({ commit }, val){
 		commit("setModeAffichage", val);
 	},
+	setIndexTestSélectionné({ commit }, val){
+		commit("setIndexTestSélectionné", val);
+	}
 };
