@@ -83,4 +83,7 @@ export const mutations = {
 	setModeAffichage(state, val) {
 		state.mode_affichage = val;
 	},
+	updateExécutionTest(state,bool){
+		state.exécutionTest = bool;
+	}
 };

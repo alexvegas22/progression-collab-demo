@@ -53,6 +53,9 @@ export default {
 		mode_affichage() {
 			return this.$store.state.mode_affichage;
 		},
+		retroactionTentative(){
+			return this.$store.state.retroactionTentative;
+		}
 	},
 	mounted() {
 		this.rafraîchirSorties();
@@ -74,6 +77,13 @@ export default {
 				this.sortie_attendue = résultats.résultat_attendu;
 				this.feedback = parseMD(this.resultat.feedback);
 			}
+		},
+		exécuterTest() {
+			this.$store.dispatch("exécuterTest", {
+				langage: this.$store.state.tentative.langage,
+				code: this.$store.state.tentative.code,
+				test: this.$store.indexTestSélectionné
+			});
 		},
 	},
 	watch: {

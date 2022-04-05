@@ -13,6 +13,13 @@
 					<FenêtreInfo présentation_étape="3.1">
 						<template #titre>
 							{{ $t('resultat_test.entrée') }}
+							<svg 
+								v-if="retroactionTentative!=null"
+								type="button"
+								class="btn btn-test-local"
+							> 
+								<use xlink:href="../editeur/svg_bouton_play/play-button-svgrepo-com.svg#Capa_2" />
+							</svg>
 						</template>
 						<pre
 							class="card-text p-3"
