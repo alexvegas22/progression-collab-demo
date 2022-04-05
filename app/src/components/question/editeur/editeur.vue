@@ -2,11 +2,11 @@
 	<div style="flex-grow: 1">
 		<div class="container p-0">
 			<div
+				v-if="rôleÉditeur"
 				class="row align-items-end"
-				style="height: 0px"
+				style="height: 1.5rem"
 			>
 				<div
-					v-if="rôleÉditeur"
 					class="col-auto"
 				>
 					<div class="form-check form-switch btn-xray">
