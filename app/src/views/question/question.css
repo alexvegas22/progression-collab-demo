@@ -101,6 +101,14 @@ body {
 	border-right: 0 solid #555555;
 }
 
+.énoncé-semi {
+	width: 38%;
+}
+
+.énoncé-plein {
+	width: 100%;
+}
+
 .énoncé-semi .section-boutton-affichage {
 	width: 4.5rem !important;
 }

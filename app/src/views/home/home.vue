@@ -327,7 +327,7 @@
 									Pour essayer les exercices <a href="./GuideProgression - Enseignants.pdf">Suivez le guide</a>
 								</p>
 								<p class="text-muted">
-									Pour essayer intégrer les exercices à votre cours Moodle <a href="ProgressionDansMoodle.pdf">Suivez l'autre guide</a>
+									Pour intégrer les exercices à votre cours Moodle <a href="ProgressionDansMoodle.pdf">Suivez l'autre guide</a>
 								</p>
 							</div>
 						</div>
@@ -348,6 +348,9 @@
 							<div class="timeline-body">
 								<p class="text-muted">
 									<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essayez un exercice de démo ici</a>
+								</p>
+								<p class="text-muted">
+									<a href="https://moodle.progression.dti.crosemont.quebec">Essayez des exercices intégrés à Moodle ici</a>
 								</p>
 							</div>
 						</div>
