@@ -248,3 +248,25 @@ body {
 		max-height: 95%;
 	}
 }
+
+
+// Alignement des images selon le texte alternatif
+// img alt="texte alternatif >" // aligne à droite
+// img alt="texte alternatif <" // aligne à gauche
+// img alt="texte alternatif ><" // centre
+
+img[alt$=">"] {
+	float: right;
+}
+
+img[alt$="<"] {
+  float: left;
+}
+
+img[alt$="><"] {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: auto;
+	float: none!important;
+}
