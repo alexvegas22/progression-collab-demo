@@ -1,5 +1,4 @@
 import parseMD from "@/util/parse";
-
 import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
 import { Tippy } from "vue-tippy";
 import "tippy.js/dist/svg-arrow.css";

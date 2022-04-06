@@ -148,6 +148,6 @@ export default {
 			else if(!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché){
 				this.éditeurPleinÉcran = true;
 			}
-		}
+		},
 	},
 };

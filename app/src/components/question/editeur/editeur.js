@@ -6,7 +6,6 @@ export default {
 	components: {
 		VCodeMirror,
 	},
-
 	data() {
 		return {
 			indicateurSauvegardeEnCours: false,

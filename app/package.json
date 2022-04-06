@@ -31,6 +31,7 @@
 		"vue": "^3.0.7",
 		"vue-i18n": "^9.1.4",
 		"vue-meta": "^3.0.0-alpha.7",
+		"vue-mousetrap": "^1.0.5",
 		"vue-router": "^4.0.3",
 		"vue-tippy": "^6.0.0-alpha.51",
 		"vue3-component-base": "0.0.9",

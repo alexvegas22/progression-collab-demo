@@ -1,14 +1,17 @@
 <template>
 	<div class="row g-0">
-		<div class="col-3">
+		<div class="col-xl-3 col-lg-4 col-4">
 			<div class="section-tests">
-				<FenêtreInfo
-					:style="{ height: panneauAffiché ? '20rem' : '0' }"
-					class="section-bas"
+				<div
+					class="bordure-titre p-1 texte"
+					:class="{ thème_sombre: thèmeSombre }"
 				>
-					<template #titre>
-						{{ $t("jeu_tests.jeuTests") }}
-					</template>
+					{{ $t("jeu_tests.jeuTests") }}
+				</div>
+				<FenêtreInfo
+					class="panneau"
+					:class="{'panneau-affiché': panneauAffiché}"
+				>
 					<div
 						v-for="(test, index) in tests"
 						:key="index"
@@ -26,26 +29,25 @@
 				</FenêtreInfo>
 			</div>
 		</div>
-		<div class="col-9">
+		<div class="col-xl-9 col-lg-8 col-8 texte">
 			<div class="section-onglets">
 				<div
-					:class="{ onglets: true, sélectionné: ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
 					@click="changementOnglet('ResultatTest')"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 				</div>
-
 				<div
 					v-if="resultat_select && resultat_select.sortie_erreur"
-					:class="{ onglets: true, sélectionné: ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
+					class="onglets-subséquents"
 					@click="changementOnglet('SectionErreur')"
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>
-
 				<div
 					v-if="resultat_select && resultat_select.feedback"
-					:class="{ onglets: true, sélectionné: ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
 					@click="changementOnglet('Rétroactions')"
 				>
 					{{ $t("onglets_informations.rétroactions") }}
@@ -59,11 +61,10 @@
 					/>
 				</div>
 			</div>
-
 			<keep-alive>
 				<component
 					:is="ongletActif"
-					:style="{ height: panneauAffiché ? '20rem' : '0' }"
+					:style="{ height: panneauAffiché ? '18rem' : '0' }"
 					class="section-bas"
 					:test="test_select"
 					:resultat="resultat_select"
@@ -74,5 +75,4 @@
 </template>
 
 <script src="./onglets_information.js"></script>
-
 <style scoped src="./onglets_information.css"></style>

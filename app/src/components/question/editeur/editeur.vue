@@ -37,7 +37,6 @@
 				<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2" />
 			</svg>
 			<div :class="{spin: envoiEnCours}" />
-
 			<div
 				class="indicateur_sauvegarde"
 				:class="classeIndicateur"
@@ -45,11 +44,11 @@
 			>
 				●
 			</div>
-
 			<v-code-mirror
 				id="editor"
 				présentation_étape="1.1"
 				style="height: 100%"
+				class="taille_texte"
 				:value="code"
 				:mode="mode"
 				:theme="thème"
@@ -61,5 +60,5 @@
 </template>
 
 <script src="./editeur.js"></script>
-
 <style src="./editeur.css"></style>
+

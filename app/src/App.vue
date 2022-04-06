@@ -131,7 +131,6 @@ export default {
 		this.traiterParamètresURL( window.location.search );
 		this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 	},
-
 	methods: {
 		traiterParamètresURL( paramètres ){
 			var urlParams = new URLSearchParams(paramètres);
@@ -176,9 +175,8 @@ export default {
 			sessionStorage.removeItem("token");
 			this.$store.dispatch("deleteToken");
 			this.$router.push({name: "Home"});
-		}
+		},
 	}
 };
 </script>
 <style src="./theme-sombre.css"></style>
-
