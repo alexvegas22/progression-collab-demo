@@ -151,15 +151,21 @@ body {
 
 /* -------------- Écrans de 0 à 767px (0 à 47.938rem) ----------------------*/
 @media only screen and (max-width: 47.938rem) {
+	.énoncé-semi {
+		width: 100%;
+	}
+	.section-bouton-affichage {
+		margin-right:0.75rem;
+	}
 	.énoncé-caché {
-		padding-bottom: 1.35rem;
+	padding-bottom: 1.35rem;
 	}
 	.barre-énoncé {
 		flex-flow:column;
 	}
 
 	.section-bouton-affichage {
-		margin-right:2rem;
+		margin-right:0.75rem;
 	}
 
 	.ligne-séparation-avec-énoncé {
@@ -260,7 +266,7 @@ img[alt$=">"] {
 }
 
 img[alt$="<"] {
-  float: left;
+	float: left;
 }
 
 img[alt$="><"] {
