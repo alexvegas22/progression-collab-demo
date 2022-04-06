@@ -168,7 +168,7 @@ h3 {
 	position: relative;
 	padding-right: 1rem;
 	top: 0.7rem;
-	height: 100vh;
+	height: calc(100vh - 9.05rem);
     overflow: auto;
 	
 }
@@ -203,7 +203,7 @@ p.footer-license {
 }
 
 .max-height {
-	max-height: 80%;
+	max-height: 97%;
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/
@@ -299,7 +299,7 @@ p.footer-license {
 	}
 
 	.max-height{
-		max-height: 85%;
+		max-height: 97%;
 	}
 }
 
