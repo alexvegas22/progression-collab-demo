@@ -4,3 +4,8 @@
 	flex-flow: column;
 	height: 18rem;
 }
+
+.margin-perfect-scrollbar {
+	margin-top: -2.5rem;
+	padding-bottom: 2.5rem;
+}

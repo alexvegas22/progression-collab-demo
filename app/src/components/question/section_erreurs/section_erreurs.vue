@@ -5,7 +5,9 @@
 				{{ $t("resultat_test.sortieErreur") }}
 			</h5>
 			<pre>
-				<p class="card-text">{{ resultat.sortie_erreur }}</p>
+				<perfect-scrollbar class="margin-perfect-scrollbar">
+					<p class="card-text">{{ resultat.sortie_erreur }}</p>
+				</perfect-scrollbar>
 			</pre>
 		</div>
 	</div>
