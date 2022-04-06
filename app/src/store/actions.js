@@ -408,13 +408,10 @@ export default {
 	setSélectionnerTestBas({ commit }, val){
 		commit("setSélectionnerTestBas", val);
 	},
-	setRéinitialiserTentativeAvecRaccourci({ commit }, val){
-		commit("setRéinitialiserTentativeAvecRaccourci", val);
+	setChangerModeAffichageAvecRaccourci({ commit }, val){
+		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
 	setOngletCourant({ commit }, val){
 		commit("setOngletCourant", val);
-	},
-	setThèmeSombreBasculéAvecRaccourci({ commit }, val){
-		commit("setThèmeSombreBasculéAvecRaccourci", val);
 	},
 };

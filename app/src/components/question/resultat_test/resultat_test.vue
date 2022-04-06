@@ -59,7 +59,9 @@
 						<template #titre>
 							<div class="espace-titre-sortie-observée">
 								{{ $t('resultat_test.sortieConsole') }}
-								<sélecteur-mode-affichage class="espace-sélecteur" />
+								<sélecteur-mode-affichage 
+									class="espace-sélecteur"
+								/>
 							</div>
 						</template>
 						<perfect-scrollbar>
