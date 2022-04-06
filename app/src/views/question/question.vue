@@ -6,26 +6,21 @@
 				présentation_étape="00"
 			/>
 		</div>
-
 		<div
-			class="container-fluid taille-ecran p-0"
+			class="container-fluid taille-écran p-0"
 			:class="{ thème_sombre: thèmeSombre }"
 		>
 			<div
 				v-if="avancement"
-				class="d-flex h-100"
+				class="conteneur-question"
 			>
 				<Enonce
-					:class="{
-						'énoncé-plein': énoncéPleinÉcran,
-						'énoncé-semi': énoncéSemiÉcran,
-						'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran }"
+					:class="{ 'énoncé-plein': énoncéPleinÉcran, 'énoncé-semi': énoncéSemiÉcran, 'énoncé-caché': !énoncéPleinÉcran && !énoncéSemiÉcran }"
 					:énoncéPleinÉcran="énoncéPleinÉcran"
 					:énoncéSemiÉcran="énoncéSemiÉcran"
 					présentation_étape="0"
 					@ajustéPanneauÉnoncé="ajusterPanneauÉnoncé"
 				/>
-
 				<div
 					v-show="!énoncéPleinÉcran"
 					class="flex-column fill-height h-100 p-0"
@@ -33,11 +28,11 @@
 				>
 					<div
 						id="carre-editeur"
-						class="col-12 flex-column fill-height m-n-0"
+						class="col-12 flex-column fill-height m-n-0 ligne-séparation-avec-énoncé"
 						style="flex: 1 1 auto; position: relative"
 					>
-						<Avancement
-							présentation_étape="2"
+						<Avancement 
+							présentation_étape="2" 
 							style="flex: 0 0 auto"
 							:pleinÉcran="éditeurPleinÉcran"
 							@basculéPanneauÉditeur="basculerPanneauÉditeur"
@@ -68,6 +63,4 @@
 </template>
 
 <script src="./question.js"></script>
-
 <style src="./question.css"></style>
-

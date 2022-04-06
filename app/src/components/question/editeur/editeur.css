@@ -4,15 +4,16 @@
 
 .gutter-non-editable {
 	background:
-		/* top, transparent black, faked with gradient */
+	/* top, transparent black, faked with gradient */
 		linear-gradient(
-			to right,
-			transparent 80%,
-			rgba(127, 127, 127, 0.3) 80% 100%);
+		to right,
+		transparent 80%,
+		rgba(127, 127, 127, 0.3) 80% 100%
+	);
 }
 
 .ligne-non-editable {
-	background: rgba(127, 127, 127, 0.05)
+	background: rgba(127, 127, 127, 0.05);
 }
 
 .ligne-cache {
@@ -23,6 +24,7 @@
 	float: right;
 	font-size: 1rem;
 }
+
 .non-sauvegardé {
 	color: red;
 }
@@ -46,13 +48,17 @@
 }
 
 .btn-valider {
-	position:absolute;
+	position: absolute;
 	bottom: 0rem;
-	right: 0rem;
+	right: 1rem;
 	height: 5rem;
 	width: 5rem;
-	z-index:2;
-	fill: rgb(37,177,34);
+	z-index: 2;
+	fill: rgb(37, 177, 34);
+}
+
+.btn-valider:hover {
+	transform: scale(1.05);
 }
 
 .spin {
@@ -60,20 +66,21 @@
 	position: absolute;
 	height: 3.5rem;
 	width: 3.5rem;
-	bottom: 12px;
-    right: 12px;
-	border: 7px solid #c6c6c6;
+	bottom: 0.75rem;
+	right: 1.75rem;
+	border: 0.438rem solid #c6c6c6;
 	border-radius: 50%;
-	border-top-color: rgb(37,177,34);
+	border-top-color: rgb(37, 177, 34);
 	animation: spin 1s ease-in-out infinite;
 	-webkit-animation: spin 1s ease-in-out infinite;
 }
+
 @keyframes spin {
 	to {
 		-webkit-transform: rotate(360deg);
 	}
-	}
-	@-webkit-keyframes spin {
+}
+@-webkit-keyframes spin {
 	to {
 		-webkit-transform: rotate(360deg);
 	}
@@ -81,4 +88,80 @@
 
 .CodeMirror {
 	height: inherit;
+}
+
+/* ------------------------------ Media Queries ---------------------------------*/
+/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
+@media (max-width: 36rem) {
+	.taille_texte {
+		font-size: 0.7rem;
+	}
+
+	.btn-valider {
+		right: 1.5rem;
+	}
+
+	.spin {
+		right: 2.25rem;
+	}
+}
+
+/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.taille_texte {
+		font-size: 0.7rem;
+	}
+
+	.btn-valider {
+		right: 1.5rem;
+	}
+
+	.spin {
+		right: 2.25rem;
+	}
+}
+
+/* ------------- 48rem - 62rem (768px - 992px) ---------------- */
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.taille_texte {
+		font-size: 0.7rem;
+	}
+
+	.btn-valider {
+		right: 1.5rem;
+	}
+
+	.spin {
+		right: 2.25rem;
+	}
+}
+
+/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.taille_texte {
+		font-size: 0.75rem;
+	}
+
+	.btn-valider {
+		right: 1.75rem;
+	}
+
+	.spin {
+		right: 2.5rem;
+	}
+}
+
+/* ---------- 75rem et + (1200px et +) ---------------- */
+@media (min-width: 75rem) {
+	.taille_texte {
+		font-size: 0.8rem;
+	}
+
+	.btn-valider {
+		right: 1.75rem;
+	}
+
+	.spin {
+		right: 2.5rem;
+	}
 }

@@ -6,7 +6,6 @@ module.exports = {
     "extends": [
 	"eslint:recommended",
 	"plugin:vue/vue3-recommended",
-	"plugin:css-modules/recommended",
     ],
     "parserOptions": {
 	"parser": "@babel/eslint-parser",
@@ -16,7 +15,6 @@ module.exports = {
     "plugins": [
 	"vue",
 	"smarter-tabs",
-	"css-modules",
     ],
     "rules": {
 		//JS

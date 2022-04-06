@@ -65,6 +65,13 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
+  --bp-XXL-large: 87.5rem;
+  --bp-XL-large:75rem;
+  --bp-lg: 62rem;
+  --bp-med: 48rem;
+  --bp-sm: 36rem;
+  --bp-xs: 22.5rem;
+
 }
 
 *,
@@ -265,9 +272,9 @@ pre {
   display: block;
   margin-top: 0;
   margin-bottom: 1rem;
-  overflow: auto;
   font-size: 0.875em;
 }
+
 pre code {
   font-size: inherit;
   color: inherit;
@@ -644,28 +651,30 @@ progress {
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 576px) and (max-width: 767.98px) {
   .container-sm, .container {
     max-width: 540px;
+    padding-right: 4rem;
+    padding-left: 4rem;
   }
 }
-@media (min-width: 768px) {
-  .container-md, .container-sm, .container {
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container-md, .container {
     max-width: 720px;
   }
 }
-@media (min-width: 992px) {
-  .container-lg, .container-md, .container-sm, .container {
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container-lg, .container {
     max-width: 960px;
   }
 }
-@media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .container-xl, .container {
     max-width: 1140px;
   }
 }
 @media (min-width: 1400px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+  .container-xxl, .container {
     max-width: 1320px;
   }
 }
@@ -894,7 +903,219 @@ progress {
 .gy-5 {
   --bs-gutter-y: 3rem;
 }
+@media (min-width: 360px) {
+  .col-xs {
+    flex: 1 0 0%;
+  }
 
+  .row-cols-xs-auto > * {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .row-cols-xs-1 > * {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .row-cols-xs-2 > * {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  .row-cols-xs-3 > * {
+    flex: 0 0 auto;
+    width: 33.3333333333%;
+  }
+
+  .row-cols-xs-4 > * {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+
+  .row-cols-xs-5 > * {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+
+  .row-cols-xs-6 > * {
+    flex: 0 0 auto;
+    width: 16.6666666667%;
+  }
+
+  .col-xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .col-xs-1 {
+    flex: 0 0 auto;
+    width: 8.33333333%;
+  }
+
+  .col-xs-2 {
+    flex: 0 0 auto;
+    width: 16.66666667%;
+  }
+
+  .col-xs-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+
+  .col-xs-4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+  }
+
+  .col-xs-5 {
+    flex: 0 0 auto;
+    width: 41.66666667%;
+  }
+
+  .col-xs-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  .col-xs-7 {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+  }
+
+  .col-xs-8 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+  }
+
+  .col-xs-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+
+  .col-xs-10 {
+    flex: 0 0 auto;
+    width: 83.33333333%;
+  }
+
+  .col-xs-11 {
+    flex: 0 0 auto;
+    width: 91.66666667%;
+  }
+
+  .col-xs-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .offset-xs-0 {
+    margin-left: 0;
+  }
+
+  .offset-xs-1 {
+    margin-left: 8.33333333%;
+  }
+
+  .offset-xs-2 {
+    margin-left: 16.66666667%;
+  }
+
+  .offset-xs-3 {
+    margin-left: 25%;
+  }
+
+  .offset-xs-4 {
+    margin-left: 33.33333333%;
+  }
+
+  .offset-xs-5 {
+    margin-left: 41.66666667%;
+  }
+
+  .offset-xs-6 {
+    margin-left: 50%;
+  }
+
+  .offset-xs-7 {
+    margin-left: 58.33333333%;
+  }
+
+  .offset-xs-8 {
+    margin-left: 66.66666667%;
+  }
+
+  .offset-xs-9 {
+    margin-left: 75%;
+  }
+
+  .offset-xs-10 {
+    margin-left: 83.33333333%;
+  }
+
+  .offset-xs-11 {
+    margin-left: 91.66666667%;
+  }
+
+  .g-xs-0,
+.gx-xs-0 {
+    --bs-gutter-x: 0;
+  }
+
+  .g-xs-0,
+.gy-xs-0 {
+    --bs-gutter-y: 0;
+  }
+
+  .g-xs-1,
+.gx-xs-1 {
+    --bs-gutter-x: 0.25rem;
+  }
+
+  .g-xs-1,
+.gy-xs-1 {
+    --bs-gutter-y: 0.25rem;
+  }
+
+  .g-xs-2,
+.gx-xs-2 {
+    --bs-gutter-x: 0.5rem;
+  }
+
+  .g-xs-2,
+.gy-xs-2 {
+    --bs-gutter-y: 0.5rem;
+  }
+
+  .g-xs-3,
+.gx-xs-3 {
+    --bs-gutter-x: 1rem;
+  }
+
+  .g-xs-3,
+.gy-xs-3 {
+    --bs-gutter-y: 1rem;
+  }
+
+  .g-xs-4,
+.gx-xs-4 {
+    --bs-gutter-x: 1.5rem;
+  }
+
+  .g-xs-4,
+.gy-xs-4 {
+    --bs-gutter-y: 1.5rem;
+  }
+
+  .g-xs-5,
+.gx-xs-5 {
+    --bs-gutter-x: 3rem;
+  }
+
+  .g-xs-5,
+.gy-xs-5 {
+    --bs-gutter-y: 3rem;
+  }
+}
 @media (min-width: 576px) {
   .col-sm {
     flex: 1 0 0%;
@@ -1751,7 +1972,6 @@ progress {
   .col-xxl {
     flex: 1 0 0%;
   }
-
   .row-cols-xxl-auto > * {
     flex: 0 0 auto;
     width: auto;

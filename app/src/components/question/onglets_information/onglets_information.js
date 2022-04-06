@@ -71,7 +71,7 @@ export default {
 				this.index_select=0;
 				this.changementOnglet("ResultatTest");
 			}
-		}
+		},
 	},
 	methods: {
 		changementOnglet(onglet) {
@@ -88,6 +88,6 @@ export default {
 		},
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");
-		}
+		},
 	},
 };
