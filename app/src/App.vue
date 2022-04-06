@@ -4,7 +4,11 @@
 			{{ content ? `${content} | Progression` : `Progression` }}
 		</template>
 	</metainfo>
-	<div :class="{thème_sombre: thèmeSombre}">
+	<div
+		v-shortkey="['ctrl', 'alt', 's']"
+		:class="{thème_sombre: thèmeSombre}"
+		@shortkey="basculerThèmeSombreAvecRaccourci"
+	>
 		<nav class="navbar justify-content-between navbar-dark bg-dark">
 			<a
 				href="/"
@@ -119,12 +123,21 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
+		setThèmeSombreBasculéAvecRaccourci() {
+			return this.$store.state.thèmeSombreBasculéAvecRaccourci;
+		}
 	},
 	watch: {
 		thèmeSombre() {
 			localStorage.setItem("estThèmeSombre", this.thèmeSombre);
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
+		setThèmeSombreBasculéAvecRaccourci() {
+			if(this.$store.state.thèmeSombreBasculéAvecRaccourci === true) {
+				this.basculerThèmeSombreAvecRaccourci();
+				this.$store.dispatch("setThèmeSombreBasculéAvecRaccourci", false);
+			}
+		}
 	},
 	created() {
 		this.$store.dispatch("getConfigServeur", API_URL + "/config" );
@@ -175,6 +188,9 @@ export default {
 			sessionStorage.removeItem("token");
 			this.$store.dispatch("deleteToken");
 			this.$router.push({name: "Home"});
+		},
+		basculerThèmeSombreAvecRaccourci() {
+			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
 		},
 	}
 };

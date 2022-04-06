@@ -4,7 +4,6 @@
 
 .gutter-non-editable {
 	background:
-	/* top, transparent black, faked with gradient */
 		linear-gradient(
 		to right,
 		transparent 80%,

@@ -17,6 +17,10 @@ export default {
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,
+			ongletChangéRaccourci: false,
+			testSélectionnéHaut: false,
+			testSélectionnéBas: false,
+			tentativeRéinitialisée: false,
 		};
 	},
 	components: {
@@ -152,5 +156,32 @@ export default {
 				this.éditeurPleinÉcran = true;
 			}
 		},
+		sélectionnerTestDuHautAvecRaccourci(){
+			this.testSélectionnéHaut = !this.testSélectionnéHaut;
+		},
+		sélectionnerTestDuBasAvecRaccourci(){
+			this.testSélectionnéBas = !this.testSélectionnéBas;
+		},
+		changerModeAffichageAvecRaccourci(){
+			this.$store.dispatch("setChangerModeAffichageAvecRaccourci",true);
+		},
+		changerOngletAvecRaccourci(){
+			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
+		},
+		basculerÉnoncéSemiÉcranAvecRaccourci() {
+			this.ajusterPanneauÉnoncé("normal");
+		},
+		basculerÉnoncéPleinÉcranAvecRaccourci() {
+			this.énoncéPleinÉcran = !this.énoncéPleinÉcran;
+			if (this.énoncéPleinÉcran){
+				this.ajusterPanneauÉnoncé("max");
+			}
+			else{
+				this.ajusterPanneauÉnoncé("normal");
+			}
+		},
+		réinitialiserTentativeAvecRaccourci() {
+			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
+		}
 	},
 };
