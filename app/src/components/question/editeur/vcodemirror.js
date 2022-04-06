@@ -58,42 +58,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 		if(!this.xray){
 			this.updateZones();
 		}
-
-		let clés = {};
-		clés[ this.$store.state.ctrlEnterVCodeMirror ] = () => {
-			this.$emit("ctrl-enter");
-		};
-		clés[ this.$store.state.ctrlAltUpVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-up");
-		};
-		clés[ this.$store.state.ctrlAltDownVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-down");
-		};
-		clés[ this.$store.state.ctrlAltDVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-d");
-		};
-		clés[ this.$store.state.ctrlAltRVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-r");
-		};
-		clés[ this.$store.state.ctrlAltOVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-o");
-		};
-		clés[ this.$store.state.ctrlAltLVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-l");
-		};
-		clés[ this.$store.state.ctrlAltEVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-e");
-		};
-		clés[ this.$store.state.ctrlAltQVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-q");
-		};
-		clés[ this.$store.state.ctrlAltFVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-f");
-		};
-		clés[ this.$store.state.ctrlAltSVCodeMirror ] = () => {
-			this.$emit("ctrl-alt-s");
-		};
-		this.editor.setOption("extraKeys", clés);
 	}
 
 	beforeUnmount() {

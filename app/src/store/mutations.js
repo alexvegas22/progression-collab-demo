@@ -89,13 +89,10 @@ export const mutations = {
 	setSélectionnerTestBas(state,val){
 		state.sélectionnerTestBas = val;
 	},
-	setRéinitialiserTentativeAvecRaccourci(state,val){
-		state.réinitialiserTentativeAvecRaccourci = val;
+	setChangerModeAffichageAvecRaccourci(state,val){
+		state.changerModeAffichageAvecRaccourci = val;
 	},
 	setOngletCourant(state,val){
 		state.ongletCourant = val;
-	},
-	setThèmeSombreBasculéAvecRaccourci(state,val){
-		state.thèmeSombreBasculéAvecRaccourci = val;
 	},
 };

@@ -4,7 +4,11 @@
 			{{ content ? `${content} | Progression` : `Progression` }}
 		</template>
 	</metainfo>
-	<div :class="{thème_sombre: thèmeSombre}">
+	<div
+		v-shortkey="['ctrl', 'alt', 's']"
+		:class="{thème_sombre: thèmeSombre}"
+		@shortkey="basculerThèmeSombreAvecRaccourci"
+	>
 		<nav class="navbar justify-content-between navbar-dark bg-dark">
 			<a
 				href="/"
@@ -120,7 +124,7 @@ export default {
 			return this.$store.state.erreurs;
 		},
 		setThèmeSombreBasculéAvecRaccourci() {
-			return this.$store.state.setThèmeSombreBasculéAvecRaccourci;
+			return this.$store.state.thèmeSombreBasculéAvecRaccourci;
 		}
 	},
 	watch: {
@@ -129,15 +133,11 @@ export default {
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
 		setThèmeSombreBasculéAvecRaccourci() {
-			if(this.thèmeSombreBasculéAvecRaccourci === true) {
+			if(this.$store.state.thèmeSombreBasculéAvecRaccourci === true) {
 				this.basculerThèmeSombreAvecRaccourci();
 				this.$store.dispatch("setThèmeSombreBasculéAvecRaccourci", false);
 			}
 		}
-	},
-	mounted(){
-		this.$mousetrap.bind(this.$store.state.ctrlAltS, this.basculerThèmeSombreAvecRaccourci);
-		
 	},
 	created() {
 		this.$store.dispatch("getConfigServeur", API_URL + "/config" );
@@ -196,4 +196,3 @@ export default {
 };
 </script>
 <style src="./theme-sombre.css"></style>
-

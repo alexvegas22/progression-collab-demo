@@ -3,6 +3,7 @@ export default {
 	props: {
 		thèmeSombre: Boolean,
 		pleinÉcran: Boolean,
+		tentativeRéinitialisée: Boolean,
 	},
 	emits: ["basculéPanneauÉditeur"],
 	inject: ["avancement"],
@@ -20,16 +21,19 @@ export default {
 			return this.$store.state.réinitialiserTentativeAvecRaccourci;
 		}
 	},
-	mounted() {
-		this.$mousetrap.bind(this.$store.state.ctrlAltR, this.reinitialiserCodeEditeurRaccourcis);
-	},
 	watch:{
 		réinitialiserTentativeAvecRaccourci() {
 			if(this.réinitialiserTentativeAvecRaccourci === true){
 				this.reinitialiserCodeEditeurRaccourcis(this.langage);
 				this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",false);
 			}
-		}
+		},
+		tentativeRéinitialisée: {
+			deep: true,
+			handler: function(){
+				this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
+			}
+		},
 	},
 	methods: {
 		filtrerTentativesParLangage: function (langage) {
