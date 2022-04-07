@@ -397,4 +397,21 @@ export default {
 	setThèmeSombre({ commit }, val) {
 		commit("setThèmeSombre", val);
 	},
+
+	setModeAffichage({ commit }, val){
+		commit("setModeAffichage", val);
+	},
+
+	setSélectionnerTestHaut({ commit }, val){
+		commit("setSélectionnerTestHaut", val);
+	},
+	setSélectionnerTestBas({ commit }, val){
+		commit("setSélectionnerTestBas", val);
+	},
+	setChangerModeAffichageAvecRaccourci({ commit }, val){
+		commit("setChangerModeAffichageAvecRaccourci", val);
+	},
+	setOngletCourant({ commit }, val){
+		commit("setOngletCourant", val);
+	},
 };

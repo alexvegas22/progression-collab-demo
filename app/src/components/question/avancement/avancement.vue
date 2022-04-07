@@ -27,28 +27,31 @@
 					class="dropdown-item dropdown-submenu"
 				>
 					<a>{{ langage }}</a>
+					
 					<div
 						class="dropdown-menu langage-submenu"
 						:class="{ thème_sombre: thèmeSombre }"
 					>
-						<button
-							présentation_étape="4.1"
-							class="dropdown-item"
-							@click="reinitialiserCodeEditeur(langage)"
-						>
-							{{ $t("avancement.ébauche_initiale") }}
-						</button>
-						<button
-							v-for="elem in filtrerTentativesParLangage(langage)"
-							:key="elem.liens.self"
-							présentation_étape="4.2"
-							class="dropdown-item"
-							:value="elem.liens.self"
-							@click="chargerTentative()"
-						>
-							{{ timestampVersDate(elem.date_soumission) }}
-							{{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
-						</button>
+						<perfect-scrollbar>
+							<button
+								présentation_étape="4.1"
+								class="dropdown-item"
+								@click="reinitialiserCodeEditeur(langage)"
+							>
+								{{ $t("avancement.ébauche_initiale") }}
+							</button>
+							<button
+								v-for="elem in filtrerTentativesParLangage(langage)"
+								:key="elem.liens.self"
+								présentation_étape="4.2"
+								class="dropdown-item"
+								:value="elem.liens.self"
+								@click="chargerTentative()"
+							>
+								{{ timestampVersDate(elem.date_soumission) }}
+								{{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
+							</button>
+						</perfect-scrollbar>
 					</div>
 				</li>
 			</ul>
