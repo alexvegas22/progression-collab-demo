@@ -14,7 +14,7 @@
   }
 
   .switch input {
-	display:none;
+	display: none;
   }
 
   .slider {
@@ -39,6 +39,11 @@
 	width: 0.75rem;
   }
 
+  .thème_sombre .slider {
+	background-color: #8a8a8a;
+	
+  }
+
   input:checked + .slider {
 	background-color: #66bb6a;
   }
@@ -54,11 +59,11 @@
 .slider.round:before {
   border-radius: 50%;
 }
- .custom-control-label{
+ .custom-control-label {
 	display: inline-block;
-	position:relative;
+	position: relative;
  }
 
- .custom-control-label{
+ .custom-control-label {
 	 bottom: 0.125rem;
  }

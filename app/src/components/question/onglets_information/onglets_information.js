@@ -12,12 +12,16 @@ export default {
 	},
 	props: {
 		panneauAffiché: Boolean,
+		ongletChangé: Boolean,
+		testSélectionnéHaut: Boolean,
+		testSélectionnéBas: Boolean,
 	},
 	emits: ["basculéPanneauTests"],
 	data() {
 		return {
 			ongletActif: "ResultatTest",
 			index_select: 0,
+			modeAffichageChangéRaccourci: false,
 		};
 	},
 	computed: {
@@ -71,7 +75,30 @@ export default {
 				this.index_select=0;
 				this.changementOnglet("ResultatTest");
 			}
-		}
+		},
+		ongletChangé: {
+			deep: true,
+			handler: function(){
+				if(this.ongletActif === "ResultatTest") {
+					this.changementOnglet("SectionErreur");
+				}
+				else {
+					this.changementOnglet("ResultatTest");
+				}
+			}
+		},
+		testSélectionnéHaut: {
+			deep: true,
+			handler: function(){
+				this.basculerTestHaut();
+			}
+		},
+		testSélectionnéBas: {
+			deep: true,
+			handler: function(){
+				this.basculerTestBas();
+			}
+		},
 	},
 	methods: {
 		changementOnglet(onglet) {
@@ -88,6 +115,15 @@ export default {
 		},
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");
-		}
+		},
+		basculerTestHaut(){
+			this.index_select--;
+			if(this.index_select == -1) {
+				this.index_select = this.$store.state.question.tests.length - 1;
+			}
+		},
+		basculerTestBas(){
+			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
+		},
 	},
 };

@@ -2,6 +2,10 @@
 	flex: 1 1 0px;
 	min-height: 0px;
 	flex-flow: column;
-	height: 21.875rem;
-	padding: 0.625rem;
+	height: 18rem;
+}
+
+.margin-perfect-scrollbar {
+	margin-top: -2.5rem;
+	padding-bottom: 2.5rem;
 }

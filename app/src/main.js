@@ -31,7 +31,9 @@ const app = createApp(App)
 	.use(PerfectScrollbar);
 
 app.component("FenêtreInfo", FenêtreInfo);
+app.use(require("vue3-shortkey"));
 
+	
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != "LoginView" ) {
 		router.push({

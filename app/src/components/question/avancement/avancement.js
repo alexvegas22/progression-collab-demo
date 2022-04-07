@@ -3,6 +3,7 @@ export default {
 	props: {
 		thèmeSombre: Boolean,
 		pleinÉcran: Boolean,
+		tentativeRéinitialisée: Boolean,
 	},
 	emits: ["basculéPanneauÉditeur"],
 	inject: ["avancement"],
@@ -15,6 +16,23 @@ export default {
 		},
 		langages() {
 			return Object.keys(this.$store.state.question.ebauches);
+		},
+		réinitialiserTentativeAvecRaccourci() {
+			return this.$store.state.réinitialiserTentativeAvecRaccourci;
+		}
+	},
+	watch:{
+		réinitialiserTentativeAvecRaccourci() {
+			if(this.réinitialiserTentativeAvecRaccourci === true){
+				this.reinitialiserCodeEditeurRaccourcis(this.langage);
+				this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",false);
+			}
+		},
+		tentativeRéinitialisée: {
+			deep: true,
+			handler: function(){
+				this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
+			}
 		},
 	},
 	methods: {
@@ -60,6 +78,9 @@ export default {
 					ref: ref,
 				},
 			});
+		},
+		reinitialiserCodeEditeurRaccourcis(){
+			this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
 		},
 	},
 };

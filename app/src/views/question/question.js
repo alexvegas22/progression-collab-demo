@@ -4,6 +4,8 @@ import EditeurCode from "@/components/question/editeur/editeur.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
+import Ampoule from "@/components/question/ampoule/ampoule.vue";
+
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -15,6 +17,10 @@ export default {
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,
+			ongletChangéRaccourci: false,
+			testSélectionnéHaut: false,
+			testSélectionnéBas: false,
+			tentativeRéinitialisée: false,
 		};
 	},
 	components: {
@@ -24,6 +30,7 @@ export default {
 		EditeurCode,
 		RetroactionTentative,
 		Présentation,
+		Ampoule
 	},
 	computed: {
 		user() {
@@ -148,6 +155,33 @@ export default {
 			else if(!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché){
 				this.éditeurPleinÉcran = true;
 			}
+		},
+		sélectionnerTestDuHautAvecRaccourci(){
+			this.testSélectionnéHaut = !this.testSélectionnéHaut;
+		},
+		sélectionnerTestDuBasAvecRaccourci(){
+			this.testSélectionnéBas = !this.testSélectionnéBas;
+		},
+		changerModeAffichageAvecRaccourci(){
+			this.$store.dispatch("setChangerModeAffichageAvecRaccourci",true);
+		},
+		changerOngletAvecRaccourci(){
+			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
+		},
+		basculerÉnoncéSemiÉcranAvecRaccourci() {
+			this.ajusterPanneauÉnoncé("normal");
+		},
+		basculerÉnoncéPleinÉcranAvecRaccourci() {
+			this.énoncéPleinÉcran = !this.énoncéPleinÉcran;
+			if (this.énoncéPleinÉcran){
+				this.ajusterPanneauÉnoncé("max");
+			}
+			else{
+				this.ajusterPanneauÉnoncé("normal");
+			}
+		},
+		réinitialiserTentativeAvecRaccourci() {
+			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		}
 	},
 };
