@@ -103,6 +103,7 @@ export default {
 					.dispatch("getAvancement", {
 						url: this.user.avancements[id_avancement].liens.self,
 						lang_défaut: this.lang,
+						token: this.$store.state.tokenRessources,
 					});
 			} else {
 				this.$store
