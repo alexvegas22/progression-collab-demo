@@ -106,7 +106,7 @@
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
-@media (min-width: 36rem) and (max-width: 48rem) {
+@media (min-width: 36rem) and (max-width: 47.938rem) {
 	.taille_texte {
 		font-size: 0.7rem;
 	}
@@ -133,6 +133,9 @@
 	.spin {
 		right: 2.25rem;
 	}
+	.CodeMirror-line {
+		max-width: 55vw ;
+	}
 }
 
 /* ---------- 62rem - 75rem (992px - 1200px) -------------- */
@@ -148,6 +151,9 @@
 	.spin {
 		right: 2.5rem;
 	}
+	.CodeMirror-line {
+		max-width: 60vw ;
+	}
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
@@ -162,5 +168,8 @@
 
 	.spin {
 		right: 2.5rem;
+	}
+	.CodeMirror-line {
+		max-width: 60vw ;
 	}
 }

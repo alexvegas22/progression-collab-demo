@@ -42,7 +42,10 @@ export default {
 		chargerTentative: function () {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("getTentative", event.target.value);
+				this.$store.dispatch("getTentative", {
+					urlTentative: event.target.value,
+					token: this.$store.state.tokenRessources,
+				});
 			}
 		},
 		timestampVersDate: function (timestamp) {
