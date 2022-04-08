@@ -1,8 +1,9 @@
 {
 	"erreur": {
 		"réseau": "Connection to server failed. Please retry or contact an administrator.",
-		"authentification": "Incorrect username or password",
-		"inscription": "That username is already taken."
+		"authentification": "Incorrect username or password.",
+		"inscription": "That username is already taken.",
+		"tentative_intraitable": "The attempt is invalid. The question may have changed since you the draft was loaded. Try to reload the initial draft. If the problem persists, contact an administrator."
 	},
 
 	"menu": {
@@ -18,7 +19,7 @@
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
 		"inscription": "Sign in",
-		"usernameInvalide": "The username must contain only letters, dashes et underscores",
+		"usernameInvalide": "The username must contain only letters, dashes et underscores.",
 		"champObligatoire": "Mandatory field",
 		"mdpOublié": "forgot your password?"
 	},
@@ -35,15 +36,15 @@
 		},
 		"énoncé": {
 			"titre": "Énoncé",
-			"contenu": "L'énoncé de l'exercice se trouve dans cette partie"
+			"contenu": "L'énoncé de l'exercice se trouve dans cette partie."
 		},
 		"titre": {
 			"titre": "Énoncé",
-			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi"
+			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi."
 		},
 		"niveau":{
 			"titre": "Énoncé",
-			"contenu": "Le niveau de difficulté de l'exercice"
+			"contenu": "Le niveau de difficulté de l'exercice."
 		},
 		"énoncé_détail": {
 			"titre": "Énoncé",
@@ -71,15 +72,15 @@
 		},
 		"rétroaction":{
 			"titre": "Rétroaction",
-			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici"
+			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici."
 		},
 		"jeu_tests":{
 			"titre": "Tests",
-			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi"
+			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi."
 		},
 		"entrées":{
 			"titre": "Tests",
-			"contenu":"Chacun des tests fournit des entrées différentes au programme"
+			"contenu":"Chacun des tests fournit des entrées différentes au programme."
 		},
 		"sorties_attendues":{
 			"titre": "Tests",
@@ -111,7 +112,12 @@
 		"username": "Choose a username",
 		"confirmation": "Confirm",
 		"boutonInscription": "Sign in",
-		"mdpDifférents": "Passwords must match"
+		"mdpDifférents": "Passwords must match."
+	},
+
+	"énoncé": {
+		"auteur": "Author",
+		"licence": "License"
 	},
 
 	"validation_tentative": {
@@ -122,7 +128,7 @@
 		"jeuTests": "Test cases"
 	},
 
-	"mode_affichage": "Differences display mode",
+	"mode_affichage": "Diff",
 
 	"editeur": {
 		"langageÉbauche": "Language : ",
@@ -136,7 +142,7 @@
 		"mauvaiseRéponse": "Incorrect",
 		"nbTestsValidés": "Passed tests : ",
 		"conseil": "Tip : ",
-		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator"
+		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator."
 	},
 
 	"resultat_test": {

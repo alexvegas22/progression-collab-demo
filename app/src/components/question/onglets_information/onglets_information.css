@@ -2,21 +2,33 @@
 	display: flex;
 	flex-flow: row;
 	border-bottom: 0.01rem solid rgba(0, 0, 0, 0.125);
+	border-left: 0.01rem solid rgba(0, 0, 0, 0.125);
 }
 
 .onglets {
 	border-radius: 0 0.6rem 0 0;
 	border: 0.01rem solid rgba(0, 0, 0, 0.125);
+	border-bottom: none;
 	padding: 0.3rem;
+	padding-bottom: 6px;
 	color: rgba(0, 0, 0, 0.5);
 	background: rgba(0, 0, 0, 0.05);
 	position: relative;
+	right: 2px;
 }
 
-.sélectionné {
+.onglet-sélectionné {
 	border-bottom: none;
-	background-color: white;
-	top: 0.01rem;
+	background-color: #ffffff;
+	top: 0.05rem;
+}
+
+.panneau {
+	height: 0px;
+	overflow: hidden;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 .section-bas {
@@ -27,8 +39,27 @@
 }
 
 .bordure-titre {
-	border: 0.01rem solid rgba(0, 0, 0, 0.125);
-	border-right: none;
-	border-top: none;
+	margin-top: 0.25rem;
+	margin-bottom: -0.5rem;
 	color: rgba(0, 0, 0, 0.5);
+	border-right: none;
+}
+
+.section-tests {
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	border: none;
+}
+
+.onglets-subséquents {
+	border-left: none;
+}
+
+/* ------------- Media Queries ----------------- */
+/* ------------- Entre 0 et 767px (0 - 47.938rem) ----------------- */
+@media only screen and (max-width: 47.938rem) {
+	.texte {
+		font-size: 0.9rem;
+	}
 }

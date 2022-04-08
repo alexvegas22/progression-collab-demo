@@ -13,14 +13,16 @@ import {
 	postAuthKey
 } from "@/services/index.js";
 
+import i18n from "@/util/i18n";
+
 import tokenEstValide from "@/util/token.js";
 
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
 const valider = async function(promesse){
-	return validateur(promesse)
-}
+	return validateur(promesse);
+};
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -82,7 +84,7 @@ function générerAuthKey(user, token, expiration=0) {
 		nom: clé_id,
 		portée: 1,
 		expiration: expiration,
-	}
+	};
 }
 
 function randomID() {
@@ -120,7 +122,7 @@ export default {
 		commit("updateAuthentificationEnCours", true);
 
 		return valider( async function() {
-			const token = await authentifierApi(urlAuth, username, password, domaine)
+			const token = await authentifierApi(urlAuth, username, password, domaine);
 
 			commit("setUsername", username);
 			commit("setToken", token);
@@ -131,7 +133,7 @@ export default {
 			const user = await getUserApi( process.env.VUE_APP_API_URL + "/user/" + username, token);
 
 			// Obtenir la clé d'authentification
-			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))))
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))));
 
 			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
 
@@ -286,7 +288,13 @@ export default {
 			}
 			catch(e) {
 				commit("updateEnvoieTentativeEnCours", false);
-				throw(e);
+				
+				if(e?.response?.status==400) {
+					throw i18n.global.t("erreur.tentative_intraitable");
+				}
+				else{
+					throw(e);
+				}
 			}
 			
 		}()
@@ -388,5 +396,22 @@ export default {
 	
 	setThèmeSombre({ commit }, val) {
 		commit("setThèmeSombre", val);
+	},
+
+	setModeAffichage({ commit }, val){
+		commit("setModeAffichage", val);
+	},
+
+	setSélectionnerTestHaut({ commit }, val){
+		commit("setSélectionnerTestHaut", val);
+	},
+	setSélectionnerTestBas({ commit }, val){
+		commit("setSélectionnerTestBas", val);
+	},
+	setChangerModeAffichageAvecRaccourci({ commit }, val){
+		commit("setChangerModeAffichageAvecRaccourci", val);
+	},
+	setOngletCourant({ commit }, val){
+		commit("setOngletCourant", val);
 	},
 };

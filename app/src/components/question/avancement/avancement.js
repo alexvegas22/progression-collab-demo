@@ -1,9 +1,12 @@
 export default {
 	name: "Avancement",
 	props: {
-		thèmeSombre: Boolean
+		thèmeSombre: Boolean,
+		pleinÉcran: Boolean,
+		tentativeRéinitialisée: Boolean,
 	},
-	inject: ['avancement'],
+	emits: ["basculéPanneauÉditeur"],
+	inject: ["avancement"],
 	computed: {
 		langage() {
 			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
@@ -13,6 +16,23 @@ export default {
 		},
 		langages() {
 			return Object.keys(this.$store.state.question.ebauches);
+		},
+		réinitialiserTentativeAvecRaccourci() {
+			return this.$store.state.réinitialiserTentativeAvecRaccourci;
+		}
+	},
+	watch:{
+		réinitialiserTentativeAvecRaccourci() {
+			if(this.réinitialiserTentativeAvecRaccourci === true){
+				this.reinitialiserCodeEditeurRaccourcis(this.langage);
+				this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",false);
+			}
+		},
+		tentativeRéinitialisée: {
+			deep: true,
+			handler: function(){
+				this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
+			}
 		},
 	},
 	methods: {
@@ -31,17 +51,17 @@ export default {
 		étatVersChaîne: function (etat) {
 			let etatString;
 			switch (etat) {
-				case 0:
-					etatString = "premièreTentative";
-					break;
-				case 1:
-					etatString = "questionNonRésolue";
-					break;
-				case 2:
-					etatString = "questionRésolue";
-					break;
-				default:
-					etatString = "questionIndéterminée";
+			case 0:
+				etatString = "premièreTentative";
+				break;
+			case 1:
+				etatString = "questionNonRésolue";
+				break;
+			case 2:
+				etatString = "questionRésolue";
+				break;
+			default:
+				etatString = "questionIndéterminée";
 			}
 			return etatString;
 		},
@@ -58,6 +78,9 @@ export default {
 					ref: ref,
 				},
 			});
+		},
+		reinitialiserCodeEditeurRaccourcis(){
+			this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
 		},
 	},
 };

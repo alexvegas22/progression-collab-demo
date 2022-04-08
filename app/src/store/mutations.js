@@ -80,4 +80,19 @@ export const mutations = {
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
+	setModeAffichage(state, val) {
+		state.mode_affichage = val;
+	},
+	setSélectionnerTestHaut(state,val){
+		state.sélectionnerTestHaut = val;
+	},
+	setSélectionnerTestBas(state,val){
+		state.sélectionnerTestBas = val;
+	},
+	setChangerModeAffichageAvecRaccourci(state,val){
+		state.changerModeAffichageAvecRaccourci = val;
+	},
+	setOngletCourant(state,val){
+		state.ongletCourant = val;
+	},
 };

@@ -6,7 +6,7 @@ export default {
 		énoncéPleinÉcran: Boolean,
 		énoncéSemiÉcran: Boolean
 	},
-	emits: ['ajusterEnoncer'],
+	emits: ["ajustéPanneauÉnoncé"],
 	computed: {
 		état_réussi() {
 			return this.$store.state.avancement.état == 2;

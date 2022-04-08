@@ -10,12 +10,18 @@ export default {
 		SectionErreur,
 		Rétroactions,
 	},
-	props: ["panneauAfficher"],
+	props: {
+		panneauAffiché: Boolean,
+		ongletChangé: Boolean,
+		testSélectionnéHaut: Boolean,
+		testSélectionnéBas: Boolean,
+	},
+	emits: ["basculéPanneauTests"],
 	data() {
 		return {
-			sectionVisible: true,
 			ongletActif: "ResultatTest",
 			index_select: 0,
+			modeAffichageChangéRaccourci: false,
 		};
 	},
 	computed: {
@@ -34,8 +40,8 @@ export default {
 			return this.$store.state.question.tests[this.index_select];
 		},
 		resultat_select() {
-			return this.tentative && this.tentative.resultats
-				? this.$store.state.retroactionTentative.resultats[this.index_select]
+			return this.tentative?.resultats
+				? this.tentative.resultats[this.index_select]
 				: null;
 		},
 		tentative() {
@@ -48,13 +54,76 @@ export default {
 			return this.$store.state.thèmeSombre;
 		},
 	},
+	watch:{
+		resultats(){
+			if(this.tentative?.resultats){
+				for(var resultat in this.tentative.resultats){
+					if(this.tentative.resultats[resultat].sortie_erreur){
+						this.index_select=resultat;
+						this.changementOnglet("SectionErreur");
+						break;
+					}
+					else if (!this.tentative.resultats[resultat].résultat){
+						this.index_select=resultat;
+						this.changementOnglet("ResultatTest");
+						break;
+					}
+					this.changementOnglet("ResultatTest");
+				}
+			}
+			else{
+				this.index_select=0;
+				this.changementOnglet("ResultatTest");
+			}
+		},
+		ongletChangé: {
+			deep: true,
+			handler: function(){
+				if(this.ongletActif === "ResultatTest") {
+					this.changementOnglet("SectionErreur");
+				}
+				else {
+					this.changementOnglet("ResultatTest");
+				}
+			}
+		},
+		testSélectionnéHaut: {
+			deep: true,
+			handler: function(){
+				this.basculerTestHaut();
+			}
+		},
+		testSélectionnéBas: {
+			deep: true,
+			handler: function(){
+				this.basculerTestBas();
+			}
+		},
+	},
 	methods: {
 		changementOnglet(onglet) {
 			this.ongletActif = onglet;
-			this.sectionVisible = true;
 		},
 		select(index) {
 			this.index_select = index;
+			if(this.tentative?.resultats[index].sortie_erreur){
+				this.changementOnglet("SectionErreur");
+			}
+			else{
+				this.changementOnglet("ResultatTest");
+			}
+		},
+		basculerPanneau(){
+			this.$emit("basculéPanneauTests");
+		},
+		basculerTestHaut(){
+			this.index_select--;
+			if(this.index_select == -1) {
+				this.index_select = this.$store.state.question.tests.length - 1;
+			}
+		},
+		basculerTestBas(){
+			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
 	},
 };

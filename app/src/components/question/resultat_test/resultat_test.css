@@ -1,5 +1,6 @@
 .sortie.vide {
-	color: gray;
+	margin-top: -1.2rem;
+	color: #808080;
 }
 .mode.diff {
 	color: #000 !important;
@@ -15,27 +16,116 @@
 
 .diff.normal {
 	text-decoration: none;
-	background-color: #ffffff;
+	background-color: transparent;
 }
 
-.diff.différent.ins{
+.diff.différent.ins {
 	text-decoration: none;
-	background-color: #ffffff;
+	background-color: transparent;
 }
 
-.diff.différent.del{
+.diff.différent.del {
 	text-decoration: none;
-	background-color: #ffffff;
+	background-color: transparent;
 }
 
-.diff.différent.ins.enabled{
-	background-color: #80cc8e;
+.diff.différent.ins.enabled {
+	color: #000000;
+	background-color: #98fb98 !important;
 }
 
-.diff.différent.del.enabled{
-	background-color: #FFB3B3;
+.diff.différent.del.enabled {
+	color: #000000;
+	background-color: #FFB3B3 !important;
 }
 
 pre {
 	margin: 0 !important;
+}
+
+.resultat-test {
+	max-width: 50%;
+	padding-bottom: 1rem;
+}
+
+.resultat-test pre {
+	height: 100%;
+	overflow: visible;
+	overflow-y: visible;
+	max-width: 100%;
+}
+
+.resultat-test pre p {
+	height: inherit;
+	white-space: break-spaces;	
+}
+
+.espace-sélecteur {
+	left: 1rem;
+	top: 0.07rem;
+}
+.espace-titre-sortie-observée {
+	margin-top: -2px;
+}
+
+/* ------------------------------ Media Queries ---------------------------------*/
+/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
+@media (max-width: 36rem) {
+	.titre_résultat_test {
+		font-size: 0.75rem;	
+	}
+    
+	.texte_résultat_test {
+        font-size: 0.72rem;
+    }
+	
+	.sortie.vide {
+		margin-top: 0;
+	}
+	
+	.espace-titre-sortie-observée {
+		margin-bottom: -2px;
+	}
+}
+
+/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
+@media (min-width: 36rem) and (max-width: 48rem) {
+	.titre_résultat_test {
+		font-size: 0.85rem;	
+	}
+    .texte_résultat_test {
+        font-size: 0.77rem;
+    }
+	.sortie.vide {
+		margin-top: 0;
+	}
+	.espace-titre-sortie-observée {
+		margin-bottom: -2px;
+	}
+}
+
+/* ------------- 48rem - 62rem (768px - 992px) ---------------- */
+@media (min-width: 48rem) and (max-width: 62rem) {
+	.titre_résultat_test {
+		font-size: 1rem;
+	}
+    .texte_résultat_test {
+        font-size: 0.77rem;
+    }
+	.sortie.vide {
+		margin-top: 0;
+	}
+}
+
+/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
+@media (min-width: 62rem) and (max-width: 75rem) {
+	.titre_résultat_test {
+		font-size: 1.1rem;
+	}
+    .texte_résultat_test {
+        font-size: 0.80rem;
+    }
+	.sortie.vide {
+		margin-top: 0;
+	}
 }
