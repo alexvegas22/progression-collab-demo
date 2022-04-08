@@ -27,7 +27,6 @@ try {
 	provDatabaseDebug("Model already registered. Continuing");
 }
 
-// Setup
 lti.setup(
 	process.env.LTI_KEY,
 	{
@@ -72,24 +71,29 @@ lti.onConnect(async (idToken, req, res) => {
 				ltik: res.locals.ltik,
 			})
 		},
-//		token ? {
-//			token: token,
-//		} : {
-//			cb_auth: process.env.URL_BASE + "/lti/auth",
-//			cb_auth_params: JSON.stringify({
-//				ltik: res.locals.ltik,
-//			}),
-//			platform_url: platformUrl,
-//			cours_nom: btoa(res.locals.context.context.title),
-//		}
 	);
 
-	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/question");
-	lti.redirect(res, process.env.URL_BASE + "/question", {
-		newResource: true,
-		query: query
-	});
+	if(res.locals.context.roles == 'http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor'){
+		const resLocalsToken = res.locals.token;
+		const membres = await services.récupérerMembres( resLocalsToken );
+		const scores = await services.récupérerScores( resLocalsToken );
+
+		for(const [id,membre] of Object.entries(membres)){
+			membre["score"] = scores[membre.user_id];
+		};
+
+		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
+		res.status(200);
+	}
+	else{
+		provMainDebug("Redirection vers : " + process.env.URL_BASE + "/question");
+		lti.redirect(res, process.env.URL_BASE + "/question", {
+			newResource: true,
+			query: query
+		});
+	}
 });
+
 	
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
@@ -97,24 +101,23 @@ const btoa_url = (s) =>
 		.replace(/\+/g, "-")
 		.replace(/=/g, "");
 
-// Setting up routes
 lti.app.use(routes);
 
-// Setup function
 const setup = async () => {
+	const app = lti.app;
+	app.engine('html', consolidate.mustache);
+	app.set('view engine', 'html');
+	app.set('views', __dirname + '/templates');
+
 	await lti.deploy({ port: process.env.PORT });
 
-	/**
-	 * Register platform
-	 */
-
 	await lti.registerPlatform({
-		url: "http://rocinante.lamancha:82",
-		name: "Moodle local",
-		clientId: "oShV5G8qB6WuqHx",
-		authenticationEndpoint: "http://rocinante.lamancha:82/mod/lti/auth.php",
-		accesstokenEndpoint: "http://rocinante.lamancha:82/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "http://rocinante.lamancha:82/mod/lti/certs.php" },
+		url: "http://uri_a_changer_vers_instance_moodle:numéro_de_port",
+		name: "nom_instance_moodle_a_changer",
+		clientId: "identifiant_du_client_moodle_à_changer",
+		authenticationEndpoint: "http://uri_a_changer_vers_instance_moodle:numéro_de_port/mod/lti/auth.php",
+		accesstokenEndpoint: "http://uri_a_changer_vers_instance_moodle:numéro_de_port/mod/lti/token.php",
+		authConfig: { method: "JWK_SET", key: "http://uri_a_changer_vers_instance_moodle:numéro_de_port/mod/lti/certs.php" },
 	});
 };
 
