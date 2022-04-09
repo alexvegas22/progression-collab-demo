@@ -41,9 +41,7 @@ const récupérerUser = function (userId) {
 };
 
 const récupérerMembres = async function(token){
-	const context = await lti.NamesAndRoles.getMembers(token,
-													   { resourceLinkId: true, role: 'Learner'}
-	)
+	const context = await lti.NamesAndRoles.getMembers(token, { resourceLinkId: true, role: "Learner"});
 	provMainDebug(context.members.length + " membres récupérés");
 
 	const membres = new Object();
@@ -53,7 +51,7 @@ const récupérerMembres = async function(token){
 	} );
 
 	return membres;
-}
+};
 
 const récupérerScores = async function(token){
 	const scores = await lti.Grade.getScores(token, token.platformContext.endpoint.lineitem);
@@ -65,7 +63,7 @@ const récupérerScores = async function(token){
 	});
 
 	return userScore;
-}
+};
 
 const tokenEstValide = function (token, délais = 300) {
 	const token_décodé = jwt_decode(token);
@@ -101,7 +99,7 @@ const sauvegarderToken = function (user, token) {
 				authKey_secret: user.authKey_secret,
 			},
 		)
-		.then((result) => provMainDebug("Token sauvegardé"))
+		.then(() => provMainDebug("Token sauvegardé"))
 		.catch((error) => provMainDebug("Erreur de sauvegarde : " + error));
 };
 
@@ -118,7 +116,7 @@ const sauvegarderUser = function (user) {
 				username: user.username,
 			},
 		)
-		.then((result) => provMainDebug("User sauvegardé"))
+		.then(() => provMainDebug("User sauvegardé"))
 		.catch((error) => provMainDebug("Erreur de sauvegarde : " + error));
 };
 
@@ -129,4 +127,4 @@ module.exports = {
 	récupérerScores,
 	sauvegarderToken,
 	sauvegarderUser,
-}
+};
