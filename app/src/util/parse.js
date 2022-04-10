@@ -1,4 +1,5 @@
 var hljs = require("highlight.js"); // https://highlightjs.org/
+var milt = require('markdown-it-link-target')
 
 // Actual default values
 var md = require("markdown-it")({
@@ -19,7 +20,12 @@ var md = require("markdown-it")({
 	},
 	// Évite les attaques XSS qui pourraient être introduites dans des questions malveillantes.
 	html: false,
-}).use(require("markdown-it-imsize"));
+})
+	.use(require("markdown-it-imsize"))
+	.use(milt, {
+		target: "_blank"
+	});
+;
 
 
 const parseMD = (data) => {
