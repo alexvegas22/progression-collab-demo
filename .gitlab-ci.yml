@@ -36,8 +36,9 @@ const_image:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && env="production" || env="dev"
     - echo TARGET $target
-    - docker build --build-arg NODE_ENV=dev --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
+    - docker build --build-arg NODE_ENV=$env --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
 
 # Stage deploy_image
