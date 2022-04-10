@@ -15,6 +15,7 @@ import Vue3Tour from "vue3-tour";
 import "vue3-tour/dist/vue3-tour.css";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
+import { UnleashClient } from "unleash-proxy-client";
 
 const app = createApp(App)
 	.use(router)
@@ -67,5 +68,22 @@ const valider = async (promesse) => {
 };
 
 actions.setValidateur( valider );
+
+
+const unleash = new UnleashClient({
+	url: process.env.VUE_APP_FF_URL,
+	clientKey: process.env.VUE_APP_FF_SECRET,
+	appName: process.env.NODE_ENV,
+});
+
+unleash.on("ready", () => {
+	store.dispatch("setIndicateursDeFonctionnalité", unleash.getAllToggles());
+});
+
+unleash.on("update", () => {
+	store.dispatch("setIndicateursDeFonctionnalité", unleash.getAllToggles());
+});
+
+unleash.start();
 
 router.isReady().then( () => app.mount("#app"));

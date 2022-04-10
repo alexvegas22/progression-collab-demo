@@ -176,7 +176,7 @@ export default {
 	async getAvancement({ commit, state }, params) {
 		return valider(
 			async function() {
-				const token = await getToken({ commit, state });
+				const token = params.token ?? await getToken({ commit, state });
 				const avancement = await getAvancementApi(params.url, token);
 
 				commit("setAvancement", avancement);
@@ -246,10 +246,10 @@ export default {
 		);
 	},
 
-	async getTentative({ commit, state }, urlTentative) {
+	async getTentative({ commit, state }, params) {
 		return valider( async function() {
-			const token = await getToken({ commit, state });
-			const tentative = await getTentativeApi(urlTentative, token);
+			const token = params.token ?? await getToken({ commit, state });
+			const tentative = await getTentativeApi(params.urlTentative, token);
 
 			commit("setTentative", tentative);
 			commit("updateRetroaction", tentative);
@@ -386,6 +386,10 @@ export default {
 		commit("setUsername", null);
 	},
 
+	setTokenRessources({ commit }, tokenRessources) {
+		commit("setTokenRessources",tokenRessources);
+	},
+
 	setUsername({ commit }, username) {
 		commit("setUsername", username);
 	},
@@ -414,4 +418,11 @@ export default {
 	setOngletCourant({ commit }, val){
 		commit("setOngletCourant", val);
 	},
+	setIndicateursDeFonctionnalité({ commit }, val){
+		const toggles = [];
+		for( const toggle of val ){
+			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
+		}
+		commit("setIndicateursDeFonctionnalité", toggles);
+	}
 };
