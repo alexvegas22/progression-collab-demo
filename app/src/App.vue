@@ -160,6 +160,10 @@ export default {
 				this.$store.dispatch("setDémo", true);
 			}
 
+			if(urlParams.has("tkres")){
+				this.$store.dispatch("setTokenRessources", urlParams.get("tkres"));
+			}
+
 			if(urlParams.has("cb_succes")){
 				this.$store.dispatch("setCallbackSucces", urlParams.get("cb_succes"));
 				if(urlParams.has("cb_succes_params")){

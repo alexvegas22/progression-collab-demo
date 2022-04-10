@@ -14,6 +14,10 @@ export const mutations = {
 	setToken(state, token) {
 		state.token = token;
 	},
+	
+	setTokenRessources(state, tokenRessources) {
+		state.tokenRessources = tokenRessources;
+	},
 
 	setUri(state, uri) {
 		state.uri = uri;
@@ -95,4 +99,7 @@ export const mutations = {
 	setOngletCourant(state,val){
 		state.ongletCourant = val;
 	},
+	setIndicateursDeFonctionnalité(state,val){
+		state.indicateursDeFonctionnalité = val;
+	}
 };
