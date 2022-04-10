@@ -99,4 +99,7 @@ export const mutations = {
 	setOngletCourant(state,val){
 		state.ongletCourant = val;
 	},
+	setIndicateursDeFonctionnalité(state,val){
+		state.indicateursDeFonctionnalité = val;
+	}
 };

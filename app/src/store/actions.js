@@ -418,4 +418,11 @@ export default {
 	setOngletCourant({ commit }, val){
 		commit("setOngletCourant", val);
 	},
+	setIndicateursDeFonctionnalité({ commit }, val){
+		const toggles = [];
+		for( const toggle of val ){
+			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
+		}
+		commit("setIndicateursDeFonctionnalité", toggles);
+	}
 };
