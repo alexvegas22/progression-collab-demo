@@ -14,6 +14,10 @@
 						<template #titre>
 							{{ $t('resultat_test.entrée') }}
 						</template>
+						<AmpouleRésultat 
+							:feedback="feedback"
+							:panneau-affiché="panneauAffiché"
+						/>
 						<pre
 							class="card-text p-3"
 						>{{ test.entrée }}</pre>

@@ -1,5 +1,8 @@
 <template>
-	<div class="section-erreur" v-if="resultat">
+	<div
+		v-if="resultat"
+		class="section-erreur"
+	>
 		<div class="p-1">
 			<h5 class="text-danger font-weight-bold text-left card-title">
 				{{ $t("resultat_test.sortieErreur") }}
