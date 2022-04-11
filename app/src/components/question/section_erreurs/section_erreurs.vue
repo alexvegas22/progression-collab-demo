@@ -1,14 +1,14 @@
 <template>
-	<div class="section-erreur">
+	<div class="section-erreur" v-if="resultat">
 		<div class="p-1">
 			<h5 class="text-danger font-weight-bold text-left card-title">
 				{{ $t("resultat_test.sortieErreur") }}
 			</h5>
-			<pre>
-				<perfect-scrollbar class="margin-perfect-scrollbar">
+			<perfect-scrollbar class="margin-perfect-scrollbar">
+				<pre>
 					<p class="card-text">{{ resultat.sortie_erreur }}</p>
-				</perfect-scrollbar>
-			</pre>
+				</pre>
+			</perfect-scrollbar>
 		</div>
 	</div>
 </template>

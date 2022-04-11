@@ -63,4 +63,3 @@
 
 <script src="./editeur.js"></script>
 <style src="./editeur.css"></style>
-

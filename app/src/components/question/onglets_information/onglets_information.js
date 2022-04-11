@@ -56,7 +56,7 @@ export default {
 	},
 	watch:{
 		resultats(){
-			if(this.tentative?.resultats){
+			if(this.tentative?.resultats.length > 0){
 				for(var resultat in this.tentative.resultats){
 					if(this.tentative.resultats[resultat].sortie_erreur){
 						this.index_select=resultat;
