@@ -91,10 +91,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row text-center">
-				<h4 class="my-4">
-					<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">TL;DR ➙ Essayez un exercice de démo ici</a>
-				</h4>
+			<div class="text-center">
+				<h4><a href="#démos">TL;DR ➙ Essayez un exercice de démo ici</a></h4>
 			</div>
 		</section>
 
@@ -195,7 +193,7 @@
 							</div>
 							<div class="timeline-body">
 								<p class="text-muted">
-									<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essaye un exercice de démo ici</a>
+									<a href="#démos">Essaye un exercice de démo ici</a>
 								</p>
 							</div>
 						</div>
@@ -347,7 +345,7 @@
 							</div>
 							<div class="timeline-body">
 								<p class="text-muted">
-									<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essayez un exercice de démo ici</a>
+									<a href="#démos">Essayez un exercice de démo ici</a>
 								</p>
 								<p class="text-muted">
 									<a href="https://moodle.progression.dti.crosemont.quebec">Essayez des exercices intégrés à Moodle ici</a>
@@ -358,7 +356,54 @@
 				</ul>
 			</div>
 		</section>
-						
+
+		<section
+			id="démos"
+			class="page-section"
+		>
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">
+						Exercices de démo
+					</h2>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNjM0NGY1MzgtMGVjMy00ZTNmLTgzMDgtZmMxMGQzNWM2YWFmL2luZm8ueW1s"
+									target="_blank"
+								> Exercice 1 - Bonjour le monde!</a>
+							</h4>
+						</li>
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNmUzNjNjYjMtNWEyOS00YjYyLThlY2YtNmJjZTI5MjNiOWQ0L2luZm8ueW1s"
+									target="_blank"
+								> Exercice 2 - Bonjour Java!</a>
+							</h4>
+						</li>
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vZGExNDNjMTEtZjc2My00MDY0LWJjMDMtNTYxZGNkODFjNmUyL2luZm8ueW1s"
+									target="_blank"
+								> Exercice 3 - Un premier algorithme</a>
+							</h4>
+						</li>
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vMzdhOTEwNGQtODJhZC00ZDZiLTk0OTktMmY2YTMxYzA1OTgyL2luZm8ueW1s"
+									target="_blank"
+								> Exercice 4 - Défi complet</a>
+							</h4>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+			
 		<section
 			id="collaborateur"
 			class="page-section"

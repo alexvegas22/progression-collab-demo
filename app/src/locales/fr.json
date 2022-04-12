@@ -169,5 +169,13 @@
 		"entrées/sorties": "Éntrées / Sorties",
 		"erreurs": "Erreurs",
 		"rétroactions": "Rétroaction"
+	},
+
+	"commentaire": {
+		"ajouterCommentaire": "Ajouter un commentaire",
+		"erreurAjoutCommentaire": "*Champs incorrects",
+		"commentaires": "Commentaires",
+		"placeholderCommentaire": "Écrire un commentaire",
+		"ligneCommentaire": "Ligne:" 
 	}
 }

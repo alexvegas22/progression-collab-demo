@@ -103,6 +103,9 @@
 	.spin {
 		right: 2.25rem;
 	}
+	.CodeMirror-code {
+		min-height: 53vh;
+	}
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
@@ -117,6 +120,9 @@
 
 	.spin {
 		right: 2.25rem;
+	}
+	.CodeMirror-code {
+		height: 53vh;
 	}
 }
 

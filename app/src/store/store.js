@@ -28,7 +28,8 @@ export default createStore({
 		configServeur: null,
 		thèmeSombre: false,
 		ongletCourant: null,
-		changerModeAffichageAvecRaccourci: false
+		changerModeAffichageAvecRaccourci: false,
+		indicateursDeFonctionnalité: []
 	},
 	getters,
 	actions,
