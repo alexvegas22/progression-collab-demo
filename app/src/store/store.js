@@ -10,6 +10,7 @@ export default createStore({
 		langageDéfaut: null,
 		démo: false,
 		token: null,
+		tokenRessources : null,
 		cb_succes: null,
 		cb_succes_params: null,
 		cb_auth: null,
@@ -27,6 +28,9 @@ export default createStore({
 		configServeur: null,
 		thèmeSombre: false,
 		nbRéussitesParLangage: [],
+		ongletCourant: null,
+		changerModeAffichageAvecRaccourci: false,
+		indicateursDeFonctionnalité: []
 	},
 	getters,
 	actions,

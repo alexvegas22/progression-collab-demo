@@ -12,6 +12,7 @@ import "codemirror/theme/monokai.css";
 import { capitalize, h, markRaw } from "vue";
 import { Component, Inreactive, Prop, VueComponentBase, Watch } from "vue3-component-base";
 import { zones } from "./zones";
+import {} from "./editeur.vue";
 
 const Events = ["focus", "blur", "scroll"];
 var VCodeMirrorComp;
@@ -20,7 +21,6 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	render() {
 		return h("div", { class: "v-code-mirror" });
 	}
-
 	mounted() {
 		const editor = (this.editor = markRaw(
 			CodeMirror(this.$el, {
@@ -37,7 +37,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 				...this.options,
 				smartIndent: false,
 			})
-			));
+		));
 
 		this.$el._component = this;
 

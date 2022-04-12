@@ -1,8 +1,12 @@
 <template>
 	<div class="container">
-		<div class="err">4</div>
-		<i class="far fa-question-circle fa-spin"></i>
-		<div class="err2">4</div>
+		<div class="err">
+			4
+		</div>
+		<i class="far fa-question-circle fa-spin" />
+		<div class="err2">
+			4
+		</div>
 		<div class="msg">
 			<h3>Il est possible que la page recherchée n'existe pas? Retourner à la <a href="#">Page d'accueil</a></h3>
 		</div>

@@ -1,5 +1,5 @@
-import LoginForm from './login_form.vue';
-import Inscription from './inscription.vue';
+import LoginForm from "./login_form.vue";
+import Inscription from "./inscription.vue";
 
 export default {
 	components: {
@@ -16,7 +16,7 @@ export default {
 	computed: {
 		tabSélectionné: {
 			get(){
-				return this.sélection ?? (this.auth_ldap ? "LDAP" : !this.auth_ldap && this.auth_local ? "STANDARD" : "INSCRIPTION")
+				return this.sélection ?? (this.auth_ldap ? "LDAP" : !this.auth_ldap && this.auth_local ? "STANDARD" : "INSCRIPTION");
 			},
 			set(val){
 				this.sélection=val;

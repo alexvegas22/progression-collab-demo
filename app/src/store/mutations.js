@@ -14,6 +14,10 @@ export const mutations = {
 	setToken(state, token) {
 		state.token = token;
 	},
+	
+	setTokenRessources(state, tokenRessources) {
+		state.tokenRessources = tokenRessources;
+	},
 
 	setUri(state, uri) {
 		state.uri = uri;
@@ -84,4 +88,22 @@ export const mutations = {
 		state.nbRéussitesParLangage = tentativesRéussies;
 	},
 
+	setModeAffichage(state, val) {
+		state.mode_affichage = val;
+	},
+	setSélectionnerTestHaut(state,val){
+		state.sélectionnerTestHaut = val;
+	},
+	setSélectionnerTestBas(state,val){
+		state.sélectionnerTestBas = val;
+	},
+	setChangerModeAffichageAvecRaccourci(state,val){
+		state.changerModeAffichageAvecRaccourci = val;
+	},
+	setOngletCourant(state,val){
+		state.ongletCourant = val;
+	},
+	setIndicateursDeFonctionnalité(state,val){
+		state.indicateursDeFonctionnalité = val;
+	}
 };

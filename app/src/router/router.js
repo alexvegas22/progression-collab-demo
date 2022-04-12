@@ -43,13 +43,13 @@ const router = createRouter({
 
 router.beforeEach( (to, from, next ) => {
 	//Redirige vers Question si le paramètre uri a été fourni
-	if(to.name == 'Home'){
+	if(to.name == "Home"){
 		var urlParams = new URLSearchParams(to.query);
 
-		if(urlParams.has('uri')){
-			next( {name: 'Question',
-				   query: to.query,
-				   params: { origine: to.fullPath } 
+		if(urlParams.has("uri")){
+			next( { name: "Question",
+				query: to.query,
+				params: { origine: to.fullPath } 
 			});
 		}
 	}
@@ -70,9 +70,9 @@ router.beforeEach( (to, from, next ) => {
 		}
 		else{
 			//redirige vers la page de Login
-			next( {name: 'LoginView',
-				   query: to.query,
-				   params: { origine: to.fullPath } 
+			next( { name: "LoginView",
+				query: to.query,
+				params: { origine: to.fullPath } 
 			});
 			return;
 		}
@@ -80,24 +80,24 @@ router.beforeEach( (to, from, next ) => {
 
 	//Charge l'utilisateur et contitnue
 	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
-	     .then( () => next() )
-	     .catch( () => {
-	         sessionStorage.removeItem("username");
-	         localStorage.removeItem("username");
-	         //En cas de problème, si l'utilisateur est requis
-	         if (pages_sans_connexion.indexOf(to.name) != -1){
-	             next();
-	             return;
-	         }
-	         else {
-	             //redirige vers la page de Login
-	             next( {name: 'LoginView',
-	                    query: to.query,
-	                    params: { origine: to.fullPath }
-	             });
-	             return;
-	         }
-	     });
+		.then( () => next() )
+		.catch( () => {
+			sessionStorage.removeItem("username");
+			localStorage.removeItem("username");
+			//En cas de problème, si l'utilisateur est requis
+			if (pages_sans_connexion.indexOf(to.name) != -1){
+				next();
+				return;
+			}
+			else {
+				//redirige vers la page de Login
+				next( { name: "LoginView",
+					query: to.query,
+					params: { origine: to.fullPath }
+				});
+				return;
+			}
+		});
 });
 
 export default router;

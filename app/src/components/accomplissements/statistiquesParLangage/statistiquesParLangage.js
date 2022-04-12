@@ -12,7 +12,7 @@ export default {
 		return this.$store
 			.dispatch("getTentativesRéussies", {
 				url: this.user.liens.self,
-			})
+			});
 	},
 	methods: {
 		récupérerPourcentageRéussi: function (langage) {
@@ -25,11 +25,11 @@ export default {
 			return pourcentage.toFixed(1);
 		},
 		récupérerRéussi: function () {
-			let keys = Object.keys(this.tentativesRéussies)
-			let listeRéussi = []
+			let keys = Object.keys(this.tentativesRéussies);
+			let listeRéussi = [];
 			for (let i = 0; i < keys.length; i++) {
 				let pourcentage = this.récupérerPourcentageRéussi(keys[i]);
-				listeRéussi.push([keys[i], pourcentage])
+				listeRéussi.push([keys[i], pourcentage]);
 			}
 			return listeRéussi;
 		}

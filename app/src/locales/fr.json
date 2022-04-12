@@ -1,8 +1,9 @@
 {
 	"erreur": {
-		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur",
-		"authentification": "Nom d'utilisateur ou mot de passe incorrect",
-		"inscription": "Ce nom d'utilisateur est déjà utilisé"
+		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
+		"authentification": "Nom d'utilisateur ou mot de passe incorrect.",
+		"inscription": "Ce nom d'utilisateur est déjà utilisé.",
+		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur."
 	},
 
 	"menu": {
@@ -23,7 +24,7 @@
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"usernameInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés",
+		"usernameInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
 		"champObligatoire": "Champ obligatoire",
 		"mdpOublié": "Mot de passe oublié?"
 	},
@@ -39,15 +40,15 @@
 		},
 		"énoncé": {
 			"titre": "Énoncé",
-			"contenu": "L'énoncé de l'exercice se trouve dans cette partie"
+			"contenu": "L'énoncé de l'exercice se trouve dans cette partie."
 		},
 		"titre": {
 			"titre": "Énoncé",
-			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi"
+			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi."
 		},
 		"niveau":{
 			"titre": "Énoncé",
-			"contenu": "Le niveau de difficulté de l'exercice"
+			"contenu": "Le niveau de difficulté de l'exercice."
 		},
 		"énoncé_détail": {
 			"titre": "Énoncé",
@@ -75,15 +76,15 @@
 		},
 		"rétroaction":{
 			"titre": "Rétroaction",
-			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici"
+			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici."
 		},
 		"jeu_tests":{
 			"titre": "Tests",
-			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi"
+			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi."
 		},
 		"entrées":{
 			"titre": "Tests",
-			"contenu":"Chacun des tests fournit des entrées différentes au programme"
+			"contenu":"Chacun des tests fournit des entrées différentes au programme."
 		},
 		"sorties_attendues":{
 			"titre": "Tests",
@@ -112,10 +113,15 @@
 	},
 	
 	"inscription": {
-		"username": "Veuillez choisir un nom d'utilisateur",
+		"username": "Veuillez choisir un nom d'utilisateur.",
 		"confirmation": "Confirmation",
 		"boutonInscription": "S'inscrire",
-		"mdpDifférents": "Les deux mots de passe doivent correspondre"
+		"mdpDifférents": "Les deux mots de passe doivent correspondre."
+	},
+
+	"énoncé": {
+		"auteur": "Auteur",
+		"licence": "Licence"
 	},
 	
 	"validation_tentative": {
@@ -126,7 +132,7 @@
 		"jeuTests": "Jeu de tests"
 	},
 
-	"mode_affichage": "Mode d'affichage par différences",
+	"mode_affichage": "Diff",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
@@ -168,5 +174,13 @@
 		"entrées/sorties": "Éntrées / Sorties",
 		"erreurs": "Erreurs",
 		"rétroactions": "Rétroaction"
+	},
+
+	"commentaire": {
+		"ajouterCommentaire": "Ajouter un commentaire",
+		"erreurAjoutCommentaire": "*Champs incorrects",
+		"commentaires": "Commentaires",
+		"placeholderCommentaire": "Écrire un commentaire",
+		"ligneCommentaire": "Ligne:" 
 	}
 }

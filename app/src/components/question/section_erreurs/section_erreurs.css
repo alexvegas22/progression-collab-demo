@@ -2,6 +2,44 @@
 	flex: 1 1 0px;
 	min-height: 0px;
 	flex-flow: column;
-	height: 21.875rem;
-	padding: 0.625rem;
+	height: 18rem;
+}
+
+.section-erreur pre {
+	height: 100%;
+	overflow: visible;
+	overflow-y: visible;
+	max-width: 100%;
+}
+
+.margin-perfect-scrollbar {
+	margin-top: -.5rem;
+	padding-bottom: 2.5rem;
+}
+
+/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
+@media only screen and (min-width: 48rem) {
+	.section-erreur pre {
+		height: 100%;
+		overflow: visible;
+		overflow-y: visible;
+		max-width: 50vw;
+	}
+}
+
+/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
+@media only screen and (min-width: 48rem) and (max-width: 992px) {
+	.section-erreur pre {
+		height: 100%;
+		overflow: visible;
+		overflow-y: visible;
+		max-width: 50vw;
+	}
+}
+
+/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
+@media only screen and (max-width: 48rem) {
+	.margin-perfect-scrollbar {
+		padding-bottom: 4rem;
+	}
 }

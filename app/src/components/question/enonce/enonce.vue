@@ -1,16 +1,51 @@
 <template>
 	<div class="barre-énoncé">
-		<perfect-scrollbar
-			class="section-énoncé-texte"
+		<div
+			class="section-bouton-affichage"
 			:class="{
 				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
 				'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
 			}"
 		>
-			<div v-if="état_réussi" class="crochet icon icon--order-success svg">
-				<svg xmlns="http://www.w3.org/2000/svg" width="82px" height="82px">
+			<i
+				v-if="énoncéSemiÉcran"
+				class="fa fa-window-maximize btn-affichage"
+				aria-hidden="true"
+				@click="$emit('ajustéPanneauÉnoncé', 'max')"
+			/>
+			<i
+				v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
+				class="fa fa-window-restore btn-affichage"
+				aria-hidden="true"
+				@click="$emit('ajustéPanneauÉnoncé', 'normal')"
+			/>
+			<i
+				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
+				class="fa fa-window-minimize btn-affichage"
+				aria-hidden="true"
+				@click="$emit('ajustéPanneauÉnoncé', 'min')"
+			/>
+		</div>
+		<div
+			v-show="énoncéSemiÉcran || énoncéPleinÉcran"
+			class="max-height"
+		>
+			<div
+				v-if="état_réussi"
+				class="crochet icon icon--order-success svg"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="82px"
+					height="82px"
+				>
 					<g>
-						<circle cx="35" cy="40" r="25" style="fill: #8ec343; stroke: #8ec343"></circle>
+						<circle
+							cx="35"
+							cy="40"
+							r="25"
+							style="fill: #8ec343; stroke: #8ec343"
+						/>
 						<path
 							d="M21.417,40.778l9.93,9.909l20.444-20.393"
 							style="
@@ -19,53 +54,68 @@
 								stroke-width: 6;
 								stroke: white;
 								fill: none;
-							"
-						></path>
+								"
+						/>
 					</g>
 				</svg>
 			</div>
-
-			<div class="row" présentation_étape="0.1">
-				<h3 class="titre align-self-start">
-					{{ question.titre }}
-					<span class="badge niveau" présentation_étape="0.2"> {{ question.niveau }} </span>
-				</h3>
+			<div
+				class="entête row"
+				présentation_étape="0.1"
+			>
+				<div
+					class="énoncéPlacement"
+					:class="{'PasDeDifficulté':question.niveau==null}"
+				>	
+					<h3 class="titre align-self-start">
+						{{ question.titre }}
+					</h3>	
+				</div>		
+				<span
+					id="niveauQuestion"
+					class="badge niveau"
+					présentation_étape="0.2"
+				>
+					{{ question.niveau }}
+				</span>	
 			</div>
-
-			<div class="row flex-grow-1">
-				<p présentation_étape="0.3" class="lead" v-html="question.énoncé"></p>
+			<div class="section-énoncé-texte">
+				<perfect-scrollbar>	
+					<div class="row flex-grow-1">
+						<!-- eslint-disable-->
+						<p  
+							class="texte_énoncé" 
+							présentation_étape="0.3"
+							v-html="question.énoncé"
+						/>
+						<!-- eslint-enable-->
+					</div>
+					<div
+						v-if="question.auteur"
+						class="d-flex"
+						:title="$t('énoncé.auteur')"
+					>
+						<i class="icone fas fa-user-friends" />
+						<p class="footer-auteur">
+							{{ question.auteur }}
+						</p>
+					</div>
+					<div
+						v-if="question.licence"
+						class="d-flex"
+						:title="$t('énoncé.licence')"
+					>
+						<i class="icone fas fa-copyright" />
+						<p class="footer-license">
+							{{ question.licence }}
+						</p>
+					</div>
+				</perfect-scrollbar>
 			</div>
-
-			<div>
-				<p class="footer-copyright text-center py-3">{{ question.auteur }} {{ question.licence }}</p>
-			</div>
-		</perfect-scrollbar>
-		<div class="section-boutton-affichage">
-			<i
-				style="float: right"
-				@click="$emit('ajustéÉnoncé', 'plein')"
-				class="fa fa-arrows-alt btn-affichage"
-				aria-hidden="true"
-				v-if="énoncéSemiÉcran"
-			></i>
-			<i
-				style="float: right"
-				@click="$emit('ajustéÉnoncé', 'semi')"
-				class="fa fa fa-window-maximize btn-affichage"
-				aria-hidden="true"
-				v-else
-			></i>
-			<i
-				style="float: right"
-				@click="$emit('ajustéÉnoncé', 'cacher')"
-				class="fa fa fa-window-minimize btn-affichage"
-				aria-hidden="true"
-				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
-			></i>
 		</div>
 	</div>
 </template>
 
 <script src="./enonce.js"></script>
-
 <style src="./enonce.css"></style>
+
