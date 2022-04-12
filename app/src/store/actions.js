@@ -414,18 +414,10 @@ export default {
 		commit("setModeAffichage", val);
 	},
 
-	setSélectionnerTestHaut({ commit }, val){
-		commit("setSélectionnerTestHaut", val);
-	},
-	setSélectionnerTestBas({ commit }, val){
-		commit("setSélectionnerTestBas", val);
-	},
 	setChangerModeAffichageAvecRaccourci({ commit }, val){
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
-	setOngletCourant({ commit }, val){
-		commit("setOngletCourant", val);
-	},
+	
 	setIndicateursDeFonctionnalité({ commit }, val){
 		const toggles = [];
 		for( const toggle of val ){
