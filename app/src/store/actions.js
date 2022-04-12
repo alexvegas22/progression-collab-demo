@@ -408,25 +408,27 @@ export default {
 		commit("setThèmeSombre", val);
 	},
 
-	setModeAffichage({ commit }, val){
+	setModeAffichage({ commit }, val) {
 		commit("setModeAffichage", val);
 	},
-	setSélectionnerTestHaut(state,val){
-		state.sélectionnerTestHaut = val;
-	},
-	setSélectionnerTestBas(state,val){
-		state.sélectionnerTestBas = val;
+
+	setSélectionnerTestHaut({ commit }, val) {
+		commit("setSélectionnerTestHaut", val);
 	},
 
-	setChangerModeAffichageAvecRaccourci({ commit }, val){
+	setSélectionnerTestBas({ commit }, val) {
+		commit("setSélectionnerTestBas", val);
+	},
+
+	setChangerModeAffichageAvecRaccourci({ commit }, val) {
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
-	
-	setOngletCourant(state,val){
-		state.ongletCourant = val;
+
+	setOngletCourant({ commit }, val) {
+		commit("setOngletCourant", val);
 	},
-	
-	setIndicateursDeFonctionnalité({ commit }, val){
+
+	setIndicateursDeFonctionnalité({ commit }, val) {
 		const toggles = [];
 		for( const toggle of val ){
 			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
