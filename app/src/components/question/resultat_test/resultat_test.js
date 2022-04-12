@@ -1,6 +1,6 @@
 import parseMD from "@/util/parse";
 import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
-import AmpouleRésultat from "@/components/question/ampoule_résultat/ampoule_résultat.vue";
+import Ampoule from "@/components/question/ampoule/ampoule.vue";
 const diff = require("diff");
 const he = require("he");
 
@@ -36,7 +36,7 @@ const différence = function (orig = "", modif = "", mode_affichage) {
 };
 
 export default {
-	components: { SélecteurModeAffichage, AmpouleRésultat },
+	components: { SélecteurModeAffichage, Ampoule},
 	name: "ResultatTest",
 	data() {
 		return {
