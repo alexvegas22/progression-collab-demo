@@ -106,12 +106,12 @@ const setup = async () => {
 	await lti.deploy({ port: process.env.PORT });
 
 	await lti.registerPlatform({
-		url: "http://uri_a_changer_vers_instance_moodle:numéro_de_port",
-		name: "nom_instance_moodle_a_changer",
-		clientId: "identifiant_du_client_moodle_à_changer",
-		authenticationEndpoint: "http://uri_a_changer_vers_instance_moodle:numéro_de_port/mod/lti/auth.php",
-		accesstokenEndpoint: "http://uri_a_changer_vers_instance_moodle:numéro_de_port/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "http://uri_a_changer_vers_instance_moodle:numéro_de_port/mod/lti/certs.php" },
+		url: "https://moodle.exemple.com",
+		name: "Nom d'instance Moodle",
+		clientId: "id_client",
+		authenticationEndpoint: "https://moodle.exemple.com/mod/lti/auth.php",
+		accesstokenEndpoint: "https://moodle.exemple.com/mod/lti/token.php",
+		authConfig: { method: "JWK_SET", key: "https://moodle.exemple.com/mod/lti/certs.php" },
 	});
 };
 

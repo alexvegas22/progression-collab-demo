@@ -41,7 +41,7 @@ const récupérerUser = function (userId) {
 };
 
 const récupérerMembres = async function(token){
-	const context = await lti.NamesAndRoles.getMembers(token, { resourceLinkId: true, role: "Learner"});
+	const context = await lti.NamesAndRoles.getMembers(token, { resourceLinkId: true, role: " http://purl.imsglobal.org/vocab/lis/v2/membership#Learner "});
 	provMainDebug(context.members.length + " membres récupérés");
 
 	const membres = new Object();
