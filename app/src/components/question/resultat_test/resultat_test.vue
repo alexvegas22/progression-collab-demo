@@ -14,9 +14,11 @@
 						<template #titre>
 							{{ $t('resultat_test.entrée') }}
 						</template>
-						<AmpouleRésultat 
+						<Ampoule 
+							v-if="resultat && !resultat.sortie_erreur"
 							:feedback="feedback"
 							:panneau-affiché="panneauAffiché"
+							:estRétroactionTest="true"
 						/>
 						<pre
 							class="card-text p-3"

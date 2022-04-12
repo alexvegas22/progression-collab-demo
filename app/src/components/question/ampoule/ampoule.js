@@ -6,6 +6,11 @@ import "tippy.js/dist/svg-arrow.css";
 export default {
 	name: "Ampoule",
 	components: { Tippy },
+	props: {
+		estRétroactionTest: Boolean,
+		feedback: String,
+		panneauAffiché: Boolean,
+	},
 	data() {
 		return {
 			conseilAffiché: false,

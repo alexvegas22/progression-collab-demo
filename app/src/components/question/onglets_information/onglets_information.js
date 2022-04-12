@@ -125,5 +125,9 @@ export default {
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
+		récupérerFeedback(value){
+			console.log(value);
+			this.feedback = value;
+		}
 	},
 };
