@@ -411,9 +411,19 @@ export default {
 	setModeAffichage({ commit }, val){
 		commit("setModeAffichage", val);
 	},
+	setSélectionnerTestHaut(state,val){
+		state.sélectionnerTestHaut = val;
+	},
+	setSélectionnerTestBas(state,val){
+		state.sélectionnerTestBas = val;
+	},
 
 	setChangerModeAffichageAvecRaccourci({ commit }, val){
 		commit("setChangerModeAffichageAvecRaccourci", val);
+	},
+	
+	setOngletCourant(state,val){
+		state.ongletCourant = val;
 	},
 	
 	setIndicateursDeFonctionnalité({ commit }, val){

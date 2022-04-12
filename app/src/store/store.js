@@ -27,6 +27,7 @@ export default createStore({
 		erreurs: null,
 		configServeur: null,
 		thèmeSombre: false,
+		ongletCourant: null,
 		changerModeAffichageAvecRaccourci: false,
 		indicateursDeFonctionnalité: []
 	},
