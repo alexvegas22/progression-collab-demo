@@ -170,5 +170,13 @@
 		"entrées/sorties": "Input / Output",
 		"erreurs": "Errors",
 		"rétroactions": "Feedback"
+	},
+
+	"commentaire": {
+		"ajouterCommentaire": "Add comment",
+		"erreurAjoutCommentaire": "*Fields incorrect",
+		"commentaires": "Comments",
+		"placeholderCommentaire": "Write a comment",
+		"ligneCommentaire": "Line:"  
 	}
 }

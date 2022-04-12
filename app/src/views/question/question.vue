@@ -91,8 +91,21 @@
 						/>
 					</div>
 				</div>
+				<div
+					v-if="tentative.commentaires && indicateursDeFonctionnalitéCommentaires"
+					class="btnCommentaire"
+				>
+					<BoutonCommentaire
+						:menuOuvert="panneauCommentaireOuvert"
+						@basculerMenuCommentaire="basculerMenuCommentaire"
+					/>
+				</div>
 			</div>
 		</div>
+		<PanneauCommentaire
+			:menuCommentaireOuvert="panneauCommentaireOuvert"
+			@basculerMenuCommentaire="basculerMenuCommentaire"
+		/>
 	</div>
 </template>
 

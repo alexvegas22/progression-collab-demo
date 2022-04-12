@@ -3,6 +3,8 @@ import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
+import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
+import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
 
@@ -17,6 +19,7 @@ export default {
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,
+			panneauCommentaireOuvert:false,
 			ongletChangéRaccourci: false,
 			testSélectionnéHaut: false,
 			testSélectionnéBas: false,
@@ -30,6 +33,8 @@ export default {
 		EditeurCode,
 		RetroactionTentative,
 		Présentation,
+		BoutonCommentaire,
+		PanneauCommentaire,
 		Ampoule
 	},
 	computed: {
@@ -59,7 +64,10 @@ export default {
 		},
 		thèmeSombre(){
 			return this.$store.state.thèmeSombre;
-		}
+		},
+		indicateursDeFonctionnalitéCommentaires(){
+			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
+		},
 	},
 	watch: {
 		uri: function () {
@@ -80,7 +88,7 @@ export default {
 					}
 				}
 			}
-		}
+		},
 	},
 	mounted() {
 		if(this.uri && this.user) this.récupérerQuestion();
@@ -97,7 +105,7 @@ export default {
 	methods: {
 		récupérerAvancement() {
 			const id_avancement = this.user.username + "/" + this.uri;
-
+			
 			if (id_avancement in this.user.avancements) {
 				this.$store
 					.dispatch("getAvancement", {
@@ -157,6 +165,11 @@ export default {
 				this.éditeurPleinÉcran = true;
 			}
 		},
+
+		basculerMenuCommentaire(){
+			this.panneauCommentaireOuvert =! this.panneauCommentaireOuvert;
+		},
+
 		sélectionnerTestDuHautAvecRaccourci(){
 			this.testSélectionnéHaut = !this.testSélectionnéHaut;
 		},
@@ -183,6 +196,9 @@ export default {
 		},
 		réinitialiserTentativeAvecRaccourci() {
 			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
-		}
+		},
 	},
 };
+
+
+		

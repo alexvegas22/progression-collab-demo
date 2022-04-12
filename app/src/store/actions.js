@@ -8,6 +8,7 @@ import {
 	getTokenApi,
 	getUserApi,
 	postAvancementApi,
+	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey
@@ -203,7 +204,6 @@ export default {
 						tentative = ebauches[Object.keys(ebauches)[0]];
 					}
 				}
-
 				commit("setTentative", tentative);
 				commit("updateRetroaction", tentative);
 				return avancement;
@@ -242,6 +242,14 @@ export default {
 			commit("setTentative", tentative);
 			commit("updateRetroaction", tentative);
 			return avancement;
+		}()
+		);
+	},
+
+	async postCommentaire({ commit, state }, params){
+		return valider(async function() {
+			const token = await getToken({ commit, state });
+			return await postCommentaireApi(params, token);
 		}()
 		);
 	},
