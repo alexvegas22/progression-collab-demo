@@ -1,8 +1,12 @@
 import parseMD from "@/util/parse";
 import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
+import Ampoule from "@/components/question/ampoule/ampoule.vue";
 
 export default {
 	name: "RetroactionTentative",
+	components: {
+		Ampoule,
+	},
 	computed: {
 		tentative() {
 			return this.$store.state.tentative;

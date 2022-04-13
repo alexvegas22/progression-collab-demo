@@ -15,7 +15,6 @@
 				v-if="resultat.sortie_erreur"
 				:feedback="resultat.feedback"
 				:panneau-affiché="panneauAffiché"
-				:estRétroactionTest="true"
 				class="ampoule"
 			/>
 			

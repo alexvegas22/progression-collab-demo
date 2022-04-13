@@ -7,7 +7,6 @@ export default {
 	name: "Ampoule",
 	components: { Tippy },
 	props: {
-		estRétroactionTest: Boolean,
 		feedback: String,
 		panneauAffiché: Boolean,
 	},
