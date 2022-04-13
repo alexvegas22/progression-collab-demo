@@ -13,6 +13,7 @@
 					<Ampoule
 						v-if="resultat && !resultat.sortie_erreur"
 						class="rétroaction-test"
+						
 						:feedback="feedback"
 						:panneau-affiché="panneauAffiché"
 					/>

@@ -54,8 +54,9 @@
 						>
 							<EditeurCode
 								présentation_étape="1"
-								class="flex-grow-1 m-n-0" />
-							<RetroactionTentative/>
+								class="flex-grow-1 m-n-0"
+							/>
+							<RetroactionTentative />
 						</div>
 					</div>
 					<div

@@ -3,19 +3,19 @@
 		<div class="espace-ampoule">
 			<Tippy
 				ref="tippy"
-					 v-tippy="{ trigger: 'click', interactive: true }"
-					 :aria="true"
+				v-tippy="{ trigger: 'click', interactive: true }"
+				:aria="true"
 				:show-on-create="true"
 				:arrow="true"
 				:show="conseilAffiché"
 				placement="bottom"
-					 class="popup_conseil"
-					 @show="basculerAffichageConseil"
+				class="popup_conseil"
+				@show="basculerAffichageConseil"
 			>
 				<a id="btn_conseil">
 					<svg
 						class="svg_ampoule"
-							   présentation_étape="2.1"
+						présentation_étape="2.1"
 					>
 						<use xlink:href="./svg_ampoule/light-bulb-invention-svgrepo-com.svg#Capa_1" />
 					</svg>
