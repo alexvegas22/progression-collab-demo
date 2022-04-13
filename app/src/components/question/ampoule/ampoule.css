@@ -42,32 +42,6 @@
 	align-items: flex-start;
 }
 
-.ampoule_test {
-	fill: #a3a3a3;
-	width: 1.7rem;
-	height: 1.7rem;
-	animation: blink 0.5s 20 alternate;
-	animation-iteration-count: 10;
-	transition-delay: 0.1s; 
-}
-
-.ampoule_test:hover {
-	fill: rgb(13, 202, 240, 70%);
-	transition: ease-in-out 0.2s;
-	cursor: pointer;
-	transform: scale(1.07); 
-	transition-delay: 0s; 
-}
-
-.ampoule_test_mini {
-	fill: white;
-}
-
-.espace_ampoule_test {
-	padding-top: 1rem;
-	padding-right: 1.3rem;
-}
-
 .taille_police {
 	font-size: 0.688rem;
 }
