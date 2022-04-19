@@ -1,7 +1,7 @@
 import { useMeta } from "vue-meta";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
-import { bootstrap } from "bootstrap";
+import { ScrollSpy } from "bootstrap";
 
 library.add(faUserSecret);
 
@@ -40,7 +40,7 @@ export default {
 			// Activate Bootstrap scrollspy on the main nav element
 			const mainNav = document.body.querySelector("#mainNav");
 			if (mainNav) {
-				new bootstrap.ScrollSpy(document.body, {
+				new ScrollSpy(document.body, {
 					target: "#mainNav",
 					offset: 74,
 				});
