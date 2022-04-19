@@ -6,11 +6,11 @@ function join_by {
 }
 
 # Find vue env vars
-vars=$(env | grep VUE_APP_ | awk -F = '{print "$"$1}')
+vars=$(env | grep VITE_ | awk -F = '{print "$"$1}')
 vars=$(join_by ' ' $vars)
 echo "Found variables $vars"
 
-for file in /usr/share/nginx/html/js/*.js /usr/share/nginx/html/index.html;
+for file in /usr/share/nginx/html/assets/*.js;
 do
   echo "Processing $file ...";
 
