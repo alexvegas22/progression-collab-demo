@@ -1,10 +1,10 @@
 import parseMD from "@/util/parse";
 import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
-const diff = require("diff");
-const he = require("he");
+import { diffChars } from "diff";
+import he from "he";
 
 const différence = function (orig = "", modif = "", mode_affichage) {
-	const différences = diff.diffChars(orig, modif);
+	const différences = diffChars(orig, modif);
 
 	var résultat_ins = "";
 	var résultat_del = "";

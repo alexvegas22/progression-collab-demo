@@ -8,6 +8,7 @@ stages:
 variables:
   PROGRESSION_DIR: $CI_PROJECT_DIR
   DOCKER_HOST: "tcp://dind:2375"
+  GIT_SUBMODULE_STRATEGY: recursive
 
 # Stage test
 
