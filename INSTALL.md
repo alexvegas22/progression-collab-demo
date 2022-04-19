@@ -37,7 +37,7 @@ $EDITOR app/.env.local
 ```
 - Ajouter les variables d'environnement suivantes *(contacter admin pour les valeurs réelles)*
 ```
-VUE_APP_API_URL=http://com.exemple/api/v1
+VITE_API_URL=http://com.exemple/api/v1
 ```
 
 ## 3. Exécution du programme
