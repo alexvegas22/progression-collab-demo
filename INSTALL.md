@@ -17,7 +17,7 @@ La suite des opérations devra se faire à partir d'un interpréteur de commande
 
 - Cloner le projet
 ```
-git clone https://git.dti.crosemont.quebec/progression/progression_frontend.git
+git clone --recurse-submodules https://git.dti.crosemont.quebec/progression/progression_frontend.git
 ```
 
 - Ouvrir le repertoire `progression_frontend`
