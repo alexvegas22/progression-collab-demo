@@ -9,7 +9,7 @@ import Avancement from "@/components/question/avancement/avancement.vue";
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
 
 
-const API_URL = process.env.VUE_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default {
 	name: "Question",

@@ -28,11 +28,11 @@
 						</svg>
 						{{ $t("retroaction_tentative.conseil") }}
 						<!-- eslint-disable -->
-							<div
-							    class="feedback"
-							    v-html="retroactionTentative.feedback"
-							/>
-							<!-- eslint-enable -->
+						<div
+							class="feedback"
+							v-html="retroactionTentative.feedback"
+						/>
+						<!-- eslint-enable -->
 					</template>
 				</Tippy>
 			</div>
