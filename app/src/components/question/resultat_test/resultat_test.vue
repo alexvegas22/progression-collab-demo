@@ -1,77 +1,85 @@
 <template>
-	<div class="container" v-if="test">
-		<div class="row">
-			<div class="bg-light col card device-card">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-left card-title">{{ $t("resultat_test.entrée") }}</h5>
-					<pre class="card-text" v-html="test.entrée"></pre>
+	<div class="row g-0">
+		<div class="col-12 h-100">
+			<div
+				v-if="test"
+				class="h-100 d-flex"
+				style="flex-flow: column"
+			>
+				<div
+					class="d-flex"
+					style="flex-flow: row; flex: 1 1 0; height: 50%"
+				>
+					<FenêtreInfo présentation_étape="3.1">
+						<template #titre>
+							{{ $t('resultat_test.entrée') }}
+						</template>
+						<pre
+							class="card-text p-3"
+						>{{ test.entrée }}</pre>
+					</FenêtreInfo>
+					<FenêtreInfo v-if="test.params">
+						<template #titre>
+							{{ $t('resultat_test.params') }}
+						</template>
+						<pre
+							class="card-text"
+						>{{ test.params }}</pre>
+					</FenêtreInfo>
+				</div>
+				<div
+					class="d-flex"
+					style="flex-flow: row; flex: 1 1 0; height: 50%"
+				>
+					<FenêtreInfo
+						présentation_étape="3.2"
+						:class="{resultat: resultat-test}"
+					>
+						<template #titre>
+							{{ $t('resultat_test.sortieAttendue') }}
+						</template>
+						<perfect-scrollbar>
+							<!-- eslint-disable -->
+							<pre
+								v-if="sortie_attendue"
+								class="card-text p-3"
+								v-html="sortie_attendue"
+							/>
+							<!-- eslint-enable -->
+							<pre v-else>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+							</pre>
+						</perfect-scrollbar>
+					</FenêtreInfo>
+					<FenêtreInfo
+						v-if="resultat"
+						présentation_étape="3.3"
+						class="resultat-test"
+					>
+						<template #titre>
+							<div class="espace-titre-sortie-observée">
+								{{ $t('resultat_test.sortieConsole') }}
+								<sélecteur-mode-affichage class="espace-sélecteur" />
+							</div>
+						</template>
+						<perfect-scrollbar>
+							<!-- eslint-disable -->
+							<pre
+								v-if="sortie_observée"
+								class="card-text p-3"
+								v-html="sortie_observée"
+							/>
+							<!-- eslint-enable -->
+							<pre v-else>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+							</pre>
+						</perfect-scrollbar>
+					</FenêtreInfo>
 				</div>
 			</div>
 		</div>
-
-		<div class="row" v-if="test.params">
-			<div class="bg-light col card device-card">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-left card-title">
-						{{ $t("resultat_test.params") }}
-					</h5>
-					<pre class="card-text" v-html="test.params"></pre>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			
-			<div class="bg-light col card device-card">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-left card-title">
-						{{ $t("resultat_test.sortieAttendue") }}
-					</h5>
-					<pre v-if="sortie_attendue"><p class="card-text" v-html="sortie_attendue"></p></pre>
-					<pre v-else>
-						<p class="card-text sortie vide">{{ $t("resultat_test.vide") }}</p>
-					</pre>
-				</div>
-			</div>
-
-			<div class="bg-light col card device-card" v-if="resultat">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-left card-title">
-						{{ $t("resultat_test.sortieConsole") }}
-					</h5>
-					<pre v-if="sortie_observée"><p class="card-text" v-html="sortie_observée"></p></pre>
-					<pre v-else>
-						<p class="card-text sortie vide">{{$t("resultat_test.vide")}}</p>
-					</pre>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="row">
-			<div v-show="resultat.sortie_erreur" class="bg-light col card device-card" v-if="resultat">>
-				<div class="card-body">
-					<h5 class="text-danger font-weight-bold text-left card-title">
-						{{ $t("resultat_test.sortieErreur") }}
-					</h5>
-					<pre><p class="card-text" v-html="resultat.sortie_erreur"></p></pre>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div v-show="resultat.feedback" class="bg-light col card device-card" v-if="resultat">
-				<div class="card-body">
-					<h5 class="text-black-50 font-weight-bold text-center card-title">{{ $t("resultat_test.rétroaction") }}</h5>
-					<p class="card-text" v-html="feedback"></p>
-				</div>
-			</div>
-		</div>
-		
 	</div>
-	
 </template>
 
 <script src="./resultat_test.js"></script>
-
 <style src="./resultat_test.css"></style>

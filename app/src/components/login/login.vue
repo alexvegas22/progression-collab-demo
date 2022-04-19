@@ -1,46 +1,77 @@
 <template>
-	<div class="container" id="login" >
+	<div
+		id="login"
+		class="container"
+	>
 		<tabs v-model="tabSélectionné">
-			<div  v-if="auth_ldap">
-				<tab :label="ldap_domaine" val="0" key="0">
-					<div class="tab" :class="{activeTab: estActif('0')}" >
-						{{ldap_domaine}}
-					</div>
-				</tab>
-			</div>
+			<tab
+				v-if="auth_ldap"
+				key="k0"
+				label="LDAP"
+				val="LDAP"
+				class="tab"
+				:class="{activeTab: estActif('LDAP')}"
+			>
+				{{ ldap_domaine }}
+			</tab>
 
-			<div v-if="auth_local">
-				<tab label="Standard" val="1" key="1">
-					<div class="tab" :class="{activeTab: estActif('1')}" >
-						{{ $t('login.standard') }}
-					</div>
-				</tab>
-			</div>
-			
-			<div v-if="auth_local">
-				<tab label="Inscription" val="2" key="2">
-					<div class="tab" :class="{activeTab: estActif('2')}" >
-						{{ $t('login.inscription') }}
-					</div>
-				</tab>
-			</div>
+			<tab
+				v-if="auth_local"
+				key="k1"
+				label="STANDARD"
+				val="STANDARD"
+				class="tab"
+				:class="{activeTab: estActif('STANDARD')}"
+			>
+				{{ $t('login.standard') }}
+			</tab>
+
+			<tab
+				v-if="auth_local || !auth_ldap"
+				key="k2"
+				label="INSCRIPTION"
+				val="INSCRIPTION"
+				class="tab"
+				:class="{activeTab: estActif('INSCRIPTION')}"
+			>
+				{{ $t('login.inscription') }}
+			</tab>
 		</tabs>
 
-		<tab-panels v-model="tabSélectionné" class="tab-panels">
-			<tab-panel val="0" key="0" class="tab-panel">
-				<LoginForm @onLogin="onLogin" :domaine="ldap_domaine" :url_mdp_reinit="ldap_url_mdp_reinit" :password_req="true" />
-			</tab-panel>
-			
-			<tab-panel val="1" key="1" class="tab-panel">
-				<LoginForm @onLogin="onLogin" :password_req="password_req" />
+		<tab-panels
+			:key="key_panneaux"
+			v-model="tabSélectionné"
+			:animate="animation"
+		>
+			<tab-panel
+				key="k3"
+				val="LDAP"
+			>
+				<LoginForm
+					:domaine="ldap_domaine"
+					:url_mdp_reinit="ldap_url_mdp_reinit"
+					@onLogin="onLogin"
+				/>
 			</tab-panel>
 
-			<tab-panel val="2" key="2" class="tab-panel">
-				<Inscription @onLogin="onLogin" />
+			<tab-panel
+				key="k4"
+				val="STANDARD"
+			>
+				<LoginForm @onLogin="onLogin" />
+			</tab-panel>
+
+			<tab-panel
+				key="k5"
+				val="INSCRIPTION"
+			>
+				<Inscription
+					:password_req="auth_local"
+					@onLogin="onLogin"
+				/>
 			</tab-panel>
 		</tab-panels>
 	</div>
-	
 </template>
 
 <script src="./login.js"></script>

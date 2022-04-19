@@ -1,0 +1,17 @@
+<template>
+	<div class="section-erreur" v-if="resultat">
+		<div class="p-1">
+			<h5 class="text-danger font-weight-bold text-left card-title">
+				{{ $t("resultat_test.sortieErreur") }}
+			</h5>
+			<perfect-scrollbar class="margin-perfect-scrollbar">
+				<pre>
+					<p class="card-text">{{ resultat.sortie_erreur }}</p>
+				</pre>
+			</perfect-scrollbar>
+		</div>
+	</div>
+</template>
+
+<script src="./section_erreurs.js"></script>
+<style scoped src="./section_erreurs.css"></style>

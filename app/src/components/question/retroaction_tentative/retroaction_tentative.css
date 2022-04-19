@@ -1,24 +1,16 @@
 .feedback {
-	color: #5f9ea0
+	color: #5f9ea0;
 }
 
-.popup_conseil{
-	float: right;
-	position: relative;
-	top: -540px;
-	right: 22px;
-	z-index: 3;
-	font-size: 30px;
-}
-
-.test_réussi{
+.test_réussi {
 	background-color: #80cc8e;
 }
 
-.test_non_réussi{
-	background-color: #d88f90;
+.test_non_réussi {
+	background-color: #cd5c5c;
 }
 
-.progress{
-	height: 40px;
+.progress {
+	height: 0.75rem;
+	border-radius: 0;
 }

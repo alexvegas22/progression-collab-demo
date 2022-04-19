@@ -14,9 +14,17 @@ export const mutations = {
 	setToken(state, token) {
 		state.token = token;
 	},
+	
+	setTokenRessources(state, tokenRessources) {
+		state.tokenRessources = tokenRessources;
+	},
 
 	setUri(state, uri) {
 		state.uri = uri;
+	},
+
+	setDémo(state, val) {
+		state.démo = val;
 	},
 
 	setLangageDéfaut(state, langageDéfaut) {
@@ -64,10 +72,27 @@ export const mutations = {
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
+	updateAuthentificationEnCours(state, bool) {
+		state.authentificationEnCours = bool;
+	},
 	setSauvegarde(state, sauvegarde) {
 		state.sauvegardes[sauvegarde.langage] = sauvegarde;
 	},
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
+	setThèmeSombre(state, val) {
+		state.thèmeSombre = val;
+	},
+	setModeAffichage(state, val) {
+		state.mode_affichage = val;
+	},
+	
+	setChangerModeAffichageAvecRaccourci(state,val){
+		state.changerModeAffichageAvecRaccourci = val;
+	},
+	
+	setIndicateursDeFonctionnalité(state,val){
+		state.indicateursDeFonctionnalité = val;
+	}
 };

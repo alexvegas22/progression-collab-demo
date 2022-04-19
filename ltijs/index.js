@@ -1,14 +1,12 @@
 require("dotenv").config();
 
-const fs = require("fs");
 const path = require("path");
 const provMainDebug = require("debug")("provider:main");
 const lti = require("ltijs").Provider;
 const mongoose = require("mongoose");
 const routes = require("./src/routes");
-const Mustache = require("mustache");
-const jwt_decode = require("jwt-decode");
 const services = require("./src/services.js");
+const consolidate = require("consolidate");
 
 mongoose.set("useCreateIndex", true);
 
@@ -24,10 +22,9 @@ userSchema.index({ userId: 1 }, { unique: true });
 try {
 	mongoose.model("user", userSchema);
 } catch (err) {
-	provDatabaseDebug("Model already registered. Continuing");
+	provMainDebug("Model already registered. Continuing");
 }
 
-// Setup
 lti.setup(
 	process.env.LTI_KEY,
 	{
@@ -51,16 +48,12 @@ lti.setup(
 lti.onConnect(async (idToken, req, res) => {
 	provMainDebug("onConnect");
 
-	const platformUrl = jwt_decode(res.locals.ltik).platformUrl;
-
 	const userId = idToken.platformId + "/" + idToken.user;
 	provMainDebug(`userId : ${userId}`);
 	const uri = btoa_url(res.locals.context.custom.uri || res.locals.context.custom.src);
 	provMainDebug(`uri : ${uri}`);
 	const lang = res.locals.context.custom.lang;
 	provMainDebug(`lang : ${lang}`);
-	const token = await services.récupérerUser( userId )
-								.then( (user) => user ? services.récupérerToken(user) : null)
 
 	const query = Object.assign(
 		{
@@ -72,24 +65,29 @@ lti.onConnect(async (idToken, req, res) => {
 				ltik: res.locals.ltik,
 			})
 		},
-//		token ? {
-//			token: token,
-//		} : {
-//			cb_auth: process.env.URL_BASE + "/lti/auth",
-//			cb_auth_params: JSON.stringify({
-//				ltik: res.locals.ltik,
-//			}),
-//			platform_url: platformUrl,
-//			cours_nom: btoa(res.locals.context.context.title),
-//		}
 	);
 
-	provMainDebug("Redirection vers : " + process.env.URL_BASE + "/#/question");
-	lti.redirect(res, process.env.URL_BASE + "/#/question", {
-		newResource: true,
-		query: query
-	});
+	if(res.locals.context.roles == "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"){
+		const resLocalsToken = res.locals.token;
+		const membres = await services.récupérerMembres( resLocalsToken );
+		const scores = await services.récupérerScores( resLocalsToken );
+
+		for(const id in membres){
+			membres["score"] = scores[membres[id].user_id];
+		}
+
+		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
+		res.status(200);
+	}
+	else{
+		provMainDebug("Redirection vers : " + process.env.URL_BASE + "/question");
+		lti.redirect(res, process.env.URL_BASE + "/question", {
+			newResource: true,
+			query: query
+		});
+	}
 });
+
 	
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
@@ -97,24 +95,23 @@ const btoa_url = (s) =>
 		.replace(/\+/g, "-")
 		.replace(/=/g, "");
 
-// Setting up routes
 lti.app.use(routes);
 
-// Setup function
 const setup = async () => {
+	const app = lti.app;
+	app.engine("html", consolidate.mustache);
+	app.set("view engine", "html");
+	app.set("views", __dirname + "/templates");
+
 	await lti.deploy({ port: process.env.PORT });
 
-	/**
-	 * Register platform
-	 */
-
 	await lti.registerPlatform({
-		url: "http://rocinante.lamancha:82",
-		name: "Moodle local",
-		clientId: "oShV5G8qB6WuqHx",
-		authenticationEndpoint: "http://rocinante.lamancha:82/mod/lti/auth.php",
-		accesstokenEndpoint: "http://rocinante.lamancha:82/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "http://rocinante.lamancha:82/mod/lti/certs.php" },
+		url: "https://moodle.exemple.com",
+		name: "Nom d'instance Moodle",
+		clientId: "id_client",
+		authenticationEndpoint: "https://moodle.exemple.com/mod/lti/auth.php",
+		accesstokenEndpoint: "https://moodle.exemple.com/mod/lti/token.php",
+		authConfig: { method: "JWK_SET", key: "https://moodle.exemple.com/mod/lti/certs.php" },
 	});
 };
 

@@ -1,18 +1,284 @@
 .editeur-container {
 	display: flex;
 	height: auto;
-	padding: 20px;
+	padding: 1.25rem;
 	padding-top: 0px;
 	flex-direction: row;
 }
+
 body {
 	font-family: "Avenir", Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 .ebauche {
 	display: flex;
 	padding: 1rem;
 	margin: 1rem;
-	background: darkgray;
+	background: #a9a9a9;
+}
+
+.v-tour__target--highlighted {
+	box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.4);
+}
+
+.v-step__content {
+	text-align: left;
+}
+
+.flex-column {
+	display: flex;
+	flex-flow: column;
+}
+
+.flex-column.fill-height {
+	flex-grow: 1;
+}
+
+.m-n-0 {
+	min-height: 0;
+}
+
+.conteneur-question {
+	display: flex;
+	flex-flow: column;
+	height: inherit;
+}
+
+.énoncé-semi {
+	width: 46rem;
+}
+
+.énoncé-plein {
+	height: 100vh;
+	width: 100%;
+}
+
+.énoncé-caché {
+	width: 100%;
+	height: 2.25rem;
+	left: 0.65rem;
+	margin-left: 0;
+}
+
+.barre-énoncé {
+	display: flex;
+	padding: 0;
+	flex-flow: column-reverse;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	
+	padding-bottom: 0.8rem;
+}
+
+.taille-écran {
+	height: 100vh;
+}
+
+.section-bouton-affichage {
+	padding: 0.25rem;
+	border: none;
+	flex: 0 0 auto;
+	margin-left: auto;
+}
+
+.thème_sombre .section-bouton-affichage {
+	border-right: 0 solid #555555;
+}
+
+.énoncé-plein {
+	width: 100%;
+}
+
+.énoncé-semi .section-boutton-affichage {
+	width: 4.5rem !important;
+}
+
+.énoncé-plein .section-boutton-affichage {
+	width: 4.5rem !important;
+}
+
+.btn-affichage {
+	padding: 0.375rem;
+	float: right;
+	font-size: 0.656rem;
+}
+
+.btn-affichage:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btnCommentaire{
+	position: fixed;
+	bottom: 20px;
+	left: 10px;
+}
+.section-énoncé-texte {
+	opacity: 1;
+	flex: 1;
+	box-sizing: border-box;
+	position: relative;
+	padding-right: 0.5rem;
+	top: 0.7rem;
+	height: calc(100vh - 9rem);
+}
+
+/* -------------- Media Queries ----------------------*/
+/* -------------- Écrans de 1300px et + (81.25rem et +) ----------------------*/
+@media only screen and (min-width: 81.25rem) {
+	.énoncé-semi {
+		width: 46rem;
+		height: 95%;
+	}
+}
+
+/* -------------- Écrans de 1200px à 1300px (75rem à 81.25rem) ----------------------*/
+@media only screen and (min-width: 75rem) and (max-width: 81.25rem) {
+	.énoncé-semi {
+		width: 28.125rem;
+		height: 100%;
+	}
+}
+
+/* -------------- Écrans de 768px à 1200px (48rem à 75rem) ----------------------*/
+@media only screen and (min-width: 48rem) and (max-width: 75rem) {
+	.énoncé-semi {
+		width: 28.125rem;
+		height: 100%;
+	}
+
+	.énoncé-caché .barre-énoncé {
+		margin-left: 0 !important;
+	}
+}
+
+/* -------------- Écrans de 0 à 767px (0 à 47.938rem) ----------------------*/
+@media only screen and (max-width: 47.938rem) {
+	.énoncé-semi {
+		width: 100%;
+		height:30vh;
+	}
+	.section-bouton-affichage {
+		margin-right:0.75rem;
+	}
+	.énoncé-caché {
+	padding-bottom: 1.35rem;
+	}
+	.barre-énoncé {
+		flex-flow:column;
+	}
+
+	.section-bouton-affichage {
+		margin-right:0.75rem;
+	}
+
+	.ligne-séparation-avec-énoncé {
+		border-top: 1px solid #d3d3d3;
+		min-height: 20rem;
+	}
+
+	.thème_sombre .ligne-séparation-avec-énoncé {
+		border-top: 1.5px solid #555555;
+	}
+
+	.énoncé-plein .section-énoncé-texte {
+		max-width: 95%;
+	}
+	
+	.taille-écran {
+		height: 100%;
+	}
+	.section-énoncé-texte {
+		height: 100%;
+	}
+}
+
+/* -------------- Écrans de 0 à 567px (0 à 47.938rem) ----------------------*/
+@media only screen and (max-width: 36rem) {
+	.énoncé-plein .barre-énoncé {
+		height: 100vh;
+	}
+
+	.énoncé-semi .section-énoncé-texte {
+		height: 20vh;
+		max-width: 95%;
+		margin-left: none;
+	}
+}
+/* -------------- Écrans de 567 à 768px (0 à 47.938rem) ----------------------*/
+@media only screen and (min-width: 36rem) and (max-width: 47.938rem) {
+	.énoncé-plein .barre-énoncé {
+		height: 100vh;
+		overflow:auto;
+	}
+
+	.énoncé-semi .section-énoncé-texte {
+		height: 21vh;
+		max-width: 96%;
+		margin-left: none;
+	}
+}
+
+/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
+@media only screen and (min-width: 48rem) {
+	.taille-écran {
+		height: calc(100vh - 56px);
+	}
+
+	.conteneur-question {
+		height: 100%;
+		flex-flow: row;
+	}
+
+	.barre-énoncé {
+		height: 100%;
+		flex-flow: column;
+		border-bottom: none;
+	}
+
+	.énoncé-plein {
+		height: 100%;
+		width: 100%;
+	}
+
+	.énoncé-plein .barre-énoncé {
+		height: 100%;
+		overflow:auto;
+	}
+
+	.énoncé-caché {
+		width: 2.313rem;
+		height: 100%;
+	}
+
+	.énoncé-semi .section-bouton-affichage {
+		width: 4rem !important;
+	}
+
+	.énoncé-plein .section-bouton-affichage {
+		width: 4.5rem !important;
+	}
+}
+
+// Alignement des images selon le texte alternatif
+// img alt="texte alternatif >" // aligne à droite
+// img alt="texte alternatif <" // aligne à gauche
+// img alt="texte alternatif ><" // centre
+
+img[alt$=">"] {
+	float: right;
+}
+
+img[alt$="<"] {
+	float: left;
+}
+
+img[alt$="><"] {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: auto;
+	float: none!important;
 }

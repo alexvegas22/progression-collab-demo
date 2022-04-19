@@ -15,11 +15,11 @@ export const zones = {
 			}
 		}
 
-		let premierTodoPlus = doc.getValue().indexOf("+TODO")
-		let premierTodoMoins = doc.getValue().indexOf("-TODO")
+		let premierTodoPlus = doc.getValue().indexOf("+TODO");
+		let premierTodoMoins = doc.getValue().indexOf("-TODO");
 
 		// Pas de balises, on laisse tout modifiable
-		if (premierTodoPlus == -1 && premierTodoMoins == -1) return
+		if (premierTodoPlus == -1 && premierTodoMoins == -1) return;
 
 		var posDébut = 0;
 		var posFin = 0;
@@ -27,7 +27,7 @@ export const zones = {
 		// S'il n'y a pas de +TODO ou s'il est après le premier -TODO,
 		// la première zone non-éditable commence là
 		if ( premierTodoMoins > 0 && (premierTodoPlus == -1 || premierTodoPlus > premierTodoMoins ) ) {
-			posDébut = premierTodoMoins
+			posDébut = premierTodoMoins;
 		}
 
 		while (posDébut > -1) {
@@ -56,28 +56,28 @@ export const zones = {
 			}
 
 			for (let i = ligneDébut.line; i <= ligneFin.line; i++) {
-				doc.addLineClass(i, "gutter", "gutter-non-editable");			
+				doc.addLineClass(i, "gutter", "gutter-non-editable");
 				doc.addLineClass(i, "background", "ligne-non-editable");
 			}
 
 			posDébut = doc.getValue().indexOf("-TODO", posFin);
 				
-			}
+		}
 	},
 
 	cacherHorsVisible(doc) {
-		let premierVisiblePlus = doc.getValue().indexOf("+VISIBLE")
-		let premierVisibleMoins = doc.getValue().indexOf("-VISIBLE")
+		let premierVisiblePlus = doc.getValue().indexOf("+VISIBLE");
+		let premierVisibleMoins = doc.getValue().indexOf("-VISIBLE");
 
-		if (premierVisiblePlus == -1 && premierVisibleMoins == -1) return
+		if (premierVisiblePlus == -1 && premierVisibleMoins == -1) return;
 		
-		var posDébut = 0
+		var posDébut = 0;
 		var posFin = 0;
 
 		// S'il n'y a pas de +VISIBLE ou s'il est après le premier -VISIBLE,
 		// la première zone non-éditable commence là
 		if ( premierVisibleMoins > 0 && ( premierVisiblePlus == -1 || premierVisiblePlus > premierVisibleMoins ) ) {
-			posDébut = premierVisibleMoins
+			posDébut = premierVisibleMoins;
 		}
 		
 		while (posDébut > -1) {
@@ -86,28 +86,32 @@ export const zones = {
 				posFin = doc.getValue().length;
 			}
 
-			let ligneDébut = doc.posFromIndex(posDébut);
-			let ligneFin = doc.posFromIndex(posFin);
+			let ligneDébut = doc.posFromIndex(posDébut).line;
+			let ligneFin = doc.posFromIndex(posFin).line;
 
 			//Cache toute la section non visible
 			doc.markText(
-				{ line: ligneDébut.line - 1 },
-				{ line: ligneFin.line },
+				{ line: ligneDébut - 1 },
+				{ line: ligneFin },
 				{
 					collapsed: "true",
 					atomic: true,
 					selectRight: false,
-			});
+				});
 
 			//Remplace les lignes non visibles par des lignes vides.
 			//Utile pour éviter que les lignes invisibles n'influencent l'indentation automatique.
-			for(var i=ligneDébut.line; i<=ligneFin.line; i++)
-				if (!doc.getLine(i).match("[+-](TODO|VISIBLE)"))
-					doc.replaceRange("",
-									 { line: i, ch: 0 },
-									 { line: i } );
+			for(var i=ligneDébut; i<=ligneFin; i++){
+				if (!doc.getLine(i).match("VISIBLE")){
+					doc.replaceRange(
+						"",
+						{ line: i, ch: 0 },
+						{ line: i }
+					);
+				}
+			}
 
-			posDébut = doc.getValue().indexOf("-VISIBLE", posFin);
+			posDébut = doc.getValue().indexOf("-VISIBLE", doc.indexFromPos({line:ligneFin, ch: 0}));
 		}
 	},
 };

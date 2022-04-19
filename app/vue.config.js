@@ -1,15 +1,22 @@
 module.exports = {
-    lintOnSave: false,
-    devServer: {
-        compress: true,
-        disableHostCheck: true,
-    },
-    transpileDependencies: [
-        'vue-meta',
-    ],
-    publicPath: "/" + process.env.VUE_APP_SUBDIR,
-	node: {
-		fs: "empty",
-		path: "empty",
-	};	
+	lintOnSave: false,
+	devServer: {
+		compress: true,
+		allowedHosts: "all",
+	},
+	transpileDependencies: [
+		'vue-meta',
+	],
+
+	//Enlever en dev
+	publicPath: "/" + import.meta.env.VITE_SUBDIR,
+
+	configureWebpack: {
+		resolve: {
+			fallback: {
+			"fs": false,
+			"path": false,
+			}
+		}
+	}
 }

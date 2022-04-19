@@ -1,25 +1,122 @@
 {
 	"erreur": {
-		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur",
-		"authentification": "Nom d'utilisateur ou mot de passe incorrect",
-		"inscription": "Ce nom d'utilisateur est déjà utilisé"
+		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
+		"authentification": "Nom d'utilisateur ou mot de passe incorrect.",
+		"inscription": "Ce nom d'utilisateur est déjà utilisé.",
+		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur."
+	},
+
+	"menu": {
+		"connexion": "Connexion",
+		"déconnexion": "Déconnexion"
 	},
 
 	"login": {
-		"courriel": "Nom d'utilisateur : ",
-		"motDePasse": "Mot de passe : ",
+		"courriel": "Nom d'utilisateur",
+		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"champ_obligatoire": "Champ obligatoire",
-		"mdp_oublié": "Mot de passe oublié?"
+		"usernameInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
+		"champObligatoire": "Champ obligatoire",
+		"mdpOublié": "Mot de passe oublié?"
 	},
 
+	"présentation": {
+		"passer": "Passer l'introduction",
+		"suivant": "Suivant",
+		"précédent": "Précédent",
+		"terminer": "Terminer l'introduction",
+		"bienvenue": {
+			"titre": "Bienvenue",
+			"contenu": "Bienvenue à Progression, le gym de la programmation<br>Suivez le guide!"
+		},
+		"énoncé": {
+			"titre": "Énoncé",
+			"contenu": "L'énoncé de l'exercice se trouve dans cette partie."
+		},
+		"titre": {
+			"titre": "Énoncé",
+			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi."
+		},
+		"niveau":{
+			"titre": "Énoncé",
+			"contenu": "Le niveau de difficulté de l'exercice."
+		},
+		"énoncé_détail": {
+			"titre": "Énoncé",
+			"contenu": "La tâche à effectuer est détaillée ici :<ul><li>entrées<li>sorties<li>exemples<li>etc.</ul> Lisez bien!"
+		},
+		"code":{
+			"titre": "Éditeur de code",
+			"contenu": "L'éditeur de code. C'est ici que se passe votre travail!"
+		},
+		"pref_affichage": {
+			"titre": "Éditeur de code",
+			"contenu": "Préférences d'affichage. Êtes-vous plutôt nocture ou plutôt diurne?"
+		},
+		"ébauche":{
+			"titre": "Éditeur de code",
+			"contenu": "Complétez le code proposé ici. Certaines lignes sont occultées, d'autres sont désactivées pour vous permettre de rester concentré sur ce qui est essentiel à votre tâche."
+		},
+		"validation":{
+			"titre": "Validation",
+			"contenu": "Vous croyez avoir complété la tâche? Validez votre réponse en cliquant ici."
+		},
+		"progression":{
+			"titre": "Progression",
+			"contenu": "Votre progression pour cet exercice. Si tout est vert ici, vous avez réussi!"
+		},
+		"rétroaction":{
+			"titre": "Rétroaction",
+			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici."
+		},
+		"jeu_tests":{
+			"titre": "Tests",
+			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi."
+		},
+		"entrées":{
+			"titre": "Tests",
+			"contenu":"Chacun des tests fournit des entrées différentes au programme."
+		},
+		"sorties_attendues":{
+			"titre": "Tests",
+			"contenu": "et s'assure d'avoir reçu des sorties très spécifiques."
+		},
+		"sorties_observées":{
+			"titre": "Tests",
+			"contenu": "Les sorties de votre programme doivent concorder exactement!"
+		},
+		"avancement":{
+			"titre": "Sélectionner une ébauche",
+			"contenu": "Utilisez ce menu pour changer de langage de programmation..."
+		},
+		"ébauche_initiale": {
+			"titre": "Sélectionner une ébauche",
+			"contenu": "revenir à l'ébauche initiale de l'exercice pour ce langage..."
+		},
+		"tentative":{
+			"titre": "Sélectionner une ébauche",
+			"contenu": "ou à une tentative précédente."
+		},
+		"fin":{
+			"titre": "Au travail",
+			"contenu": "Et maintenant, à vous de jouer!"
+		}
+	},
+	
 	"inscription": {
+		"username": "Veuillez choisir un nom d'utilisateur.",
 		"confirmation": "Confirmation",
-		"boutonInscription": "S'inscrire"
+		"boutonInscription": "S'inscrire",
+		"mdpDifférents": "Les deux mots de passe doivent correspondre."
+	},
+
+	"énoncé": {
+		"auteur": "Auteur",
+		"licence": "Licence"
 	},
 	
 	"validation_tentative": {
@@ -30,7 +127,7 @@
 		"jeuTests": "Jeu de tests"
 	},
 
-	"mode_affichage": "Mode d'affichage par différences",
+	"mode_affichage": "Diff",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
@@ -44,9 +141,7 @@
 		"mauvaiseRéponse": "Mauvaise réponse",
 		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
-		"traitementEnCours": "Le serveur de test vérifie votre réponse...",
-		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur.",
-		"soumettre": "Soumettez votre solution pour obtenir une rétroaction"
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
 	},
 
 	"resultat_test": {
@@ -68,5 +163,19 @@
 		"choisirTentative": "Choisir une tentative précédente",
 		"dateTentative": "Tentative du ",
 		"ébauche_initiale": "Revenir à l'ébauche initiale"
+	},
+
+	"onglets_informations": {
+		"entrées/sorties": "Éntrées / Sorties",
+		"erreurs": "Erreurs",
+		"rétroactions": "Rétroaction"
+	},
+
+	"commentaire": {
+		"ajouterCommentaire": "Ajouter un commentaire",
+		"erreurAjoutCommentaire": "*Champs incorrects",
+		"commentaires": "Commentaires",
+		"placeholderCommentaire": "Écrire un commentaire",
+		"ligneCommentaire": "Ligne:" 
 	}
 }

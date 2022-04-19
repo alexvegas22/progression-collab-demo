@@ -1,22 +1,70 @@
 <template>
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="menu_historique" data-bs-toggle="dropdown" aria-expanded="false">
-			{{this.langage}}
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="menu_historique">
-			<li v-for="langage in this.langages" key="langage">
-				<button class="dropdown-item disabled">{{langage}}</button>
-				<ul>
-					<li><button class="dropdown-item" @click="this.reinitialiserCodeEditeur(langage)">{{ $t('avancement.ébauche_initiale') }}</button></li>
-					<li v-for="elem in this.filtrerTentativesParLangage(langage)">
-						<button class="dropdown-item" @click="this.chargerTentative()" :value="elem.liens.self">
-							{{ this.timestampVersDate(elem.date_soumission) }} {{ elem.réussi ? "  &#9989;" : "  &#10060;" }}							
-						</button>
-					</li>
-				</ul>
-			</li>
-		</ul>
+	<div
+		class="d-flex"
+		style="flex-flow: row"
+	>
+		<div class="dropdown">
+			<div
+				id="menu_historique"
+				présentation_étape="4.0"
+				class="dropdown-toggle"
+				type="button"
+				style="display: inline-block"
+				data-bs-toggle="dropdown"
+				aria-expanded="false"
+			>
+				{{ langage }}
+			</div>
+			<ul
+				id="langage-dropdown"
+				class="dropdown-menu"
+				aria-labelledby="langage-dropdown"
+				:class="{ thème_sombre: thèmeSombre }"
+			>
+				<li
+					v-for="langage in langages"
+					:key="langage"
+					class="dropdown-item dropdown-submenu"
+				>
+					<a>{{ langage }}</a>
+					
+					<div
+						class="dropdown-menu langage-submenu"
+						:class="{ thème_sombre: thèmeSombre }"
+					>
+						<perfect-scrollbar>
+							<button
+								présentation_étape="4.1"
+								class="dropdown-item"
+								@click="reinitialiserCodeEditeur(langage)"
+							>
+								{{ $t("avancement.ébauche_initiale") }}
+							</button>
+							<button
+								v-for="elem in filtrerTentativesParLangage(langage)"
+								:key="elem.liens.self"
+								présentation_étape="4.2"
+								class="dropdown-item"
+								:value="elem.liens.self"
+								@click="chargerTentative()"
+							>
+								{{ timestampVersDate(elem.date_soumission) }}
+								{{ elem.réussi ? "  &#9989;" : "  &#10060;" }}
+							</button>
+						</perfect-scrollbar>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div style="margin-left: auto">
+			<i
+				class="fa btn-affichage"
+				:class="{ 'fa-window-restore': pleinÉcran, 'fa-window-maximize': !pleinÉcran }"
+				@click="$emit('basculéPanneauÉditeur')"
+			/>
+		</div>
 	</div>
 </template>
 
 <script src="./avancement.js"></script>
+<style src="./avancement.css"></style>

@@ -8,6 +8,7 @@ stages:
 variables:
   PROGRESSION_DIR: $CI_PROJECT_DIR
   DOCKER_HOST: "tcp://dind:2375"
+  GIT_SUBMODULE_STRATEGY: recursive
 
 # Stage test
 
@@ -19,7 +20,9 @@ test_unitaires:
     command: ["--tls=false"]
     alias: dind
   script:
-    - "true"
+    - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslintrc.js src/**/*.{js,vue}
+  except:
+    - master
 
 # Stage build_image
 
@@ -32,12 +35,11 @@ const_image:
     alias: dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY/progression/progression_frontend:test .
+    - cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
+    - echo TARGET $target
+    - docker build --build-arg NODE_ENV=dev --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
-  only:
-    - dev
-    - master
-
 
 # Stage deploy_image
 
@@ -51,7 +53,7 @@ deploy:
     alias: dind
   script:
     - chmod 400 /builds/progression/progression_frontend.tmp/ID_RSA
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $CD_USER@$CD_HOST -p $CD_PORT $CD_COMMAND test $CI_COMMIT_REF
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $CD_USER@$CD_HOST -p $CD_PORT $CD_COMMAND test $( [ "$CI_COMMIT_REF_NAME" = "master" ] && echo "staging" || echo $CI_COMMIT_REF_NAME )
   only:
     - master
     - dev
