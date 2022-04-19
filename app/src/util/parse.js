@@ -1,7 +1,9 @@
-var hljs = require("highlight.js"); // https://highlightjs.org/
+import hljs from "highlight.js";
+import milt from "markdown-it-link-target";
+import MarkdownIt from "markdown-it";
+import MarkdownItImSize from "markdown-it-imsize";
 
-// Actual default values
-var md = require("markdown-it")({
+var md = new MarkdownIt({
 	highlight: function (str, lang) {
 		if (lang && hljs.getLanguage(lang)) {
 			try {
@@ -19,7 +21,12 @@ var md = require("markdown-it")({
 	},
 	// Évite les attaques XSS qui pourraient être introduites dans des questions malveillantes.
 	html: false,
-}).use(require("markdown-it-imsize"));
+})
+	.use(MarkdownItImSize)
+	.use(milt, {
+		target: "_blank"
+	});
+
 
 
 const parseMD = (data) => {

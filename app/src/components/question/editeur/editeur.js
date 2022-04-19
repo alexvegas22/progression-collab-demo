@@ -109,7 +109,7 @@ export default {
 							this.indicateurSauvegardeEnCours = false;
 							this.sauvegardeAutomatique = null;
 						});
-				}, process.env.VUE_APP_DELAI_SAUVEGARDE);
+				}, import.meta.env.VITE_DELAI_SAUVEGARDE);
 
 				this.indicateurModifié = true;
 			}

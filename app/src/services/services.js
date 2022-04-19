@@ -56,23 +56,26 @@ const getQuestionApi = async (urlQuestion, token) => {
 
 const getAvancementApi = async (urlAvancement, token) => {
 	const data = await getData(urlAvancement + "?include=tentatives,sauvegardes", token);
-	var avancement = construireAvancement(data);
+	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
 };
 
 const postAvancementApi = async (params, token) => {
 	const body = { question_uri: params.question_uri };
 	const data = await postData(params.url + "?include=tentatives,sauvegardes", body, token);
-	var avancement = construireAvancement(data);
+	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
 };
 
-const getTentativeApi = async (urlTentative, token) => {
-	const data = await getData(urlTentative, token);
-	const tentative = data.data.attributes;
-	tentative.liens = data.data.links;
-	tentative.resultats = [];
+const postCommentaireApi = async (params, token) =>{
+	const body = params;
+	const data = await postData(params.url, body, token);
+	return data;
+};
 
+const getTentativeApi = async (urlTentative, token) => {
+	const data = await getData(urlTentative+"?include=commentaires", token);
+	var tentative = construireTentative(data.data, data.included);
 	if (data.erreur) {
 		console.log(data.erreur);
 		return null;
@@ -131,15 +134,15 @@ const postSauvegardeApi = async (params, token) => {
 	return construireSauvegarde(data.data);
 };
 
-function construireAvancement(data) {
-	var avancement = data.data.attributes;
-	avancement.liens = data.data.links;
-	avancement.liens.sauvegardes = data.data.relationships.sauvegardes.links.related;
-	avancement.liens.tentatives = data.data.relationships.tentatives.links.related;
+function construireAvancement(data, included) {
+	var avancement = data.attributes;
+	avancement.liens = data.links;
+	avancement.liens.sauvegardes = data.relationships.sauvegardes.links.related;
+	avancement.liens.tentatives = data.relationships.tentatives.links.related;
 	avancement.tentatives = [];
 	avancement.sauvegardes = {};
-	if (data.included) {
-		data.included.forEach((item) => {
+	if (included) {
+		included.forEach((item) => {
 			if (item.type == "tentative") {
 				avancement.tentatives.unshift(construireTentative(item));
 			} else if (item.type == "sauvegarde") {
@@ -161,11 +164,26 @@ function construireSauvegarde(item) {
 	return sauvegarde;
 }
 
-function construireTentative(item) {
-	var tentative = item.attributes;
-	tentative.liens = item.links;
-	tentative.resultats = [];
+function construireTentative(data, included = null){
+	var tentative;
+	tentative = data.attributes;
+	tentative.liens = data.links;
+	tentative.liens.commentaires = data.relationships.commentaires.links.related;
+	tentative.liens.resultats = data.relationships.resultats.links.related;
 
+	tentative.resultats = [];
+	tentative.commentaires = [];
+	if(included){
+		included.forEach((item) =>{
+			if(item.type == "commentaire"){
+				const commentaire = {
+					...item.attributes,
+					liens: item.links
+				};
+				tentative.commentaires.unshift(commentaire);
+			}
+		});
+	}
 	return tentative;
 }
 
@@ -180,6 +198,7 @@ export {
 	getTokenApi,
 	getUserApi,
 	postAvancementApi,
+	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey,

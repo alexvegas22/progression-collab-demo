@@ -8,6 +8,7 @@ import {
 	getTokenApi,
 	getUserApi,
 	postAvancementApi,
+	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey
@@ -24,7 +25,7 @@ const valider = async function(promesse){
 	return validateur(promesse);
 };
 
-const API_URL = process.env.VUE_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 async function getToken({ commit, state }) {
 	if (tokenEstValide(state.token)) {
@@ -114,7 +115,7 @@ export default {
 	},
 
 	async authentifier({ commit }, params) {
-		const urlAuth = process.env.VUE_APP_API_URL + (params.inscrire ? "/inscription" : "/auth");
+		const urlAuth = import.meta.env.VITE_API_URL + (params.inscrire ? "/inscription" : "/auth");
 		const username = params.username;
 		const password = params.password;
 		const persister = params.persister;
@@ -130,10 +131,10 @@ export default {
 			sessionStorage.setItem("token", token);
 
 			// Obtenir l'utilisateur
-			const user = await getUserApi( process.env.VUE_APP_API_URL + "/user/" + username, token);
+			const user = await getUserApi( import.meta.env.VITE_API_URL + "/user/" + username, token);
 
 			// Obtenir la clé d'authentification
-			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(process.env.VUE_APP_API_AUTH_KEY_TTL))));
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
 			const authKey = await postAuthKey( {url: user.liens.clés, clé: clé}, token );
 
@@ -203,7 +204,6 @@ export default {
 						tentative = ebauches[Object.keys(ebauches)[0]];
 					}
 				}
-
 				commit("setTentative", tentative);
 				commit("updateRetroaction", tentative);
 				return avancement;
@@ -242,6 +242,14 @@ export default {
 			commit("setTentative", tentative);
 			commit("updateRetroaction", tentative);
 			return avancement;
+		}()
+		);
+	},
+
+	async postCommentaire({ commit, state }, params){
+		return valider(async function() {
+			const token = await getToken({ commit, state });
+			return await postCommentaireApi(params, token);
 		}()
 		);
 	},
@@ -406,16 +414,15 @@ export default {
 		commit("setModeAffichage", val);
 	},
 
-	setSélectionnerTestHaut({ commit }, val){
-		commit("setSélectionnerTestHaut", val);
-	},
-	setSélectionnerTestBas({ commit }, val){
-		commit("setSélectionnerTestBas", val);
-	},
 	setChangerModeAffichageAvecRaccourci({ commit }, val){
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
-	setOngletCourant({ commit }, val){
-		commit("setOngletCourant", val);
-	},
+	
+	setIndicateursDeFonctionnalité({ commit }, val){
+		const toggles = [];
+		for( const toggle of val ){
+			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
+		}
+		commit("setIndicateursDeFonctionnalité", toggles);
+	}
 };

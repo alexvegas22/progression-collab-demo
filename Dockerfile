@@ -16,10 +16,15 @@ RUN npm install
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY app/ .
 
+# Copie la version patchée de markdown-it-imsize pour l'intégration avec «vite».
+RUN mkdir -p /app/node_modules/markdown-it-imsize
+COPY markdown-it-imsize/package.json /app/node_modules/markdown-it-imsize/
+COPY markdown-it-imsize/lib /app/node_modules/markdown-it-imsize/lib/
+
 #EXPOSE 8080
 
 # Serveur de développement
-CMD [ "npm", "run", "serve" ]
+CMD [ "npm", "run", "dev"]
 
 #Production  build app for production with minification
 RUN npm run build

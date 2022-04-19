@@ -1,20 +1,20 @@
 module.exports = {
     "env": {
-	"node": true,
-	"es2021": true
+		"node": true,
+		"es2021": true
     },
     "extends": [
-	"eslint:recommended",
-	"plugin:vue/vue3-recommended",
+		"eslint:recommended",
+        "plugin:vue/vue3-essential"
     ],
+	"parser": "vue-eslint-parser",
     "parserOptions": {
-	"parser": "@babel/eslint-parser",
-	"ecmaVersion": "latest",
-	"sourceType": "module"
+		"ecmaVersion": "latest",
+		"sourceType": "module"
     },
     "plugins": [
-	"vue",
-	"smarter-tabs",
+		"vue",
+		"smarter-tabs",
     ],
     "rules": {
 		//JS
