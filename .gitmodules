@@ -1,0 +1,3 @@
+[submodule "markdown-it-imsize"]
+	path = markdown-it-imsize
+	url = https://github.com/plafrance/markdown-it-imsize.git
