@@ -29,7 +29,7 @@ COPY markdown-it-imsize/lib /app/node_modules/markdown-it-imsize/lib/
 CMD [ "npm", "run", "dev"]
 
 #Production  build app for production with minification
-RUN echo MODE: $MODE SUBDIR: $SUBDIR
+RUN cat .env.prod
 RUN npm run build --mode=$MODE --base=$SUBDIR
 
 FROM nginx:stable as production-stage
