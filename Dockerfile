@@ -1,7 +1,7 @@
 FROM node:lts-alpine as build-stage
 ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
 ARG MODE=production
-ARG SUBDIR=\$VITE_SUBDIR
+ARG SUBDIR='$VITE_SUBDIR'
 
 # install simple http server for serving static content
 RUN npm install -g http-server
