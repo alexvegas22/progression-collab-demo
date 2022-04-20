@@ -5,13 +5,13 @@ const messages = chargerMessagesLocalisés();
 function chargerMessagesLocalisés() {
 	const messages = {};
 
-	const locales = import.meta.globEager("../locales/*.json");
+	const locales = import.meta.glob("../locales/*.json", { as: 'raw' });
 
 	for(var key of Object.keys(locales)){
-		const langueTrouvée = key.match(/([A-Za-z0-9-_]+)\./i);
+		const langueTrouvée = key.match(/([a-z]{2}(_[A-Z]{2})?)\./i);
 		if (langueTrouvée && langueTrouvée.length > 1) {
 			const locale = langueTrouvée[1];
-			messages[locale] = locales[key];
+			messages[locale] = JSON.parse(locales[key]);
 		}
 	}
 	return messages;
