@@ -10,7 +10,7 @@ vars=$(env | grep VITE_ | awk -F = '{print "$"$1}')
 vars=$(join_by ' ' $vars)
 echo "Found variables $vars"
 
-for file in /usr/share/nginx/html/assets/*.js;
+for file in /usr/share/nginx/html/assets/*.js /usr/share/nginx/html/index.html;
 do
   echo "Processing $file ...";
 

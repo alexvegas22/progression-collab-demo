@@ -36,9 +36,8 @@ const_image:
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
-    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && subdir="staging" || subdir="dev"
-
-    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --build-arg SUBDIR=$subdir --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && mode="prod" || mode="dev"
+    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
 
 # Stage deploy_image
