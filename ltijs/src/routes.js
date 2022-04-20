@@ -68,7 +68,6 @@ router.post("/lti/grade", async (req, res) => {
 
 		const tokenRessource = await récupérerTokenRessource(token, uri, "avancement");
 
-		// Note
 		const gradeObj = {
 			userId: idToken.user,
 			scoreGiven: score,
@@ -78,8 +77,6 @@ router.post("/lti/grade", async (req, res) => {
 			gradingProgress: "FullyGraded",
 		};
 
-		// Selecting linetItem ID
-		// Attempting to retrieve it from idtoken
 		let lineItemId = idToken.platformContext.endpoint.lineitem;
 
 		if (!lineItemId) {
@@ -88,7 +85,6 @@ router.post("/lti/grade", async (req, res) => {
 			provMainDebug("lineItem: " + idToken.platformContext.endpoint.lineitem);
 			provMainDebug(lineItems);
 			if (lineItems.length === 0) {
-				// Creating line item if there is none
 				provMainDebug("Création d'un item de notation");
 				const newLineItem = {
 					scoreMaximum: 100,
@@ -101,7 +97,6 @@ router.post("/lti/grade", async (req, res) => {
 			} else lineItemId = lineItems[0].id;
 		}
 
-		// Envoie de la note
 		const responseGrade = await lti.Grade.submitScore(idToken, lineItemId, gradeObj);
 		return res.send(responseGrade);
 	} catch (err) {
@@ -166,7 +161,6 @@ const récupérerTokenRessource = async function (token, uri, type_ressource) {
 	const reponse = await axios.post(requête, {idRessource: id_ressource, typeRessource: type_ressource}, config);
 	return reponse.data;
 };
-
 
 router.get("*", (req, res) => {
 	return res.sendFile(path.join(__dirname, "../public/404.html"));
