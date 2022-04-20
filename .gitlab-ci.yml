@@ -35,10 +35,11 @@ const_image:
     alias: dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
+    #- cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
-    - echo TARGET $target
-    - docker build --build-arg NODE_ENV=dev --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && mode="prod" || mode="dev"
+
+    - docker build --build-arg NODE_ENV=$mode --build-arg mode=$mode --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
 
 # Stage deploy_image
