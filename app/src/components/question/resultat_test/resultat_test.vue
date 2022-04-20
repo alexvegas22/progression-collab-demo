@@ -10,6 +10,13 @@
 					class="d-flex"
 					style="flex-flow: row; flex: 1 1 0; height: 50%"
 				>
+					<Ampoule
+						v-if="resultat && !resultat.sortie_erreur"
+						class="rétroaction-test"
+						
+						:feedback="feedback"
+						:panneau-affiché="panneauAffiché"
+					/>
 					<FenêtreInfo présentation_étape="3.1">
 						<template #titre>
 							{{ $t('resultat_test.entrée') }}

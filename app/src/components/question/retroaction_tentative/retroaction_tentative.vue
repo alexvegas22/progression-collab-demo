@@ -1,5 +1,10 @@
 <template>
 	<div>
+		<Teleport to="body">
+			<Ampoule class="rétroaction-générale" />
+		</Teleport>
+	</div>
+	<div>
 		<div
 			class="progress"
 			présentation_étape="2.0"
