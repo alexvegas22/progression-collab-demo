@@ -38,8 +38,9 @@ const_image:
     #- cp $PROGRESSION_DIR/app/.env.prod $PROGRESSION_DIR/app/.env
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && mode="prod" || mode="dev"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && subdir="staging" || subdir="dev"
 
-    - docker build --build-arg NODE_ENV=$mode --build-arg mode=$mode --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
+    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --build-arg SUBDIR=$subdir --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
 
 # Stage deploy_image

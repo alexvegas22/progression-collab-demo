@@ -1,5 +1,7 @@
 FROM node:lts-alpine as build-stage
 ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
+ARG MODE=production
+ARG SUBDIR=./
 
 # install simple http server for serving static content
 RUN npm install -g http-server
@@ -27,7 +29,7 @@ COPY markdown-it-imsize/lib /app/node_modules/markdown-it-imsize/lib/
 CMD [ "npm", "run", "dev"]
 
 #Production  build app for production with minification
-RUN npm run build
+RUN npm run build --mode=$MODE --base=$SUBDIR
 
 FROM nginx:stable as production-stage
 ENV NODE_ENV=$NODE_ENV
