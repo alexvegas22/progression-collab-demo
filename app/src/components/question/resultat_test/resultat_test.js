@@ -1,4 +1,3 @@
-import parseMD from "@/util/parse";
 import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
@@ -74,7 +73,7 @@ export default {
 				);
 				this.sortie_observée = résultats.résultat_observé;
 				this.sortie_attendue = résultats.résultat_attendu;
-				this.feedback = parseMD(this.resultat.feedback);
+				this.feedback = this.resultat.feedback;
 			}
 		},
 	},

@@ -7,6 +7,10 @@
 	pointer-events: auto;
 }
 
+.feedback {
+	color: #5f9ea0;
+}
+
 .svg_ampoule {
 	fill: #a3a3a3;
 	width: 2.5rem;
@@ -33,12 +37,10 @@
 
 .espace-ampoule {
 	position: absolute;
-	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: right;
 	pointer-events: none;
-	padding-top: 3.75rem;
 	align-items: flex-start;
 }
 
@@ -62,24 +64,6 @@
 		width: 2rem;
 		height: 2rem;
 	}
-
-	.espace-ampoule {
-		padding-right: 1.7rem;
-	}
-
-	.ampoule_test {
-		width: 1.6rem;
-		height: 1.6rem;
-	}
-
-	.ampoule_test_mini {
-		width: 0.91rem;
-		height: 0.91rem;
-	}
-
-	.ampoule_test:hover {
-		transform: scale(1.03); 
-	}
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
@@ -88,19 +72,6 @@
 		width: 2.15rem;
 		height: 2.15rem;
 	}
-
-	.espace-ampoule {
-		padding-right: 1.7rem;
-	}
-
-	.ampoule_test_mini {
-		width: 0.93rem;
-		height: 0.93rem;
-	}
-
-	.ampoule_test:hover {
-		transform: scale(1.04); 
-	}	
 }
 
 /* ------------- 48rem - 62rem (768px - 992px) ---------------- */
@@ -108,15 +79,6 @@
 	.svg_ampoule {
 		width: 2.25rem;
 		height: 2.25rem;
-	}
-
-	.espace-ampoule {
-		padding-right: 1.7rem;
-	}
-
-	.ampoule_test_mini {
-		width: 0.93rem;
-		height: 0.93rem;
 	}
 }
 
@@ -126,15 +88,6 @@
 		width: 2.4rem;
 		height: 2.4rem;
 	}
-
-	.espace-ampoule {
-		padding-right: 2rem;
-	}
-
-	.ampoule_test_mini {
-		width: 0.95rem;
-		height: 0.95rem;
-	}
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
@@ -143,16 +96,6 @@
 		width: 2.5rem;
 		height: 2.5rem;
 	}
-
-	.espace-ampoule {
-		padding-right: 2rem;
-	}
-
-	.ampoule_test_mini {
-		width: 0.98rem;
-		height: 0.98rem;
-	}
-
 	.taille_police {
 		font-size: 0.75rem;
 	}
