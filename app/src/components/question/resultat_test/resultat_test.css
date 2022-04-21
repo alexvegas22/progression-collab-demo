@@ -69,11 +69,7 @@ pre {
 }
 
 .rétroaction-test {
-	width: 1rem;
-	height: 1rem;
-	position: relative;
-	top: 1rem;
-	left: 95%;
+	right: 1rem;
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/

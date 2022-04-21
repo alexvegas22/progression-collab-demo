@@ -1,7 +1,3 @@
-.feedback {
-	color: #5f9ea0;
-}
-
 .test_réussi {
 	background-color: #80cc8e;
 }
@@ -18,5 +14,5 @@
 .rétroaction-générale {
 	position: absolute;
 	top: 3rem;
-	right: 3rem;
+	right: 1rem;
 }
