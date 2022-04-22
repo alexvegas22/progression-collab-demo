@@ -1,20 +1,17 @@
-import parseMD from "@/util/parse";
 import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
+import Ampoule from "@/components/question/ampoule/ampoule.vue";
 
 export default {
 	name: "RetroactionTentative",
+	components: {
+		Ampoule,
+	},
 	computed: {
 		tentative() {
 			return this.$store.state.tentative;
 		},
 		retroactionTentative() {
-			let tentative = this.$store.state.retroactionTentative;
-
-			return tentative ? new Proxy(tentative, {
-				get: function (obj, prop) {
-					return prop == "feedback" ? parseMD(obj[prop]) : obj[prop];
-				},
-			}) : null;
+			return this.$store.state.retroactionTentative;
 		},
 		testsRéussisPct() {
 			if (!this.$store.state.retroactionTentative) return null;

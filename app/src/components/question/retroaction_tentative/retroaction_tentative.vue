@@ -1,5 +1,12 @@
 <template>
 	<div>
+		<Ampoule
+			v-if="retroactionTentative?.feedback"
+			class="rétroaction-générale"
+			:feedback="retroactionTentative?.feedback"
+		/>
+	</div>
+	<div>
 		<div
 			class="progress"
 			présentation_étape="2.0"

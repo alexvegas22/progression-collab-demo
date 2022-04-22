@@ -68,8 +68,8 @@ h3 {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
 	background-color: rgb(13, 202, 240);
 	position: relative;
-	width: fit-content;
-	height: fit-content;
+	width: max-content;
+	height: max-content;
 	white-space: normal;
 	max-width: 25%;
 	word-wrap: break-word;

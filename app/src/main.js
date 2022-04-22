@@ -11,6 +11,7 @@ import { createMetaManager, plugin as metaPlugin } from "vue-meta";
 import FenêtreInfo from "@/components/layouts/fenetre_info.vue";
 import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
+import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
 import Vue3Tour from "vue3-tour";
 import "vue3-tour/dist/vue3-tour.css";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
@@ -23,7 +24,7 @@ const app = createApp(App)
 	.use(store)
 	.use(i18n)
 	.use(VueTippy, {
-		component: "tippy",
+		component: "Tippy",
 		defaultProps: { placement: "bottom" },
 	})
 	.use(Tabs)

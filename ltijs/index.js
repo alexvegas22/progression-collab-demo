@@ -8,8 +8,6 @@ const routes = require("./src/routes");
 const services = require("./src/services.js");
 const consolidate = require("consolidate");
 
-mongoose.set("useCreateIndex", true);
-
 const userSchema = new mongoose.Schema({
 	userId: String, // Id de la plateforme
 	username: String, // username Progression
@@ -89,7 +87,6 @@ lti.onConnect(async (idToken, req, res) => {
 	}
 });
 
-	
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
 		.replace(/\//g, "_")
@@ -106,14 +103,14 @@ const setup = async () => {
 
 	await lti.deploy({ port: process.env.PORT });
 
-	await lti.registerPlatform({
-		url: "https://moodle.exemple.com",
-		name: "Nom d'instance Moodle",
-		clientId: "id_client",
-		authenticationEndpoint: "https://moodle.exemple.com/mod/lti/auth.php",
-		accesstokenEndpoint: "https://moodle.exemple.com/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "https://moodle.exemple.com/mod/lti/certs.php" },
-	});
+            await lti.registerPlatform({
+                url: "https://moodle.progression.dti.crosemont.quebec",
+                name: "Moodle test",
+                clientId: "VN6pIq55GhWZlwQ",
+                authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
+                accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
+                authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php" },
+        });
 };
 
 setup();

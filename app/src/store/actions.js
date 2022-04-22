@@ -279,7 +279,6 @@ export default {
 
 				commit("updateRetroaction", retroactionTentative);
 				commit("updateEnvoieTentativeEnCours", false);
-
 				state.avancement.tentatives.unshift(retroactionTentative);
 				if (state.avancement.état != 2) {
 					state.avancement.état = retroactionTentative.réussi ? 2 : 1;
@@ -305,7 +304,6 @@ export default {
 					throw(e);
 				}
 			}
-			
 		}()
 		);
 	},
@@ -411,15 +409,27 @@ export default {
 		commit("setThèmeSombre", val);
 	},
 
-	setModeAffichage({ commit }, val){
+	setModeAffichage({ commit }, val) {
 		commit("setModeAffichage", val);
 	},
 
-	setChangerModeAffichageAvecRaccourci({ commit }, val){
+	setSélectionnerTestHaut({ commit }, val) {
+		commit("setSélectionnerTestHaut", val);
+	},
+
+	setSélectionnerTestBas({ commit }, val) {
+		commit("setSélectionnerTestBas", val);
+	},
+
+	setChangerModeAffichageAvecRaccourci({ commit }, val) {
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
-	
-	setIndicateursDeFonctionnalité({ commit }, val){
+
+	setOngletCourant({ commit }, val) {
+		commit("setOngletCourant", val);
+	},
+
+	setIndicateursDeFonctionnalité({ commit }, val) {
 		const toggles = [];
 		for( const toggle of val ){
 			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
