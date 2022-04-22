@@ -87,19 +87,19 @@ export const mutations = {
 	setModeAffichage(state, val) {
 		state.mode_affichage = val;
 	},
-	setSélectionnerTestHaut(state,val){
+	setSélectionnerTestHaut(state, val){
 		state.sélectionnerTestHaut = val;
 	},
-	setSélectionnerTestBas(state,val){
+	setSélectionnerTestBas(state, val){
 		state.sélectionnerTestBas = val;
 	},
-	setChangerModeAffichageAvecRaccourci(state,val){
+	setChangerModeAffichageAvecRaccourci(state, val){
 		state.changerModeAffichageAvecRaccourci = val;
 	},
-	setOngletCourant(state,val){
+	setOngletCourant(state, val){
 		state.ongletCourant = val;
 	},
-	setIndicateursDeFonctionnalité(state,val){
+	setIndicateursDeFonctionnalité(state, val){
 		state.indicateursDeFonctionnalité = val;
 	}
 };

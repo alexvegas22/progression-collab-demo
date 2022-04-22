@@ -9,7 +9,7 @@ module.exports = {
 	],
 
 	//Enlever en dev
-	publicPath: "/" + process.env.VUE_APP_SUBDIR,
+	publicPath: "/" + import.meta.env.VITE_SUBDIR,
 
 	configureWebpack: {
 		resolve: {

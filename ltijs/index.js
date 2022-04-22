@@ -86,7 +86,6 @@ lti.onConnect(async (idToken, req, res) => {
 	}
 });
 
-	
 const btoa_url = (s) =>
 	btoa(unescape(encodeURIComponent(s)))
 		.replace(/\//g, "_")

@@ -29,7 +29,7 @@ const pages_sans_connexion = [ "Home", "LoginView" ];
 
 const router = createRouter({
 	history: createWebHistory(
-		"/" + process.env.VUE_APP_SUBDIR
+		"/" + import.meta.env.VITE_SUBDIR
 	),
 	routes,
 });
@@ -72,7 +72,7 @@ router.beforeEach( (to, from, next ) => {
 	}
 
 	//Charge l'utilisateur et contitnue
-	store.dispatch("getUser", process.env.VUE_APP_API_URL + "/user/" + username)
+	store.dispatch("getUser", import.meta.env.VITE_API_URL + "/user/" + username)
 		.then( () => next() )
 		.catch( () => {
 			sessionStorage.removeItem("username");

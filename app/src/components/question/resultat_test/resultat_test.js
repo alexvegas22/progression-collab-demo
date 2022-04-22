@@ -1,10 +1,10 @@
-import parseMD from "@/util/parse";
 import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
-const diff = require("diff");
-const he = require("he");
+import Ampoule from "@/components/question/ampoule/ampoule.vue";
+import { diffChars } from "diff";
+import he from "he";
 
 const différence = function (orig = "", modif = "", mode_affichage) {
-	const différences = diff.diffChars(orig, modif);
+	const différences = diffChars(orig, modif);
 
 	var résultat_ins = "";
 	var résultat_del = "";
@@ -35,7 +35,7 @@ const différence = function (orig = "", modif = "", mode_affichage) {
 };
 
 export default {
-	components: { SélecteurModeAffichage },
+	components: { SélecteurModeAffichage, Ampoule},
 	name: "ResultatTest",
 	data() {
 		return {
@@ -48,6 +48,7 @@ export default {
 	props: {
 		test: null,
 		resultat: null,
+		panneauAffiché: null
 	},
 	computed: {
 		mode_affichage() {
@@ -72,7 +73,7 @@ export default {
 				);
 				this.sortie_observée = résultats.résultat_observé;
 				this.sortie_attendue = résultats.résultat_attendu;
-				this.feedback = parseMD(this.resultat.feedback);
+				this.feedback = this.resultat.feedback;
 			}
 		},
 	},

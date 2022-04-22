@@ -6,10 +6,9 @@ import Présentation from "@/components/question/présentation/présentation.vue
 import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
-import Ampoule from "@/components/question/ampoule/ampoule.vue";
 
 
-const API_URL = process.env.VUE_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default {
 	name: "Question",
@@ -35,7 +34,6 @@ export default {
 		Présentation,
 		BoutonCommentaire,
 		PanneauCommentaire,
-		Ampoule
 	},
 	computed: {
 		user() {

@@ -11,28 +11,30 @@ import { createMetaManager, plugin as metaPlugin } from "vue-meta";
 import FenêtreInfo from "@/components/layouts/fenetre_info.vue";
 import { plugin as VueTippy } from "vue-tippy";
 import "tippy.js/dist/tippy.css"; // optional for styling
+import { roundArrow } from "tippy.js"; // eslint-disable-line no-unused-vars
 import Vue3Tour from "vue3-tour";
 import "vue3-tour/dist/vue3-tour.css";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 import { UnleashClient } from "unleash-proxy-client";
+import shortkey from "vue3-shortkey";
 
 const app = createApp(App)
 	.use(router)
 	.use(store)
 	.use(i18n)
 	.use(VueTippy, {
-		component: "tippy",
+		component: "Tippy",
 		defaultProps: { placement: "bottom" },
 	})
 	.use(Tabs)
 	.use(createMetaManager())
 	.use(metaPlugin)
 	.use(Vue3Tour)
-	.use(PerfectScrollbar);
+	.use(PerfectScrollbar)
+	.use(shortkey);
 
 app.component("FenêtreInfo", FenêtreInfo);
-app.use(require("vue3-shortkey"));
 
 	
 const authentificationErreurHandler = function() {
@@ -69,11 +71,10 @@ const valider = async (promesse) => {
 
 actions.setValidateur( valider );
 
-
 const unleash = new UnleashClient({
-	url: process.env.VUE_APP_FF_URL,
-	clientKey: process.env.VUE_APP_FF_SECRET,
-	appName: process.env.NODE_ENV,
+	url: import.meta.env.VITE_FF_URL,
+	clientKey: import.meta.env.VITE_FF_SECRET,
+	appName: import.meta.env.MODE,
 });
 
 unleash.on("ready", () => {
