@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
 	authKey_nom: String, // Clé d'authentification Progression
 	authKey_secret: String,
 });
+
 userSchema.index({ userId: 1 }, { unique: true });
 
 try {
