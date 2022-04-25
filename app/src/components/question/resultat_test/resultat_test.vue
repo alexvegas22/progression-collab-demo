@@ -11,7 +11,7 @@
 					style="flex-flow: row; flex: 1 1 0; height: 50%"
 				>
 					<Ampoule
-						v-if="resultat && !resultat.sortie_erreur"
+						v-if="resultat && !resultat.sortie_erreur && feedback"
 						class="rétroaction-test"
 						:feedback="feedback"
 					/>
