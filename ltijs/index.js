@@ -72,9 +72,8 @@ lti.onConnect(async (idToken, req, res) => {
 		const scores = await services.récupérerScores( resLocalsToken );
 
 		for(const id in membres){
-			membres["score"] = scores[membres[id].user_id];
+			membres[id]["score"] = scores[membres[id].user_id];
 		}
-
 		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
 		res.status(200);
 	}
