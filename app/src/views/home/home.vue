@@ -461,8 +461,8 @@
 						<div class="timeline-image">
 							<img
 								class="rounded-circle img-fluid"
-									   src="./assets/img/4.jpg"
-									   alt="Projet Progression"
+								src="./assets/img/4.jpg"
+								alt="Projet Progression"
 							>
 						</div>
 						<div class="timeline-panel">
