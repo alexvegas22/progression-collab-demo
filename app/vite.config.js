@@ -14,7 +14,7 @@ export default defineConfig({
 	server: {
 		host: true,
 		hmr:  {
-			clientPort: 8034
+			clientPort: 8033
 		}
 	},
 	envDir: ".",
