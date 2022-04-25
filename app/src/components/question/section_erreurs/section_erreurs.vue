@@ -14,8 +14,7 @@
 			<Ampoule 
 				v-if="resultat.sortie_erreur && resultat.feedback"
 				:feedback="resultat.feedback"
-				:panneau-affiché="panneauAffiché"
-				class="ampoule"
+				:estVisible="panneauAffiché"
 			/>
 			
 			<perfect-scrollbar class="margin-perfect-scrollbar">

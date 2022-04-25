@@ -4,6 +4,7 @@ export default {
 	name: "Ampoule",
 	props: {
 		feedback: String,
+		estVisible: Boolean
 	},
 	data() {
 		return {

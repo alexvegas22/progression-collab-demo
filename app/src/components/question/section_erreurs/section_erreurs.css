@@ -17,10 +17,6 @@
 	padding-bottom: 2.5rem;
 }
 
-.ampoule {
-	right: 1rem;
-}
-
 /* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
 @media only screen and (min-width: 48rem) {
 	.section-erreur pre {

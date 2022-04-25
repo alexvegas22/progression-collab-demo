@@ -4,6 +4,7 @@
 			v-if="retroactionTentative?.feedback"
 			class="rétroaction-générale"
 			:feedback="retroactionTentative?.feedback"
+			:estVisible="true"
 		/>
 	</div>
 	<div>
@@ -30,4 +31,4 @@
 </template>
 
 <script src="./retroaction_tentative.js"></script>
-<style src="./retroaction_tentative.css"></style>
+<style scoped src="./retroaction_tentative.css"></style>

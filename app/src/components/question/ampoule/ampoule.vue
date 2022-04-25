@@ -1,5 +1,5 @@
 <template>
-	<div class="espace-ampoule">
+	<div class="espace-ampoule" v-show="estVisible">
 		<Tippy
 			trigger='click'
 			interactive
