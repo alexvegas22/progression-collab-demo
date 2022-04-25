@@ -1,8 +1,10 @@
 <template>
 	<div>
-		<Teleport to="body">
-			<Ampoule class="rétroaction-générale" />
-		</Teleport>
+		<Ampoule
+			v-if="retroactionTentative?.feedback"
+			class="rétroaction-générale"
+			:feedback="retroactionTentative?.feedback"
+		/>
 	</div>
 	<div>
 		<div

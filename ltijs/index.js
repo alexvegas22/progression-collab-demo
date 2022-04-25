@@ -8,8 +8,6 @@ const routes = require("./src/routes");
 const services = require("./src/services.js");
 const consolidate = require("consolidate");
 
-mongoose.set("useCreateIndex", true);
-
 const userSchema = new mongoose.Schema({
 	userId: String, // Id de la plateforme
 	username: String, // username Progression

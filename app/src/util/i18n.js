@@ -5,7 +5,7 @@ const messages = chargerMessagesLocalisés();
 function chargerMessagesLocalisés() {
 	const messages = {};
 
-	const locales = import.meta.glob("../locales/*.json", { as: 'raw' });
+	const locales = import.meta.glob("../locales/*.json", { as: "raw" });
 
 	for(var key of Object.keys(locales)){
 		const langueTrouvée = key.match(/([a-z]{2}(_[A-Z]{2})?)\./i);
