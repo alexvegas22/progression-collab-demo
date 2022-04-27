@@ -415,7 +415,69 @@
 					</h2>
 				</div>
 				
-				à venir
+				<ul class="timeline">
+										
+					<li class="timeline">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/4.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Projet Progression</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">
+									<a href="https://gitlab.com/projet-progression">projet-progression sur Gitlab</a>
+								</p>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline-inverted">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/5.jpg"
+								alt="Contenu"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Développement d'exercices</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">
+									<a href="https://gitlab.com/projet-progression/contenu">contenu sur Gitlab</a>
+								</p>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/4.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Documentation</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">
+									<a href="https://progression.pages.dti.crosemont.quebec/documentation">Documentation</a>
+								</p>
+							</div>
+						</div>
+					</li>
+
+				</ul>
 			</div>
 		</section>
 		<!-- Footer-->
@@ -423,7 +485,7 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-4 text-lg-start">
-						Copyright &copy; Progression 2021
+						Copyright &copy; Progression 2021-2022
 					</div>
 					<div class="col-lg-4 text-lg-end" />
 				</div>

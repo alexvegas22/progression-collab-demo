@@ -68,6 +68,11 @@ pre {
 	margin-top: -2px;
 }
 
+.rétroaction-test {
+	position: fixed;
+	right: 1rem;
+}
+
 /* ------------------------------ Media Queries ---------------------------------*/
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {
