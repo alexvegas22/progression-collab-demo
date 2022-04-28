@@ -1,5 +1,6 @@
 FROM node:lts-alpine as build-stage
 ARG NODE_ENV=prod #défaut, surdéfinir avec --build-arg
+ARG MODE=production
 
 # install simple http server for serving static content
 RUN npm install -g http-server
@@ -16,13 +17,18 @@ RUN npm install
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY app/ .
 
+# Copie la version patchée de markdown-it-imsize pour l'intégration avec «vite».
+RUN mkdir -p /app/node_modules/markdown-it-imsize
+COPY markdown-it-imsize/package.json /app/node_modules/markdown-it-imsize/
+COPY markdown-it-imsize/lib /app/node_modules/markdown-it-imsize/lib/
+
 #EXPOSE 8080
 
 # Serveur de développement
-CMD [ "npm", "run", "serve" ]
+CMD [ "npm", "run", "dev"]
 
 #Production  build app for production with minification
-RUN npm run build
+RUN npm run build -- --mode=$MODE
 
 FROM nginx:stable as production-stage
 ENV NODE_ENV=$NODE_ENV

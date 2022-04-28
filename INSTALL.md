@@ -17,7 +17,7 @@ La suite des opérations devra se faire à partir d'un interpréteur de commande
 
 - Cloner le projet
 ```
-git clone https://git.dti.crosemont.quebec/progression/progression_frontend.git
+git clone --recurse-submodules https://git.dti.crosemont.quebec/progression/progression_frontend.git
 ```
 
 - Ouvrir le repertoire `progression_frontend`
@@ -37,7 +37,7 @@ $EDITOR app/.env.local
 ```
 - Ajouter les variables d'environnement suivantes *(contacter admin pour les valeurs réelles)*
 ```
-VUE_APP_API_URL=http://com.exemple/api/v1
+VITE_API_URL=http://com.exemple/api/v1
 ```
 
 ## 3. Exécution du programme

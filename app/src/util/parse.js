@@ -1,12 +1,14 @@
-var hljs = require("highlight.js"); // https://highlightjs.org/
+import hljs from "highlight.js";
+import milt from "markdown-it-link-target";
+import MarkdownIt from "markdown-it";
+import MarkdownItImSize from "markdown-it-imsize";
 
-// Actual default values
-var md = require("markdown-it")({
+var md = new MarkdownIt({
 	highlight: function (str, lang) {
 		if (lang && hljs.getLanguage(lang)) {
 			try {
 				return (
-					'<pre class="hljs"><code>' +
+					"<pre class=\"hljs\"><code>" +
 					hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
 					"</code></pre>"
 				);
@@ -15,11 +17,17 @@ var md = require("markdown-it")({
 			}
 		}
 
-		return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>";
+		return "<pre class=\"hljs\"><code>"  + md.utils.escapeHtml(str) + "</code></pre>";
 	},
 	// Évite les attaques XSS qui pourraient être introduites dans des questions malveillantes.
 	html: false,
-});
+})
+	.use(MarkdownItImSize)
+	.use(milt, {
+		target: "_blank"
+	});
+
+
 
 const parseMD = (data) => {
 	if (!data) {
