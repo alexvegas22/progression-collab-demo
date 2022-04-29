@@ -88,8 +88,13 @@ export default {
 			}
 		},
 	},
-	mounted() {
-		if(this.uri && this.user) this.récupérerQuestion();
+	beforeCreate() {
+		this.$store.dispatch("setUri", null);
+		this.$store.dispatch("setQuestion", null);
+		this.$store.dispatch("setAvancement", null);
+	},
+	mounted(){
+		this.traiterParamètresURL( window.location.search );
 	},
 	provide() {
 		return {
@@ -101,6 +106,22 @@ export default {
 		};
 	},
 	methods: {
+		traiterParamètresURL( paramètres ){
+			var urlParams = new URLSearchParams(paramètres);
+
+			if(urlParams.has("uri")){
+				this.$store.dispatch("setUri", urlParams.get("uri"));
+			}
+
+			if(urlParams.has("lang")){
+				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));
+			}
+
+			if(urlParams.has("demo")){
+				this.$store.dispatch("setDémo", true);
+			}
+
+		},
 		récupérerAvancement() {
 			const id_avancement = this.user.username + "/" + this.uri;
 			

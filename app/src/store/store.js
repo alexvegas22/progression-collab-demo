@@ -26,7 +26,9 @@ export default createStore({
 		sauvegardes: [],
 		erreurs: null,
 		configServeur: null,
+		difficultésRéussies: [],
 		thèmeSombre: false,
+		nbRéussitesParLangage: [],
 		changerModeAffichageAvecRaccourci: false,
 		indicateursDeFonctionnalité: []
 	},
