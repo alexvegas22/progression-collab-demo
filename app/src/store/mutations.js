@@ -81,9 +81,16 @@ export const mutations = {
 	setSauvegardes(state, sauvegardes) {
 		state.sauvegardes = sauvegardes;
 	},
+	setDifficultésRéussies(state, difficultésRéussies) {
+		state.difficultésRéussies = difficultésRéussies;
+	},
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
+	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
+		state.nbRéussitesParLangage = nbRéussitesParLangage;
+	},
+
 	setModeAffichage(state, val) {
 		state.mode_affichage = val;
 	},
@@ -95,9 +102,6 @@ export const mutations = {
 	},
 	setChangerModeAffichageAvecRaccourci(state, val){
 		state.changerModeAffichageAvecRaccourci = val;
-	},
-	setOngletCourant(state, val){
-		state.ongletCourant = val;
 	},
 	setIndicateursDeFonctionnalité(state, val){
 		state.indicateursDeFonctionnalité = val;

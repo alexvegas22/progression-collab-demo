@@ -5,3 +5,4 @@
 </template>
 
 <script src="./login.js" />
+<style src="../../css/mainMenu.css"></style>
