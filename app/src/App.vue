@@ -16,51 +16,70 @@
 			>
 				<span class="text-info"> Prog</span>ression
 			</a>
-			<div>
-				<div
-					v-show="!page_login"
-					class="topnav-left"
-				>
-					<button
-						v-if="token"
+			<Transition>
+				<div v-if="token" class="dropdown">
+					<i 
+						class="fa fa-bars barBtn" 
 						type="button"
-						class="btn btn-outline-secondary"
-						@click="déconnexion"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					/>
+				
+					<ul
+						class="dropdown-menu"
+						aria-labelledby="historique"
 					>
-						{{ $t('menu.déconnexion') }}
-					</button>
+						<li
+							v-if="token && indicateursDeFonctionnalitéAccomplissements"
+							class="btnDMM"
+						>
+							<i class="fas fa-trophy focus icône-trophée"></i>
+							<button
+								test_id="btnAvancement"
+								type="button"
+								class="btn focus"
+								@click="allerVers('Accomplissements')"
+							>{{ $t('menu.accomplissement') }}</button>
+						</li>
+						<li
+							class="btnDMM"
+							@click="basculerThèmeSombreAvecRaccourci"
+						>
+							<a class="focus padding">
+								<i class="fas fa-adjust margin-liens icône-thème"></i>
+							
+								<label>
+									<span v-if="this.thèmeSombre===true">{{$t("menu.thèmeClair")}}</span>
+									<span v-else>{{$t("menu.thèmeSombre")}}</span>
+									<input 
+										v-model="thèmeSombre"
+										type="checkbox"
+										style="opacity:0;"
+										class="input-thème"
+										@click="basculerThèmeSombreAvecRaccourci"
+									>
+								</label>
+							</a>
+						</li>
+						<li class="btnDMM">
+							<a>
+								<button
+									v-if="token"
+									class="btn focus"
+									@click="déconnexion"
+								><span class="fa fa-sign-out icône-déconnexion"></span>{{ $t('menu.déconnexion') }}</button>
+							</a>
+						</li>
+					</ul>
+				
+				</div>
+				<div v-else>
 					<button
-						v-else
-						type="button"
-						class="btn btn-outline-secondary"
+						class="btn focus btn-connexion"
 						@click="connexion"
-					>
-						{{ $t('menu.connexion') }}
-					</button>
+					><span class="fa fa-sign-out icône-connexion"></span>{{ $t('menu.connexion') }}</button>
 				</div>
-				<div
-					class="topnav-right"
-					présentation_étape="1.0"
-				>
-					<label>
-						<input
-							v-model="thèmeSombre"
-							type="checkbox"
-							style="opacity:0;"
-						>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							fill="white"
-							class="bi bi-circle-half navBtn"
-							viewBox="0 0 16 16"
-						>
-							<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-						</svg>
-					</label>
-				</div>
-			</div>
+			</Transition>
 		</nav>
 		<div>
 			<div
@@ -125,19 +144,16 @@ export default {
 		},
 		setThèmeSombreBasculéAvecRaccourci() {
 			return this.$store.state.thèmeSombreBasculéAvecRaccourci;
-		}
+		},
+		indicateursDeFonctionnalitéAccomplissements(){
+			return this.$store.state.indicateursDeFonctionnalité["accomplissements"];
+		},
 	},
 	watch: {
 		thèmeSombre() {
 			localStorage.setItem("estThèmeSombre", this.thèmeSombre);
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
-		setThèmeSombreBasculéAvecRaccourci() {
-			if(this.$store.state.thèmeSombreBasculéAvecRaccourci === true) {
-				this.basculerThèmeSombreAvecRaccourci();
-				this.$store.dispatch("setThèmeSombreBasculéAvecRaccourci", false);
-			}
-		}
 	},
 	created() {
 		this.$store.dispatch("getConfigServeur", API_URL + "/config" );
@@ -147,19 +163,6 @@ export default {
 	methods: {
 		traiterParamètresURL( paramètres ){
 			var urlParams = new URLSearchParams(paramètres);
-
-			if(urlParams.has("uri")){
-				this.$store.dispatch("setUri", urlParams.get("uri"));
-			}
-
-			if(urlParams.has("lang")){
-				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));
-			}
-
-			if(urlParams.has("demo")){
-				this.$store.dispatch("setDémo", true);
-			}
-
 			if(urlParams.has("tkres")){
 				this.$store.dispatch("setTokenRessources", urlParams.get("tkres"));
 			}
@@ -191,12 +194,19 @@ export default {
 			localStorage.removeItem("authKey_secret");
 			sessionStorage.removeItem("token");
 			this.$store.dispatch("deleteToken");
-			this.$router.push({name: "Home"});
+			this.allerVers("Home");
 		},
 		basculerThèmeSombreAvecRaccourci() {
 			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
 		},
+		allerVers( vue ){
+			this.$router.push({
+				name: vue,
+			});
+		}
 	}
 };
 </script>
+
+<style src="./css/mainMenu.css"></style>
 <style src="./theme-sombre.css"></style>

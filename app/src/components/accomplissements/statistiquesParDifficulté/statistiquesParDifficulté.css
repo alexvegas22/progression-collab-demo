@@ -1,0 +1,78 @@
+.centrer {
+	margin: auto;
+}
+
+h1 {
+	margin-bottom: 4rem;
+	text-align: center;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+	text-shadow: 1px 2px 1px rgb(0, 0, 0, 0.5);
+	font-size: 2.1rem;
+}
+
+.thème_sombre h1 {
+	text-shadow: 1px 2px 3px rgb(0, 0, 0, 0.5);
+}
+
+/*----------------- Média Queries ----------------*/
+/*------------Écrans 0 - 576px--------------------*/
+@media screen and (max-width: 36rem) {
+	.max-width {
+		max-width: 21.875rem;
+	}
+
+	.margin-top {
+		margin-top: -5rem;
+	}
+
+	h1 {
+		font-size: 1.7rem;
+	}
+}
+/*------------Écrans 577px - 767px--------------------*/
+@media screen and (min-width: 36.063rem) and (max-width: 47.938rem) {
+	.max-width {
+		max-width: 25rem;
+	}
+
+	.margin-top {
+		margin-top: -4rem;
+	}
+
+	h1 {
+		font-size: 1.8rem;
+	}
+}
+/*------------Écrans 768px - 991px--------------------*/
+@media screen and (min-width: 48rem) and (max-width: 61.938rem) {
+	.max-width {
+		max-width: 26rem;
+	}
+
+	.margin-top {
+		margin-top: -3rem;
+	}
+
+	h1 {
+		font-size: 1.9rem;
+	}
+}
+/*------------Écrans 992px - 1199px--------------------*/
+@media screen and (min-width: 62rem) and (max-width: 84.375rem) {
+	.max-width {
+		max-width: 26rem;
+	}
+
+	h1 {
+		font-size: 2.1rem;
+	}
+}
+
+/*------------Écrans 992px et + --------------------*/
+@media screen and (min-width: 75rem) {
+	.padding-bottom {
+		padding-bottom: 1rem;
+	}
+}
