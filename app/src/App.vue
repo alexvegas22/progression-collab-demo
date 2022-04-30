@@ -33,14 +33,13 @@
 							v-if="token && indicateursDeFonctionnalitéAccomplissements"
 							class="btnDMM"
 						>
-							<a href="/accomplissements">
-								<i class="fas fa-trophy focus icône-trophée"></i>
-								<button
-									test_id="btnAvancement"
-									type="button"
-									class="btn focus"
-								>{{ $t('menu.accomplissement') }}</button>
-							</a>
+							<i class="fas fa-trophy focus icône-trophée"></i>
+							<button
+								test_id="btnAvancement"
+								type="button"
+								class="btn focus"
+								@click="allerVers('Accomplissements')"
+							>{{ $t('menu.accomplissement') }}</button>
 						</li>
 						<li
 							class="btnDMM"
@@ -195,11 +194,16 @@ export default {
 			localStorage.removeItem("authKey_secret");
 			sessionStorage.removeItem("token");
 			this.$store.dispatch("deleteToken");
-			this.$router.push({name: "Home"});
+			this.allerVers("Home");
 		},
 		basculerThèmeSombreAvecRaccourci() {
 			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
 		},
+		allerVers( vue ){
+			this.$router.push({
+				name: vue,
+			});
+		}
 	}
 };
 </script>
