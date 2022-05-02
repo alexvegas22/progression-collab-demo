@@ -59,6 +59,9 @@ export default {
 		testsRéussisPct() {
 			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
 		},
+		raccourcis(){
+			return this.$store.state.raccourcis;
+		}
 	},
 
 	created() {
