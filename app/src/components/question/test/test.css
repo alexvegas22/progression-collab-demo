@@ -1,6 +1,6 @@
 .test.réussi {
 	background-color: transparent;
-	color: green;
+	color: #008000;
 }
 
 .thème_sombre .test.réussi {
@@ -34,7 +34,7 @@
 }
 
 .non_sélectionné {
-	border: 2px solid lightgrey;
+	border: 2px solid #d3d3d3;
 	display: inline-grid;
 	place-content: left;
 	position: relative;
@@ -43,7 +43,7 @@
 }
 
 .thème_sombre .non_sélectionné {
-	border: 1px solid lightgrey;
+	border: 1px solid #d3d3d3;
 }
 
 .visible {

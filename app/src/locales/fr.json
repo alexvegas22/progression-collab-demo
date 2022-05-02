@@ -7,8 +7,21 @@
 	},
 
 	"menu": {
+		"accomplissement":"Accomplissements",
 		"connexion": "Connexion",
-		"déconnexion": "Déconnexion"
+		"déconnexion": "Déconnexion",
+		"thèmeSombre": "Thème sombre",
+		"thèmeClair": "Thème clair"
+	},
+
+	"accomplissements": {
+		"titrePage": "Mes Accomplissements",
+		"titreQuestion": "Titre",
+		"difficulté": "Niveau de difficulté",
+		"dateDeDernièreTentative": "Dernière tentative",
+		"dateDeRéussite": "Réussite",
+		"titreGraphParLangage": "Accomplissements par langage",
+		"titreGraphParDifficulté": "Accomplissements par difficultés"
 	},
 
 	"login": {
@@ -169,5 +182,13 @@
 		"entrées/sorties": "Éntrées / Sorties",
 		"erreurs": "Erreurs",
 		"rétroactions": "Rétroaction"
+	},
+
+	"commentaire": {
+		"ajouterCommentaire": "Ajouter un commentaire",
+		"erreurAjoutCommentaire": "*Champs incorrects",
+		"commentaires": "Commentaires",
+		"placeholderCommentaire": "Écrire un commentaire",
+		"ligneCommentaire": "Ligne:" 
 	}
 }

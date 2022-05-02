@@ -3,9 +3,12 @@ import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
+import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
+import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 
-const API_URL = process.env.VUE_APP_API_URL;
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default {
 	name: "Question",
@@ -15,6 +18,11 @@ export default {
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,
+			panneauCommentaireOuvert:false,
+			ongletChangéRaccourci: false,
+			testSélectionnéHaut: false,
+			testSélectionnéBas: false,
+			tentativeRéinitialisée: false,
 		};
 	},
 	components: {
@@ -24,6 +32,8 @@ export default {
 		EditeurCode,
 		RetroactionTentative,
 		Présentation,
+		BoutonCommentaire,
+		PanneauCommentaire,
 	},
 	computed: {
 		user() {
@@ -52,7 +62,10 @@ export default {
 		},
 		thèmeSombre(){
 			return this.$store.state.thèmeSombre;
-		}
+		},
+		indicateursDeFonctionnalitéCommentaires(){
+			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
+		},
 	},
 	watch: {
 		uri: function () {
@@ -73,10 +86,15 @@ export default {
 					}
 				}
 			}
-		}
+		},
 	},
-	mounted() {
-		if(this.uri && this.user) this.récupérerQuestion();
+	beforeCreate() {
+		this.$store.dispatch("setUri", null);
+		this.$store.dispatch("setQuestion", null);
+		this.$store.dispatch("setAvancement", null);
+	},
+	mounted(){
+		this.traiterParamètresURL( window.location.search );
 	},
 	provide() {
 		return {
@@ -88,14 +106,31 @@ export default {
 		};
 	},
 	methods: {
+		traiterParamètresURL( paramètres ){
+			var urlParams = new URLSearchParams(paramètres);
+
+			if(urlParams.has("uri")){
+				this.$store.dispatch("setUri", urlParams.get("uri"));
+			}
+
+			if(urlParams.has("lang")){
+				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));
+			}
+
+			if(urlParams.has("demo")){
+				this.$store.dispatch("setDémo", true);
+			}
+
+		},
 		récupérerAvancement() {
 			const id_avancement = this.user.username + "/" + this.uri;
-
+			
 			if (id_avancement in this.user.avancements) {
 				this.$store
 					.dispatch("getAvancement", {
 						url: this.user.avancements[id_avancement].liens.self,
 						lang_défaut: this.lang,
+						token: this.$store.state.tokenRessources,
 					});
 			} else {
 				this.$store
@@ -149,5 +184,40 @@ export default {
 				this.éditeurPleinÉcran = true;
 			}
 		},
+
+		basculerMenuCommentaire(){
+			this.panneauCommentaireOuvert =! this.panneauCommentaireOuvert;
+		},
+
+		sélectionnerTestDuHautAvecRaccourci(){
+			this.testSélectionnéHaut = !this.testSélectionnéHaut;
+		},
+		sélectionnerTestDuBasAvecRaccourci(){
+			this.testSélectionnéBas = !this.testSélectionnéBas;
+		},
+		changerModeAffichageAvecRaccourci(){
+			this.$store.dispatch("setChangerModeAffichageAvecRaccourci",true);
+		},
+		changerOngletAvecRaccourci(){
+			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
+		},
+		basculerÉnoncéSemiÉcranAvecRaccourci() {
+			this.ajusterPanneauÉnoncé("normal");
+		},
+		basculerÉnoncéPleinÉcranAvecRaccourci() {
+			this.énoncéPleinÉcran = !this.énoncéPleinÉcran;
+			if (this.énoncéPleinÉcran){
+				this.ajusterPanneauÉnoncé("max");
+			}
+			else{
+				this.ajusterPanneauÉnoncé("normal");
+			}
+		},
+		réinitialiserTentativeAvecRaccourci() {
+			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
+		},
 	},
 };
+
+
+		

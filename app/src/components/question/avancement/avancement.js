@@ -3,6 +3,7 @@ export default {
 	props: {
 		thèmeSombre: Boolean,
 		pleinÉcran: Boolean,
+		tentativeRéinitialisée: Boolean,
 	},
 	emits: ["basculéPanneauÉditeur"],
 	inject: ["avancement"],
@@ -26,7 +27,13 @@ export default {
 				this.reinitialiserCodeEditeurRaccourcis(this.langage);
 				this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",false);
 			}
-		}
+		},
+		tentativeRéinitialisée: {
+			deep: true,
+			handler: function(){
+				this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
+			}
+		},
 	},
 	methods: {
 		filtrerTentativesParLangage: function (langage) {
@@ -35,7 +42,10 @@ export default {
 		chargerTentative: function () {
 			const msgAvertissement = this.$t("editeur.réinitialiser_avertissement");
 			if (confirm(msgAvertissement) == true) {
-				this.$store.dispatch("getTentative", event.target.value);
+				this.$store.dispatch("getTentative", {
+					urlTentative: event.target.value,
+					token: this.$store.state.tokenRessources,
+				});
 			}
 		},
 		timestampVersDate: function (timestamp) {

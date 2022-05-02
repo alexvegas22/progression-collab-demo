@@ -5,7 +5,7 @@
 .thème_sombre li a,
 .thème_sombre li button,
 .thème_sombre li {
-	color: white !important;
+	color: #ffffff !important;
 }
 
 .thème_sombre .dropdown-item:hover {
@@ -20,7 +20,7 @@
 .dropdown-menu {
 	border-radius: 0;
 	margin-top: 0;
-	border-color: black;
+	border-color: #000000;
 }
 
 .dropdown-toggle {
@@ -29,7 +29,7 @@
 
 .dropdown-toggle:hover,
 .dropdown-toggle.show {
-	background-color: lightgrey;
+	background-color: #d3d3d3;
 }
 
 .thème_sombre .dropdown-toggle:hover,
@@ -38,7 +38,7 @@
 }
 
 .section-avancement {
-	border: 0.063rem solid lightgrey;
+	border: 0.063rem solid #d3d3d3;
 }
 
 .dropdown-submenu {

@@ -7,8 +7,21 @@
 	},
 
 	"menu": {
+		"accomplissement":"Achievements",
 		"connexion": "Login",
-		"déconnexion": "Logout"
+		"déconnexion": "Logout",
+		"thèmeSombre": "Dark theme",
+		"thèmeClair": "Light theme"
+	},
+
+	"accomplissements": {
+		"titrePage": "My Achievements",
+		"titreQuestion": "Title",
+		"difficulté": "Difficulty level",
+		"dateDeDernièreTentative": "Last attempt",
+		"dateDeRéussite": "Resolved",
+		"titreGraphParLangage": "Achievements by language",
+		"titreGraphParDifficulté": "Achievements by difficulty"
 	},
 
 	"login": {
@@ -170,5 +183,13 @@
 		"entrées/sorties": "Input / Output",
 		"erreurs": "Errors",
 		"rétroactions": "Feedback"
+	},
+
+	"commentaire": {
+		"ajouterCommentaire": "Add comment",
+		"erreurAjoutCommentaire": "*Fields incorrect",
+		"commentaires": "Comments",
+		"placeholderCommentaire": "Write a comment",
+		"ligneCommentaire": "Line:"  
 	}
 }

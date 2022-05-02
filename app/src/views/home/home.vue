@@ -91,10 +91,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row text-center">
-				<h4 class="my-4">
-					<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">TL;DR ➙ Essayez un exercice de démo ici</a>
-				</h4>
+			<div class="text-center">
+				<h4><a href="#démos">TL;DR ➙ Essayez un exercice de démo ici</a></h4>
 			</div>
 		</section>
 
@@ -195,7 +193,7 @@
 							</div>
 							<div class="timeline-body">
 								<p class="text-muted">
-									<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essaye un exercice de démo ici</a>
+									<a href="#démos">Essaye un exercice de démo ici</a>
 								</p>
 							</div>
 						</div>
@@ -327,7 +325,7 @@
 									Pour essayer les exercices <a href="./GuideProgression - Enseignants.pdf">Suivez le guide</a>
 								</p>
 								<p class="text-muted">
-									Pour essayer intégrer les exercices à votre cours Moodle <a href="ProgressionDansMoodle.pdf">Suivez l'autre guide</a>
+									Pour intégrer les exercices à votre cours Moodle <a href="ProgressionDansMoodle.pdf">Suivez l'autre guide</a>
 								</p>
 							</div>
 						</div>
@@ -347,7 +345,10 @@
 							</div>
 							<div class="timeline-body">
 								<p class="text-muted">
-									<a href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L3Rlc3RzL2U5YmJlYTZkLTlhYjEtNGI5NS05ZjMwLTdiZGI4MjFiOWUyYi9pbmZvLnltbA&lang=java&demo=true">Essayez un exercice de démo ici</a>
+									<a href="#démos">Essayez un exercice de démo ici</a>
+								</p>
+								<p class="text-muted">
+									<a href="https://moodle.progression.dti.crosemont.quebec">Essayez des exercices intégrés à Moodle ici</a>
 								</p>
 							</div>
 						</div>
@@ -355,7 +356,54 @@
 				</ul>
 			</div>
 		</section>
-						
+
+		<section
+			id="démos"
+			class="page-section"
+		>
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">
+						Exercices de démo
+					</h2>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNjM0NGY1MzgtMGVjMy00ZTNmLTgzMDgtZmMxMGQzNWM2YWFmL2luZm8ueW1s"
+									target="_blank"
+								> Exercice 1 - Bonjour le monde!</a>
+							</h4>
+						</li>
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNmUzNjNjYjMtNWEyOS00YjYyLThlY2YtNmJjZTI5MjNiOWQ0L2luZm8ueW1s"
+									target="_blank"
+								> Exercice 2 - Bonjour Java!</a>
+							</h4>
+						</li>
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vZGExNDNjMTEtZjc2My00MDY0LWJjMDMtNTYxZGNkODFjNmUyL2luZm8ueW1s"
+									target="_blank"
+								> Exercice 3 - Un premier algorithme</a>
+							</h4>
+						</li>
+						<li class="list-group-item">
+							<h4>
+								<a
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vMzdhOTEwNGQtODJhZC00ZDZiLTk0OTktMmY2YTMxYzA1OTgyL2luZm8ueW1s"
+									target="_blank"
+								> Exercice 4 - Défi complet</a>
+							</h4>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+			
 		<section
 			id="collaborateur"
 			class="page-section"
@@ -367,7 +415,69 @@
 					</h2>
 				</div>
 				
-				à venir
+				<ul class="timeline">
+										
+					<li class="timeline">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/4.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Projet Progression</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">
+									<a href="https://gitlab.com/projet-progression">projet-progression sur Gitlab</a>
+								</p>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline-inverted">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/5.jpg"
+								alt="Contenu"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Développement d'exercices</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">
+									<a href="https://gitlab.com/projet-progression/contenu">contenu sur Gitlab</a>
+								</p>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/4.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Documentation</h4>
+							</div>
+							<div class="timeline-body">
+								<p class="text-muted">
+									<a href="https://progression.pages.dti.crosemont.quebec/documentation">Documentation</a>
+								</p>
+							</div>
+						</div>
+					</li>
+
+				</ul>
 			</div>
 		</section>
 		<!-- Footer-->
@@ -375,7 +485,7 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-4 text-lg-start">
-						Copyright &copy; Progression 2021
+						Copyright &copy; Progression 2021-2022
 					</div>
 					<div class="col-lg-4 text-lg-end" />
 				</div>

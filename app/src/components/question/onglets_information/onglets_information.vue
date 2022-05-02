@@ -45,13 +45,6 @@
 				>
 					{{ $t("onglets_informations.erreurs") }}
 				</div>
-				<div
-					v-if="resultat_select && resultat_select.feedback"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'Rétroactions', thème_sombre: thèmeSombre }"
-					@click="changementOnglet('Rétroactions')"
-				>
-					{{ $t("onglets_informations.rétroactions") }}
-				</div>
 				<div style="margin-left: auto">
 					<i
 						style="height: 100%"
@@ -68,6 +61,7 @@
 					class="section-bas"
 					:test="test_select"
 					:resultat="resultat_select"
+					:panneau-affiché="panneauAffiché"
 				/>
 			</keep-alive>
 		</div>

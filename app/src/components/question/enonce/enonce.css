@@ -4,7 +4,7 @@
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
-	margin-left: 2rem;
+	margin-left: 1rem;
 }
 
 .énoncé-padding {
@@ -22,10 +22,10 @@
 }
 
 .crochet {
-	position: absolute;
-	top: 3rem;
+	position: relative;
+	top: -2.5rem;
+	left: -1.5rem;
 	opacity: 88%;
-	left: 0;
 	height: 0px;
 	z-index: 0;
 }
@@ -45,7 +45,7 @@ h3 {
 	top: 20px;
 	font-size: 2em;
 	visibility: hidden;
-	color: green;
+	color: #008000;
 }
 
 .état.réussi {
@@ -68,8 +68,8 @@ h3 {
 	/*Bug? badge par lui-même ne fonctionne pas.*/
 	background-color: rgb(13, 202, 240);
 	position: relative;
-	width: fit-content;
-	height: fit-content;
+	width: max-content;
+	height: max-content;
 	white-space: normal;
 	max-width: 25%;
 	word-wrap: break-word;
@@ -168,7 +168,7 @@ h3 {
 	position: relative;
 	padding-right: 1rem;
 	top: 0.7rem;
-	height: 100vh;
+	height: calc(100vh - 9.05rem);
     overflow: auto;
 	
 }
@@ -203,7 +203,7 @@ p.footer-license {
 }
 
 .max-height {
-	max-height: 90%;
+	max-height: 97%;
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/
@@ -299,7 +299,7 @@ p.footer-license {
 	}
 
 	.max-height{
-		max-height: 70%;
+		max-height: 97%;
 	}
 }
 

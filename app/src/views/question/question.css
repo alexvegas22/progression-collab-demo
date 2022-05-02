@@ -15,7 +15,7 @@ body {
 	display: flex;
 	padding: 1rem;
 	margin: 1rem;
-	background: darkgray;
+	background: #a9a9a9;
 }
 
 .v-tour__target--highlighted {
@@ -46,7 +46,7 @@ body {
 }
 
 .énoncé-semi {
-	width: 100%;
+	width: 46rem;
 }
 
 .énoncé-plein {
@@ -87,7 +87,15 @@ body {
 	border-right: 0 solid #555555;
 }
 
-.énoncé-semi .section-bouton-affichage {
+.énoncé-plein {
+	width: 100%;
+}
+
+.énoncé-semi .section-boutton-affichage {
+	width: 4.5rem !important;
+}
+
+.énoncé-plein .section-boutton-affichage {
 	width: 4.5rem !important;
 }
 
@@ -102,6 +110,11 @@ body {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 
+.btnCommentaire{
+	position: fixed;
+	bottom: 20px;
+	left: 10px;
+}
 .section-énoncé-texte {
 	opacity: 1;
 	flex: 1;
@@ -109,14 +122,14 @@ body {
 	position: relative;
 	padding-right: 0.5rem;
 	top: 0.7rem;
-	max-height: 95%;
+	height: calc(100vh - 9rem);
 }
 
 /* -------------- Media Queries ----------------------*/
 /* -------------- Écrans de 1300px et + (81.25rem et +) ----------------------*/
 @media only screen and (min-width: 81.25rem) {
 	.énoncé-semi {
-		width: 34.375rem;
+		width: 46rem;
 		height: 95%;
 	}
 }
@@ -143,19 +156,27 @@ body {
 
 /* -------------- Écrans de 0 à 767px (0 à 47.938rem) ----------------------*/
 @media only screen and (max-width: 47.938rem) {
+	.énoncé-semi {
+		width: 100%;
+		height:30vh;
+	}
+	.section-bouton-affichage {
+		margin-right:0.75rem;
+	}
 	.énoncé-caché {
-		padding-bottom: 1.35rem;
+	padding-bottom: 1.35rem;
 	}
 	.barre-énoncé {
 		flex-flow:column;
 	}
 
 	.section-bouton-affichage {
-		margin-right:2rem;
+		margin-right:0.75rem;
 	}
 
 	.ligne-séparation-avec-énoncé {
-		border-top: 1px solid lightgrey;
+		border-top: 1px solid #d3d3d3;
+		min-height: 20rem;
 	}
 
 	.thème_sombre .ligne-séparation-avec-énoncé {
@@ -164,6 +185,13 @@ body {
 
 	.énoncé-plein .section-énoncé-texte {
 		max-width: 95%;
+	}
+	
+	.taille-écran {
+		height: 100%;
+	}
+	.section-énoncé-texte {
+		height: 100%;
 	}
 }
 
@@ -174,7 +202,7 @@ body {
 	}
 
 	.énoncé-semi .section-énoncé-texte {
-		height: 15vh;
+		height: 20vh;
 		max-width: 95%;
 		margin-left: none;
 	}
@@ -187,7 +215,7 @@ body {
 	}
 
 	.énoncé-semi .section-énoncé-texte {
-		height: 15vh;
+		height: 21vh;
 		max-width: 96%;
 		margin-left: none;
 	}
@@ -233,9 +261,24 @@ body {
 		width: 4.5rem !important;
 	}
 }
-/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
-@media only screen and (min-width: 48rem) and (max-width: 62rem) {
-	.énoncé-semi .section-énoncé-texte {
-		max-height: 95%;
-	}
+
+// Alignement des images selon le texte alternatif
+// img alt="texte alternatif >" // aligne à droite
+// img alt="texte alternatif <" // aligne à gauche
+// img alt="texte alternatif ><" // centre
+
+img[alt$=">"] {
+	float: right;
+}
+
+img[alt$="<"] {
+	float: left;
+}
+
+img[alt$="><"] {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: auto;
+	float: none!important;
 }

@@ -2,11 +2,11 @@
 	<div style="flex-grow: 1">
 		<div class="container p-0">
 			<div
+				v-if="rôleÉditeur"
 				class="row align-items-end"
-				style="height: 0px"
+				style="height: 1.5rem"
 			>
 				<div
-					v-if="rôleÉditeur"
 					class="col-auto"
 				>
 					<div class="form-check form-switch btn-xray">
@@ -28,11 +28,13 @@
 		<div class="container-fluid p-0 h-100 position-relative">
 			<svg 
 				id="btn_soumettre_tentative"
+				v-shortkey="['ctrl', 'enter']"
 				type="button"
 				class="btn btn-valider"
 				:disabled="envoiEnCours"
 				présentation_étape="1.2"
 				@click="validerTentative"
+				@shortkey="validerTentative"
 			> 
 				<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2" />
 			</svg>
@@ -61,4 +63,3 @@
 
 <script src="./editeur.js"></script>
 <style src="./editeur.css"></style>
-
