@@ -68,13 +68,6 @@ pre {
 	margin-top: -2px;
 }
 
-.btn-test-local {
-	width: 3rem;
-	height: 2rem;
-	border:none;
-	fill: #008000;
-	margin-left: -4px;
-}
 .rétroaction-test {
 	position: fixed;
 	right: 1rem;

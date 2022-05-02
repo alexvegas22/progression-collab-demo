@@ -36,6 +36,13 @@
 					@click="changementOnglet('ResultatTest')"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
+					
+					<i 
+						v-if="tentative"
+						class="fas fa-play btn-test-local" 
+						:disabled="envoiEnCours"
+						@click="validerTest"
+					></i>
 				</div>
 				<div
 					v-if="resultat_select && resultat_select.sortie_erreur"

@@ -53,6 +53,9 @@ export default {
 		thèmeSombre() {
 			return this.$store.state.thèmeSombre;
 		},
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
+		},
 	},
 	watch:{
 		resultats(){
@@ -106,11 +109,13 @@ export default {
 		},
 		select(index) {
 			this.index_select = index;
-			if(this.tentative?.resultats[index].sortie_erreur){
-				this.changementOnglet("SectionErreur");
-			}
-			else{
-				this.changementOnglet("ResultatTest");
+			if(this.tentative.resultats){
+				if(this.tentative?.resultats[index].sortie_erreur){
+					this.changementOnglet("SectionErreur");
+				}
+				else{
+					this.changementOnglet("ResultatTest");
+				}
 			}
 		},
 		basculerPanneau(){
@@ -125,5 +130,15 @@ export default {
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
+		validerTest(){
+			this.$store.dispatch("soumettreTestUnique",
+				{
+					langage: this.$store.state.tentative.langage,
+					code: this.$store.state.tentative.code,
+					test: this.test_select,
+					index: this.index_select,
+				}
+			);
+		}
 	},
 };
