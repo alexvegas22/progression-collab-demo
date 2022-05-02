@@ -167,6 +167,13 @@
 		"vide": "[vide]"
 	},
 
+	"resultat_details": {
+		"sectionDétails": "Détails",
+		"tempsTest": "Temps d'exécution du test:",
+		"unitéMesure": "ms"
+		
+	},
+
 	"avancement": {
 		"premièreTentative": "Vous en êtes à votre première tentative. Vous pouvez le faire!",
 		"questionNonRésolue": "Pas encore résolu. Essayez encore!",
@@ -181,7 +188,8 @@
 	"onglets_informations": {
 		"entrées/sorties": "Éntrées / Sorties",
 		"erreurs": "Erreurs",
-		"rétroactions": "Rétroaction"
+		"rétroactions": "Rétroaction",
+		"détails": "Détails"
 	},
 
 	"commentaire": {
