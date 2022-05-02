@@ -522,10 +522,6 @@ export default {
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
 
-	setOngletCourant({ commit }, val) {
-		commit("setOngletCourant", val);
-	},
-
 	setIndicateursDeFonctionnalité({ commit }, val) {
 		const toggles = [];
 		for( const toggle of val ){
