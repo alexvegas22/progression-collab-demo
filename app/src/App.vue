@@ -5,7 +5,7 @@
 		</template>
 	</metainfo>
 	<div
-		v-shortkey="['ctrl', 'alt', 's']"
+		v-shortkey="raccourcis.basculerThème"
 		:class="{thème_sombre: thèmeSombre}"
 		@shortkey="basculerThèmeSombreAvecRaccourci"
 	>
@@ -148,6 +148,9 @@ export default {
 		indicateursDeFonctionnalitéAccomplissements(){
 			return this.$store.state.indicateursDeFonctionnalité["accomplissements"];
 		},
+		raccourcis(){
+			return this.$store.state.raccourcis;
+		}
 	},
 	watch: {
 		thèmeSombre() {

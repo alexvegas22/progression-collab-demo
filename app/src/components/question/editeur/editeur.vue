@@ -28,7 +28,7 @@
 		<div class="container-fluid p-0 h-100 position-relative">
 			<svg 
 				id="btn_soumettre_tentative"
-				v-shortkey="['ctrl', 'enter']"
+				v-shortkey="raccourcis.soumettreTentative"
 				type="button"
 				class="btn btn-valider"
 				:disabled="envoiEnCours"

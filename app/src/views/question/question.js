@@ -66,6 +66,9 @@ export default {
 		indicateursDeFonctionnalitéCommentaires(){
 			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
 		},
+		raccourcis(){
+			return this.$store.state.raccourcis;
+		}
 	},
 	watch: {
 		uri: function () {
@@ -201,12 +204,11 @@ export default {
 		changerOngletAvecRaccourci(){
 			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
 		},
-		basculerÉnoncéSemiÉcranAvecRaccourci() {
-			this.ajusterPanneauÉnoncé("normal");
-		},
-		basculerÉnoncéPleinÉcranAvecRaccourci() {
-			this.énoncéPleinÉcran = !this.énoncéPleinÉcran;
+		basculerFormatÉnoncéAvecRaccourci() {
 			if (this.énoncéPleinÉcran){
+				this.ajusterPanneauÉnoncé("caché");
+			}
+			else if(this.énoncéSemiÉcran){
 				this.ajusterPanneauÉnoncé("max");
 			}
 			else{

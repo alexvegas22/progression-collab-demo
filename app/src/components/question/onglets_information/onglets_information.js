@@ -1,5 +1,6 @@
 import ResultatTest from "@/components/question/resultat_test/resultat_test.vue";
-import SectionErreur from "@/components/question/section_erreurs/section_erreurs.vue";
+import ErreursTest from "@/components/question/section_erreurs/section_erreurs.vue";
+import DétailsTest from "@/components/question/section_details/section_details.vue";
 import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
 
@@ -7,8 +8,9 @@ export default {
 	components: {
 		Test,
 		ResultatTest,
-		SectionErreur,
+		ErreursTest,
 		Rétroactions,
+		DétailsTest
 	},
 	props: {
 		panneauAffiché: Boolean,
@@ -60,7 +62,7 @@ export default {
 				for(var resultat in this.tentative.resultats){
 					if(this.tentative.resultats[resultat].sortie_erreur){
 						this.index_select=resultat;
-						this.changementOnglet("SectionErreur");
+						this.changementOnglet("ErreursTest");
 						break;
 					}
 					else if (!this.tentative.resultats[resultat].résultat){
@@ -79,11 +81,21 @@ export default {
 		ongletChangé: {
 			deep: true,
 			handler: function(){
-				if(this.ongletActif === "ResultatTest") {
-					this.changementOnglet("SectionErreur");
-				}
-				else {
-					this.changementOnglet("ResultatTest");
+				if(this.resultat_select){
+					if(this.ongletActif === "ResultatTest") {
+						if(this.resultat_select.sortie_erreur){
+							this.changementOnglet("ErreursTest");
+						}
+						else{
+							this.changementOnglet("DétailsTest");
+						}
+					}
+					else if(this.ongletActif === "ErreursTest"){
+						this.changementOnglet("DétailsTest");
+					}
+					else {
+						this.changementOnglet("ResultatTest");
+					}
 				}
 			}
 		},
@@ -106,12 +118,6 @@ export default {
 		},
 		select(index) {
 			this.index_select = index;
-			if(this.tentative?.resultats[index].sortie_erreur){
-				this.changementOnglet("SectionErreur");
-			}
-			else{
-				this.changementOnglet("ResultatTest");
-			}
 		},
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");

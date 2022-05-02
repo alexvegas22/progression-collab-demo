@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-if="resultat"
+		v-if="résultat"
 		class="section-erreur"
 	>
 		<div
@@ -12,14 +12,14 @@
 			</h5>
 			
 			<Ampoule 
-				v-if="resultat.sortie_erreur && resultat.feedback"
-				:feedback="resultat.feedback"
+				v-if="résultat.sortie_erreur && résultat.feedback"
+				:feedback="résultat.feedback"
 				:estVisible="panneauAffiché"
 			/>
 			
 			<perfect-scrollbar class="margin-perfect-scrollbar">
 				<pre>
-					<p class="card-text">{{ resultat.sortie_erreur }}</p>
+					<p class="card-text">{{ résultat.sortie_erreur }}</p>
 				</pre>
 			</perfect-scrollbar>
 		</div>

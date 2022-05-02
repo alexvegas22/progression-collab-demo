@@ -168,6 +168,12 @@
 		"vide": "[empty]"
 	},
 
+	"resultat_details": {
+		"sectionDétails": "Details",
+		"tempsTest": "Running time of test:",
+		"unitéMesure": "ms"
+	},
+
 	"avancement": {
 		"premièreTentative": "This is your first attempt. You can do it!",
 		"questionNonRésolue": "Not solved yet. Keep trying.",
@@ -182,7 +188,8 @@
 	"onglets_informations": {
 		"entrées/sorties": "Input / Output",
 		"erreurs": "Errors",
-		"rétroactions": "Feedback"
+		"rétroactions": "Feedback",
+		"détails": "Details"
 	},
 
 	"commentaire": {

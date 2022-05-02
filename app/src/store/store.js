@@ -30,7 +30,19 @@ export default createStore({
 		thèmeSombre: false,
 		nbRéussitesParLangage: [],
 		changerModeAffichageAvecRaccourci: false,
-		indicateursDeFonctionnalité: []
+		indicateursDeFonctionnalité: [],
+		raccourcis: {
+			basculerThème: "['ctrl', 'alt', 's']",
+			soumettreTentative: "['ctrl', 'enter']",
+			réinitialiser: "['ctrl', 'alt', 'r']",
+			basculerÉnoncé: "['alt', 'q']",
+			basculerÉditeur: "['alt', 'e']",
+			basculerTests: "['alt', 'l']",
+			itérerOnglets: "['alt', 'w']",
+			basculerModeParDifférences: "['alt', 'd']",
+			itérerTestHaut: "['alt', 'arrowup']",
+			itérerTestBas: "['alt', 'arrowdown']",
+		}
 	},
 	getters,
 	actions,
