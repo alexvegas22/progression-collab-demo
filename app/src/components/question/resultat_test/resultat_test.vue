@@ -18,7 +18,7 @@
 					/>
 					<FenêtreInfo présentation_étape="3.1">
 						<template #titre>
-							{{ $t('résultat_test.entrée') }}
+							{{ $t('resultat_test.entrée') }}
 						</template>
 						<pre
 							class="card-text p-3"
@@ -26,7 +26,7 @@
 					</FenêtreInfo>
 					<FenêtreInfo v-if="test.params">
 						<template #titre>
-							{{ $t('résultat_test.params') }}
+							{{ $t('resultat_test.params') }}
 						</template>
 						<pre
 							class="card-text"
@@ -42,7 +42,7 @@
 						:class="{résultat: résultat-test}"
 					>
 						<template #titre>
-							{{ $t('résultat_test.sortieAttendue') }}
+							{{ $t('resultat_test.sortieAttendue') }}
 						</template>
 						<perfect-scrollbar>
 							<!-- eslint-disable -->
@@ -53,7 +53,7 @@
 							/>
 							<!-- eslint-enable -->
 							<pre v-else>
-								<p class="card-text sortie vide p-3">{{ $t("résultat_test.vide") }}</p>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 							</pre>
 						</perfect-scrollbar>
 					</FenêtreInfo>
@@ -77,7 +77,7 @@
 							/>
 							<!-- eslint-enable -->
 							<pre v-else>
-								<p class="card-text sortie vide p-3">{{ $t("résultat_test.vide") }}</p>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 							</pre>
 						</perfect-scrollbar>
 					</FenêtreInfo>
