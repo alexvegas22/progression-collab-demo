@@ -1,8 +1,5 @@
 <template>
-	<div 
-		v-shortkey="['ctrl', 'alt', 'f']"
-		@shortkey="basculerÉnoncéPleinÉcranAvecRaccourci"
-	>
+	<div>
 		<div v-if="user">
 			<Présentation
 				v-if="démo"
@@ -10,7 +7,7 @@
 			/>
 		</div>
 		<div
-			v-shortkey="['ctrl', 'alt', 'r']"
+			v-shortkey="raccourcis.réinitialiser"
 			class="container-fluid taille-écran p-0"
 			:class="{ thème_sombre: thèmeSombre }"
 			@shortkey="réinitialiserTentativeAvecRaccourci"
@@ -20,12 +17,12 @@
 				class="conteneur-question"
 			>
 				<Enonce
-					v-shortkey="['ctrl', 'alt', 'q']"
+					v-shortkey="raccourcis.basculerÉnoncé"
 					:class="{ 'énoncé-plein': énoncéPleinÉcran, 'énoncé-semi': énoncéSemiÉcran, 'énoncé-caché': !énoncéPleinÉcran && !énoncéSemiÉcran }"
 					:énoncéPleinÉcran="énoncéPleinÉcran"
 					:énoncéSemiÉcran="énoncéSemiÉcran"
 					présentation_étape="0"
-					@shortkey="basculerÉnoncéSemiÉcranAvecRaccourci"
+					@shortkey="basculerFormatÉnoncéAvecRaccourci"
 					@ajustéPanneauÉnoncé="ajusterPanneauÉnoncé"
 				/>
 				<div
@@ -35,7 +32,7 @@
 				>
 					<div 
 						id="carre-editeur"
-						v-shortkey="['ctrl', 'alt', 'e']"
+						v-shortkey="raccourcis.basculerÉditeur"
 						class="col-12 flex-column fill-height m-n-0 ligne-séparation-avec-énoncé"
 						style="flex: 1 1 auto; position: relative"
 						@shortkey="basculerPanneauÉditeur"
@@ -60,7 +57,7 @@
 						</div>
 					</div>
 					<div
-						v-shortkey="['ctrl', 'alt', 'l']"
+						v-shortkey="raccourcis.basculerTests"
 						class="col-12"
 						@shortkey="basculerPanneauTests"
 					>
@@ -73,19 +70,19 @@
 							@basculéPanneauTests="basculerPanneauTests"
 						/>
 						<div
-							v-shortkey="['ctrl', 'alt', 'w']"
+							v-shortkey="raccourcis.itérerOnglets"
 							@shortkey="changerOngletAvecRaccourci"
 						/>
 						<div
-							v-shortkey="['ctrl', 'alt', 'd']"
+							v-shortkey="raccourcis.basculerModeParDifférences"
 							@shortkey="changerModeAffichageAvecRaccourci"
 						/>
 						<div
-							v-shortkey="['ctrl', 'alt', 'arrowup']"
+							v-shortkey="raccourcis.itérerTestHaut"
 							@shortkey="sélectionnerTestDuHautAvecRaccourci"
 						/>
 						<div
-							v-shortkey="['ctrl', 'alt', 'arrowdown']"
+							v-shortkey="raccourcis.itérerTestBas"
 							@shortkey="sélectionnerTestDuBasAvecRaccourci"
 						/>
 					</div>

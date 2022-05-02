@@ -2,6 +2,7 @@ import hljs from "highlight.js";
 import milt from "markdown-it-link-target";
 import MarkdownIt from "markdown-it";
 import MarkdownItImSize from "markdown-it-imsize";
+import MarkdownItFootnote from "markdown-it-footnote";
 
 var md = new MarkdownIt({
 	highlight: function (str, lang) {
@@ -23,6 +24,7 @@ var md = new MarkdownIt({
 	html: false,
 })
 	.use(MarkdownItImSize)
+	.use(MarkdownItFootnote)
 	.use(milt, {
 		target: "_blank"
 	});
