@@ -82,5 +82,8 @@ export default {
 				},
 			});
 		},
+		reinitialiserCodeEditeurRaccourcis(){
+			this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
+		},
 	},
 };

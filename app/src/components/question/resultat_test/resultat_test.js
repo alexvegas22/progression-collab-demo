@@ -54,9 +54,6 @@ export default {
 		mode_affichage() {
 			return this.$store.state.mode_affichage;
 		},
-		retroactionTentative(){
-			return this.$store.state.retroactionTentative;
-		}
 	},
 	mounted() {
 		this.rafraîchirSorties();
