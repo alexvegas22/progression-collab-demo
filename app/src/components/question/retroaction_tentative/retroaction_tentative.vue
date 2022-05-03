@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<Ampoule
-			v-if="retroactionTentative?.feedback"
+			v-if="tentative?.feedback"
 			class="rétroaction-générale"
-			:feedback="retroactionTentative?.feedback"
+			:feedback="tentative?.feedback"
 			:estVisible="true"
 		/>
 	</div>

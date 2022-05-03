@@ -5,7 +5,7 @@ export default {
 	},
 	computed: {
 		tentative() {
-			return this.$store.state.retroactionTentative;
+			return this.$store.state.tentative;
 		},
 	}
 };

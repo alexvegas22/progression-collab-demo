@@ -32,9 +32,6 @@ export default {
 		mode() {
 			return this.$store.state.tentative.langage;
 		},
-		tentative() {
-			return this.$store.state.tentative;
-		},
 		rôleÉditeur() {
 			return this.$store.state.user.rôle==2;
 		},
@@ -44,8 +41,8 @@ export default {
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
-		retroactionTentative() {
-			let tentative = this.$store.state.retroactionTentative;
+		tentative() {
+			let tentative = this.$store.state.tentative;
 
 			return tentative ? new Proxy(tentative, {
 				get: function (obj, prop) {
@@ -57,7 +54,7 @@ export default {
 			return this.$store.state.tentative.réussi;
 		},
 		testsRéussisPct() {
-			return (this.$store.state.retroactionTentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+			return (this.$store.state.tentative.tests_réussis / this.$store.state.question.tests.length) * 100;
 		},
 		raccourcis(){
 			return this.$store.state.raccourcis;
