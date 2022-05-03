@@ -209,6 +209,7 @@ export default {
 			const token = await this.dispatch("getToken");
 			const user = await getUserApi(urlUser, token);
 
+			commit("setUsername", user.username);
 			commit("setUser", user);
 			return user;
 		}
