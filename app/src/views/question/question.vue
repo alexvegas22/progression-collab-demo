@@ -90,7 +90,7 @@
 				</div>
 				<div
 					v-if="tentative?.commentaires && indicateursDeFonctionnalitéCommentaires"
-						  class="btnCommentaire"
+					class="btnCommentaire"
 				>
 					<BoutonCommentaire
 						:menuOuvert="panneauCommentaireOuvert"
