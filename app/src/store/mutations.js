@@ -60,9 +60,6 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
-	updateRetroaction(state, retroactionTentative) {
-		state.retroactionTentative = retroactionTentative;
-	},
 	updateCodeTentative(state, code) {
 		state.tentative.code = code;
 	},

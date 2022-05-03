@@ -39,11 +39,14 @@ async function rafraîchirToken() {
 			})
 			.catch((err) => {
 				sauvegarderToken(null);
+				console.log(err);
 				throw err;
 			});
 	} else {
 		sauvegarderToken(null);
-		throw "Clé d'authentification non disponible";
+		const err = new Error("Clé d'authentification non disponible");
+		console.log(err);
+		throw err;
 	}
 }
 
@@ -106,6 +109,35 @@ function récupérerPourcentageRéussi(réussis, langage){
 	return pourcentage.toFixed(1);
 }
 
+function sélectionnerTentative(avancement, question, lang_défaut){
+	var tentative;
+
+	if (Object.keys(avancement.sauvegardes).length > 0) {
+		var datePlusRecente = 0;
+		for (var key in avancement.sauvegardes) {
+			if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
+				tentative = {
+					code: avancement.sauvegardes[key].code,
+					langage: key,
+					resultats: []
+				};
+				datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
+			}
+		}
+	} else if (avancement.tentatives.length > 0) {
+		tentative = avancement.tentatives[0];
+	} else if (question) {
+		var ebauches = question.ebauches;
+		if (ebauches[lang_défaut]) {
+			tentative = ebauches[lang_défaut];
+		} else {
+			tentative = ebauches[Object.keys(ebauches)[0]];
+		}
+	}
+
+	return tentative;
+}
+
 export default {
 	async setValidateur(v) {
 		validateur = v;
@@ -128,7 +160,7 @@ export default {
 		}
 	},
 
-	async getConfigServeur({ commit }, urlConfig) {
+	async récupérerConfigServeur({ commit }, urlConfig) {
 		return valider( async () =>  {
 			const config = await getConfigServeurApi(urlConfig);
 
@@ -155,7 +187,7 @@ export default {
 			sessionStorage.setItem("token", token);
 
 			// Obtenir l'utilisateur
-			const user = await getUserApi( import.meta.env.VITE_API_URL + "/user/" + username, token);
+			const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username );
 
 			// Obtenir la clé d'authentification
 			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
@@ -172,11 +204,7 @@ export default {
 		);
 	},
 
-	async setAuthentificationEnCours({ commit }, état) {
-		commit("updateAuthentificationEnCours", état);
-	},
-
-	async getUser({ commit }, urlUser) {
+	async récupérerUser({ commit }, urlUser) {
 		return valider( async () =>  {
 			const token = await this.dispatch("getToken");
 			const user = await getUserApi(urlUser, token);
@@ -187,7 +215,10 @@ export default {
 		);
 	},
 
-	async getQuestion({ commit }, urlQuestion) {
+	async récupérerQuestion({ commit }, urlQuestion) {
+		commit("setQuestion", null);
+		commit("setAvancement", null);
+		commit("setTentative", null);
 		return valider( async () =>  {
 			const token = await this.dispatch("getToken");
 			const question = await getQuestionApi(urlQuestion, token);
@@ -198,87 +229,34 @@ export default {
 		);
 	},
 
-	async setQuestion({ commit }, question) {
-		commit("setQuestion", question);
-	},
-
-	async getAvancement({ commit, state }, params) {
+	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
 				const token = params.token ?? await this.dispatch("getToken");
 				const avancement = await getAvancementApi(params.url, token);
 
 				commit("setAvancement", avancement);
-				var tentative;
 
-				if (Object.keys(avancement.sauvegardes).length > 0) {
-					var datePlusRecente = 0;
-					for (var key in avancement.sauvegardes) {
-						if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
-							tentative = {
-								code: avancement.sauvegardes[key].code,
-								langage: key,
-							};
-							datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
-						}
-					}
-				} else if (avancement.tentatives.length > 0) {
-					tentative = avancement.tentatives[0];
-				} else if (state.question) {
-					var ebauches = state.question.ebauches;
-					if (ebauches[params.lang_défaut]) {
-						tentative = ebauches[params.lang_défaut];
-					} else {
-						tentative = ebauches[Object.keys(ebauches)[0]];
-					}
-				}
-				commit("setTentative", tentative);
-				commit("updateRetroaction", tentative);
+				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
 				return avancement;
 			}
 		);
 	},
 
-	async setAvancement({ commit }, avancement) {
-		commit("setAvancement", avancement);
-	},
-
-	async postAvancement({ commit, state }, params) {
+	async créerAvancement({ commit, state }, params) {
 		return valider( async () =>  {
 			const token = await this.dispatch("getToken");
 			const avancement = await postAvancementApi(params, token);
 
 			commit("setAvancement", avancement);
-			var tentative;
 
-			if (Object.keys(avancement.sauvegardes).length > 0) {
-				var datePlusRecente = 0;
-				for (var key in avancement.sauvegardes) {
-					if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
-						tentative = {
-							code: avancement.sauvegardes[key].code,
-							langage: key,
-						};
-						datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
-					}
-				}
-			} else {
-				var ebauches = state.question.ebauches;
-				if (ebauches[params.lang_défaut]) {
-					tentative = ebauches[params.lang_défaut];
-				} else {
-					tentative = ebauches[Object.keys(ebauches)[0]];
-				}
-			}
-
-			commit("setTentative", tentative);
-			commit("updateRetroaction", tentative);
+			commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
 			return avancement;
 		}
 		);
 	},
 
-	async postCommentaire(params){
+	async créerCommentaire({commit}, params){ // eslint-disable-line no-unused-vars
 		return valider( async () =>  {
 			const token = await this.dispatch("getToken");
 			return await postCommentaireApi(params, token);
@@ -286,25 +264,32 @@ export default {
 		);
 	},
 
-	async getTentative({ commit }, params) {
+	async récupérerTentative({ commit }, params) {
 		return valider( async () =>  {
 			const token = params.token ?? await this.dispatch("getToken");
 			const tentative = await getTentativeApi(params.urlTentative, token);
 
 			commit("setTentative", tentative);
-			commit("updateRetroaction", tentative);
 			return tentative;
 		}
 		);
 	},
 
-	async getNbRéussitesParLangage({ commit }, params){
+	async récupérerNbRéussitesParLangage({ commit }, params){
 		var langagesRéussis = new Object();
 		var ceLangageEstRéussi = new Object();
 
+		var token;
+		var user;
 		return valider( async () => {
-			const token = params.token ?? await this.dispatch("getToken");
-			const user = await getUserApi(params.url, token);
+			if(params.token){
+				token = params.token;
+				user = await getUserApi(params.url, token);
+			}
+			else{
+				token = await this.dispatch("getToken");
+				user = this.state.user;
+			}
 
 			for (var id in user.avancements) {
 
@@ -337,11 +322,21 @@ export default {
 		);
 	},
 
-	async getDifficultésRéussies({commit}, params){
+	async récupérerDifficultésRéussies({commit}, params){
 		var difficultésRéussies = new Object();
-		return valider(async () => {
-			const token = params.token ?? await this.dispatch("getToken");
-			const user = await getUserApi(params.url, token);
+
+		var token;
+		var user;
+
+		return valider( async () => {
+			if(params.token){
+				token = params.token;
+				user = await getUserApi(params.url, token);
+			}
+			else{
+				token = await this.dispatch("getToken");
+				user = this.state.user;
+			}
 
 			for (const idAvancement in user.avancements) {
 				const avancement = user.avancements[idAvancement];
@@ -368,18 +363,20 @@ export default {
 		commit("updateEnvoieTentativeEnCours", true);
 
 		params.urlTentative = state.avancement.liens.tentatives;
-		commit("updateRetroaction", null);
+		const tentative = state.tentative;
+
+		commit("setTentative", {code: tentative.code, langage: tentative.langage, resultats: []} );
 
 		return valider( async () =>  {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTentative = await postTentative(params, token);
+				const tentative = await postTentative(params, token);
 
-				commit("updateRetroaction", retroactionTentative);
+				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
-				state.avancement.tentatives.unshift(retroactionTentative);
+				state.avancement.tentatives.unshift(tentative);
 				if (state.avancement.état != 2) {
-					state.avancement.état = retroactionTentative.réussi ? 2 : 1;
+					state.avancement.état = tentative.réussi ? 2 : 1;
 				}
 
 				if (state.cb_succes && state.cb_succes_params) {
@@ -389,7 +386,7 @@ export default {
 						token: state.token,
 					});
 				}
-				return retroactionTentative;
+				return tentative;
 			}
 			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
@@ -429,34 +426,39 @@ export default {
 		commit("updateCodeTentative", code);
 	},
 
-	mettreAjourLangageSelectionne({ commit }, langage) {
-		commit("updateLangageTentative", langage);
-	},
-
 	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
 		commit("setTentative", {
 			langage: langage,
 			code: this.state.question.ebauches[langage].code,
+			resultats: [],
+			tests_réussis: null
 		});
-
-		commit("updateRetroaction", null);
 	},
 
 	setToken({ commit }, token) {
-		try {
-			const token_décodé = jwt_decode(token);
-			if (token_décodé.username) {
-				commit("setToken", token);
-				commit("setUsername", token_décodé.username);
+		if(token){
+			try {
+				const token_décodé = jwt_decode(token);
+				if (token_décodé.username) {
+					commit("setToken", token);
+					commit("setUsername", token_décodé.username);
+				}
+			} catch (e) {
+				commit("setToken", null);
+				commit("setUsername", null);
+				commit("setUser", null);
 			}
-		} catch (e) {
+		}
+		else {
 			commit("setToken", null);
-			commit("setUsername", null);
-			return;
 		}
 	},
 
+	setUser({ commit }, user){
+		commit("setUser", user);
+	},
+	
 	setUri({ commit }, uri) {
 		commit("setUri", uri);
 	},
@@ -485,11 +487,6 @@ export default {
 		commit("setCallbackAuthParams", cb_auth_params);
 	},
 
-	deleteToken({ commit }) {
-		commit("setToken", null);
-		commit("setUsername", null);
-	},
-
 	setTokenRessources({ commit }, tokenRessources) {
 		commit("setTokenRessources",tokenRessources);
 	},
@@ -508,14 +505,6 @@ export default {
 
 	setModeAffichage({ commit }, val) {
 		commit("setModeAffichage", val);
-	},
-
-	setSélectionnerTestHaut({ commit }, val) {
-		commit("setSélectionnerTestHaut", val);
-	},
-
-	setSélectionnerTestBas({ commit }, val) {
-		commit("setSélectionnerTestBas", val);
 	},
 
 	setChangerModeAffichageAvecRaccourci({ commit }, val) {

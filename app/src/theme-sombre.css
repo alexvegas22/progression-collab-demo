@@ -5,6 +5,10 @@ body {
 	max-height: 100%;
 }
 
+.contenu {
+	height: 100%;
+}
+
 .thème_sombre,
 .thème_sombre .dropdown-menu {
 	background-color: #353535 !important;

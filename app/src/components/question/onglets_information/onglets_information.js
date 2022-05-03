@@ -28,6 +28,7 @@ export default {
 	},
 	computed: {
 		resultats() {
+			if(!this.$store.state.question || !this.$store.state.tentative) return [];
 			var res = [];
 			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
 				var résultat =
@@ -47,7 +48,7 @@ export default {
 				: null;
 		},
 		tentative() {
-			return this.$store.state.retroactionTentative;
+			return this.$store.state.tentative;
 		},
 		tests() {
 			return this.$store.state.question.tests;

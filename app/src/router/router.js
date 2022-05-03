@@ -77,7 +77,7 @@ router.beforeEach( (to, from, next ) => {
 	}
 
 	//Charge l'utilisateur et contitnue
-	store.dispatch("getUser", import.meta.env.VITE_API_URL + "/user/" + username)
+	store.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username)
 		.then( () => next() )
 		.catch( () => {
 			sessionStorage.removeItem("username");
