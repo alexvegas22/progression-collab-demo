@@ -10,12 +10,6 @@
 					class="d-flex"
 					style="flex-flow: row; flex: 1 1 0; height: 50%"
 				>
-					<Ampoule
-						v-if="résultat && !résultat.sortie_erreur && feedback"
-						class="rétroaction-test"
-						:feedback="feedback"
-						:estVisible="panneauAffiché"
-					/>
 					<FenêtreInfo présentation_étape="3.1">
 						<template #titre>
 							{{ $t('resultat_test.entrée') }}
@@ -39,7 +33,7 @@
 				>
 					<FenêtreInfo
 						présentation_étape="3.2"
-						:class="{résultat: résultat-test}"
+						:class="{resultat: resultat-test}"
 					>
 						<template #titre>
 							{{ $t('resultat_test.sortieAttendue') }}
@@ -58,9 +52,9 @@
 						</perfect-scrollbar>
 					</FenêtreInfo>
 					<FenêtreInfo
-						v-if="résultat"
+						v-if="resultat"
 						présentation_étape="3.3"
-						class="résultat-test"
+						class="resultat-test"
 					>
 						<template #titre>
 							<div class="espace-titre-sortie-observée">
