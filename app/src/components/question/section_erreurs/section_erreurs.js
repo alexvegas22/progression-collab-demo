@@ -3,7 +3,7 @@ export default {
 	components: {Ampoule},
 	props: {
 		test: null,
-		resultat: null,
+		résultat: null,
 		panneauAffiché: null,
 	},
 };

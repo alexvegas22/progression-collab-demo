@@ -47,7 +47,7 @@ export default {
 	},
 	props: {
 		test: null,
-		resultat: null,
+		résultat: null,
 		panneauAffiché: null
 	},
 	computed: {
@@ -64,24 +64,24 @@ export default {
 	methods: {
 		rafraîchirSorties: function () {
 			if (!this.test) return;
-			if (!this.resultat) {
+			if (!this.résultat) {
 				this.sortie_observée = null;
 				this.sortie_attendue = he.encode(this.test.sortie_attendue);
 				this.feedback = null;
 			} else {
 				const résultats = différence(
-					this.resultat.sortie_observée.toString(),
+					this.résultat.sortie_observée.toString(),
 					this.test.sortie_attendue.toString(),
 					this.mode_affichage,
 				);
 				this.sortie_observée = résultats.résultat_observé;
 				this.sortie_attendue = résultats.résultat_attendu;
-				this.feedback = this.resultat.feedback;
+				this.feedback = this.résultat.feedback;
 			}
 		},
 	},
 	watch: {
-		resultat: function () {
+		résultat: function () {
 			this.rafraîchirSorties();
 		},
 		test: function () {

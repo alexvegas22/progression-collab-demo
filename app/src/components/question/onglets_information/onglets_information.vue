@@ -46,11 +46,19 @@
 				</div>
 				<div
 					v-if="resultat_select && resultat_select.sortie_erreur"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'SectionErreur', thème_sombre: thèmeSombre }"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ErreursTest', thème_sombre: thèmeSombre }"
 					class="onglets-subséquents"
-					@click="changementOnglet('SectionErreur')"
+					@click="changementOnglet('ErreursTest')"
 				>
 					{{ $t("onglets_informations.erreurs") }}
+				</div>
+				<div
+					v-if="resultat_select"
+					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'DétailsTest', thème_sombre: thèmeSombre }"
+					class="onglets-subséquents"
+					@click="changementOnglet('DétailsTest')"
+				>
+					{{ $t("onglets_informations.détails") }}
 				</div>
 				<div style="margin-left: auto">
 					<i
@@ -67,7 +75,8 @@
 					:style="{ height: panneauAffiché ? '18rem' : '0' }"
 					class="section-bas"
 					:test="test_select"
-					:resultat="resultat_select"
+					:résultat="resultat_select"
+					:tempsÉxecution="test_select"
 					:panneau-affiché="panneauAffiché"
 				/>
 			</keep-alive>
