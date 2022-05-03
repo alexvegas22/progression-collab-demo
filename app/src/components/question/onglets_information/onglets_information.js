@@ -57,6 +57,9 @@ export default {
 			return this.$store.state.envoiTentativeEnCours;
 		},
 	},
+	mounted(){
+		this.$store.dispatch("updateRetroaction", null);
+	},
 	watch:{
 		resultats(){
 			if(this.tentative?.resultats.length > 0){

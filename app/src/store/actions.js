@@ -406,30 +406,22 @@ export default {
 	},
 
 	soumettreTestUnique({commit, state}, params) {
-
 		const test = {entrée: params.test.entrée, params: params.test.params}; 
 		const indexTestSélectionné = params.index;
 		params.urlTentative = state.avancement.liens.tentatives;
 		params.test = test;
-		const tentativeCourante = state.tentative;
+		const tentativeCourante = state.retroactionTentative;
 
 		return valider( async () => {
 			try {
 				const token = params.token ?? await this.dispatch("getToken");
 				const retroactionTest = await postTentative(params, token);
-				console.log("retroactionTest: " + retroactionTest.resultats[0]);
-				console.log("retroactionTest: Temps Exec " + retroactionTest.resultats[0].temps_exec);
-				console.log("retroactionTest: résultat " + retroactionTest.resultats[0].résultat);
-				console.log("retroactionTest: feedback " + retroactionTest.resultats[0].feedback);
-				console.log("retroactionTest: sortie_erreur " + retroactionTest.resultats[0].sortie_erreur);
-				console.log("retroactionTest: sortie_observée " + retroactionTest.resultats[0].sortie_observée);
+			
 				//Modifier le test exécuté
 				if(tentativeCourante.resultats){
-					tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultat[0];
+					tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultats[0];
 				}
-
-				console.log("retroactionTest: TentativeCourante.resultats[indexTest] " + tentativeCourante.resultats);
-				commit("setTentative", tentativeCourante);
+				commit("updateRetroaction", tentativeCourante);
 				return tentativeCourante;
 			}
 			catch (e) {
@@ -567,5 +559,8 @@ export default {
 			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
+	},
+	updateRetroaction({ commit }, val) {
+		commit("updateRetroaction", val);
 	}
 };
