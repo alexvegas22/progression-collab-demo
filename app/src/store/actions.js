@@ -415,7 +415,6 @@ export default {
 				const token = await this.dispatch("getToken");
 				const retroactionTest = await postTentative(params, token);
 				
-				//Modifier le test exécuté
 				if(tentativeCourante.resultats){
 					tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultats[0];
 				}
@@ -550,7 +549,4 @@ export default {
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
 	},
-	updateRetroaction({ commit }, val) {
-		commit("updateRetroaction", val);
-	}
 };
