@@ -16,6 +16,7 @@
 			>
 				<span class="text-info"> Prog</span>ression
 			</a>
+			<span class="text-username">{{username}}</span>
 			<Transition>
 				<div v-if="token" class="dropdown">
 					<i 
@@ -150,7 +151,10 @@ export default {
 		},
 		raccourcis(){
 			return this.$store.state.raccourcis;
-		}
+		},
+		username() {
+			return this.$store.state.username;
+		},
 	},
 	watch: {
 		thèmeSombre() {
