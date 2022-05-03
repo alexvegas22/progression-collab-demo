@@ -370,6 +370,7 @@ export default {
 
 		params.urlTentative = state.avancement.liens.tentatives;
 		commit("updateRetroaction", null);
+		console.log("Soumettre Tentative params code: "+ params.code);
 
 		return valider( async () =>  {
 			try {
@@ -412,12 +413,13 @@ export default {
 		params.urlTentative = state.avancement.liens.tentatives;
 		params.test = test;
 		const tentativeCourante = state.retroactionTentative;
+		console.log("Params code : "+ params.code);
 
 		return valider( async () => {
 			try {
 				const token = params.token ?? await this.dispatch("getToken");
 				const retroactionTest = await postTentative(params, token);
-			
+				console.log("RétroactionTentative résultats[0].résultat"+retroactionTest.resultats[0].résultat);
 				//Modifier le test exécuté
 				if(tentativeCourante.resultats){
 					tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultats[0];

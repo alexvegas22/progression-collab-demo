@@ -10,6 +10,20 @@ export default {
 		non_réussi: null,
 		sélectionné: false,
 	},
+	watch:{
+		réussi:{
+			deep: true,
+			handler: function(){
+				console.log("Test index "+ this.index +" : réussi :" + this.réussi);
+			}
+		},
+		non_réussi:{
+			deep: true,
+			handler: function(){
+				console.log("Test index "+ this.index +" : non_réussi :" + this.non_réussi);
+			}
+		},
+	},
 	data() {
 		return {
 			visible: false,
