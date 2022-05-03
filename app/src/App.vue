@@ -155,9 +155,6 @@ export default {
 		raccourcis(){
 			return this.$store.state.raccourcis;
 		},
-		username() {
-			return this.$store.state.username;
-		},
 	},
 	watch: {
 		thèmeSombre() {
