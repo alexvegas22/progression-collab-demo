@@ -405,7 +405,7 @@ export default {
 
 	soumettreTestUnique({commit, state}, params) {
 		const indexTestSélectionné = params.index;
-		const tentativeCourante = state.tentative;
+		const tentativeCourante = {...state.tentative};
 		
 		return valider( async () => {
 			try {
