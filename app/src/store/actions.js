@@ -404,10 +404,7 @@ export default {
 	},
 
 	soumettreTestUnique({commit, state}, params) {
-		const test = {entrée: params.test.entrée, params: params.test.params, sortie_attendue:params.test.sortie_attendue}; 
 		const indexTestSélectionné = params.index;
-		params.urlTentative = state.avancement.liens.tentatives;
-		params.test = test;
 		const tentativeCourante = state.tentative;
 		
 		return valider( async () => {

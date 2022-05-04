@@ -142,6 +142,7 @@ export default {
 					code: this.$store.state.tentative.code,
 					test: this.test_select,
 					index: this.index_select,
+					urlTentative: this.$store.state.avancement.liens.tentatives
 				}
 			);
 		}
