@@ -38,7 +38,7 @@
 					{{ $t("onglets_informations.entrées/sorties") }}
 					
 					<i 
-						v-if="panneauAffiché && tentative.résultat"
+						v-if="panneauAffiché && tentative.resultats"
 						class="fas fa-play btn-test-local" 
 						:disabled="envoiEnCours"
 						@click="validerTest"
