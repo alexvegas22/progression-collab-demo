@@ -36,7 +36,6 @@
 					@click="changementOnglet('ResultatTest')"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
-					
 					<i 
 						v-if="panneauAffiché"
 						class="fas fa-play btn-test-local" 
