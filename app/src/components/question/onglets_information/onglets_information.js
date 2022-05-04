@@ -122,6 +122,12 @@ export default {
 		},
 		select(index) {
 			this.index_select = index;
+			if(this.ongletActif === "ErreursTest" && !this.tentative?.resultats[index]?.sortie_erreur){
+				this.changementOnglet("ResultatTest");
+			}
+			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exec){
+				this.changementOnglet("ResultatTest");
+			}
 		},
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");

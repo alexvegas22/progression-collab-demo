@@ -411,10 +411,7 @@ export default {
 			try {
 				const token = await this.dispatch("getToken");
 				const retroactionTest = await postTentative(params, token);
-				
-				if(tentativeCourante.resultats){
-					tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultats[0];
-				}
+				tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultats[0];
 				commit("setTentative", tentativeCourante);
 				return tentativeCourante;
 			}
