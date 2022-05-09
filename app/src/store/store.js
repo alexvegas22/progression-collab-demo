@@ -18,7 +18,6 @@ export default createStore({
 		username: null,
 		question: null,
 		tentative: null,
-		authentificationTentativeEnCours: false,
 		envoiTentativeEnCours: false,
 		mode_affichage: 0,
 		avancement: null,
