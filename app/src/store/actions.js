@@ -360,18 +360,15 @@ export default {
 		);
 	},
 
-	async soumettreTentative({ commit, state }, params) {
+	async soumettreTentative({ commit, state }) {
 		commit("updateEnvoieTentativeEnCours", true);
-
-		params.urlTentative = state.avancement.liens.tentatives;
-		const tentative = state.tentative;
-
-		commit("setTentative", {code: tentative.code, langage: tentative.langage, resultats: []} );
+		const tentativeCourante = {...state.tentative};
+		commit("setTentative", {code: tentativeCourante.code, langage: tentativeCourante.langage, resultats: []} );
 
 		return valider( async () =>  {
 			try {
 				const token = await this.dispatch("getToken");
-				const tentative = await postTentative(params, token);
+				const tentative = await postTentative({langage: tentativeCourante.langage, code: tentativeCourante.code, urlTentative: state.avancement.liens.tentatives}, token);
 
 				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
