@@ -410,7 +410,7 @@ export default {
 		return valider( async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTest = await postTentative(params, token);
+				const retroactionTest = await postTentative({langage: tentativeCourante.langage, code: tentativeCourante.code, test: params.test, index: params.index, urlTentative: state.avancement.liens.tentatives}, token);
 				tentativeCourante.resultats[indexTestSélectionné] = retroactionTest.resultats[0];
 				commit("setTentative", tentativeCourante);
 				return tentativeCourante;

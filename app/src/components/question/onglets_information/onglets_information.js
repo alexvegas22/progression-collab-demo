@@ -144,11 +144,8 @@ export default {
 		validerTest(){
 			this.$store.dispatch("soumettreTestUnique",
 				{
-					langage: this.$store.state.tentative.langage,
-					code: this.$store.state.tentative.code,
 					test: this.test_select,
 					index: this.index_select,
-					urlTentative: this.$store.state.avancement.liens.tentatives
 				}
 			);
 		}
