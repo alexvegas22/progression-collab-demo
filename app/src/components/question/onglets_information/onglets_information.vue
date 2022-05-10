@@ -37,10 +37,14 @@
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 					<i 
-						v-if="panneauAffiché"
+						v-if="panneauAffiché && !this.envoiTestEnCours"
 						class="fas fa-play btn-test-local" 
 						:disabled="envoiEnCours"
 						@click="validerTest"
+					></i>
+					<i 
+						v-if="panneauAffiché && this.envoiTestEnCours"
+						class="fa fa-refresh fa-spin spin-test-local"
 					></i>
 				</div>
 				<div

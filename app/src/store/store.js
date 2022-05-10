@@ -18,6 +18,7 @@ export default createStore({
 		username: null,
 		question: null,
 		tentative: null,
+		authentificationTentativeEnCours: false,
 		envoiTentativeEnCours: false,
 		mode_affichage: 0,
 		avancement: null,
@@ -40,7 +41,8 @@ export default createStore({
 			basculerModeParDifférences: "['alt', 'd']",
 			itérerTestHaut: "['alt', 'arrowup']",
 			itérerTestBas: "['alt', 'arrowdown']",
-		}
+		},
+		envoiTestEnCours: false,
 	},
 	getters,
 	actions,

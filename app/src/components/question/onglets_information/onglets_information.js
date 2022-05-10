@@ -56,27 +56,34 @@ export default {
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
+		envoiTestEnCours() {
+			return this.$store.state.envoiTestEnCours;
+		},
 	},
 	watch:{
 		resultats(){
-			if(this.tentative?.resultats.length > 0){
-				for(var resultat in this.tentative.resultats){
-					if(this.tentative.resultats[resultat].sortie_erreur){
-						this.index_select=resultat;
-						this.changementOnglet("ErreursTest");
-						break;
-					}
-					else if (!this.tentative.resultats[resultat].résultat){
-						this.index_select=resultat;
+			if(this.envoiTestEnCours != true){
+				if(this.tentative?.resultats.length > 0){
+					for(var resultat in this.tentative.resultats){
+						if(this.tentative.resultats[resultat].sortie_erreur){
+							this.index_select=resultat;
+							this.changementOnglet("ErreursTest");
+							break;
+						}
+						else if (!this.tentative.resultats[resultat].résultat){
+							this.index_select=resultat;
+							this.changementOnglet("ResultatTest");
+							break;
+						}
 						this.changementOnglet("ResultatTest");
-						break;
 					}
+				}
+				else{
+					this.index_select=0;
 					this.changementOnglet("ResultatTest");
 				}
-			}
-			else{
-				this.index_select=0;
-				this.changementOnglet("ResultatTest");
+			} else {
+				this.$store.dispatch("setEnvoiTestEnCours", false);
 			}
 		},
 		ongletChangé: {

@@ -401,6 +401,7 @@ export default {
 	},
 
 	soumettreTestUnique({commit, state}, params) {
+		commit("setEnvoiTestEnCours", true);
 		const indexTestSélectionné = params.index;
 		const tentativeCourante = {...state.tentative};
 		
@@ -539,5 +540,8 @@ export default {
 			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
+	},
+	setEnvoiTestEnCours({ commit }, val) {
+		commit("setEnvoiTestEnCours", val);
 	},
 };
