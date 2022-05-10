@@ -52,9 +52,7 @@
 								v-html="sortie_attendue"
 							/>
 							<!-- eslint-enable -->
-							<pre v-else>
-								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-							</pre>
+							<pre v-else><br><p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p></pre>
 						</perfect-scrollbar>
 					</FenêtreInfo>
 					<FenêtreInfo
