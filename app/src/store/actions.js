@@ -262,19 +262,19 @@ export default {
 		return valider(
 			async () => {
 
-try{
-				const token = await rafraîchirToken({ commit, state });
-				const tokenRessources = params.tokenRessources;
-				const avancement = await getAvancementApi(params.url, token, tokenRessources);
+				try{
+					const token = await this.dispatch("getToken");
+					const tokenRessources = params.tokenRessources;
+					const avancement = await getAvancementApi(params.url, token, tokenRessources);
 
-				commit("setAvancement", avancement);
-				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
-
-			    return avancement;
-			}
-			finally {
-				commit("setEnChargement", false);
-			}
+					commit("setAvancement", avancement);
+					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+					
+					return avancement;
+				}
+				finally {
+					commit("setEnChargement", false);
+				}
 			}
 		);
 	},
@@ -282,7 +282,7 @@ try{
 	async récupérerTousAvancements({ commit, state }, params) {
 		return valider(
 			async () => {
-				const token = await rafraîchirToken({ commit, state });
+				const token = await this.dispatch("getToken");
 				const tokenRessources = params.tokenRessources;
 				const avancement = await getTousAvancementsApi(params.username, token, tokenRessources);
 
@@ -314,7 +314,7 @@ try{
 		);
 	},
 
-	async créerCommentaire({commit}, params){ // eslint-disable-line no-unused-vars
+	async créerCommentaire({ commit }, params){ // eslint-disable-line no-unused-vars
 		return valider( async () =>  {
 			const token = await this.dispatch("getToken");
 			return await postCommentaireApi(params, token);
@@ -327,14 +327,14 @@ try{
 
 			commit("setEnChargement", true);
 
-			try{
-				const token = await rafraîchirToken({ commit, state });
-			const tokenRessources = params.tokenRessources;
-			const tentative = await getTentativeApi(params.urlTentative, token, tokenRessources);
+			try {
+				const token = await this.dispatch("getToken");
+				const tokenRessources = params.tokenRessources;
+				const tentative = await getTentativeApi(params.urlTentative, token, tokenRessources);
 				commit("setTentative", tentative);
 				return tentative;
 			}
-			finally{
+			finally {
 				commit("setEnChargement", false);
 			}
 		}
