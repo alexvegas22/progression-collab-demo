@@ -1,10 +1,10 @@
 import { getData, postData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, nom_utilisateur, mdp, domaine) =>
-	(await postData(urlAuth, { username: nom_utilisateur, password: mdp, domaine: domaine })).Token;
+	(await postData(urlAuth, null, { username: nom_utilisateur, password: mdp, domaine: domaine })).Token;
 
 const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
-	(await postData(urlAuth, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
+	(await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
 
 const getConfigServeurApi = async (urlConfig) => {
 	return getData(urlConfig).then((data) => {
@@ -15,7 +15,8 @@ const getConfigServeurApi = async (urlConfig) => {
 };
 
 const getUserApi = async (urlUser, token) => {
-	return getData(urlUser + "?include=avancements", token).then((data) => {
+	const query = { inlude: "avancements" };
+	return getData(urlUser, query, token).then((data) => {
 		var user = data.data.attributes;
 		user.liens = data.data.links;
 		user.liens.avancements = data.data.relationships.avancements.links.related;
@@ -33,7 +34,8 @@ const getUserApi = async (urlUser, token) => {
 };
 
 const getQuestionApi = async (urlQuestion, token) => {
-	const data = await getData(urlQuestion + "?include=tests,ebauches", token);
+	const query = { include: "tests,ebauches" };
+	const data = await getData(urlQuestion, query, token);
 	var question = data.data.attributes;
 	question.liens = data.data.links;
 	question.tests = [];
@@ -54,27 +56,38 @@ const getQuestionApi = async (urlQuestion, token) => {
 	return question;
 };
 
-const getAvancementApi = async (urlAvancement, token) => {
-	const data = await getData(urlAvancement + "?include=tentatives,sauvegardes", token);
+const getAvancementApi = async (url, token, tokenRessources) => {
+	const query = { include: "tentatives,sauvegardes", tkrs: tokenRessources };
+	const data = await getData(url, query, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
 };
 
 const postAvancementApi = async (params, token) => {
+	const query = { include: "tentatives,sauvegardes" };
 	const body = { question_uri: params.question_uri };
-	const data = await postData(params.url + "?include=tentatives,sauvegardes", body, token);
+	const data = await postData(params.url, query, body, token);
+	var avancement = construireAvancement(data.data, data.included);
+	return avancement;
+};
+
+const getTousAvancementsApi = async (username, token, tokenRessources) => {
+	const url = "/user/" + username + "/avancements";
+	const query = { tkrs: tokenRessources };
+	const data = await getData(url, query, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
 };
 
 const postCommentaireApi = async (params, token) =>{
 	const body = params;
-	const data = await postData(params.url, body, token);
+	const data = await postData(params.url, null, body, token);
 	return data;
 };
 
-const getTentativeApi = async (urlTentative, token) => {
-	const data = await getData(urlTentative+"?include=commentaires", token);
+const getTentativeApi = async (url, token, tokenRessources) => {
+	const query = { include: "commentaires", tkres: tokenRessources };
+	const data = await getData(url, query, token);
 	var tentative = construireTentative(data.data, data.included);
 	if (data.erreur) {
 		console.log(data.erreur);
@@ -83,10 +96,12 @@ const getTentativeApi = async (urlTentative, token) => {
 
 	return tentative;
 };
+
 const postTentative = async (params, token) => {
+	const urlRequete = params.urlTentative;
+	const query = { include: "resultats" };
 	const body = { langage: params.langage, code: params.code };
-	const urlRequete = params.urlTentative + "?include=resultats";
-	const data = await postData(urlRequete, body, token);
+	const data = await postData(urlRequete, query, body, token);
 
 	if (data.erreur) {
 		console.log(data.erreur);
@@ -107,7 +122,7 @@ const postTentative = async (params, token) => {
 };
 
 const postAuthKey = async( params, token ) =>
-	await postData( params.url, params.clé, token )
+	await postData( params.url, null, params.clé, token )
 		.then( (data) => {
 			return {
 				nom: params.clé.nom,
@@ -115,17 +130,17 @@ const postAuthKey = async( params, token ) =>
 		});
 
 const callbackGrade = async (url, params) => {
-	await postData(url, params);
+	await postData(url, null, params);
 };
 
 const callbackAuth = async (url, params) => {
-	await postData(url, params);
+	await postData(url, null, params);
 };
 
 const postSauvegardeApi = async (params, token) => {
-	const body = { langage: params.langage, code: params.code };
 	const urlRequete = params.url;
-	const data = await postData(urlRequete, body, token);
+	const body = { langage: params.langage, code: params.code };
+	const data = await postData(urlRequete, null, body, token);
 
 	if (data.erreur) {
 		throw data.erreur;
@@ -193,6 +208,7 @@ export {
 	callbackGrade,
 	getConfigServeurApi,
 	getAvancementApi,
+	getTousAvancementsApi,
 	getQuestionApi,
 	getTentativeApi,
 	getTokenApi,

@@ -6,6 +6,7 @@ import Présentation from "@/components/question/présentation/présentation.vue
 import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
+import jwt_decode from "jwt-decode";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -121,14 +122,27 @@ export default {
 
 		},
 		récupérerAvancement() {
-			const id_avancement = this.user.username + "/" + this.uri;
+			let username = this.user.username;
+
+			if(this.$store.state.tokenRessources) {
+			    let tokenDécodé = jwt_decode(this.$store.state.tokenRessources);
+			    username = tokenDécodé.username;
+			}
+
+			this.$store.dispatch("récupérerTousAvancements", {
+				username: username,
+				token: this.$store.state.token,
+				tokenRessources: this.$store.state.tokRessources,
+			});
+
+			const idAvancement = username + "/" + this.uri;
 			
-			if (id_avancement in this.user.avancements) {
+			if (idAvancement in this.$store.state.avancement) {
 				this.$store
 					.dispatch("récupérerAvancement", {
-						url: this.user.avancements[id_avancement].liens.self,
+						url: this.user.avancements[idAvancement].liens.self,
 						lang_défaut: this.lang,
-						token: this.$store.state.tokenRessources,
+						tokenRessources: this.$store.state.tokenRessources,
 					});
 			} else {
 				this.$store
@@ -137,6 +151,7 @@ export default {
 						question_uri: this.uri,
 						avancement: {},
 						lang_défaut: this.lang,
+						tkres: this.$store.state.tokenRessources,
 					});
 			}
 		},
@@ -144,12 +159,12 @@ export default {
 			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
 		},
 		ajusterPanneauÉnoncé( dimension ) {
-			if ( dimension === "normal") {
+			if(dimension === "normal") {
 				this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
 				if (this.énoncéSemiÉcran)
 					this.énoncéPleinÉcran = false;
 			}
-			else if ( dimension === "max") {
+			else if(dimension === "max") {
 				this.énoncéPleinÉcran = true;
 				this.énoncéSemiÉcran = false;
 			}
@@ -161,7 +176,7 @@ export default {
 		},
 		basculerPanneauTests() {
 			this.panneauTestsAffiché = !this.panneauTestsAffiché;
-			if (this.énoncéPleinÉcran && this.panneauTestsAffiché) {
+			if(this.énoncéPleinÉcran && this.panneauTestsAffiché) {
 				this.énoncéPleinÉcran = false;
 				this.énoncéSemiÉcran = true;
 			}
@@ -182,11 +197,9 @@ export default {
 				this.éditeurPleinÉcran = true;
 			}
 		},
-
 		basculerMenuCommentaire(){
 			this.panneauCommentaireOuvert =! this.panneauCommentaireOuvert;
 		},
-
 		sélectionnerTestDuHautAvecRaccourci(){
 			this.testSélectionnéHaut = !this.testSélectionnéHaut;
 		},
@@ -215,6 +228,3 @@ export default {
 		},
 	},
 };
-
-
-		

@@ -66,7 +66,7 @@ router.post("/lti/grade", async (req, res) => {
 
 		const score = await récupérerScore(uri, token);
 
-		const tokenRessource = await récupérerTokenRessource(token, uri, "avancement");
+		const tokenRessource = await récupérerTokenRessource(token, uri);
 
 		// Note
 		const gradeObj = {
@@ -152,9 +152,30 @@ const récupérerScore = async function (uri, token) {
 	});
 };
 
-const récupérerTokenRessource = async function (token, uri, type_ressource) {
+const récupérerTokenRessource = async function (token, uriQuestion) {
 	const username = jwt_decode(token).username;
-	const id_ressource = username + "/" + uri;
+	const id = username + "/" + uriQuestion;
+	
+	const ressources = [{
+		  "url": "^/avancement/"+ id + "$",
+		  "method": "^GET$"
+		},
+		{
+			"url": "^/user/"+ id +"/avancements$",
+			"method": "^GET$"
+		},
+		{
+		  "url": "^/tentative/"+ id + "/.*$",
+		  "method": "^GET$"
+		},
+		{
+		  "url": "^/commentaire/"+ id + "/.*$",
+		  "method": "^GET$"
+		},
+		{
+		  "url": "^/tentative/"+ id + "/.*/commentaires$",
+		  "method": "^POST$"}];
+		  
 	const config = {
 		headers: {
 			Authorization: "Bearer " + token,
@@ -163,10 +184,11 @@ const récupérerTokenRessource = async function (token, uri, type_ressource) {
 
 	const requête = process.env.API_URL + "/token/" + username;
 
-	const reponse = await axios.post(requête, {idRessource: id_ressource, typeRessource: type_ressource}, config);
-	return reponse.data;
-};
+    const reponse = await axios.post(requête, { ressources: ressources }, config);
+    provMainDebug("Token ressource: " + reponse.data.Token);
 
+	return reponse.data.Token;
+};
 
 router.get("*", (req, res) => {
 	return res.sendFile(path.join(__dirname, "../public/404.html"));

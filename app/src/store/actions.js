@@ -3,6 +3,7 @@ import {
 	callbackGrade,
 	getConfigServeurApi,
 	getAvancementApi,
+	getTousAvancementsApi,
 	getQuestionApi,
 	getTentativeApi,
 	getTokenApi,
@@ -260,19 +261,35 @@ export default {
 	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
-				commit("setEnChargement", true);
-				try{
-					const token = params.token ?? await this.dispatch("getToken");
-					const avancement = await getAvancementApi(params.url, token);
 
-					commit("setAvancement", avancement);
+try{
+				const token = await rafraîchirToken({ commit, state });
+				const tokenRessources = params.tokenRessources;
+				const avancement = await getAvancementApi(params.url, token, tokenRessources);
 
-					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
-					return avancement;
-				}
-				finally{
-					commit("setEnChargement", false);
-				}
+				commit("setAvancement", avancement);
+				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+
+			    return avancement;
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
+			}
+		);
+	},
+
+	async récupérerTousAvancements({ commit, state }, params) {
+		return valider(
+			async () => {
+				const token = await rafraîchirToken({ commit, state });
+				const tokenRessources = params.tokenRessources;
+				const avancement = await getTousAvancementsApi(params.username, token, tokenRessources);
+
+				commit("setAvancement", avancement);
+				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+
+			    return avancement;
 			}
 		);
 	},
@@ -311,16 +328,15 @@ export default {
 			commit("setEnChargement", true);
 
 			try{
-				const token = params.token ?? await this.dispatch("getToken");
-				const tentative = await getTentativeApi(params.urlTentative, token);
-
+				const token = await rafraîchirToken({ commit, state });
+			const tokenRessources = params.tokenRessources;
+			const tentative = await getTentativeApi(params.urlTentative, token, tokenRessources);
 				commit("setTentative", tentative);
 				return tentative;
 			}
 			finally{
 				commit("setEnChargement", false);
 			}
-
 		}
 		);
 	},
@@ -383,7 +399,7 @@ export default {
 				token = params.token;
 				user = await getUserApi(params.url, token);
 			}
-			else{
+			else {
 				token = await this.dispatch("getToken");
 				user = this.state.user;
 			}

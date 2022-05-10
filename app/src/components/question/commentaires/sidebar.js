@@ -43,6 +43,7 @@ export default {
 					message: this.commentaire,
 					créateur: this.user.username,
 					numéro_ligne: this.numeroLigne,
+					tokenRessources: this.$store.state.tokenRessources,
 				}
 				);
 			var commentaire = { créateur:this.user.username, message:this.commentaire , numéro_ligne:this.numeroLigne};
