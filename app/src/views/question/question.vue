@@ -104,10 +104,6 @@
 			@basculerMenuCommentaire="basculerMenuCommentaire"
 		/>
 	</div>
-	<div v-else class=loader-parent>
-		<div class="loader">
-		</div>
-	</div>
 </template>
 
 <script src="./question.js"></script>

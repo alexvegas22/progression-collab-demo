@@ -102,5 +102,8 @@ export const mutations = {
 	},
 	setIndicateursDeFonctionnalité(state, val){
 		state.indicateursDeFonctionnalité = val;
+	},
+	setEnChargement(state, val){
+		state.enChargement = val;
 	}
 };
