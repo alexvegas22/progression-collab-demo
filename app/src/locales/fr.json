@@ -3,7 +3,8 @@
 		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
 		"authentification": "Nom d'utilisateur ou mot de passe incorrect.",
 		"inscription": "Ce nom d'utilisateur est déjà utilisé.",
-		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur."
+		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur.",
+		"question_introuvable": "La question n'existe pas ou n'a pas pu être récupérée. Si le problème persiste, veuillez aviser l'auteur de la question."
 	},
 
 	"menu": {

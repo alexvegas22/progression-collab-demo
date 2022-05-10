@@ -29,6 +29,7 @@ export default createStore({
 		nbRéussitesParLangage: [],
 		changerModeAffichageAvecRaccourci: false,
 		indicateursDeFonctionnalité: [],
+		enChargement: false,
 		raccourcis: {
 			basculerThème: "['ctrl', 'alt', 's']",
 			soumettreTentative: "['ctrl', 'enter']",
