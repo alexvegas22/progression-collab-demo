@@ -106,4 +106,7 @@ export const mutations = {
 	setEnvoiTestEnCours(state, val) {
 		state.envoiTestEnCours = val;
 	},
+	setEnChargement(state, val){
+		state.enChargement = val;
+	}
 };

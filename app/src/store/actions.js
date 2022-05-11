@@ -179,39 +179,53 @@ export default {
 		commit("updateAuthentificationEnCours", true);
 
 		return valider( async () =>  {
-			const token = await authentifierApi(urlAuth, username, password, domaine);
 
-			commit("setUsername", username);
-			commit("setToken", token);
+			commit("setEnChargement", true);
+			try{
 
-			sessionStorage.setItem("token", token);
+				const token = await authentifierApi(urlAuth, username, password, domaine);
 
-			// Obtenir l'utilisateur
-			const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username );
+				commit("setUsername", username);
+				commit("setToken", token);
 
-			// Obtenir la clé d'authentification
-			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
+				sessionStorage.setItem("token", token);
 
-			const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
+				// Obtenir l'utilisateur
+				const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username );
 
-			const storage = persister ? localStorage : sessionStorage;
-			storage.setItem("username", username);
-			storage.setItem("authKey_nom", authKey.nom);
-			storage.setItem("authKey_secret", authKey.clé.secret);
+				// Obtenir la clé d'authentification
+				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
-			return token;
+				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
+
+				const storage = persister ? localStorage : sessionStorage;
+				storage.setItem("username", username);
+				storage.setItem("authKey_nom", authKey.nom);
+				storage.setItem("authKey_secret", authKey.clé.secret);
+
+				return token;
+			}
+			finally{
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
 
 	async récupérerUser({ commit }, urlUser) {
 		return valider( async () =>  {
-			const token = await this.dispatch("getToken");
-			const user = await getUserApi(urlUser, token);
+			commit("setEnChargement", true);
+			try{
+				const token = await this.dispatch("getToken");
+				const user = await getUserApi(urlUser, token);
 
-			commit("setUsername", user.username);
-			commit("setUser", user);
-			return user;
+				commit("setUsername", user.username);
+				commit("setUser", user);
+				return user;
+			}
+			finally{
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
@@ -221,11 +235,24 @@ export default {
 		commit("setAvancement", null);
 		commit("setTentative", null);
 		return valider( async () =>  {
+			commit("setEnChargement", true);
 			const token = await this.dispatch("getToken");
-			const question = await getQuestionApi(urlQuestion, token);
-
-			commit("setQuestion", question);
-			return question;
+			try{
+				const question = await getQuestionApi(urlQuestion, token);
+				commit("setQuestion", question);
+				return question;
+			}
+			catch(e){
+				if(e?.response?.status==400) {
+					throw i18n.global.t("erreur.question_introuvable");
+				}
+				else{
+					throw e;
+				}
+			}
+			finally{
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
@@ -233,26 +260,39 @@ export default {
 	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
-				const token = params.token ?? await this.dispatch("getToken");
-				const avancement = await getAvancementApi(params.url, token);
+				commit("setEnChargement", true);
+				try{
+					const token = params.token ?? await this.dispatch("getToken");
+					const avancement = await getAvancementApi(params.url, token);
 
-				commit("setAvancement", avancement);
+					commit("setAvancement", avancement);
 
-				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
-				return avancement;
+					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+					return avancement;
+				}
+				finally{
+					commit("setEnChargement", false);
+				}
 			}
 		);
 	},
 
 	async créerAvancement({ commit, state }, params) {
 		return valider( async () =>  {
-			const token = await this.dispatch("getToken");
-			const avancement = await postAvancementApi(params, token);
+			commit("setEnChargement", true);
+			try{
 
-			commit("setAvancement", avancement);
+				const token = await this.dispatch("getToken");
+				const avancement = await postAvancementApi(params, token);
 
-			commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
-			return avancement;
+				commit("setAvancement", avancement);
+
+				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+				return avancement;
+			}
+			finally{
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
@@ -267,11 +307,20 @@ export default {
 
 	async récupérerTentative({ commit }, params) {
 		return valider( async () =>  {
-			const token = params.token ?? await this.dispatch("getToken");
-			const tentative = await getTentativeApi(params.urlTentative, token);
 
-			commit("setTentative", tentative);
-			return tentative;
+			commit("setEnChargement", true);
+
+			try{
+				const token = params.token ?? await this.dispatch("getToken");
+				const tentative = await getTentativeApi(params.urlTentative, token);
+
+				commit("setTentative", tentative);
+				return tentative;
+			}
+			finally{
+				commit("setEnChargement", false);
+			}
+
 		}
 		);
 	},
@@ -388,7 +437,7 @@ export default {
 			}
 			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
-				
+
 				if(e?.response?.status==400) {
 					throw i18n.global.t("erreur.tentative_intraitable");
 				}
@@ -537,7 +586,7 @@ export default {
 	setIndicateursDeFonctionnalité({ commit }, val) {
 		const toggles = [];
 		for( const toggle of val ){
-			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
+		    toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
 	},

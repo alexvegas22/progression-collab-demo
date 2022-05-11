@@ -3,7 +3,8 @@
 		"réseau": "Connection to server failed. Please retry or contact an administrator.",
 		"authentification": "Incorrect username or password.",
 		"inscription": "That username is already taken.",
-		"tentative_intraitable": "The attempt is invalid. The question may have changed since you the draft was loaded. Try to reload the initial draft. If the problem persists, contact an administrator."
+		"tentative_intraitable": "The attempt is invalid. The question may be invalid or may have changed since your draft was loaded. Try reloading the initial draft. If the problem persists, contact an administrator.",
+		"question_introuvable": "The question does not exist or could not be retreived. If the problem persists, contact the author of the question."
 	},
 
 	"menu": {

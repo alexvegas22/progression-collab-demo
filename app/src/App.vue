@@ -109,6 +109,10 @@
 					</details>
 				</div>
 			</div>
+			<div v-if="enChargement" class=loader-parent>
+				<div class="loader">
+				</div>
+			</div>
 			<router-view />
 		</div>
 	</div>
@@ -155,6 +159,9 @@ export default {
 		raccourcis(){
 			return this.$store.state.raccourcis;
 		},
+		enChargement() {
+			return this.$store.state.enChargement;
+		}
 	},
 	watch: {
 		thèmeSombre() {
