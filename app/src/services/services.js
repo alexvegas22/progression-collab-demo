@@ -71,12 +71,14 @@ const postAvancementApi = async (params, token) => {
 	return avancement;
 };
 
-const getTousAvancementsApi = async (username, token, tokenRessources) => {
-	const url = "/user/" + username + "/avancements";
+const getTousAvancementsApi = async (url, token, tokenRessources) => {
 	const query = { tkrs: tokenRessources };
 	const data = await getData(url, query, token);
-	var avancement = construireAvancement(data.data, data.included);
-	return avancement;
+	let avancements = [];
+	data.data.forEach((item) => {
+		avancements.push(construireAvancement(item, null));
+	});
+	return avancements;
 };
 
 const postCommentaireApi = async (params, token) =>{

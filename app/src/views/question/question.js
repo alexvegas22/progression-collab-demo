@@ -19,7 +19,7 @@ export default {
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,
-			panneauCommentaireOuvert:false,
+			panneauCommentaireOuvert: false,
 			ongletChangéRaccourci: false,
 			testSélectionnéHaut: false,
 			testSélectionnéBas: false,
@@ -61,13 +61,13 @@ export default {
 		démo() {
 			return this.$store.state.démo;
 		},
-		thèmeSombre(){
+		thèmeSombre() {
 			return this.$store.state.thèmeSombre;
 		},
-		indicateursDeFonctionnalitéCommentaires(){
+		indicateursDeFonctionnalitéCommentaires() {
 			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
 		},
-		raccourcis(){
+		raccourcis() {
 			return this.$store.state.raccourcis;
 		}
 	},
@@ -81,19 +81,19 @@ export default {
 		question: function () {
 			this.récupérerAvancement();
 		},
-		resultats: function (){
-			if (this.resultats){
-				for(var index in this.resultats){
-					if(!this.resultats[index].résultat){
-						this.panneauTestsAffiché=true;
+		resultats: function () {
+			if (this.resultats) {
+				for (var index in this.resultats) {
+					if (!this.resultats[index].résultat) {
+						this.panneauTestsAffiché = true;
 						break;
 					}
 				}
 			}
 		},
 	},
-	mounted(){
-		this.traiterParamètresURL( window.location.search );
+	mounted() {
+		this.traiterParamètresURL(window.location.search);
 	},
 	provide() {
 		return {
@@ -105,42 +105,42 @@ export default {
 		};
 	},
 	methods: {
-		traiterParamètresURL( paramètres ){
+		traiterParamètresURL(paramètres) {
 			var urlParams = new URLSearchParams(paramètres);
 
-			if(urlParams.has("uri")){
+			if (urlParams.has("uri")) {
 				this.$store.dispatch("setUri", urlParams.get("uri"));
 			}
 
-			if(urlParams.has("lang")){
+			if (urlParams.has("lang")) {
 				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));
 			}
 
-			if(urlParams.has("demo")){
+			if (urlParams.has("demo")) {
 				this.$store.dispatch("setDémo", true);
 			}
 
 		},
 		récupérerAvancement() {
 			let username = this.user.username;
+			let avancements = this.user.avancements;
 
-			if(this.$store.state.tokenRessources) {
-			    let tokenDécodé = jwt_decode(this.$store.state.tokenRessources);
-			    username = tokenDécodé.username;
+			if (this.$store.state.tokenRessources) {
+				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
+				username = tokenRessourcesDécodé.username;
+				avancements = this.$store.
+				dispatch("récupérerTousAvancements", { 
+					url: API_URL + "/user/" + username + "/avancements", 
+					tokenRessources: this.$store.state.tokenRessources }
+					);
 			}
 
-			this.$store.dispatch("récupérerTousAvancements", {
-				username: username,
-				token: this.$store.state.token,
-				tokenRessources: this.$store.state.tokRessources,
-			});
+			const id_avancement = username + "/" + this.uri;
 
-			const idAvancement = username + "/" + this.uri;
-			
-			if (idAvancement in this.$store.state.avancement) {
+			if (id_avancement in avancements) {
 				this.$store
 					.dispatch("récupérerAvancement", {
-						url: this.user.avancements[idAvancement].liens.self,
+						url: avancements[id_avancement].liens.self,
 						lang_défaut: this.lang,
 						tokenRessources: this.$store.state.tokenRessources,
 					});
@@ -151,20 +151,19 @@ export default {
 						question_uri: this.uri,
 						avancement: {},
 						lang_défaut: this.lang,
-						tkres: this.$store.state.tokenRessources,
 					});
 			}
 		},
 		récupérerQuestion() {
 			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
 		},
-		ajusterPanneauÉnoncé( dimension ) {
-			if(dimension === "normal") {
+		ajusterPanneauÉnoncé(dimension) {
+			if (dimension === "normal") {
 				this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
 				if (this.énoncéSemiÉcran)
 					this.énoncéPleinÉcran = false;
 			}
-			else if(dimension === "max") {
+			else if (dimension === "max") {
 				this.énoncéPleinÉcran = true;
 				this.énoncéSemiÉcran = false;
 			}
@@ -176,50 +175,50 @@ export default {
 		},
 		basculerPanneauTests() {
 			this.panneauTestsAffiché = !this.panneauTestsAffiché;
-			if(this.énoncéPleinÉcran && this.panneauTestsAffiché) {
+			if (this.énoncéPleinÉcran && this.panneauTestsAffiché) {
 				this.énoncéPleinÉcran = false;
 				this.énoncéSemiÉcran = true;
 			}
 			this.redimensionnerÉditeur();
 		},
-		basculerPanneauÉditeur(){
+		basculerPanneauÉditeur() {
 			this.éditeurPleinÉcran = !this.éditeurPleinÉcran;
 			this.panneauTestsAffiché = !this.éditeurPleinÉcran;
 			this.énoncéPleinÉcran = false;
 			this.énoncéSemiÉcran = !this.éditeurPleinÉcran;
 		},
-		redimensionnerÉditeur(){
-			if(this.éditeurPleinÉcran){
+		redimensionnerÉditeur() {
+			if (this.éditeurPleinÉcran) {
 				if (this.énoncéPleinÉcran || this.énoncéSemiÉcran || this.panneauTestsAffiché)
 					this.éditeurPleinÉcran = false;
 			}
-			else if(!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché){
+			else if (!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché) {
 				this.éditeurPleinÉcran = true;
 			}
 		},
-		basculerMenuCommentaire(){
-			this.panneauCommentaireOuvert =! this.panneauCommentaireOuvert;
+		basculerMenuCommentaire() {
+			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
 		},
-		sélectionnerTestDuHautAvecRaccourci(){
+		sélectionnerTestDuHautAvecRaccourci() {
 			this.testSélectionnéHaut = !this.testSélectionnéHaut;
 		},
-		sélectionnerTestDuBasAvecRaccourci(){
+		sélectionnerTestDuBasAvecRaccourci() {
 			this.testSélectionnéBas = !this.testSélectionnéBas;
 		},
-		changerModeAffichageAvecRaccourci(){
-			this.$store.dispatch("setChangerModeAffichageAvecRaccourci",true);
+		changerModeAffichageAvecRaccourci() {
+			this.$store.dispatch("setChangerModeAffichageAvecRaccourci", true);
 		},
-		changerOngletAvecRaccourci(){
+		changerOngletAvecRaccourci() {
 			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
 		},
 		basculerFormatÉnoncéAvecRaccourci() {
-			if (this.énoncéPleinÉcran){
+			if (this.énoncéPleinÉcran) {
 				this.ajusterPanneauÉnoncé("caché");
 			}
-			else if(this.énoncéSemiÉcran){
+			else if (this.énoncéSemiÉcran) {
 				this.ajusterPanneauÉnoncé("max");
 			}
-			else{
+			else {
 				this.ajusterPanneauÉnoncé("normal");
 			}
 		},

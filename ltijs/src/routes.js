@@ -161,7 +161,7 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 		  "method": "^GET$"
 		},
 		{
-			"url": "^/user/"+ id +"/avancements$",
+			"url": "^/user/"+ username + "/avancements$",
 			"method": "^GET$"
 		},
 		{
