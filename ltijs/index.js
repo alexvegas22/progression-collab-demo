@@ -68,11 +68,11 @@ lti.onConnect(async (idToken, req, res) => {
 	if(res.locals.context.roles == "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"){
 		const resLocalsToken = res.locals.token;
 		const membres = await services.récupérerMembres( resLocalsToken );
-		const scores = await services.récupérerScores( resLocalsToken );
+	    const scores = await services.récupérerScores( resLocalsToken );
 
-		for(const id in membres){
-			membres["score"] = scores[membres[id].user_id];
-		}
+	    Object.values(membres).forEach( membre => {
+			membre["score"] = scores[membre.user_id];
+		});
 
 		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
 		res.status(200);
@@ -103,14 +103,14 @@ const setup = async () => {
 
 	await lti.deploy({ port: process.env.PORT });
 
-	await lti.registerPlatform({
-		url: "https://moodle.exemple.com",
-		name: "Nom d'instance Moodle",
-		clientId: "id_client",
-		authenticationEndpoint: "https://moodle.exemple.com/mod/lti/auth.php",
-		accesstokenEndpoint: "https://moodle.exemple.com/mod/lti/token.php",
-		authConfig: { method: "JWK_SET", key: "https://moodle.exemple.com/mod/lti/certs.php" },
-	});
+    await lti.registerPlatform({
+		url: "https://moodle.progression.dti.crosemont.quebec",
+		name: "Moodle test",
+        clientId: "9ZhuwvH41k8bfoe",
+        authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
+        accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
+        authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php"},
+    });
 };
 
 setup();

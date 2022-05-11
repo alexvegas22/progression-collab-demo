@@ -52,8 +52,10 @@
 	},
 	"devDependencies": {
 		"@testing-library/vue": "^6.4.0",
+		"@vitejs/plugin-vue": "^2.3.1",
+		"@vitest/ui": "latest",
 		"@vue/compiler-sfc": "^3.0.5",
-		"@vue/test-utils": "^2.0.0-rc.17",
+		"@vue/test-utils": "^2.0.0-rc.21",
 		"eslint": "^8.13.0",
 		"eslint-plugin-css": "^0.6.0",
 		"eslint-plugin-css-modules": "^2.11.0",
