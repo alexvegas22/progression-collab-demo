@@ -57,7 +57,7 @@ const getQuestionApi = async (urlQuestion, token) => {
 };
 
 const getAvancementApi = async (url, token, tokenRessources) => {
-	const query = { include: "tentatives,sauvegardes", tkrs: tokenRessources };
+	const query = { include: "tentatives,sauvegardes", tkres: tokenRessources };
 	const data = await getData(url, query, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
