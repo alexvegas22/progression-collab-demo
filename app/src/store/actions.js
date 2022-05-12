@@ -285,7 +285,6 @@ export default {
 				try {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
-					console.log(tokenRessources);
 					const avancements = await getTousAvancementsApi(params.url, token, tokenRessources);
 
 					return avancements;

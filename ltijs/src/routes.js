@@ -158,23 +158,23 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 	const id = username + "/" + uriQuestion;
 
 	const ressources = [{
-		"url": "^/avancement/" + id + "$",
+		"url": "^avancement/" + id + "$",
 		"method": "^GET$"
 	},
 	{
-		"url": "^/user/" + username + "/avancements$",
+		"url": "^user/" + username + "/avancements$",
 		"method": "^GET$"
 	},
 	{
-		"url": "^/tentative/" + id + "/.*$",
+		"url": "^tentative/" + id + "/.*$",
 		"method": "^GET$"
 	},
 	{
-		"url": "^/commentaire/" + id + "/.*$",
+		"url": "^commentaire/" + id + "/.*$",
 		"method": "^GET$"
 	},
 	{
-		"url": "^/tentative/" + id + "/.*/commentaires$",
+		"url": "^tentative/" + id + "/.*/commentaires$",
 		"method": "^POST$"
 	}];
 
@@ -186,7 +186,7 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 
 	const requête = process.env.API_URL + "/token/" + username;
 
-	const reponse = await axios.post(requête, { ressources: ressources }, config);
+	const reponse = await axios.post(requête, { ressources: JSON.stringify(ressources) }, config);
 	provMainDebug("Token ressource: " + reponse.data.Token);
 
 	return reponse.data.Token;
