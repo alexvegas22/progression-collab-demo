@@ -129,10 +129,10 @@ export default {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
 				username = tokenRessourcesDécodé.username;
 				avancements = this.$store.
-				dispatch("récupérerTousAvancements", { 
-					url: API_URL + "/user/" + username + "/avancements", 
-					tokenRessources: this.$store.state.tokenRessources }
-					);
+					dispatch("récupérerTousAvancements", {
+						url: API_URL + "/user/" + username + "/avancements",
+						tokenRessources: this.$store.state.tokenRessources
+					});
 			}
 
 			const id_avancement = username + "/" + this.uri;
