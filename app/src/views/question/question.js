@@ -83,7 +83,7 @@ export default {
 		resultats: function (){
 			if (this.resultats){
 				for(var index in this.resultats){
-					if(!this.resultats[index].résultat){
+					if(!this.resultats[index]?.résultat){
 						this.panneauTestsAffiché=true;
 						break;
 					}

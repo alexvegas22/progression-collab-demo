@@ -84,7 +84,7 @@ const getTentativeApi = async (urlTentative, token) => {
 	return tentative;
 };
 const postTentative = async (params, token) => {
-	const body = { langage: params.langage, code: params.code };
+	const body = { langage: params.tentative.langage, code: params.tentative.code, test: params.test};
 	const urlRequete = params.urlTentative + "?include=resultats";
 	const data = await postData(urlRequete, body, token);
 

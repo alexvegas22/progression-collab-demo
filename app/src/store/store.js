@@ -41,7 +41,7 @@ export default createStore({
 			basculerModeParDifférences: "['alt', 'd']",
 			itérerTestHaut: "['alt', 'arrowup']",
 			itérerTestBas: "['alt', 'arrowdown']",
-		}
+		},
 	},
 	getters,
 	actions,

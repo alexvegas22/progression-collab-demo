@@ -24,17 +24,15 @@ export default {
 			ongletActif: "ResultatTest",
 			index_select: 0,
 			modeAffichageChangéRaccourci: false,
+			envoiTestUnique: false,
 		};
 	},
 	computed: {
 		resultats() {
-			if(!this.$store.state.question || !this.$store.state.tentative) return [];
+			if(!this.$store.state.question || !this.$store.state.tentative?.resultats) return [];
 			var res = [];
 			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
-				var résultat =
-					this.tentative && this.tentative.resultats && i < this.tentative.resultats.length
-						? this.tentative.resultats[i].résultat
-						: null;
+				var résultat = this.tentative?.resultats[i]?.résultat;
 				res.push(résultat);
 			}
 			return res;
@@ -56,11 +54,14 @@ export default {
 		thèmeSombre() {
 			return this.$store.state.thèmeSombre;
 		},
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
+		},
 	},
 	watch:{
 		resultats(){
-			if(this.tentative?.resultats.length > 0){
-				for(var resultat in this.tentative.resultats){
+			if(!this.envoiTestUnique){
+				for(var resultat in this.tentative?.resultats){
 					if(this.tentative.resultats[resultat].sortie_erreur){
 						this.index_select=resultat;
 						this.changementOnglet("ErreursTest");
@@ -74,10 +75,7 @@ export default {
 					this.changementOnglet("ResultatTest");
 				}
 			}
-			else{
-				this.index_select=0;
-				this.changementOnglet("ResultatTest");
-			}
+			this.envoiTestUnique = false;
 		},
 		ongletChangé: {
 			deep: true,
@@ -119,6 +117,12 @@ export default {
 		},
 		select(index) {
 			this.index_select = index;
+			if(this.ongletActif === "ErreursTest" && !this.tentative?.resultats[index]?.sortie_erreur){
+				this.changementOnglet("ResultatTest");
+			}
+			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exec){
+				this.changementOnglet("ResultatTest");
+			}
 		},
 		basculerPanneau(){
 			this.$emit("basculéPanneauTests");
@@ -131,6 +135,16 @@ export default {
 		},
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
+		},
+		validerTest(){
+			this.$store.dispatch("soumettreTestUnique",
+				{
+					test: this.test_select,
+					index: this.index_select,
+					tentativeCourante: this.$store.state.tentative
+				}
+			);
+			this.envoiTestUnique = true;
 		},
 	},
 };
