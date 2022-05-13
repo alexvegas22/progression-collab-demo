@@ -409,18 +409,14 @@ export default {
 		);
 	},
 
-	async soumettreTentative({ commit, state }, params) {
+	async soumettreTentative({ commit, state }) {
 		commit("updateEnvoieTentativeEnCours", true);
-
-		params.urlTentative = state.avancement.liens.tentatives;
-		const tentative = state.tentative;
-
-		commit("setTentative", {code: tentative.code, langage: tentative.langage, resultats: []} );
+		commit("setRésultats", [] );
 
 		return valider( async () =>  {
 			try {
 				const token = await this.dispatch("getToken");
-				const tentative = await postTentative(params, token);
+				const tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
 
 				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
@@ -441,6 +437,28 @@ export default {
 			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
 
+				if(e?.response?.status==400) {
+					throw i18n.global.t("erreur.tentative_intraitable");
+				}
+				else{
+					throw(e);
+				}
+			}
+		}
+		);
+	},
+
+	soumettreTestUnique({commit, state}, params) {
+		const indexTestSélectionné = params.index;
+		
+		return valider( async () => {
+			try {
+				const token = await this.dispatch("getToken");
+				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, urlTentative: state.avancement.liens.tentatives}, token);
+
+				commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+			}
+			catch (e) {
 				if(e?.response?.status==400) {
 					throw i18n.global.t("erreur.tentative_intraitable");
 				}
@@ -567,5 +585,17 @@ export default {
 		    toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
-	}
+	},
+	setEnvoiTestEnCours({ commit }, val) {
+		commit("setEnvoiTestEnCours", val);
+	},
+	setEntréeTest({ commit }, val) {
+		commit("setEntréeTest", val);
+	},
+	setParamsTest({ commit }, val) {
+		commit("setParamsTest", val);
+	},
+	setTests({ commit }, val) {
+		commit("setTests", val);
+	},
 };
