@@ -81,11 +81,11 @@ export default {
 		question: function () {
 			this.récupérerAvancement();
 		},
-		resultats: function () {
-			if (this.resultats) {
-				for (var index in this.resultats) {
-					if (!this.resultats[index].résultat) {
-						this.panneauTestsAffiché = true;
+		resultats: function (){
+			if (this.resultats){
+				for(var index in this.resultats){
+					if(!this.resultats[index]?.résultat){
+						this.panneauTestsAffiché=true;
 						break;
 					}
 				}

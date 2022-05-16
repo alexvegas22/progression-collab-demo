@@ -41,7 +41,7 @@ export default createStore({
 			itérerTestHaut: "['alt', 'arrowup']",
 			réinitialiser: "['ctrl', 'alt', 'r']",
 			soumettreTentative: "['ctrl', 'enter']",
-		}
+		},
 	},
 	getters,
 	actions,
