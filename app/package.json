@@ -5,7 +5,12 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build --base='$VITE_SUBDIR'",
-		"serve": "vite preview"
+		"serve": "vite preview",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:run": "vitest run",
+		"test:unit": "vitest",
+		"coverage": "vitest run --coverage"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -22,6 +27,7 @@
 		"he": "^1.2.0",
 		"highlight.js": "^11.3.1",
 		"jwt-decode": "^3.1.2",
+		"jwt-encode": "^1.0.1",
 		"markdown-it": "^12.0.4",
 		"markdown-it-footnote": "^3.0.3",
 		"markdown-it-link-target": "^1.0.2",
@@ -53,7 +59,8 @@
 	"devDependencies": {
 		"@testing-library/vue": "^6.4.0",
 		"@vue/compiler-sfc": "^3.0.5",
-		"@vue/test-utils": "^2.0.0-rc.17",
+		"@vitejs/plugin-vue": "^2.3.1",
+		"@vue/test-utils": "^2.0.0-rc.21",
 		"eslint": "^8.13.0",
 		"eslint-plugin-css": "^0.6.0",
 		"eslint-plugin-css-modules": "^2.11.0",
@@ -61,22 +68,12 @@
 		"eslint-plugin-vue": "^8.5.0",
 		"espree": "^9.3.1",
 		"vue-chartkick": "^1.1.0",
-		"vue-eslint-parser": "^8.3.0"
+		"vue-eslint-parser": "^8.3.0",
+		"@vitest/ui": "latest",
+		"jsdom": "latest",
+		"vitest": "latest"
 	},
 	"rules": {},
-	"jest": {
-		"testURL": "http://localhost:3000"
-	},
-	"overrides": [
-		{
-			"files": [
-				"**/__tests__/*.{j,t}s?(x)"
-			],
-			"env": {
-				"jest": true
-			}
-		}
-	],
 	"browserslist": [
 		"last 2 versions",
 		"not dead"
