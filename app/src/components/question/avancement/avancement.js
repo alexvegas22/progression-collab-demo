@@ -44,7 +44,7 @@ export default {
 			if (confirm(msgAvertissement) == true) {
 				this.$store.dispatch("récupérerTentative", {
 					urlTentative: event.target.value,
-					token: this.$store.state.tokenRessources,
+					tkres: this.$store.state.tokenRessources,
 				});
 			}
 		},

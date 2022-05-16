@@ -68,11 +68,11 @@ lti.onConnect(async (idToken, req, res) => {
 	if(res.locals.context.roles == "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"){
 		const resLocalsToken = res.locals.token;
 		const membres = await services.récupérerMembres( resLocalsToken );
-		const scores = await services.récupérerScores( resLocalsToken );
+	    const scores = await services.récupérerScores( resLocalsToken );
 
-		for(const id in membres){
-			membres["score"] = scores[membres[id].user_id];
-		}
+	    Object.values(membres).forEach( membre => {
+			membre["score"] = scores[membre.user_id];
+		});
 
 		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
 		res.status(200);
