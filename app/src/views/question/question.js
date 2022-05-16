@@ -122,8 +122,7 @@ export default {
 
 		},
 		récupérerAvancement() {
-		    let username = this.user.username;
-		    let avancements = this.user.avancements;
+			let username = this.user.username;
 
 			if (this.$store.state.tokenRessources) {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
@@ -132,7 +131,7 @@ export default {
 
 			this.$store.dispatch("récupérerTousAvancements", {
 				url: API_URL + "/user/" + username + "/avancements",
-				tkres: this.$store.state.tokenRessources
+				tokenRessources: this.$store.state.tokenRessources
 			}).then((avancements) => {
 				const id_avancement = username + "/" + this.uri;
 
@@ -141,7 +140,7 @@ export default {
 						.dispatch("récupérerAvancement", {
 							url: avancements[id_avancement].liens.self,
 							lang_défaut: this.lang,
-							tkres: this.$store.state.tokenRessources,
+							tokenRessources: this.$store.state.tokenRessources,
 						});
 				} else {
 					this.$store

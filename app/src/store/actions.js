@@ -279,7 +279,7 @@ export default {
 		);
 	},
 
-	async récupérerTousAvancements({ commit, state }, params) {
+	async récupérerTousAvancements({ commit }, params) {
 		return valider(
 			async () => {
 				try {
@@ -474,7 +474,7 @@ export default {
 		const params = {
 			url: state.avancement.liens.sauvegardes,
 			code: state.tentative.code,
-		    langage: state.tentative.langage,
+			langage: state.tentative.langage,
 		};
 
 		return valider(async () => {
