@@ -430,7 +430,6 @@ export default {
 	async soumettreTentative({ commit, state }, params) {
 		commit("updateEnvoieTentativeEnCours", true);
 
-		params.urlTentative = state.avancement.liens.tentatives;
 		const tentative = state.tentative;
 
 		commit("setTentative", { code: tentative.code, langage: tentative.langage, resultats: [] });
