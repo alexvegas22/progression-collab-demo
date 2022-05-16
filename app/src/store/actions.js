@@ -488,28 +488,6 @@ export default {
 		);
 	},
 
-	soumettreTestUnique({commit, state}, params) {
-		const indexTestSélectionné = params.index;
-		
-		return valider( async () => {
-			try {
-				const token = await this.dispatch("getToken");
-				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, urlTentative: state.avancement.liens.tentatives}, token);
-
-				commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
-			}
-			catch (e) {
-				if(e?.response?.status==400) {
-					throw i18n.global.t("erreur.tentative_intraitable");
-				}
-				else{
-					throw(e);
-				}
-			}
-		}
-		);
-	},
-
 	async mettreAjourSauvegarde({ commit, state }) {
 		const params = {
 			url: state.avancement.liens.sauvegardes,
