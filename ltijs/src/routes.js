@@ -186,7 +186,7 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 
 	const requête = process.env.API_URL + "/token/" + username;
 
-	const reponse = await axios.post(requête, { ressources: JSON.stringify(ressources) }, config);
+	const reponse = await axios.post(requête, { ressources: ressources }, config);
 	provMainDebug("Token ressource: " + reponse.data.Token);
 
 	return reponse.data.Token;

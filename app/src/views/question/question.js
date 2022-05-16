@@ -123,41 +123,35 @@ export default {
 		},
 		récupérerAvancement() {
 			let username = this.user.username;
-		    let avancements = this.user.avancements;
-
-		    console.log("Username initial: " + username);
+			let avancements = this.user.avancements;
 
 			if (this.$store.state.tokenRessources) {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
 				username = tokenRessourcesDécodé.username;
-				avancements = this.$store.
+				this.$store.
 					dispatch("récupérerTousAvancements", {
 						url: API_URL + "/user/" + username + "/avancements",
 						tokenRessources: this.$store.state.tokenRessources
-					});
-			    console.log("Avancements token ressources: " + avancements.toString());
-			}
+					}).then((avancements) => {
+						console.log(avancements);
+						const id_avancement = username + "/" + this.uri;
 
-		    console.log("Username token ressources: " + username);
-
-		    const id_avancement = username + "/" + this.uri;
-
-		    console.log("Avancements vérifiés: " + avancements.toString());
-
-			if (id_avancement in avancements) {
-				this.$store
-					.dispatch("récupérerAvancement", {
-						url: avancements[id_avancement].liens.self,
-						lang_défaut: this.lang,
-						tokenRessources: this.$store.state.tokenRessources,
-					});
-			} else {
-				this.$store
-					.dispatch("créerAvancement", {
-						url: this.user.liens.avancements,
-						question_uri: this.uri,
-						avancement: {},
-						lang_défaut: this.lang,
+						if (id_avancement in avancements) {
+							this.$store
+								.dispatch("récupérerAvancement", {
+									url: avancements[id_avancement].liens.self,
+									lang_défaut: this.lang,
+									tokenRessources: this.$store.state.tokenRessources,
+								});
+						} else {
+							this.$store
+								.dispatch("créerAvancement", {
+									url: this.user.liens.avancements,
+									question_uri: this.uri,
+									avancement: {},
+									lang_défaut: this.lang,
+								});
+						}
 					});
 			}
 		},

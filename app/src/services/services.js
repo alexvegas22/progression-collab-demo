@@ -74,9 +74,9 @@ const postAvancementApi = async (params, token) => {
 const getTousAvancementsApi = async (url, token, tokenRessources) => {
 	const query = { tkres: tokenRessources };
 	const data = await getData(url, query, token);
-	let avancements = [];
+	let avancements = {};
 	data.data.forEach((item) => {
-		avancements.push(construireAvancement(item, null));
+		avancements[item.id] = construireAvancement(item, null);
 	});
 	return avancements;
 };
