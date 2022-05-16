@@ -128,12 +128,12 @@ export default {
 			if (this.$store.state.tokenRessources) {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
 				username = tokenRessourcesDécodé.username;
-				this.$store.
-					dispatch("récupérerTousAvancements", {
+			}
+
+		    this.$store.dispatch("récupérerTousAvancements", {
 						url: API_URL + "/user/" + username + "/avancements",
 						tokenRessources: this.$store.state.tokenRessources
 					}).then((avancements) => {
-						console.log(avancements);
 						const id_avancement = username + "/" + this.uri;
 
 						if (id_avancement in avancements) {
@@ -153,7 +153,6 @@ export default {
 								});
 						}
 					});
-			}
 		},
 		récupérerQuestion() {
 			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
