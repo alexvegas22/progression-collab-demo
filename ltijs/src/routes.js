@@ -33,10 +33,11 @@ const sauvegarderAuthKey = function (userId, clé_id, clé_secret) {
 		null,
 		"user",
 		{ userId: userId },
-		{$set : {
-			authKey_nom: clé_id,
-			authKey_secret: clé_secret,
-		}
+		{
+			$set: {
+				authKey_nom: clé_id,
+				authKey_secret: clé_secret,
+			}
 		},
 	)
 		.then(() => provMainDebug("Utilisateur sauvegardé."))
@@ -83,7 +84,7 @@ router.post("/lti/grade", async (req, res) => {
 		let lineItemId = idToken.platformContext.endpoint.lineitem;
 
 		if (!lineItemId) {
-			const response = await lti.Grade.getLineItems(idToken, {resourceLinkId: true});
+			const response = await lti.Grade.getLineItems(idToken, { resourceLinkId: true });
 			const lineItems = response.lineItems;
 			provMainDebug("lineItem: " + idToken.platformContext.endpoint.lineitem);
 			provMainDebug(lineItems);
@@ -106,32 +107,32 @@ router.post("/lti/grade", async (req, res) => {
 		return res.send(responseGrade);
 	} catch (err) {
 		provMainDebug(err);
-		return res.status(500).send({err: err.message});
+		return res.status(500).send({ err: err.message });
 	}
 });
 
 
 router.post("/lti/auth", async (req, res) => {
 	provMainDebug("/lti/auth");
-	
+
 	const idToken = res.locals.token;
 	const userId = idToken.platformId + "/" + idToken.user;
 	const username = req.body.username;
 	const token = req.body.token;
-	if(!token) return res.status(400).send("un token doit être fourni");
-	
+	if (!token) return res.status(400).send("un token doit être fourni");
+
 	var user = await services.récupérerUser(userId);
-	if(!user) {
-		user = {userId: userId, username: username };
-		services.sauvegarderUser( user );
+	if (!user) {
+		user = { userId: userId, username: username };
+		services.sauvegarderUser(user);
 	}
-	services.sauvegarderToken( user, token );
+	services.sauvegarderToken(user, token);
 
 	obtenirEtSauvegarderAuthKey(userId, username, token).then(
 		() => res.status(200).send("OK")
 	)
-		.catch( (err) => res.status(500).send(err) );
-	
+		.catch((err) => res.status(500).send(err));
+
 });
 
 const récupérerScore = async function (uri, token) {
@@ -155,27 +156,28 @@ const récupérerScore = async function (uri, token) {
 const récupérerTokenRessource = async function (token, uriQuestion) {
 	const username = jwt_decode(token).username;
 	const id = username + "/" + uriQuestion;
-	
+
 	const ressources = [{
-		  "url": "^/avancement/"+ id + "$",
-		  "method": "^GET$"
-		},
-		{
-			"url": "^/user/"+ username + "/avancements$",
-			"method": "^GET$"
-		},
-		{
-		  "url": "^/tentative/"+ id + "/.*$",
-		  "method": "^GET$"
-		},
-		{
-		  "url": "^/commentaire/"+ id + "/.*$",
-		  "method": "^GET$"
-		},
-		{
-		  "url": "^/tentative/"+ id + "/.*/commentaires$",
-		  "method": "^POST$"}];
-		  
+		"url": "^avancement/" + id + "$",
+		"method": "^GET$"
+	},
+	{
+		"url": "^user/" + username + "/avancements$",
+		"method": "^GET$"
+	},
+	{
+		"url": "^tentative/" + id + "/.*$",
+		"method": "^GET$"
+	},
+	{
+		"url": "^commentaire/" + id + "/.*$",
+		"method": "^GET$"
+	},
+	{
+		"url": "^tentative/" + id + "/.*/commentaires$",
+		"method": "^POST$"
+	}];
+
 	const config = {
 		headers: {
 			Authorization: "Bearer " + token,
@@ -184,8 +186,8 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 
 	const requête = process.env.API_URL + "/token/" + username;
 
-    const reponse = await axios.post(requête, { ressources: ressources }, config);
-    provMainDebug("Token ressource: " + reponse.data.Token);
+	const reponse = await axios.post(requête, { ressources: ressources }, config);
+	provMainDebug("Token ressource: " + reponse.data.Token);
 
 	return reponse.data.Token;
 };

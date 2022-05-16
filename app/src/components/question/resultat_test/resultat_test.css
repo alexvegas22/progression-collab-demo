@@ -36,7 +36,7 @@
 
 .diff.différent.del.enabled {
 	color: #000000;
-	background-color: #FFB3B3 !important;
+	background-color: #ffb3b3 !important;
 }
 
 pre {
@@ -57,7 +57,7 @@ pre {
 
 .resultat-test pre p {
 	height: inherit;
-	white-space: break-spaces;	
+	white-space: break-spaces;
 }
 
 .espace-sélecteur {
@@ -73,21 +73,57 @@ pre {
 	right: 1rem;
 }
 
+.inputTest {
+	margin-left: 5px;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	border: none;
+	cursor: pointer;
+	resize: none;
+}
+
+.inputTest:hover {
+	background-color: rgb(0, 0, 0, 0.1);
+}
+
+.thème_sombre .inputTest:hover {
+	background-color: rgb(0, 0, 0, 0.3) !important;
+}
+
+.inputTest:focus {
+	outline-color: rgb(13, 202, 240, 0.5) !important;
+	outline-style: solid;
+	background-color: rgb(0, 0, 0, 0.1) !important;
+}
+
+.thème_sombre .inputTest:focus {
+	outline-color: rgb(13, 202, 240, 0.5) !important;
+	outline-style: solid;
+	background-color: rgb(0, 0, 0, 0.3) !important;
+}
+
+.boutonRafraichissement {
+	padding-left: 0.5rem;
+	font-size: 0.8rem;
+	cursor: pointer;
+}
+
 /* ------------------------------ Media Queries ---------------------------------*/
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {
 	.titre_résultat_test {
-		font-size: 0.75rem;	
+		font-size: 0.75rem;
 	}
-    
+
 	.texte_résultat_test {
-        font-size: 0.72rem;
-    }
-	
+		font-size: 0.72rem;
+	}
+
 	.sortie.vide {
 		margin-top: 0;
 	}
-	
+
 	.espace-titre-sortie-observée {
 		margin-bottom: -2px;
 	}
@@ -96,11 +132,11 @@ pre {
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
 @media (min-width: 36rem) and (max-width: 48rem) {
 	.titre_résultat_test {
-		font-size: 0.85rem;	
+		font-size: 0.85rem;
 	}
-    .texte_résultat_test {
-        font-size: 0.77rem;
-    }
+	.texte_résultat_test {
+		font-size: 0.77rem;
+	}
 	.sortie.vide {
 		margin-top: 0;
 	}
@@ -114,9 +150,9 @@ pre {
 	.titre_résultat_test {
 		font-size: 1rem;
 	}
-    .texte_résultat_test {
-        font-size: 0.77rem;
-    }
+	.texte_résultat_test {
+		font-size: 0.77rem;
+	}
 	.sortie.vide {
 		margin-top: 0;
 	}
@@ -127,9 +163,9 @@ pre {
 	.titre_résultat_test {
 		font-size: 1.1rem;
 	}
-    .texte_résultat_test {
-        font-size: 0.80rem;
-    }
+	.texte_résultat_test {
+		font-size: 0.8rem;
+	}
 	.sortie.vide {
 		margin-top: 0;
 	}

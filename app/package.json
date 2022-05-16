@@ -52,9 +52,8 @@
 	},
 	"devDependencies": {
 		"@testing-library/vue": "^6.4.0",
-		"@vitejs/plugin-vue": "^2.3.1",
-		"@vitest/ui": "latest",
 		"@vue/compiler-sfc": "^3.0.5",
+		"@vitejs/plugin-vue": "^2.3.1",
 		"@vue/test-utils": "^2.0.0-rc.21",
 		"eslint": "^8.13.0",
 		"eslint-plugin-css": "^0.6.0",
@@ -62,10 +61,11 @@
 		"eslint-plugin-smarter-tabs": "^1.2.0",
 		"eslint-plugin-vue": "^8.5.0",
 		"espree": "^9.3.1",
-		"jsdom": "latest",
-		"vitest": "latest",
 		"vue-chartkick": "^1.1.0",
-		"vue-eslint-parser": "^8.3.0"
+		"vue-eslint-parser": "^8.3.0",
+		"@vitest/ui": "latest",
+		"jsdom": "latest",
+		"vitest": "latest"
 	},
 	"rules": {},
 	"jest": {

@@ -57,7 +57,7 @@ const getQuestionApi = async (urlQuestion, token) => {
 };
 
 const getAvancementApi = async (url, token, tokenRessources) => {
-	const query = { include: "tentatives,sauvegardes", tkrs: tokenRessources };
+	const query = { include: "tentatives,sauvegardes", tkres: tokenRessources };
 	const data = await getData(url, query, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
@@ -72,16 +72,16 @@ const postAvancementApi = async (params, token) => {
 };
 
 const getTousAvancementsApi = async (url, token, tokenRessources) => {
-	const query = { tkrs: tokenRessources };
+	const query = { tkres: tokenRessources };
 	const data = await getData(url, query, token);
-	let avancements = [];
+	let avancements = {};
 	data.data.forEach((item) => {
-		avancements.push(construireAvancement(item, null));
+		avancements[item.id] = construireAvancement(item, null);
 	});
 	return avancements;
 };
 
-const postCommentaireApi = async (params, token) =>{
+const postCommentaireApi = async (params, token) => {
 	const body = params;
 	const data = await postData(params.url, null, body, token);
 	return data;
@@ -123,12 +123,13 @@ const postTentative = async (params, token) => {
 	return tentative;
 };
 
-const postAuthKey = async( params, token ) =>
-	await postData( params.url, null, params.clé, token )
-		.then( (data) => {
+const postAuthKey = async (params, token) =>
+	await postData(params.url, null, params.clé, token)
+		.then((data) => {
 			return {
 				nom: params.clé.nom,
-				clé: data.data.attributes};
+				clé: data.data.attributes
+			};
 		});
 
 const callbackGrade = async (url, params) => {
@@ -181,7 +182,7 @@ function construireSauvegarde(item) {
 	return sauvegarde;
 }
 
-function construireTentative(data, included = null){
+function construireTentative(data, included = null) {
 	var tentative;
 	tentative = data.attributes;
 	tentative.liens = data.links;
@@ -190,9 +191,9 @@ function construireTentative(data, included = null){
 
 	tentative.resultats = [];
 	tentative.commentaires = [];
-	if(included){
-		included.forEach((item) =>{
-			if(item.type == "commentaire"){
+	if (included) {
+		included.forEach((item) => {
+			if (item.type == "commentaire") {
 				const commentaire = {
 					...item.attributes,
 					liens: item.links

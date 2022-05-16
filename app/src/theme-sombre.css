@@ -21,6 +21,11 @@ body {
 	color: #e1e1e1 !important;
 }
 
+.thème_sombre textarea {
+	background-color: #353535 !important;
+	color: #e1e1e1 !important;
+}
+
 input[type="checkbox"]:checked + .bi {
 	fill: rgb(18, 169, 189);
 }

@@ -1,8 +1,6 @@
-// Format la chaine de caractères
-String.prototype.format = function () {
-	let formatted = this;
 
-	for (let arg in arguments) formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+function copie_profonde(objet){
+	return JSON.parse(JSON.stringify(objet));
+}
 
-	return formatted;
-};
+export {copie_profonde};

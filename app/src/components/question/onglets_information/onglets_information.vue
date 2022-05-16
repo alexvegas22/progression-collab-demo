@@ -36,6 +36,12 @@
 					@click="changementOnglet('ResultatTest')"
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
+					<i 
+						v-if="panneauAffiché"
+						:disabled="envoiEnCours"
+						:class="{ 'fas fa-play btn-test-local': !this.envoiTestUnique, 'fa fa-refresh fa-spin spin-test-local': this.envoiTestUnique }"
+						@click="validerTest"
+					></i>
 				</div>
 				<div
 					v-if="resultat_select && resultat_select.sortie_erreur"
@@ -71,6 +77,7 @@
 					:résultat="resultat_select"
 					:tempsÉxecution="test_select"
 					:panneau-affiché="panneauAffiché"
+					:index="index_select"
 				/>
 			</keep-alive>
 		</div>

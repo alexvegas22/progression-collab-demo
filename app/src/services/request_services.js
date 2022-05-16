@@ -6,8 +6,8 @@ async function getData(url, query = null, token = null) {
 		params: query,
 	};
 
-	if(token) {
-	    config.headers = { Authorization: "Bearer " + token};
+	if (token) {
+		config.headers = { Authorization: "Bearer " + token };
 	}
 
 	const réponse = await axios.request(config);
@@ -22,8 +22,8 @@ async function postData(url, query = null, data = null, token = null) {
 		data: data,
 	};
 
-	if(token) {
-	    config.headers = { Authorization: "Bearer " + token};
+	if (token) {
+		config.headers = { Authorization: "Bearer " + token };
 	}
 
 	const réponse = await axios.request(config);
