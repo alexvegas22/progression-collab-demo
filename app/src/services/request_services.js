@@ -1,39 +1,33 @@
 import axios from "axios";
 
-/**
- * fait une requete GET
- * @param lien: le lien COMPLET de la requete
- * @returns {Promise<unknown>}
- */
+async function getData(url, query = null, token = null) {
+	let config = {
+		url: url,
+		params: query,
+	};
 
-const getData = async (lien, token = null) => {
-	const config = token ? {
-		headers: {
-			Authorization: "Bearer " + token,
-		},
-	} : {};
+	if (token) {
+		config.headers = { Authorization: "Bearer " + token };
+	}
 
-	return axios.get(lien, config).then((réponse) => {
-		return réponse.data;
-	});
-};
+	const réponse = await axios.request(config);
+	return réponse.data;
+}
 
-/**
- * Fait une requete Post a l'api
- * @param lien: Lien complet de la requete
- * @param body: le body COMPLET de la requete
- * @returns {Promise<unknown>}, a traiter a l'appel
- */
-const postData = async (lien, body, token = null) => {
-	const config = token ? {
-		headers: {
-			Authorization: "Bearer " + token,
-		},
-	} : {};
+async function postData(url, query = null, data = null, token = null) {
+	let config = {
+		url: url,
+		method: "post",
+		params: query,
+		data: data,
+	};
 
-	return axios.post(lien, body, config).then((réponse) => {
-		return réponse.data;
-	});
-};
+	if (token) {
+		config.headers = { Authorization: "Bearer " + token };
+	}
+
+	const réponse = await axios.request(config);
+	return réponse.data;
+}
 
 export { getData, postData };

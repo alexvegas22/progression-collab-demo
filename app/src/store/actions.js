@@ -3,6 +3,7 @@ import {
 	callbackGrade,
 	getConfigServeurApi,
 	getAvancementApi,
+	getTousAvancementsApi,
 	getQuestionApi,
 	getTentativeApi,
 	getTokenApi,
@@ -21,7 +22,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
-const valider = async function(promesse){
+const valider = async function (promesse) {
 	return validateur(promesse());
 };
 
@@ -90,8 +91,8 @@ function récupérerListeAvecPourcentageRéussi(élémentsRéussis) {
 
 	const réussis = Object.keys(élémentsRéussis);
 	const listeRéussis = [];
-	for(let langage of réussis){
-		let pourcentage = récupérerPourcentageRéussi(élémentsRéussis,langage);
+	for (let langage of réussis) {
+		let pourcentage = récupérerPourcentageRéussi(élémentsRéussis, langage);
 		listeRéussis.push([langage, pourcentage]);
 	}
 
@@ -99,7 +100,7 @@ function récupérerListeAvecPourcentageRéussi(élémentsRéussis) {
 
 }
 
-function récupérerPourcentageRéussi(réussis, langage){
+function récupérerPourcentageRéussi(réussis, langage) {
 	var totalRéussi = 0;
 	var pourcentage = 0;
 	for (var tentative in réussis) {
@@ -109,7 +110,7 @@ function récupérerPourcentageRéussi(réussis, langage){
 	return pourcentage.toFixed(1);
 }
 
-function sélectionnerTentative(avancement, question, lang_défaut){
+function sélectionnerTentative(avancement, question, lang_défaut) {
 	var tentative;
 
 	if (Object.keys(avancement.sauvegardes).length > 0) {
@@ -161,7 +162,7 @@ export default {
 	},
 
 	async récupérerConfigServeur({ commit }, urlConfig) {
-		return valider( async () =>  {
+		return valider(async () => {
 			const config = await getConfigServeurApi(urlConfig);
 
 			commit("setConfigServeur", config);
@@ -178,10 +179,10 @@ export default {
 		const domaine = params.domaine;
 		commit("updateAuthentificationEnCours", true);
 
-		return valider( async () =>  {
+		return valider(async () => {
 
 			commit("setEnChargement", true);
-			try{
+			try {
 
 				const token = await authentifierApi(urlAuth, username, password, domaine);
 
@@ -191,10 +192,10 @@ export default {
 				sessionStorage.setItem("token", token);
 
 				// Obtenir l'utilisateur
-				const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username );
+				const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username);
 
 				// Obtenir la clé d'authentification
-				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
+				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
 				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
 
@@ -205,7 +206,7 @@ export default {
 
 				return token;
 			}
-			finally{
+			finally {
 				commit("setEnChargement", false);
 			}
 		}
@@ -213,9 +214,9 @@ export default {
 	},
 
 	async récupérerUser({ commit }, urlUser) {
-		return valider( async () =>  {
+		return valider(async () => {
 			commit("setEnChargement", true);
-			try{
+			try {
 				const token = await this.dispatch("getToken");
 				const user = await getUserApi(urlUser, token);
 
@@ -223,7 +224,7 @@ export default {
 				commit("setUser", user);
 				return user;
 			}
-			finally{
+			finally {
 				commit("setEnChargement", false);
 			}
 		}
@@ -234,23 +235,23 @@ export default {
 		commit("setQuestion", null);
 		commit("setAvancement", null);
 		commit("setTentative", null);
-		return valider( async () =>  {
+		return valider(async () => {
 			commit("setEnChargement", true);
 			const token = await this.dispatch("getToken");
-			try{
+			try {
 				const question = await getQuestionApi(urlQuestion, token);
 				commit("setQuestion", question);
 				return question;
 			}
-			catch(e){
-				if(e?.response?.status==400) {
+			catch (e) {
+				if (e?.response?.status == 400) {
 					throw i18n.global.t("erreur.question_introuvable");
 				}
-				else{
+				else {
 					throw e;
 				}
 			}
-			finally{
+			finally {
 				commit("setEnChargement", false);
 			}
 		}
@@ -260,17 +261,35 @@ export default {
 	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
-				commit("setEnChargement", true);
-				try{
-					const token = params.token ?? await this.dispatch("getToken");
-					const avancement = await getAvancementApi(params.url, token);
+
+				try {
+					const token = await this.dispatch("getToken");
+					const tokenRessources = params.tkres;
+					const avancement = await getAvancementApi(params.url, token, tokenRessources);
 
 					commit("setAvancement", avancement);
-
 					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+
 					return avancement;
 				}
-				finally{
+				finally {
+					commit("setEnChargement", false);
+				}
+			}
+		);
+	},
+
+	async récupérerTousAvancements({ commit }, params) {
+		return valider(
+			async () => {
+				try {
+					const token = await this.dispatch("getToken");
+					const tokenRessources = params.tkres;
+					const avancements = await getTousAvancementsApi(params.url, token, tokenRessources);
+
+					return avancements;
+				}
+				finally {
 					commit("setEnChargement", false);
 				}
 			}
@@ -278,9 +297,9 @@ export default {
 	},
 
 	async créerAvancement({ commit, state }, params) {
-		return valider( async () =>  {
+		return valider(async () => {
 			commit("setEnChargement", true);
-			try{
+			try {
 
 				const token = await this.dispatch("getToken");
 				const avancement = await postAvancementApi(params, token);
@@ -290,15 +309,15 @@ export default {
 				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
 				return avancement;
 			}
-			finally{
+			finally {
 				commit("setEnChargement", false);
 			}
 		}
 		);
 	},
 
-	async créerCommentaire({commit}, params){ // eslint-disable-line no-unused-vars
-		return valider( async () =>  {
+	async créerCommentaire({ commit }, params) { // eslint-disable-line no-unused-vars
+		return valider(async () => {
 			const token = await this.dispatch("getToken");
 			return await postCommentaireApi(params, token);
 		}
@@ -306,37 +325,36 @@ export default {
 	},
 
 	async récupérerTentative({ commit }, params) {
-		return valider( async () =>  {
+		return valider(async () => {
 
 			commit("setEnChargement", true);
 
-			try{
-				const token = params.token ?? await this.dispatch("getToken");
-				const tentative = await getTentativeApi(params.urlTentative, token);
-
+			try {
+				const token = await this.dispatch("getToken");
+				const tokenRessources = params.tkres;
+				const tentative = await getTentativeApi(params.urlTentative, token, tokenRessources);
 				commit("setTentative", tentative);
 				return tentative;
 			}
-			finally{
+			finally {
 				commit("setEnChargement", false);
 			}
-
 		}
 		);
 	},
 
-	async récupérerNbRéussitesParLangage({ commit }, params){
+	async récupérerNbRéussitesParLangage({ commit }, params) {
 		var langagesRéussis = new Object();
 		var ceLangageEstRéussi = new Object();
 
 		var token;
 		var user;
-		return valider( async () => {
-			if(params.token){
+		return valider(async () => {
+			if (params.token) {
 				token = params.token;
 				user = await getUserApi(params.url, token);
 			}
-			else{
+			else {
 				token = await this.dispatch("getToken");
 				user = this.state.user;
 			}
@@ -372,25 +390,25 @@ export default {
 		);
 	},
 
-	async récupérerDifficultésRéussies({commit}, params){
+	async récupérerDifficultésRéussies({ commit }, params) {
 		var difficultésRéussies = new Object();
 
 		var token;
 		var user;
 
-		return valider( async () => {
-			if(params.token){
+		return valider(async () => {
+			if (params.token) {
 				token = params.token;
 				user = await getUserApi(params.url, token);
 			}
-			else{
+			else {
 				token = await this.dispatch("getToken");
 				user = this.state.user;
 			}
 
 			for (const idAvancement in user.avancements) {
 				const avancement = user.avancements[idAvancement];
-				if(avancement.niveau === null || avancement.niveau === ""){
+				if (avancement.niveau === null || avancement.niveau === "") {
 					avancement.niveau = "[N/D]";
 				}
 				if (avancement.état == 2) {
@@ -413,7 +431,7 @@ export default {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("setRésultats", [] );
 
-		return valider( async () =>  {
+		return valider(async () => {
 			try {
 				const token = await this.dispatch("getToken");
 				const tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
@@ -437,11 +455,11 @@ export default {
 			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
 
-				if(e?.response?.status==400) {
+				if (e?.response?.status == 400) {
 					throw i18n.global.t("erreur.tentative_intraitable");
 				}
-				else{
-					throw(e);
+				else {
+					throw (e);
 				}
 			}
 		}
@@ -477,7 +495,7 @@ export default {
 			langage: state.tentative.langage,
 		};
 
-		return valider( async () =>  {
+		return valider(async () => {
 
 			const token = await this.dispatch("getToken");
 			const sauvegarde = await postSauvegardeApi(params, token);
@@ -505,7 +523,7 @@ export default {
 	},
 
 	setToken({ commit }, token) {
-		if(token){
+		if (token) {
 			try {
 				const token_décodé = jwt_decode(token);
 				if (token_décodé.username) {
@@ -523,10 +541,10 @@ export default {
 		}
 	},
 
-	setUser({ commit }, user){
+	setUser({ commit }, user) {
 		commit("setUser", user);
 	},
-	
+
 	setUri({ commit }, uri) {
 		commit("setUri", uri);
 	},
@@ -556,7 +574,7 @@ export default {
 	},
 
 	setTokenRessources({ commit }, tokenRessources) {
-		commit("setTokenRessources",tokenRessources);
+		commit("setTokenRessources", tokenRessources);
 	},
 
 	setUsername({ commit }, username) {
@@ -566,7 +584,7 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
-	
+
 	setThèmeSombre({ commit }, val) {
 		commit("setThèmeSombre", val);
 	},
@@ -581,8 +599,8 @@ export default {
 
 	setIndicateursDeFonctionnalité({ commit }, val) {
 		const toggles = [];
-		for( const toggle of val ){
-		    toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
+		for (const toggle of val) {
+			toggles[toggle.name] = { enabled: toggle.enabled, variant: toggle.variant };
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
 	},
