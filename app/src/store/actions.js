@@ -264,7 +264,7 @@ export default {
 
 				try {
 					const token = await this.dispatch("getToken");
-					const tokenRessources = params.tokenRessources;
+					const tokenRessources = params.tkres;
 					const avancement = await getAvancementApi(params.url, token, tokenRessources);
 
 					commit("setAvancement", avancement);
@@ -284,7 +284,7 @@ export default {
 			async () => {
 				try {
 					const token = await this.dispatch("getToken");
-					const tokenRessources = params.tokenRessources;
+					const tokenRessources = params.tkres;
 					const avancements = await getTousAvancementsApi(params.url, token, tokenRessources);
 
 					return avancements;
@@ -331,7 +331,7 @@ export default {
 
 			try {
 				const token = await this.dispatch("getToken");
-				const tokenRessources = params.tokenRessources;
+				const tokenRessources = params.tkres;
 				const tentative = await getTentativeApi(params.urlTentative, token, tokenRessources);
 				commit("setTentative", tentative);
 				return tentative;
@@ -474,7 +474,7 @@ export default {
 		const params = {
 			url: state.avancement.liens.sauvegardes,
 			code: state.tentative.code,
-			langage: state.tentative.langage,
+		    langage: state.tentative.langage,
 		};
 
 		return valider(async () => {
