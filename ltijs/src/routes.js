@@ -157,26 +157,28 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 	const username = jwt_decode(token).username;
 	const id = username + "/" + uriQuestion;
 
-	const ressources = [{
-		"url": "^avancement/" + id + "$",
-		"method": "^GET$"
-	},
-	{
-		"url": "^user/" + username + "/avancements$",
-		"method": "^GET$"
-	},
-	{
-		"url": "^tentative/" + id + "/.*$",
-		"method": "^GET$"
-	},
-	{
-		"url": "^commentaire/" + id + "/.*$",
-		"method": "^GET$"
-	},
-	{
-		"url": "^tentative/" + id + "/.*/commentaires$",
-		"method": "^POST$"
-	}];
+	const ressources = {
+		url_avancement: process.env.API_URL + `avancement/${id}`,
+		avancement: {
+			url: `^avancement/${id}$`,
+			method: "^GET$"
+		},
+		avancements: {
+			url: `^user/${username}/avancements$`,
+			method: "^GET$"
+		},
+		tentative: {
+			url: `^tentative/${id}/.*$`,
+			method: "^GET$"
+		},
+		commentaire: {
+			url: `^commentaire/${id}/.*$`,
+			method: "^GET$"
+		},
+		commentaires: {
+			url: `^tentative/${id}/.*/commentaires$`,
+			method: "^POST$"
+		}};
 
 	const config = {
 		headers: {
