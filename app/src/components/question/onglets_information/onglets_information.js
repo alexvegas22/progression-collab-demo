@@ -141,7 +141,6 @@ export default {
 				{
 					test: this.test_select,
 					index: this.index_select,
-					tentativeCourante: this.$store.state.tentative
 				}
 			);
 			this.envoiTestUnique = true;
