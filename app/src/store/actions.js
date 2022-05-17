@@ -264,7 +264,7 @@ export default {
 
 				try {
 					const token = await this.dispatch("getToken");
-					const tokenRessources = params.tkres;
+					const tokenRessources = params.tokenRessources;
 					const avancement = await getAvancementApi(params.url, token, tokenRessources);
 
 					commit("setAvancement", avancement);
@@ -284,7 +284,7 @@ export default {
 			async () => {
 				try {
 					const token = await this.dispatch("getToken");
-					const tokenRessources = params.tkres;
+					const tokenRessources = params.tokenRessources;
 					const avancements = await getTousAvancementsApi(params.url, token, tokenRessources);
 
 					return avancements;

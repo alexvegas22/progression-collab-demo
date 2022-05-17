@@ -79,7 +79,7 @@ export default {
 			if (this.uri && this.user) this.récupérerQuestion();
 		},
 		question: function () {
-			this.récupérerAvancement();
+			this.récupérerOuCréerAvancement();
 		},
 		resultats: function (){
 			if (this.resultats){
@@ -121,37 +121,36 @@ export default {
 			}
 
 		},
-		récupérerAvancement() {
-			let username = this.user.username;
-
+		récupérerOuCréerAvancement() {
 			if (this.$store.state.tokenRessources) {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
-				username = tokenRessourcesDécodé.username;
+				const url_avancement = tokenRessourcesDécodé.ressources["url_avancement"];
+
+				this.récupérerAvancement(url_avancement);
 			}
-
-			this.$store.dispatch("récupérerTousAvancements", {
-				url: API_URL + "/user/" + username + "/avancements",
-				tokenRessources: this.$store.state.tokenRessources
-			}).then((avancements) => {
+			else{
+				const username = this.user.username;
 				const id_avancement = username + "/" + this.uri;
-
-				if (id_avancement in avancements) {
-					this.$store
-						.dispatch("récupérerAvancement", {
-							url: avancements[id_avancement].liens.self,
-							lang_défaut: this.lang,
-							tokenRessources: this.$store.state.tokenRessources,
-						});
-				} else {
-					this.$store
-						.dispatch("créerAvancement", {
-							url: this.user.liens.avancements,
-							question_uri: this.uri,
-							avancement: {},
-							lang_défaut: this.lang,
-						});
-				}
-			});
+				if (id_avancement in this.user.avancements)
+					this.récupérerAvancement(this.user.avancements[id_avancement].liens.self);
+				else
+					this.créerAvancement();
+			}
+		},
+		récupérerAvancement(url_avancement) {
+			this.$store
+				.dispatch("récupérerAvancement", {
+					url: url_avancement,
+					tokenRessources: this.$store.state.tokenRessources,
+				});
+		},
+		créerAvancement(){
+			this.$store
+				.dispatch("créerAvancement", {
+					url: this.user.liens.avancements,
+					question_uri: this.uri,
+					avancement: {},
+				});
 		},
 		récupérerQuestion() {
 			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
