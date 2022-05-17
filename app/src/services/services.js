@@ -15,7 +15,7 @@ const getConfigServeurApi = async (urlConfig) => {
 };
 
 const getUserApi = async (urlUser, token) => {
-	const query = { inlude: "avancements" };
+	const query = { include: "avancements" };
 	return getData(urlUser, query, token).then((data) => {
 		var user = data.data.attributes;
 		user.liens = data.data.links;
