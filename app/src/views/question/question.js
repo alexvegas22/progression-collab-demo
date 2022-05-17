@@ -124,30 +124,23 @@ export default {
 		récupérerOuCréerAvancement() {
 			if (this.$store.state.tokenRessources) {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
-				const username = tokenRessourcesDécodé.username;
+				const url_avancement = tokenRessourcesDécodé.ressources["url_avancement"];
 
-				this.$store.dispatch("récupérerTousAvancements", {
-					url: API_URL + "/user/" + username + "/avancements",
-					tokenRessources: this.$store.state.tokenRessources
-				}).then((avancements) => {
-					const id_avancement = username + "/" + this.uri;
-					if(id_avancement in avancements)
-						this.récupérerAvancement(avancements[id_avancement]);
-				});
+				this.récupérerAvancement(url_avancement);
 			}
 			else{
 				const username = this.user.username;
 				const id_avancement = username + "/" + this.uri;
 				if (id_avancement in this.user.avancements)
-					this.récupérerAvancement(this.user.avancements[id_avancement]);
+					this.récupérerAvancement(this.user.avancements[id_avancement].liens.self);
 				else
 					this.créerAvancement();
 			}
 		},
-		récupérerAvancement(avancement) {
+		récupérerAvancement(url_avancement) {
 			this.$store
 				.dispatch("récupérerAvancement", {
-					url: avancement.liens.self,
+					url: url_avancement,
 					tokenRessources: this.$store.state.tokenRessources,
 				});
 		},
