@@ -120,5 +120,8 @@ export const mutations = {
 	},
 	setRésultats(state, val){
 		state.tentative.resultats = val;
+	},
+	setFeedback(state, val){
+		state.tentative.feedback = val;
 	}
 };
