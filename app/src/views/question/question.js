@@ -6,6 +6,7 @@ import Présentation from "@/components/question/présentation/présentation.vue
 import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
+import jwt_decode from "jwt-decode";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -18,7 +19,7 @@ export default {
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
 			éditeurPleinÉcran: false,
-			panneauCommentaireOuvert:false,
+			panneauCommentaireOuvert: false,
 			ongletChangéRaccourci: false,
 			testSélectionnéHaut: false,
 			testSélectionnéBas: false,
@@ -49,7 +50,7 @@ export default {
 			return this.$store.state.tentative;
 		},
 		resultats() {
-			return this.$store.state.retroactionTentative?.resultats;
+			return this.$store.state.tentative?.resultats;
 		},
 		uri() {
 			return this.$store.state.uri;
@@ -60,30 +61,30 @@ export default {
 		démo() {
 			return this.$store.state.démo;
 		},
-		thèmeSombre(){
+		thèmeSombre() {
 			return this.$store.state.thèmeSombre;
 		},
-		indicateursDeFonctionnalitéCommentaires(){
+		indicateursDeFonctionnalitéCommentaires() {
 			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
 		},
-		raccourcis(){
+		raccourcis() {
 			return this.$store.state.raccourcis;
 		}
 	},
 	watch: {
 		uri: function () {
-			if (!this.question && this.uri && this.user) this.récupérerQuestion();
+			if (this.uri && this.user) this.récupérerQuestion();
 		},
 		user: function () {
-			if (!this.question && this.uri && this.user) this.récupérerQuestion();
+			if (this.uri && this.user) this.récupérerQuestion();
 		},
 		question: function () {
-			this.récupérerAvancement();
+			this.récupérerOuCréerAvancement();
 		},
 		resultats: function (){
 			if (this.resultats){
 				for(var index in this.resultats){
-					if(!this.resultats[index].résultat){
+					if(!this.resultats[index]?.résultat){
 						this.panneauTestsAffiché=true;
 						break;
 					}
@@ -91,13 +92,8 @@ export default {
 			}
 		},
 	},
-	beforeCreate() {
-		this.$store.dispatch("setUri", null);
-		this.$store.dispatch("setQuestion", null);
-		this.$store.dispatch("setAvancement", null);
-	},
-	mounted(){
-		this.traiterParamètresURL( window.location.search );
+	mounted() {
+		this.traiterParamètresURL(window.location.search);
 	},
 	provide() {
 		return {
@@ -109,52 +105,63 @@ export default {
 		};
 	},
 	methods: {
-		traiterParamètresURL( paramètres ){
+		traiterParamètresURL(paramètres) {
 			var urlParams = new URLSearchParams(paramètres);
 
-			if(urlParams.has("uri")){
+			if (urlParams.has("uri")) {
 				this.$store.dispatch("setUri", urlParams.get("uri"));
 			}
 
-			if(urlParams.has("lang")){
+			if (urlParams.has("lang")) {
 				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));
 			}
 
-			if(urlParams.has("demo")){
+			if (urlParams.has("demo")) {
 				this.$store.dispatch("setDémo", true);
 			}
 
 		},
-		récupérerAvancement() {
-			const id_avancement = this.user.username + "/" + this.uri;
-			
-			if (id_avancement in this.user.avancements) {
-				this.$store
-					.dispatch("getAvancement", {
-						url: this.user.avancements[id_avancement].liens.self,
-						lang_défaut: this.lang,
-						token: this.$store.state.tokenRessources,
-					});
-			} else {
-				this.$store
-					.dispatch("postAvancement", {
-						url: this.user.liens.avancements,
-						question_uri: this.uri,
-						avancement: {},
-						lang_défaut: this.lang,
-					});
+		récupérerOuCréerAvancement() {
+			if (this.$store.state.tokenRessources) {
+				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
+				const url_avancement = tokenRessourcesDécodé.ressources["url_avancement"];
+
+				this.récupérerAvancement(url_avancement);
+			}
+			else{
+				const username = this.user.username;
+				const id_avancement = username + "/" + this.uri;
+				if (id_avancement in this.user.avancements)
+					this.récupérerAvancement(this.user.avancements[id_avancement].liens.self);
+				else
+					this.créerAvancement();
 			}
 		},
-		récupérerQuestion() {
-			this.$store.dispatch("getQuestion", API_URL + "/question/" + this.uri);
+		récupérerAvancement(url_avancement) {
+			this.$store
+				.dispatch("récupérerAvancement", {
+					url: url_avancement,
+					tokenRessources: this.$store.state.tokenRessources,
+				});
 		},
-		ajusterPanneauÉnoncé( dimension ) {
-			if ( dimension === "normal") {
+		créerAvancement(){
+			this.$store
+				.dispatch("créerAvancement", {
+					url: this.user.liens.avancements,
+					question_uri: this.uri,
+					avancement: {},
+				});
+		},
+		récupérerQuestion() {
+			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
+		},
+		ajusterPanneauÉnoncé(dimension) {
+			if (dimension === "normal") {
 				this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
 				if (this.énoncéSemiÉcran)
 					this.énoncéPleinÉcran = false;
 			}
-			else if ( dimension === "max") {
+			else if (dimension === "max") {
 				this.énoncéPleinÉcran = true;
 				this.énoncéSemiÉcran = false;
 			}
@@ -172,46 +179,44 @@ export default {
 			}
 			this.redimensionnerÉditeur();
 		},
-		basculerPanneauÉditeur(){
+		basculerPanneauÉditeur() {
 			this.éditeurPleinÉcran = !this.éditeurPleinÉcran;
 			this.panneauTestsAffiché = !this.éditeurPleinÉcran;
 			this.énoncéPleinÉcran = false;
 			this.énoncéSemiÉcran = !this.éditeurPleinÉcran;
 		},
-		redimensionnerÉditeur(){
-			if(this.éditeurPleinÉcran){
+		redimensionnerÉditeur() {
+			if (this.éditeurPleinÉcran) {
 				if (this.énoncéPleinÉcran || this.énoncéSemiÉcran || this.panneauTestsAffiché)
 					this.éditeurPleinÉcran = false;
 			}
-			else if(!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché){
+			else if (!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché) {
 				this.éditeurPleinÉcran = true;
 			}
 		},
-
-		basculerMenuCommentaire(){
-			this.panneauCommentaireOuvert =! this.panneauCommentaireOuvert;
+		basculerMenuCommentaire() {
+			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
 		},
-
-		sélectionnerTestDuHautAvecRaccourci(){
+		sélectionnerTestDuHautAvecRaccourci() {
 			this.testSélectionnéHaut = !this.testSélectionnéHaut;
 		},
-		sélectionnerTestDuBasAvecRaccourci(){
+		sélectionnerTestDuBasAvecRaccourci() {
 			this.testSélectionnéBas = !this.testSélectionnéBas;
 		},
-		changerModeAffichageAvecRaccourci(){
-			this.$store.dispatch("setChangerModeAffichageAvecRaccourci",true);
+		changerModeAffichageAvecRaccourci() {
+			this.$store.dispatch("setChangerModeAffichageAvecRaccourci", true);
 		},
-		changerOngletAvecRaccourci(){
+		changerOngletAvecRaccourci() {
 			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
 		},
 		basculerFormatÉnoncéAvecRaccourci() {
-			if (this.énoncéPleinÉcran){
+			if (this.énoncéPleinÉcran) {
 				this.ajusterPanneauÉnoncé("caché");
 			}
-			else if(this.énoncéSemiÉcran){
+			else if (this.énoncéSemiÉcran) {
 				this.ajusterPanneauÉnoncé("max");
 			}
-			else{
+			else {
 				this.ajusterPanneauÉnoncé("normal");
 			}
 		},
@@ -220,6 +225,3 @@ export default {
 		},
 	},
 };
-
-
-		

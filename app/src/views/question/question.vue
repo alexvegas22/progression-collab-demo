@@ -1,6 +1,7 @@
 <template>
-	<div>
-		<div v-if="user">
+	<div
+		v-if="user && question && avancement">
+		<div>
 			<Présentation
 				v-if="démo"
 				présentation_étape="00"
@@ -13,7 +14,6 @@
 			@shortkey="réinitialiserTentativeAvecRaccourci"
 		>
 			<div
-				v-if="avancement"
 				class="conteneur-question"
 			>
 				<Enonce
@@ -30,7 +30,8 @@
 					class="flex-column fill-height h-100 p-0"
 					style="padding-left: 0"
 				>
-					<div 
+					<div
+						v-if="tentative"
 						id="carre-editeur"
 						v-shortkey="raccourcis.basculerÉditeur"
 						class="col-12 flex-column fill-height m-n-0 ligne-séparation-avec-énoncé"
@@ -88,7 +89,7 @@
 					</div>
 				</div>
 				<div
-					v-if="tentative.commentaires && indicateursDeFonctionnalitéCommentaires"
+					v-if="tentative?.commentaires && indicateursDeFonctionnalitéCommentaires"
 					class="btnCommentaire"
 				>
 					<BoutonCommentaire

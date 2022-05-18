@@ -16,6 +16,7 @@
 			>
 				<span class="text-info"> Prog</span>ression
 			</a>
+			<span class="text-username">{{username}}</span>
 			<Transition>
 				<div v-if="token" class="dropdown">
 					<i 
@@ -81,7 +82,7 @@
 				</div>
 			</Transition>
 		</nav>
-		<div>
+		<div class="contenu">
 			<div
 				v-show="erreurs"
 				class="alert alert-danger"
@@ -106,6 +107,10 @@
 						</summary>
 						{{ erreurs.détails }}
 					</details>
+				</div>
+			</div>
+			<div v-if="enChargement" class=loader-parent>
+				<div class="loader">
 				</div>
 			</div>
 			<router-view />
@@ -139,6 +144,9 @@ export default {
 		token() {
 			return this.$store.state.token;
 		},
+		username() {
+			return this.$store.state.username;
+		},
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
@@ -150,6 +158,9 @@ export default {
 		},
 		raccourcis(){
 			return this.$store.state.raccourcis;
+		},
+		enChargement() {
+			return this.$store.state.enChargement;
 		}
 	},
 	watch: {
@@ -158,8 +169,12 @@ export default {
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
 	},
-	created() {
-		this.$store.dispatch("getConfigServeur", API_URL + "/config" );
+	 created() {
+		const username = sessionStorage.getItem("username") || localStorage.getItem("username");
+		if(username){
+			this.$store.dispatch("setUsername", username);
+		}
+		this.$store.dispatch("récupérerConfigServeur", API_URL + "/config" );
 		this.traiterParamètresURL( window.location.search );
 		this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 	},
@@ -196,7 +211,12 @@ export default {
 			localStorage.removeItem("authKey_nom");
 			localStorage.removeItem("authKey_secret");
 			sessionStorage.removeItem("token");
-			this.$store.dispatch("deleteToken");
+			localStorage.removeItem("username");
+			sessionStorage.removeItem("username");
+			
+			this.$store.dispatch("setUsername", null);
+			this.$store.dispatch("setUser", null);
+			this.$store.dispatch("setToken", null);
 			this.allerVers("Home");
 		},
 		basculerThèmeSombreAvecRaccourci() {

@@ -10,7 +10,7 @@ export default {
 	},
 	mounted() {
 		return this.$store
-			.dispatch("getNbRéussitesParLangage", {
+			.dispatch("récupérerNbRéussitesParLangage", {
 				url: this.user.liens.self,
 			});
 	},

@@ -10,7 +10,7 @@ export default {
 	},
 	mounted() {
 		return this.$store
-			.dispatch("getDifficultésRéussies", {
+			.dispatch("récupérerDifficultésRéussies", {
 				url: this.user.liens.self,
 			});
 	},
