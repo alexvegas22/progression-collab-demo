@@ -38,11 +38,12 @@ export default {
 		},
 		async soumettreCommentaire (){
 			await this.$store
-				.dispatch("postCommentaire", {
+				.dispatch("créerCommentaire", {
 					url: this.$store.state.tentative.liens.commentaires,
 					message: this.commentaire,
 					créateur: this.user.username,
 					numéro_ligne: this.numeroLigne,
+					tkres: this.$store.state.tokenRessources,
 				}
 				);
 			var commentaire = { créateur:this.user.username, message:this.commentaire , numéro_ligne:this.numeroLigne};

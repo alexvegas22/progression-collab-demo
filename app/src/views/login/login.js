@@ -51,9 +51,6 @@ export default {
 						throw err;
 					}
 				}
-				finally{
-					this.$store.dispatch("setAuthentificationEnCours", false);
-				}
 			})();
 		},
 

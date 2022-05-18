@@ -60,9 +60,6 @@ export const mutations = {
 	setQuestion(state, question) {
 		state.question = question;
 	},
-	updateRetroaction(state, retroactionTentative) {
-		state.retroactionTentative = retroactionTentative;
-	},
 	updateCodeTentative(state, code) {
 		state.tentative.code = code;
 	},
@@ -105,5 +102,23 @@ export const mutations = {
 	},
 	setIndicateursDeFonctionnalité(state, val){
 		state.indicateursDeFonctionnalité = val;
+	},
+	setEnChargement(state, val){
+		state.enChargement = val;
+	},
+	setEntréeTest(state, val) {
+		state.question.tests[val.index].entrée = val.entrée;
+	},
+	setParamsTest(state, val) {
+		state.question.tests[val.index].params = val.params;
+	},
+	setTests(state, val) {
+		state.question.tests = val;
+	},
+	setRésultat(state, params){
+		state.tentative.resultats[params.index] = params.résultat;
+	},
+	setRésultats(state, val){
+		state.tentative.resultats = val;
 	}
 };

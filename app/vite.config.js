@@ -14,8 +14,12 @@ export default defineConfig({
 	server: {
 		host: true,
 		hmr:  {
-			clientPort: 8080
+			clientPort: 8000
 		}
 	},
 	envDir: ".",
+	test: {
+		globals: true,
+		environment: 'jsdom'
+	  },
 });

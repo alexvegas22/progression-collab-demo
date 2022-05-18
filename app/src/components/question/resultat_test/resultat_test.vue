@@ -19,18 +19,28 @@
 					<FenêtreInfo présentation_étape="3.1">
 						<template #titre>
 							{{ $t('resultat_test.entrée') }}
+							<i 
+								@click="réinitialiserEntréesUtilisateur"
+								class="fa fa-refresh boutonRafraichissement"
+							></i>
 						</template>
-						<pre
-							class="card-text p-3"
-						>{{ test.entrée }}</pre>
+						<textarea 
+							id="contenu_entrée"
+							class="card-text p-3 inputTest"
+							@input="entréePersonnalisée"
+							v-model="this.test.entrée"
+						></textarea>
 					</FenêtreInfo>
 					<FenêtreInfo v-if="test.params">
 						<template #titre>
 							{{ $t('resultat_test.params') }}
 						</template>
-						<pre
-							class="card-text"
-						>{{ test.params }}</pre>
+						<textarea
+							id="contenu_params"
+							class="card-text p-3  inputTest"
+							@input="paramsPersonnalisés"
+							v-model="this.test.params"
+						></textarea>
 					</FenêtreInfo>
 				</div>
 				<div

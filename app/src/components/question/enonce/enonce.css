@@ -1,11 +1,15 @@
 .barre-énoncé {
 	display: flex;
-	flex-flow: column;
+	padding: 0;
+	flex-flow: column-reverse;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
+
+	padding-bottom: 0.8rem;
 	margin-left: 1rem;
 }
+
 
 .énoncé-padding {
 	padding-left: 2.5rem;

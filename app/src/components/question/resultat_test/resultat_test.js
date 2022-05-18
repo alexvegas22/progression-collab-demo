@@ -3,6 +3,8 @@ import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
 import he from "he";
 
+import {copie_profonde} from "@/util/commun.js";
+
 const différence = function (orig = "", modif = "", mode_affichage) {
 	const différences = diffChars(orig, modif);
 
@@ -43,19 +45,25 @@ export default {
 			sortie_attendue: null,
 			params: null,
 			feedback: null,
+			testsInitiaux: [],
 		};
 	},
 	props: {
 		test: null,
 		résultat: null,
-		panneauAffiché: null
+		panneauAffiché: null,
+		index: null
 	},
 	computed: {
 		mode_affichage() {
 			return this.$store.state.mode_affichage;
 		},
+		envoiEnCours() {
+			return this.$store.state.envoiTentativeEnCours;
+		},
 	},
 	mounted() {
+		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 		this.rafraîchirSorties();
 	},
 	methods: {
@@ -76,12 +84,33 @@ export default {
 				this.feedback = this.résultat.feedback;
 			}
 		},
+		entréePersonnalisée(){
+			this.$store.dispatch("setEntréeTest",
+				{
+					entrée: this.test.entrée,
+					index: this.index,
+				}
+			);
+		},
+		paramsPersonnalisés(){
+			this.$store.dispatch("setParamsTest",
+				{
+					params: this.test.params,
+					index: this.index,
+				}
+			);
+		},
+		réinitialiserEntréesUtilisateur(){
+			this.test.entrée = this.testsInitiaux[this.index].entrée;
+			this.test.params = this.testsInitiaux[this.index].params;
+		},
+		réinitialiserTests(){
+			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
+			this.réinitialiserEntréesUtilisateur();
+		},
 	},
 	watch: {
 		résultat: function () {
-			this.rafraîchirSorties();
-		},
-		test: function () {
 			this.rafraîchirSorties();
 		},
 		mode_affichage: function (mode) {
@@ -99,6 +128,14 @@ export default {
 				Array.from(document.getElementsByClassName("diff visuel")).forEach((item) => {
 					item.classList.remove("enabled");
 				});
+			}
+		},
+		envoiEnCours: {
+			deep: true,
+			handler: function(){
+				if(this.envoiEnCours === true){
+					this.réinitialiserTests();
+				}
 			}
 		},
 	},

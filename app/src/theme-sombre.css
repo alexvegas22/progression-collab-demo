@@ -5,6 +5,10 @@ body {
 	max-height: 100%;
 }
 
+.contenu {
+	height: 100%;
+}
+
 .thème_sombre,
 .thème_sombre .dropdown-menu {
 	background-color: #353535 !important;
@@ -13,6 +17,11 @@ body {
 }
 
 .thème_sombre input {
+	background-color: #353535 !important;
+	color: #e1e1e1 !important;
+}
+
+.thème_sombre textarea {
 	background-color: #353535 !important;
 	color: #e1e1e1 !important;
 }

@@ -61,17 +61,6 @@ body {
 	margin-left: 0;
 }
 
-.barre-énoncé {
-	display: flex;
-	padding: 0;
-	flex-flow: column-reverse;
-	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
-	
-	padding-bottom: 0.8rem;
-}
-
 .taille-écran {
 	height: 100vh;
 }

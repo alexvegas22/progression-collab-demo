@@ -3,6 +3,7 @@ import {
 	callbackGrade,
 	getConfigServeurApi,
 	getAvancementApi,
+	getTousAvancementsApi,
 	getQuestionApi,
 	getTentativeApi,
 	getTokenApi,
@@ -21,7 +22,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
-const valider = async function(promesse){
+const valider = async function (promesse) {
 	return validateur(promesse());
 };
 
@@ -39,11 +40,14 @@ async function rafraîchirToken() {
 			})
 			.catch((err) => {
 				sauvegarderToken(null);
+				console.log(err);
 				throw err;
 			});
 	} else {
 		sauvegarderToken(null);
-		throw "Clé d'authentification non disponible";
+		const err = new Error("Clé d'authentification non disponible");
+		console.log(err);
+		throw err;
 	}
 }
 
@@ -87,8 +91,8 @@ function récupérerListeAvecPourcentageRéussi(élémentsRéussis) {
 
 	const réussis = Object.keys(élémentsRéussis);
 	const listeRéussis = [];
-	for(let langage of réussis){
-		let pourcentage = récupérerPourcentageRéussi(élémentsRéussis,langage);
+	for (let langage of réussis) {
+		let pourcentage = récupérerPourcentageRéussi(élémentsRéussis, langage);
 		listeRéussis.push([langage, pourcentage]);
 	}
 
@@ -96,7 +100,7 @@ function récupérerListeAvecPourcentageRéussi(élémentsRéussis) {
 
 }
 
-function récupérerPourcentageRéussi(réussis, langage){
+function récupérerPourcentageRéussi(réussis, langage) {
 	var totalRéussi = 0;
 	var pourcentage = 0;
 	for (var tentative in réussis) {
@@ -104,6 +108,35 @@ function récupérerPourcentageRéussi(réussis, langage){
 	}
 	pourcentage = (100 / totalRéussi) * réussis[langage];
 	return pourcentage.toFixed(1);
+}
+
+function sélectionnerTentative(avancement, question, lang_défaut) {
+	var tentative;
+
+	if (Object.keys(avancement.sauvegardes).length > 0) {
+		var datePlusRecente = 0;
+		for (var key in avancement.sauvegardes) {
+			if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
+				tentative = {
+					code: avancement.sauvegardes[key].code,
+					langage: key,
+					resultats: []
+				};
+				datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
+			}
+		}
+	} else if (avancement.tentatives.length > 0) {
+		tentative = avancement.tentatives[0];
+	} else if (question) {
+		var ebauches = question.ebauches;
+		if (ebauches[lang_défaut]) {
+			tentative = ebauches[lang_défaut];
+		} else {
+			tentative = ebauches[Object.keys(ebauches)[0]];
+		}
+	}
+
+	return tentative;
 }
 
 export default {
@@ -128,8 +161,8 @@ export default {
 		}
 	},
 
-	async getConfigServeur({ commit }, urlConfig) {
-		return valider( async () =>  {
+	async récupérerConfigServeur({ commit }, urlConfig) {
+		return valider(async () => {
 			const config = await getConfigServeurApi(urlConfig);
 
 			commit("setConfigServeur", config);
@@ -146,165 +179,185 @@ export default {
 		const domaine = params.domaine;
 		commit("updateAuthentificationEnCours", true);
 
-		return valider( async () =>  {
-			const token = await authentifierApi(urlAuth, username, password, domaine);
+		return valider(async () => {
 
-			commit("setUsername", username);
-			commit("setToken", token);
+			commit("setEnChargement", true);
+			try {
 
-			sessionStorage.setItem("token", token);
+				const token = await authentifierApi(urlAuth, username, password, domaine);
 
-			// Obtenir l'utilisateur
-			const user = await getUserApi( import.meta.env.VITE_API_URL + "/user/" + username, token);
+				commit("setUsername", username);
+				commit("setToken", token);
 
-			// Obtenir la clé d'authentification
-			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now()/1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
+				sessionStorage.setItem("token", token);
 
-			const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
+				// Obtenir l'utilisateur
+				const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username);
 
-			const storage = persister ? localStorage : sessionStorage;
-			storage.setItem("username", username);
-			storage.setItem("authKey_nom", authKey.nom);
-			storage.setItem("authKey_secret", authKey.clé.secret);
+				// Obtenir la clé d'authentification
+				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
-			return token;
+				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
+
+				const storage = persister ? localStorage : sessionStorage;
+				storage.setItem("username", username);
+				storage.setItem("authKey_nom", authKey.nom);
+				storage.setItem("authKey_secret", authKey.clé.secret);
+
+				return token;
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
 
-	async setAuthentificationEnCours({ commit }, état) {
-		commit("updateAuthentificationEnCours", état);
+	async récupérerUser({ commit }, urlUser) {
+		return valider(async () => {
+			commit("setEnChargement", true);
+			try {
+				const token = await this.dispatch("getToken");
+				const user = await getUserApi(urlUser, token);
+
+				commit("setUsername", user.username);
+				commit("setUser", user);
+				return user;
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
+		}
+		);
 	},
 
-	async getUser({ commit }, urlUser) {
-		return valider( async () =>  {
+	async récupérerQuestion({ commit }, urlQuestion) {
+		commit("setQuestion", null);
+		commit("setAvancement", null);
+		commit("setTentative", null);
+		return valider(async () => {
+			commit("setEnChargement", true);
 			const token = await this.dispatch("getToken");
-			const user = await getUserApi(urlUser, token);
-
-			commit("setUser", user);
-			return user;
+			try {
+				const question = await getQuestionApi(urlQuestion, token);
+				commit("setQuestion", question);
+				return question;
+			}
+			catch (e) {
+				if (e?.response?.status == 400) {
+					throw i18n.global.t("erreur.question_introuvable");
+				}
+				else {
+					throw e;
+				}
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
 
-	async getQuestion({ commit }, urlQuestion) {
-		return valider( async () =>  {
-			const token = await this.dispatch("getToken");
-			const question = await getQuestionApi(urlQuestion, token);
-
-			commit("setQuestion", question);
-			return question;
-		}
-		);
-	},
-
-	async setQuestion({ commit }, question) {
-		commit("setQuestion", question);
-	},
-
-	async getAvancement({ commit, state }, params) {
+	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
-				const token = params.token ?? await this.dispatch("getToken");
-				const avancement = await getAvancementApi(params.url, token);
 
-				commit("setAvancement", avancement);
-				var tentative;
+				try {
+					const token = await this.dispatch("getToken");
+					const tokenRessources = params.tokenRessources;
+					const avancement = await getAvancementApi(params.url, token, tokenRessources);
 
-				if (Object.keys(avancement.sauvegardes).length > 0) {
-					var datePlusRecente = 0;
-					for (var key in avancement.sauvegardes) {
-						if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
-							tentative = {
-								code: avancement.sauvegardes[key].code,
-								langage: key,
-							};
-							datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
-						}
-					}
-				} else if (avancement.tentatives.length > 0) {
-					tentative = avancement.tentatives[0];
-				} else if (state.question) {
-					var ebauches = state.question.ebauches;
-					if (ebauches[params.lang_défaut]) {
-						tentative = ebauches[params.lang_défaut];
-					} else {
-						tentative = ebauches[Object.keys(ebauches)[0]];
-					}
+					commit("setAvancement", avancement);
+					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+
+					return avancement;
 				}
-				commit("setTentative", tentative);
-				commit("updateRetroaction", tentative);
-				return avancement;
+				finally {
+					commit("setEnChargement", false);
+				}
 			}
 		);
 	},
 
-	async setAvancement({ commit }, avancement) {
-		commit("setAvancement", avancement);
-	},
+	async récupérerTousAvancements({ commit }, params) {
+		return valider(
+			async () => {
+				try {
+					const token = await this.dispatch("getToken");
+					const tokenRessources = params.tokenRessources;
+					const avancements = await getTousAvancementsApi(params.url, token, tokenRessources);
 
-	async postAvancement({ commit, state }, params) {
-		return valider( async () =>  {
-			const token = await this.dispatch("getToken");
-			const avancement = await postAvancementApi(params, token);
-
-			commit("setAvancement", avancement);
-			var tentative;
-
-			if (Object.keys(avancement.sauvegardes).length > 0) {
-				var datePlusRecente = 0;
-				for (var key in avancement.sauvegardes) {
-					if (avancement.sauvegardes[key].date_sauvegarde > datePlusRecente) {
-						tentative = {
-							code: avancement.sauvegardes[key].code,
-							langage: key,
-						};
-						datePlusRecente = avancement.sauvegardes[key].date_sauvegarde;
-					}
+					return avancements;
 				}
-			} else {
-				var ebauches = state.question.ebauches;
-				if (ebauches[params.lang_défaut]) {
-					tentative = ebauches[params.lang_défaut];
-				} else {
-					tentative = ebauches[Object.keys(ebauches)[0]];
+				finally {
+					commit("setEnChargement", false);
 				}
 			}
+		);
+	},
 
-			commit("setTentative", tentative);
-			commit("updateRetroaction", tentative);
-			return avancement;
+	async créerAvancement({ commit, state }, params) {
+		return valider(async () => {
+			commit("setEnChargement", true);
+			try {
+
+				const token = await this.dispatch("getToken");
+				const avancement = await postAvancementApi(params, token);
+
+				commit("setAvancement", avancement);
+
+				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+				return avancement;
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
 
-	async postCommentaire(params){
-		return valider( async () =>  {
+	async créerCommentaire({ commit }, params) { // eslint-disable-line no-unused-vars
+		return valider(async () => {
 			const token = await this.dispatch("getToken");
 			return await postCommentaireApi(params, token);
 		}
 		);
 	},
 
-	async getTentative({ commit }, params) {
-		return valider( async () =>  {
-			const token = params.token ?? await this.dispatch("getToken");
-			const tentative = await getTentativeApi(params.urlTentative, token);
+	async récupérerTentative({ commit }, params) {
+		return valider(async () => {
 
-			commit("setTentative", tentative);
-			commit("updateRetroaction", tentative);
-			return tentative;
+			commit("setEnChargement", true);
+
+			try {
+				const token = await this.dispatch("getToken");
+				const tokenRessources = params.tkres;
+				const tentative = await getTentativeApi(params.urlTentative, token, tokenRessources);
+				commit("setTentative", tentative);
+				return tentative;
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
 		}
 		);
 	},
 
-	async getNbRéussitesParLangage({ commit }, params){
+	async récupérerNbRéussitesParLangage({ commit }, params) {
 		var langagesRéussis = new Object();
 		var ceLangageEstRéussi = new Object();
 
-		return valider( async () => {
-			const token = params.token ?? await this.dispatch("getToken");
-			const user = await getUserApi(params.url, token);
+		var token;
+		var user;
+		return valider(async () => {
+			if (params.token) {
+				token = params.token;
+				user = await getUserApi(params.url, token);
+			}
+			else {
+				token = await this.dispatch("getToken");
+				user = this.state.user;
+			}
 
 			for (var id in user.avancements) {
 
@@ -337,15 +390,25 @@ export default {
 		);
 	},
 
-	async getDifficultésRéussies({commit}, params){
+	async récupérerDifficultésRéussies({ commit }, params) {
 		var difficultésRéussies = new Object();
+
+		var token;
+		var user;
+
 		return valider(async () => {
-			const token = params.token ?? await this.dispatch("getToken");
-			const user = await getUserApi(params.url, token);
+			if (params.token) {
+				token = params.token;
+				user = await getUserApi(params.url, token);
+			}
+			else {
+				token = await this.dispatch("getToken");
+				user = this.state.user;
+			}
 
 			for (const idAvancement in user.avancements) {
 				const avancement = user.avancements[idAvancement];
-				if(avancement.niveau === null || avancement.niveau === ""){
+				if (avancement.niveau === null || avancement.niveau === "") {
 					avancement.niveau = "[N/D]";
 				}
 				if (avancement.état == 2) {
@@ -364,22 +427,20 @@ export default {
 		);
 	},
 
-	async soumettreTentative({ commit, state }, params) {
+	async soumettreTentative({ commit, state }) {
 		commit("updateEnvoieTentativeEnCours", true);
+		commit("setRésultats", [] );
 
-		params.urlTentative = state.avancement.liens.tentatives;
-		commit("updateRetroaction", null);
-
-		return valider( async () =>  {
+		return valider(async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTentative = await postTentative(params, token);
+				const tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
 
-				commit("updateRetroaction", retroactionTentative);
+				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
-				state.avancement.tentatives.unshift(retroactionTentative);
+				state.avancement.tentatives.unshift(tentative);
 				if (state.avancement.état != 2) {
-					state.avancement.état = retroactionTentative.réussi ? 2 : 1;
+					state.avancement.état = tentative.réussi ? 2 : 1;
 				}
 
 				if (state.cb_succes && state.cb_succes_params) {
@@ -389,11 +450,33 @@ export default {
 						token: state.token,
 					});
 				}
-				return retroactionTentative;
+				return tentative;
 			}
 			catch (e) {
 				commit("updateEnvoieTentativeEnCours", false);
-				
+
+				if (e?.response?.status == 400) {
+					throw i18n.global.t("erreur.tentative_intraitable");
+				}
+				else {
+					throw (e);
+				}
+			}
+		}
+		);
+	},
+
+	soumettreTestUnique({commit, state}, params) {
+		const indexTestSélectionné = params.index;
+		
+		return valider( async () => {
+			try {
+				const token = await this.dispatch("getToken");
+				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, urlTentative: state.avancement.liens.tentatives}, token);
+
+				commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+			}
+			catch (e) {
 				if(e?.response?.status==400) {
 					throw i18n.global.t("erreur.tentative_intraitable");
 				}
@@ -412,7 +495,7 @@ export default {
 			langage: state.tentative.langage,
 		};
 
-		return valider( async () =>  {
+		return valider(async () => {
 
 			const token = await this.dispatch("getToken");
 			const sauvegarde = await postSauvegardeApi(params, token);
@@ -429,32 +512,37 @@ export default {
 		commit("updateCodeTentative", code);
 	},
 
-	mettreAjourLangageSelectionne({ commit }, langage) {
-		commit("updateLangageTentative", langage);
-	},
-
 	réinitialiser({ commit }, langage_p) {
 		const langage = langage_p ?? this.state.tentative.langage;
 		commit("setTentative", {
 			langage: langage,
 			code: this.state.question.ebauches[langage].code,
+			resultats: [],
+			tests_réussis: null
 		});
-
-		commit("updateRetroaction", null);
 	},
 
 	setToken({ commit }, token) {
-		try {
-			const token_décodé = jwt_decode(token);
-			if (token_décodé.username) {
-				commit("setToken", token);
-				commit("setUsername", token_décodé.username);
+		if (token) {
+			try {
+				const token_décodé = jwt_decode(token);
+				if (token_décodé.username) {
+					commit("setToken", token);
+					commit("setUsername", token_décodé.username);
+				}
+			} catch (e) {
+				commit("setToken", null);
+				commit("setUsername", null);
+				commit("setUser", null);
 			}
-		} catch (e) {
-			commit("setToken", null);
-			commit("setUsername", null);
-			return;
 		}
+		else {
+			commit("setToken", null);
+		}
+	},
+
+	setUser({ commit }, user) {
+		commit("setUser", user);
 	},
 
 	setUri({ commit }, uri) {
@@ -485,13 +573,8 @@ export default {
 		commit("setCallbackAuthParams", cb_auth_params);
 	},
 
-	deleteToken({ commit }) {
-		commit("setToken", null);
-		commit("setUsername", null);
-	},
-
 	setTokenRessources({ commit }, tokenRessources) {
-		commit("setTokenRessources",tokenRessources);
+		commit("setTokenRessources", tokenRessources);
 	},
 
 	setUsername({ commit }, username) {
@@ -501,7 +584,7 @@ export default {
 	setAuthentificationErreurHandler({ commit }, authentificationErreurHandler) {
 		commit("setAuthentificationErreurHandler", authentificationErreurHandler);
 	},
-	
+
 	setThèmeSombre({ commit }, val) {
 		commit("setThèmeSombre", val);
 	},
@@ -510,23 +593,27 @@ export default {
 		commit("setModeAffichage", val);
 	},
 
-	setSélectionnerTestHaut({ commit }, val) {
-		commit("setSélectionnerTestHaut", val);
-	},
-
-	setSélectionnerTestBas({ commit }, val) {
-		commit("setSélectionnerTestBas", val);
-	},
-
 	setChangerModeAffichageAvecRaccourci({ commit }, val) {
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
 
 	setIndicateursDeFonctionnalité({ commit }, val) {
 		const toggles = [];
-		for( const toggle of val ){
-			toggles[toggle.name] = {enabled: toggle.enabled, variant: toggle.variant};
+		for (const toggle of val) {
+			toggles[toggle.name] = { enabled: toggle.enabled, variant: toggle.variant };
 		}
 		commit("setIndicateursDeFonctionnalité", toggles);
-	}
+	},
+	setEnvoiTestEnCours({ commit }, val) {
+		commit("setEnvoiTestEnCours", val);
+	},
+	setEntréeTest({ commit }, val) {
+		commit("setEntréeTest", val);
+	},
+	setParamsTest({ commit }, val) {
+		commit("setParamsTest", val);
+	},
+	setTests({ commit }, val) {
+		commit("setTests", val);
+	},
 };

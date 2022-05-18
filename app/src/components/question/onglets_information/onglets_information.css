@@ -56,6 +56,19 @@
 	border-left: none;
 }
 
+.btn-test-local {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	color: #008000;
+	cursor: pointer;
+}
+
+.spin-test-local {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	font-size: 0.9rem;
+}
+
 /* ------------- Media Queries ----------------- */
 /* ------------- Entre 0 et 767px (0 - 47.938rem) ----------------- */
 @media only screen and (max-width: 47.938rem) {
