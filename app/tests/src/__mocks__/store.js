@@ -1,8 +1,9 @@
 import { createStore } from "vuex";
 
-export default createStore({
-	state: vi.fn(),
-	getters: vi.fn(),
-	actions: vi.fn(),
-	mutations: vi.fn(),
-});
+// when creating a store, we get its initial state, create a reset function and add it in the set
+const create = vi.fn((createState) => {
+  const store = createStore(createState)
+  return store
+})
+
+export default create
