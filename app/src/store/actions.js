@@ -97,7 +97,6 @@ function récupérerListeAvecPourcentageRéussi(élémentsRéussis) {
 	}
 
 	return listeRéussis;
-
 }
 
 function récupérerPourcentageRéussi(réussis, langage) {
@@ -147,7 +146,6 @@ export default {
 	async setErreurs({ commit }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
-
 
 	async getToken({ commit, state }) {
 		if (tokenEstValide(state.token)) {
@@ -617,3 +615,4 @@ export default {
 		commit("setTests", val);
 	},
 };
+

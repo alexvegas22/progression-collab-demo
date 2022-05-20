@@ -15,15 +15,16 @@ export default {
 	name: "Question",
 	data() {
 		return {
-			panneauTestsAffiché: false,
+			éditeurPleinÉcran: false,
 			énoncéPleinÉcran: false,
 			énoncéSemiÉcran: true,
-			éditeurPleinÉcran: false,
-			panneauCommentaireOuvert: false,
+			modifiable: true,
 			ongletChangéRaccourci: false,
-			testSélectionnéHaut: false,
-			testSélectionnéBas: false,
+			panneauCommentaireOuvert: false,
+			panneauTestsAffiché: false,
 			tentativeRéinitialisée: false,
+			testSélectionnéBas: false,
+			testSélectionnéHaut: false,
 		};
 	},
 	components: {
@@ -118,6 +119,10 @@ export default {
 
 			if (urlParams.has("demo")) {
 				this.$store.dispatch("setDémo", true);
+			}
+
+			if (urlParams.has("ro")) {
+				console.log("Est modifiable: " + urlParams.get("ro"));
 			}
 
 		},

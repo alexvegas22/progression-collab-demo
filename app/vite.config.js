@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import 'reflect-metadata'
 
 const path = require("path");
 
@@ -20,6 +21,11 @@ export default defineConfig({
 	envDir: ".",
 	test: {
 		globals: true,
-		environment: 'jsdom'
+		environment: 'jsdom',
+		deps: {
+			inline: [
+			  "markdown-it-imsize"
+			]
+		  },	  
 	  },
 });
