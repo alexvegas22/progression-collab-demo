@@ -46,45 +46,6 @@
 	position: relative;
 }
 
-.btn-valider {
-	position: absolute;
-	bottom: 0rem;
-	right: 1rem;
-	height: 5rem;
-	width: 5rem;
-	z-index: 2;
-	fill: rgb(37, 177, 34);
-}
-
-.btn-valider:hover {
-	transform: scale(1.05);
-}
-
-.spin {
-	z-index: 100;
-	position: absolute;
-	height: 3.5rem;
-	width: 3.5rem;
-	bottom: 0.75rem;
-	right: 1.75rem;
-	border: 0.438rem solid #c6c6c6;
-	border-radius: 50%;
-	border-top-color: rgb(37, 177, 34);
-	animation: spin 1s ease-in-out infinite;
-	-webkit-animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-	to {
-		-webkit-transform: rotate(360deg);
-	}
-}
-@-webkit-keyframes spin {
-	to {
-		-webkit-transform: rotate(360deg);
-	}
-}
-
 .CodeMirror {
 	height: inherit;
 }
@@ -96,13 +57,6 @@
 		font-size: 0.7rem;
 	}
 
-	.btn-valider {
-		right: 1.5rem;
-	}
-
-	.spin {
-		right: 2.25rem;
-	}
 	.CodeMirror-code {
 		min-height: 53vh;
 	}
@@ -114,13 +68,6 @@
 		font-size: 0.7rem;
 	}
 
-	.btn-valider {
-		right: 1.5rem;
-	}
-
-	.spin {
-		right: 2.25rem;
-	}
 	.CodeMirror-code {
 		height: 53vh;
 	}
@@ -132,13 +79,6 @@
 		font-size: 0.7rem;
 	}
 
-	.btn-valider {
-		right: 1.5rem;
-	}
-
-	.spin {
-		right: 2.25rem;
-	}
 	.CodeMirror-line {
 		max-width: 55vw ;
 	}
@@ -150,13 +90,6 @@
 		font-size: 0.75rem;
 	}
 
-	.btn-valider {
-		right: 1.75rem;
-	}
-
-	.spin {
-		right: 2.5rem;
-	}
 	.CodeMirror-line {
 		max-width: 60vw ;
 	}
@@ -168,13 +101,6 @@
 		font-size: 0.8rem;
 	}
 
-	.btn-valider {
-		right: 1.75rem;
-	}
-
-	.spin {
-		right: 2.5rem;
-	}
 	.CodeMirror-line {
 		max-width: 60vw ;
 	}
