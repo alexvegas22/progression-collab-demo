@@ -40,85 +40,85 @@
 
 
 	"présentation": {
-		"passer": "Passer l'introduction",
-		"suivant": "Suivant",
-		"précédent": "Précédent",
-		"terminer": "Terminer l'introduction",
+		"passer": "Skip tutorial",
+		"suivant": "Next",
+		"précédent": "Previous",
+		"terminer": "End tutorial",
 		"bienvenue": {
-			"titre": "Bienvenue",
-			"contenu": "Bienvenue à Progression, le gym de la programmation<br>Suivez le guide!"
+			"titre": "Welcome",
+			"contenu": "Welcome to Progression, the programming gym<br>Follow the guide!"
 		},
 		"énoncé": {
-			"titre": "Énoncé",
-			"contenu": "L'énoncé de l'exercice se trouve dans cette partie."
+			"titre": "Statement",
+			"contenu": "The statement of the task is in this section."
 		},
 		"titre": {
-			"titre": "Énoncé",
-			"contenu": "Le titre sera marqué d'un crochet vert lorsqu'il sera réussi."
+			"titre": "Statement",
+			"contenu": "The title will be marked by a green checkmark once completed."
 		},
 		"niveau":{
-			"titre": "Énoncé",
-			"contenu": "Le niveau de difficulté de l'exercice."
+			"titre": "Statement",
+			"contenu": "The difficulty level of the task."
 		},
 		"énoncé_détail": {
-			"titre": "Énoncé",
-			"contenu": "La tâche à effectuer est détaillée ici :<ul><li>entrées<li>sorties<li>exemples<li>etc.</ul> Lisez bien!"
+			"titre": "Statement",
+			"contenu": "The current task is described here :<ul><li>inputs<li>outputs<li>examples<li>etc.</ul> Read carefully!"
 		},
 		"code":{
-			"titre": "Éditeur de code",
-			"contenu": "L'éditeur de code. C'est ici que se passe votre travail!"
+			"titre": "Code editor",
+			"contenu": "The code editor. This is where you get at work!"
 		},
 		"pref_affichage": {
-			"titre": "Éditeur de code",
-			"contenu": "Préférences d'affichage. Êtes-vous plutôt nocture ou plutôt diurne?"
+			"titre": "Code editor",
+			"contenu": "Display preferences. Are you more of a night owl or an early bird?"
 		},
 		"ébauche":{
-			"titre": "Éditeur de code",
-			"contenu": "Complétez le code proposé ici. Certaines lignes sont occultées, d'autres sont désactivées pour vous permettre de rester concentré sur ce qui est essentiel à votre tâche."
+			"titre": "Code editor",
+			"contenu": "Complete the suggested code here. Some lines are hidden, others are deactivated to keep you focused on your task."
 		},
 		"validation":{
 			"titre": "Validation",
-			"contenu": "Vous croyez avoir complété la tâche? Validez votre réponse en cliquant ici."
+			"contenu": "You think you have completed the task? Validate your answer by clicking here."
 		},
 		"progression":{
 			"titre": "Progression",
-			"contenu": "Votre progression pour cet exercice. Si tout est vert ici, vous avez réussi!"
+			"contenu": "Your progress for this task. If everything shows up green, you have succeeded!"
 		},
 		"rétroaction":{
-			"titre": "Rétroaction",
-			"contenu": "Pour des conseils, surveillez l'💡 qui apparaîtra ici."
+			"titre": "Feedback",
+			"contenu": "For tips, watch for the 💡 that will appear here."
 		},
 		"jeu_tests":{
 			"titre": "Tests",
-			"contenu": "Ces tests doivent tous être validés pour que l'exercice soit réussi."
+			"contenu": "All of these tests must be validated in order for the task to be marked as completed."
 		},
 		"entrées":{
 			"titre": "Tests",
-			"contenu":"Chacun des tests fournit des entrées différentes au programme."
+			"contenu":"Each test provides the program with different inputs."
 		},
 		"sorties_attendues":{
 			"titre": "Tests",
-			"contenu": "et s'assure d'avoir reçu des sorties très spécifiques."
+			"contenu": "and makes sure it has received specific outputs."
 		},
 		"sorties_observées":{
 			"titre": "Tests",
-			"contenu": "Les sorties de votre programme doivent concorder exactement!"
+			"contenu": "Your program's outputs must match exactly the ones expected!"
 		},
 		"avancement":{
-			"titre": "Sélectionner une ébauche",
-			"contenu": "Utilisez ce menu pour changer de langage de programmation..."
+			"titre": "Select a draft",
+			"contenu": "Use this menu to switch between programming languages..."
 		},
 		"ébauche_initiale": {
-			"titre": "Sélectionner une ébauche",
-			"contenu": "revenir à l'ébauche initiale de l'exercice pour ce langage..."
+			"titre": "Select a draft",
+			"contenu": "to return to the initial draft for this language..."
 		},
 		"tentative":{
-			"titre": "Sélectionner une ébauche",
-			"contenu": "ou à une tentative précédente."
+			"titre": "Select a draft",
+			"contenu": "or to a previous attempt."
 		},
 		"fin":{
-			"titre": "Au travail",
-			"contenu": "Et maintenant, à vous de jouer!"
+			"titre": "It's time to work",
+			"contenu": "And now, it's your turn!"
 		}
 	},
 
