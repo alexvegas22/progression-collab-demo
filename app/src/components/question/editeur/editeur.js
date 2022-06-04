@@ -1,10 +1,12 @@
 import { VCodeMirror } from "./vcodemirror";
 import parseMD from "@/util/parse";
+import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
 
 export default {
 	name: "EditeurCode",
 	components: {
 		VCodeMirror,
+		BoutonSoumission
 	},
 	data() {
 		return {
@@ -38,9 +40,6 @@ export default {
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
 		},
-		envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
-		},
 		tentative() {
 			let tentative = this.$store.state.tentative;
 
@@ -55,9 +54,6 @@ export default {
 		},
 		testsRéussisPct() {
 			return (this.$store.state.tentative.tests_réussis / this.$store.state.question.tests.length) * 100;
-		},
-		raccourcis(){
-			return this.$store.state.raccourcis;
 		}
 	},
 	created() {
