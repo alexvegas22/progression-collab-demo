@@ -74,7 +74,7 @@ lti.onConnect(async (idToken, req, res) => {
 			membre["score"] = scores[membre.user_id];
 		});
 
-		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
+		res.render("suivi", { url: process.env.URL_BASE + "/question", membres: Object.values( membres ), query: {uri, lang} });
 		res.status(200);
 	}
 	else{
