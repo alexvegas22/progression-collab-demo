@@ -8,6 +8,7 @@ import {
 	getTentativeApi,
 	getTokenApi,
 	getUserApi,
+	getUserAvecTentativesApi,
 	postAvancementApi,
 	postCommentaireApi,
 	postSauvegardeApi,
@@ -350,19 +351,13 @@ export default {
 		var token;
 		var user;
 		return valider(async () => {
-			if (params.token) {
-				token = params.token;
-				user = await getUserApi(params.url, token);
-			}
-			else {
-				token = await this.dispatch("getToken");
-				user = this.state.user;
-			}
+			token = params.token ?? await this.dispatch("getToken");
+			user = await getUserAvecTentativesApi(params.url, token);
 
 			for (var id in user.avancements) {
 
 				const avancement = user.avancements[id];
-				const tentatives = (await getAvancementApi(avancement.liens.self, token)).tentatives;
+				const tentatives = avancement.tentatives;
 				for (let tentative of tentatives) {
 					ceLangageEstRéussi[tentative.langage] = false;
 				}
@@ -397,14 +392,8 @@ export default {
 		var user;
 
 		return valider(async () => {
-			if (params.token) {
-				token = params.token;
-				user = await getUserApi(params.url, token);
-			}
-			else {
-				token = await this.dispatch("getToken");
-				user = this.state.user;
-			}
+			token = params.token ?? await this.dispatch("getToken");
+			user = await getUserApi(params.url, token);
 
 			for (const idAvancement in user.avancements) {
 				const avancement = user.avancements[idAvancement];

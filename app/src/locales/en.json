@@ -16,13 +16,13 @@
 	},
 
 	"accomplissements": {
-		"titrePage": "My Achievements",
+		"titrePage": "Achievements for",
 		"titreQuestion": "Title",
 		"difficulté": "Difficulty level",
 		"dateDeDernièreTentative": "Last attempt",
-		"dateDeRéussite": "Resolved",
-		"titreGraphParLangage": "Achievements by language",
-		"titreGraphParDifficulté": "Achievements by difficulty"
+		"dateDeRéussite": "Solved",
+		"titreGraphParLangage": "Solved by language",
+		"titreGraphParDifficulté": "Solved by level"
 	},
 
 	"login": {

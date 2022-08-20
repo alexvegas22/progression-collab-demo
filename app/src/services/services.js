@@ -33,6 +33,44 @@ const getUserApi = async (urlUser, token) => {
 	});
 };
 
+const getUserAvecTentativesApi = async (urlUser, token) => {
+	const query = { include: "avancements.tentatives" };
+	return getData(urlUser, query, token).then((data) => {
+		var user = data.data.attributes;
+		user.liens = data.data.links;
+		user.liens.avancements = data.data.relationships.avancements.links.related;
+		user.liens.clés = data.data.relationships.cles.links.related;
+		user.avancements = {};
+		var tentatives = {};
+		if (data.included) {
+			data.included.forEach((item) => {
+				if (item.type == "avancement") {
+					var avancement = item.attributes;
+					avancement.liens = item.links;
+					avancement.relations = item.relationships;
+					user.avancements[item.id] = avancement;
+				}
+				else if (item.type == "tentative") {
+					var tentative = item.attributes;
+					tentative.liens = item.links;
+					tentatives[item.id] = tentative;
+				}
+			});
+
+			Object.keys(user.avancements).forEach((id) =>{
+				var avancement = user.avancements[id];
+				avancement.tentatives = [];
+				avancement.relations["tentatives"]["data"].forEach((tentative) => {
+					var id = tentative["id"];
+					avancement.tentatives.push(tentatives[id]);
+				});
+			});
+
+		}
+		return user;
+	});
+};
+
 const getQuestionApi = async (urlQuestion, token) => {
 	const query = { include: "tests,ebauches" };
 	const data = await getData(urlQuestion, query, token);
@@ -216,6 +254,7 @@ export {
 	getTentativeApi,
 	getTokenApi,
 	getUserApi,
+	getUserAvecTentativesApi,
 	postAvancementApi,
 	postCommentaireApi,
 	postSauvegardeApi,

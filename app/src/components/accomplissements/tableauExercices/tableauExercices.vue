@@ -1,6 +1,5 @@
 <template>
 	<div v-if="avancements">
-		<h1><span class="fas fa-trophy trophée"></span>  {{ $t("accomplissements.titrePage") }} <span class="fas fa-trophy trophée"></span></h1>
 		<div>
 			<div>
 				
