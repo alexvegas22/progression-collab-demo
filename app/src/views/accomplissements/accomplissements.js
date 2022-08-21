@@ -8,4 +8,9 @@ export default {
 		graphiqueStatistiques,
 		graphiqueStatistiquesParDifficulté,
 	},
+	computed: {
+		username(){
+			return this.$store.state.username;
+		}
+	}
 };

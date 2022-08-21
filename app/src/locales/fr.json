@@ -16,13 +16,13 @@
 	},
 
 	"accomplissements": {
-		"titrePage": "Mes Accomplissements",
+		"titrePage": "Accomplissements de",
 		"titreQuestion": "Titre",
 		"difficulté": "Niveau de difficulté",
 		"dateDeDernièreTentative": "Dernière tentative",
 		"dateDeRéussite": "Réussite",
-		"titreGraphParLangage": "Accomplissements par langage",
-		"titreGraphParDifficulté": "Accomplissements par difficultés"
+		"titreGraphParLangage": "Réussites par langage",
+		"titreGraphParDifficulté": "Réussites par niveau"
 	},
 
 	"login": {
