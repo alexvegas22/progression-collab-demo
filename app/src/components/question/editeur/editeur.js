@@ -35,7 +35,7 @@ export default {
 			return this.$store.state.tentative.langage;
 		},
 		rôleÉditeur() {
-			return this.$store.state.user.rôle==2;
+			return this.$store.state.indicateursDeFonctionnalité["tout_voir"];
 		},
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";

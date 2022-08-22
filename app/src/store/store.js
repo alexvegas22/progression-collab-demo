@@ -30,6 +30,7 @@ export default createStore({
 		uri: null,
 		user: null,
 		username: null,
+		unleash: null,
 		raccourcis: {
 			basculerÉditeur: "['alt', 'e']",
 			basculerÉnoncé: "['alt', 'q']",
