@@ -23,6 +23,7 @@ import tokenEstValide from "@/util/token.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
+
 const valider = async function (promesse) {
 	return validateur(promesse());
 };
@@ -145,10 +146,13 @@ export default {
 		validateur = v;
 	},
 
+	async setUnleash({ commit }, unleash) {
+		commit("setUnleash", unleash);
+	},
+
 	async setErreurs({ commit }, erreurs) {
 		commit("setErreurs", erreurs);
 	},
-
 
 	async getToken({ commit, state }) {
 		if (tokenEstValide(state.token)) {

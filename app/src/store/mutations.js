@@ -9,6 +9,12 @@ export const mutations = {
 
 	setUsername(state, username) {
 		state.username = username;
+		state.unleash.setContextField("userId", state.username);
+	},
+
+	setUnleash(state, unleash) {
+		state.unleash = unleash;
+		state.unleash.setContextField("userId", state.username);
 	},
 
 	setToken(state, token) {

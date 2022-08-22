@@ -87,12 +87,12 @@ const valider = async (promesse) => {
 };
 
 actions.setValidateur( valider );
-
 const unleash = new UnleashClient({
 	url: import.meta.env.VITE_FF_URL,
 	clientKey: import.meta.env.VITE_FF_SECRET,
 	appName: import.meta.env.MODE,
 });
+store.dispatch("setUnleash", unleash);
 
 unleash.on("ready", () => {
 	store.dispatch("setIndicateursDeFonctionnalité", unleash.getAllToggles());
