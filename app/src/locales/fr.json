@@ -22,7 +22,8 @@
 		"dateDeDernièreTentative": "Dernière tentative",
 		"dateDeRéussite": "Réussite",
 		"titreGraphParLangage": "Réussites par langage",
-		"titreGraphParDifficulté": "Réussites par niveau"
+		"titreGraphParDifficulté": "Réussites par niveau",
+		"sans_titre": "[Sans titre]"
 	},
 
 	"login": {
