@@ -11,9 +11,10 @@ export default {
 		avancements() {
 			const avancements = this.$store.state.user.avancements;
 			for (let avancement in avancements) {
-				if(avancements[avancement].titre){
-					this.listeAvancements.push(avancements[avancement]);
+				if(!avancements[avancement].titre){
+					avancements[avancement].titre = this.$t("accomplissements.sans_titre");
 				}
+				this.listeAvancements.push(avancements[avancement]);
 			}
 			this.listeAvancements.sort(function(a,b){
 				return b.date_réussite - a.date_réussite;

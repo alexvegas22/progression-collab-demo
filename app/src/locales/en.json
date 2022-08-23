@@ -22,7 +22,8 @@
 		"dateDeDernièreTentative": "Last attempt",
 		"dateDeRéussite": "Solved",
 		"titreGraphParLangage": "Solved by language",
-		"titreGraphParDifficulté": "Solved by level"
+		"titreGraphParDifficulté": "Solved by level",
+		"sans_titre": "[Untitled]"
 	},
 
 	"login": {
