@@ -80,14 +80,18 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 			this.editor.setOption("mode", "text/x-java");
 		} else if (value === "javascript") {
 			this.editor.setOption("mode", "javascript");
+		} else if (value === "kotlin") {
+			this.editor.setOption("mode", "text/x-kotlin");
 		} else if (value === "typescript") {
 			this.editor.setOption("mode", "text/typescript");
 		} else if (value === "python") {
 			this.editor.setOption("mode", "python");
 		} else if (value === "bash") {
 			this.editor.setOption("mode", "shell");
-		} else if (["c", "cpp", "c++"].includes(value)) {
-			this.editor.setOption("mode", "clike");
+		} else if (value === "c") {
+			this.editor.setOption("mode", "text/x-csrc");
+		} else if (["cpp", "c++"].includes(value)) {
+			this.editor.setOption("mode", "text/x-c++src");
 		} else {
 			this.editor.setOption("mode", value);
 		}
