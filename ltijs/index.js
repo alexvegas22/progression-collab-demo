@@ -74,7 +74,7 @@ lti.onConnect(async (idToken, req, res) => {
 			membre["score"] = scores[membre.user_id];
 		    if(membre["score"]){
 			    membre["score"]["timestamp"] = scores[membre.user_id]["timestamp"];
-		        membre["score"]["réussite"] = scores[membre.user_id]["resultScore"]==2?"Réussi":"Débuté";
+		        membre["score"]["réussite"] = scores[membre.user_id]["resultScore"]==100?"Réussi":"Débuté";
 		    }	
 		});
 
