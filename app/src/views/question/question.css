@@ -104,15 +104,6 @@ body {
 	bottom: 20px;
 	left: 10px;
 }
-.section-énoncé-texte {
-	opacity: 1;
-	flex: 1;
-	box-sizing: border-box;
-	position: relative;
-	padding-right: 0.5rem;
-	top: 0.7rem;
-	height: calc(100vh - 9rem);
-}
 
 /* -------------- Media Queries ----------------------*/
 /* -------------- Écrans de 1300px et + (81.25rem et +) ----------------------*/
