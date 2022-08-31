@@ -63,25 +63,25 @@
 				<div
 					class="entête row"
 					présentation_étape="0.1"
-					>
+				>
 					<div
 						class="énoncéPlacement"
 						:class="{'PasDeDifficulté':question.niveau==null}"
-						>
+					>
 						<h3 class="titre align-self-start">
 							{{ question.titre }}
 						</h3>
 					</div>
 					<span
 						id="niveauQuestion"
-							class="badge niveau"
-							présentation_étape="0.2"
+						class="badge niveau"
+						présentation_étape="0.2"
 					>
 						{{ question.niveau }}
 					</span>
 				</div>
 				<div class="description">
-				{{ question.description }}
+					{{ question.description }}
 				</div>
 			</div>
 			<div class="section-énoncé-texte">
