@@ -59,32 +59,37 @@
 					</g>
 				</svg>
 			</div>
-			<div
-				class="entête row"
-				présentation_étape="0.1"
-			>
+			<div class="encadré-titre">
 				<div
-					class="énoncéPlacement"
-					:class="{'PasDeDifficulté':question.niveau==null}"
-				>	
-					<h3 class="titre align-self-start">
-						{{ question.titre }}
-					</h3>	
-				</div>		
-				<span
-					id="niveauQuestion"
-					class="badge niveau"
-					présentation_étape="0.2"
+					class="entête row"
+					présentation_étape="0.1"
 				>
-					{{ question.niveau }}
-				</span>	
+					<div
+						class="énoncéPlacement"
+						:class="{'PasDeDifficulté':question.niveau==null}"
+					>
+						<h3 class="titre align-self-start">
+							{{ question.titre }}
+						</h3>
+					</div>
+					<span
+						id="niveauQuestion"
+						class="badge niveau"
+						présentation_étape="0.2"
+					>
+						{{ question.niveau }}
+					</span>
+				</div>
+				<div class="description">
+					{{ question.description }}
+				</div>
 			</div>
 			<div class="section-énoncé-texte">
-				<perfect-scrollbar>	
+				<perfect-scrollbar>
 					<div class="row flex-grow-1">
 						<!-- eslint-disable-->
-						<p  
-							class="texte_énoncé" 
+						<p
+							class="texte_énoncé"
 							présentation_étape="0.3"
 							v-html="question.énoncé"
 						/>

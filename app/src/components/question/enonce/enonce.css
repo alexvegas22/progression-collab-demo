@@ -19,10 +19,22 @@
 	padding-right: 2rem;
 }
 
+.encadré-titre {
+	background:#00000025;
+	margin-left: -0.25rem;
+	margin-right: 0.5rem;
+	padding: 0.25rem;
+	border-radius: 0;
+}
+
 .titre {
 	font-size: 1.5em;
 	font-weight: bold;
 	z-index: 1;
+}
+
+.description{
+	font-size: 0.8rem;
 }
 
 .crochet {
@@ -82,11 +94,6 @@ h3 {
 
 .thème_sombre .badge.niveau {
 	background-color: rgb(13, 202, 240,70%);
-}
-
-.row {
-	margin-left: 0;
-	margin-right: 0;
 }
 
 /* animations */
@@ -170,9 +177,9 @@ h3 {
 	flex: 1;
 	box-sizing: border-box;
 	position: relative;
-	padding-right: 1rem;
+	padding-right: 0.25rem;
 	top: 0.7rem;
-	height: calc(100vh - 9.05rem);
+	height: calc(100vh - 11.7rem);
     overflow: auto;
 	
 }
@@ -198,6 +205,11 @@ p.footer-auteur {
 p.footer-license {
 	font-size: 0.8rem;
 	color: #80808080;
+}
+
+p.texte_énoncé {
+	margin-left: 0;
+	padding-right: 1.25rem;
 }
 
 .section-bouton-affichage {
