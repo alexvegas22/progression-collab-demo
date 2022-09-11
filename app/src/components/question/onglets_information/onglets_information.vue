@@ -32,6 +32,7 @@
 		<div class="col-xl-9 col-lg-8 col-8 texte">
 			<div class="section-onglets">
 				<div
+					id="onglet_ES"
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
 					@click="changementOnglet('ResultatTest')"
 				>

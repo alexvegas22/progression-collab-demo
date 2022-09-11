@@ -54,12 +54,6 @@ export default {
 					}
 				},
 				{
-					target: "[présentation_étape=\"1.0\"]",
-					scrolling: false,
-					header: { "title": this.$t("présentation.pref_affichage.titre") },
-					content: this.$t("présentation.pref_affichage.contenu"),
-				},
-				{
 					target: "[présentation_étape=\"1.1\"]",
 					scrolling: false,
 					header: { "title": this.$t("présentation.ébauche.titre") },
@@ -98,6 +92,16 @@ export default {
 					scrolling: false,
 					header: { "title": this.$t("présentation.entrées.titre") },
 					content: this.$t("présentation.entrées.contenu"),
+					before: type => new Promise((resolve) => {
+						if(type=="next"){
+							var onglet = document.getElementById("onglet_ES");
+							var event;
+							event = document.createEvent("MouseEvents");
+							event.initMouseEvent("click", true, true, window);
+							onglet.dispatchEvent(event);
+						}
+						resolve();
+					})
 				},
 				{
 					target: "[présentation_étape=\"3.2\"]",

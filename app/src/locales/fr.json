@@ -68,10 +68,6 @@
 			"titre": "Éditeur de code",
 			"contenu": "L'éditeur de code. C'est ici que se passe votre travail!"
 		},
-		"pref_affichage": {
-			"titre": "Éditeur de code",
-			"contenu": "Préférences d'affichage. Êtes-vous plutôt nocture ou plutôt diurne?"
-		},
 		"ébauche":{
 			"titre": "Éditeur de code",
 			"contenu": "Complétez le code proposé ici. Certaines lignes sont occultées, d'autres sont désactivées pour vous permettre de rester concentré sur ce qui est essentiel à votre tâche."

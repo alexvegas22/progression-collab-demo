@@ -69,10 +69,6 @@
 			"titre": "Code editor",
 			"contenu": "The code editor. This is where you get at work!"
 		},
-		"pref_affichage": {
-			"titre": "Code editor",
-			"contenu": "Display preferences. Are you more of a night owl or an early bird?"
-		},
 		"ébauche":{
 			"titre": "Code editor",
 			"contenu": "Complete the suggested code here. Some lines are hidden, others are deactivated to keep you focused on your task."
