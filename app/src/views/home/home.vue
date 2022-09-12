@@ -347,9 +347,6 @@
 								<p class="text-muted">
 									<a href="#démos">Essayez un exercice de démo ici</a>
 								</p>
-								<p class="text-muted">
-									<a href="https://moodle.progression.dti.crosemont.quebec">Essayez des exercices intégrés à Moodle ici</a>
-								</p>
 							</div>
 						</div>
 					</li>
@@ -370,7 +367,7 @@
 						<li class="list-group-item">
 							<h4>
 								<a
-									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNjM0NGY1MzgtMGVjMy00ZTNmLTgzMDgtZmMxMGQzNWM2YWFmL2luZm8ueW1s"
+									href="https://progression.dti.crosemont.quebec/demo/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNjM0NGY1MzgtMGVjMy00ZTNmLTgzMDgtZmMxMGQzNWM2YWFmL2luZm8ueW1s&demo"
 									target="_blank"
 								> Exercice 1 - Bonjour le monde!</a>
 							</h4>
