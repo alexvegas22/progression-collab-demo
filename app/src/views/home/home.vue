@@ -2,33 +2,38 @@
 	<div>
 		<!-- Navigation-->
 		<!-- 
-		<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-			<div class="container">
-				<a class="navbar-brand" href="#page-top"><span class="text-info"> Prog</span><span style="color: white">ression</span></a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-					<i class="fas fa-bars ms-1"></i>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-						<li class="nav-item"><a class="nav-link" href="#débuter">Débuter</a></li>
-						<li class="nav-item"><a class="nav-link" href="https://progression.pages.dti.crosemont.quebec/progression_contenu_demo/">Documentation</a></li>
-						<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		-->
+	     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+	     <div class="container">
+	     <a class="navbar-brand" href="#page-top"><span class="text-info"> Prog</span><span style="color: white">ression</span></a>
+	     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	     <i class="fas fa-bars ms-1"></i>
+	     </button>
+	     <div class="collapse navbar-collapse" id="navbarResponsive">
+	     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+	     <li class="nav-item"><a class="nav-link" href="#débuter">Débuter</a></li>
+	     <li class="nav-item"><a class="nav-link" href="https://progression.pages.dti.crosemont.quebec/progression_contenu_demo/">Documentation</a></li>
+	     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+	     </ul>
+	     </div>
+	     </div>
+	     </nav>
+	-->
 		<!-- Masthead-->
 		<header class="masthead">
 			<div
 				class="container"
-				style="border-style: solid; border-width: 10px; border-color: white; border-radius: 20px; padding: 10px; background-color: rgba(60,40,60,0.85)"
+				style="border-style: solid; border-width: 10px; border-color: white; border-radius: 20px; padding: 10px; background-color: rgba(60,40,60,0.85); position: relative"
 			>
 				<div class="masthead-heading">
 					<span class="text-info"> Prog</span><span style="color: white">ression</span>
 				</div>
 				<div class="masthead-subheading text-uppercase">
 					Le gym de la programmation
+					<div style="position: absolute; margin:0.5rem; margin-top: 0; padding:0.5rem; right: 0; top: 0">
+						<a href="https://gitlab.com/projet-progression">
+							<img width="30rem" src="https://gitlab.com/gitlab-com/gitlab-artwork/-/raw/master/logo/logo.svg"/>
+						</a>
+					</div>
 				</div>
 				<p>
 					Progression est un exerciseur conçu pour aider l'apprentissage de la programmation par la pratique. Il permet d’<b>exécuter</b> dans un IDE en ligne, <b>analyser</b> et <b>diagnostiquer</b> du code programmé dans le cadre d'un exercice proposé et génère pour l'étudiant une rétroaction immédiate et spécifique.
@@ -59,7 +64,7 @@
 								<i class="fas fa-circle fa-stack-2x text-primary" />
 								<i class="fas fa-laptop fa-stack-1x fa-inverse" />
 							</span>
-							<h4 class="my-3">apprendre la programmation</h4>
+							<h4 class="my-3">Apprendre la programmation</h4>
 						</a>
 						<p class="text-muted">
 							Programmez en ligne. Mettez en pratique les nouveaux concepts de programmation et validez vos résultats instantanément.
@@ -71,7 +76,7 @@
 								<i class="fas fa-circle fa-stack-2x text-primary" />
 								<i class="fas fa-chalkboard-teacher fa-stack-1x fa-inverse" />
 							</span>
-							<h4 class="my-3">enseigner la programmation</h4>
+							<h4 class="my-3">Enseigner la programmation</h4>
 						</a>
 						<p class="text-muted">
 							Aidez vos étudiants à mettre en pratique les concepts vus en classe à l'aide d'exercices existants ou créez vos propres exercices adaptés à leurs besoins.
@@ -83,10 +88,10 @@
 								<i class="fas fa-circle fa-stack-2x text-primary" />
 								<i class="fas fa-code-branch fa-stack-1x fa-inverse" />
 							</span>
-							<h4 class="my-3">collaborer</h4>
+							<h4 class="my-3">Collaborateurs</h4>
 						</a>
 						<p class="text-muted">
-							Donnez un coup de main pour l'amélioration de l'outil.
+							Collaborez au développement de la plateforme et de son contenu
 						</p>
 					</div>
 				</div>
@@ -158,7 +163,7 @@
 							</div>
 						</div>
 					</li>
-					
+		    
 					<li class="timeline">
 						<div class="timeline-image">
 							<img
@@ -201,7 +206,7 @@
 				</ul>
 			</div>
 		</section>
-		
+	
 		<section
 			id="enseignant"
 			class="page-section"
@@ -400,7 +405,7 @@
 				</div>
 			</div>
 		</section>
-			
+	
 		<section
 			id="collaborateur"
 			class="page-section"
@@ -408,13 +413,69 @@
 			<div class="container">
 				<div class="text-center">
 					<h2 class="section-heading text-uppercase">
-						Pour les collaborateurs
+						Les collaborateurs
 					</h2>
 				</div>
-				
+		
 				<ul class="timeline">
-										
+		    
 					<li class="timeline">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/1.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>
+									<a href="https://git.dti.crosemont.quebec/progression/progression_backend/-/graphs/master">Contributeurs</a>
+								</h4>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline-inverted">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/2.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+				
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4>Avec le soutien de 
+								</h4>
+								<div style="overflow: hidden; margin: -10% 0px 0px -12%">
+									<img src="./assets/img/logo_crosemont.png" width="100%" >
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline">
+						<div class="timeline-image">
+							<img
+								class="rounded-circle img-fluid"
+								src="./assets/img/3.jpg"
+								alt="Projet Progression"
+							>
+						</div>
+			
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<img src="./assets/img/quebec_gouv.png" width="100%">
+								<p class="text-center">
+									Programme NovaScience
+								</p>
+							</div>
+						</div>
+					</li>
+
+					<li class="timeline-inverted">
 						<div class="timeline-image">
 							<img
 								class="rounded-circle img-fluid"
@@ -422,9 +483,10 @@
 								alt="Projet Progression"
 							>
 						</div>
+
 						<div class="timeline-panel">
 							<div class="timeline-heading">
-								<h4>Projet Progression</h4>
+								<h4>Code source</h4>
 							</div>
 							<div class="timeline-body">
 								<p class="text-muted">
@@ -434,7 +496,7 @@
 						</div>
 					</li>
 
-					<li class="timeline-inverted">
+					<li class="timeline">
 						<div class="timeline-image">
 							<img
 								class="rounded-circle img-fluid"
@@ -454,11 +516,11 @@
 						</div>
 					</li>
 
-					<li class="timeline">
+					<li class="timeline-inverted">
 						<div class="timeline-image">
 							<img
 								class="rounded-circle img-fluid"
-								src="./assets/img/4.jpg"
+								src="./assets/img/1.jpg"
 								alt="Projet Progression"
 							>
 						</div>
