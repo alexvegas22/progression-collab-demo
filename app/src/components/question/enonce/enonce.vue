@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<div class="section-énoncé-texte">
-				<perfect-scrollbar>
+				<perfect-scrollbar :options="{suppressScrollX: true}">
 					<div class="row flex-grow-1">
 						<!-- eslint-disable-->
 						<p
