@@ -103,7 +103,10 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 
 const postAvancementApi = async (params, token) => {
 	const query = { include: "tentatives,sauvegardes" };
-	const body = { question_uri: params.question_uri };
+	const body = {
+		question_uri: params.question_uri,
+		avancement: params.avancement
+	};
 	const data = await postData(params.url, query, body, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
@@ -171,7 +174,7 @@ const postAuthKey = async (params, token) =>
 		});
 
 const callbackGrade = async (url, params) => {
-	await postData(url, null, params);
+	return postData(url, null, params);
 };
 
 const callbackAuth = async (url, params) => {
@@ -197,6 +200,7 @@ function construireAvancement(data, included) {
 	avancement.liens.tentatives = data.relationships.tentatives.links.related;
 	avancement.tentatives = [];
 	avancement.sauvegardes = {};
+	if(avancement.extra) avancement.extra = JSON.parse( avancement.extra );
 	if (included) {
 		included.forEach((item) => {
 			if (item.type == "tentative") {

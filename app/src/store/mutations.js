@@ -129,5 +129,8 @@ export const mutations = {
 	},
 	setFeedback(state, val){
 		state.tentative.feedback = val;
+	},
+	setErreurCallback(state, val){
+		state.erreur_callback = val;
 	}
 };

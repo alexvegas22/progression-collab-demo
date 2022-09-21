@@ -7,6 +7,9 @@ export default {
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
+		erreurCallback() {
+			return this.$store.state.erreur_callback;
+		}
 	},
 	methods: {
 		validerTentative(){

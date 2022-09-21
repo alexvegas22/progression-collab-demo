@@ -154,6 +154,10 @@ export default {
 		commit("setErreurs", erreurs);
 	},
 
+	async setErreurCallback({ commit }, erreur) {
+		commit("setErreurCallback", erreur);
+	},
+
 	async getToken({ commit, state }) {
 		if (tokenEstValide(state.token)) {
 			return state.token;
@@ -301,17 +305,19 @@ export default {
 		);
 	},
 
-	async créerAvancement({ commit, state }, params) {
+	async sauvegarderAvancement({ commit, state }, params) {
 		return valider(async () => {
 			commit("setEnChargement", true);
 			try {
 
 				const token = await this.dispatch("getToken");
 				const avancement = await postAvancementApi(params, token);
-
 				commit("setAvancement", avancement);
+				if(! (params.question_uri in state.user.avancements)){
+					state.user.avancements[params.question_uri]=avancement;
+					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+				}
 
-				commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
 				return avancement;
 			}
 			finally {
@@ -320,7 +326,7 @@ export default {
 		}
 		);
 	},
-
+	
 	async créerCommentaire({ commit }, params) { // eslint-disable-line no-unused-vars
 		return valider(async () => {
 			const token = await this.dispatch("getToken");
@@ -424,6 +430,7 @@ export default {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("setRésultats", [] );
 		commit("setFeedback", null );
+		commit("setErreurCallback", null);
 
 		return valider(async () => {
 			try {
@@ -438,11 +445,21 @@ export default {
 				}
 
 				if (state.cb_succes && state.cb_succes_params) {
-					callbackGrade(state.cb_succes, {
-						...state.cb_succes_params,
-						uri: state.uri,
-						token: state.token,
-					});
+					try{
+						await callbackGrade(state.cb_succes, {
+							...state.cb_succes_params,
+							uri: state.uri,
+							token: state.token,
+						});
+					}
+					catch(e){
+						if(e.response.status == 401) {
+							commit("setErreurCallback", i18n.global.t("retroaction_tentative.erreurCallback401"));
+						}
+						else if(e.response.status >= 400) {
+							commit("setErreurCallback", i18n.global.t("retroaction_tentative.erreurCallbackAutre"));
+						}
+					}
 				}
 				return tentative;
 			}
