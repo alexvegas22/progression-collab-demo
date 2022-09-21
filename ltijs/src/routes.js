@@ -107,7 +107,7 @@ router.post("/lti/grade", async (req, res) => {
 		return res.send(responseGrade);
 	} catch (err) {
 		provMainDebug(err);
-		return res.status(500).send({ err: err.message });
+		return res.status(403).send({ err: err.message });
 	}
 });
 

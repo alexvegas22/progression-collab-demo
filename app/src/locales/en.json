@@ -153,7 +153,10 @@
 		"mauvaiseRéponse": "Incorrect",
 		"nbTestsValidés": "Passed tests : ",
 		"conseil": "Tip : ",
-		"erreurServeur": "The test server in inaccessible. If the problem persists, please notify an administrator."
+		"erreurServeur": "The test server in unavailable. If the problem persists, please notify an administrator.",
+		"erreurCallback": "The results could not be sent to the originating platform. Please click for more details.",
+		"erreurCallback401": "La plateforme d'origine a refusé le résultat. Essayez de vous y authentifier de nouveau. Si le problème persiste, veuillez en aviser votre enseignant.",
+		"erreurCallbackAutre": "La plateforme d'origine n'a pas pu être contactée. Si le problème persiste, veuillez en aviser un administrateur."
 	},
 
 	"resultat_test": {

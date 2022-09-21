@@ -152,7 +152,10 @@
 		"mauvaiseRéponse": "Mauvaise réponse",
 		"nbTestsValidés": "Tests validés : ",
 		"conseil": "Conseil : ",
-		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur."
+		"erreurServeur": "Impossible de communiquer avec le serveur de tests. Si le problème persiste, veuillez porter le problème à l'attention d'un administrateur.",
+		"erreurCallback": "Le résultat n'a pas pu être envoyé à la plateforme d'origine. Cliquez pour plus de détails",
+		"erreurCallback401": "La plateforme d'origine a refusé le résultat. Essayez de vous y authentifier de nouveau. Si le problème persiste, veuillez en aviser votre enseignant.",
+		"erreurCallbackAutre": "La plateforme d'origine n'a pas pu être contactée. Si le problème persiste, veuillez en aviser un administrateur."
 	},
 
 	"resultat_test": {

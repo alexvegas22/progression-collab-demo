@@ -93,6 +93,11 @@ export default {
 		},
 	},
 	mounted() {
+		this.$store.dispatch("setTokenRessources", null);
+		this.$store.dispatch("setCallbackSucces", null);
+		this.$store.dispatch("setCallbackSuccesParams", null);
+		this.$store.dispatch("setErreurs", null);
+		this.$store.dispatch("setErreurCallback", null);
 		this.traiterParamètresURL(window.location.search);
 	},
 	provide() {
@@ -131,10 +136,12 @@ export default {
 			else{
 				const username = this.user.username;
 				const id_avancement = username + "/" + this.uri;
-				if (id_avancement in this.user.avancements)
+				if (id_avancement in this.user.avancements){
 					this.récupérerAvancement(this.user.avancements[id_avancement].liens.self);
-				else
-					this.créerAvancement();
+				}
+				else{
+					this.sauvegarderAvancement();
+				}
 			}
 		},
 		récupérerAvancement(url_avancement) {
@@ -142,14 +149,38 @@ export default {
 				.dispatch("récupérerAvancement", {
 					url: url_avancement,
 					tokenRessources: this.$store.state.tokenRessources,
+				}).then((avancement) => {
+					if (!this.$store.state.cb_succes) {
+						this.extraire_infos_callback(avancement);
+					}
+					else {
+						this.mettre_à_jour_infos_callback(avancement);
+					}
 				});
 		},
-		créerAvancement(){
+		extraire_infos_callback(avancement){
+			if(avancement?.extra?.cb_succes){
+				this.$store.dispatch("setCallbackSuccesParams", avancement.extra.cb_succes_params);
+				this.$store.dispatch("setCallbackSucces", avancement.extra.cb_succes);
+			}
+		},
+		mettre_à_jour_infos_callback(avancement){
+			if (this.$store.state.cb_succes != avancement?.extra?.cb_succes ||
+				this.$store.state.cb_succes_params != avancement?.extra?.cb_succes_params) {
+				this.sauvegarderAvancement();
+			}
+		},
+		sauvegarderAvancement(){
 			this.$store
-				.dispatch("créerAvancement", {
+				.dispatch("sauvegarderAvancement", {
 					url: this.user.liens.avancements,
 					question_uri: this.uri,
-					avancement: {},
+					avancement: this.$store.state.cb_succes ? {
+						extra: JSON.stringify({
+							cb_succes: this.$store.state.cb_succes,
+							cb_succes_params: this.$store.state.cb_succes_params ?? ""
+						})
+					} : {},
 				});
 		},
 		récupérerQuestion() {
