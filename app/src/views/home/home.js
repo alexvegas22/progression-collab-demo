@@ -7,6 +7,9 @@ library.add(faUserSecret);
 
 export default {
 	name: "Home",
+	data() {
+		return { version: "source : " + import.meta.env.VITE_APP_VERSION };
+	},
 	setup () {
 		useMeta({
 			htmlAttrs: {

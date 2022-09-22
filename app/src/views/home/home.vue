@@ -29,9 +29,9 @@
 				</div>
 				<div class="masthead-subheading text-uppercase">
 					Le gym de la programmation
-					<div style="position: absolute; margin:0.5rem; margin-top: 0; padding:0.5rem; right: 0; top: 0">
-						<a href="https://gitlab.com/projet-progression">
-							<img width="30rem" src="https://gitlab.com/gitlab-com/gitlab-artwork/-/raw/master/logo/logo.svg"/>
+					<div style="position: absolute; width: 3rem; margin:0.5rem; margin-top: 0; padding:0.5rem; right: 0; top: 0">
+						<a :title=version href="https://gitlab.com/projet-progression">
+							<img width="35" src="https://gitlab.com/gitlab-com/gitlab-artwork/-/raw/master/logo/logo.svg">
 						</a>
 					</div>
 				</div>
