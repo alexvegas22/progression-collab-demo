@@ -1,6 +1,7 @@
 image: docker:latest
 
 stages:
+  - version_check 
   - build_image
   - test
   - deploy_image
@@ -24,11 +25,22 @@ test_unitaires:
   except:
     - master
 
+# Stage version_check
+
+# Vérification de l'incrément du numéro de version
+version_check:
+  stage: version_check
+  script:
+    - docker run -v $PWD:/progression_frontend bitnami/git bash -c 'git config --global --add safe.directory /progression_frontend && cd /progression_frontend && [ $(( $( echo "(" $(git show HEAD:VERSION|tr "." "+") ")-(" $(git show HEAD^:VERSION|tr "." "+") ")" ) )) -lt 0 ] || echo ERREUR la version n’a pas avancé'
+  only:
+  - master
+
 # Stage build_image
 
 # Construction de l'image
 const_image:
   stage: build_image
+  needs: [version_check]
   services:
   - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
     command: ["--tls=false"]
