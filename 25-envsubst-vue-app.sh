@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source VERSION
+VERFILE=$(dirname "${BASH_SOURCE[0]}")/VERSION
+source $VERFILE
 
 function join_by {
 	local IFS="$1";
