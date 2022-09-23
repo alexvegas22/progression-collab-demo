@@ -11,6 +11,8 @@ services:
       - "./app/public:/app/public"
     environment:
       NODE_ENV: dev
+    env_file:
+      - VERSION
     networks:
       default:
         ipv4_address: 172.20.0.6
