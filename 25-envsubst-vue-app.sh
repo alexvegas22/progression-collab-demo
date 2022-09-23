@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source VERSION
+
 function join_by {
 	local IFS="$1";
 	shift; echo "$*";
