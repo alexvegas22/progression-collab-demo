@@ -35,7 +35,7 @@ version_check:
     command: ["--tls=false"]
     alias: dind  
   script:
-    - docker run -v $PWD:/progression_frontend bitnami/git bash -c 'git config --global --add safe.directory /progression_frontend && cd /progression_frontend && [ $(( $( echo "(" $(git show HEAD:VERSION|cut -d "=" -f 2|tr "." "+") ")-(" $(git show HEAD^:VERSION|cut -d "=" -f 2|tr "." "+") ")" ) )) -lt 0 ] || echo ERREUR la version n’a pas avancé'
+    - docker run -v $PWD:/progression_frontend bitnami/git bash -c 'git config --global --add safe.directory /progression_frontend && cd /progression_frontend && [ dpkg --compare-versions $(git show HEAD:VERSION|cut -d "=" -f 2) "gt" $(git show HEAD^:VERSION|cut -d "=" -f 2) ] || echo ERREUR la version n’a pas avancé'
   only:
   - master
 
