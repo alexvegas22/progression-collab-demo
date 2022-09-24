@@ -1,7 +1,7 @@
 image: docker:latest
 
 stages:
-  - version_check 
+  - verifications 
   - build_image
   - test
   - deploy_image
@@ -29,7 +29,7 @@ test_unitaires:
 
 # Vérification de l'incrément du numéro de version
 version_check:
-  stage: version_check
+  stage: verifications
   services:
   - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
     command: ["--tls=false"]
