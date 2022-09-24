@@ -128,6 +128,7 @@
 
 	"énoncé": {
 		"auteur": "Author",
+		"objectif": "Objective : ",
 		"licence": "License"
 	},
 

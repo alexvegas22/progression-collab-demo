@@ -80,7 +80,10 @@
 						{{ question.niveau }}
 					</span>
 				</div>
-				<div class="description">
+				<div class="description" v-if="question.objectif">
+					{{$t("énoncé.objectif")}} {{ question.objectif }}
+				</div>
+				<div class="description" v-if="!question.objectif && question.description">
 					{{ question.description }}
 				</div>
 			</div>

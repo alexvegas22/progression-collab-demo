@@ -44,7 +44,6 @@ version_check:
 # Construction de l'image
 const_image:
   stage: build_image
-  needs: [version_check]
   services:
   - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
     command: ["--tls=false"]
