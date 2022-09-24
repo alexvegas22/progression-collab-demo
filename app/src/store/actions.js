@@ -253,7 +253,7 @@ export default {
 				return question;
 			}
 			catch (e) {
-				if (e?.response?.status == 400) {
+				if (e?.response?.status == 502) {
 					throw i18n.global.t("erreur.question_introuvable");
 				}
 				else {
