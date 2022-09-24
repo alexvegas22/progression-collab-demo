@@ -1,7 +1,8 @@
 #!/bin/bash
 
+# Source la version à partir du fichier VERSION
 VERFILE=$(dirname "${BASH_SOURCE[0]}")/VERSION
-source $VERFILE
+export $(cat $VERFILE)
 
 function join_by {
 	local IFS="$1";
