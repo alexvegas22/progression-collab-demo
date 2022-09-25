@@ -57,9 +57,10 @@
 						<perfect-scrollbar>
 							<!-- eslint-disable -->
 							<pre
-								v-if="sortie_attendue"
-								class="card-text p-3"
-								v-html="sortie_attendue"
+							    v-if="sortie_attendue"
+							    class="card-text p-3"
+							    v-html="sortie_attendue"
+							    style="max-width:22rem"
 							/>
 							<!-- eslint-enable -->
 							<pre v-else>
@@ -79,12 +80,13 @@
 							</div>
 						</template>
 						<perfect-scrollbar>
-							<!-- eslint-disable -->
-							<pre
-								v-if="sortie_observée"
-								class="card-text p-3"
-								v-html="sortie_observée"
-							/>
+						    <!-- eslint-disable -->
+						    <pre
+							v-if="sortie_observée"
+							class="card-text p-3"
+							v-html="sortie_observée"
+							style="max-width:22rem"
+						    />
 							<!-- eslint-enable -->
 							<pre v-else>
 								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
