@@ -2,16 +2,14 @@
 	<div class="pb-1">
 		<div>
 			<div
-				class="row w-100 m-0 p-1 texte"
+				class="row w-100 m-0 p-0"
 				@click="toggleVisibilite"
 			>
 				<div
-					class="col-11 test"
+					class="test m-1 p-1"
 					:class="{sélectionné, non_sélectionné: !sélectionné, réussi, non_réussi}"
 				>
-					<p class="p-0 m-0">
-						{{ (index+1) + '. ' + test.nom }}
-					</p>
+					{{ (index+1) + '. ' + test.nom }}
 				</div>
 			</div>
 		</div>
