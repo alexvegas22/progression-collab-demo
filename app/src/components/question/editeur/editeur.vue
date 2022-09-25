@@ -1,6 +1,6 @@
 <template>
 	<div style="flex-grow: 1">
-		<div class="container p-0">
+		<div class="container p-0 xray">
 			<div
 				v-if="rôleÉditeur"
 				class="row align-items-end"
