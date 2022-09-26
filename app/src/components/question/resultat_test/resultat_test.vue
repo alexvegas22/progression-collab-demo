@@ -24,7 +24,8 @@
 								class="fa fa-refresh boutonRafraichissement"
 							></i>
 						</template>
-						<textarea 
+						<textarea
+							style="overflow: hidden"
 							id="contenu_entrée"
 							class="card-text p-3 inputTest"
 							@input="entréePersonnalisée"
@@ -80,7 +81,7 @@
 							</div>
 						</template>
 						<perfect-scrollbar>
-						    <!-- eslint-disable -->
+							<!-- eslint-disable -->
 						    <pre
 							v-if="sortie_observée"
 							class="card-text p-3"
