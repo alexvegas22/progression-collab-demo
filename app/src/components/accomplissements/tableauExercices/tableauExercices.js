@@ -42,6 +42,10 @@ export default {
 			var avancementDivise = lien.split("/");
 			var uri = avancementDivise[avancementDivise.length -1];
 
+			this.$store.dispatch("setTokenRessources", null);
+			this.$store.dispatch("setCallbackSucces", null);
+			this.$store.dispatch("setCallbackSuccesParams", null);
+
 			this.$router.push({
 				name: "Question",
 				query: {
