@@ -312,10 +312,8 @@ export default {
 
 				const token = await this.dispatch("getToken");
 				const avancement = await postAvancementApi(params, token);
-				commit("setAvancement", avancement);
 				if(! (params.question_uri in state.user.avancements)){
 					state.user.avancements[params.question_uri]=avancement;
-					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
 				}
 
 				return avancement;
@@ -325,6 +323,11 @@ export default {
 			}
 		}
 		);
+	},
+
+	async setAvancement({ commit, state }, params) {
+		commit("setAvancement", params.avancement);
+		commit("setTentative", sélectionnerTentative(params.avancement, state.question, state.langageDéfaut));
 	},
 	
 	async créerCommentaire({ commit }, params) { // eslint-disable-line no-unused-vars
