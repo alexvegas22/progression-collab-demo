@@ -137,7 +137,13 @@ export default {
 					this.récupérerAvancement(this.user.avancements[id_avancement].liens.self);
 				}
 				else{
-					this.sauvegarderAvancement();
+					const avancement = this.$store.state.cb_succes ? {
+						extra: JSON.stringify({
+							cb_succes: this.$store.state.cb_succes,
+							cb_succes_params: this.$store.state.cb_succes_params ?? ""
+						})
+					} : {};
+					this.sauvegarderAvancement(avancement);
 				}
 			}
 		},
@@ -164,20 +170,15 @@ export default {
 		mettre_à_jour_infos_callback(avancement){
 			if (this.$store.state.cb_succes != avancement?.extra?.cb_succes ||
 				this.$store.state.cb_succes_params != avancement?.extra?.cb_succes_params) {
-				this.sauvegarderAvancement();
+				this.sauvegarderAvancement(avancement);
 			}
 		},
-		sauvegarderAvancement(){
+		sauvegarderAvancement(avancement){
 			this.$store
 				.dispatch("sauvegarderAvancement", {
 					url: this.user.liens.avancements,
 					question_uri: this.uri,
-					avancement: this.$store.state.cb_succes ? {
-						extra: JSON.stringify({
-							cb_succes: this.$store.state.cb_succes,
-							cb_succes_params: this.$store.state.cb_succes_params ?? ""
-						})
-					} : {},
+					avancement
 				});
 		},
 		récupérerQuestion() {
