@@ -143,7 +143,9 @@ export default {
 							cb_succes_params: this.$store.state.cb_succes_params ?? ""
 						})
 					} : {};
-					this.sauvegarderAvancement(avancement);
+					this.sauvegarderAvancement(avancement).then((avancement) => {
+						this.$store.dispatch("setAvancement", {avancement: avancement});
+					});
 				}
 			}
 		},
@@ -169,12 +171,17 @@ export default {
 		},
 		mettre_à_jour_infos_callback(avancement){
 			if (this.$store.state.cb_succes != avancement?.extra?.cb_succes ||
-				this.$store.state.cb_succes_params != avancement?.extra?.cb_succes_params) {
-				this.sauvegarderAvancement(avancement);
+		    JSON.stringify(this.$store.state.cb_succes_params) != JSON.stringify(avancement?.extra?.cb_succes_params)) {
+		    this.sauvegarderAvancement( this.$store.state.cb_succes ? {
+						extra: JSON.stringify({
+							cb_succes: this.$store.state.cb_succes,
+							cb_succes_params: this.$store.state.cb_succes_params ?? ""
+						})
+					} : {} );
 			}
 		},
 		sauvegarderAvancement(avancement){
-			this.$store
+			return this.$store
 				.dispatch("sauvegarderAvancement", {
 					url: this.user.liens.avancements,
 					question_uri: this.uri,
