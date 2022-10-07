@@ -78,7 +78,7 @@ lti.onConnect(async (idToken, req, res) => {
 		    }	
 		});
 
-		res.render("suivi", { url: "/question?uri=" + uri, membres: Object.values( membres ), query: {uri, lang} });
+		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
 		res.status(200);
 	}
 	else{
