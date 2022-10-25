@@ -24,6 +24,7 @@ test_unitaires:
     - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslintrc.js src/**/*.{js,vue}
   except:
     - master
+    - dev
 
 # Stage version_check
 
