@@ -1,5 +1,5 @@
 <template>
-    <splitpanes ref="sp" :horizontal="h" :class="class" @resized="resized">
+    <splitpanes ref="sp" :horizontal="h" :class="class" @resized="resized" :dbl-click-splitter=false>
 		<pane :size="taille_gauche" ref="sp_g">
 			<PanneauMaximisable v-if='gauche=="true"' style="height:100%" :horizontal="h" :size=taille_gauche minsize="32" @resize="resize_gauche">
 				<slot name="gauche" />
