@@ -3,22 +3,27 @@ import ErreursTest from "@/components/question/section_erreurs/section_erreurs.v
 import DétailsTest from "@/components/question/section_details/section_details.vue";
 import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
+import MesSplitpanes from "@/components/mes_splitpanes/mes_splitpanes";
+import PanneauMaximisable from "@/components/panneau_maximisable/panneau_maximisable.vue";
+import { Splitpanes, Pane } from 'splitpanes';
 
 export default {
-	components: {
+    components: {
 		Test,
 		ResultatTest,
 		ErreursTest,
 		Rétroactions,
-		DétailsTest
+		DétailsTest,
+		MesSplitpanes,
+		PanneauMaximisable,
+		Splitpanes,
+		Pane
 	},
 	props: {
-		panneauAffiché: Boolean,
 		ongletChangé: Boolean,
 		testSélectionnéHaut: Boolean,
 		testSélectionnéBas: Boolean,
 	},
-	emits: ["basculéPanneauTests"],
 	data() {
 		return {
 			ongletActif: "ResultatTest",
@@ -123,9 +128,6 @@ export default {
 			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exec){
 				this.changementOnglet("ResultatTest");
 			}
-		},
-		basculerPanneau(){
-			this.$emit("basculéPanneauTests");
 		},
 		basculerTestHaut(){
 			this.index_select--;

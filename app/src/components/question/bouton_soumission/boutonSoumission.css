@@ -1,7 +1,4 @@
 .btn-valider {
-	position: absolute;
-	bottom: 0rem;
-	right: 1rem;
 	height: 5rem;
 	width: 5rem;
 	fill: rgb(37, 177, 34);
@@ -49,61 +46,5 @@
 @-webkit-keyframes spin {
 	to {
 		-webkit-transform: rotate(360deg);
-	}
-}
-
-/* ------------------------------ Media Queries ---------------------------------*/
-/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
-@media (max-width: 36rem) {
-    .btn-valider {
-		right: 1.5rem;
-	}
-
-	.spin {
-		right: 0.75rem;
-	}
-}
-
-/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
-@media (min-width: 36rem) and (max-width: 47.938rem) {
-    .btn-valider {
-		right: 1.5rem;
-	}
-
-	.spin {
-		right: 0.75rem;
-	}
-}
-
-/* ------------- 48rem - 62rem (768px - 992px) ---------------- */
-@media (min-width: 48rem) and (max-width: 62rem) {
-    .btn-valider {
-		right: 1.5rem;
-	}
-
-	.spin {
-		right: 0.75rem;
-	}
-}
-
-/* ---------- 62rem - 75rem (992px - 1200px) -------------- */
-@media (min-width: 62rem) and (max-width: 75rem) {
-    .btn-valider {
-		right: 1.75rem;
-	}
-
-	.spin {
-		right: 0.75rem;
-	}
-}
-
-/* ---------- 75rem et + (1200px et +) ---------------- */
-@media (min-width: 75rem) {
-    .btn-valider {
-		right: 1.75rem;
-	}
-
-	.spin {
-		right: 0.75rem;
 	}
 }

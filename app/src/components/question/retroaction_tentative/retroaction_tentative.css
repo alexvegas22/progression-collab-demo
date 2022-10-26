@@ -9,6 +9,7 @@
 .progress {
 	height: 0.75rem;
 	border-radius: 0;
+	background-image: repeating-linear-gradient(-45deg, #ccc, #ccc 30px, #dbdbdb 30px, #dbdbdb 60px);
 }
 
 .rétroaction-générale {

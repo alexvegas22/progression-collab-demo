@@ -1,6 +1,7 @@
 <template>
-	<div class="row g-0">
-		<div class="col-xl-3 col-lg-4 col-4">
+    <div class="row g-0">
+		<MesSplitpanes class="default-theme" gauche="false" droite="false">
+			<template #gauche>
 			<div class="section-tests">
 				<div
 					class="bordure-titre p-1 texte"
@@ -10,7 +11,6 @@
 				</div>
 				<FenêtreInfo
 					class="panneau"
-					:class="{'panneau-affiché': panneauAffiché}"
 				>
 					<div
 						v-for="(test, index) in tests"
@@ -28,9 +28,10 @@
 					</div>
 				</FenêtreInfo>
 			</div>
-		</div>
-		<div class="col-xl-9 col-lg-8 col-8 texte">
-			<div class="section-onglets">
+			</template>
+			<template #droite>
+				<div style="height: 100%; display: flex; flex-flow: column">
+					<div class="section-onglets">
 				<div
 					id="onglet_ES"
 					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
@@ -38,7 +39,6 @@
 				>
 					{{ $t("onglets_informations.entrées/sorties") }}
 					<i 
-						v-if="panneauAffiché"
 						:disabled="envoiEnCours"
 						:class="{ 'fas fa-play btn-test-local': !this.envoiTestUnique, 'fa fa-refresh fa-spin spin-test-local': this.envoiTestUnique }"
 						@click="validerTest"
@@ -60,28 +60,20 @@
 				>
 					{{ $t("onglets_informations.détails") }}
 				</div>
-				<div style="margin-left: auto">
-					<i
-						style="height: 100%"
-						class="fa fa btn-affichage"
-						:class="{ 'fa-window-minimize': panneauAffiché, 'fa-window-restore': !panneauAffiché }"
-						@click="basculerPanneau()"
-					/>
-				</div>
 			</div>
 			<keep-alive>
 				<component
 					:is="ongletActif"
-					:style="{ height: panneauAffiché ? '18rem' : '0' }"
 					class="section-bas"
 					:test="test_select"
 					:résultat="resultat_select"
 					:tempsÉxecution="test_select"
-					:panneau-affiché="panneauAffiché"
 					:index="index_select"
 				/>
 			</keep-alive>
 		</div>
+			</template>
+		</MesSplitpanes>
 	</div>
 </template>
 

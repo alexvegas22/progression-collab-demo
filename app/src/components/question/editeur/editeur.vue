@@ -1,5 +1,5 @@
 <template>
-	<div style="flex-grow: 1">
+	<div>
 		<div class="container p-0 xray">
 			<div
 				v-if="rôleÉditeur"
@@ -25,29 +25,23 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid p-0 h-100 position-relative">
-			<BoutonSoumission
-				@validerTentative="validerTentative"
-			/>
-			<div
-				class="indicateur_sauvegarde"
-				:class="classeIndicateur"
-				style="z-index: 1"
-			>
-				●
-			</div>
-			<v-code-mirror
-				id="editor"
-				présentation_étape="1.1"
-				style="height: 100%"
-				class="taille_texte"
-				:value="code"
-				:mode="mode"
-				:theme="thème"
-				:xray="xray"
-				@update:value="onChange"
-			/>
+		
+		<div
+			class="indicateur_sauvegarde"
+				   :class="classeIndicateur"
+		>
+			●
 		</div>
+		<Codemirror
+			id="editor"
+				ref="editor"
+				présentation_étape="1.1"
+				:value="code"
+				:options="cmOptions"
+				@change="onChange"
+				@ready="onReady"
+		/>
+		
 	</div>
 </template>
 
