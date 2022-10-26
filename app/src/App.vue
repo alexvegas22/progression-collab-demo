@@ -241,7 +241,7 @@ export default {
 		},
 		basculerVersionTest() {
 			const version = this.$cookies.get("fe_version");
-			this.$cookies.set("fe_version", version == "dev" ? "" : "dev");
+			this.$cookies.set("fe_version", version != "dev" ? "dev" : "prod");
 			window.location.reload();
 		},
 		allerVers( vue ){
