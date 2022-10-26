@@ -168,7 +168,7 @@ export default {
 			return this.$store.state.thèmeSombreBasculéAvecRaccourci;
 		},
 		indicateursDeFonctionnalitéVersionTest(){
-			return this.$store.state.indicateursDeFonctionnalité["versionTest"];
+			return this.$store.state.indicateursDeFonctionnalité["version_test"];
 		},
 		versionTest(){
 			return this.$cookies.get("fe_version")=="dev";
