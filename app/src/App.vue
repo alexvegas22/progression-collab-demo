@@ -25,13 +25,13 @@
 						data-bs-toggle="dropdown"
 						aria-expanded="false"
 					/>
-				
+
 					<ul
 						class="dropdown-menu"
 						aria-labelledby="historique"
 					>
 						<li
-							v-if="token && indicateursDeFonctionnalitéAccomplissements"
+							v-if="token"
 							class="btnDMM"
 						>
 							<i class="fas fa-trophy focus icône-trophée"></i>
@@ -48,7 +48,7 @@
 						>
 							<a class="focus padding">
 								<i class="fas fa-adjust margin-liens icône-thème"></i>
-							
+
 								<label>
 									<span v-if="this.thèmeSombre===true">{{$t("menu.thèmeClair")}}</span>
 									<span v-else>{{$t("menu.thèmeSombre")}}</span>
@@ -58,6 +58,20 @@
 										style="opacity:0;"
 										class="input-thème"
 										@click="basculerThèmeSombreAvecRaccourci"
+									>
+								</label>
+							</a>
+						</li>
+						<li v-if="indicateursDeFonctionnalitéVersionTest"
+							class="btnDMM"
+						>
+							<a class="focus padding">
+								<label>
+									<span>{{$t("menu.versionTest")}}</span>
+									<input
+										v-model="versionTest"
+										type="checkbox"
+										@click="basculerVersionTest"
 									>
 								</label>
 							</a>
@@ -72,7 +86,7 @@
 							</a>
 						</li>
 					</ul>
-				
+
 				</div>
 				<div v-else>
 					<button
@@ -153,8 +167,11 @@ export default {
 		setThèmeSombreBasculéAvecRaccourci() {
 			return this.$store.state.thèmeSombreBasculéAvecRaccourci;
 		},
-		indicateursDeFonctionnalitéAccomplissements(){
-			return this.$store.state.indicateursDeFonctionnalité["accomplissements"];
+		indicateursDeFonctionnalitéVersionTest(){
+			return this.$store.state.indicateursDeFonctionnalité["versionTest"];
+		},
+		versionTest(){
+			return this.$cookies.get("fe_version")=="dev";
 		},
 		raccourcis(){
 			return this.$store.state.raccourcis;
@@ -169,7 +186,7 @@ export default {
 			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
 	},
-	 created() {
+	created() {
 		const username = sessionStorage.getItem("username") || localStorage.getItem("username");
 		if(username){
 			this.$store.dispatch("setUsername", username);
@@ -221,6 +238,11 @@ export default {
 		},
 		basculerThèmeSombreAvecRaccourci() {
 			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
+		},
+		basculerVersionTest() {
+			const version = this.$cookies.get("fe_version");
+			this.$cookies.set("fe_version", version == "dev" ? "" : "dev");
+			window.location.reload();
 		},
 		allerVers( vue ){
 			this.$router.push({
