@@ -1,35 +1,5 @@
 <template>
 	<div class="barre-énoncé">
-		<div
-			class="section-bouton-affichage"
-			:class="{
-				'énoncé-caché': !énoncéSemiÉcran && !énoncéPleinÉcran,
-				'énoncé-padding': énoncéSemiÉcran || énoncéPleinÉcran,
-			}"
-		>
-			<i
-				v-if="énoncéSemiÉcran"
-				class="fa fa-window-maximize btn-affichage"
-				aria-hidden="true"
-				@click="$emit('ajustéPanneauÉnoncé', 'max')"
-			/>
-			<i
-				v-if="(!énoncéSemiÉcran && !énoncéPleinÉcran) || énoncéPleinÉcran"
-				class="fa fa-window-restore btn-affichage"
-				aria-hidden="true"
-				@click="$emit('ajustéPanneauÉnoncé', 'normal')"
-			/>
-			<i
-				v-if="énoncéSemiÉcran || énoncéPleinÉcran"
-				class="fa fa-window-minimize btn-affichage"
-				aria-hidden="true"
-				@click="$emit('ajustéPanneauÉnoncé', 'min')"
-			/>
-		</div>
-		<div
-			v-show="énoncéSemiÉcran || énoncéPleinÉcran"
-			class="max-height"
-		>
 			<div
 				v-if="état_réussi"
 				class="crochet icon icon--order-success svg"
@@ -121,7 +91,6 @@
 				</perfect-scrollbar>
 			</div>
 		</div>
-	</div>
 </template>
 
 <script src="./enonce.js"></script>

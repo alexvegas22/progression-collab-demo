@@ -6,15 +6,16 @@
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
+			    <MesSplitpanes horizontal="true" class="default-theme">
+					<template #gauche>
 				<div
 					class="d-flex"
-					style="flex-flow: row; flex: 1 1 0; height: 50%"
+					style="flex-flow: row; flex: 1 1 0; height: 100%"
 				>
 					<Ampoule
 						v-if="résultat && !résultat.sortie_erreur && feedback"
 						class="rétroaction-test"
 						:feedback="feedback"
-						:estVisible="panneauAffiché"
 					/>
 					<FenêtreInfo présentation_étape="3.1">
 						<template #titre>
@@ -44,57 +45,56 @@
 						></textarea>
 					</FenêtreInfo>
 				</div>
+					</template>
+					<template #droite>
 				<div
 					class="d-flex"
-					style="flex-flow: row; flex: 1 1 0; height: 50%"
+					style="flex-flow: row; flex: 1 1 0; flex-grow: 1; height: 100%"
 				>
 					<FenêtreInfo
 						présentation_étape="3.2"
-						:class="{résultat: résultat-test}"
+											:class="{résultat: résultat-test}"
 					>
 						<template #titre>
 							{{ $t('resultat_test.sortieAttendue') }}
 						</template>
-						<perfect-scrollbar>
 							<!-- eslint-disable -->
 							<pre
 							    v-if="sortie_attendue"
 							    class="card-text p-3"
 							    v-html="sortie_attendue"
-							    style="max-width:22rem"
 							/>
 							<!-- eslint-enable -->
 							<pre v-else>
 								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 							</pre>
-						</perfect-scrollbar>
 					</FenêtreInfo>
 					<FenêtreInfo
 						v-if="résultat"
-						présentation_étape="3.3"
-						class="résultat-test"
-					>
+							  présentation_étape="3.3"
+							  class="résultat-test"
+							  style="max-width:50%; height:100%" >
 						<template #titre>
 							<div class="espace-titre-sortie-observée">
 								{{ $t('resultat_test.sortieConsole') }}
 								<sélecteur-mode-affichage class="espace-sélecteur" />
 							</div>
 						</template>
-						<perfect-scrollbar>
-							<!-- eslint-disable -->
-						    <pre
+						<!-- eslint-disable -->
+						<pre
 							v-if="sortie_observée"
 							class="card-text p-3"
 							v-html="sortie_observée"
-							style="max-width:22rem"
-						    />
+							style="width:max-content; height:max-content; overflow: hidden"  
+						/>
 							<!-- eslint-enable -->
 							<pre v-else>
 								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 							</pre>
-						</perfect-scrollbar>
 					</FenêtreInfo>
 				</div>
+					</template>
+				</MesSplitpanes>
 			</div>
 		</div>
 	</div>

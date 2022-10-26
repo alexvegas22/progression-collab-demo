@@ -2,6 +2,7 @@ import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affic
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
 import he from "he";
+import MesSplitpanes from "@/components/mes_splitpanes/mes_splitpanes";
 
 import {copie_profonde} from "@/util/commun.js";
 
@@ -37,7 +38,11 @@ const différence = function (orig = "", modif = "", mode_affichage) {
 };
 
 export default {
-	components: { SélecteurModeAffichage, Ampoule},
+	components: {
+		SélecteurModeAffichage,
+		Ampoule,
+		MesSplitpanes,
+	},
 	name: "ResultatTest",
 	data() {
 		return {

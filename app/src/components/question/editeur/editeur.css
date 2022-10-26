@@ -22,6 +22,9 @@
 .indicateur_sauvegarde {
 	float: right;
 	font-size: 1rem;
+	z-index: 1;
+	position: absolute;
+	right: 0;
 }
 
 .non-sauvegardé {
@@ -53,8 +56,10 @@
 	position: relative;
 }
 
-.CodeMirror {
-	height: inherit;
+.codemirror-container:not(.original-style) .CodeMirror, .codemirror-container:not(.original-style) .CodeMirror-merge-pane
+{
+	/*Override consolas*/
+	font-family: monospace !important;
 }
 
 /* ------------------------------ Media Queries ---------------------------------*/
@@ -64,9 +69,6 @@
 		font-size: 0.7rem;
 	}
 
-	.CodeMirror-code {
-		min-height: 53vh;
-	}
 }
 
 /* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
@@ -75,19 +77,12 @@
 		font-size: 0.7rem;
 	}
 
-	.CodeMirror-code {
-		height: 53vh;
-	}
 }
 
 /* ------------- 48rem - 62rem (768px - 992px) ---------------- */
 @media (min-width: 48rem) and (max-width: 62rem) {
 	.taille_texte {
 		font-size: 0.7rem;
-	}
-
-	.CodeMirror-line {
-		max-width: 55vw ;
 	}
 }
 
@@ -96,19 +91,11 @@
 	.taille_texte {
 		font-size: 0.75rem;
 	}
-
-	.CodeMirror-line {
-		max-width: 60vw ;
-	}
 }
 
 /* ---------- 75rem et + (1200px et +) ---------------- */
 @media (min-width: 75rem) {
 	.taille_texte {
 		font-size: 0.8rem;
-	}
-
-	.CodeMirror-line {
-		max-width: 60vw ;
 	}
 }

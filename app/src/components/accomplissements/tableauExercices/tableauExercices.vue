@@ -2,7 +2,6 @@
 	<div v-if="avancements">
 		<div>
 			<div>
-				
 				<v-text-field
 					id="barreRecherche"
 					v-model="filtreDeRecherche"
@@ -11,11 +10,9 @@
 				></v-text-field>
 			</div>
 			<div>
-				
 				<v-table
 					fixed-header
 					fixed-footer
-					height="225px"
 					class="tableau bordureBas"
 					theme="dark"
 				>

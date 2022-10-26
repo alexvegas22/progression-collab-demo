@@ -51,3 +51,24 @@ input:focus {
 .focus {
 	color: #e1e1e1 !important;
 }
+
+.thème_sombre .splitpanes.default-theme .splitpanes__pane {
+	background-color: #353535;
+}
+
+.thème_sombre .splitpanes--vertical.default-theme > .splitpanes__splitter {
+	min-width: 6px;
+	background: #444;
+	border-style: none;
+}
+
+.thème_sombre .splitpanes--horizontal.default-theme > .splitpanes__splitter {
+	min-height: 6px;
+	background: #444;
+	border-style: none;
+}
+
+.thème_sombre .splitpanes.default-theme .splitpanes__splitter::before,
+.thème_sombre .splitpanes.default-theme .splitpanes__splitter::after {
+	background-color: #eee;
+}

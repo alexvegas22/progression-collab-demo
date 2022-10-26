@@ -1,15 +1,15 @@
 .barBtn {
-	color: rgba(13, 202, 240, 85%);
-	font-size: 1.7rem;
-	margin: 0.3rem;
-	margin-right: 1.2rem;
+    color: rgba(13, 202, 240, 85%);
+    font-size: 1.7rem;
+    margin-right: 1.2rem;
 }
+
 
 .dropdown-menu[data-bs-popper] {
 	top: 100%;
 	left: initial !important;
 	right: 0;
-	width: 200px !important;
+	width: max-content;
 	margin-top: 1rem !important;
 	background-color: #212529;
 	transform-origin: top center;
@@ -117,19 +117,19 @@
 	transform: translateY(0px);
     }
 }
-/*----------------- Média Queries ----------------*/
-/*------------Écrans 0 - 767px--------------------*/
-@media screen and (max-width: 47.938rem) {
-	.barBtn {
-		transform: scale(0.75);
-		margin-right: 0.5rem;
-	}
-	.text-username {
-		transform: scale(0.75);
-		margin-right: 0;
-	}
-	.btn-connexion {
-		transform: scale(0.75);
-		margin-right: 0rem;
-	}
+
+.splitpanes.default-theme .splitpanes__pane {
+	border-left-style: none;
+}
+
+.splitpanes--vertical.default-theme > .splitpanes__splitter {
+  min-width: 6px;
+}
+
+.splitpanes--horizontal.default-theme > .splitpanes__splitter {
+	min-height: 6px;
+}
+
+.splitpanes.default-theme .splitpanes__pane {
+	background-color: var(--bs-body-bg);
 }
