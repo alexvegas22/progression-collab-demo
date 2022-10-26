@@ -40,6 +40,7 @@ const router = createRouter({
 });
 
 router.beforeEach( (to, from, next ) => {
+	console.log(to);
 	//Redirige vers Question si le paramètre uri a été fourni
 	if(to.name == "Home"){
 		var urlParams = new URLSearchParams(to.query);
