@@ -12,7 +12,8 @@
 		"connexion": "Login",
 		"déconnexion": "Logout",
 		"thèmeSombre": "Dark theme",
-		"thèmeClair": "Light theme"
+		"thèmeClair": "Light theme",
+		"versionTest": "Version TEST"
 	},
 
 	"accomplissements": {
