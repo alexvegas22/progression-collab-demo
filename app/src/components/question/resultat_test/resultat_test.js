@@ -2,7 +2,7 @@ import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affic
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
 import he from "he";
-import MesSplitpanes from "@/components/mes_splitpanes/mes_splitpanes";
+import Diptyque from "@/components/diptyque/diptyque";
 
 import {copie_profonde} from "@/util/commun.js";
 
@@ -41,7 +41,7 @@ export default {
 	components: {
 		SélecteurModeAffichage,
 		Ampoule,
-		MesSplitpanes,
+		Diptyque,
 	},
 	name: "ResultatTest",
 	data() {
