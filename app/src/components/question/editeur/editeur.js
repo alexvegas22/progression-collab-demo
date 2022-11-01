@@ -1,5 +1,3 @@
-//import { VCodeMirror } from "./vcodemirror";
-import { ref } from "vue";
 import "codemirror/addon/fold/brace-fold";
 import "codemirror/addon/fold/foldgutter";
 import "codemirror/addon/fold/foldgutter.css";
@@ -9,7 +7,6 @@ import "codemirror/mode/python/python";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
-import { Editor, EditorConfiguration } from "codemirror";
 import Codemirror from "codemirror-editor-vue3";
 import parseMD from "@/util/parse";
 import {zones} from "./zones.js";
@@ -48,7 +45,7 @@ export default {
 				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 				smartIndent: false,
 				font: "monospace",
-			}
+			};
 		},
 		code() {
 			return this.$store.state.tentative.code;
@@ -60,7 +57,6 @@ export default {
 			return this.$store.state.question.ebauches ?? [];
 		},
 		mode() {
-						
 			const value = this.$store.state.tentative.langage;
 		
 			if (value === "java") {

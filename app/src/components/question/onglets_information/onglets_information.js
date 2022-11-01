@@ -3,21 +3,16 @@ import ErreursTest from "@/components/question/section_erreurs/section_erreurs.v
 import DétailsTest from "@/components/question/section_details/section_details.vue";
 import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
-import MesSplitpanes from "@/components/mes_splitpanes/mes_splitpanes";
-import PanneauMaximisable from "@/components/panneau_maximisable/panneau_maximisable.vue";
-import { Splitpanes, Pane } from 'splitpanes';
+import Diptyque from "@/components/diptyque/diptyque";
 
 export default {
-    components: {
+	components: {
 		Test,
 		ResultatTest,
 		ErreursTest,
 		Rétroactions,
 		DétailsTest,
-		MesSplitpanes,
-		PanneauMaximisable,
-		Splitpanes,
-		Pane
+		Diptyque,
 	},
 	props: {
 		ongletChangé: Boolean,

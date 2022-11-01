@@ -28,18 +28,18 @@
 		
 		<div
 			class="indicateur_sauvegarde"
-				   :class="classeIndicateur"
+			:class="classeIndicateur"
 		>
 			●
 		</div>
 		<Codemirror
 			id="editor"
-				ref="editor"
-				présentation_étape="1.1"
-				:value="code"
-				:options="cmOptions"
-				@change="onChange"
-				@ready="onReady"
+			ref="editor"
+			présentation_étape="1.1"
+			:value="code"
+			:options="cmOptions"
+			@change="onChange"
+			@ready="onReady"
 		/>
 		
 	</div>

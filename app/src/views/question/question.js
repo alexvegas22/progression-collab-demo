@@ -1,3 +1,4 @@
+
 import OngletsInformation from "@/components/question/onglets_information/onglets_information.vue";
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
@@ -8,9 +9,7 @@ import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
 import jwt_decode from "jwt-decode";
-import { Splitpanes, Pane } from 'splitpanes';
-import MesSplitpanes from "@/components/mes_splitpanes/mes_splitpanes";
-import PanneauMaximisable from "@/components/panneau_maximisable/panneau_maximisable.vue";
+import Diptyque from "@/components/diptyque/diptyque.vue";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -35,10 +34,7 @@ export default {
 		BoutonCommentaire,
 		BoutonSoumission,
 		PanneauCommentaire,
-		PanneauMaximisable,
-		Splitpanes,
-		MesSplitpanes,
-		Pane
+		Diptyque,
 	},
 	computed: {
 		user() {
@@ -193,9 +189,9 @@ export default {
 		},
 		validerTentative() {
 			this.$store.dispatch("soumettreTentative", 
-								 {
-									 tentativeCourante: this.$store.state.tentative
-			});
+				{
+					tentativeCourante: this.$store.state.tentative
+				});
 		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
