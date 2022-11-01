@@ -22,7 +22,7 @@
 					{{#membres}}
 					<tr>
 						<td>
-						{{{url}}}
+						{{{tkres}}}
 						</td>
 						{{#score}}
 						<td>
@@ -49,8 +49,9 @@
 			<script>
 			 $(function () {
 				 $("#tableResultats").on('click-row.bs.table', function (e,row,$el,field) {
-					 if(row[0])
-						 window.location=row[0];
+					 if(row[0]){
+						 window.location="{{{url}}}&tkres="+row[0];
+}
 			 })});
 			</script>
 

@@ -75,11 +75,11 @@ lti.onConnect(async (idToken, req, res) => {
 			if(membre["score"]){
 				membre["score"]["timestamp"] = scores[membre.user_id]["timestamp"];
 				membre["score"]["réussite"] = scores[membre.user_id]["resultScore"]==100?"Réussi":"Débuté";
-				membre["url"] = membre["score"]["comment"] ? `/question?uri=${uri}&lang=${lang}&tkres=${membre["score"]["comment"]}` : "";
+				membre["tkres"] = membre["score"]["comment"];
 			}
 		});
 
-		res.render("suivi", { membres: Object.values( membres ) });
+		res.render("suivi", { membres: Object.values( membres ), url: `/question?uri=${uri}&lang=${lang}`});
 		res.status(200);
 	}
 	else{
