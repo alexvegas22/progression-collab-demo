@@ -68,17 +68,18 @@ lti.onConnect(async (idToken, req, res) => {
 	if(res.locals.context.roles == "http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor"){
 		const resLocalsToken = res.locals.token;
 		const membres = await services.récupérerMembres( resLocalsToken );
-	    const scores = await services.récupérerScores( resLocalsToken );
+		const scores = await services.récupérerScores( resLocalsToken );
 
-	    Object.values(membres).forEach( membre => {
+		Object.values(membres).forEach( membre => {
 			membre["score"] = scores[membre.user_id];
-		    if(membre["score"]){
-			    membre["score"]["timestamp"] = scores[membre.user_id]["timestamp"];
-		        membre["score"]["réussite"] = scores[membre.user_id]["resultScore"]==100?"Réussi":"Débuté";
-		    }	
+			if(membre["score"]){
+				membre["score"]["timestamp"] = scores[membre.user_id]["timestamp"];
+				membre["score"]["réussite"] = scores[membre.user_id]["resultScore"]==100?"Réussi":"Débuté";
+				membre["url"] = membre["score"]["comment"] ? `/question?uri=${uri}&lang=${lang}&tkres=${membre["score"]["comment"]}` : "";
+			}
 		});
 
-		res.render("suivi", { membres: Object.values( membres ), query: {uri, lang} });
+		res.render("suivi", { membres: Object.values( membres ) });
 		res.status(200);
 	}
 	else{
@@ -90,12 +91,12 @@ lti.onConnect(async (idToken, req, res) => {
 	}
 });
 
-	
+
 const btoa_url = (s) =>
-	btoa(unescape(encodeURIComponent(s)))
-		.replace(/\//g, "_")
-		.replace(/\+/g, "-")
-		.replace(/=/g, "");
+	  btoa(unescape(encodeURIComponent(s)))
+	  .replace(/\//g, "_")
+	  .replace(/\+/g, "-")
+	  .replace(/=/g, "");
 
 lti.app.use(routes);
 
@@ -107,7 +108,7 @@ const setup = async () => {
 
 	await lti.deploy({ port: process.env.PORT });
 
-    await lti.registerPlatform({
+	await lti.registerPlatform({
 		url: "https://moodle.progression.dti.crosemont.quebec",
 		name: "Moodle test",
         clientId: "9ZhuwvH41k8bfoe",
