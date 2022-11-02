@@ -49,7 +49,6 @@ const récupérerMembres = async function(token){
 	context.members.forEach( (membre) => {
 		membres[membre.user_id] = membre;
 	} );
-
 	return membres;
 };
 

@@ -22,9 +22,11 @@ import { UnleashClient } from "unleash-proxy-client";
 import shortkey from "vue3-shortkey";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
+import VueCookies from "vue-cookies";
 
 const app = createApp(App)
 	.use(router)
+	.use(VueCookies)
 	.use(store)
 	.use(i18n)
 	.use(VueTippy, {
