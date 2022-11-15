@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	    <button type=button class="btn btn-primary"
-		    onclick="window.location='/question?uri={{query.uri}}&lang={{query.lang}}'">Aller à l'exercice</button>
+				onclick="window.location='{{{url}}}'">Aller à l'exercice</button>
 			<table id="tableResultats"
 				   data-toggle="table"
 				   data-search="true">
@@ -50,7 +50,7 @@
 			 $(function () {
 				 $("#tableResultats").on('click-row.bs.table', function (e,row,$el,field) {
 					 if(row[0]){
-						 window.location="{{{url}}}&tkres="+row[0];
+						 window.open( "{{{url}}}&tkres="+row[0], "_blank" );
 }
 			 })});
 			</script>
