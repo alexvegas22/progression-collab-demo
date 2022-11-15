@@ -1,38 +1,43 @@
 export const zones = {
-	désactiverHorsTodo(doc) {
+	désactiverHorsTodo(doc, couleur_fond="#000000") {
+		const commentaire = doc.getMode()?.lineComment?.replace(/[\\"'\/\*\?\$\^\&\`]/g, '\\$&')?.replace(/\u0000/g, '\\0') ?? "\0";
+
 		for (let i = 0; i < doc.lineCount(); i++) {
-			if (doc.getLine(i).match("[+-]TODO")) {
-				//Cache la ligne +TODO
-				doc.markText(
-					{ line: i - 1, sticky: "after" },
-					{ line: i, sticky: "after" },
-					{ collapsed: true, selectRight: false },
-				);
-			}
-			else {
-				doc.removeLineClass(i, "gutter", "gutter-non-editable");
-				doc.removeLineClass(i, "background", "ligne-non-editable");
-			}
+			doc.removeLineClass(i, "gutter", "gutter-non-editable");
+			doc.removeLineClass(i, "background", "ligne-non-editable");
 		}
 
-		let premierTodoPlus = doc.getValue().indexOf("+TODO");
-		let premierTodoMoins = doc.getValue().indexOf("-TODO");
+		//const regex_plus_todo = `()([ \\t]*(${commentaire})?[ \\t]*\\+TODO)`;
+		//const regex_moins_todo = `()([ \\t]*(${commentaire})?[ \\t]*-TODO)`;
+		const regex_plus_todo = `()(?=(${commentaire})?\\+TODO)`;
+		const regex_moins_todo = `(?<=(${commentaire})?-TODO)()`;
+
+		let premierTodoPlus = doc.getValue().match(regex_plus_todo);
+		let premierTodoMoins = doc.getValue().match(regex_moins_todo);
 
 		// Pas de balises, on laisse tout modifiable
-		if (premierTodoPlus == -1 && premierTodoMoins == -1) return;
+		if (premierTodoPlus == null && premierTodoMoins == null) return;
 
-		var posDébut = 0;
-		var posFin = 0;
-
+		var posDébut = null;
+		var posFin = null;
+		var matchDébut = null;
+		var matchFin = null;
+		
 		// S'il n'y a pas de +TODO ou s'il est après le premier -TODO,
 		// la première zone non-éditable commence là
-		if ( premierTodoMoins > 0 && (premierTodoPlus == -1 || premierTodoPlus > premierTodoMoins ) ) {
-			posDébut = premierTodoMoins;
+		if ( premierTodoMoins["index"] > 0 && (premierTodoPlus == null || premierTodoPlus["index"] > premierTodoMoins["index"] ) ) {
+			posDébut = premierTodoMoins["index"];
+			matchDébut = premierTodoMoins;
+		}
+		else{
+			posDébut = 0;
 		}
 
-		while (posDébut > -1) {
-			posFin = doc.getValue().indexOf("+TODO", posDébut);
-			if (posFin == -1) {
+		while ( posDébut != null ) {
+			matchFin = doc.getValue().substring(posDébut).match(regex_plus_todo);
+			posFin = matchFin ? matchFin.index+posDébut : null
+
+			if (posFin == null) {
 				posFin = doc.getValue().length;
 			}
 
@@ -40,28 +45,74 @@ export const zones = {
 			let ligneFin = doc.posFromIndex(posFin);
 
 			//Rend immuable
-			if(ligneFin.line == doc.lineCount() -1){
-				doc.markText(
-					{ line: ligneDébut.line, ch: 0 },
-					{ line: ligneFin.line },
-					{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: true },
-				);
-			}
-			else{
-				doc.markText(
-					{ line: ligneDébut.line, ch: 0 },
-					{ line: ligneFin.line + 1, ch: 0 },
-					{ atomic: true, readOnly: true, inclusiveLeft: true, inclusiveRight: false },
-				);
-			}
+			doc.markText(
+				//{line: ligneDébut.line, ch: ligneDébut.ch+(matchDébut ? matchDébut[0].length : 0)},
+				//{line: ligneFin.line, ch: ligneFin.ch+(matchFin ? matchFin[0].length : 0)},
+				ligneDébut,
+				ligneFin,
+				{ atomic: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectLeft: false, selectRight: true },
+			);
 
 			for (let i = ligneDébut.line; i <= ligneFin.line; i++) {
 				doc.addLineClass(i, "gutter", "gutter-non-editable");
 				doc.addLineClass(i, "background", "ligne-non-editable");
 			}
 
-			posDébut = doc.getValue().indexOf("-TODO", posFin);
-				
+			matchDébut = doc.getValue().substring(posFin).match(regex_moins_todo);
+			posDébut = matchDébut ? matchDébut.index+posFin : null
+
+			if (ligneFin.line == doc.posFromIndex(posDébut).line){
+				doc.markText(
+					{line: ligneFin.line, ch: ligneFin.ch+5},
+					doc.posFromIndex(posDébut-5),
+					{ 
+						css: `background: ${couleur_fond}`,
+						className: "edit-box",
+						inclusiveRight: true,
+						inclusiveLeft: true,
+						selectRight: false,
+						selectLeft: false
+					}
+				);
+			}
+		}
+
+		//Rend invisible les [+-]TODO
+
+		for(const todo of doc.getValue().matchAll( RegExp(".*\\+TODO.*", 'g') )) {
+			if(todo[0].indexOf("-TODO") == -1) {
+				const line = doc.posFromIndex( todo.index ).line
+				doc.markText(
+					{line: line - 1, sticky: "after" },
+					{line: line, sticky: "after" },
+					{ collapsed: true, selectRight: false },
+				);
+			}
+			else {
+				doc.markText(
+					doc.posFromIndex(todo.index+todo[0].indexOf("+TODO")),
+					doc.posFromIndex(todo.index+todo[0].indexOf("+TODO")+5),
+					{ collapsed: true, inclusiveLeft: false, inclusiveRight: false, selectRight: true, selectLeft: false },
+				);
+			}
+		}
+
+		for(const todo of doc.getValue().matchAll( RegExp(`.*-TODO.*`, 'g') )) {
+			if(todo[0].indexOf("+TODO") == -1) {
+				const line = doc.posFromIndex( todo.index ).line
+				doc.markText(
+					{line: line-1, sticky: "after"},
+					{line: line, sticky: "after"},
+					{ collapsed: true, selectRight: false },
+				);
+			}
+			else {
+				doc.markText(
+					doc.posFromIndex(todo.index+todo[0].indexOf("-TODO")),
+					doc.posFromIndex(todo.index+todo[0].indexOf("-TODO")+5),
+					{ collapsed: true, inclusiveLeft: false, inclusiveRight: false, selectRight: false, selectLeft: true },
+				);
+			}
 		}
 	},
 

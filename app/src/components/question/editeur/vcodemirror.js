@@ -103,7 +103,7 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 
 	updateZones() {
 		zones.cacherHorsVisible(this.editor.doc);
-		zones.désactiverHorsTodo(this.editor.doc);
+		zones.désactiverHorsTodo(this.editor.doc, this.theme == "monokai" ? "#373832" : "white" );
 	}
 	
 	updateXray() {
