@@ -167,7 +167,7 @@ export default {
 		},
 		mettre_à_jour_infos_callback(avancement){
 			if (this.$store.state.cb_succes != avancement?.extra?.cb_succes ||
-				JSON.stringify(this.$store.state.cb_succes_params) != JSON.stringify(avancement?.extra?.cb_succes_params)) {
+			JSON.stringify(this.$store.state.cb_succes_params) != JSON.stringify(avancement?.extra?.cb_succes_params)) {
 				this.sauvegarderAvancement( this.$store.state.cb_succes ? {
 					extra: JSON.stringify({
 						cb_succes: this.$store.state.cb_succes,
