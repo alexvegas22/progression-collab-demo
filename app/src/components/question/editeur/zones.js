@@ -1,14 +1,12 @@
 export const zones = {
 	désactiverHorsTodo(doc, couleur_fond="#000000") {
-		const commentaire = doc.getMode()?.lineComment?.replace(/[\\"'\/\*\?\$\^\&\`]/g, '\\$&')?.replace(/\u0000/g, '\\0') ?? "\0";
+		const commentaire = doc.getMode()?.lineComment?.replace(/[\\"'\/\*\?\$\^\&\`]/g, "\\$&")?.replace(/\u0000/g, "\\0") ?? "\0"; // eslint-disable-line no-useless-escape,no-control-regex
 
 		for (let i = 0; i < doc.lineCount(); i++) {
 			doc.removeLineClass(i, "gutter", "gutter-non-editable");
 			doc.removeLineClass(i, "background", "ligne-non-editable");
 		}
 
-		//const regex_plus_todo = `()([ \\t]*(${commentaire})?[ \\t]*\\+TODO)`;
-		//const regex_moins_todo = `()([ \\t]*(${commentaire})?[ \\t]*-TODO)`;
 		const regex_plus_todo = `()(?=(${commentaire})?\\+TODO)`;
 		const regex_moins_todo = `(?<=(${commentaire})?-TODO)()`;
 
@@ -35,7 +33,7 @@ export const zones = {
 
 		while ( posDébut != null ) {
 			matchFin = doc.getValue().substring(posDébut).match(regex_plus_todo);
-			posFin = matchFin ? matchFin.index+posDébut : null
+			posFin = matchFin ? matchFin.index+posDébut : null;
 
 			if (posFin == null) {
 				posFin = doc.getValue().length;
@@ -46,7 +44,7 @@ export const zones = {
 
 			//Rend immuable
 			doc.markText(
- 				ligneDébut,
+				ligneDébut,
 				ligneFin,
 				{ atomic: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectLeft: false, selectRight: true },
 			);
@@ -57,11 +55,11 @@ export const zones = {
 			}
 
 			matchDébut = doc.getValue().substring(posFin).match(regex_moins_todo);
-			posDébut = matchDébut ? matchDébut.index+posFin : null
+			posDébut = matchDébut ? matchDébut.index+posFin : null;
 
 			if (ligneFin.line == doc.posFromIndex(posDébut).line){
-			    doc.markText(
-					{line: ligneFin.line, ch: ligneFin.ch+5},
+				doc.markText(
+					{ line: ligneFin.line, ch: ligneFin.ch+5 },
 					doc.posFromIndex(posDébut-5),
 					{ 
 						css: `background: ${couleur_fond}`,
@@ -79,9 +77,9 @@ export const zones = {
 		}
 
 		//Rend invisible les +TODO
-		for(const todo of doc.getValue().matchAll( RegExp("\\+TODO.*?(?:-TODO|$)", 'gm') )) {
+		for(const todo of doc.getValue().matchAll( RegExp("\\+TODO.*?(?:-TODO|$)", "gm") )) {
 			if(todo[0].indexOf("-TODO") == -1) {
-				const line = doc.posFromIndex( todo.index ).line
+				const line = doc.posFromIndex( todo.index ).line;
 				doc.markText(
 					{line: line - 1, sticky: "after" },
 					{line: line, sticky: "after" },
@@ -99,9 +97,9 @@ export const zones = {
 		}
 
 		//Rend invisible les -TODO
-		for(const todo of doc.getValue().matchAll( RegExp(`(?:\\+TODO)?.*?-TODO`, 'g') )) {
+		for(const todo of doc.getValue().matchAll( RegExp("(?:\\+TODO)?.*?-TODO", "g") )) {
 			if(todo[0].indexOf("+TODO") == -1) {
-				const line = doc.posFromIndex( todo.index ).line
+				const line = doc.posFromIndex( todo.index ).line;
 				doc.markText(
 					{line: line-1, sticky: "after"},
 					{line: line, sticky: "after"},
