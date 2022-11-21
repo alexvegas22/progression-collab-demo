@@ -1,14 +1,12 @@
 export const zones = {
 	désactiverHorsTodo(doc, couleur_fond="#000000") {
-		const commentaire = doc.getMode()?.lineComment?.replace(/[\\"'\/\*\?\$\^\&\`]/g, '\\$&')?.replace(/\u0000/g, '\\0') ?? "\0";
+		const commentaire = doc.getMode()?.lineComment?.replace(/[\\"'\/\*\?\$\^\&\`]/g, "\\$&")?.replace(/\u0000/g, "\\0") ?? "\0"; // eslint-disable-line no-useless-escape,no-control-regex
 
 		for (let i = 0; i < doc.lineCount(); i++) {
 			doc.removeLineClass(i, "gutter", "gutter-non-editable");
 			doc.removeLineClass(i, "background", "ligne-non-editable");
 		}
 
-		//const regex_plus_todo = `()([ \\t]*(${commentaire})?[ \\t]*\\+TODO)`;
-		//const regex_moins_todo = `()([ \\t]*(${commentaire})?[ \\t]*-TODO)`;
 		const regex_plus_todo = `()(?=(${commentaire})?\\+TODO)`;
 		const regex_moins_todo = `(?<=(${commentaire})?-TODO)()`;
 
@@ -35,7 +33,7 @@ export const zones = {
 
 		while ( posDébut != null ) {
 			matchFin = doc.getValue().substring(posDébut).match(regex_plus_todo);
-			posFin = matchFin ? matchFin.index+posDébut : null
+			posFin = matchFin ? matchFin.index+posDébut : null;
 
 			if (posFin == null) {
 				posFin = doc.getValue().length;
@@ -46,8 +44,6 @@ export const zones = {
 
 			//Rend immuable
 			doc.markText(
-				//{line: ligneDébut.line, ch: ligneDébut.ch+(matchDébut ? matchDébut[0].length : 0)},
-				//{line: ligneFin.line, ch: ligneFin.ch+(matchFin ? matchFin[0].length : 0)},
 				ligneDébut,
 				ligneFin,
 				{ atomic: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectLeft: false, selectRight: true },
@@ -59,11 +55,11 @@ export const zones = {
 			}
 
 			matchDébut = doc.getValue().substring(posFin).match(regex_moins_todo);
-			posDébut = matchDébut ? matchDébut.index+posFin : null
+			posDébut = matchDébut ? matchDébut.index+posFin : null;
 
 			if (ligneFin.line == doc.posFromIndex(posDébut).line){
 				doc.markText(
-					{line: ligneFin.line, ch: ligneFin.ch+5},
+					{ line: ligneFin.line, ch: ligneFin.ch+5 },
 					doc.posFromIndex(posDébut-5),
 					{ 
 						css: `background: ${couleur_fond}`,
@@ -71,46 +67,51 @@ export const zones = {
 						inclusiveRight: true,
 						inclusiveLeft: true,
 						selectRight: false,
-						selectLeft: false
+						selectLeft: false,
+						clearWhenEmpty: false,
+						startStyle: "edit-box-left",
+						endStyle: "edit-box-right",
 					}
 				);
 			}
 		}
 
-		//Rend invisible les [+-]TODO
-
-		for(const todo of doc.getValue().matchAll( RegExp(".*\\+TODO.*", 'g') )) {
+		//Rend invisible les +TODO
+		for(const todo of doc.getValue().matchAll( RegExp("\\+TODO.*?(?:-TODO|$)", "gm") )) {
 			if(todo[0].indexOf("-TODO") == -1) {
-				const line = doc.posFromIndex( todo.index ).line
+				const line = doc.posFromIndex( todo.index ).line;
 				doc.markText(
 					{line: line - 1, sticky: "after" },
 					{line: line, sticky: "after" },
-					{ collapsed: true, selectRight: false },
+					{ collapsed: true, readOnly: true, selectRight: false },
 				);
 			}
 			else {
+				//Zone éditable sur une ligne
 				doc.markText(
-					doc.posFromIndex(todo.index+todo[0].indexOf("+TODO")),
-					doc.posFromIndex(todo.index+todo[0].indexOf("+TODO")+5),
-					{ collapsed: true, inclusiveLeft: false, inclusiveRight: false, selectRight: true, selectLeft: false },
+					doc.posFromIndex(todo.index),
+					doc.posFromIndex(todo.index+5),
+					{ collapsed: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectRight: true, selectLeft: false },
 				);
 			}
 		}
 
-		for(const todo of doc.getValue().matchAll( RegExp(`.*-TODO.*`, 'g') )) {
+		//Rend invisible les -TODO
+		for(const todo of doc.getValue().matchAll( RegExp("(?:\\+TODO)?.*?-TODO", "g") )) {
 			if(todo[0].indexOf("+TODO") == -1) {
-				const line = doc.posFromIndex( todo.index ).line
+				const line = doc.posFromIndex( todo.index ).line;
 				doc.markText(
 					{line: line-1, sticky: "after"},
 					{line: line, sticky: "after"},
-					{ collapsed: true, selectRight: false },
+					{ collapsed: true, readOnly: true, selectRight: false },
 				);
 			}
 			else {
+				//Zone éditable sur une ligne
 				doc.markText(
-					doc.posFromIndex(todo.index+todo[0].indexOf("-TODO")),
-					doc.posFromIndex(todo.index+todo[0].indexOf("-TODO")+5),
-					{ collapsed: true, inclusiveLeft: false, inclusiveRight: false, selectRight: false, selectLeft: true },
+					doc.posFromIndex(todo.index+todo[0].length-5),
+					doc.posFromIndex(todo.index+todo[0].length),
+					{ collapsed: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectRight: false, selectLeft: true },
 				);
 			}
 		}
