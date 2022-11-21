@@ -41,8 +41,44 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 
 		this.$el._component = this;
 
+		editor.on("change", (e, changeObj) => {
+			const marks = editor.doc.findMarksAt( changeObj.from );
+			if ( marks.length === 0 ) return;
+			const mark = marks[0];
+			if ( mark.lines.length === 0 ) return;
+
+			// Enlève le ou les premièress espaces
+			const ligne = mark.lines[0];
+			if(ligne.text.indexOf("+TODO ") > 0 &&
+			   ligne.text.indexOf("-TODO") > 0 ) {
+				const range = mark.find();
+				const matches = ligne.text.match( /(?<=\+TODO)(.+?)(?=-TODO)/ );
+				if ( !matches ) return;
+				const remplacement = matches[1];
+				if(remplacement.trim()!="" && remplacement.trim() !== remplacement){
+					editor.doc.replaceRange( remplacement.trim(), range.from, range.to );
+				}
+			}
+		});
+
 		editor.on("changes", () => {
 			this.$emit("update:value", this.editor.getValue());
+		});
+
+
+		editor.on("beforeChange", (e,changeObj) => {
+			var markers = editor.doc.findMarksAt(changeObj.from);
+			if (markers.length === 0) return;
+
+			// Si la zone marquée a été effacée
+			const mark = markers[0].find();
+			if( mark.from.line == changeObj.from.line
+			 && mark.to.line == changeObj.to.line
+			 && mark.from.ch == changeObj.from.ch
+			 && mark.to.ch == changeObj.to.ch
+			 && changeObj.text == "" ) {
+				changeObj.update( mark.from, mark.to, " " );
+			}
 		});
 
 		Events.forEach((x) => {
@@ -102,10 +138,12 @@ let VCodeMirror = (VCodeMirrorComp = class VCodeMirror extends VueComponentBase 
 	}
 
 	updateZones() {
-		zones.cacherHorsVisible(this.editor.doc);
-		zones.désactiverHorsTodo(this.editor.doc, this.theme == "monokai" ? "#373832" : "white" );
+		if(this.editor.doc){
+			zones.cacherHorsVisible(this.editor.doc);
+			zones.désactiverHorsTodo( this.editor.doc, this.theme == "monokai" ? "#373832" : "white" );
+		}
 	}
-	
+
 	updateXray() {
 		if(this.xray){
 			//Enlève le marquage
