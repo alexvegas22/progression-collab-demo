@@ -24,7 +24,8 @@
 }
 
 .dropdown-toggle {
-	padding: 0.625rem;
+	padding-bottom: 0.625rem;
+	padding-left: 0.625rem;
 }
 
 .dropdown-toggle:hover,

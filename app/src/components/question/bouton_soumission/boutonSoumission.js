@@ -1,4 +1,5 @@
 export default {
+	name: "BoutonSoumission",
 	emits: ["validerTentative"],
 	computed: {
 		raccourcis(){

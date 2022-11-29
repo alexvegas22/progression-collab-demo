@@ -218,10 +218,6 @@ p.texte_énoncé {
 	float: right;
 }
 
-.max-height {
-	max-height: 97%;
-}
-
 /* ------------------------------ Media Queries ---------------------------------*/
 /* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
 @media (max-width: 36rem) {

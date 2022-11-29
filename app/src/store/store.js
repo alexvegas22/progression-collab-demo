@@ -33,10 +33,7 @@ export default createStore({
 		username: null,
 		unleash: null,
 		raccourcis: {
-			basculerÉditeur: "['alt', 'e']",
-			basculerÉnoncé: "['alt', 'q']",
 			basculerModeParDifférences: "['alt', 'd']",
-			basculerTests: "['alt', 'l']",
 			basculerThème: "['ctrl', 'alt', 's']",
 			itérerOnglets: "['alt', 'w']",
 			itérerTestBas: "['alt', 'arrowdown']",
