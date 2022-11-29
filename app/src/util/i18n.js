@@ -17,15 +17,34 @@ function chargerMessagesLocalisés() {
 	return messages;
 }
 
-function trouverLocalePréférée(languePréférée) {
+function getLocaleDéfaut() {
 	let langages = Object.getOwnPropertyNames(messages);
-	return langages.includes(languePréférée) ? languePréférée : import.meta.env.VITE_I18N_LOCALE;
+
+	const langueNavigateur = navigator.language.split("-")[0];
+
+	if (langages.includes(langueNavigateur) )
+		return langueNavigateur;
+	else
+		import.meta.env.VITE_I18N_LOCALE;
 }
 
-const i18n = new createI18n({
-	locale: trouverLocalePréférée(navigator.language.split("-")[0]),
-	fallbackLocale: import.meta.env.VITE_I18N_FALLBACK_LOCALE,
-	messages: messages,
-});
+function sélectionnerLocale( locale ){
+	let langages = Object.getOwnPropertyNames(messages);
 
-export default i18n;
+	return langages.includes( locale ) ? locale : getLocaleDéfaut();
+}
+
+function créeri18n() {
+	return new createI18n({
+		locale: getLocaleDéfaut(),
+		fallbackLocale: import.meta.env.VITE_I18N_FALLBACK_LOCALE,
+		messages: messages,
+	});
+}
+
+const i18n = créeri18n();
+
+export {
+	sélectionnerLocale,
+	i18n,
+};

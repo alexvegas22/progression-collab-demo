@@ -13,7 +13,10 @@
 		"déconnexion": "Logout",
 		"thèmeSombre": "Dark theme",
 		"thèmeClair": "Light theme",
-		"versionTest": "Version TEST"
+		"versionTest": "Experimental interface",
+		"préférences": "Preferences",
+		"english": "English",
+		"français": "Français"
 	},
 
 	"accomplissements": {

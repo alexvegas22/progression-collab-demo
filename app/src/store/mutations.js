@@ -90,6 +90,12 @@ export const mutations = {
 	setThèmeSombre(state, val) {
 		state.thèmeSombre = val;
 	},
+	setPréférences(state, val) {
+		state.user.préférences = val;
+	},
+	setLocale(state, val) {
+		state.user.préférences.locale = val;
+	},
 	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
 		state.nbRéussitesParLangage = nbRéussitesParLangage;
 	},

@@ -17,58 +17,52 @@ const getConfigServeurApi = async (urlConfig) => {
 const getUserApi = async (urlUser, token) => {
 	const query = { include: "avancements" };
 	return getData(urlUser, query, token).then((data) => {
-		var user = data.data.attributes;
-		user.liens = data.data.links;
-		user.liens.avancements = data.data.relationships.avancements.links.related;
-		user.liens.clés = data.data.relationships.cles.links.related;
-		user.avancements = {};
-		if (data.included) {
-			data.included.forEach((item) => {
-				var avancement = item.attributes;
-				avancement.liens = item.links;
-				user.avancements[item.id] = avancement;
-			});
-		}
-		return user;
+		return construireUser( data );
 	});
 };
 
 const getUserAvecTentativesApi = async (urlUser, token) => {
 	const query = { include: "avancements.tentatives" };
 	return getData(urlUser, query, token).then((data) => {
-		var user = data.data.attributes;
-		user.liens = data.data.links;
-		user.liens.avancements = data.data.relationships.avancements.links.related;
-		user.liens.clés = data.data.relationships.cles.links.related;
-		user.avancements = {};
-		var tentatives = {};
-		if (data.included) {
-			data.included.forEach((item) => {
-				if (item.type == "avancement") {
-					var avancement = item.attributes;
-					avancement.liens = item.links;
-					avancement.relations = item.relationships;
-					user.avancements[item.id] = avancement;
-				}
-				else if (item.type == "tentative") {
-					var tentative = item.attributes;
-					tentative.liens = item.links;
-					tentatives[item.id] = tentative;
-				}
-			});
-
-			Object.keys(user.avancements).forEach((id) =>{
-				var avancement = user.avancements[id];
-				avancement.tentatives = [];
-				avancement.relations["tentatives"]["data"].forEach((tentative) => {
-					var id = tentative["id"];
-					avancement.tentatives.push(tentatives[id]);
-				});
-			});
-
-		}
-		return user;
+		return construireUser( data );
 	});
+};
+
+const construireUser = ( data ) => {
+	var user = data.data.attributes;
+	user.préférences = JSON.parse(data.data.attributes.préférences) || {};
+	user.liens = data.data.links;
+	user.liens.avancements = data.data.relationships.avancements.links.related;
+	user.liens.clés = data.data.relationships.cles.links.related;
+	user.avancements = {};
+	var tentatives = {};
+	if (data.included) {
+		data.included.forEach((item) => {
+			if (item.type == "avancement") {
+				var avancement = item.attributes;
+				avancement.liens = item.links;
+				avancement.relations = item.relationships;
+				user.avancements[item.id] = avancement;
+			}
+			else if (item.type == "tentative") {
+				var tentative = item.attributes;
+				tentative.liens = item.links;
+				tentatives[item.id] = tentative;
+			}
+		});
+
+		Object.keys(user.avancements).forEach((id) =>{
+			var avancement = user.avancements[id];
+			avancement.tentatives = [];
+			avancement.relations?.tentatives?.data?.forEach((tentative) => {
+				var id = tentative["id"];
+				avancement.tentatives.push(tentatives[id]);
+			});
+		});
+
+	}
+
+	return user;
 };
 
 const getQuestionApi = async (urlQuestion, token) => {
@@ -193,6 +187,17 @@ const postSauvegardeApi = async (params, token) => {
 	return construireSauvegarde(data.data);
 };
 
+const postUserApi = async (params, token) => {
+	const url = params.url;
+	const body = { préférences: JSON.stringify(params.user.préférences) };
+	const data = await postData( url, null, body, token );
+
+	if (data.erreur) {
+		throw data.erreur;
+	}
+
+};
+
 function construireAvancement(data, included) {
 	var avancement = data.attributes;
 	avancement.liens = data.links;
@@ -264,4 +269,5 @@ export {
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey,
+	postUserApi,
 };

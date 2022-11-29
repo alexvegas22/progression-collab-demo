@@ -62,7 +62,7 @@ export default {
 			return this.$store.state.démo;
 		},
 		thèmeSombre() {
-			return this.$store.state.thèmeSombre;
+			return this.$store.getters.thèmeSombre;
 		},
 		indicateursDeFonctionnalitéCommentaires() {
 			return this.$store.state.indicateursDeFonctionnalité["commentaires"];

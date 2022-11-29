@@ -52,7 +52,7 @@ export default {
 			return this.$store.state.question.tests;
 		},
 		thèmeSombre() {
-			return this.$store.state.thèmeSombre;
+			return this.$store.getters.thèmeSombre;
 		},
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;

@@ -16,6 +16,28 @@
 	animation: translateY 500ms ease-in-out forwards;
 }
 
+
+.dropdown-menu .dropdown-submenu {
+	width: 200px !important;
+	background-color: #212529;
+	transform-origin: bottom right;
+	animation: translateX 500ms ease-in-out forwards;
+
+	display: none;
+	position: absolute;
+	left: 100%;
+	top: 2.5rem;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+	right: 100%;
+	left: auto;
+}
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+	display: block;
+}
+
 .btnDMM:hover {
 	border-left-color: #0082e6;
 	border-right-color: #0082e6;
@@ -26,6 +48,10 @@
 	margin-left: -2px;
 	border-left: solid transparent;
 	border-right: solid transparent;
+}
+
+.focus {
+	color: #e1e1e1 !important;
 }
 
 .text-info {
@@ -43,22 +69,17 @@
 	padding-left: 0.5rem;
 }
 
-.icône-déconnexion {
-	transform: scale(1.1);
-	padding-right: 0.8rem !important;
-	margin-left: -0.1rem !important;
-}
-
-.icône-thème {
+.icône {
 	margin-right: 0.5rem;
 	transform: scale(1);
 	padding-right: 0.5rem !important;
 	padding-bottom: 1rem;
 }
 
-.icône-trophée {
-	padding-left: 0.5rem;
-	padding-right: 0.1rem;
+.icône-déconnexion {
+	transform: scale(1.1);
+	padding-right: 0.8rem !important;
+	margin-left: -0.1rem !important;
 }
 
 .icône-connexion {
@@ -78,44 +99,60 @@
 }
 
 .loader-parent {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: black;
-    opacity: 60%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: black;
+	opacity: 60%;
+	align-items: center;
+	display: flex;
+	justify-content: center;
 }
 
 .loader {
-    border: 8px solid #f3f3f3; /* Light grey */
-    border-top: 8px solid rgba(13, 202, 240, 85%);
-    border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    animation: spin 2s linear infinite;
+	border: 8px solid #f3f3f3; /* Light grey */
+	border-top: 8px solid rgba(13, 202, 240, 85%);
+	border-radius: 50%;
+	width: 5rem;
+	height: 5rem;
+	animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }
 
 @keyframes translateY {
-    0% {
-	opacity: 0;
-	transform: translateY(-40px);
-    }
+	0% {
+		opacity: 0;
+		transform: translateY(-40px);
+	}
 
-    80% {
-	transform: translateY(0px);
-    }
+	80% {
+		transform: translateY(0px);
+	}
 
-    100% {
-	opacity: 1;
-	transform: translateY(0px);
-    }
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+@keyframes translateX {
+	0% {
+		opacity: 0;
+		transform: translateX(40px);
+	}
+
+	80% {
+		transform: translateX(0px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
 }
 /*----------------- Média Queries ----------------*/
 /*------------Écrans 0 - 767px--------------------*/
