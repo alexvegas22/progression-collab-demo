@@ -46,7 +46,7 @@ export const zones = {
 			doc.markText(
 				ligneDébut,
 				ligneFin,
-				{ atomic: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectLeft: false, selectRight: true },
+				{ atomic: true, readOnly: true, inclusiveLeft: false, inclusiveRight: false, selectLeft: false, selectRight: false },
 			);
 
 			for (let i = ligneDébut.line; i <= ligneFin.line; i++) {
@@ -57,6 +57,7 @@ export const zones = {
 			matchDébut = doc.getValue().substring(posFin).match(regex_moins_todo);
 			posDébut = matchDébut ? matchDébut.index+posFin : null;
 
+			// TODO en ligne
 			if (ligneFin.line == doc.posFromIndex(posDébut).line){
 				doc.markText(
 					{ line: ligneFin.line, ch: ligneFin.ch+5 },

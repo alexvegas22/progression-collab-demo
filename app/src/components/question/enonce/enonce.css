@@ -1,6 +1,6 @@
 .barre-énoncé {
 	display: flex;
-	padding: 0;
+	padding-top: 0.75rem;
 	flex-flow: column-reverse;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;

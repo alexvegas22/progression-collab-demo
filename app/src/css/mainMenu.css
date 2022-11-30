@@ -17,7 +17,7 @@
 }
 
 
-.dropdown-menu .dropdown-submenu {
+.dropdown-menu .dropdown-submenu-p {
 	width: 200px !important;
 	background-color: #212529;
 	transform-origin: bottom right;
@@ -34,7 +34,7 @@
 	left: auto;
 }
 
-.dropdown-menu > li:hover > .dropdown-submenu {
+.dropdown-menu > li:hover > .dropdown-submenu-p {
 	display: block;
 }
 

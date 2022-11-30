@@ -25,15 +25,15 @@
 						<Diptyque horizontal="true" class="default-theme" gauche="true" droite="true" size_gauche="60" size_droite="40">
 							<template #gauche>
 								<div style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
+									<Avancement
+										présentation_étape="2"
+										:tentative-réinitialisée="tentativeRéinitialisée"
+									/>
 									<div
 										v-if="tentative"
 										id="carre-editeur"
 										style="flex-grow: 1; display: flex; flex-flow: column; overflow: auto;"
 									>
-										<Avancement 
-											présentation_étape="2" 
-											:tentative-réinitialisée="tentativeRéinitialisée"
-										/>
 										<EditeurCode style="flex-grow: 1" v-if="tentative"
 											présentation_étape="1"
 										/>

@@ -22,7 +22,7 @@ export default {
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
 			zonesTraitées: false,
-			xray: localStorage.getItem("xray") === "true",
+			xray: localStorage.getItem("xray") === "true"
 		};
 	},
 	watch: {
@@ -111,17 +111,60 @@ export default {
 	},
 	methods: {
 		onReady( cm ){
+			cm.on("beforeChange",  this.onBeforeChange);
+			cm.on("change",  this.onChange);
+
 			zones.cacherHorsVisible(cm.doc);
-			zones.désactiverHorsTodo(cm.doc);
+			zones.désactiverHorsTodo(cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},
-		onChange( texte, cm ){
-			this.$store.dispatch("mettreAjourCode", texte);
+		onChange( cm, changeObj ){
+			this.$store.dispatch("mettreAjourCode", cm.doc.getValue());
 			this.texteModifié();
 
 			if(!this.zonesTraitées) {
 				zones.cacherHorsVisible(cm.doc);
-				zones.désactiverHorsTodo(cm.doc);
+				zones.désactiverHorsTodo(cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 				this.zonesTraitées = true;
+			}
+
+			const marks = cm.doc.findMarksAt( changeObj.from );
+			if ( marks.length === 0 ) return;
+			const mark = marks[0];
+			if ( mark.lines.length === 0 ) return;
+
+			// Enlève le ou les premièress espaces
+			const ligne = mark.lines[0];
+			if(ligne.text.indexOf("+TODO ") > 0 &&
+			   ligne.text.indexOf("-TODO") > 0 ) {
+				const range = mark.find();
+				const matches = ligne.text.match( /(?<=\+TODO)(.+?)(?=-TODO)/ );
+				if ( !matches ) return;
+				const remplacement = matches[1];
+				if(remplacement.trim()!="" && remplacement.trim() !== remplacement){
+					cm.doc.replaceRange( remplacement.trim(), range.from, range.to );
+				}
+			}
+		},
+
+		onBeforeChange(cm, changeObj) {
+			var markers = cm.doc.findMarksAt(changeObj.from);
+			if (markers.length === 0) return;
+
+			const mark = markers[0].find();
+
+			// Si on a inséré un \n dans un todo en ligne
+			if(mark.from.line == mark.to.line && changeObj.origin =="+input" && changeObj.text.join("") == "" ){
+				changeObj.cancel();
+				return;
+			}
+
+			// Si la zone marquée a été effacée
+			if( mark.from.line == changeObj.from.line
+			 && mark.to.line == changeObj.to.line
+			 && mark.from.ch == changeObj.from.ch
+			 && mark.to.ch == changeObj.to.ch
+			 && changeObj.text == "" ) {
+				changeObj.update( mark.from, mark.to, " " );
 			}
 		},
 

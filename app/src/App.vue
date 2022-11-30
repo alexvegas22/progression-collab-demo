@@ -49,7 +49,7 @@
 								</label>
 							</a>
 							<ul
-								class="dropdown-menu dropdown-submenu dropdown-submenu-left"
+								class="dropdown-menu dropdown-submenu-p dropdown-submenu-left"
 							>
 								<li
 									class="btnDMM"
