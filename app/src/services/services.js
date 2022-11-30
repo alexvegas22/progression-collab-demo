@@ -30,7 +30,7 @@ const getUserAvecTentativesApi = async (urlUser, token) => {
 
 const construireUser = ( data ) => {
 	var user = data.data.attributes;
-	user.préférences = JSON.parse(data.data.attributes.préférences) || {};
+	user.préférences = data.data.attributes.préférences ? JSON.parse(data.data.attributes.préférences) : {};
 	user.liens = data.data.links;
 	user.liens.avancements = data.data.relationships.avancements.links.related;
 	user.liens.clés = data.data.relationships.cles.links.related;
