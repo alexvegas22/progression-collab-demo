@@ -15,14 +15,14 @@
 			<div
 				class="conteneur-question"
 			>
-				<Diptyque gauche=true droite=false size_gauche="30" size_droite="70">
+				<Diptyque gauche=true droite=false :size_gauche="taillePanneauÉnoncé" :size_droite="100-taillePanneauÉnoncé" @redimensionnéGauche="redimensionnéÉnoncé">
 					<template #gauche>
 						<Enonce
 							présentation_étape="0"
 						/>
 					</template>
 					<template #droite>
-						<Diptyque horizontal="true" class="default-theme" gauche="true" droite="true" size_gauche="60" size_droite="40">
+						<Diptyque horizontal="true" class="default-theme" gauche="true" droite="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
 							<template #gauche>
 								<div style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
 									<Avancement

@@ -633,6 +633,12 @@ export default {
 		} );
 	},
 
+	setDisposition({ commit }, val ) {
+		this.dispatch("setPréférences", {préférences: {
+			disposition: val,
+		}});
+	},
+
 	setChangerModeAffichageAvecRaccourci({ commit }, val) {
 		commit("setChangerModeAffichageAvecRaccourci", val);
 	},

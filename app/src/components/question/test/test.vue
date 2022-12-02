@@ -6,7 +6,7 @@
 				@click="toggleVisibilite"
 			>
 				<div
-					class="test m-1 p-1"
+					class="test p-1"
 					:class="{sélectionné, non_sélectionné: !sélectionné, réussi, non_réussi}"
 				>
 					{{ (index+1) + '. ' + test.nom }}

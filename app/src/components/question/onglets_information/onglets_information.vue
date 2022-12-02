@@ -1,6 +1,6 @@
 <template>
 	<div class="row g-0">
-		<Diptyque gauche="false" droite="false" size_gauche="20" size_droite="80">
+		<Diptyque gauche="false" droite="false" size_gauche="25" size_droite="75">
 			<template #gauche>
 				<div class="section-tests">
 					<div

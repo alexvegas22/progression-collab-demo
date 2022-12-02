@@ -69,6 +69,12 @@ export default {
 		},
 		raccourcis() {
 			return this.$store.state.raccourcis;
+		},
+		taillePanneauÉnoncé() {
+			return this.$store.getters?.préférences?.disposition?.énoncé ?? 30;
+		},
+		tailleÉditeur() {
+			return this.$store.getters?.préférences?.disposition?.éditeur ?? 60;
 		}
 	},
 	watch: {
@@ -211,5 +217,15 @@ export default {
 		réinitialiserTentativeAvecRaccourci() {
 			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		},
+		redimensionnéÉnoncé( taille ) {
+			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0}
+			disposition.énoncé = taille
+			this.$store.dispatch( "setDisposition", disposition );
+		},
+		redimensionnéÉditeur( taille ) {
+			const disposition = this.$store.getters?.préférences?.disposition ?? {éditeur: 0}
+			disposition.éditeur = taille
+			this.$store.dispatch( "setDisposition", disposition );
+		}
 	},
 };
