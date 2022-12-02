@@ -230,6 +230,9 @@ export default {
 
 				commit("setUsername", user.username);
 				commit("setUser", user);
+			        if(!user.préférences.locale){
+				    user.préférences.locale = sélectionnerLocale(null);
+				}
 				commit("setPréférences", user.préférences);
 
 				return user;
