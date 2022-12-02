@@ -628,8 +628,8 @@ export default {
 		commit("setPréférences", {...préférences, ...params.préférences});
 
 		return valider( async () => {
-			const token = await this.dispatch("getToken");
-			await postUserApi({url: state.user.liens.self, user: state.user}, token);
+		    const token = await this.dispatch("getToken");
+		    await postUserApi({url: state.user.liens.self, user: state.user, préférences: state.préférences }, token);
 		} );
 	},
 

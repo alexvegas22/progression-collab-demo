@@ -88,13 +88,13 @@ export const mutations = {
 		state.difficultésRéussies = difficultésRéussies;
 	},
 	setThèmeSombre(state, val) {
-		state.thèmeSombre = val;
+		state.préférences.thème = val ? "monokai" : "default";
 	},
 	setPréférences(state, val) {
-		state.user.préférences = val;
+		state.préférences = val;
 	},
 	setLocale(state, val) {
-		state.user.préférences.locale = val;
+		state.préférences.locale = val;
 	},
 	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
 		state.nbRéussitesParLangage = nbRéussitesParLangage;

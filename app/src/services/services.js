@@ -189,7 +189,7 @@ const postSauvegardeApi = async (params, token) => {
 
 const postUserApi = async (params, token) => {
 	const url = params.url;
-	const body = { préférences: JSON.stringify(params.user.préférences) };
+	const body = { préférences: JSON.stringify(params.préférences) };
 	const data = await postData( url, null, body, token );
 
 	if (data.erreur) {
