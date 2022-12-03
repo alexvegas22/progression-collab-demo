@@ -3,7 +3,7 @@ import ErreursTest from "@/components/question/section_erreurs/section_erreurs.v
 import DétailsTest from "@/components/question/section_details/section_details.vue";
 import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
-import Diptyque from "@/components/diptyque/diptyque";
+import Diptyque from "@/components/diptyque/diptyque.vue";
 
 export default {
 	components: {

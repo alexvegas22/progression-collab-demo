@@ -17,7 +17,7 @@ export default {
 		PanneauMinMax
 	},
 	emits : [
-		 "redimensionnéGauche"
+		"redimensionnéGauche"
 	],
 	data() {
 		return {

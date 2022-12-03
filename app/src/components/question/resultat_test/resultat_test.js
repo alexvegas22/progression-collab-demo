@@ -2,7 +2,7 @@ import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affic
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
 import he from "he";
-import Diptyque from "@/components/diptyque/diptyque";
+import Diptyque from "@/components/diptyque/diptyque.vue";
 
 import {copie_profonde} from "@/util/commun.js";
 

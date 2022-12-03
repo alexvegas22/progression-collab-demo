@@ -15,4 +15,4 @@
 	</splitpanes>
 </template>
 
-<script src="./dyptique.js"/>
+<script src="./diptyque.js"/>
