@@ -230,8 +230,8 @@ export default {
 
 				commit("setUsername", user.username);
 				commit("setUser", user);
-			        if(!user.préférences.locale){
-				    user.préférences.locale = sélectionnerLocale(null);
+				if(!user.préférences.locale){
+					user.préférences.locale = sélectionnerLocale(null);
 				}
 				commit("setPréférences", user.préférences);
 
@@ -627,16 +627,17 @@ export default {
 	},
 
 	setPréférences( {commit, state, getters}, params ) {
-		const préférences = getters.préférences;
-		commit("setPréférences", {...préférences, ...params.préférences});
+
+		const préférences = {...getters.préférences, ...params.préférences};
+		commit("setPréférences", préférences);
 
 		return valider( async () => {
-		    const token = await this.dispatch("getToken");
-		    await postUserApi({url: state.user.liens.self, user: state.user, préférences: state.préférences }, token);
+			const token = await this.dispatch("getToken");
+			await postUserApi({url: state.user.liens.self, user: getters.user, préférences: préférences }, token);
 		} );
 	},
 
-	setDisposition({ commit }, val ) {
+	setDisposition( _ , val ) {
 		this.dispatch("setPréférences", {préférences: {
 			disposition: val,
 		}});

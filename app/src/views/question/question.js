@@ -218,13 +218,13 @@ export default {
 			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		},
 		redimensionnéÉnoncé( taille ) {
-			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0}
-			disposition.énoncé = taille
+			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0};
+			disposition.énoncé = taille;
 			this.$store.dispatch( "setDisposition", disposition );
 		},
 		redimensionnéÉditeur( taille ) {
-			const disposition = this.$store.getters?.préférences?.disposition ?? {éditeur: 0}
-			disposition.éditeur = taille
+			const disposition = this.$store.getters?.préférences?.disposition ?? {éditeur: 0};
+			disposition.éditeur = taille;
 			this.$store.dispatch( "setDisposition", disposition );
 		}
 	},
