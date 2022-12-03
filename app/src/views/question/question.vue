@@ -22,7 +22,7 @@
 						/>
 					</template>
 					<template #droite>
-						<Diptyque horizontal="true" class="default-theme" gauche="true" droite="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
+						<Diptyque horizontal="true" gauche="true" droite="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
 							<template #gauche>
 								<div style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
 									<Avancement
@@ -38,7 +38,7 @@
 											présentation_étape="1"
 										/>
 									</div>
-									<div style="position: relative; height: 1rem">
+									<div style="position: relative; height: 0.75rem">
 										<RetroactionTentative/>
 										<BoutonSoumission
 											style="position: relative; float: right; bottom: 5.2rem"

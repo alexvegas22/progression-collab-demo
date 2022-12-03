@@ -1,6 +1,6 @@
 
 <template>
-	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min}"
+	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
 	>
 		<div class="d-flex"
 			style=" justify-content: right;
@@ -91,6 +91,10 @@ export default {
 </script>
 
 <style scopped>
+ .bordure {
+	 border: 1px solid rgba(128, 128, 128, 0.25);
+ }
+
  .bouton {
      font-size: 0.6rem;
      padding: 1px;

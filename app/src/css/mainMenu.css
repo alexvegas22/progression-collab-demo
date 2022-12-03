@@ -159,14 +159,12 @@
 	border-left-style: none;
 }
 
-.splitpanes--vertical.default-theme > .splitpanes__splitter {
-  min-width: 6px;
+.splitpanes--vertical > .splitpanes__splitter {
+	min-width: 6px;
+	background-color: rgb(var(--bs-light-rgb));
 }
 
-.splitpanes--horizontal.default-theme > .splitpanes__splitter {
+.splitpanes--horizontal > .splitpanes__splitter {
 	min-height: 6px;
-}
-
-.splitpanes.default-theme .splitpanes__pane {
-	background-color: var(--bs-body-bg);
+	background-color: rgba(var(--bs-light-rgb));
 }

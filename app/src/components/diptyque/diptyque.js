@@ -9,7 +9,6 @@ export default {
 		size_gauche: {type: [Number,String]},
 		size_droite: {type: [Number,String]},
 		horizontal: String,
-		classe: {type: String, default: "default-theme"},
 	},
 	components:{
 		Splitpanes,

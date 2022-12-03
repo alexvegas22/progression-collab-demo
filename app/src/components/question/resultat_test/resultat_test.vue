@@ -53,7 +53,7 @@
 						>
 							<FenêtreInfo
 								présentation_étape="3.2"
-								:class="{résultat: résultat-test}"
+								:class="{'résultat-test': résultat}"
 							>
 								<template #titre>
 									{{ $t('resultat_test.sortieAttendue') }}
@@ -72,7 +72,6 @@
 							<FenêtreInfo
 								v-if="résultat"
 								présentation_étape="3.3"
-								class="résultat-test"
 								style="max-width:50%; height:100%" >
 								<template #titre>
 									<div class="espace-titre-sortie-observée">

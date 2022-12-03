@@ -43,21 +43,14 @@ pre {
 	margin: 0 !important;
 }
 
-.resultat-test {
+.résultat-test {
 	max-width: 50%;
 	padding-bottom: 1rem;
+	border-right: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.resultat-test pre {
-	height: 100%;
-	overflow: visible;
-	overflow-y: visible;
-	max-width: 100%;
-}
-
-.resultat-test pre p {
-	height: inherit;
-	white-space: break-spaces;
+.thème_sombre .résultat-test {
+	border-right: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 .espace-sélecteur {

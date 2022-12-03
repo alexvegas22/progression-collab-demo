@@ -11,19 +11,19 @@ body {
 
 .thème_sombre,
 .thème_sombre .dropdown-menu {
-	background-color: #353535 !important;
-	color: #e1e1e1 !important;
-	border-color: #555555 !important;
+	background-color: #353535;
+	color: #e1e1e1;
+	border-color: #555555;
 }
 
 .thème_sombre input {
-	background-color: #353535 !important;
-	color: #e1e1e1 !important;
+	background-color: #353535;
+	color: #e1e1e1;
 }
 
 .thème_sombre textarea {
-	background-color: #353535 !important;
-	color: #e1e1e1 !important;
+	background-color: #353535;
+	color: #e1e1e1;
 }
 
 input[type="checkbox"]:checked + .bi {
@@ -48,23 +48,24 @@ input:focus {
 	background-color: #0dcaf0 !important;
 }
 
-.thème_sombre .splitpanes.default-theme .splitpanes__pane {
+.thème_sombre .splitpanes .splitpanes__pane {
 	background-color: #353535;
+	border-style: none;
 }
 
-.thème_sombre .splitpanes--vertical.default-theme > .splitpanes__splitter {
+.thème_sombre .splitpanes--vertical > .splitpanes__splitter {
 	min-width: 6px;
-	background: #444;
+	background-color: rgb(var(--bs-dark-rgb));
 	border-style: none;
 }
 
-.thème_sombre .splitpanes--horizontal.default-theme > .splitpanes__splitter {
+.thème_sombre .splitpanes--horizontal > .splitpanes__splitter {
 	min-height: 6px;
-	background: #444;
+	background: rgb(var(--bs-dark-rgb));
 	border-style: none;
 }
 
-.thème_sombre .splitpanes.default-theme .splitpanes__splitter::before,
-.thème_sombre .splitpanes.default-theme .splitpanes__splitter::after {
+.thème_sombre .splitpanes .splitpanes__splitter::before,
+.thème_sombre .splitpanes .splitpanes__splitter::after {
 	background-color: #eee;
 }
