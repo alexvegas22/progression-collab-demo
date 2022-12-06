@@ -5,8 +5,8 @@ body {
 	max-height: 100%;
 }
 
-.contenu {
-	height: 100%;
+.thème_sombre .contenu {
+	border-top: 0.1rem rgb(var(--bs-dark-rgb)) solid;
 }
 
 .thème_sombre,
@@ -33,15 +33,6 @@ input[type="checkbox"]:checked + .bi {
 input:focus {
 	outline: none !important;
 	border: none !important;
-}
-
-.topnav-right {
-	float: right;
-	margin-right: 5px;
-}
-
-.topnav-left {
-	float: left;
 }
 
 .thème_sombre .btn-primary {

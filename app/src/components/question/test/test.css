@@ -54,10 +54,3 @@
 .visible {
 	visibility: visible;
 }
-
-/* ------------- Entre 768px et 865px (48rem - 54.063rem) ----------------- */
-@media only screen and (max-width: 47.938rem) {
-	.texte {
-		font-size: 0.9rem;
-	}
-}

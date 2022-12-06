@@ -1,3 +1,8 @@
+.contenu {
+	height: calc(100vh - 56px);
+	border-top: 0.3rem rgb(var(--bs-light-rgb)) solid;
+}
+
 .barBtn {
     color: rgba(13, 202, 240, 85%);
     font-size: 1.7rem;
@@ -155,8 +160,9 @@
 	}
 }
 
-.splitpanes.default-theme .splitpanes__pane {
+.splitpanes .splitpanes__pane {
 	border-left-style: none;
+	background-color: rgb(var(--bs-white-rgb));
 }
 
 .splitpanes--vertical > .splitpanes__splitter {
@@ -166,5 +172,5 @@
 
 .splitpanes--horizontal > .splitpanes__splitter {
 	min-height: 6px;
-	background-color: rgba(var(--bs-light-rgb));
+	background-color: rgb(var(--bs-light-rgb));
 }
