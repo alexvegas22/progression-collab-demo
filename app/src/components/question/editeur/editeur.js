@@ -22,12 +22,20 @@ export default {
 			indicateurModifié: false,
 			sauvegardeAutomatique: null,
 			zonesTraitées: false,
+			cm: null,
 			xray: localStorage.getItem("xray") === "true"
 		};
 	},
 	watch: {
 		xray() {
 			localStorage.setItem( "xray", this.xray );
+			if(!this.xray){
+				this.traiterZones();
+			}
+			else {
+				//Enlève le marquage
+				this.cm.setValue(this.cm.getValue());
+			}
 		},
 		tentative(){
 			this.zonesTraitées = false;
@@ -113,17 +121,17 @@ export default {
 		onReady( cm ){
 			cm.on("beforeChange",  this.onBeforeChange);
 			cm.on("change",  this.onChange);
-
-			zones.cacherHorsVisible(cm.doc);
-			zones.désactiverHorsTodo(cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
+			this.cm = cm;
+			if(!this.xray){
+				this.traiterZones();
+			}
 		},
 		onChange( cm, changeObj ){
 			this.$store.dispatch("mettreAjourCode", cm.doc.getValue());
 			this.texteModifié();
 
-			if(!this.zonesTraitées) {
-				zones.cacherHorsVisible(cm.doc);
-				zones.désactiverHorsTodo(cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
+			if(!this.zonesTraitées && !this.xray) {
+				this.traiterZones()
 				this.zonesTraitées = true;
 			}
 
@@ -170,6 +178,11 @@ export default {
 
 		beforeWindowUnload() {
 			if (this.indicateurModifié || this.indicateurSauvegardeEnCours) return "";
+		},
+
+		traiterZones() {
+			zones.cacherHorsVisible(this.cm.doc);
+			zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},
 
 		sauvegarder() {

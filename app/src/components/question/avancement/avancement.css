@@ -24,7 +24,7 @@
 }
 
 .dropdown-toggle {
-	padding: 0.3rem;
+	padding-left: 0.3rem;
 }
 
 .dropdown-toggle:hover,
@@ -89,19 +89,4 @@
 	-webkit-border-radius: 0.375rem 0 0.375rem 0.375rem;
 	-moz-border-radius: 0.375rem 0 0.375rem 0.375rem;
 	border-radius: 0.375rem 0 0.375rem 0.375rem;
-}
-
-/* ------------------------------ Media Queries ---------------------------------*/
-/* ---------------- 0 - 36rem (0 - 576px)  -----------------*/
-@media (max-width: 36rem) {
-	.bouton_langage{
-		font-size: 0.8rem;
-	}
-}
-
-/* --------------- 36rem - 48rem (576px - 768px)  -----------------*/
-@media (min-width: 36rem) and (max-width: 48rem) {
-	.bouton_langage{
-		font-size: 0.9rem;
-	}
 }

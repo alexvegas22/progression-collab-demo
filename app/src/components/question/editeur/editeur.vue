@@ -38,7 +38,6 @@
 			présentation_étape="1.1"
 			:value="code"
 			:options="cmOptions"
-			@change="onChange"
 			@ready="onReady"
 		/>
 		
