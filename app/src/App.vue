@@ -19,11 +19,11 @@
 			<span class="text-username">{{username}}</span>
 			<Transition>
 				<div v-if="token" class="dropdown">
-					<i 
-						class="fa fa-bars barBtn" 
-						type="button"
-						data-bs-toggle="dropdown"
-					/>
+					<a data-bs-toggle="dropdown">
+						<i
+							class="fa fa-bars barBtn"
+						/>
+					</a>
 					<ul
 						class="dropdown-menu"
 					>
@@ -94,6 +94,7 @@
 								</li>
 							</ul>
 						</li>
+						<li class="dropdown-divider"></li>
 						<li class="btnDMM">
 							<a>
 								<button
