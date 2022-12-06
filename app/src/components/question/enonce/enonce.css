@@ -1,4 +1,6 @@
 .barre-énoncé {
+	overflow: hidden;
+	height: 100%;
 	display: flex;
 	padding-top: 0.75rem;
 	flex-flow:column;
