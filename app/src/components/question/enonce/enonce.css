@@ -9,7 +9,7 @@
 	transition: all 0.2s ease-in-out;
 
 	padding-bottom: 0.8rem;
-	margin-left: 1rem;
+	margin-left: 0.5rem;
 }
 
 
@@ -40,9 +40,9 @@
 }
 
 .crochet {
-	position: relative;
-	top: -2.5rem;
-	left: -1.5rem;
+	position: fixed;
+	top: 2.7rem;
+	left: -0.5rem;
 	opacity: 88%;
 	height: 0px;
 	z-index: 0;

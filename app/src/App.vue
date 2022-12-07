@@ -271,4 +271,4 @@ export default {
 </script>
 
 <style src="./css/mainMenu.css"></style>
-<style src="./theme-sombre.css"></style>
+<style src="./css/theme-sombre.css"></style>
