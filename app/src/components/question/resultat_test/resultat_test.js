@@ -115,6 +115,9 @@ export default {
 		},
 	},
 	watch: {
+		test: function () {
+			this.rafraîchirSorties();
+		},
 		résultat: function () {
 			this.rafraîchirSorties();
 		},
