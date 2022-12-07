@@ -76,14 +76,23 @@ export default {
 			if (!this.test) return;
 			if (!this.résultat) {
 				this.sortie_observée = null;
-				this.sortie_attendue = he.encode(this.test.sortie_attendue);
+				this.sortie_attendue = !this.test.sortie_cachée ? he.encode(this.test.sortie_attendue) : this.test.sortie_attendue;
 				this.feedback = null;
 			} else {
-				const résultats = différence(
-					this.résultat.sortie_observée.toString(),
-					this.test.sortie_attendue.toString(),
-					this.mode_affichage,
-				);
+				var résultats;
+				if (!this.test.sortie_cachée) {
+					résultats = différence(
+						this.résultat.sortie_observée.toString(),
+						this.test.sortie_attendue.toString(),
+						this.mode_affichage,
+					);
+				}
+				else {
+					résultats = {
+						résultat_attendu: this.test.résultat_attendue,
+						résultat_observé: this.résultat.sortie_observée.toString()
+					}
+				}
 				this.sortie_observée = résultats.résultat_observé;
 				this.sortie_attendue = résultats.résultat_attendu;
 				this.feedback = this.résultat.feedback;

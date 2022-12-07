@@ -170,7 +170,8 @@
 		"sortieErreur": "Sortie erreur",
 		"sortieConsole": "Sortie observée",
 		"rétroaction": "Rétroaction",
-		"vide": "[vide]"
+		"vide": "[vide]",
+		"cachée": "[cachée]"
 	},
 
 	"resultat_details": {

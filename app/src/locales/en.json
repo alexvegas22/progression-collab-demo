@@ -171,7 +171,8 @@
 		"sortieErreur": "Error output",
 		"sortieConsole": "Actual output",
 		"rétroaction": "Feedback",
-		"vide": "[empty]"
+		"vide": "[empty]",
+		"cachée": "[hidden]"
 	},
 
 	"resultat_details": {
