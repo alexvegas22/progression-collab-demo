@@ -608,18 +608,18 @@ export default {
 	},
 
 	basculerThèmeSombre({ getters }) {
-		this.dispatch("setPréférences", {préférences: {
+		this.dispatch("setPréférences", {
 			apparence_thème: getters.thèmeSombre ? "clair" : "sombre",
 			éditeur_thème: getters.thèmeSombre ? "default" : "monokai"
-		}});
+		});
 	},
 
 	basculerLocale({ commit, getters }){
 		const locale = getters.locale =="fr" ? sélectionnerLocale("en") : sélectionnerLocale("fr");
 		commit("setLocale", locale);
-		this.dispatch("setPréférences", {préférences: {
+		this.dispatch("setPréférences", {
 			locale: locale,
-		}});
+		});
 	},
 
 	setModeAffichage({ commit }, val) {
@@ -628,7 +628,7 @@ export default {
 
 	setPréférences( {commit, state, getters}, params ) {
 
-		const préférences = {...getters.préférences, ...params.préférences};
+		const préférences = {...getters.préférences, ...params };
 		commit("setPréférences", préférences);
 
 		return valider( async () => {
@@ -638,9 +638,9 @@ export default {
 	},
 
 	setDisposition( _ , val ) {
-		this.dispatch("setPréférences", {préférences: {
+		this.dispatch("setPréférences", {
 			disposition: val,
-		}});
+		});
 	},
 
 	setChangerModeAffichageAvecRaccourci({ commit }, val) {
