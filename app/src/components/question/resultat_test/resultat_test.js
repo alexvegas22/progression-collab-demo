@@ -91,7 +91,7 @@ export default {
 					résultats = {
 						résultat_attendu: this.test.résultat_attendue,
 						résultat_observé: this.résultat.sortie_observée.toString()
-					}
+					};
 				}
 				this.sortie_observée = résultats.résultat_observé;
 				this.sortie_attendue = résultats.résultat_attendu;
