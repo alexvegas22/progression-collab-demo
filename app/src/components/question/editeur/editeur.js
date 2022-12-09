@@ -23,12 +23,12 @@ export default {
 			sauvegardeAutomatique: null,
 			zonesTraitées: false,
 			cm: null,
-			xray: localStorage.getItem("xray") === "true"
+			xray: this.$store.getters?.préférences?.xray && this.$store.state.indicateursDeFonctionnalité["tout_voir"],
 		};
 	},
 	watch: {
 		xray() {
-			localStorage.setItem( "xray", this.xray );
+			this.$store.dispatch("setPréférences", {xray: this.xray} );
 			if(!this.xray){
 				this.traiterZones();
 			}
@@ -131,7 +131,7 @@ export default {
 			this.texteModifié();
 
 			if(!this.zonesTraitées && !this.xray) {
-				this.traiterZones()
+				this.traiterZones();
 				this.zonesTraitées = true;
 			}
 
