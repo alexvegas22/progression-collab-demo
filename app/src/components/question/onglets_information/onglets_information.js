@@ -49,8 +49,8 @@ export default {
 		},
 		resultat_select() {
 			return this.tentative?.resultats
-				? this.tentative.resultats[this.index_select]
-				: null;
+				 ? this.tentative.resultats[this.index_select]
+				 : null;
 		},
 		tentative() {
 			return this.$store.state.tentative;
@@ -82,7 +82,6 @@ export default {
 					this.changementOnglet("ResultatTest");
 				}
 			}
-			this.envoiTestUnique = false;
 		},
 		ongletChangé: {
 			deep: true,
@@ -149,14 +148,17 @@ export default {
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
 		validerTest(index){
+			if(this.envoiEnCours || this.envoiTestUnique && this.index_envoi_unique==this.index ) return;
+
 			this.index_envoi_unique = index;
 			this.envoiTestUnique = true;
 			this.$store.dispatch("soumettreTestUnique",
-				{
-					test: this.tests[index],
-					index: index,
-				}
-			);
+								 {
+									 test: this.tests[index],
+									 index: index,
+			}).finally( () => {
+				this.envoiTestUnique = false;
+			});
 		},
 		réinitialiserTests(){
 			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));

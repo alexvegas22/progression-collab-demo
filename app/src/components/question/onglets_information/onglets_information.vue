@@ -34,12 +34,12 @@
 							>
 							    <template #lancement>
 									<i
-										:disabled="envoiEnCours"
 										class="fas btn-test-local"
-										:class="this.envoiTestUnique && this.index_envoi_unique==index  ?
-										'fa-cog fa-spin spin-test-local' :
-										'fa-play'"
-										@click="validerTest(index)"
+											   :class="envoiTestUnique && index_envoi_unique==index  ?
+											   'fa-cog fa-spin spin-test-local' :
+											   'fa-play',
+											   {disabled: envoiEnCours || envoiTestUnique && index_envoi_unique==index}"
+											   @click="validerTest(index)"
 									></i>
 							    </template>
 							</Test>
