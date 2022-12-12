@@ -7,7 +7,6 @@ export default {
 		index: 0,
 		test: null,
 		réussi: null,
-		non_réussi: null,
 		sélectionné: false,
 	},
 	data() {

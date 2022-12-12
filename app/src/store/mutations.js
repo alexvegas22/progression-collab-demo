@@ -124,6 +124,9 @@ export const mutations = {
 	setParamsTest(state, val) {
 		state.question.tests[val.index].params = val.params;
 	},
+	setTest(state, val) {
+		state.question.tests[val.index] = val.test;
+	},
 	setTests(state, val) {
 		state.question.tests = val;
 	},

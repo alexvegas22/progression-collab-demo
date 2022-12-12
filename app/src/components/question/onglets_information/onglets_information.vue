@@ -5,9 +5,16 @@
 				<div class="section-tests">
 					<div
 						class="bordure-titre p-1 texte"
-						:class="{ thème_sombre: thèmeSombre }"
+						style="display: flex; flex-flow: row"
+							   :class="{ thème_sombre: thèmeSombre }"
 					>
-						{{ $t("jeu_tests.jeuTests") }}
+						<div style="flex-grow: 1">
+							{{ $t("jeu_tests.jeuTests") }}
+						</div>
+						<i
+							@click="réinitialiserTests"
+										class="fa fa-refresh boutonRafraichissement"
+						></i>
 					</div>
 					<FenêtreInfo
 						class="panneau"
@@ -24,7 +31,18 @@
 								:sélectionné="index == index_select"
 								présentation_étape="3.0"
 								@select="select(index)"
-							/>
+							>
+							    <template #lancement>
+									<i
+										:disabled="envoiEnCours"
+										class="fas btn-test-local"
+										:class="this.envoiTestUnique && this.index_envoi_unique==index  ?
+										'fa-cog fa-spin spin-test-local' :
+										'fa-play'"
+										@click="validerTest(index)"
+									></i>
+							    </template>
+							</Test>
 						</div>
 					</FenêtreInfo>
 				</div>
@@ -38,11 +56,6 @@
 							@click="changementOnglet('ResultatTest')"
 						>
 							{{ $t("onglets_informations.entrées/sorties") }}
-							<i 
-								:disabled="envoiEnCours"
-								:class="{ 'fas fa-play btn-test-local': !this.envoiTestUnique, 'fa fa-refresh fa-spin spin-test-local': this.envoiTestUnique }"
-								@click="validerTest"
-							></i>
 						</div>
 						<div
 							v-if="resultat_select && resultat_select.sortie_erreur"

@@ -55,6 +55,7 @@ pre {
 
 .espace-sélecteur {
 	left: 1rem;
+	height: 0.875rem;
 	top: 0.07rem;
 }
 .espace-titre-sortie-observée {
@@ -95,12 +96,6 @@ pre {
 	outline-color: rgb(13, 202, 240, 0.5) !important;
 	outline-style: solid;
 	background-color: rgb(0, 0, 0, 0.3) !important;
-}
-
-.boutonRafraichissement {
-	padding-left: 0.5rem;
-	font-size: 0.8rem;
-	cursor: pointer;
 }
 
 .inputTest {

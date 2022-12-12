@@ -5,6 +5,8 @@ import Rétroactions from "@/components/question/rétroactions/rétroactions.vue
 import Test from "@/components/question/test/test.vue";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 
+import {copie_profonde} from "@/util/commun.js";
+
 export default {
 	components: {
 		Test,
@@ -25,7 +27,12 @@ export default {
 			index_select: 0,
 			modeAffichageChangéRaccourci: false,
 			envoiTestUnique: false,
+			index_envoi_unique: 0,
+			testsInitiaux: [],
 		};
+	},
+	mounted() {
+		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 	},
 	computed: {
 		resultats() {
@@ -62,12 +69,12 @@ export default {
 		resultats(){
 			if(!this.envoiTestUnique){
 				for(var resultat in this.tentative?.resultats){
-					if(this.tentative.resultats[resultat].sortie_erreur){
+					if(this.tentative.resultats[resultat]?.sortie_erreur){
 						this.index_select=resultat;
 						this.changementOnglet("ErreursTest");
 						break;
 					}
-					else if (!this.tentative.resultats[resultat].résultat){
+					else if (!this.tentative.resultats[resultat]?.résultat){
 						this.index_select=resultat;
 						this.changementOnglet("ResultatTest");
 						break;
@@ -110,6 +117,14 @@ export default {
 				this.basculerTestBas();
 			}
 		},
+		envoiEnCours: {
+			deep: true,
+			handler: function(){
+				if(this.envoiEnCours === true){
+					this.réinitialiserTests();
+				}
+			}
+		},
 	},
 	methods: {
 		changementOnglet(onglet) {
@@ -133,14 +148,19 @@ export default {
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
-		validerTest(){
+		validerTest(index){
+			this.index_envoi_unique = index;
+			this.envoiTestUnique = true;
 			this.$store.dispatch("soumettreTestUnique",
 				{
-					test: this.test_select,
-					index: this.index_select,
+					test: this.tests[index],
+					index: index,
 				}
 			);
-			this.envoiTestUnique = true;
+		},
+		réinitialiserTests(){
+			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
+			this.$store.dispatch("setRésultats", []);
 		},
 	},
 };

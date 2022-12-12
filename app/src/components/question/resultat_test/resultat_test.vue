@@ -13,23 +13,19 @@
 							style="flex-flow: row; flex: 1 1 0; height: 100%"
 						>
 							<Ampoule
-								:estVisible="résultat && !résultat.sortie_erreur && feedback"
+								:estVisible="résultat && !résultat.sortie_erreur && feedback!==null"
 								class="rétroaction-test"
 								:feedback="feedback"
 							/>
 							<FenêtreInfo présentation_étape="3.1">
 								<template #titre>
 									{{ $t('resultat_test.entrée') }}
-									<i 
-										@click="réinitialiserEntréesUtilisateur"
-										class="fa fa-refresh boutonRafraichissement"
-									></i>
 								</template>
 								<textarea
 									style="overflow: hidden"
 									id="contenu_entrée"
 									class="card-text p-3 inputTest"
-									@input="entréePersonnalisée"
+									@input="entréesModifiées"
 									v-model="this.test.entrée"
 								></textarea>
 							</FenêtreInfo>
@@ -39,8 +35,8 @@
 								</template>
 								<textarea
 									id="contenu_params"
-									class="card-text p-3  inputTest"
-									@input="paramsPersonnalisés"
+									class="card-text p-3 inputTest"
+									@input="entréesModifiées"
 									v-model="this.test.params"
 								></textarea>
 							</FenêtreInfo>
@@ -52,6 +48,7 @@
 							style="flex-flow: row; flex: 1 1 0; flex-grow: 1; height: 100%"
 						>
 							<FenêtreInfo
+								v-if="!test.dirty"
 								présentation_étape="3.2"
 								:class="{'résultat-test': résultat}"
 							>
@@ -78,11 +75,13 @@
 							<FenêtreInfo
 								v-if="résultat"
 								présentation_étape="3.3"
-								style="max-width:50%; height:100%" >
+								style="width:50%; height:100%" >
 								<template #titre>
 									<div class="espace-titre-sortie-observée">
 										{{ $t('resultat_test.sortieConsole') }}
-										<sélecteur-mode-affichage class="espace-sélecteur" />
+										<sélecteur-mode-affichage
+											v-show="!test.sortie_cachée && sortie_attendue"
+											class="espace-sélecteur" />
 									</div>
 								</template>
 								<!-- eslint-disable -->
@@ -90,7 +89,6 @@
 									<pre
 										class="card-text p-3"
 											   v-html="sortie_observée"
-											   style="width:max-content; height:max-content; overflow: hidden"  
 									/>
 								</div>
 								<!-- eslint-enable -->

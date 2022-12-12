@@ -4,8 +4,6 @@ import { diffChars } from "diff";
 import he from "he";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 
-import {copie_profonde} from "@/util/commun.js";
-
 const différence = function (orig = "", modif = "", mode_affichage) {
 	const différences = diffChars(orig, modif);
 
@@ -50,7 +48,6 @@ export default {
 			sortie_attendue: null,
 			params: null,
 			feedback: null,
-			testsInitiaux: [],
 		};
 	},
 	props: {
@@ -63,64 +60,54 @@ export default {
 		mode_affichage() {
 			return this.$store.state.mode_affichage;
 		},
-		envoiEnCours() {
-			return this.$store.state.envoiTentativeEnCours;
-		},
 	},
 	mounted() {
-		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 		this.rafraîchirSorties();
 	},
 	methods: {
 		rafraîchirSorties: function () {
-			if (!this.test) return;
-			if (!this.résultat) {
-				this.sortie_observée = null;
-				this.sortie_attendue = !this.test.sortie_cachée ? he.encode(this.test.sortie_attendue) : this.test.sortie_attendue;
-				this.feedback = null;
-			} else {
-				var résultats;
-				if (!this.test.sortie_cachée) {
-					résultats = différence(
-						this.résultat.sortie_observée.toString(),
-						this.test.sortie_attendue.toString(),
-						this.mode_affichage,
-					);
-				}
-				else {
-					résultats = {
-						résultat_attendu: this.test.résultat_attendue,
-						résultat_observé: this.résultat.sortie_observée.toString()
-					};
-				}
-				this.sortie_observée = résultats.résultat_observé;
-				this.sortie_attendue = résultats.résultat_attendu;
-				this.feedback = this.résultat.feedback;
+			if (!this.test || !this.test.sortie_attendue)
+			{
+				this.sortie_attendue = null;
+				this.sortie_observée = this.résultat?.sortie_observée.toString();
+				return;
 			}
+
+			if (!this.résultat) {
+				this.sortie_attendue = this.test.sortie_cachée ? null : he.encode(this.test.sortie_attendue.toString());
+				this.sortie_observée = null;
+				this.feedback = null;
+				return;
+			}
+
+			var résultats = !this.test.sortie_cachée ? différence(
+				this.résultat.sortie_observée.toString(),
+				this.test.sortie_attendue.toString(),
+				this.mode_affichage,
+			): {
+				résultat_attendu: this.test.résultat_attendue.toString(),
+				résultat_observé: this.résultat.sortie_observée.toString()
+			}
+
+			this.sortie_observée = résultats.résultat_observé;
+			this.sortie_attendue = résultats.résultat_attendu;
+			this.feedback = this.résultat.feedback;
+
 		},
-		entréePersonnalisée(){
-			this.$store.dispatch("setEntréeTest",
-				{
-					entrée: this.test.entrée,
-					index: this.index,
-				}
+		entréesModifiées(){
+			this.test.dirty=true;
+			this.$store.dispatch("setTest",
+									 {
+										 test: {...this.test,
+												sortie_attendue: null,
+										 },
+										 index: this.index,
+									 }
 			);
-		},
-		paramsPersonnalisés(){
-			this.$store.dispatch("setParamsTest",
-				{
-					params: this.test.params,
-					index: this.index,
-				}
-			);
-		},
-		réinitialiserEntréesUtilisateur(){
-			this.test.entrée = this.testsInitiaux[this.index].entrée;
-			this.test.params = this.testsInitiaux[this.index].params;
-		},
-		réinitialiserTests(){
-			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
-			this.réinitialiserEntréesUtilisateur();
+			this.$store.dispatch("setRésultat", {
+				résultat: null,
+				index: this.index
+			});
 		},
 	},
 	watch: {
@@ -145,14 +132,6 @@ export default {
 				Array.from(document.getElementsByClassName("diff visuel")).forEach((item) => {
 					item.classList.remove("enabled");
 				});
-			}
-		},
-		envoiEnCours: {
-			deep: true,
-			handler: function(){
-				if(this.envoiEnCours === true){
-					this.réinitialiserTests();
-				}
 			}
 		},
 	},

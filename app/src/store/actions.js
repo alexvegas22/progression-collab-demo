@@ -490,7 +490,7 @@ export default {
 		return valider( async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, urlTentative: state.avancement.liens.tentatives}, token);
+				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, index: params.index, urlTentative: state.avancement.liens.tentatives}, token);
 
 				commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
 			}
@@ -662,6 +662,15 @@ export default {
 	},
 	setParamsTest({ commit }, val) {
 		commit("setParamsTest", val);
+	},
+	setTest({ commit }, val) {
+		commit("setTest", val);
+	},
+	setRésultat({ commit }, val) {
+		commit("setRésultat", val);
+	},
+	setRésultats({ commit }, val) {
+		commit("setRésultats", val);
 	},
 	setTests({ commit }, val) {
 		commit("setTests", val);
