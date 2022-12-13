@@ -492,7 +492,9 @@ export default {
 				const token = await this.dispatch("getToken");
 				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, index: params.index, urlTentative: state.avancement.liens.tentatives}, token);
 
-				commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+				if( !state.envoiTentativeEnCours ) {
+					commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+				}
 			}
 			catch (e) {
 				if(e?.response?.status==400) {

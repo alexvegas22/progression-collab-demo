@@ -87,7 +87,7 @@ export default {
 			): {
 				résultat_attendu: this.test.résultat_attendue.toString(),
 				résultat_observé: this.résultat.sortie_observée.toString()
-			}
+			};
 
 			this.sortie_observée = résultats.résultat_observé;
 			this.sortie_attendue = résultats.résultat_attendu;
@@ -96,13 +96,12 @@ export default {
 		},
 		entréesModifiées(){
 			this.test.dirty=true;
-			this.$store.dispatch("setTest",
-									 {
-										 test: {...this.test,
-												sortie_attendue: null,
-										 },
-										 index: this.index,
-									 }
+			this.$store.dispatch("setTest", {
+				test: { ...this.test,
+					sortie_attendue: null
+				},
+				index: this.index,
+			}
 			);
 			this.$store.dispatch("setRésultat", {
 				résultat: null,

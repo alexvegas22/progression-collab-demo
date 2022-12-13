@@ -136,14 +136,16 @@
 	},
 	
 	"validation_tentative": {
-		"boutonValider": "Valider"
+		"boutonValider": "Valider la tentative"
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"réinitialiser": "Réinitialiser tous les tests",
+		"exécuter": "Exécuter ce test uniquement"
 	},
 
-	"mode_affichage": "Diff",
+	"mode_affichage": "Afficher les différences",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
@@ -182,6 +184,7 @@
 	},
 
 	"avancement": {
+		"choixLangage": "Sélectionner un langage ou une tentative antérieure",
 		"premièreTentative": "Vous en êtes à votre première tentative. Vous pouvez le faire!",
 		"questionNonRésolue": "Pas encore résolu. Essayez encore!",
 		"questionRésolue": "Correctement résolu! Bravo!",

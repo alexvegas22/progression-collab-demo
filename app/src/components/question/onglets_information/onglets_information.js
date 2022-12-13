@@ -26,8 +26,6 @@ export default {
 			ongletActif: "ResultatTest",
 			index_select: 0,
 			modeAffichageChangéRaccourci: false,
-			envoiTestUnique: false,
-			index_envoi_unique: 0,
 			testsInitiaux: [],
 		};
 	},
@@ -56,7 +54,7 @@ export default {
 			return this.$store.state.tentative;
 		},
 		tests() {
-			return this.$store.state.question.tests;
+			return this.$store.state.question?.tests;
 		},
 		thèmeSombre() {
 			return this.$store.getters.thèmeSombre;
@@ -64,6 +62,12 @@ export default {
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
+		dirty(){
+			return (this.resultats?.filter( t => t!=null ).length + this.tests.filter( t => t.dirty===true ).length) > 0;
+		},
+		envoiTestUnique(){
+			return this.tests?.filter( t => t?.envoyé!=null).length > 0;
+		}
 	},
 	watch:{
 		resultats(){
@@ -148,16 +152,19 @@ export default {
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
 		validerTest(index){
-			if(this.envoiEnCours || this.envoiTestUnique && this.index_envoi_unique==this.index ) return;
+			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
 
-			this.index_envoi_unique = index;
-			this.envoiTestUnique = true;
-			this.$store.dispatch("soumettreTestUnique",
-								 {
-									 test: this.tests[index],
-									 index: index,
+			this.tests[index].envoyé = true;
+			this.$store.dispatch("soumettreTestUnique", {
+				test: this.tests[index],
+				index: index,
+			}).then( () => {
+				if(this.tentative.resultats[index]?.sortie_erreur){
+					this.index_select=index;
+					this.changementOnglet("ErreursTest");
+				}
 			}).finally( () => {
-				this.envoiTestUnique = false;
+				this.tests[index].envoyé = false;
 			});
 		},
 		réinitialiserTests(){

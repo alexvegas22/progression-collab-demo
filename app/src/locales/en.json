@@ -137,11 +137,13 @@
 	},
 
 	"validation_tentative": {
-		"boutonValider": "Validate"
+		"boutonValider": "Validate the attempt"
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases"
+		"jeuTests": "Test cases",
+		"réinitialiser": "Reset all tests",
+		"exécuter": "Execute this test only"
 	},
 
 	"mode_affichage": "Diff",
@@ -182,6 +184,7 @@
 	},
 
 	"avancement": {
+		"choixLangage": "Select a language or a previous attempt",
 		"premièreTentative": "This is your first attempt. You can do it!",
 		"questionNonRésolue": "Not solved yet. Keep trying.",
 		"questionRésolue": "Solved! Good job!",

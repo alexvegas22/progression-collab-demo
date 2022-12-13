@@ -28,6 +28,7 @@
 									<Avancement
 										présentation_étape="2"
 										:tentative-réinitialisée="tentativeRéinitialisée"
+										:title="$t('avancement.choixLangage')"
 									/>
 									<div
 										v-if="tentative"
@@ -43,6 +44,7 @@
 										<BoutonSoumission
 											style="position: relative; float: right; bottom: 5.2rem"
 											@validerTentative="validerTentative"
+											:title="$t('validation_tentative.boutonValider')"
 										/>
 									</div>
 								</div>

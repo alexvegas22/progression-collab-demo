@@ -6,15 +6,18 @@
 					<div
 						class="bordure-titre p-1 texte"
 						style="display: flex; flex-flow: row"
-							   :class="{ thème_sombre: thèmeSombre }"
+						:class="{ thème_sombre: thèmeSombre }"
 					>
 						<div style="flex-grow: 1">
 							{{ $t("jeu_tests.jeuTests") }}
 						</div>
-						<i
+						<font-awesome-icon
+							icon="fa-refresh"
+							class="boutonRafraichissement"
+							v-show="dirty"
+							:title="$t('jeu_tests.réinitialiser')"
 							@click="réinitialiserTests"
-										class="fa fa-refresh boutonRafraichissement"
-						></i>
+						/>
 					</div>
 					<FenêtreInfo
 						class="panneau"
@@ -26,22 +29,28 @@
 							<Test
 								:test="test"
 								:index="index"
-								:réussi="resultats[index]"
-								:non_réussi="resultats[index] == false"
+								:résultat="resultats[index]"
 								:sélectionné="index == index_select"
 								présentation_étape="3.0"
 								@select="select(index)"
 							>
-							    <template #lancement>
-									<i
-										class="fas btn-test-local"
-											   :class="envoiTestUnique && index_envoi_unique==index  ?
-											   'fa-cog fa-spin spin-test-local' :
-											   'fa-play',
-											   {disabled: envoiEnCours || envoiTestUnique && index_envoi_unique==index}"
-											   @click="validerTest(index)"
-									></i>
-							    </template>
+								<template #lancement>
+									<font-awesome-icon
+										v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
+										class="btn-test-local disabled"
+										icon='fas fa-cog'
+										spin
+										:title="$t('jeu_tests.exécuter')"
+										@click="validerTest(index)"
+									/>
+									<font-awesome-icon
+										v-else
+										class="btn-test-local"
+										icon='fas fa-play'
+										:title="$t('jeu_tests.exécuter')"
+										@click="validerTest(index)"
+									/>
+								</template>
 							</Test>
 						</div>
 					</FenêtreInfo>
