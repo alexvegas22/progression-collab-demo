@@ -16,7 +16,7 @@ export default {
 	},
 	computed: {
 		réussi: function() {
-			return !this.test.dirty!==true && this.résultat===true;
+			return this.test.dirty!==true && this.résultat===true;
 		},
 		non_réussi: function(){
 			return this.test.dirty!==true && this.résultat===false;
