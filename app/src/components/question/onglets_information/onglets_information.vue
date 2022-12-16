@@ -4,8 +4,8 @@
 			<template #gauche>
 				<div class="section-tests">
 					<div
-						class="bordure-titre p-1 texte"
-						style="display: flex; flex-flow: row"
+						class="p-1 texte"
+						style="display: flex; flex-flow: row; align-items: center"
 						:class="{ thème_sombre: thèmeSombre }"
 					>
 						<div style="flex-grow: 1">
@@ -24,7 +24,7 @@
 					>
 						<div
 							v-for="(test, index) in tests"
-							:key="index"
+								   :key="index"
 						>
 							<Test
 								:test="test"
@@ -54,6 +54,9 @@
 							</Test>
 						</div>
 					</FenêtreInfo>
+					<BoutonSoumission
+						:title="$t('validation_tentative.boutonValider')"
+					/>
 				</div>
 			</template>
 			<template #droite>

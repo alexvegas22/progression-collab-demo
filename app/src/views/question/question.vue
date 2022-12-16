@@ -41,11 +41,6 @@
 									</div>
 									<div style="position: relative; height: 0.75rem">
 										<RetroactionTentative/>
-										<BoutonSoumission
-											style="position: relative; float: right; bottom: 5.2rem"
-											@validerTentative="validerTentative"
-											:title="$t('validation_tentative.boutonValider')"
-										/>
 									</div>
 								</div>
 							</template>
@@ -59,23 +54,29 @@
 										:onglet-changé="ongletChangéRaccourci"
 										:test-sélectionné-haut="testSélectionnéHaut"
 										:test-sélectionné-bas="testSélectionnéBas"
+										:test-sélectionné-valider="testSélectionnéValider"
 										style="height:100%"
+
 									/>
 									<div
 										v-shortkey="raccourcis.basculerModeParDifférences"
-										@shortkey="changerModeAffichageAvecRaccourci"
+													@shortkey="changerModeAffichageAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.itérerOnglets"
-										@shortkey="changerOngletAvecRaccourci"
+													@shortkey="changerOngletAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.itérerTestHaut"
-										@shortkey="sélectionnerTestDuHautAvecRaccourci"
+													@shortkey="sélectionnerTestDuHautAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.itérerTestBas"
-										@shortkey="sélectionnerTestDuBasAvecRaccourci"
+													@shortkey="sélectionnerTestDuBasAvecRaccourci"
+									/>
+									<div
+										v-shortkey="raccourcis.lancerTestUnique"
+													@shortkey="lancerTestUniqueAvecRaccourci"
 									/>
 								</div>
 							</template>

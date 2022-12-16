@@ -39,6 +39,7 @@ export default createStore({
 			itérerOnglets: "['alt', 'w']",
 			itérerTestBas: "['alt', 'arrowdown']",
 			itérerTestHaut: "['alt', 'arrowup']",
+			lancerTestUnique: "['alt', 'arrowright']",
 			réinitialiser: "['ctrl', 'alt', 'r']",
 			soumettreTentative: "['ctrl', 'enter']",
 		},

@@ -1,6 +1,5 @@
 export default {
 	name: "BoutonSoumission",
-	emits: ["validerTentative"],
 	computed: {
 		raccourcis(){
 			return this.$store.state.raccourcis;
@@ -13,8 +12,10 @@ export default {
 		}
 	},
 	methods: {
-		validerTentative(){
-			this.$emit("validerTentative");
-		}
-	},
+		validerTentative() {
+			this.$store.dispatch("soumettreTentative", {
+				tentativeCourante: this.$store.state.tentative
+			});
+		},
+	}
 };

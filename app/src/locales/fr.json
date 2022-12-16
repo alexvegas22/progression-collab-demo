@@ -136,7 +136,8 @@
 	},
 	
 	"validation_tentative": {
-		"boutonValider": "Valider la tentative"
+		"boutonValider": "Valider la tentative",
+		"soumettre": "SOUMETTRE"
 	},
 
 	"jeu_tests": {
@@ -166,7 +167,7 @@
 	},
 
 	"resultat_test": {
-		"entrée": "Entrée",
+		"entrée": "Entrées",
 		"sortieAttendue": "Sortie attendue",
 		"params": "Paramètres",
 		"sortieErreur": "Sortie erreur",

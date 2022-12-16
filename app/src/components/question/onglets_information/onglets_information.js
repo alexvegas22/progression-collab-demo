@@ -3,6 +3,7 @@ import ErreursTest from "@/components/question/section_erreurs/section_erreurs.v
 import DétailsTest from "@/components/question/section_details/section_details.vue";
 import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
+import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 
 import {copie_profonde} from "@/util/commun.js";
@@ -10,6 +11,7 @@ import {copie_profonde} from "@/util/commun.js";
 export default {
 	components: {
 		Test,
+		BoutonSoumission,
 		ResultatTest,
 		ErreursTest,
 		Rétroactions,
@@ -20,6 +22,7 @@ export default {
 		ongletChangé: Boolean,
 		testSélectionnéHaut: Boolean,
 		testSélectionnéBas: Boolean,
+		testSélectionnéValider: Boolean,
 	},
 	data() {
 		return {
@@ -29,6 +32,7 @@ export default {
 			testsInitiaux: [],
 		};
 	},
+	emits: ['validerTentative'],
 	mounted() {
 		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 	},
@@ -118,6 +122,12 @@ export default {
 			deep: true,
 			handler: function(){
 				this.basculerTestBas();
+			}
+		},
+		testSélectionnéValider: {
+			deep: true,
+			handler: function(){
+				this.validerTest(this.index_select);
 			}
 		},
 		envoiEnCours: {

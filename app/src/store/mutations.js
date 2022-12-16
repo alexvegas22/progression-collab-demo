@@ -131,6 +131,7 @@ export const mutations = {
 		state.question.tests = val;
 	},
 	setRésultat(state, params){
+		if(!state.tentative.resultats) state.tentative.resultats=new Array();
 		state.tentative.resultats[params.index] = params.résultat;
 	},
 	setRésultats(state, val){

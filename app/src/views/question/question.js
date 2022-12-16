@@ -21,6 +21,7 @@ export default {
 			ongletChangéRaccourci: false,
 			testSélectionnéHaut: false,
 			testSélectionnéBas: false,
+			testSélectionnéValider: false,
 			tentativeRéinitialisée: false,
 		};
 	},
@@ -193,12 +194,6 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
 		},
-		validerTentative() {
-			this.$store.dispatch("soumettreTentative", 
-				{
-					tentativeCourante: this.$store.state.tentative
-				});
-		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
 		},
@@ -207,6 +202,9 @@ export default {
 		},
 		sélectionnerTestDuBasAvecRaccourci() {
 			this.testSélectionnéBas = !this.testSélectionnéBas;
+		},
+		lancerTestUniqueAvecRaccourci() {
+			this.testSélectionnéValider = !this.testSélectionnéValider;
 		},
 		changerModeAffichageAvecRaccourci() {
 			this.$store.dispatch("setChangerModeAffichageAvecRaccourci", true);
