@@ -19,10 +19,10 @@
 					icon='fas fa-cog'
 					spin
 				/>
-				<font-awesome-icon
+				<i
 					v-else
 					style="color: white; width: 1rem"
-						   icon='fas fa-play'
+					class='fas fa-play'
 				/>
 			</div>
 		</div>
