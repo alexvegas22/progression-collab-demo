@@ -37,8 +37,7 @@
 								<template #lancement>
 									<i
 										v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
-										class="btn-test-local disabled fas fa-cog"
-										spin
+										class="btn-test-local disabled fas fa-cog fa-spin"
 										:title="$t('jeu_tests.exécuter')"
 										@click="validerTest(index)"
 									/>
