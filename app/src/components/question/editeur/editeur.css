@@ -1,5 +1,5 @@
-.CodeMirror {
-	font-family: Arial, monospace;
+.CodeMirror pre.CodeMirror-line {
+	font-family: monospace !important;
 }
 
 .btn-reset {
