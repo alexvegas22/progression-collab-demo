@@ -11,10 +11,9 @@
 						<div style="flex-grow: 1">
 							{{ $t("jeu_tests.jeuTests") }}
 						</div>
-						<font-awesome-icon
-							icon="fa-refresh"
-							class="boutonRafraichissement"
+						<i
 							v-show="dirty"
+							class="boutonRafraichissement fa fa-refresh"
 							:title="$t('jeu_tests.réinitialiser')"
 							@click="réinitialiserTests"
 						/>
