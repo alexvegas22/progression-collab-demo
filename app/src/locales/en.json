@@ -13,7 +13,10 @@
 		"déconnexion": "Logout",
 		"thèmeSombre": "Dark theme",
 		"thèmeClair": "Light theme",
-		"versionTest": "Version TEST"
+		"versionTest": "Experimental interface",
+		"préférences": "Preferences",
+		"english": "English",
+		"français": "Français"
 	},
 
 	"accomplissements": {
@@ -134,11 +137,14 @@
 	},
 
 	"validation_tentative": {
-		"boutonValider": "Validate"
+		"boutonValider": "Validate the attempt",
+		"soumettre": "SUBMIT"
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Test cases"
+		"jeuTests": "Test cases",
+		"réinitialiser": "Reset all tests",
+		"exécuter": "Execute this test only"
 	},
 
 	"mode_affichage": "Diff",
@@ -168,7 +174,8 @@
 		"sortieErreur": "Error output",
 		"sortieConsole": "Actual output",
 		"rétroaction": "Feedback",
-		"vide": "[empty]"
+		"vide": "[empty]",
+		"cachée": "[hidden]"
 	},
 
 	"resultat_details": {
@@ -178,6 +185,7 @@
 	},
 
 	"avancement": {
+		"choixLangage": "Select a language or a previous attempt",
 		"premièreTentative": "This is your first attempt. You can do it!",
 		"questionNonRésolue": "Not solved yet. Keep trying.",
 		"questionRésolue": "Solved! Good job!",

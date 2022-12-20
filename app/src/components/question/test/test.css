@@ -3,7 +3,7 @@
 	border-style: solid;
 }
 
-.test.réussi::before {
+.symbole_réussi::before {
 	display: inline-block;
 	margin-right: 0.5rem;
 	font-size: 0.75rem;
@@ -11,7 +11,7 @@
 	inset: 0;
 }
 
-.test.non_réussi:before {
+.symbole_non_réussi::before {
 	display: inline-block;
 	margin-right: 0.5rem;
 	font-size: 0.75rem;
@@ -53,11 +53,4 @@
 
 .visible {
 	visibility: visible;
-}
-
-/* ------------- Entre 768px et 865px (48rem - 54.063rem) ----------------- */
-@media only screen and (max-width: 47.938rem) {
-	.texte {
-		font-size: 0.9rem;
-	}
 }

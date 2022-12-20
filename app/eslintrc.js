@@ -38,6 +38,7 @@ module.exports = {
 			"error",
 			"smart-tabs"
 		],
+		"no-unused-vars": ["error", { "argsIgnorePattern": "_" }],
 		"smarter-tabs/smarter-tabs": "error",
 		//Vue
 		"vue/multi-word-component-names": "off",

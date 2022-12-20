@@ -56,13 +56,6 @@
 				</li>
 			</ul>
 		</div>
-		<div style="margin-left: auto">
-			<i
-				class="fa btn-affichage"
-				:class="{ 'fa-window-restore': pleinÉcran, 'fa-window-maximize': !pleinÉcran }"
-				@click="$emit('basculéPanneauÉditeur')"
-			/>
-		</div>
 	</div>
 </template>
 

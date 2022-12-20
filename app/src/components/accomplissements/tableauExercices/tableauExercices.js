@@ -1,8 +1,13 @@
 export default {
 	name: "TableauExercices",
-
 	data() {
 		return {
+			headers: [
+				{text: "Exercice"},
+				{text: "Niveau"},
+				{text: "Dernière tentative"},
+				{text: "Réussite"}
+			],
 			listeAvancements: [],
 			filtreDeRecherche: "",
 		};

@@ -1,3 +1,4 @@
+
 import OngletsInformation from "@/components/question/onglets_information/onglets_information.vue";
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
@@ -6,8 +7,9 @@ import Présentation from "@/components/question/présentation/présentation.vue
 import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
+import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
 import jwt_decode from "jwt-decode";
-
+import Diptyque from "@/components/diptyque/diptyque.vue";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -15,14 +17,11 @@ export default {
 	name: "Question",
 	data() {
 		return {
-			panneauTestsAffiché: false,
-			énoncéPleinÉcran: false,
-			énoncéSemiÉcran: true,
-			éditeurPleinÉcran: false,
 			panneauCommentaireOuvert: false,
 			ongletChangéRaccourci: false,
 			testSélectionnéHaut: false,
 			testSélectionnéBas: false,
+			testSélectionnéValider: false,
 			tentativeRéinitialisée: false,
 		};
 	},
@@ -34,7 +33,9 @@ export default {
 		RetroactionTentative,
 		Présentation,
 		BoutonCommentaire,
+		BoutonSoumission,
 		PanneauCommentaire,
+		Diptyque,
 	},
 	computed: {
 		user() {
@@ -62,13 +63,19 @@ export default {
 			return this.$store.state.démo;
 		},
 		thèmeSombre() {
-			return this.$store.state.thèmeSombre;
+			return this.$store.getters.thèmeSombre;
 		},
 		indicateursDeFonctionnalitéCommentaires() {
 			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
 		},
 		raccourcis() {
 			return this.$store.state.raccourcis;
+		},
+		taillePanneauÉnoncé() {
+			return this.$store.getters?.préférences?.disposition?.énoncé ?? 30;
+		},
+		tailleÉditeur() {
+			return this.$store.getters?.préférences?.disposition?.éditeur ?? 60;
 		}
 	},
 	watch: {
@@ -99,10 +106,6 @@ export default {
 	},
 	provide() {
 		return {
-			énoncéPleinÉcran: this.énoncéPleinÉcran,
-			énoncéSemiÉcran: this.énoncéSemiÉcran,
-			panneauTestsAffiché: this.panneauTestsAffiché,
-			éditeurPleinÉcran: this.éditeurPleinÉcran,
 			avancement: this.avancement
 		};
 	},
@@ -191,45 +194,6 @@ export default {
 		récupérerQuestion() {
 			this.$store.dispatch("récupérerQuestion", API_URL + "/question/" + this.uri);
 		},
-		ajusterPanneauÉnoncé(dimension) {
-			if (dimension === "normal") {
-				this.énoncéSemiÉcran = !this.énoncéSemiÉcran;
-				if (this.énoncéSemiÉcran)
-					this.énoncéPleinÉcran = false;
-			}
-			else if (dimension === "max") {
-				this.énoncéPleinÉcran = true;
-				this.énoncéSemiÉcran = false;
-			}
-			else {
-				this.énoncéPleinÉcran = false;
-				this.énoncéSemiÉcran = false;
-			}
-			this.redimensionnerÉditeur();
-		},
-		basculerPanneauTests() {
-			this.panneauTestsAffiché = !this.panneauTestsAffiché;
-			if (this.énoncéPleinÉcran && this.panneauTestsAffiché) {
-				this.énoncéPleinÉcran = false;
-				this.énoncéSemiÉcran = true;
-			}
-			this.redimensionnerÉditeur();
-		},
-		basculerPanneauÉditeur() {
-			this.éditeurPleinÉcran = !this.éditeurPleinÉcran;
-			this.panneauTestsAffiché = !this.éditeurPleinÉcran;
-			this.énoncéPleinÉcran = false;
-			this.énoncéSemiÉcran = !this.éditeurPleinÉcran;
-		},
-		redimensionnerÉditeur() {
-			if (this.éditeurPleinÉcran) {
-				if (this.énoncéPleinÉcran || this.énoncéSemiÉcran || this.panneauTestsAffiché)
-					this.éditeurPleinÉcran = false;
-			}
-			else if (!this.énoncéPleinÉcran && !this.énoncéSemiÉcran && !this.panneauTestsAffiché) {
-				this.éditeurPleinÉcran = true;
-			}
-		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
 		},
@@ -239,25 +203,27 @@ export default {
 		sélectionnerTestDuBasAvecRaccourci() {
 			this.testSélectionnéBas = !this.testSélectionnéBas;
 		},
+		lancerTestUniqueAvecRaccourci() {
+			this.testSélectionnéValider = !this.testSélectionnéValider;
+		},
 		changerModeAffichageAvecRaccourci() {
 			this.$store.dispatch("setChangerModeAffichageAvecRaccourci", true);
 		},
 		changerOngletAvecRaccourci() {
 			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
 		},
-		basculerFormatÉnoncéAvecRaccourci() {
-			if (this.énoncéPleinÉcran) {
-				this.ajusterPanneauÉnoncé("caché");
-			}
-			else if (this.énoncéSemiÉcran) {
-				this.ajusterPanneauÉnoncé("max");
-			}
-			else {
-				this.ajusterPanneauÉnoncé("normal");
-			}
-		},
 		réinitialiserTentativeAvecRaccourci() {
 			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		},
+		redimensionnéÉnoncé( taille ) {
+			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0};
+			disposition.énoncé = taille;
+			this.$store.dispatch( "setDisposition", disposition );
+		},
+		redimensionnéÉditeur( taille ) {
+			const disposition = this.$store.getters?.préférences?.disposition ?? {éditeur: 0};
+			disposition.éditeur = taille;
+			this.$store.dispatch( "setDisposition", disposition );
+		}
 	},
 };

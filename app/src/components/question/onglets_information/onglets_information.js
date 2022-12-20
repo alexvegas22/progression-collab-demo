@@ -3,29 +3,38 @@ import ErreursTest from "@/components/question/section_erreurs/section_erreurs.v
 import DétailsTest from "@/components/question/section_details/section_details.vue";
 import Rétroactions from "@/components/question/rétroactions/rétroactions.vue";
 import Test from "@/components/question/test/test.vue";
+import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
+import Diptyque from "@/components/diptyque/diptyque.vue";
+
+import {copie_profonde} from "@/util/commun.js";
 
 export default {
 	components: {
 		Test,
+		BoutonSoumission,
 		ResultatTest,
 		ErreursTest,
 		Rétroactions,
-		DétailsTest
+		DétailsTest,
+		Diptyque,
 	},
 	props: {
-		panneauAffiché: Boolean,
 		ongletChangé: Boolean,
 		testSélectionnéHaut: Boolean,
 		testSélectionnéBas: Boolean,
+		testSélectionnéValider: Boolean,
 	},
-	emits: ["basculéPanneauTests"],
 	data() {
 		return {
 			ongletActif: "ResultatTest",
 			index_select: 0,
 			modeAffichageChangéRaccourci: false,
-			envoiTestUnique: false,
+			testsInitiaux: [],
 		};
+	},
+	emits: ['validerTentative'],
+	mounted() {
+		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 	},
 	computed: {
 		resultats() {
@@ -42,32 +51,38 @@ export default {
 		},
 		resultat_select() {
 			return this.tentative?.resultats
-				? this.tentative.resultats[this.index_select]
-				: null;
+				 ? this.tentative.resultats[this.index_select]
+				 : null;
 		},
 		tentative() {
 			return this.$store.state.tentative;
 		},
 		tests() {
-			return this.$store.state.question.tests;
+			return this.$store.state.question?.tests;
 		},
 		thèmeSombre() {
-			return this.$store.state.thèmeSombre;
+			return this.$store.getters.thèmeSombre;
 		},
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
+		dirty(){
+			return (this.resultats?.filter( t => t!=null ).length + this.tests.filter( t => t.dirty===true ).length) > 0;
+		},
+		envoiTestUnique(){
+			return this.tests?.filter( t => t?.envoyé!=null).length > 0;
+		}
 	},
 	watch:{
 		resultats(){
 			if(!this.envoiTestUnique){
 				for(var resultat in this.tentative?.resultats){
-					if(this.tentative.resultats[resultat].sortie_erreur){
+					if(this.tentative.resultats[resultat]?.sortie_erreur){
 						this.index_select=resultat;
 						this.changementOnglet("ErreursTest");
 						break;
 					}
-					else if (!this.tentative.resultats[resultat].résultat){
+					else if (!this.tentative.resultats[resultat]?.résultat){
 						this.index_select=resultat;
 						this.changementOnglet("ResultatTest");
 						break;
@@ -75,7 +90,6 @@ export default {
 					this.changementOnglet("ResultatTest");
 				}
 			}
-			this.envoiTestUnique = false;
 		},
 		ongletChangé: {
 			deep: true,
@@ -110,6 +124,20 @@ export default {
 				this.basculerTestBas();
 			}
 		},
+		testSélectionnéValider: {
+			deep: true,
+			handler: function(){
+				this.validerTest(this.index_select);
+			}
+		},
+		envoiEnCours: {
+			deep: true,
+			handler: function(){
+				if(this.envoiEnCours === true){
+					this.réinitialiserTests();
+				}
+			}
+		},
 	},
 	methods: {
 		changementOnglet(onglet) {
@@ -124,9 +152,6 @@ export default {
 				this.changementOnglet("ResultatTest");
 			}
 		},
-		basculerPanneau(){
-			this.$emit("basculéPanneauTests");
-		},
 		basculerTestHaut(){
 			this.index_select--;
 			if(this.index_select == -1) {
@@ -136,14 +161,25 @@ export default {
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 		},
-		validerTest(){
-			this.$store.dispatch("soumettreTestUnique",
-				{
-					test: this.test_select,
-					index: this.index_select,
+		validerTest(index){
+			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
+
+			this.tests[index].envoyé = true;
+			this.$store.dispatch("soumettreTestUnique", {
+				test: this.tests[index],
+				index: index,
+			}).then( () => {
+				if(this.tentative.resultats[index]?.sortie_erreur){
+					this.index_select=index;
+					this.changementOnglet("ErreursTest");
 				}
-			);
-			this.envoiTestUnique = true;
+			}).finally( () => {
+				this.tests[index].envoyé = false;
+			});
+		},
+		réinitialiserTests(){
+			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
+			this.$store.dispatch("setRésultats", []);
 		},
 	},
 };

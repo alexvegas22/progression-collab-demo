@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import actions from "./store/actions.js";
-import i18n from "./util/i18n";
+import { i18n, sélectionnerLocale } from "./util/i18n";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "vue3-tabs";
@@ -22,13 +22,18 @@ import { UnleashClient } from "unleash-proxy-client";
 import shortkey from "vue3-shortkey";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
+import "splitpanes/dist/splitpanes.css";
 import VueCookies from "vue-cookies";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas);
 
 const app = createApp(App)
 	.use(router)
 	.use(VueCookies)
 	.use(store)
-	.use(i18n)
 	.use(VueTippy, {
 		component: "Tippy",
 		defaultProps: { placement: "bottom" },
@@ -37,10 +42,12 @@ const app = createApp(App)
 	.use(createMetaManager())
 	.use(metaPlugin)
 	.use(Vue3Tour)
-	.use(router).use(VueChartkick)
+	.use(router)
+	.use(VueChartkick)
 	.use(PerfectScrollbar)
 	.use(shortkey);
 
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("FenêtreInfo", FenêtreInfo);
 
 const vuetify = createVuetify( {components});
@@ -55,6 +62,15 @@ VueChartkick.options = {
 	donut: true,
 	dataset:{ borderWidth: 2, hoverOffset: 2, spacing: 4, borderColor: "#ababab" }
 };
+
+// Ajout d'un listener sur la locale
+store.subscribe( (mutation) => {
+	if (mutation.type == "setLocale" || mutation.type == "setPréférences"){
+		// Propage la nouvelle locale à la composante i18n
+		i18n.global.locale = sélectionnerLocale(store.getters.locale);
+	}
+});
+app.use(i18n);
 
 const authentificationErreurHandler = function() {
 	if ( router.currentRoute.value.name != "LoginView" ) {

@@ -6,14 +6,21 @@ export default {
 	props: {
 		index: 0,
 		test: null,
-		réussi: null,
-		non_réussi: null,
+		résultat: null,
 		sélectionné: false,
 	},
 	data() {
 		return {
 			visible: false,
 		};
+	},
+	computed: {
+		réussi: function() {
+			return this.test.dirty!==true && this.résultat===true;
+		},
+		non_réussi: function(){
+			return this.test.dirty!==true && this.résultat===false;
+		}
 	},
 	methods: {
 		toggleVisibilite() {
