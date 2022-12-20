@@ -1,87 +1,104 @@
 <template>
 	<div class="row g-0">
-		<div class="col-xl-3 col-lg-4 col-4">
-			<div class="section-tests">
-				<div
-					class="bordure-titre p-1 texte"
-					:class="{ thème_sombre: thèmeSombre }"
-				>
-					{{ $t("jeu_tests.jeuTests") }}
-				</div>
-				<FenêtreInfo
-					class="panneau"
-					:class="{'panneau-affiché': panneauAffiché}"
-				>
+		<Diptyque gauche="false" droite="false" size_gauche="25" size_droite="75">
+			<template #gauche>
+				<div class="section-tests">
 					<div
-						v-for="(test, index) in tests"
-						:key="index"
+						class="p-1 texte"
+						style="display: flex; flex-flow: row; align-items: center"
+						:class="{ thème_sombre: thèmeSombre }"
 					>
-						<Test
-							:test="test"
-							:index="index"
-							:réussi="resultats[index]"
-							:non_réussi="resultats[index] == false"
-							:sélectionné="index == index_select"
-							présentation_étape="3.0"
-							@select="select(index)"
+						<div style="flex-grow: 1">
+							{{ $t("jeu_tests.jeuTests") }}
+						</div>
+						<font-awesome-icon
+							icon="fa-refresh"
+							class="boutonRafraichissement"
+							v-show="dirty"
+							:title="$t('jeu_tests.réinitialiser')"
+							@click="réinitialiserTests"
 						/>
 					</div>
-				</FenêtreInfo>
-			</div>
-		</div>
-		<div class="col-xl-9 col-lg-8 col-8 texte">
-			<div class="section-onglets">
-				<div
-					id="onglet_ES"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
-					@click="changementOnglet('ResultatTest')"
-				>
-					{{ $t("onglets_informations.entrées/sorties") }}
-					<i 
-						v-if="panneauAffiché"
-						:disabled="envoiEnCours"
-						:class="{ 'fas fa-play btn-test-local': !this.envoiTestUnique, 'fa fa-refresh fa-spin spin-test-local': this.envoiTestUnique }"
-						@click="validerTest"
-					></i>
-				</div>
-				<div
-					v-if="resultat_select && resultat_select.sortie_erreur"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ErreursTest', thème_sombre: thèmeSombre }"
-					class="onglets-subséquents"
-					@click="changementOnglet('ErreursTest')"
-				>
-					{{ $t("onglets_informations.erreurs") }}
-				</div>
-				<div
-					v-if="resultat_select"
-					:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'DétailsTest', thème_sombre: thèmeSombre }"
-					class="onglets-subséquents"
-					@click="changementOnglet('DétailsTest')"
-				>
-					{{ $t("onglets_informations.détails") }}
-				</div>
-				<div style="margin-left: auto">
-					<i
-						style="height: 100%"
-						class="fa fa btn-affichage"
-						:class="{ 'fa-window-minimize': panneauAffiché, 'fa-window-restore': !panneauAffiché }"
-						@click="basculerPanneau()"
+					<FenêtreInfo
+						class="panneau"
+					>
+						<div
+							v-for="(test, index) in tests"
+								   :key="index"
+						>
+							<Test
+								:test="test"
+								:index="index"
+								:résultat="resultats[index]"
+								:sélectionné="index == index_select"
+								présentation_étape="3.0"
+								@select="select(index)"
+							>
+								<template #lancement>
+									<font-awesome-icon
+										v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
+										class="btn-test-local disabled"
+										icon='fas fa-cog'
+										spin
+										:title="$t('jeu_tests.exécuter')"
+										@click="validerTest(index)"
+									/>
+									<font-awesome-icon
+										v-else
+										class="btn-test-local"
+										icon='fas fa-play'
+										:title="$t('jeu_tests.exécuter')"
+										@click="validerTest(index)"
+									/>
+								</template>
+							</Test>
+						</div>
+					</FenêtreInfo>
+					<BoutonSoumission
+						:title="$t('validation_tentative.boutonValider')"
 					/>
 				</div>
-			</div>
-			<keep-alive>
-				<component
-					:is="ongletActif"
-					:style="{ height: panneauAffiché ? '18rem' : '0' }"
-					class="section-bas"
-					:test="test_select"
-					:résultat="resultat_select"
-					:tempsÉxecution="test_select"
-					:panneau-affiché="panneauAffiché"
-					:index="index_select"
-				/>
-			</keep-alive>
-		</div>
+			</template>
+			<template #droite>
+				<div style="height: 100%; display: flex; flex-flow: column">
+					<div class="section-onglets">
+						<div
+							id="onglet_ES"
+							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
+							@click="changementOnglet('ResultatTest')"
+						>
+							{{ $t("onglets_informations.entrées/sorties") }}
+						</div>
+						<div
+							v-if="resultat_select && resultat_select.sortie_erreur"
+							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ErreursTest', thème_sombre: thèmeSombre }"
+							class="onglets-subséquents"
+							@click="changementOnglet('ErreursTest')"
+						>
+							{{ $t("onglets_informations.erreurs") }}
+						</div>
+						<div
+							v-if="resultat_select"
+							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'DétailsTest', thème_sombre: thèmeSombre }"
+							class="onglets-subséquents"
+							@click="changementOnglet('DétailsTest')"
+						>
+							{{ $t("onglets_informations.détails") }}
+						</div>
+					</div>
+					<keep-alive>
+						<component
+							:is="ongletActif"
+							class="section-bas"
+							:test="test_select"
+							:résultat="resultat_select"
+							:tempsÉxecution="test_select"
+							:index="index_select"
+						/>
+					</keep-alive>
+				</div>
+			</template>
+		</Diptyque>
 	</div>
 </template>
 

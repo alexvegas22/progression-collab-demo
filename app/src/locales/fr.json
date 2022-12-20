@@ -13,7 +13,10 @@
 		"déconnexion": "Déconnexion",
 		"thèmeSombre": "Thème sombre",
 		"thèmeClair": "Thème clair",
-		"versionTest": "Version TEST"
+		"versionTest": "Interface expérimentale",
+		"préférences": "Préférences",
+		"english": "English",
+		"français": "Français"
 	},
 
 	"accomplissements": {
@@ -133,14 +136,17 @@
 	},
 	
 	"validation_tentative": {
-		"boutonValider": "Valider"
+		"boutonValider": "Valider la tentative",
+		"soumettre": "SOUMETTRE"
 	},
 
 	"jeu_tests": {
-		"jeuTests": "Jeu de tests"
+		"jeuTests": "Jeu de tests",
+		"réinitialiser": "Réinitialiser tous les tests",
+		"exécuter": "Exécuter ce test uniquement"
 	},
 
-	"mode_affichage": "Diff",
+	"mode_affichage": "Afficher les différences",
 	
 	"editeur": {
 		"langageÉbauche": "Langage : ",
@@ -161,13 +167,14 @@
 	},
 
 	"resultat_test": {
-		"entrée": "Entrée",
+		"entrée": "Entrées",
 		"sortieAttendue": "Sortie attendue",
 		"params": "Paramètres",
 		"sortieErreur": "Sortie erreur",
 		"sortieConsole": "Sortie observée",
 		"rétroaction": "Rétroaction",
-		"vide": "[vide]"
+		"vide": "[vide]",
+		"cachée": "[cachée]"
 	},
 
 	"resultat_details": {
@@ -178,6 +185,7 @@
 	},
 
 	"avancement": {
+		"choixLangage": "Sélectionner un langage ou une tentative antérieure",
 		"premièreTentative": "Vous en êtes à votre première tentative. Vous pouvez le faire!",
 		"questionNonRésolue": "Pas encore résolu. Essayez encore!",
 		"questionRésolue": "Correctement résolu! Bravo!",

@@ -7,6 +7,7 @@
 }
 
 body {
+	overflow: hidden;
 	font-family: "Avenir", Arial, Helvetica, sans-serif;
 	font-size: 1rem;
 }
@@ -62,7 +63,7 @@ body {
 }
 
 .taille-écran {
-	height: 100vh;
+	height: calc(100vh - 56px);
 }
 
 .section-bouton-affichage {
@@ -103,140 +104,6 @@ body {
 	position: fixed;
 	bottom: 20px;
 	left: 10px;
-}
-
-/* -------------- Media Queries ----------------------*/
-/* -------------- Écrans de 1300px et + (81.25rem et +) ----------------------*/
-@media only screen and (min-width: 81.25rem) {
-	.énoncé-semi {
-		width: 46rem;
-		height: 95%;
-	}
-}
-
-/* -------------- Écrans de 1200px à 1300px (75rem à 81.25rem) ----------------------*/
-@media only screen and (min-width: 75rem) and (max-width: 81.25rem) {
-	.énoncé-semi {
-		width: 28.125rem;
-		height: 100%;
-	}
-}
-
-/* -------------- Écrans de 768px à 1200px (48rem à 75rem) ----------------------*/
-@media only screen and (min-width: 48rem) and (max-width: 75rem) {
-	.énoncé-semi {
-		width: 28.125rem;
-		height: 100%;
-	}
-
-	.énoncé-caché .barre-énoncé {
-		margin-left: 0 !important;
-	}
-}
-
-/* -------------- Écrans de 0 à 767px (0 à 47.938rem) ----------------------*/
-@media only screen and (max-width: 47.938rem) {
-	.énoncé-semi {
-		width: 100%;
-	}
-	.section-bouton-affichage {
-		margin-right:0.75rem;
-	}
-	.énoncé-caché {
-	padding-bottom: 1.35rem;
-	}
-	.barre-énoncé {
-		flex-flow:column;
-	}
-
-	.section-bouton-affichage {
-		margin-right:0.75rem;
-	}
-
-	.ligne-séparation-avec-énoncé {
-		border-top: 1px solid #d3d3d3;
-		min-height: 20rem;
-	}
-
-	.thème_sombre .ligne-séparation-avec-énoncé {
-		border-top: 1.5px solid #555555;
-	}
-
-	.énoncé-plein .section-énoncé-texte {
-		max-width: 95%;
-	}
-	
-	.taille-écran {
-		height: 100%;
-	}
-	.section-énoncé-texte {
-		height: 100%;
-	}
-}
-
-/* -------------- Écrans de 0 à 567px (0 à 47.938rem) ----------------------*/
-@media only screen and (max-width: 36rem) {
-	.énoncé-plein .barre-énoncé {
-		height: 100vh;
-	}
-
-	.énoncé-semi .section-énoncé-texte {
-		max-width: 95%;
-		margin-left: none;
-	}
-}
-/* -------------- Écrans de 567 à 768px (0 à 47.938rem) ----------------------*/
-@media only screen and (min-width: 36rem) and (max-width: 47.938rem) {
-	.énoncé-plein .barre-énoncé {
-		height: 100vh;
-		overflow:auto;
-	}
-
-	.énoncé-semi .section-énoncé-texte {
-		max-width: 96%;
-		margin-left: none;
-	}
-}
-
-/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
-@media only screen and (min-width: 48rem) {
-	.taille-écran {
-		height: calc(100vh - 56px);
-	}
-
-	.conteneur-question {
-		height: 100%;
-		flex-flow: row;
-	}
-
-	.barre-énoncé {
-		height: 100%;
-		flex-flow: column;
-		border-bottom: none;
-	}
-
-	.énoncé-plein {
-		height: 100%;
-		width: 100%;
-	}
-
-	.énoncé-plein .barre-énoncé {
-		height: 100%;
-		overflow:auto;
-	}
-
-	.énoncé-caché {
-		width: 2.313rem;
-		height: 100%;
-	}
-
-	.énoncé-semi .section-bouton-affichage {
-		width: 4rem !important;
-	}
-
-	.énoncé-plein .section-bouton-affichage {
-		width: 4.5rem !important;
-	}
 }
 
 // Alignement des images selon le texte alternatif

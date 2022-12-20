@@ -1,36 +1,49 @@
 <template>
-	<div class="btn-valider">
-		<svg 
-			id="btn_soumettre_tentative"
-			v-shortkey="raccourcis.soumettreTentative"
-			type="button"
-			class="btn btn-valider-play"
-			:disabled="envoiEnCours"
-			présentation_étape="1.2"
-			@click="validerTentative"
-			@shortkey="validerTentative"
-		> 
-			<use xlink:href="./svg_bouton_play/play-button-svgrepo-com.svg#Capa_2" />
-		</svg>
-		<div :class="{spin: envoiEnCours}" />
-		<Tippy v-show="erreurCallback"
-			trigger='click'
-			interactive
-			:aria="true"
-			:show-on-create="false"
-			:arrow="true"
-			placement="bottom"
-			class=" btn-valider-avertissement"
-			:title="$t('retroaction_tentative.erreurCallback')"
+	<div style="width: 100%; display: flex; flex-flow: column; align-items: center">
+		<div
+			class="btn-valider" style="display: flex; flex-flow: row; align-items: center"
 		>
-			<span class="fas fa-exclamation-triangle" style="color: orange" />
-			<template #content>
-				<div class="message_erreur">
-					{{erreurCallback}}
-				</div>
-			</template>
-		</Tippy>
-	</div>
+			<div
+				id="btn_soumettre_tentative"
+					type="button"
+					class="btn btn-valider-play"
+					présentation_étape="1.2"
+					v-shortkey="raccourcis.soumettreTentative"
+					@shortkey="validerTentative"
+					@click="validerTentative"
+			>
+				{{$t('validation_tentative.soumettre')}}
+				<font-awesome-icon
+					v-if="envoiEnCours"
+					style="color: gray; width: 1rem"
+					icon='fas fa-cog'
+					spin
+				/>
+				<font-awesome-icon
+					v-else
+					style="color: white; width: 1rem"
+						   icon='fas fa-play'
+				/>
+			</div>
+		</div>
+				<Tippy v-show="erreurCallback"
+					   trigger='click'
+					   interactive
+					   :aria="true"
+					   :show-on-create="false"
+					   :arrow="true"
+					   placement="bottom"
+					   class=" btn-valider-avertissement"
+					   :title="$t('retroaction_tentative.erreurCallback')"
+				>
+					<span class="fas fa-exclamation-triangle" style="color: orange" />
+					<template #content>
+						<div class="message_erreur">
+							{{erreurCallback}}
+						</div>
+					</template>
+				</Tippy>
+		</div>
 </template>
 
 <script src="./boutonSoumission.js"></script>

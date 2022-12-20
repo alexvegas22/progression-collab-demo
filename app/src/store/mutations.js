@@ -88,7 +88,13 @@ export const mutations = {
 		state.difficultésRéussies = difficultésRéussies;
 	},
 	setThèmeSombre(state, val) {
-		state.thèmeSombre = val;
+		state.préférences.thème = val ? "monokai" : "default";
+	},
+	setPréférences(state, val) {
+		state.préférences = val;
+	},
+	setLocale(state, val) {
+		state.préférences.locale = val;
 	},
 	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
 		state.nbRéussitesParLangage = nbRéussitesParLangage;
@@ -118,10 +124,14 @@ export const mutations = {
 	setParamsTest(state, val) {
 		state.question.tests[val.index].params = val.params;
 	},
+	setTest(state, val) {
+		state.question.tests[val.index] = val.test;
+	},
 	setTests(state, val) {
 		state.question.tests = val;
 	},
 	setRésultat(state, params){
+		if(!state.tentative.resultats) state.tentative.resultats=new Array();
 		state.tentative.resultats[params.index] = params.résultat;
 	},
 	setRésultats(state, val){

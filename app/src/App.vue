@@ -7,7 +7,7 @@
 	<div
 		v-shortkey="raccourcis.basculerThème"
 		:class="{thème_sombre: thèmeSombre}"
-		@shortkey="basculerThèmeSombreAvecRaccourci"
+		@shortkey="basculerThèmeSombre"
 	>
 		<nav class="navbar justify-content-between navbar-dark bg-dark">
 			<a
@@ -19,63 +19,82 @@
 			<span class="text-username">{{username}}</span>
 			<Transition>
 				<div v-if="token" class="dropdown">
-					<i 
-						class="fa fa-bars barBtn" 
-						type="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					/>
-
+					<a data-bs-toggle="dropdown">
+						<i
+							class="fa fa-bars barBtn"
+						/>
+					</a>
 					<ul
 						class="dropdown-menu"
-						aria-labelledby="historique"
 					>
 						<li
 							v-if="token"
 							class="btnDMM"
+							@click="allerVers('Accomplissements')"
 						>
-							<i class="fas fa-trophy focus icône-trophée"></i>
-							<button
-								test_id="btnAvancement"
-								type="button"
-								class="btn focus"
-								@click="allerVers('Accomplissements')"
-							>{{ $t('menu.accomplissement') }}</button>
+							<a class="focus padding">
+								<i class="fas fa-trophy icône"></i>
+								<label>
+									<span>{{ $t('menu.accomplissement') }}</span>
+								</label>
+							</a>
 						</li>
 						<li
 							class="btnDMM"
-							@click="basculerThèmeSombreAvecRaccourci"
 						>
 							<a class="focus padding">
-								<i class="fas fa-adjust margin-liens icône-thème"></i>
+								<i class="fas fa-sliders-h icône"></i>
+								<label class="dropdown">
+									<span>{{ $t('menu.préférences') }}</span>
+								</label>
+							</a>
+							<ul
+								class="dropdown-menu dropdown-submenu-p dropdown-submenu-left"
+							>
+								<li
+									class="btnDMM"
+									@click="basculerThèmeSombre"
+								>
+									<a class="focus padding">
+										<i class="fas fa-adjust icône"
+										></i>
 
-								<label>
-									<span v-if="this.thèmeSombre===true">{{$t("menu.thèmeClair")}}</span>
-									<span v-else>{{$t("menu.thèmeSombre")}}</span>
-									<input 
-										v-model="thèmeSombre"
-										type="checkbox"
-										style="opacity:0;"
-										class="input-thème"
-										@click="basculerThèmeSombreAvecRaccourci"
-									>
-								</label>
-							</a>
+										<label>
+											<span v-if="this.thèmeSombre===true">{{$t("menu.thèmeClair")}}</span>
+											<span v-else>{{$t("menu.thèmeSombre")}}</span>
+										</label>
+									</a>
+								</li>
+								<li
+									class="btnDMM"
+									@click="basculerLocale"
+								>
+									<a class="focus padding">
+										<i class="fas fa-globe icône"
+										></i>
+										<label>
+											<span v-if="this.locale==='fr'">🇬🇧 {{$t("menu.english")}}</span>
+											<span v-else>🇫🇷 {{$t("menu.français")}}</span>
+										</label>
+									</a>
+								</li>
+								<li v-if="indicateursDeFonctionnalitéVersionTest"
+									class="btnDMM"
+									@click="basculerVersionTest"
+								>
+									<a class="focus padding">
+										<label>
+											<span>{{$t("menu.versionTest")}}</span>
+											<input
+												v-model="versionTest"
+												type="checkbox"
+											>
+										</label>
+									</a>
+								</li>
+							</ul>
 						</li>
-						<li v-if="indicateursDeFonctionnalitéVersionTest"
-							class="btnDMM"
-						>
-							<a class="focus padding">
-								<label>
-									<span>{{$t("menu.versionTest")}}</span>
-									<input
-										v-model="versionTest"
-										type="checkbox"
-										@click="basculerVersionTest"
-									>
-								</label>
-							</a>
-						</li>
+						<li class="dropdown-divider"></li>
 						<li class="btnDMM">
 							<a>
 								<button
@@ -149,7 +168,6 @@ export default {
 		return {
 			cb_auth: null,
 			cb_auth_params: null,
-			thèmeSombre: localStorage.getItem("estThèmeSombre") === "true",
 		}; },
 	computed: {
 		page_login(){
@@ -164,9 +182,6 @@ export default {
 		erreurs() {
 			return this.$store.state.erreurs;
 		},
-		setThèmeSombreBasculéAvecRaccourci() {
-			return this.$store.state.thèmeSombreBasculéAvecRaccourci;
-		},
 		indicateursDeFonctionnalitéVersionTest(){
 			return this.$store.state.indicateursDeFonctionnalité["version_test"];
 		},
@@ -178,13 +193,13 @@ export default {
 		},
 		enChargement() {
 			return this.$store.state.enChargement;
-		}
-	},
-	watch: {
-		thèmeSombre() {
-			localStorage.setItem("estThèmeSombre", this.thèmeSombre);
-			this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 		},
+		thèmeSombre() {
+			return this.$store.getters.thèmeSombre;
+		},
+		locale() {
+			return this.$store.getters.locale;
+		}
 	},
 	created() {
 		const username = sessionStorage.getItem("username") || localStorage.getItem("username");
@@ -193,7 +208,6 @@ export default {
 		}
 		this.$store.dispatch("récupérerConfigServeur", API_URL + "/config" );
 		this.traiterParamètresURL( window.location.search );
-		this.$store.dispatch("setThèmeSombre", this.thèmeSombre);
 	},
 	methods: {
 		traiterParamètresURL( paramètres ){
@@ -236,13 +250,16 @@ export default {
 			this.$store.dispatch("setToken", null);
 			this.allerVers("Home");
 		},
-		basculerThèmeSombreAvecRaccourci() {
-			this.thèmeSombre = localStorage.getItem("estThèmeSombre") === "false";
+		basculerThèmeSombre() {
+			this.$store.dispatch("basculerThèmeSombre");
 		},
 		basculerVersionTest() {
 			const version = this.$cookies.get("fe_version");
-			this.$cookies.set("fe_version", version == "dev" ? "" : "dev");
+			this.$cookies.set("fe_version", version != "dev" ? "dev" : "prod");
 			window.location.reload();
+		},
+		basculerLocale() {
+			this.$store.dispatch("basculerLocale");
 		},
 		allerVers( vue ){
 			this.$router.push({
@@ -254,4 +271,4 @@ export default {
 </script>
 
 <style src="./css/mainMenu.css"></style>
-<style src="./theme-sombre.css"></style>
+<style src="./css/theme-sombre.css"></style>

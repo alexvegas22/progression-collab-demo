@@ -9,7 +9,7 @@ export default {
 	inject: ["avancement"],
 	computed: {
 		langage() {
-			return this.$store.state.tentative ? this.$store.state.tentative.langage : null;
+			return this.$store.state.tentative?.langage;
 		},
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];

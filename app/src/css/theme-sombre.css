@@ -1,0 +1,62 @@
+/*CSS pour le thème sombre*/
+html,
+body {
+	height: 100%;
+	max-height: 100%;
+}
+
+.thème_sombre .contenu {
+	border-top: 0.1rem rgb(var(--bs-dark-rgb)) solid;
+}
+
+.thème_sombre,
+.thème_sombre .dropdown-menu {
+	background-color: #353535;
+	color: #e1e1e1;
+	border-color: #555555;
+}
+
+.thème_sombre input {
+	background-color: #353535;
+	color: #e1e1e1;
+}
+
+.thème_sombre textarea {
+	background-color: #353535;
+	color: #e1e1e1;
+}
+
+input[type="checkbox"]:checked + .bi {
+	fill: rgb(18, 169, 189);
+}
+
+input:focus {
+	outline: none !important;
+	border: none !important;
+}
+
+.thème_sombre .btn-primary {
+	background-color: #0dcaf0 !important;
+}
+
+.thème_sombre .splitpanes .splitpanes__pane {
+	background-color: #353535;
+	border-style: none;
+}
+
+.thème_sombre .splitpanes--vertical > .splitpanes__splitter {
+	min-width: 6px;
+	background-color: rgb(var(--bs-dark-rgb));
+	border-style: none;
+}
+
+.thème_sombre .splitpanes--horizontal > .splitpanes__splitter {
+	min-height: 6px;
+	background: rgb(var(--bs-dark-rgb));
+	border-style: none;
+}
+
+.thème_sombre .splitpanes .splitpanes__splitter::before,
+.thème_sombre .splitpanes .splitpanes__splitter::after {
+	background-color: #eee;
+}

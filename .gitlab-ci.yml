@@ -24,6 +24,7 @@ test_unitaires:
     - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslintrc.js src/**/*.{js,vue}
   except:
     - master
+    - dev
 
 # Stage version_check
 
@@ -50,14 +51,14 @@ const_image:
     alias: dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && target="production-stage" || target="build-stage"
-    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \]\] && mode="prod" || mode="dev"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
     - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
     - docker push $CI_REGISTRY/progression/progression_frontend:test
 
 # Stage deploy_image
 
-# Déploiement sur /staging
+# Déploiement sur /staging ou /dev
 deploy:
   stage: deploy_image
   needs: [const_image]

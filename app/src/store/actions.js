@@ -13,13 +13,12 @@ import {
 	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
-	postAuthKey
+	postAuthKey,
+	postUserApi
 } from "@/services/index.js";
 
-import i18n from "@/util/i18n";
-
 import tokenEstValide from "@/util/token.js";
-
+import {i18n, sélectionnerLocale} from "@/util/i18n";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
@@ -231,6 +230,11 @@ export default {
 
 				commit("setUsername", user.username);
 				commit("setUser", user);
+				if(!user.préférences.locale){
+					user.préférences.locale = sélectionnerLocale(null);
+				}
+				commit("setPréférences", user.préférences);
+
 				return user;
 			}
 			finally {
@@ -330,7 +334,7 @@ export default {
 		commit("setTentative", sélectionnerTentative(params.avancement, state.question, state.langageDéfaut));
 	},
 	
-	async créerCommentaire({ commit }, params) { // eslint-disable-line no-unused-vars
+	async créerCommentaire( params ) {
 		return valider(async () => {
 			const token = await this.dispatch("getToken");
 			return await postCommentaireApi(params, token);
@@ -486,9 +490,11 @@ export default {
 		return valider( async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, urlTentative: state.avancement.liens.tentatives}, token);
+				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, index: params.index, urlTentative: state.avancement.liens.tentatives}, token);
 
-				commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+				if( !state.envoiTentativeEnCours ) {
+					commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+				}
 			}
 			catch (e) {
 				if(e?.response?.status==400) {
@@ -603,8 +609,40 @@ export default {
 		commit("setThèmeSombre", val);
 	},
 
+	basculerThèmeSombre({ getters }) {
+		this.dispatch("setPréférences", {
+			apparence_thème: getters.thèmeSombre ? "clair" : "sombre",
+			éditeur_thème: getters.thèmeSombre ? "default" : "monokai"
+		});
+	},
+
+	basculerLocale({ commit, getters }){
+		const locale = getters.locale =="fr" ? sélectionnerLocale("en") : sélectionnerLocale("fr");
+		commit("setLocale", locale);
+		this.dispatch("setPréférences", {
+			locale: locale,
+		});
+	},
+
 	setModeAffichage({ commit }, val) {
 		commit("setModeAffichage", val);
+	},
+
+	setPréférences( {commit, state, getters}, params ) {
+
+		const préférences = {...getters.préférences, ...params };
+		commit("setPréférences", préférences);
+
+		return valider( async () => {
+			const token = await this.dispatch("getToken");
+			await postUserApi({url: state.user.liens.self, user: getters.user, préférences: préférences }, token);
+		} );
+	},
+
+	setDisposition( _ , val ) {
+		this.dispatch("setPréférences", {
+			disposition: val,
+		});
 	},
 
 	setChangerModeAffichageAvecRaccourci({ commit }, val) {
@@ -626,6 +664,15 @@ export default {
 	},
 	setParamsTest({ commit }, val) {
 		commit("setParamsTest", val);
+	},
+	setTest({ commit }, val) {
+		commit("setTest", val);
+	},
+	setRésultat({ commit }, val) {
+		commit("setRésultat", val);
+	},
+	setRésultats({ commit }, val) {
+		commit("setRésultats", val);
 	},
 	setTests({ commit }, val) {
 		commit("setTests", val);
