@@ -1,3 +1,7 @@
+.CodeMirror pre.CodeMirror-line {
+	font-family: monospace !important;
+}
+
 .btn-reset {
 	border-radius: 50%;
 }

@@ -13,16 +13,15 @@
 					@click="validerTentative"
 			>
 				{{$t('validation_tentative.soumettre')}}
-				<font-awesome-icon
+				<i
 					v-if="envoiEnCours"
 					style="color: gray; width: 1rem"
-					icon='fas fa-cog'
-					spin
+					class='fas fa-cog fa-spin'
 				/>
-				<font-awesome-icon
+				<i
 					v-else
 					style="color: white; width: 1rem"
-						   icon='fas fa-play'
+					class='fas fa-play'
 				/>
 			</div>
 		</div>

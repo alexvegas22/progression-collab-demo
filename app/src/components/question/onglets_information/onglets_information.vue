@@ -35,18 +35,15 @@
 								@select="select(index)"
 							>
 								<template #lancement>
-									<font-awesome-icon
+									<i
 										v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
-										class="btn-test-local disabled"
-										icon='fas fa-cog'
-										spin
+										class="btn-test-local disabled fas fa-cog fa-spin"
 										:title="$t('jeu_tests.exécuter')"
 										@click="validerTest(index)"
 									/>
-									<font-awesome-icon
+									<i
 										v-else
-										class="btn-test-local"
-										icon='fas fa-play'
+										class="btn-test-local fas fa-play"
 										:title="$t('jeu_tests.exécuter')"
 										@click="validerTest(index)"
 									/>

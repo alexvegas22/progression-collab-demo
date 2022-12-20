@@ -25,7 +25,6 @@ import * as components from "vuetify/components";
 import "splitpanes/dist/splitpanes.css";
 import VueCookies from "vue-cookies";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
