@@ -23,7 +23,7 @@ export const zones = {
 		
 		// S'il n'y a pas de +TODO ou s'il est après le premier -TODO,
 		// la première zone non-éditable commence là
-		if ( premierTodoMoins["index"] > 0 && (premierTodoPlus == null || premierTodoPlus["index"] > premierTodoMoins["index"] ) ) {
+		if ( premierTodoMoins != null && premierTodoMoins["index"] > 0 && (premierTodoPlus == null || premierTodoPlus["index"] > premierTodoMoins["index"] ) ) {
 			posDébut = premierTodoMoins["index"];
 			matchDébut = premierTodoMoins;
 		}
