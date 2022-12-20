@@ -46,6 +46,7 @@ const app = createApp(App)
 	.use(PerfectScrollbar)
 	.use(shortkey);
 
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("FenêtreInfo", FenêtreInfo);
 
 const vuetify = createVuetify( {components});
