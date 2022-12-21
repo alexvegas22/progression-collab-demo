@@ -178,51 +178,54 @@ export default {
 		},
 
 		onBeforeSelectionChange(cm, changeObj){
-			const ranges = changeObj.ranges
-			var n_ranges=[]
-			if(ranges.length==0) return;
-			for( var r in ranges){
-				var range = ranges[r]
-				const markers = cm.doc.findMarks( range.anchor, range.head )
+			if(changeObj.ranges.length==0) return;
+			const ranges = changeObj.ranges.filter( r => r.anchor!=r.head );
+			var n_ranges=[];
+			ranges.forEach( range => {
+				const markers = cm.doc.findMarks( range.anchor, range.head );
 				n_ranges.push(...this.rogner(range, markers ));
-			}
+			});
 
-			if(n_ranges.length>0) changeObj.update( n_ranges )
+			if(n_ranges.length>0)
+				changeObj.update( n_ranges );
+			else{
+				changeObj.update( [changeObj.ranges[0]] );
+			}
 		},
 
 		rogner( range, markers ){
-			var ranges = []
-			var début = range.anchor
-			var marques = []
-			var pile = []
+			var ranges = [];
+			var début = range.anchor;
+			var marques = [];
+			var pile = [];
 
 			markers.forEach( m => {
 				if (m.readonly || m.collapsed){
-					const marker = m.find()
-					marques.push( {...marker.from, type: "début"} )
-					marques.push( {...marker.to, type: "fin"} )
+					const marker = m.find();
+					marques.push( {...marker.from, type: "début"} );
+					marques.push( {...marker.to, type: "fin"} );
 				}
 			});
-			marques.sort( (a,b) => a.line-b.line || a.ch-b.ch || a.type > b.type )
+			marques.sort( (a,b) => a.line-b.line || a.ch-b.ch || a.type > b.type );
 			marques.forEach( marker => {
 				if(marker.type=="début"){
 					if(pile.length==0 && début!=null){
-						ranges.push( {anchor: début, head: marker } )
-						début=null
+						ranges.push( {anchor: début, head: marker } );
+						début=null;
 					}
-					pile.push( marker )
+					pile.push( marker );
 				}
 				else{
-					pile.pop()
+					pile.pop();
 					if(pile.length==0)
-						début = marker
+						début = marker;
 				}
 			});
 
 			if(début!=null)
-				ranges.push( {anchor: début, head: range.head } )
+				ranges.push( {anchor: début, head: range.head } );
 
-			return ranges
+			return ranges;
 		},
 
 		beforeWindowUnload() {
