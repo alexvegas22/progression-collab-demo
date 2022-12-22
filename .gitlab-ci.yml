@@ -63,7 +63,7 @@ const_lti:
     alias: dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode -t $CI_REGISTRY/progression/progression_frontend:lti_latest ltijs
+    - docker build -t $CI_REGISTRY/progression/progression_frontend:lti_latest ltijs
     - docker push $CI_REGISTRY/progression/progression_frontend:lti_latest
   only:
   - master
