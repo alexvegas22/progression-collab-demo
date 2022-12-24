@@ -23,7 +23,7 @@
 					>
 						<div
 							v-for="(test, index) in tests"
-								   :key="index"
+							:key="index"
 						>
 							<Test
 								:test="test"

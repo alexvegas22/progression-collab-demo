@@ -19,8 +19,8 @@ export default {
 		};
 	},
 	computed: {
-		authentificationEnCours: function(){
-			return this.$store.state.authentificationEnCours;
+		authentificationPermise: function(){
+			return !this.$store.state.token && !this.$store.state.authentificationEnCours;
 		},
 	},
 	methods: {

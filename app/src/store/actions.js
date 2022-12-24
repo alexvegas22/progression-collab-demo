@@ -216,6 +216,7 @@ export default {
 			}
 			finally {
 				commit("setEnChargement", false);
+				commit("updateAuthentificationEnCours", false);
 			}
 		}
 		);

@@ -16,6 +16,7 @@ export default createStore({
 		difficultésRéussies: [],
 		enChargement: false,
 		envoiTentativeEnCours: false,
+		authentificationEnCours:false,
 		erreurs: null,
 		erreur_callback: null,
 		indicateursDeFonctionnalité: [],
