@@ -556,7 +556,7 @@
 
 <script src="./home.js"></script>
 <!-- Core theme CSS (includes Bootstrap)-->
-<style src="./home.css"></style>
+<style scoped src="./home.css"></style>
 
 
 <!-- Google fonts-->

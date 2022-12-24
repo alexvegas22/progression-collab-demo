@@ -21,8 +21,8 @@ export default {
 		placeholder: function(){
 			return this.domaine ? "@"+this.domaine : "";
 		},
-		authentificationEnCours: function(){
-			return this.$store.state.authentificationEnCours;
+		authentificationPermise: function(){
+			return !this.$store.state.token && !this.$store.state.authentificationEnCours;
 		},
 	},
 	methods: {

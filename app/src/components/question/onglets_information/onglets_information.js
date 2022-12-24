@@ -32,7 +32,7 @@ export default {
 			testsInitiaux: [],
 		};
 	},
-	emits: ['validerTentative'],
+	emits: ["validerTentative"],
 	mounted() {
 		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 	},
