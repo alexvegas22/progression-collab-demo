@@ -5,143 +5,11 @@
 		</template>
 	</metainfo>
 	<div
-		v-shortkey="raccourcis.basculerThème"
 		:class="{thème_sombre: thèmeSombre}"
-		@shortkey="basculerThèmeSombre"
 	>
-		<nav class="navbar justify-content-between navbar-dark bg-dark">
-			<a
-				href="/"
-				class="navbar-brand text-light mr-auto"
-			>
-				<span class="text-info"> Prog</span>ression
-			</a>
-			<span class="text-username">{{username}}</span>
-			<Transition>
-				<div v-if="token" class="dropdown">
-					<a data-bs-toggle="dropdown">
-						<i
-							class="fa fa-bars barBtn"
-						/>
-					</a>
-					<ul
-						class="dropdown-menu"
-					>
-						<li
-							v-if="token"
-							class="btnDMM"
-							@click="allerVers('Accomplissements')"
-						>
-							<a class="focus padding">
-								<i class="fas fa-trophy icône"></i>
-								<label>
-									<span>{{ $t('menu.accomplissement') }}</span>
-								</label>
-							</a>
-						</li>
-						<li
-							class="btnDMM"
-						>
-							<a class="focus padding">
-								<i class="fas fa-sliders-h icône"></i>
-								<label class="dropdown">
-									<span>{{ $t('menu.préférences') }}</span>
-								</label>
-							</a>
-							<ul
-								class="dropdown-menu dropdown-submenu-p dropdown-submenu-left"
-							>
-								<li
-									class="btnDMM"
-									@click="basculerThèmeSombre"
-								>
-									<a class="focus padding">
-										<i class="fas fa-adjust icône"
-										></i>
-
-										<label>
-											<span v-if="this.thèmeSombre===true">{{$t("menu.thèmeClair")}}</span>
-											<span v-else>{{$t("menu.thèmeSombre")}}</span>
-										</label>
-									</a>
-								</li>
-								<li
-									class="btnDMM"
-									@click="basculerLocale"
-								>
-									<a class="focus padding">
-										<i class="fas fa-globe icône"
-										></i>
-										<label>
-											<span v-if="this.locale==='fr'">🇬🇧 {{$t("menu.english")}}</span>
-											<span v-else>🇫🇷 {{$t("menu.français")}}</span>
-										</label>
-									</a>
-								</li>
-								<li v-if="indicateursDeFonctionnalitéVersionTest"
-									class="btnDMM"
-									@click="basculerVersionTest"
-								>
-									<a class="focus padding">
-										<label>
-											<span>{{$t("menu.versionTest")}}</span>
-											<input
-												v-model="versionTest"
-												type="checkbox"
-											>
-										</label>
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown-divider"></li>
-						<li class="btnDMM">
-							<a>
-								<button
-									v-if="token"
-									class="btn focus"
-									@click="déconnexion"
-								><span class="fa fa-sign-out icône-déconnexion"></span>{{ $t('menu.déconnexion') }}</button>
-							</a>
-						</li>
-					</ul>
-
-				</div>
-				<div v-else>
-					<button
-						class="btn focus btn-connexion"
-						@click="connexion"
-					><span class="fa fa-sign-out icône-connexion"></span>{{ $t('menu.connexion') }}</button>
-				</div>
-			</Transition>
-		</nav>
+		<NavBar @connexion="connexion" @déconnexion="déconnexion" />
 		<div class="contenu">
-			<div
-				v-show="erreurs"
-				class="alert alert-danger"
-			>
-				<button
-					type="button"
-					class="close"
-					data-dismiss="alert"
-					aria-hidden="true"
-					@click="effacerErreurs()"
-				>
-					×
-				</button>
-				<div v-if="erreurs && erreurs.message">
-					{{ erreurs.message }}
-				</div>
-				<div v-if="erreurs && erreurs.détails">
-					{{ $t("erreur.réseau") }}
-					<details>
-						<summary>
-							détails
-						</summary>
-						{{ erreurs.détails }}
-					</details>
-				</div>
-			</div>
+			<BannièreErreur/>
 			<div v-if="enChargement" class=loader-parent>
 				<div class="loader">
 				</div>
@@ -153,7 +21,9 @@
 
 <script>
 import { useMeta } from "vue-meta";
-
+import BannièreErreur from "@/components/bannière/bannière_erreur.vue";
+import NavBar from "@/components/navbar/navbar.vue";
+ 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default {
@@ -164,42 +34,15 @@ export default {
 			htmlAttrs: { lang: "fr", amp: true }
 		});
 	},
+	components: {
+		BannièreErreur,
+		NavBar,
+	},
 	data() {
 		return {
 			cb_auth: null,
 			cb_auth_params: null,
-		}; },
-	computed: {
-		page_login(){
-			return this.$route.name=="LoginView";
-		},
-		token() {
-			return this.$store.state.token;
-		},
-		username() {
-			return this.$store.state.username;
-		},
-		erreurs() {
-			return this.$store.state.erreurs;
-		},
-		indicateursDeFonctionnalitéVersionTest(){
-			return this.$store.state.indicateursDeFonctionnalité["version_test"];
-		},
-		versionTest(){
-			return this.$cookies.get("fe_version")=="dev";
-		},
-		raccourcis(){
-			return this.$store.state.raccourcis;
-		},
-		enChargement() {
-			return this.$store.state.enChargement;
-		},
-		thèmeSombre() {
-			return this.$store.getters.thèmeSombre;
-		},
-		locale() {
-			return this.$store.getters.locale;
-		}
+		};
 	},
 	created() {
 		const username = sessionStorage.getItem("username") || localStorage.getItem("username");
@@ -208,6 +51,14 @@ export default {
 		}
 		this.$store.dispatch("récupérerConfigServeur", API_URL + "/config" );
 		this.traiterParamètresURL( window.location.search );
+	},
+	computed: {
+		enChargement() {
+			return this.$store.state.enChargement;
+		},
+		thèmeSombre() {
+			return this.$store.getters.thèmeSombre;
+		},
 	},
 	methods: {
 		traiterParamètresURL( paramètres ){
@@ -230,13 +81,12 @@ export default {
 				}
 			}
 		},
-		effacerErreurs(){
-			this.$store.dispatch("setErreurs", null);
-		},
 		connexion(){
+			console.log("connexion");
 			this.$router.push({name: "LoginView"});
 		},
 		déconnexion(){
+			console.log("déconnexion");
 			sessionStorage.removeItem("authKey_nom");
 			sessionStorage.removeItem("authKey_secret");
 			localStorage.removeItem("authKey_nom");
@@ -248,24 +98,8 @@ export default {
 			this.$store.dispatch("setUsername", null);
 			this.$store.dispatch("setUser", null);
 			this.$store.dispatch("setToken", null);
-			this.allerVers("Home");
+			this.$router.push( {name: "Home"} );
 		},
-		basculerThèmeSombre() {
-			this.$store.dispatch("basculerThèmeSombre");
-		},
-		basculerVersionTest() {
-			const version = this.$cookies.get("fe_version");
-			this.$cookies.set("fe_version", version != "dev" ? "dev" : "prod");
-			window.location.reload();
-		},
-		basculerLocale() {
-			this.$store.dispatch("basculerLocale");
-		},
-		allerVers( vue ){
-			this.$router.push({
-				name: vue,
-			});
-		}
 	}
 };
 </script>
