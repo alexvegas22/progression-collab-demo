@@ -1,6 +1,7 @@
 {
 	"erreur": {
 		"réseau": "Connection to server failed. Please retry or contact an administrator.",
+		"détails": "details",
 		"authentification": "Incorrect username or password.",
 		"inscription": "That username is already taken.",
 		"tentative_intraitable": "The attempt is invalid. The question may be invalid or may have changed since your draft was loaded. Try reloading the initial draft. If the problem persists, contact an administrator.",
@@ -16,7 +17,11 @@
 		"versionTest": "Experimental interface",
 		"préférences": "Preferences",
 		"english": "English",
-		"français": "Français"
+		"français": "Français",
+		"nouveau": "New",
+		"invite_url": "Enter the URL of an exercise",
+		"exercices": "Exercises",
+		"nouvelExercice" : "New exercise"
 	},
 
 	"accomplissements": {

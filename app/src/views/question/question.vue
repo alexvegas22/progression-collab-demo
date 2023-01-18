@@ -60,23 +60,23 @@
 									/>
 									<div
 										v-shortkey="raccourcis.basculerModeParDifférences"
-													@shortkey="changerModeAffichageAvecRaccourci"
+										@shortkey="changerModeAffichageAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.itérerOnglets"
-													@shortkey="changerOngletAvecRaccourci"
+										@shortkey="changerOngletAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.itérerTestHaut"
-													@shortkey="sélectionnerTestDuHautAvecRaccourci"
+										@shortkey="sélectionnerTestDuHautAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.itérerTestBas"
-													@shortkey="sélectionnerTestDuBasAvecRaccourci"
+										@shortkey="sélectionnerTestDuBasAvecRaccourci"
 									/>
 									<div
 										v-shortkey="raccourcis.lancerTestUnique"
-													@shortkey="lancerTestUniqueAvecRaccourci"
+										@shortkey="lancerTestUniqueAvecRaccourci"
 									/>
 								</div>
 							</template>

@@ -21,12 +21,13 @@ import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 import { UnleashClient } from "unleash-proxy-client";
 import shortkey from "vue3-shortkey";
 import { createVuetify } from "vuetify";
+import { aliases, mdi } from "vuetify/iconsets/mdi";
 import * as components from "vuetify/components";
 import "splitpanes/dist/splitpanes.css";
 import VueCookies from "vue-cookies";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-
+import "@mdi/font/css/materialdesignicons.css";
 library.add(fas);
 
 const app = createApp(App)
@@ -48,7 +49,12 @@ const app = createApp(App)
 
 app.component("FenêtreInfo", FenêtreInfo);
 
-const vuetify = createVuetify( {components});
+const vuetify = createVuetify( {components: components,
+	icons: {
+		defaultSet: "mdi",
+		aliases,
+		sets: {mdi},
+	}} );
 app.use(vuetify);
 
 VueChartkick.options = {

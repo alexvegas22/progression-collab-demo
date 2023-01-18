@@ -116,6 +116,9 @@ export default {
 			if (urlParams.has("uri")) {
 				this.$store.dispatch("setUri", urlParams.get("uri"));
 			}
+			else{
+				this.$router.push({name: "Home"});
+			}
 
 			if (urlParams.has("lang")) {
 				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));

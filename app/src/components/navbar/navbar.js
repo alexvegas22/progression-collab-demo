@@ -7,6 +7,44 @@ export default {
 	},
 	emits: ["connexion", "déconnexion" ],
 	computed: {
+		menus() {
+			return [
+				{
+					title: this.$t("menu.exercices"),
+					icon: "mdi-laptop",
+					sous_menus: [
+						{title: this.$t("menu.accomplissement"),
+						 icon: "mdi-trophy",
+						 value: "accomplissements",
+							action: () => this.allerVers("Accomplissements") },
+						{title: this.$t("menu.nouveau"),
+						 icon: "mdi-plus",
+						 value: "nouveau"},
+					]
+				},
+				{
+					title: this.$t("menu.préférences"),
+					icon: "mdi-tune",
+					sous_menus: [
+						{title: this.$t(this.locale=="fr" ? "menu.english":"menu.français"),
+						 icon: "mdi-translate",
+						 value: "langue",
+						 action: this.basculerLocale },
+						{title: this.$t(this.thèmeSombre ? "menu.thèmeClair":"menu.thèmeSombre"),
+						 icon: "mdi-theme-light-dark",
+						 value: "thème",
+						 action: this.basculerThèmeSombre}
+					]
+				},
+				{
+					title: this.$t("menu.déconnexion"),
+					icon: "mdi-logout",
+					value: "déconnexion",
+					action: this.déconnecter
+				}
+			];
+
+		},
 		token() {
 			return this.$store.state.token;
 		},
@@ -53,6 +91,8 @@ export default {
 				this.allerVers("Question");
 				this.nouvelUrl="";
 			}
+		déconnecter(){
+			this.$emit("déconnexion");
 		},
 		obtenirUri(entrée){
 			const entrée_trim = entrée.trim();

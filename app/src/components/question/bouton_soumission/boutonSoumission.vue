@@ -5,12 +5,12 @@
 		>
 			<div
 				id="btn_soumettre_tentative"
-					type="button"
-					class="btn btn-valider-play"
-					présentation_étape="1.2"
-					v-shortkey="raccourcis.soumettreTentative"
-					@shortkey="validerTentative"
-					@click="validerTentative"
+				type="button"
+				class="btn btn-valider-play"
+				présentation_étape="1.2"
+				v-shortkey="raccourcis.soumettreTentative"
+				@shortkey="validerTentative"
+				@click="validerTentative"
 			>
 				{{$t('validation_tentative.soumettre')}}
 				<i
@@ -25,24 +25,24 @@
 				/>
 			</div>
 		</div>
-				<Tippy v-show="erreurCallback"
-					   trigger='click'
-					   interactive
-					   :aria="true"
-					   :show-on-create="false"
-					   :arrow="true"
-					   placement="bottom"
-					   class=" btn-valider-avertissement"
-					   :title="$t('retroaction_tentative.erreurCallback')"
-				>
-					<span class="fas fa-exclamation-triangle" style="color: orange" />
-					<template #content>
-						<div class="message_erreur">
-							{{erreurCallback}}
-						</div>
-					</template>
-				</Tippy>
-		</div>
+		<Tippy v-show="erreurCallback"
+			trigger='click'
+			interactive
+			:aria="true"
+			:show-on-create="false"
+			:arrow="true"
+			placement="bottom"
+			class=" btn-valider-avertissement"
+			:title="$t('retroaction_tentative.erreurCallback')"
+		>
+			<span class="fas fa-exclamation-triangle" style="color: orange" />
+			<template #content>
+				<div class="message_erreur">
+					{{erreurCallback}}
+				</div>
+			</template>
+		</Tippy>
+	</div>
 </template>
 
 <script src="./boutonSoumission.js"></script>

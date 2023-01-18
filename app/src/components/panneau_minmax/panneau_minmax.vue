@@ -116,10 +116,10 @@ export default {
      background-color: inherit;
      position: absolute;
      left: 0px;
-     top: 56px;
-     height: calc(100% - 56px) !important;
-     width: 100%;
-     z-index: 999;
+     top: 64px;
+     height: 100%;
+     width: calc(100% - 56px);
+     z-index: 9;
  }
 
 </style>

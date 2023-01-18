@@ -4,19 +4,35 @@
 			{{ content ? `${content} | Progression` : `Progression` }}
 		</template>
 	</metainfo>
-	<div
-		:class="{thème_sombre: thèmeSombre}"
-	>
-		<NavBar @connexion="connexion" @déconnexion="déconnexion" />
-		<div class="contenu">
-			<BannièreErreur/>
-			<div v-if="enChargement" class=loader-parent>
-				<div class="loader">
-				</div>
-			</div>
-			<router-view />
-		</div>
-	</div>
+	<v-app :theme="thèmeSombre?'dark':'light'" :class="{thème_sombre: thèmeSombre}">
+		<v-card>
+			<v-layout>
+				<v-main>
+					<NavBar v-if="$store?.state?.token" @déconnexion="déconnexion" />
+					<v-app-bar>
+						<v-app-bar-title>
+							<span style="color:rgb(13,202,240)">Prog</span>ression
+						</v-app-bar-title>
+						<div v-if="!$store?.state?.token">
+							<button
+								class="btn focus btn-connexion"
+								@click="connexion"
+							><span class="fa fa-sign-out icône-connexion"></span>{{ $t('menu.connexion') }}</button>
+						</div>
+
+					</v-app-bar>
+					<v-container style="max-width: 100%" class="p-0 m-0">
+						<BannièreErreur/>
+						<div v-if="enChargement" class=loader-parent>
+							<div class="loader">
+							</div>
+						</div>
+						<router-view />
+					</v-container>
+				</v-main>
+			</v-layout>
+		</v-card>
+	</v-app>
 </template>
 
 <script>
@@ -103,6 +119,5 @@ export default {
 	}
 };
 </script>
-
 <style src="./css/mainMenu.css"></style>
 <style src="./css/theme-sombre.css"></style>

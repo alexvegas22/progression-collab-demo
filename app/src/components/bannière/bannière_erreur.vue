@@ -1,8 +1,8 @@
 <template>
 	<v-banner
-		icon="fas fa-exclamation-triangle"
+		icon="mdi-alert"
 		color="error"
-		style="position: absolute; z-index:999; border-radius: 15px; background: #FFFFFFE0"
+		style="position: absolute; z-index:999; border: 1px solid; border-radius: 15px;"
 		v-show="erreurs"
 	>
 		<v-banner-text>
