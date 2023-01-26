@@ -136,9 +136,9 @@ export default {
 			this.$store.dispatch("basculerThèmeSombre");
 		},
 		basculerVersion() {
-			//	const version = this.$cookies.get("fe_version");
-			//	this.$cookies.set("fe_version", version != "dev" ? "dev" : "prod");
-			//	window.location.reload();
+			const version = this.$cookies.get("fe_version");
+			this.$cookies.set("fe_version", version != "dev" ? "dev" : "prod");
+			window.location.reload();
 		},
 		basculerLocale() {
 			this.$store.dispatch("basculerLocale");
