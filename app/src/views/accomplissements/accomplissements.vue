@@ -1,6 +1,6 @@
 <template>
-	<h1><span class="fas fa-trophy trophée"></span>  {{ $t("accomplissements.titrePage") }} {{ username }}<span class="fas fa-trophy trophée"></span></h1>
-	<v-container>
+	<div>
+		<h1><v-icon icon="mdi-trophy"/>{{ $t("accomplissements.titrePage") }} {{ username }}<v-icon icon="mdi-trophy"/> </h1>
 		<v-row>
 			<v-col cols="8">
 				<tableauExercices class="accomplissementItem"/>
@@ -10,7 +10,7 @@
 				<graphiqueStatistiquesParDifficulté  class="accomplissementItem" />
 			</v-col>
 		</v-row>
-	</v-container>
+	</div>
 </template>
 
 <script src="./accomplissements.js"></script>

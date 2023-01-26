@@ -2,7 +2,7 @@
 	<v-banner
 		icon="mdi-alert"
 		color="error"
-		style="position: absolute; z-index:999; border: 1px solid; border-radius: 15px;"
+		style="position: absolute; top: 0px; margin: 10px; z-index:9999; border: 1px solid; border-radius: 15px;"
 		v-show="erreurs"
 	>
 		<v-banner-text>

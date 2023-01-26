@@ -14,7 +14,7 @@ export default createStore({
 		configServeur: null,
 		démo: false,
 		difficultésRéussies: [],
-		enChargement: false,
+		enChargement: 0,
 		envoiTentativeEnCours: false,
 		authentificationEnCours:false,
 		erreurs: null,

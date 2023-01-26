@@ -1,3 +1,4 @@
+
 {
 	"erreur": {
 		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
@@ -15,6 +16,7 @@
 		"thèmeSombre": "Thème sombre",
 		"thèmeClair": "Thème clair",
 		"versionTest": "Interface expérimentale",
+		"versionStandard": "Interface standard",
 		"préférences": "Préférences",
 		"english": "English",
 		"français": "Français",

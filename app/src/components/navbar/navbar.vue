@@ -1,18 +1,10 @@
 <template>
 	<v-navigation-drawer
-		permanent
 		expand-on-hover
 		location="right"
-		rail
+		:rail="drawer"
+		:permanent="drawer"
 	>
-		<template v-slot:prepend>
-			<v-list-item
-				lines="one"
-				prepend-icon="mdi-account-circle"
-				:title="username">
-			</v-list-item>
-		</template>
-		<v-divider></v-divider>
 		<v-list
 			density="compact"
 			nav
@@ -31,12 +23,15 @@
 
 					<v-list-item
 						v-for="item, i in menu.sous_menus"
+						:style="item.activé!==false ? '' : 'display:none'"
 						:key="i"
 						:title="item.title"
 						:prepend-icon="item.icon"
 						:value="item.value"
 						v-on:click="item.action"
-					/>
+					>
+					</v-list-item>
+
 				</v-list-group>
 				<v-list-item v-else
 					:title="menu.title"

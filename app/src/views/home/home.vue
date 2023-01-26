@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<v-sheet>
 		<!-- Navigation-->
 		<!-- 
 	     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -550,7 +550,7 @@
 				</div>
 			</div>
 		</footer>
-	</div>
+	</v-sheet>
 </template>
 <!-- Core theme JS-->
 

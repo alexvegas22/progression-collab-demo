@@ -5,33 +5,47 @@
 		</template>
 	</metainfo>
 	<v-app :theme="thèmeSombre?'dark':'light'" :class="{thème_sombre: thèmeSombre}">
-		<v-card>
-			<v-layout>
-				<v-main>
-					<NavBar v-if="$store?.state?.token" @déconnexion="déconnexion" />
-					<v-app-bar>
-						<v-app-bar-title>
-							<span style="color:rgb(13,202,240)">Prog</span>ression
-						</v-app-bar-title>
-						<div v-if="!$store?.state?.token">
-							<button
-								class="btn focus btn-connexion"
-								@click="connexion"
-							><span class="fa fa-sign-out icône-connexion"></span>{{ $t('menu.connexion') }}</button>
-						</div>
+		<v-main>
+			<v-app-bar
+				border="1"
+				flat>
+				<v-app-bar-title>
+					<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
+				</v-app-bar-title>
+				<div  v-if="$store.state.token">
+					<v-avatar
+						icon="mdi-account"
+					/>
+					<v-app-bar-nav-icon @click.stop="drawer = !drawer">
+						<div class="d-xxl-none"> <v-icon icon="mdi-dots-vertical"/></div>
+						<div class="d-none d-xxl-flex"  > <v-icon :icon="drawer ? 'mdi-chevron-double-left' : 'mdi-chevron-double-right'"/></div>
+					</v-app-bar-nav-icon>
+				</div>
 
-					</v-app-bar>
-					<v-container style="max-width: 100%" class="p-0 m-0">
-						<BannièreErreur/>
-						<div v-if="enChargement" class=loader-parent>
-							<div class="loader">
-							</div>
-						</div>
-						<router-view />
-					</v-container>
-				</v-main>
-			</v-layout>
-		</v-card>
+				<div v-else>
+					<button
+						class="btn focus btn-connexion"
+						@click="connexion"
+					><span class="fa fa-sign-out icône-connexion"></span>{{ $t('menu.connexion') }}</button>
+				</div>
+
+			</v-app-bar>
+
+			<BannièreErreur style="width: 75vw" />
+			<NavBar :drawer="drawer" v-if="$store?.state?.token"
+				@accomplissements="allerVersAccomplissements"
+				@basculerThèmeSombre="basculerThèmeSombre"
+				@basculerLocale="basculerLocale"
+				@basculerVersion="basculerVersion"
+				@déconnexion="déconnexion" />
+
+			<div v-show="enChargement" class="loader-parent">
+				<div class="loader">
+				</div>
+			</div>
+
+			<router-view v-show="!enChargement" />
+		</v-main>
 	</v-app>
 </template>
 
@@ -43,8 +57,8 @@ import NavBar from "@/components/navbar/navbar.vue";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default {
-	name: "App",
-	setup () {
+	 name: "App",
+	 setup () {
 		useMeta({
 			title: "Progression",
 			htmlAttrs: { lang: "fr", amp: true }
@@ -58,6 +72,7 @@ export default {
 		return {
 			cb_auth: null,
 			cb_auth_params: null,
+			drawer: false,
 		};
 	},
 	created() {
@@ -98,11 +113,12 @@ export default {
 			}
 		},
 		connexion(){
-			console.log("connexion");
 			this.$router.push({name: "LoginView"});
 		},
+		allerVersAccomplissements(){
+			this.allerVers("Accomplissements");
+		},
 		déconnexion(){
-			console.log("déconnexion");
 			sessionStorage.removeItem("authKey_nom");
 			sessionStorage.removeItem("authKey_secret");
 			localStorage.removeItem("authKey_nom");
@@ -110,12 +126,45 @@ export default {
 			sessionStorage.removeItem("token");
 			localStorage.removeItem("username");
 			sessionStorage.removeItem("username");
-			
+
 			this.$store.dispatch("setUsername", null);
 			this.$store.dispatch("setUser", null);
 			this.$store.dispatch("setToken", null);
 			this.$router.push( {name: "Home"} );
 		},
+		basculerThèmeSombre() {
+			this.$store.dispatch("basculerThèmeSombre");
+		},
+		basculerVersion() {
+			//	const version = this.$cookies.get("fe_version");
+			//	this.$cookies.set("fe_version", version != "dev" ? "dev" : "prod");
+			//	window.location.reload();
+		},
+		basculerLocale() {
+			this.$store.dispatch("basculerLocale");
+		},
+		allerVers( vue ){
+			this.$router.push({
+				name: vue,
+			});
+		},
+		obtenirUri(entrée){
+			const entrée_trim = entrée.trim();
+			const uri_matchs = entrée_trim.match( /uri=(.*?)(?:&|$)/ );
+			const uri = (uri_matchs == null || uri_matchs.length < 2) ? entrée_trim : uri_matchs[1];
+
+			var entrée_décodée;
+			try {
+				entrée_décodée = atob( uri );
+			}
+			catch( e ){
+				// Il ne s'agit pas d'une chaîne en b64. On l'essaye telle quelle
+				entrée_décodée=entrée;
+			}
+
+			const url_matchs = entrée_décodée.match( /http.*$/ );
+			return url_matchs && btoa(url_matchs[0]).replace(/=/g,"");
+		}
 	}
 };
 </script>

@@ -275,7 +275,7 @@ export default {
 	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
-
+				commit("setEnChargement", true);
 				try {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
@@ -296,6 +296,7 @@ export default {
 	async récupérerTousAvancements({ commit }, params) {
 		return valider(
 			async () => {
+				commit("setEnChargement", true);
 				try {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
@@ -314,7 +315,6 @@ export default {
 		return valider(async () => {
 			commit("setEnChargement", true);
 			try {
-
 				const token = await this.dispatch("getToken");
 				const avancement = await postAvancementApi(params, token);
 				if(! (params.question_uri in state.user.avancements)){

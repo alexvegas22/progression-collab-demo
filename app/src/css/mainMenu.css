@@ -1,6 +1,10 @@
+:root{
+	/* corrige un problème de couleur dans le menu */
+	--v-theme-overlay-multiplier: 1;
+}
+
 .contenu {
 	height: calc(100vh - 56px);
-	border-top: 0.3rem rgb(var(--bs-light-rgb)) solid;
 }
 
 .barBtn {
@@ -104,14 +108,13 @@
 }
 
 .loader-parent {
-	width: 100%;
-	height: 100%;
-	position: absolute;
+	height: 100vh;
 	background: black;
 	opacity: 60%;
 	align-items: center;
 	display: flex;
 	justify-content: center;
+	z-index: 9999;
 }
 
 .loader {

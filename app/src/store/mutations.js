@@ -116,7 +116,7 @@ export const mutations = {
 		state.indicateursDeFonctionnalité = val;
 	},
 	setEnChargement(state, val){
-		state.enChargement = val;
+		state.enChargement = Math.max(0, state.enChargement + (val ? 1 : -1));
 	},
 	setEntréeTest(state, val) {
 		state.question.tests[val.index].entrée = val.entrée;

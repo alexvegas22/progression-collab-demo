@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<v-container>
 		<h1>{{ $t("accomplissements.titreGraphParDifficulté") }} <span class="fa fa-pie-chart"></span></h1>
 		<div>
 			<pie-chart
@@ -10,7 +10,7 @@
 				:data="this.difficultésRéussies"
 			/>
 		</div>
-	</div>
+	</v-container>
 </template>
 
 <script src="./statistiquesParDifficulté.js"></script>
