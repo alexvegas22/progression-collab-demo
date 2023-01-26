@@ -1,9 +1,5 @@
 import { useMeta } from "vue-meta";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { ScrollSpy } from "bootstrap";
-
-library.add(faUserSecret);
 
 export default {
 	name: "Home",
