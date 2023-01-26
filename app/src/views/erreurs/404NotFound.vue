@@ -2,9 +2,7 @@
 	<div class="container">
 		<div class="err">
 			4
-		</div>
-		<i class="far fa-question-circle fa-spin" />
-		<div class="err2">
+		<v-icon icon="mdi-help-circle mdi-spin" size="10rem" />
 			4
 		</div>
 		<div class="msg">

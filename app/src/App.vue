@@ -26,7 +26,7 @@
 					<button
 						class="btn focus btn-connexion"
 						@click="connexion"
-					><span class="fa fa-sign-out icône-connexion"></span>{{ $t('menu.connexion') }}</button>
+					><v-icon icon="mdi-login" />{{ $t('menu.connexion') }}</button>
 				</div>
 
 			</v-app-bar>
