@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="err">
 			4
-		<v-icon icon="mdi-help-circle mdi-spin" size="10rem" />
+			<v-icon icon="mdi-help-circle mdi-spin" size="10rem" />
 			4
 		</div>
 		<div class="msg">

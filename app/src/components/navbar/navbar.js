@@ -8,7 +8,7 @@ export default {
 	props: {
 		drawer: Boolean,
 	},
-	emits: ["accomplissements", "basculerLocale", "basculerThèmeSombre", "basculerVersion", "déconnexion" ],
+	emits: ["accomplissements", "nouvelExercice", "basculerLocale", "basculerThèmeSombre", "basculerVersion", "déconnexion" ],
 	computed: {
 		menus() {
 			return [
@@ -16,13 +16,14 @@ export default {
 					title: this.$t("menu.exercices"),
 					icon: "mdi-laptop",
 					sous_menus: [
+						{title: this.$t("menu.nouveau"),
+						 icon: "mdi-plus",
+						 value: "nouveau",
+						 action: () => this.$emit("nouvelExercice") },
 						{title: this.$t("menu.accomplissement"),
 						 icon: "mdi-trophy",
 						 value: "accomplissements",
 						 action: () => this.$emit("accomplissements") },
-						{title: this.$t("menu.nouveau"),
-						 icon: "mdi-plus",
-						 value: "nouveau"},
 					]
 				},
 				{

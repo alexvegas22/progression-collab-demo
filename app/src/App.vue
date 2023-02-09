@@ -34,6 +34,7 @@
 			<BannièreErreur style="width: 75vw" />
 			<NavBar :drawer="drawer" v-if="$store?.state?.token"
 				@accomplissements="allerVersAccomplissements"
+				@nouvelExercice="nouvelExercice"
 				@basculerThèmeSombre="basculerThèmeSombre"
 				@basculerLocale="basculerLocale"
 				@basculerVersion="basculerVersion"
@@ -43,8 +44,9 @@
 				<div class="loader">
 				</div>
 			</div>
-
+			<DialogURL :ouvrir="dialogNouvelExercice" @ok="(url) => ouvrirNouvelExercice(url)" />
 			<router-view v-show="!enChargement" />
+
 		</v-main>
 	</v-app>
 </template>
@@ -53,6 +55,7 @@
 import { useMeta } from "vue-meta";
 import BannièreErreur from "@/components/bannière/bannière_erreur.vue";
 import NavBar from "@/components/navbar/navbar.vue";
+import DialogURL from "@/components/dialogurl/dialogurl.vue";
  
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -67,12 +70,14 @@ export default {
 	components: {
 		BannièreErreur,
 		NavBar,
+		DialogURL,
 	},
 	data() {
 		return {
 			cb_auth: null,
 			cb_auth_params: null,
 			drawer: false,
+			dialogNouvelExercice: false,
 		};
 	},
 	created() {
@@ -113,10 +118,13 @@ export default {
 			}
 		},
 		connexion(){
-			this.$router.push({name: "LoginView"});
+			this.allerVers("LoginView");
 		},
 		allerVersAccomplissements(){
 			this.allerVers("Accomplissements");
+		},
+		nouvelExercice() {
+			this.dialogNouvelExercice=!this.dialogNouvelExercice;
 		},
 		déconnexion(){
 			sessionStorage.removeItem("authKey_nom");
@@ -143,27 +151,17 @@ export default {
 		basculerLocale() {
 			this.$store.dispatch("basculerLocale");
 		},
-		allerVers( vue ){
+		allerVers( vue, query=null ){
 			this.$router.push({
 				name: vue,
+				query: query
 			});
 		},
-		obtenirUri(entrée){
-			const entrée_trim = entrée.trim();
-			const uri_matchs = entrée_trim.match( /uri=(.*?)(?:&|$)/ );
-			const uri = (uri_matchs == null || uri_matchs.length < 2) ? entrée_trim : uri_matchs[1];
-
-			var entrée_décodée;
-			try {
-				entrée_décodée = atob( uri );
+		ouvrirNouvelExercice(url) {
+			if(url) {
+				this.$store.dispatch("setUri", url);
+				this.allerVers("Question", {uri: url});
 			}
-			catch( e ){
-				// Il ne s'agit pas d'une chaîne en b64. On l'essaye telle quelle
-				entrée_décodée=entrée;
-			}
-
-			const url_matchs = entrée_décodée.match( /http.*$/ );
-			return url_matchs && btoa(url_matchs[0]).replace(/=/g,"");
 		}
 	}
 };

@@ -26,7 +26,6 @@
 						:style="item.activé!==false ? '' : 'display:none'"
 						:key="i"
 						:title="item.title"
-						:prepend-icon="item.icon"
 						:value="item.value"
 						v-on:click="item.action"
 					>

@@ -1,4 +1,3 @@
-
 {
 	"erreur": {
 		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
@@ -20,10 +19,18 @@
 		"préférences": "Préférences",
 		"english": "English",
 		"français": "Français",
-		"nouveau": "Nouveau",
-		"invite_url": "Entrez l'url d'un exercice",
-		"exercices": "Exercices",
-		"nouvelExercice" : "Nouvel exercice"
+		"nouveau": "Ouvrir...",
+		"exercices": "Exercices"
+	},
+
+	"dialogues": {
+		"nouvel_exercice": {
+			"titre": "Ouvrir un exercice",
+			"invite_url": "Entrez l'url d'un exercice",
+			"champ_url": "URL",
+			"bouton_ok": "OK",
+			"bouton_annuler": "Annuler"
+		}
 	},
 
 	"accomplissements": {

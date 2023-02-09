@@ -19,10 +19,18 @@
 		"préférences": "Preferences",
 		"english": "English",
 		"français": "Français",
-		"nouveau": "New",
-		"invite_url": "Enter the URL of an exercise",
-		"exercices": "Exercises",
-		"nouvelExercice" : "New exercise"
+		"nouveau": "Open...",
+		"exercices": "Exercises"
+	},
+
+	"dialogues": {
+		"nouvel_exercice": {
+			"titre": "Open an exercise",
+			"invite_url": "Enter the URL of an exercice",
+			"champ_url": "URL",
+			"bouton_ok": "OK",
+			"bouton_annuler": "Cancel"
+		}
 	},
 
 	"accomplissements": {
