@@ -13,13 +13,22 @@
 					<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
 				</v-app-bar-title>
 				<div  v-if="$store.state.token">
-					<v-avatar
-						icon="mdi-account"
-					/>
-					<v-app-bar-nav-icon @click.stop="drawer = !drawer">
-						<div class="d-xxl-none"> <v-icon icon="mdi-dots-vertical"/></div>
-						<div class="d-none d-xxl-flex"  > <v-icon :icon="drawer ? 'mdi-chevron-double-left' : 'mdi-chevron-double-right'"/></div>
-					</v-app-bar-nav-icon>
+
+					<v-row>
+						<v-col>
+							<v-card
+								width="max-content"
+								:text = "username" />
+						</v-col>
+						<v-col>
+
+							<v-app-bar-nav-icon @click.stop="drawer = !drawer">
+								<div class="d-xxl-none"> <v-icon icon="mdi-dots-vertical"/></div>
+								<div class="d-none d-xxl-flex"  > <v-icon :icon="drawer ? 'mdi-chevron-double-left' : 'mdi-chevron-double-right'"/></div>
+							</v-app-bar-nav-icon>
+
+						</v-col>
+					</v-row>
 				</div>
 
 				<div v-else>
@@ -89,6 +98,9 @@ export default {
 		this.traiterParamètresURL( window.location.search );
 	},
 	computed: {
+		username() {
+			return this.$store.state.username;
+		},
 		enChargement() {
 			return this.$store.state.enChargement;
 		},
