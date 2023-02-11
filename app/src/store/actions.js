@@ -17,7 +17,6 @@ import {
 	postUserApi
 } from "@/services/index.js";
 
-import tokenEstValide from "@/util/token.js";
 import {i18n, sélectionnerLocale} from "@/util/i18n";
 import jwt_decode from "jwt-decode";
 
@@ -157,9 +156,10 @@ export default {
 		commit("setErreurCallback", erreur);
 	},
 
-	async getToken({ commit, state }) {
-		if (tokenEstValide(state.token)) {
-			return state.token;
+	async getToken({ commit, state, getters }) {
+		const token = getters.token
+		if (token) {
+			return token;
 		} else {
 			commit("setToken", null);
 			return rafraîchirToken().then((token) => {
@@ -196,6 +196,8 @@ export default {
 
 				commit("setUsername", username);
 				commit("setToken", token);
+				const storage = persister ? localStorage : sessionStorage;
+				storage.setItem("username", username);
 
 				sessionStorage.setItem("token", token);
 
@@ -207,8 +209,6 @@ export default {
 
 				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
 
-				const storage = persister ? localStorage : sessionStorage;
-				storage.setItem("username", username);
 				storage.setItem("authKey_nom", authKey.nom);
 				storage.setItem("authKey_secret", authKey.clé.secret);
 
@@ -457,7 +457,7 @@ export default {
 						await callbackGrade(state.cb_succes, {
 							...state.cb_succes_params,
 							uri: state.uri,
-							token: state.token,
+							token: token,
 						});
 					}
 					catch(e){
