@@ -156,17 +156,14 @@ export default {
 		commit("setErreurCallback", erreur);
 	},
 
-	async getToken({ commit, state, getters }) {
-		const token = getters.token
-		if (token) {
-			return token;
-		} else {
+	async getToken({ commit, getters }) {
+		return getters.token || (() => {
 			commit("setToken", null);
 			return rafraîchirToken().then((token) => {
 				commit("setToken", token);
 				return token;
 			});
-		}
+		})();
 	},
 
 	async récupérerConfigServeur({ commit }, urlConfig) {
