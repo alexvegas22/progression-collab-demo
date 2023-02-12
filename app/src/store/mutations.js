@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 export const mutations = {
 	setErreurs(state, erreurs) {
 		state.erreurs = erreurs;
@@ -18,7 +20,17 @@ export const mutations = {
 	},
 
 	setToken(state, token) {
-		state.token = token;
+		if(token) {
+			const token_décodé = jwt_decode(token);
+			const ttl = token_décodé.expired - token_décodé.current;
+
+			// Calcule l'heure d'expiration du token en fonction de l'heure du client
+			// pour éviter qu'une disparité avec l'heure du serveur cause des problèmes de validation
+			state.token = { token: token, timestamp: Math.round(Date.now() / 1000) + ttl };
+		}
+		else {
+			state.token = { token: null, timestamp: null };
+		}
 	},
 	
 	setTokenRessources(state, tokenRessources) {
