@@ -18,6 +18,7 @@
 						<v-col>
 							<v-card
 								width="max-content"
+								flat
 								:text = "username" />
 						</v-col>
 						<v-col>
