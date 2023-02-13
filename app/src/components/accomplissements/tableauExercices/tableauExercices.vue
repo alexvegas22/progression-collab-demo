@@ -1,16 +1,17 @@
 <template>
 	<div v-if="avancements">
-		<div>
+		<v-container>
 			<div>
 				<v-text-field
 					id="barreRecherche"
 					v-model="filtreDeRecherche"
 					variant="outlined"
-					prepend-inner-icon="fa fa-search"
+					prepend-inner-icon="mdi-magnify"
 				></v-text-field>
 			</div>
 			<div>
 				<v-table
+					height="75vh"
 					fixed-header
 					fixed-footer
 					class="tableau bordureBas"
@@ -57,7 +58,7 @@
 					</tbody>
 				</v-table>
 			</div>
-		</div>
+		</v-container>
 	</div>
 </template>
 

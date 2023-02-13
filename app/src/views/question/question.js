@@ -102,6 +102,7 @@ export default {
 	mounted() {
 		this.$store.dispatch("setErreurs", null);
 		this.$store.dispatch("setErreurCallback", null);
+		if (this.uri && this.user) this.récupérerQuestion();
 		this.traiterParamètresURL(window.location.search);
 	},
 	provide() {
@@ -115,6 +116,9 @@ export default {
 
 			if (urlParams.has("uri")) {
 				this.$store.dispatch("setUri", urlParams.get("uri"));
+			}
+			else{
+				this.$router.push({name: "Home"});
 			}
 
 			if (urlParams.has("lang")) {

@@ -24,10 +24,7 @@ import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import "splitpanes/dist/splitpanes.css";
 import VueCookies from "vue-cookies";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-
-library.add(fas);
+import "@mdi/font/css/materialdesignicons.css";
 
 const app = createApp(App)
 	.use(router)
@@ -48,7 +45,7 @@ const app = createApp(App)
 
 app.component("FenêtreInfo", FenêtreInfo);
 
-const vuetify = createVuetify( {components});
+const vuetify = createVuetify( {components: components} );
 app.use(vuetify);
 
 VueChartkick.options = {

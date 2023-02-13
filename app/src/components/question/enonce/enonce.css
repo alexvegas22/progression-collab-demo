@@ -45,7 +45,7 @@
 	left: -0.5rem;
 	opacity: 88%;
 	height: 0px;
-	z-index: 0;
+	z-index: 2000;
 }
 
 h3 {
@@ -199,8 +199,8 @@ p.footer-auteur {
 .icone {
 	position: relative;
 	top: 0.2rem;
-	font-size: 0.75rem;
-	padding-right: 0.5rem;
+	font-size: 1rem;
+	padding: 0.5rem;
 	opacity: 50%;
 }
 

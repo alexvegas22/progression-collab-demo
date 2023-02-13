@@ -91,7 +91,7 @@
 					name="submit"
 					type="submit"
 					class="btn btn-primary"
-					:disabled="authentificationEnCours"
+					:disabled="authentificationPermise"
 					:value="$t('inscription.boutonInscription') "
 				>
 			</div>

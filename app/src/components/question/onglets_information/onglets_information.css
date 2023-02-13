@@ -72,21 +72,16 @@
 	transform: scale(1.3);
 }
 
-.spin-test-local {
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-	font-size: 0.9rem;
-}
-
 .boutonRafraichissement {
 	padding-right: 0.5rem;
-	font-size: 0.8rem;
+	font-size: 1.2rem;
 }
 
 .disabled {
 	color: gray;
+	font-size: 1.3rem;
 }
 .disabled:hover {
 	color: gray;
-	transform: scale(1.3);
+	transform: scale(1);
 }

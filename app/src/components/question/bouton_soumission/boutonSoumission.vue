@@ -13,15 +13,15 @@
 				@click="validerTentative"
 			>
 				{{$t('validation_tentative.soumettre')}}
-				<i
+				<v-icon
 					v-if="envoiEnCours"
 					style="color: gray; width: 1rem"
-					class='fas fa-cog fa-spin'
+					icon="mdi-cog mdi-spin"
 				/>
-				<i
+				<v-icon
 					v-else
 					style="color: white; width: 1rem"
-					class='fas fa-play'
+					icon="mdi-play"
 				/>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 			class=" btn-valider-avertissement"
 			:title="$t('retroaction_tentative.erreurCallback')"
 		>
-			<span class="fas fa-exclamation-triangle" style="color: orange" />
+			<v-icon icon="mdi-alert" style="color:orange" />
 			<template #content>
 				<div class="message_erreur">
 					{{erreurCallback}}

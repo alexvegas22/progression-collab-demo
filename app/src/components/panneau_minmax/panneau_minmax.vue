@@ -6,9 +6,9 @@
 			style=" justify-content: right;
 					padding: 2px"
 		>
-			<i class="fa fa-window-minimize bouton" :class="{invisible: état_min}" @click="minimiser" />
-			<i class="fa fa-window-restore bouton" :class="{invisible: !état_min && !état_max}" @click="restorer" />
-			<i class="fa fa-window-maximize bouton" :class="{invisible: état_max}" @click="maximiser" />
+			<v-icon icon="mdi-window-minimize" size=16 :class="{invisible: état_min}" @click="minimiser" />
+			<v-icon icon="mdi-window-restore" size=16 :class="{invisible: !état_min && !état_max}" @click="restorer" />
+			<v-icon icon="mdi-window-maximize" size=16 :class="{invisible: état_max}" @click="maximiser" />
 		</div>
 		<div :class="{invisible: état_min}" style="flex-grow: 1; min-height: 0">
 			<slot/>
@@ -116,10 +116,10 @@ export default {
      background-color: inherit;
      position: absolute;
      left: 0px;
-     top: 56px;
-     height: calc(100% - 56px) !important;
-     width: 100%;
-     z-index: 999;
+     top: 64px;
+     height: 100%;
+     width: calc(100% - 56px);
+     z-index: 9;
  }
 
 </style>

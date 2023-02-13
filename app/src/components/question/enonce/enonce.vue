@@ -73,7 +73,7 @@
 					class="d-flex"
 					:title="$t('énoncé.auteur')"
 				>
-					<i class="icone fas fa-user-friends" />
+					<v-icon icon="mdi-account-multiple" class="icone" />
 					<p class="footer-auteur">
 						{{ question.auteur }}
 					</p>
@@ -83,7 +83,7 @@
 					class="d-flex"
 					:title="$t('énoncé.licence')"
 				>
-					<i class="icone fas fa-copyright" />
+					<v-icon icon="mdi-copyright" class="icone" />
 					<p class="footer-license">
 						{{ question.licence }}
 					</p>
