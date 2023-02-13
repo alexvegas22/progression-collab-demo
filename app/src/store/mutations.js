@@ -87,8 +87,8 @@ export const mutations = {
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
-	updateAuthentificationEnCours(state, bool) {
-		state.authentificationEnCours = bool;
+	updateAuthentificationPermise(state, bool) {
+		state.authentificationPermise = bool;
 	},
 	setSauvegarde(state, sauvegarde) {
 		state.sauvegardes[sauvegarde.langage] = sauvegarde;
@@ -128,7 +128,7 @@ export const mutations = {
 		state.indicateursDeFonctionnalité = val;
 	},
 	setEnChargement(state, val){
-		state.enChargement = val;
+		state.enChargement = Math.max(0, state.enChargement + (val ? 1 : -1));
 	},
 	setEntréeTest(state, val) {
 		state.question.tests[val.index].entrée = val.entrée;

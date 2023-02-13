@@ -182,7 +182,7 @@ export default {
 		const password = params.password;
 		const persister = params.persister;
 		const domaine = params.domaine;
-		commit("updateAuthentificationEnCours", true);
+		commit("updateAuthentificationPermise", true);
 
 		return valider(async () => {
 
@@ -213,7 +213,7 @@ export default {
 			}
 			finally {
 				commit("setEnChargement", false);
-				commit("updateAuthentificationEnCours", false);
+				commit("updateAuthentificationPermise", false);
 			}
 		}
 		);
@@ -272,7 +272,7 @@ export default {
 	async récupérerAvancement({ commit, state }, params) {
 		return valider(
 			async () => {
-
+				commit("setEnChargement", true);
 				try {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
@@ -293,6 +293,7 @@ export default {
 	async récupérerTousAvancements({ commit }, params) {
 		return valider(
 			async () => {
+				commit("setEnChargement", true);
 				try {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
@@ -311,7 +312,6 @@ export default {
 		return valider(async () => {
 			commit("setEnChargement", true);
 			try {
-
 				const token = await this.dispatch("getToken");
 				const avancement = await postAvancementApi(params, token);
 				if(! (params.question_uri in state.user.avancements)){

@@ -20,7 +20,7 @@ export default {
 	},
 	computed: {
 		authentificationPermise: function(){
-			return !this.$store.state.token && !this.$store.state.authentificationEnCours;
+			return !this.$store.getters.token && !this.$store.state.authentificationPermise;
 		},
 	},
 	methods: {

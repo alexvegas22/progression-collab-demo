@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<v-sheet>
 		<!-- Navigation-->
 		<!-- 
 	     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -60,10 +60,9 @@
 				<div class="row text-center">
 					<div class="col-md-4">
 						<a href="#étudiant">
-							<span class="fa-stack fa-4x">
-								<i class="fas fa-circle fa-stack-2x text-primary" />
-								<i class="fas fa-laptop fa-stack-1x fa-inverse" />
-							</span>
+							<div class="fond-icône icône-centré">
+								<v-icon class="icône-centré" icon="mdi-laptop" color="white" size="80" />
+							</div>
 							<h4 class="my-3">Apprendre la programmation</h4>
 						</a>
 						<p class="text-muted">
@@ -72,10 +71,9 @@
 					</div>
 					<div class="col-md-4">
 						<a href="#enseignant">
-							<span class="fa-stack fa-4x">
-								<i class="fas fa-circle fa-stack-2x text-primary" />
-								<i class="fas fa-chalkboard-teacher fa-stack-1x fa-inverse" />
-							</span>
+							<div class="fond-icône icône-centré">
+								<v-icon class="icône-centré" icon="mdi-human-male-board" color="white" size="80" />
+							</div>
 							<h4 class="my-3">Enseigner la programmation</h4>
 						</a>
 						<p class="text-muted">
@@ -84,10 +82,9 @@
 					</div>
 					<div class="col-md-4">
 						<a href="#collaborateur">
-							<span class="fa-stack fa-4x">
-								<i class="fas fa-circle fa-stack-2x text-primary" />
-								<i class="fas fa-code-branch fa-stack-1x fa-inverse" />
-							</span>
+							<div class="fond-icône icône-centré">
+								<v-icon class="icône-centré" icon="mdi-source-branch" color="white" size="80" />
+							</div>
 							<h4 class="my-3">Collaborateurs</h4>
 						</a>
 						<p class="text-muted">
@@ -550,7 +547,7 @@
 				</div>
 			</div>
 		</footer>
-	</div>
+	</v-sheet>
 </template>
 <!-- Core theme JS-->
 

@@ -11,9 +11,10 @@
 						<div style="flex-grow: 1">
 							{{ $t("jeu_tests.jeuTests") }}
 						</div>
-						<i
+						<v-icon
+							icon="mdi-refresh"
 							v-show="dirty"
-							class="boutonRafraichissement fa fa-refresh"
+							class="boutonRafraichissement"
 							:title="$t('jeu_tests.réinitialiser')"
 							@click="réinitialiserTests"
 						/>
@@ -34,15 +35,17 @@
 								@select="select(index)"
 							>
 								<template #lancement>
-									<i
+									<v-icon
 										v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
-										class="btn-test-local disabled fas fa-cog fa-spin"
+										icon="mdi-cog mdi-spin"
+										class="btn-test-local disabled"
 										:title="$t('jeu_tests.exécuter')"
 										@click="validerTest(index)"
 									/>
-									<i
+									<v-icon
 										v-else
-										class="btn-test-local fas fa-play"
+										icon="mdi-play"
+										class="btn-test-local"
 										:title="$t('jeu_tests.exécuter')"
 										@click="validerTest(index)"
 									/>

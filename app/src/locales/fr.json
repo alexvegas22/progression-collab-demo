@@ -1,6 +1,7 @@
 {
 	"erreur": {
 		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
+		"détails": "détails",
 		"authentification": "Nom d'utilisateur ou mot de passe incorrect.",
 		"inscription": "Ce nom d'utilisateur est déjà utilisé.",
 		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur.",
@@ -14,9 +15,22 @@
 		"thèmeSombre": "Thème sombre",
 		"thèmeClair": "Thème clair",
 		"versionTest": "Interface expérimentale",
+		"versionStandard": "Interface standard",
 		"préférences": "Préférences",
 		"english": "English",
-		"français": "Français"
+		"français": "Français",
+		"nouveau": "Ouvrir...",
+		"exercices": "Exercices"
+	},
+
+	"dialogues": {
+		"nouvel_exercice": {
+			"titre": "Ouvrir un exercice",
+			"invite_url": "Entrez l'url d'un exercice",
+			"champ_url": "URL",
+			"bouton_ok": "OK",
+			"bouton_annuler": "Annuler"
+		}
 	},
 
 	"accomplissements": {
