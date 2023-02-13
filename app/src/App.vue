@@ -12,7 +12,7 @@
 				<v-app-bar-title>
 					<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
 				</v-app-bar-title>
-				<div  v-if="$store.state.token">
+				<div  v-if="$store.getters.token">
 
 					<v-row>
 						<v-col>
@@ -42,7 +42,7 @@
 			</v-app-bar>
 
 			<BannièreErreur style="width: 75vw" />
-			<NavBar :drawer="drawer" v-if="$store?.state?.token"
+			<NavBar :drawer="drawer" v-if="$store?.getters.token"
 				@accomplissements="allerVersAccomplissements"
 				@nouvelExercice="nouvelExercice"
 				@basculerThèmeSombre="basculerThèmeSombre"
@@ -54,7 +54,9 @@
 				<div class="loader">
 				</div>
 			</div>
+
 			<DialogURL :ouvrir="dialogNouvelExercice" @ok="(url) => ouvrirNouvelExercice(url)" />
+
 			<router-view v-show="!enChargement" />
 
 		</v-main>

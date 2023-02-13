@@ -56,7 +56,7 @@ export default {
 
 		},
 		token() {
-			return this.$store.state.token;
+			return this.$store.getters.token;
 		},
 		indicateursDeFonctionnalitéVersionTest(){
 			return this.$store.state.indicateursDeFonctionnalité["version_test"];
