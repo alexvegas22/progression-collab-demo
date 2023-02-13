@@ -86,7 +86,7 @@ export default {
 		return {
 			cb_auth: null,
 			cb_auth_params: null,
-			drawer: false,
+			drawer: true,
 			dialogNouvelExercice: false,
 		};
 	},
