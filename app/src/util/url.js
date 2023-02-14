@@ -12,7 +12,7 @@ const obtenirUri = (entrée) => {
 
 	//Extrait le paramètre d'url «uri=» s'il existe
 	const uri_matchs = entrée_trim.match( /uri=(.*?)(?:&|$)/ );
-  	const uri = (uri_matchs == null || uri_matchs.length < 2) ? entrée_trim : uri_matchs[1];
+	const uri = (uri_matchs == null || uri_matchs.length < 2) ? entrée_trim : uri_matchs[1];
 
 	var entrée_décodée;
 	try {

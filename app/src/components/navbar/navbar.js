@@ -10,7 +10,12 @@ export default {
 	props: {
 		drawer: Boolean,
 	},
-	emits: ["accomplissements", "nouvelExercice", "basculerLocale", "basculerThèmeSombre", "basculerVersion", "déconnexion" ],
+	emits: ["accomplissements",
+		"nouvelExercice",
+		"basculerLocale",
+		"basculerThèmeSombre",
+		"basculerVersion",
+		"déconnexion" ],
 	methods: {
 		onUpdateRail(état){
 			if(!état){
