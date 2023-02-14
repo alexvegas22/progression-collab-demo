@@ -18,7 +18,7 @@ export default {
 		"déconnexion" ],
 	methods: {
 		onUpdateRail(état){
-			if(!état){
+			if(état){
 				this.exercices = new Boolean(false);
 				this.préférences = new Boolean(false);
 			}
