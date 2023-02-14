@@ -3,18 +3,29 @@ export default {
 	data() {
 		return {
 			nouvelUrl: "",
+			exercices: new Boolean(false),
+			préférences: new Boolean(false),
 		};
 	},
 	props: {
 		drawer: Boolean,
 	},
 	emits: ["accomplissements", "nouvelExercice", "basculerLocale", "basculerThèmeSombre", "basculerVersion", "déconnexion" ],
+	methods: {
+		onUpdateRail(état){
+			if(!état){
+				this.exercices = new Boolean(false);
+				this.préférences = new Boolean(false);
+			}
+		}
+	},
 	computed: {
 		menus() {
 			return [
 				{
 					title: this.$t("menu.exercices"),
 					icon: "mdi-laptop",
+					value: this.exercices,
 					sous_menus: [
 						{title: this.$t("menu.nouveau"),
 						 icon: "mdi-plus",
@@ -29,6 +40,7 @@ export default {
 				{
 					title: this.$t("menu.préférences"),
 					icon: "mdi-tune",
+					value: this.préférences,
 					sous_menus: [
 						{title: this.$t(this.locale=="fr" ? "menu.english":"menu.français"),
 						 subtitle: "test",
