@@ -73,7 +73,7 @@ lti.onConnect(async (idToken, req, res) => {
 		Object.values(membres).forEach( membre => {
 			membre["score"] = scores[membre.user_id];
 			if(membre["score"]){
-				membre["score"]["timestamp"] = scores[membre.user_id]["timestamp"];
+				membre["score"]["timestamp"] = new Date(scores[membre.user_id]["timestamp"]).toLocaleString("fr-CA");
 				membre["score"]["réussite"] = scores[membre.user_id]["resultScore"]==100?"Réussi":"Débuté";
 				membre["tkres"] = membre["score"]["comment"];
 			}

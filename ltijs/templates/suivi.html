@@ -10,13 +10,16 @@
 				onclick="window.location='{{{url}}}'">Aller à l'exercice</button>
 			<table id="tableResultats"
 				   data-toggle="table"
-				   data-search="true">
+				   data-search="true"
+				   class="table-striped"
+			>
 
 				<thead>
 					<th data-searchable="false" data-visible="false">Comment</th>
 					<th data-sortable="true" >Nom</th>
 					<th data-sortable="true" >Résultat</th>
 					<th data-sortable="true" >Dernière tentative</th>
+					<th data-searchable="false" data-sortable="false" ></th>
 				</thead>
 				<tbody>
 					{{#membres}}
@@ -37,7 +40,7 @@
 						<td>{{name}}</a></td>
 						<td></td><td></td>
 						{{/score}}
-						<td>
+						<td style="width: 2rem">
 							{{#tkres}}
 							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAnElEQVQoU2NkIBEw4lJvlHo2gZHx/3xk+bOzTBhxagApRNcE12CUduYCUKc+SBFIEGaqQep5AyaGvxuAxsrD5MCSxmln/iMrBInBFP9jYA5gYvhnAHIe3AZ0DciKL8w2vAA1dAFQQwKGDdgUI3scQ4Nx6pkNfxmYG2Amo4ciTj/AFKI7lzwNyMGK7oT/DAwXz80yMYCJ4404bKkAACSIWg2cunghAAAAAElFTkSuQmCC"
 								 onclick='window.open( "{{{url}}}&tkres={{{tkres}}}", "_blank" )'
@@ -55,14 +58,3 @@
 
 	</body>
 </html>
-
-<style>
- tr:hover { 
-	 background: lightblue;
- }
- td a { 
-	 display: block; 
-	 border: 1px solid black;
-	 padding: 16px; 
- }
-</style>
