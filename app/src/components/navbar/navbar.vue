@@ -4,6 +4,7 @@
 		location="right"
 		:rail="drawer"
 		:permanent="drawer"
+		v-on:update:rail="onUpdateRail"
 	>
 		<v-list
 			density="compact"
@@ -12,6 +13,7 @@
 			<div v-for="menu,i in menus" :key="i">
 				<v-list-group
 					v-if="menu.sous_menus"
+					:value="menu.value"
 				>
 					<template v-slot:activator="{props}">
 						<v-list-item
