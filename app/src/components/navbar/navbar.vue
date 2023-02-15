@@ -15,7 +15,6 @@
 					v-if="menu.sous_menus"
 					:value="menu.value"
 				>
-
 					<template v-slot:activator="{props}">
 						<v-list-item
 							:title="menu.title"
