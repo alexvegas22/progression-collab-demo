@@ -87,8 +87,8 @@ export const mutations = {
 	updateEnvoieTentativeEnCours(state, bool) {
 		state.envoiTentativeEnCours = bool;
 	},
-	updateAuthentificationPermise(state, bool) {
-		state.authentificationPermise = bool;
+	updateAuthentificationEnCours(state, bool) {
+		state.authentificationEnCours = bool;
 	},
 	setSauvegarde(state, sauvegarde) {
 		state.sauvegardes[sauvegarde.langage] = sauvegarde;

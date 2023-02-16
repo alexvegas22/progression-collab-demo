@@ -19,9 +19,6 @@
 						name="username"
 						autofocus
 					>
-					<div v-if="username_vide">
-						{{ $t('login.champObligatoire') }}
-					</div>
 					<div v-if="username_invalide">
 						{{ $t('login.usernameInvalide') }}
 					</div>
@@ -45,9 +42,6 @@
 							name="passwd"
 							type="password"
 						>
-						<div v-if="password_vide">
-							{{ $t('login.champObligatoire') }}
-						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -91,7 +85,7 @@
 					name="submit"
 					type="submit"
 					class="btn btn-primary"
-					:disabled="authentificationPermise"
+					:disabled="!authentificationPermise || this.username_vide || this.username_invalide || this.password_vide || this.confirmation_vide"
 					:value="$t('inscription.boutonInscription') "
 				>
 			</div>

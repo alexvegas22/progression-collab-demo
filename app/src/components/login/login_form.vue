@@ -21,9 +21,6 @@
 						autofocus
 						:placeholder="placeholder"
 					>
-					<div v-if="username_vide">
-						{{ $t('login.champObligatoire') }}
-					</div>
 					<div v-if="username_invalide">
 						{{ $t('login.usernameInvalide') }}
 					</div>
@@ -42,9 +39,6 @@
 					name="passwd"
 					type="password"
 				>
-				<div v-if="password_vide">
-					{{ $t('login.champObligatoire') }}
-				</div>
 				<div v-if="url_mdp_reinit">
 					<a :href="url_mdp_reinit">{{ $t('login.mdpOublié') }}</a>
 				</div>
@@ -70,6 +64,7 @@
 					name="submit"
 					type="submit"
 					class="btn btn-primary"
+					:disabled="this.username_vide || this.username_invalide || this.password_vide"
 					:value="$t('login.boutonConnexion') "
 				>
 			</div>
