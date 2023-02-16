@@ -81,13 +81,17 @@
 				</div>
 			</div>
 			<div class="col-sm-offset-3">
-				<input
-					name="submit"
+				<v-btn
 					type="submit"
-					class="btn btn-primary"
-					:disabled="!authentificationPermise || this.username_vide || this.username_invalide || this.password_vide || this.confirmation_vide"
-					:value="$t('inscription.boutonInscription') "
+					:disabled="!authentificationPermise ||
+						this.username_vide ||
+						this.username_invalid ||
+						this.password_vide ||
+						this.confirmation_vide"
 				>
+					{{$t('inscription.boutonInscription')}}
+				</v-btn>
+
 			</div>
 		</fieldset>
 	</form>
