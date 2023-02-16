@@ -33,10 +33,9 @@
 				</div>
 
 				<div v-else>
-					<button
-						class="btn focus btn-connexion"
+					<v-btn
 						@click="connexion"
-					><v-icon icon="mdi-login" />{{ $t('menu.connexion') }}</button>
+					><v-icon icon="mdi-login" />{{ $t('menu.connexion') }}</v-btn>
 				</div>
 
 			</v-app-bar>

@@ -182,7 +182,7 @@ export default {
 		const password = params.password;
 		const persister = params.persister;
 		const domaine = params.domaine;
-		commit("updateAuthentificationPermise", true);
+		commit("updateAuthentificationEnCours", true);
 
 		return valider(async () => {
 
@@ -213,7 +213,7 @@ export default {
 			}
 			finally {
 				commit("setEnChargement", false);
-				commit("updateAuthentificationPermise", false);
+				commit("updateAuthentificationEnCours", false);
 			}
 		}
 		);

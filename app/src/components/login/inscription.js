@@ -12,28 +12,33 @@ export default {
 			password: "",
 			confirmation: "",
 			persister: true,
-			username_vide: false,
-			username_invalide: false,
-			password_vide: false,
-			confirmation_vide: false,
 		};
 	},
 	computed: {
-		authentificationPermise: function(){
-			return !this.$store.getters.token && !this.$store.state.authentificationPermise;
+		authentificationPermise(){
+			return !this.$store.getters?.token && !this.$store.state.authentificationEnCours;
 		},
+		confirmation_vide() {
+			return this.password_req && this.confirmation != this.password;
+		},
+		password_vide() {
+			return this.password_req && this.password == "";
+		},
+		username_vide() {
+			return this.username.trim() == "";
+		},
+		username_invalide() {
+			return !this.username_vide && !this.username.trim().match(/^[-a-zA-Z0-9_]+$/);
+		}
 	},
 	methods: {
 		inscrire() {
-			this.username_vide = this.username == "";
-			this.username_invalide = !this.username_vide && !this.username.match(/^[-a-zA-Z0-9_]+$/);
-			this.password_vide = this.password_req && this.password == "";
-			this.confirmation_vide =this.password_req && this.confirmation != this.password;
-
-			if (this.username_vide || this.username_invalide || this.password_vide || this.confirmation_vide) return;
-
-			this.$emit("onLogin", { username: this.username, password: this.password, persister: this.persister, inscrire: true });
-			
+			if (!(this.username_vide ||
+				  this.username_invalide ||
+				  this.password_vide ||
+				  this.confirmation_vide)) {
+				this.$emit("onLogin", { username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
+			}
 		}
 	}
 };

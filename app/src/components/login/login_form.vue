@@ -21,9 +21,6 @@
 						autofocus
 						:placeholder="placeholder"
 					>
-					<div v-if="username_vide">
-						{{ $t('login.champObligatoire') }}
-					</div>
 					<div v-if="username_invalide">
 						{{ $t('login.usernameInvalide') }}
 					</div>
@@ -42,9 +39,6 @@
 					name="passwd"
 					type="password"
 				>
-				<div v-if="password_vide">
-					{{ $t('login.champObligatoire') }}
-				</div>
 				<div v-if="url_mdp_reinit">
 					<a :href="url_mdp_reinit">{{ $t('login.mdpOublié') }}</a>
 				</div>
@@ -66,12 +60,15 @@
 				</div>
 			</div>
 			<div class="col-sm-offset-3">
-				<input
-					name="submit"
+				<v-btn
 					type="submit"
-					class="btn btn-primary"
-					:value="$t('login.boutonConnexion') "
+					:disabled="!authentificationPermise ||
+						this.username_vide ||
+						this.username_invalide ||
+						this.password_vide"
 				>
+					{{$t('login.boutonConnexion')}}
+				</v-btn>
 			</div>
 		</fieldset>
 	</form>

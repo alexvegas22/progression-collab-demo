@@ -59,10 +59,6 @@
 	border-right: solid transparent;
 }
 
-.focus {
-	color: #e1e1e1 !important;
-}
-
 .text-info {
 	--bs-text-opacity: 1;
 	color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
@@ -93,14 +89,6 @@
 
 .icône-connexion {
 	padding-right: 0.4rem !important;
-}
-
-.btn-connexion {
-	margin-right: 0.5rem;
-}
-
-.btn-connexion:hover {
-	border: 1px solid #555555;
 }
 
 .input-thème {
