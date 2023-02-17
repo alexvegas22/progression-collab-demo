@@ -7,7 +7,7 @@
 			:show-on-create="true"
 			:arrow="true"
 			:show="conseilAffiché"
-			placement="bottom"
+			placement="bottom-end"
 			class="popup_conseil"
 			@show="basculerAffichageConseil"
 		>
