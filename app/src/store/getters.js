@@ -7,7 +7,7 @@ export default {
 	token: state => () => {
 		const temps_courant = Math.round(Date.now() / 1000);
 		console.log("Temps courant: " + temps_courant)
-		console.log("Token timestamp: " + state.token.timestamp)
+		console.log("Token timestamp: " + state.token?.timestamp)
 		// Retourne le token jusqu'à 10s avant son expiration
 		return state.token && temps_courant < state.token.timestamp - 10 ? state.token.token : null;
 	}

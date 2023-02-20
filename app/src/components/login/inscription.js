@@ -16,7 +16,7 @@ export default {
 	},
 	computed: {
 		authentificationPermise(){
-			return !this.$store.getters?.token && !this.$store.state.authentificationEnCours;
+			return !this.$store.getters.token() && !this.$store.state.authentificationEnCours;
 		},
 		confirmation_vide() {
 			return this.password_req && this.confirmation != this.password;
