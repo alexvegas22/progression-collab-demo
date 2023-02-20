@@ -21,7 +21,7 @@ test_unitaires:
     command: ["--tls=false"]
     alias: dind
   script:
-    - docker run $CI_REGISTRY/progression/progression_frontend:test npx eslint -c eslintrc.js src/**/*.{js,vue}
+    - docker run $CI_REGISTRY/$CI_PROJECT_PATH:test npx eslint -c eslintrc.js src/**/*.{js,vue}
   except:
     - master
     - dev
@@ -53,8 +53,8 @@ const_image:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
-    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/progression/progression_frontend:test .
-    - docker push $CI_REGISTRY/progression/progression_frontend:test
+    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:test .
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:test
 
 const_lti:
   stage: build_image
@@ -64,8 +64,8 @@ const_lti:
     alias: dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY/progression/progression_frontend:lti_latest ltijs
-    - docker push $CI_REGISTRY/progression/progression_frontend:lti_latest
+    - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
   only:
   - master
 
