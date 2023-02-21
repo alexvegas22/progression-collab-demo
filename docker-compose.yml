@@ -3,7 +3,6 @@ version: '3.5'
 services: 
   app:
     image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
-    build: ./
     container_name: progression_app_$CI_ENVIRONMENT_SLUG
     ports:
       - 127.0.0.1:$APP_PORT:8080
@@ -49,17 +48,15 @@ services:
       - "./ltijs:/app"
         
   tests_app: 
-    build:
-      context: ./
-      target: build-stage
+    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
+    container_name: progression_app_tests_$CI_ENVIRONMENT_SLUG
     command: npm run test:run
     networks:
       default:
 
   linter:
-    build:
-      context: ./
-      target: build-stage
+    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
+    container_name: progression_app_tests_$CI_ENVIRONMENT_SLUG
     command: npx eslint -c eslintrc.js src/**/*.{js,vue}        
 # command to build
 #   docker-compose build
