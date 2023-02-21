@@ -2,20 +2,14 @@ version: '3.5'
 
 services: 
   app:
+    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
     build: ./
+    container_name: progression_app_$CI_ENVIRONMENT_SLUG
     ports:
-      - 8080:8080
-    #Pour le développement  
-    volumes:
-      - "./app/src:/app/src"
-      - "./app/public:/app/public"
-    environment:
-      NODE_ENV: dev
+      - 127.0.0.1:$APP_PORT:8080
     env_file:
+      - $ENV_FILE
       - VERSION
-    networks:
-      default:
-        ipv4_address: 172.20.0.6
 
   mongo:
     image: mongo
@@ -23,9 +17,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    networks:
-      default:
-        ipv4_address: 172.20.0.4
 
   mongo-express:
     image: mongo-express
@@ -37,9 +28,6 @@ services:
       ME_CONFIG_SITE_BASEURL: /mongo/
     ports:
       - 8081:8081    
-    networks:
-      default:
-        ipv4_address: 172.20.0.10
 
   ltijs:
     build: ltijs/
@@ -59,16 +47,20 @@ services:
       - "rocinante.lamancha:172.20.0.1"
     volumes:
       - "./ltijs:/app"
+        
+  tests_app: 
+    build:
+      context: ./
+      target: build-stage
+    command: npm run test:run
     networks:
       default:
-        ipv4_address: 172.20.0.7
 
-
-networks:
-  default:
-    external:
-      name: progression_backend_progressionnet
-
+  linter:
+    build:
+      context: ./
+      target: build-stage
+    command: npx eslint -c eslintrc.js src/**/*.{js,vue}        
 # command to build
 #   docker-compose build
 

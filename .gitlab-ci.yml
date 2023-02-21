@@ -1,4 +1,7 @@
-image: docker:latest
+image: docker/compose:1.29.2
+
+services:
+  - docker:20.10.16-dind
 
 stages:
   - verifications 
@@ -8,20 +11,41 @@ stages:
 
 variables:
   PROGRESSION_DIR: $CI_PROJECT_DIR
-  DOCKER_HOST: "tcp://dind:2375"
-  GIT_SUBMODULE_STRATEGY: recursive
+  DOCKER_TLS_CERTDIR: ""
+  BRANCHE: $CI_COMMIT_REF_NAME
+  
+.preparer_contexte: &preparer_contexte
+    - mkdir ~/.ssh && cp $ID_RSA ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
+    - echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
+    - docker context create --docker host=ssh://$CD_USER@$CD_HOST:$CD_PORT --description="Production" prod
+    - docker context use prod
+    - DOCKER_HOST= 
 
+.login: &login
+    - apk add ca-certificates openssh
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    
 # Stage test
 
 # Tests unitaires
 test_unitaires:
   stage: test
-  services:
-  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
-    command: ["--tls=false"]
-    alias: dind
+  needs:
+    - job: const_image
+      optional: true
   script:
-    - docker run $CI_REGISTRY/$CI_PROJECT_PATH:test npx eslint -c eslintrc.js src/**/*.{js,vue}
+    - docker-compose run tests_app
+  except:
+    - master
+    
+# Linter    
+linter:
+  stage: test
+  needs:
+    - job: const_image
+      optional: true
+  script:
+    - docker-compose run linter
   except:
     - master
 
@@ -30,10 +54,6 @@ test_unitaires:
 # Vérification de l'incrément du numéro de version
 version_check:
   stage: verifications
-  services:
-  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
-    command: ["--tls=false"]
-    alias: dind  
   script:
     - docker run -v $PWD:/progression_frontend bitnami/git bash -c 'git config --global --add safe.directory /progression_frontend && cd /progression_frontend && dpkg --compare-versions "$(git show HEAD:VERSION|cut -d "=" -f 2)" "gt" "$(git show HEAD^:VERSION|cut -d "=" -f 2)" || ( echo ERREUR la version n’a pas avancé && exit 1 )'
   only:
@@ -44,23 +64,17 @@ version_check:
 # Construction de l'image
 const_image:
   stage: build_image
-  services:
-  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
-    command: ["--tls=false"]
-    alias: dind
+  before_script: *login
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
-    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:test .
-    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:test
+    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
 
 const_lti:
   stage: build_image
-  services:
-  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
-    command: ["--tls=false"]
-    alias: dind
+  before_script: *login
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
@@ -68,19 +82,79 @@ const_lti:
   only:
   - master
 
+
+# Stage tag
+
+tag_latest:
+  stage: tag_image
+  needs: [const_image]
+  before_script:
+    - *login
+  script:
+    - docker pull $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
+    - docker tag $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE $CI_REGISTRY/$CI_PROJECT_PATH:latest   
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:latest
+  only:
+    - master
+
+  
 # Stage deploy_image
 
 # Déploiement sur /staging ou /dev
-deploy:
+deploy_staging:
   stage: deploy_image
-  needs: [const_image]
-  services:
-  - name: git.dti.crosemont.quebec:5050/progression/dind_workaround:latest
-    command: ["--tls=false"]
-    alias: dind
+  needs: [tag_latest]
+  environment:
+    name: staging
+    url: https://progression.dti.crosemont.quebec/staging/
+    on_stop: stop_staging
+  before_script:
+    - *preparer_contexte
+    - *login
   script:
-    - chmod 400 /builds/progression/progression_frontend.tmp/ID_RSA
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $CD_USER@$CD_HOST -p $CD_PORT $CD_COMMAND test $( [ "$CI_COMMIT_REF_NAME" = "master" ] && echo "staging" || echo $CI_COMMIT_REF_NAME )
+    - TAG_DEPLOY=dev docker-compose pull app
+    - TAG_DEPLOY=dev docker-compose -p prod up --force-recreate --no-deps -d app
   only:
     - master
+    
+stop_staging:
+  stage: deploy_image
+  environment:
+    name: staging
+    action: stop
+  script:
+    - TAG_DEPLOY=staging docker-compose stop app
+  only:
     - dev
+  when:
+    manual
+
+# Déploiement sur /staging ou /dev
+deploy_dev:
+  stage: deploy_image
+  needs: [test_unitaires, linter]
+  environment:
+    name: dev
+    url: https://progression.dti.crosemont.quebec/dev/
+    on_stop: stop_dev
+  before_script:
+    - *preparer_contexte
+    - *login
+  script:
+    - TAG_DEPLOY=dev docker-compose pull app
+    - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate --no-deps -d app
+  only:
+    - dev
+
+stop_dev:
+  stage: deploy_image
+  environment:
+    name: dev    
+    action: stop
+  script:
+    - TAG_DEPLOY=dev docker-compose stop app
+  only:
+    - dev
+  when:
+    manual
+    
