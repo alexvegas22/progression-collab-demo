@@ -6,6 +6,7 @@ services:
 stages:
   - verifications 
   - build_image
+  - tag_image
   - test
   - deploy_image
 
