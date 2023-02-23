@@ -1,5 +1,8 @@
 image: docker:latest
 
+default:
+  tags: [docker]
+
 stages:
   - verifications 
   - build_image
