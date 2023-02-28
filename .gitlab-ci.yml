@@ -119,7 +119,7 @@ deploy_prod:
     - TAG_DEPLOY=master docker-compose pull app
     - TAG_DEPLOY=master docker-compose -p prod up --force-recreate -d app
   when:
-    - manual
+    manual
     
 stop_prod:
   stage: deploy_image
@@ -147,7 +147,7 @@ deploy_crosemont:
     - TAG_DEPLOY=master docker-compose pull app
     - TAG_DEPLOY=master docker-compose -p prod up --force-recreate -d app
   when:
-    - manual
+    manual
     
 stop_crosemont:
   stage: deploy_image
