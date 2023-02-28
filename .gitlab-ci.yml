@@ -3,6 +3,9 @@ image: docker/compose:1.29.2
 services:
   - docker:20.10.16-dind
 
+default:
+  tags: [docker]
+
 stages:
   - verifications 
   - build_image
@@ -48,6 +51,7 @@ linter:
     - docker-compose run linter
   except:
     - master
+    - dev
 
 # Stage version_check
 
