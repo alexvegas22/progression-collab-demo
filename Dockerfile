@@ -38,7 +38,6 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 COPY default.conf /etc/nginx/conf.d/
-COPY 25-envsubst-vue-app.sh /docker-entrypoint.d/
+COPY entrypoint/* /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/*
 COPY VERSION /docker-entrypoint.d/
-RUN chmod +x /docker-entrypoint.d/25-envsubst-vue-app.sh
-
