@@ -44,14 +44,14 @@ services:
       - mongo
         
   tests_app: 
-    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
+    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$BRANCHE
     container_name: progression_app_tests_$CI_ENVIRONMENT_SLUG
     command: npm run test:run
     networks:
       default:
 
   linter:
-    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
+    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$BRANCHE
     container_name: progression_app_tests_$CI_ENVIRONMENT_SLUG
     command: npx eslint -c eslintrc.js src/**/*.{js,vue}        
 # command to build

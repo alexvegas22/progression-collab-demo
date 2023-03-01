@@ -38,7 +38,7 @@ test_unitaires:
     - job: const_image
       optional: true
   script:
-    - docker-compose run tests_app
+    - TAG_DEPLOY=$BRANCHE docker-compose run tests_app
   except:
     - master
     
@@ -49,7 +49,7 @@ linter:
     - job: const_image
       optional: true
   script:
-    - docker-compose run linter
+    - TAG_DEPLOY=$BRANCHE docker-compose run linter
   except:
     - master
     - dev
