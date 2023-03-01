@@ -121,6 +121,8 @@ deploy_prod:
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
   when:
     manual
+  only:
+    - master
     
 stop_prod:
   stage: deploy_image
@@ -149,6 +151,8 @@ deploy_crosemont:
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
   when:
     manual
+  only:
+    - master
     
 stop_crosemont:
   stage: deploy_image
@@ -192,7 +196,6 @@ stop_staging:
 # Déploiement sur /dev
 deploy_dev:
   stage: deploy_image
-  needs: [test_unitaires, linter]
   environment:
     name: dev
     url: https://progression.dti.crosemont.quebec/dev/
