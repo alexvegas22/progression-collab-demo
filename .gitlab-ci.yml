@@ -3,6 +3,9 @@ image: docker/compose:1.29.2
 services:
   - docker:20.10.16-dind
 
+default:
+  tags: [docker]
+
 stages:
   - verifications 
   - build_image
@@ -16,6 +19,7 @@ variables:
   BRANCHE: $CI_COMMIT_REF_NAME
   
 .preparer_contexte: &preparer_contexte
+    - apk add ca-certificates openssh
     - mkdir ~/.ssh && cp $ID_RSA ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
     - echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
     - docker context create --docker host=ssh://$CD_USER@$CD_HOST:$CD_PORT --description="Production" prod
@@ -23,7 +27,6 @@ variables:
     - DOCKER_HOST= 
 
 .login: &login
-    - apk add ca-certificates openssh
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     
 # Stage test
@@ -38,6 +41,7 @@ test_unitaires:
     - TAG_DEPLOY=$BRANCHE docker-compose run tests_app
   except:
     - master
+    - dev
     
 # Linter    
 linter:
@@ -49,6 +53,7 @@ linter:
     - TAG_DEPLOY=$BRANCHE docker-compose run linter
   except:
     - master
+    - dev
 
 # Stage version_check
 
@@ -56,7 +61,7 @@ linter:
 version_check:
   stage: verifications
   script:
-    - docker run -v $PWD:/progression_frontend bitnami/git bash -c 'git config --global --add safe.directory /progression_frontend && cd /progression_frontend && dpkg --compare-versions "$(git show HEAD:VERSION|cut -d "=" -f 2)" "gt" "$(git show HEAD^:VERSION|cut -d "=" -f 2)" || ( echo ERREUR la version n’a pas avancé && exit 1 )'
+    - docker run -v $PWD:/progression_frontend bitnami/git bash -c 'git config --global --add safe.directory /progression_frontend && cd /progression_frontend && VERSION_PREV=$(git show HEAD^:VERSION|cut -d "=" -f 2); VERSION_ACT=$(git show HEAD:VERSION|cut -d "=" -f 2); echo Version: $VERSION_PREV  → $VERSION_ACT; dpkg --compare-versions "$VERSION_ACT" "gt" "$VERSION_PREV" || ( echo ERREUR la version n’a pas avancé && exit 1 )'
   only:
   - master
 
@@ -65,19 +70,19 @@ version_check:
 # Construction de l'image
 const_image:
   stage: build_image
-  before_script: *login
+  before_script:
+    - *login
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
-    - \[\[ "$CI_COMMIT_REF_NAME" = "master" \|\| "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
+    - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
     - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
 
 const_lti:
   stage: build_image
-  before_script: *login
+  before_script:
+    - *login
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
   only:
@@ -101,7 +106,70 @@ tag_latest:
   
 # Stage deploy_image
 
-# Déploiement sur /staging ou /dev
+# Déploiement sur /prod
+deploy_prod:
+  stage: deploy_image
+  needs: [tag_latest]
+  environment:
+    name: prod
+    url: https://progression.dti.crosemont.quebec/
+    on_stop: stop_prod
+  before_script:
+    - *preparer_contexte
+    - *login
+  script:
+    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
+  only:
+    - master
+  when:
+    manual
+  only:
+    - master
+    
+stop_prod:
+  stage: deploy_image
+  environment:
+    name: prod
+    action: stop
+  script:
+    - TAG_DEPLOY=latest docker-compose -p prod stop app ltijs
+  when:
+    manual
+
+# Déploiement sur progression.crosemont.qc.ca
+deploy_crosemont:
+  stage: deploy_image
+  needs: [tag_latest]
+  environment:
+    name: crosemont
+    url: https://progression.crosemont.qc.ca/
+    on_stop: stop_crosemont
+  before_script:
+    - export CD_HOST=progression.crosemont.qc.ca CD_PORT=22 CD_USER=updater
+    - *preparer_contexte
+    - *login
+  script:
+    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
+  only:
+    - master
+  when:
+    manual
+  only:
+    - master
+    
+stop_crosemont:
+  stage: deploy_image
+  environment:
+    name: crosemont
+    action: stop
+  script:
+    - TAG_DEPLOY=latest docker-compose -p prod stop app ltijs
+  when:
+    manual
+    
+# Déploiement sur /staging
 deploy_staging:
   stage: deploy_image
   needs: [tag_latest]
@@ -113,8 +181,8 @@ deploy_staging:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=dev docker-compose pull app
-    - TAG_DEPLOY=dev docker-compose -p prod up --force-recreate --no-deps -d app
+    - TAG_DEPLOY=latest docker-compose pull app ltijs
+    - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app
   only:
     - master
     
@@ -124,16 +192,15 @@ stop_staging:
     name: staging
     action: stop
   script:
-    - TAG_DEPLOY=staging docker-compose stop app
+    - TAG_DEPLOY=staging docker-compose -p staging stop app
   only:
-    - dev
+    - master
   when:
     manual
-
-# Déploiement sur /staging ou /dev
+    
+# Déploiement sur /dev
 deploy_dev:
   stage: deploy_image
-  needs: [test_unitaires, linter]
   environment:
     name: dev
     url: https://progression.dti.crosemont.quebec/dev/
@@ -143,7 +210,7 @@ deploy_dev:
     - *login
   script:
     - TAG_DEPLOY=dev docker-compose pull app
-    - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate --no-deps -d app
+    - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate -d app
   only:
     - dev
 
@@ -153,7 +220,7 @@ stop_dev:
     name: dev    
     action: stop
   script:
-    - TAG_DEPLOY=dev docker-compose stop app
+    - TAG_DEPLOY=dev docker-compose -p dev stop app
   only:
     - dev
   when:
