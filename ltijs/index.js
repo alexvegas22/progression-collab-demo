@@ -109,15 +109,14 @@ const setup = async () => {
 	await lti.deploy({ port: process.env.PORT });
 
 	try{
-		await access("./platformes.js");
-
-		const plateformes = import("./plateformes.js");
+		const plateformes = require("./plateformes.json");
 		plateformes.forEach( async (plateforme ) => {
 			await lti.registerPlatform( plateforme )
 		});
 	}
-	catch {
-		console.log("plateformes.js n'existe pas");
+	catch(e) {
+		console.log(e);
+		console.log("ERREUR: plateformes.json n'existe pas ou n'est pas en format JSON valide");
 	}
 };
 
