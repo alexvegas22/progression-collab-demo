@@ -172,8 +172,6 @@ deploy_staging:
     - *preparer_contexte
     - *login
   script:
-    - echo $ENV_FILE
-    - cat $ENV_FILE
     - TAG_DEPLOY=latest docker-compose pull app
     - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app
   only:
