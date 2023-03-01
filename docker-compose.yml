@@ -30,6 +30,7 @@ services:
 
   ltijs:
     image: $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
+    container_name: progression_ltijs_$CI_ENVIRONMENT_SLUG
     restart: always
     ports:
       - 3000:3000
