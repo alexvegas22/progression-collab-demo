@@ -41,6 +41,7 @@ test_unitaires:
     - TAG_DEPLOY=$BRANCHE docker-compose run tests_app
   except:
     - master
+    - dev
     
 # Linter    
 linter:
