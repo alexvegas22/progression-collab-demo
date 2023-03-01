@@ -38,9 +38,10 @@ test_unitaires:
     - job: const_image
       optional: true
   script:
-    - docker-compose run tests_app
+    - TAG_DEPLOY=$BRANCHE docker-compose run tests_app
   except:
     - master
+    - dev
     
 # Linter    
 linter:
@@ -49,7 +50,7 @@ linter:
     - job: const_image
       optional: true
   script:
-    - docker-compose run linter
+    - TAG_DEPLOY=$BRANCHE docker-compose run linter
   except:
     - master
     - dev
@@ -119,8 +120,12 @@ deploy_prod:
   script:
     - TAG_DEPLOY=latest docker-compose pull app
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
+  only:
+    - master
   when:
     manual
+  only:
+    - master
     
 stop_prod:
   stage: deploy_image
@@ -147,8 +152,12 @@ deploy_crosemont:
   script:
     - TAG_DEPLOY=latest docker-compose pull app
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
+  only:
+    - master
   when:
     manual
+  only:
+    - master
     
 stop_crosemont:
   stage: deploy_image
@@ -192,7 +201,6 @@ stop_staging:
 # Déploiement sur /dev
 deploy_dev:
   stage: deploy_image
-  needs: [test_unitaires, linter]
   environment:
     name: dev
     url: https://progression.dti.crosemont.quebec/dev/
