@@ -33,7 +33,7 @@ services:
     container_name: progression_ltijs_$CI_ENVIRONMENT_SLUG
     restart: always
     ports:
-      - 3000:3000
+      - 127.0.0.1:$LTI_PORT:3000
     environment:
       DB_HOST: mongo
       DB_NAME: ltijs
