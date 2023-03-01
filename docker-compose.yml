@@ -2,7 +2,7 @@ version: '3.5'
 
 services: 
   app:
-    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
+    image: $CI_REGISTRY/$CI_PROJECT_PATH:$TAG_DEPLOY
     container_name: progression_app_$CI_ENVIRONMENT_SLUG
     ports:
       - 127.0.0.1:$INSTANCE_PORT:8080
@@ -44,15 +44,11 @@ services:
       - mongo
         
   tests_app: 
-    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
-    env_file:
-      - $ENV_FILE
+    image: $CI_REGISTRY/$CI_PROJECT_PATH:$TAG_DEPLOY
     command: npm run test:run
     networks:
       default:
 
   linter:
-    image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
-    env_file:
-      - $ENV_FILE
+    image: $CI_REGISTRY/$CI_PROJECT_PATH:$TAG_DEPLOY
     command: npx eslint -c eslintrc.js src/**/*.{js,vue}        
