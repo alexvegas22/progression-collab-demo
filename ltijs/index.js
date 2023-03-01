@@ -108,14 +108,16 @@ const setup = async () => {
 
 	await lti.deploy({ port: process.env.PORT });
 
-	await lti.registerPlatform({
-		url: "https://moodle.progression.dti.crosemont.quebec",
-		name: "Moodle test",
-        clientId: "9ZhuwvH41k8bfoe",
-        authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
-        accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
-        authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php"},
-    });
+	try{
+		const plateformes = require("./plateformes.json");
+		plateformes.forEach( async (plateforme ) => {
+			await lti.registerPlatform( plateforme )
+		});
+	}
+	catch(e) {
+		console.log(e);
+		console.log("ERREUR: plateformes.json n'existe pas ou n'est pas en format JSON valide");
+	}
 };
 
 setup();
