@@ -5,7 +5,7 @@ services:
     image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
     container_name: progression_app_$CI_ENVIRONMENT_SLUG
     ports:
-      - 127.0.0.1:$APP_PORT:8080
+      - 127.0.0.1:$INSTANCE_PORT:8080
     env_file:
       - $ENV_FILE
       - VERSION
@@ -42,10 +42,6 @@ services:
       DEBUG: provider:*
     depends_on:
       - mongo
-    extra_hosts:
-      - "rocinante.lamancha:172.20.0.1"
-    volumes:
-      - "./ltijs:/app"
         
   tests_app: 
     image: git.dti.crosemont.quebec:5050/progression/progression_frontend:$TAG_DEPLOY
