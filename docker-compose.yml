@@ -34,19 +34,19 @@ services:
     ports:
       - 3000:3000
     environment:
-      DB_HOST: 172.20.0.4
+      DB_HOST: mongo
       DB_NAME: ltijs
       DB_USER: root
       DB_PASS: example
-      LTI_KEY: w#np)xp!BE!2hLsbk}pR
+      LTI_KEY: secret
       DEBUG: provider:*
     depends_on:
       - mongo
         
   tests_app: 
-    image: $CI_REGISTRY/$CI_PROJECT_PATH:$TAG_DEPLOY
+    image: $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
     command: npm run test:run
 
   linter:
-    image: $CI_REGISTRY/$CI_PROJECT_PATH:$TAG_DEPLOY
+    image: $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
     command: npx eslint -c eslintrc.js src/**/*.{js,vue}        

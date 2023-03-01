@@ -120,6 +120,8 @@ deploy_prod:
   script:
     - TAG_DEPLOY=latest docker-compose pull app
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
+  only:
+    - master
   when:
     manual
   only:
@@ -150,6 +152,8 @@ deploy_crosemont:
   script:
     - TAG_DEPLOY=latest docker-compose pull app
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
+  only:
+    - master
   when:
     manual
   only:
