@@ -117,8 +117,8 @@ deploy_prod:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=master docker-compose pull app
-    - TAG_DEPLOY=master docker-compose -p prod up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
   when:
     manual
     
@@ -128,7 +128,7 @@ stop_prod:
     name: prod
     action: stop
   script:
-    - TAG_DEPLOY=master docker-compose -p prod stop app
+    - TAG_DEPLOY=latest docker-compose -p prod stop app
   when:
     manual
 
@@ -145,8 +145,8 @@ deploy_crosemont:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=master docker-compose pull app
-    - TAG_DEPLOY=master docker-compose -p prod up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
   when:
     manual
     
@@ -156,7 +156,7 @@ stop_crosemont:
     name: crosemont
     action: stop
   script:
-    - TAG_DEPLOY=master docker-compose -p prod stop app
+    - TAG_DEPLOY=latest docker-compose -p prod stop app
   when:
     manual
     
@@ -172,8 +172,8 @@ deploy_staging:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=master docker-compose pull app
-    - TAG_DEPLOY=master docker-compose -p staging up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app
   only:
     - master
     
