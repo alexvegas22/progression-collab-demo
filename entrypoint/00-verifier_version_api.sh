@@ -5,6 +5,9 @@ VERFILE=$(dirname "${BASH_SOURCE[0]}")/VERSION
 VERSION_API=$(curl $VITE_API_URL|cut -d " " -f 2)
 VERSION_FE=$(cat $VERFILE|cut -d "=" -f 2)
 
+echo "Version API: $VERSION_API"
+echo "Version App: $VERSION_FE"
+
 VERSION_API_MAJ=$(echo $VERSION_API|cut -d "." -f 1)
 VERSION_FE_MAJ=$(echo $VERSION_FE|cut -d "." -f 1)
 
