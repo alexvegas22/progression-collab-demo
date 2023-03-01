@@ -119,7 +119,7 @@ deploy_prod:
     - *login
   script:
     - TAG_DEPLOY=latest docker-compose pull app
-    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
   only:
     - master
   when:
@@ -133,7 +133,7 @@ stop_prod:
     name: prod
     action: stop
   script:
-    - TAG_DEPLOY=latest docker-compose -p prod stop app
+    - TAG_DEPLOY=latest docker-compose -p prod stop app ltijs
   when:
     manual
 
@@ -151,7 +151,7 @@ deploy_crosemont:
     - *login
   script:
     - TAG_DEPLOY=latest docker-compose pull app
-    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
   only:
     - master
   when:
@@ -165,7 +165,7 @@ stop_crosemont:
     name: crosemont
     action: stop
   script:
-    - TAG_DEPLOY=latest docker-compose -p prod stop app
+    - TAG_DEPLOY=latest docker-compose -p prod stop app ltijs
   when:
     manual
     
@@ -181,7 +181,7 @@ deploy_staging:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose pull app ltijs
     - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app
   only:
     - master
