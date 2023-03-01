@@ -108,14 +108,17 @@ const setup = async () => {
 
 	await lti.deploy({ port: process.env.PORT });
 
-	await lti.registerPlatform({
-		url: "https://moodle.progression.dti.crosemont.quebec",
-		name: "Moodle test",
-        clientId: "9ZhuwvH41k8bfoe",
-        authenticationEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/auth.php",
-        accesstokenEndpoint: "https://moodle.progression.dti.crosemont.quebec/mod/lti/token.php",
-        authConfig: { method: "JWK_SET", key: "https://moodle.progression.dti.crosemont.quebec/mod/lti/certs.php"},
-    });
+	try{
+		await access("./platformes.js");
+
+		const plateformes = import("./plateformes.js");
+		plateformes.forEach( async (plateforme ) => {
+			await lti.registerPlatform( plateforme )
+		});
+	}
+	catch {
+		console.log("plateformes.js n'existe pas");
+	}
 };
 
 setup();
