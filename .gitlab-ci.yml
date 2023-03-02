@@ -195,7 +195,7 @@ stop_staging:
     manual
 
 # Déploiement sur /demo
-deploy_prod:
+deploy_demo:
   stage: deploy_image
   needs: [tag_latest]
   environment:
@@ -210,8 +210,6 @@ deploy_prod:
     - TAG_DEPLOY=latest docker-compose -p demo up --force-recreate -d app
   only:
     - master
-  when:
-    manual
 
 stop_demo:
   stage: deploy_image
