@@ -139,6 +139,9 @@ stop_prod:
 deploy_crosemont:
   stage: deploy_image
   needs: [tag_latest]
+  tags:
+    - docker
+    - crosemont
   environment:
     name: crosemont
     url: https://progression.crosemont.qc.ca/
