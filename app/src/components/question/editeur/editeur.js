@@ -23,7 +23,7 @@ export default {
 			sauvegardeAutomatique: null,
 			zonesTraitées: false,
 			cm: null,
-			xray: this.$store.getters?.préférences?.xray && this.$store.state.indicateursDeFonctionnalité["tout_voir"],
+			xray: this.$store.getters?.préférences?.xray && this.$store.getters.indicateursDeFonctionnalité("tout_voir"),
 		};
 	},
 	watch: {
@@ -88,7 +88,7 @@ export default {
 			}
 		},
 		rôleÉditeur() {
-			return this.$store.state.indicateursDeFonctionnalité["tout_voir"];
+			return this.$store.getters.indicateursDeFonctionnalité("tout_voir");
 		},
 		classeIndicateur() {
 			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";

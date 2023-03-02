@@ -66,7 +66,7 @@ export default {
 			return this.$store.getters.thèmeSombre;
 		},
 		indicateursDeFonctionnalitéCommentaires() {
-			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
+			return this.$store.getters.indicateursDeFonctionnalité("commentaires");
 		},
 		raccourcis() {
 			return this.$store.state.raccourcis;
