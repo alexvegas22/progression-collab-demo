@@ -76,7 +76,7 @@ export default {
 			return this.$store.getters.token();
 		},
 		indicateursDeFonctionnalitéVersionTest(){
-			return this.$store.state.indicateursDeFonctionnalité["version_test"];
+			return this.$store.getters.indicateursDeFonctionnalité("version_test");
 		},
 		versionTest(){
 			return this.$cookies.get("fe_version")=="dev";
