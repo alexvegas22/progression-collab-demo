@@ -124,8 +124,6 @@ deploy_prod:
     - master
   when:
     manual
-  only:
-    - master
     
 stop_prod:
   stage: deploy_image
@@ -156,8 +154,6 @@ deploy_crosemont:
     - master
   when:
     manual
-  only:
-    - master
     
 stop_crosemont:
   stage: deploy_image
@@ -193,6 +189,37 @@ stop_staging:
     action: stop
   script:
     - TAG_DEPLOY=staging docker-compose -p staging stop app
+  only:
+    - master
+  when:
+    manual
+
+# Déploiement sur /demo
+deploy_prod:
+  stage: deploy_image
+  needs: [tag_latest]
+  environment:
+    name: demo
+    url: https://progression.dti.crosemont.quebec/demo/
+    on_stop: stop_demo
+  before_script:
+    - *preparer_contexte
+    - *login
+  script:
+    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose -p demo up --force-recreate -d app
+  only:
+    - master
+  when:
+    manual
+
+stop_demo:
+  stage: deploy_image
+  environment:
+    name: demo
+    action: stop
+  script:
+    - TAG_DEPLOY=latest docker-compose -p demo stop app
   only:
     - master
   when:
