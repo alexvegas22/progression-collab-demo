@@ -12,6 +12,7 @@ services:
 
   mongo:
     image: mongo
+    container_name: progression_ltijs-mongo_$CI_ENVIRONMENT_SLUG
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -32,8 +33,6 @@ services:
     image: $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
     container_name: progression_ltijs_$CI_ENVIRONMENT_SLUG
     restart: always
-    ports:
-      - 127.0.0.1:$LTI_PORT:3000
     environment:
       DB_HOST: mongo
       DB_NAME: ltijs
