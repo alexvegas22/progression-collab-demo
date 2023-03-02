@@ -151,7 +151,7 @@ deploy_crosemont:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=latest docker-compose pull app
+    - TAG_DEPLOY=latest docker-compose pull app ltijs
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
   only:
     - master
