@@ -3,7 +3,7 @@
 		class="d-flex"
 		style="flex-flow: row"
 	>
-		<div class="dropdown">
+		<div class="barre-menu-langage">
 			<div
 				id="menu_historique"
 				présentation_étape="4.0"
