@@ -1,4 +1,6 @@
 FROM node:latest
+ARG TZ=America/Toronto
+ENV TZ=$TZ
 
 WORKDIR /app
 
