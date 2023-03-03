@@ -131,7 +131,7 @@ stop_prod:
     name: prod
     action: stop
   script:
-    - TAG_DEPLOY=latest docker-compose -p prod stop app ltijs
+    - docker-compose -p prod stop app ltijs
   when:
     manual
 
@@ -164,7 +164,7 @@ stop_crosemont:
     name: crosemont
     action: stop
   script:
-    - TAG_DEPLOY=latest docker-compose -p prod stop app ltijs
+    - docker-compose -p prod stop app ltijs
   when:
     manual
     
@@ -181,7 +181,7 @@ deploy_staging:
     - *login
   script:
     - TAG_DEPLOY=latest docker-compose pull app ltijs
-    - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app ltijs
   only:
     - master
     
@@ -191,7 +191,7 @@ stop_staging:
     name: staging
     action: stop
   script:
-    - TAG_DEPLOY=staging docker-compose -p staging stop app
+    - docker-compose -p staging stop app ltijs
   only:
     - master
   when:
@@ -220,7 +220,7 @@ stop_demo:
     name: demo
     action: stop
   script:
-    - TAG_DEPLOY=latest docker-compose -p demo stop app
+    - docker-compose -p demo stop app
   only:
     - master
   when:
@@ -248,7 +248,7 @@ stop_dev:
     name: dev    
     action: stop
   script:
-    - TAG_DEPLOY=dev docker-compose -p dev stop app
+    - docker-compose -p dev stop app
   only:
     - dev
   when:
