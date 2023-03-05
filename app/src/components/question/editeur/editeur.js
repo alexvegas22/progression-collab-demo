@@ -42,6 +42,9 @@ export default {
 		}
 	},
 	computed: {
+		raccourcis() {
+			return this.$store.getters.raccourcis;
+		},
 		cmOptions() {
 			return {
 				mode: this.mode,
@@ -90,8 +93,8 @@ export default {
 		rôleÉditeur() {
 			return this.$store.getters.indicateursDeFonctionnalité("tout_voir");
 		},
-		classeIndicateur() {
-			return this.indicateurSauvegardeEnCours ? "en-cours" : this.indicateurModifié ? "non-sauvegardé" : "sauvegardé";
+		icone_sauvegarde() {
+			return this.indicateurSauvegardeEnCours ? "mdi-pencil-outline" : this.indicateurModifié ? "mdi-pencil" : "";
 		},
 		tentative() {
 			let tentative = this.$store.state.tentative;
@@ -237,30 +240,29 @@ export default {
 			zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},
 
-		sauvegarder() {
+		async sauvegarder() {
 			if (this.indicateurModifié && !this.indicateurSauvegardeEnCours) {
 				this.indicateurSauvegardeEnCours = true;
-				this.indicateurModifié = false;
-				this.$store.dispatch("mettreAjourSauvegarde");
+				try{
+					await this.$store.dispatch("mettreAjourSauvegarde");
+					this.indicateurModifié = false;
+				}
+				catch(erreur) {
+					console.log("ERREUR de sauvegarde : " + erreur);
+				}
+				finally {
+					this.indicateurSauvegardeEnCours = false;
+					clearTimeout(this.sauvegardeAutomatique);
+					this.sauvegardeAutomatique = null;
+				}
 			}
 		},
 
 		texteModifié() {
 			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
-				this.sauvegardeAutomatique = setTimeout(async () => {
-					this.indicateurSauvegardeEnCours = true;
-					this.indicateurModifié = false;
-					await this.$store
-						.dispatch("mettreAjourSauvegarde")
-						.catch((erreur) => {
-							console.log("ERREUR de sauvegarde : " + erreur);
-							this.indicateurModifié = true;
-						})
-						.finally(() => {
-							this.indicateurSauvegardeEnCours = false;
-							this.sauvegardeAutomatique = null;
-						});
-				}, import.meta.env.VITE_DELAI_SAUVEGARDE);
+				this.sauvegardeAutomatique = setTimeout(
+					this.sauvegarder
+					, import.meta.env.VITE_DELAI_SAUVEGARDE);
 
 				this.indicateurModifié = true;
 			}

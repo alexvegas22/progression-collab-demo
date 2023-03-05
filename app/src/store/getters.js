@@ -4,6 +4,7 @@ export default {
 	locale: state => state.préférences?.locale,
 	thèmeSombre: state => state.préférences?.apparence_thème == "sombre",
 	erreurs: state => state.erreurs,
+	raccourcis: state => state.raccourcis,
 	token: state => () => {
 		const temps_courant = Math.round(Date.now() / 1000);
 		// Retourne le token jusqu'à 10s avant son expiration
