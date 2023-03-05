@@ -46,29 +46,40 @@ router.beforeEach( (to, from, next ) => {
 		return;
 	}
 
-	//Si la page ne requiert pas de connexion, continue
-	if (pages_sans_connexion.indexOf(to.name) != -1){
-		next();
+	const username = store.state.username || sessionStorage.getItem("username") || localStorage.getItem("username");
+	if(!username) {
+		if(pages_sans_connexion.includes(to.name)){
+			next();
+		}
+		else {
+			//redirige vers la page de Login
+			next( { name: "LoginView",
+				    query: to.query,
+				    params: { origine: to.fullPath }
+			});
+		}
 		return;
 	}
 
-	const username = store.state.username || sessionStorage.getItem("username") || localStorage.getItem("username");
-
 	//Charge l'utilisateur et contitnue
- 	const user = username && store.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username)
-
-	if(!user) {
+	store.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username).then( () => {
+		//N'envoie pas au login si l'utilisateur est déjà connecté
+		if( to.name=="LoginView" ) {
+			next( { name:"Home" } );
+		}
+		else {
+			next();
+		}
+	} ).catch( () => {
 		sessionStorage.removeItem("username");
 		localStorage.removeItem("username");
 
 		//redirige vers la page de Login
 		next( { name: "LoginView",
-				query: to.query,
-				params: { origine: to.fullPath }
+			    query: to.query,
+			    params: { origine: to.fullPath }
 		});
-		return;
-	}
-	next()
+	});
 });
 
 export default router;
