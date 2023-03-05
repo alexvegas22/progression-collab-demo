@@ -51,6 +51,7 @@ export default {
 			this.$store.dispatch("setCallbackSucces", null);
 			this.$store.dispatch("setCallbackSuccesParams", null);
 
+			this.$store.dispatch("setUri", uri);
 			this.$router.push({
 				name: "Question",
 				query: {

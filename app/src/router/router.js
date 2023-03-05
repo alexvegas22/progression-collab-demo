@@ -40,18 +40,6 @@ const router = createRouter({
 });
 
 router.beforeEach( (to, from, next ) => {
-	//Redirige vers Question si le paramètre uri a été fourni
-	if(to.name == "Home"){
-		var urlParams = new URLSearchParams(to.query);
-
-		if(urlParams.has("uri")){
-			next( { name: "Question",
-				query: to.query,
-				params: { origine: to.fullPath } 
-			});
-		}
-	}
-
 	//Si le user est déjà chargé, continue
 	if(store.state.user){
 		next();
@@ -59,43 +47,39 @@ router.beforeEach( (to, from, next ) => {
 	}
 
 	const username = store.state.username || sessionStorage.getItem("username") || localStorage.getItem("username");
-	//Si un username n'est pas disponible
-	if(!username){
-		//et qu'il est requis
-		if (pages_sans_connexion.indexOf(to.name) != -1){
+	if(!username) {
+		if(pages_sans_connexion.includes(to.name)){
 			next();
-			return;
 		}
-		else{
+		else {
 			//redirige vers la page de Login
 			next( { name: "LoginView",
-				query: to.query,
-				params: { origine: to.fullPath } 
+				    query: to.query,
+				    params: { origine: to.fullPath }
 			});
-			return;
 		}
+		return;
 	}
 
 	//Charge l'utilisateur et contitnue
-	store.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username)
-		.then( () => next() )
-		.catch( () => {
-			sessionStorage.removeItem("username");
-			localStorage.removeItem("username");
-			//En cas de problème, si l'utilisateur est requis
-			if (pages_sans_connexion.indexOf(to.name) != -1){
-				next();
-				return;
-			}
-			else {
-				//redirige vers la page de Login
-				next( { name: "LoginView",
-					query: to.query,
-					params: { origine: to.fullPath }
-				});
-				return;
-			}
+	store.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username).then( () => {
+		//N'envoie pas au login si l'utilisateur est déjà connecté
+		if( to.name=="LoginView" ) {
+			next( { name:"Home" } );
+		}
+		else {
+			next();
+		}
+	} ).catch( () => {
+		sessionStorage.removeItem("username");
+		localStorage.removeItem("username");
+
+		//redirige vers la page de Login
+		next( { name: "LoginView",
+			    query: to.query,
+			    params: { origine: to.fullPath }
 		});
+	});
 });
 
 export default router;
