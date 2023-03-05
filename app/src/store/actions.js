@@ -631,6 +631,10 @@ export default {
 		commit("setModeAffichage", val);
 	},
 
+	basculerModeAffichage({ commit }) {
+		commit("setModeAffichage", !this.state.mode_affichage );
+	},
+
 	setPréférences( {commit, state, getters}, params ) {
 
 		const préférences = {...getters.préférences, ...params };
@@ -646,10 +650,6 @@ export default {
 		this.dispatch("setPréférences", {
 			disposition: val,
 		});
-	},
-
-	setChangerModeAffichageAvecRaccourci({ commit }, val) {
-		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
 
 	setIndicateursDeFonctionnalité({ commit }, val) {

@@ -59,10 +59,6 @@
 
 									/>
 									<div
-										v-shortkey="raccourcis.basculerModeParDifférences"
-										@shortkey="changerModeAffichageAvecRaccourci"
-									/>
-									<div
 										v-shortkey="raccourcis.itérerOnglets"
 										@shortkey="changerOngletAvecRaccourci"
 									/>

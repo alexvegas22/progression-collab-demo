@@ -11,7 +11,10 @@
 			type="checkbox"
 			name="btn_mode_normal"
 		>
-		<div class="slider round" />
+		<div class="slider round"
+					v-shortkey="raccourcis.basculerModeParDifférences"
+					@shortkey="changerModeAffichageAvecRaccourci"
+		/>
 	</label>	
 </template>
 
