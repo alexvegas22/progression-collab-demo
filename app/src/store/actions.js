@@ -157,7 +157,7 @@ export default {
 	},
 
 	async getToken({ commit, getters }) {
-		return getters.token() || (() => {
+		return getters.obtenirToken() || (() => {
 			return rafraîchirToken().then((token) => {
 				commit("setToken", token);
 				return token;
