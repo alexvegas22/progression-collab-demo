@@ -158,11 +158,14 @@ export default {
 
 	async getToken({ commit, getters }) {
 		return getters.token() || (() => {
-			commit("setToken", null);
 			return rafraîchirToken().then((token) => {
 				commit("setToken", token);
 				return token;
-			});
+			})
+									.catch((e) => {
+										commit("setToken", null);
+										throw e;
+									});
 		})();
 	},
 
