@@ -66,7 +66,7 @@ export default {
 	},
 	methods: {
 		rafraîchirSorties: function () {
-			if (!this.test || !this.test.sortie_attendue)
+			if (!this.test || !(this.test.sortie_attendue || this.test.sortie_cachée))
 			{
 				this.sortie_attendue = null;
 				this.sortie_observée = this.résultat?.sortie_observée.toString();
@@ -85,7 +85,7 @@ export default {
 				this.test.sortie_attendue.toString(),
 				this.mode_affichage,
 			): {
-				résultat_attendu: this.test.résultat_attendue.toString(),
+				résultat_attendu: this.test.sortie_attendue.toString(),
 				résultat_observé: this.résultat.sortie_observée.toString()
 			};
 
