@@ -13,6 +13,7 @@
 							style="flex-flow: row; flex: 1 1 0; height: 100%"
 						>
 							<Ampoule
+								v-if="feedback"
 								:estVisible="résultat && !résultat.sortie_erreur && feedback!==null"
 								class="rétroaction-test"
 								:feedback="feedback"
