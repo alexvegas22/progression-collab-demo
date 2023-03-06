@@ -37,6 +37,9 @@ export default {
 		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
 	},
 	computed: {
+		raccourcis() {
+			return this.$store.state.raccourcis;
+		},
 		resultats() {
 			if(!this.$store.state.question || !this.$store.state.tentative?.resultats) return [];
 			var res = [];
@@ -79,36 +82,15 @@ export default {
 				for(var resultat in this.tentative?.resultats){
 					if(this.tentative.resultats[resultat]?.sortie_erreur){
 						this.index_select=resultat;
-						this.changementOnglet("ErreursTest");
+						this.changerOnglet("ErreursTest");
 						break;
 					}
 					else if (!this.tentative.resultats[resultat]?.résultat){
 						this.index_select=resultat;
-						this.changementOnglet("ResultatTest");
+						this.changerOnglet("ResultatTest");
 						break;
 					}
-					this.changementOnglet("ResultatTest");
-				}
-			}
-		},
-		ongletChangé: {
-			deep: true,
-			handler: function(){
-				if(this.resultat_select){
-					if(this.ongletActif === "ResultatTest") {
-						if(this.resultat_select.sortie_erreur){
-							this.changementOnglet("ErreursTest");
-						}
-						else{
-							this.changementOnglet("DétailsTest");
-						}
-					}
-					else if(this.ongletActif === "ErreursTest"){
-						this.changementOnglet("DétailsTest");
-					}
-					else {
-						this.changementOnglet("ResultatTest");
-					}
+					this.changerOnglet("ResultatTest");
 				}
 			}
 		},
@@ -140,16 +122,34 @@ export default {
 		},
 	},
 	methods: {
-		changementOnglet(onglet) {
+		changerOnglet( onglet ){
 			this.ongletActif = onglet;
+		},
+		itérerOnglets() {
+			if(this.resultat_select){
+				if(this.ongletActif === "ResultatTest") {
+					if(this.resultat_select.sortie_erreur){
+						this.ongletActif = "ErreursTest";
+					}
+					else{
+						this.ongletActif = "DétailsTest";
+					}
+				}
+				else if(this.ongletActif === "ErreursTest"){
+					this.ongletActif = "DétailsTest";
+				}
+				else {
+					this.ongletActif = "ResultatTest";
+				}
+			}
 		},
 		select(index) {
 			this.index_select = index;
 			if(this.ongletActif === "ErreursTest" && !this.tentative?.resultats[index]?.sortie_erreur){
-				this.changementOnglet("ResultatTest");
+				this.changerOnglet("ResultatTest");
 			}
 			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exec){
-				this.changementOnglet("ResultatTest");
+				this.changerOnglet("ResultatTest");
 			}
 		},
 		basculerTestHaut(){
@@ -171,7 +171,7 @@ export default {
 			}).then( () => {
 				if(this.tentative.resultats[index]?.sortie_erreur){
 					this.index_select=index;
-					this.changementOnglet("ErreursTest");
+					this.changerOnglet("ErreursTest");
 				}
 			}).finally( () => {
 				this.tests[index].envoyé = false;
@@ -180,6 +180,7 @@ export default {
 		réinitialiserTests(){
 			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
 			this.$store.dispatch("setRésultats", []);
+			this.changerOnglet( "ResultatTest" );
 		},
 	},
 };

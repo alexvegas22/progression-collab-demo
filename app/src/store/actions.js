@@ -34,7 +34,7 @@ async function rafraîchirToken() {
 
 	if (authKey) {
 		try {
-			const token = await getTokenApi(API_URL + "/auth", username, authKey)
+			const token = await getTokenApi(API_URL + "/auth", username, authKey);
 			sauvegarderToken(token);
 			return token;
 		}
@@ -157,11 +157,11 @@ export default {
 	},
 
 	async getToken({ commit, getters }) {
-		const token = getters.obtenirToken()
-		if(token) return token
+		const token = getters.obtenirToken();
+		if(token) return token;
 
 		try {
-			const token = await rafraîchirToken()
+			const token = await rafraîchirToken();
 			commit("setToken", token);
 			return token;
 		}

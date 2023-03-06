@@ -60,7 +60,10 @@
 			</template>
 			<template #droite>
 				<div style="height: 100%; display: flex; flex-flow: column">
-					<div class="section-onglets">
+					<div class="section-onglets"
+						 v-shortkey="raccourcis.itérerOnglets"
+								@shortkey="itérerOnglets"
+					>
 						<div
 							id="onglet_ES"
 							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
