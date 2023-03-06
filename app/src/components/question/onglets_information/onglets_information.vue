@@ -61,8 +61,8 @@
 			<template #droite>
 				<div style="height: 100%; display: flex; flex-flow: column">
 					<div class="section-onglets"
-						 v-shortkey="raccourcis.itérerOnglets"
-								@shortkey="itérerOnglets"
+						v-shortkey="raccourcis.itérerOnglets"
+						@shortkey="itérerOnglets"
 					>
 						<div
 							id="onglet_ES"
