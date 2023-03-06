@@ -67,7 +67,7 @@
 						<div
 							id="onglet_ES"
 							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ResultatTest', thème_sombre: thèmeSombre }"
-							@click="changementOnglet('ResultatTest')"
+							@click="changerOnglet('ResultatTest')"
 						>
 							{{ $t("onglets_informations.entrées/sorties") }}
 						</div>
@@ -75,7 +75,7 @@
 							v-if="resultat_select && resultat_select.sortie_erreur"
 							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'ErreursTest', thème_sombre: thèmeSombre }"
 							class="onglets-subséquents"
-							@click="changementOnglet('ErreursTest')"
+							@click="changerOnglet('ErreursTest')"
 						>
 							{{ $t("onglets_informations.erreurs") }}
 						</div>
@@ -83,7 +83,7 @@
 							v-if="resultat_select"
 							:class="{ onglets: true, 'onglet-sélectionné': ongletActif === 'DétailsTest', thème_sombre: thèmeSombre }"
 							class="onglets-subséquents"
-							@click="changementOnglet('DétailsTest')"
+							@click="changerOnglet('DétailsTest')"
 						>
 							{{ $t("onglets_informations.détails") }}
 						</div>
