@@ -41,7 +41,10 @@
 		"dateDeRéussite": "Réussite",
 		"titreGraphParLangage": "Réussites par langage",
 		"titreGraphParDifficulté": "Réussites par niveau",
-		"sans_titre": "[Sans titre]"
+		"sans_titre": "[Sans titre]",
+		"aucun_accomplissement": "Vous n'avez encore aucun accomplissement",
+		"exercices_démo": "Désirez-vous essayer un exercice de démonstration? (N'oubliez pas de revenir ici après!)",
+		"exercices_démo_non": "Non merci"
 	},
 
 	"login": {
