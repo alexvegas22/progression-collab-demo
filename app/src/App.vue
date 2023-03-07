@@ -10,7 +10,15 @@
 				border="1"
 				flat>
 				<v-app-bar-title>
-					<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
+					<div>
+						<div
+							onclick="window.location='./'"
+							style="cursor:pointer; width: fit-content"
+							class="font-family-serif"
+						>
+							<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
+						</div>
+					</div>
 				</v-app-bar-title>
 				<div  v-if="$store.getters.obtenirToken()">
 
