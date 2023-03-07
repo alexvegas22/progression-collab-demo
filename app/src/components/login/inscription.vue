@@ -85,7 +85,7 @@
 					type="submit"
 					:disabled="!authentificationPermise ||
 						this.username_vide ||
-						this.username_invalid ||
+						this.username_invalide ||
 						this.password_vide ||
 						this.confirmation_vide"
 				>

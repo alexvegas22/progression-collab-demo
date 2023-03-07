@@ -58,8 +58,16 @@ pre {
 	height: 0.875rem;
 	top: 0.07rem;
 }
-.espace-titre-sortie-observée {
-	margin-top: -2px;
+
+.corps-sorties{
+	width: 100%;
+	min-width: 50%;
+}
+
+.titre-sorties{
+	width: 100%;
+	min-width: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 .rétroaction-test {

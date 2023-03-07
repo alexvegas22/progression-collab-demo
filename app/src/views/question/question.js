@@ -210,9 +210,6 @@ export default {
 		lancerTestUniqueAvecRaccourci() {
 			this.testSélectionnéValider = !this.testSélectionnéValider;
 		},
-		changerModeAffichageAvecRaccourci() {
-			this.$store.dispatch("setChangerModeAffichageAvecRaccourci", true);
-		},
 		changerOngletAvecRaccourci() {
 			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
 		},

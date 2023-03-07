@@ -33,16 +33,16 @@ async function rafraîchirToken() {
 	const username = récupérerUsername();
 
 	if (authKey) {
-		return getTokenApi(API_URL + "/auth", username, authKey)
-			.then((token) => {
-				sauvegarderToken(token);
-				return token;
-			})
-			.catch((err) => {
-				sauvegarderToken(null);
-				console.log(err);
-				throw err;
-			});
+		try {
+			const token = await getTokenApi(API_URL + "/auth", username, authKey);
+			sauvegarderToken(token);
+			return token;
+		}
+		catch(err) {
+			sauvegarderToken(null);
+			console.log(err);
+			throw err;
+		}
 	} else {
 		sauvegarderToken(null);
 		const err = new Error("Clé d'authentification non disponible");
@@ -157,13 +157,18 @@ export default {
 	},
 
 	async getToken({ commit, getters }) {
-		return getters.token() || (() => {
+		const token = getters.obtenirToken();
+		if(token) return token;
+
+		try {
+			const token = await rafraîchirToken();
+			commit("setToken", token);
+			return token;
+		}
+		catch(e) {
 			commit("setToken", null);
-			return rafraîchirToken().then((token) => {
-				commit("setToken", token);
-				return token;
-			});
-		})();
+			throw e;
+		}
 	},
 
 	async récupérerConfigServeur({ commit }, urlConfig) {
@@ -626,6 +631,10 @@ export default {
 		commit("setModeAffichage", val);
 	},
 
+	basculerModeAffichage({ commit }) {
+		commit("setModeAffichage", !this.state.mode_affichage );
+	},
+
 	setPréférences( {commit, state, getters}, params ) {
 
 		const préférences = {...getters.préférences, ...params };
@@ -641,10 +650,6 @@ export default {
 		this.dispatch("setPréférences", {
 			disposition: val,
 		});
-	},
-
-	setChangerModeAffichageAvecRaccourci({ commit }, val) {
-		commit("setChangerModeAffichageAvecRaccourci", val);
 	},
 
 	setIndicateursDeFonctionnalité({ commit }, val) {

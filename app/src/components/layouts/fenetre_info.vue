@@ -4,7 +4,7 @@
 		:class="{ thème_sombre: thèmeSombre }"
 		class="bordure-fenetre d-flex"
 	>
-		<header
+		<header v-if="$slots.titre"
 			class="bordure-titre p-1"
 			:class="{ thème_sombre: thèmeSombre }"
 		>

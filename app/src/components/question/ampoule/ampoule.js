@@ -4,7 +4,10 @@ export default {
 	name: "Ampoule",
 	props: {
 		feedback: String,
-		estVisible: Boolean
+		estVisible: {
+			type: Boolean,
+			default: true
+		}
 	},
 	data() {
 		return {

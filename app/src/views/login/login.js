@@ -13,7 +13,7 @@ export default {
 	},
 	computed: {
 		token() {
-			return this.$store.getters.token();
+			return this.$store.getters.obtenirToken();
 		},
 		configServeur() {
 			return this.$store.getters.configServeur;

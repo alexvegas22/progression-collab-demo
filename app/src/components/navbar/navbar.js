@@ -73,7 +73,7 @@ export default {
 
 		},
 		token() {
-			return this.$store.getters.token();
+			return this.$store.getters.obtenirToken();
 		},
 		indicateursDeFonctionnalitéVersionTest(){
 			return this.$store.getters.indicateursDeFonctionnalité("version_test");

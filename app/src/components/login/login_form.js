@@ -19,7 +19,7 @@ export default {
 			return this.domaine ? "@"+this.domaine : "";
 		},
 		authentificationPermise(){
-			return !this.$store.getters.token() && !this.$store.state.authentificationEnCours;
+			return !this.$store.getters.obtenirToken() && !this.$store.state.authentificationEnCours;
 		},
 		password_vide() {
 			return this.password == "";
