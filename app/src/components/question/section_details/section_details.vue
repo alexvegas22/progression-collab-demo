@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-if="tempsÉxecution"
+		v-if="tempsÉxecution && résultat"
 		class="section-détails"
 	>
 		<div

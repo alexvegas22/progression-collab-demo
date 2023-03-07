@@ -14,6 +14,7 @@ stages:
   - deploy_image
 
 variables:
+  GIT_SUBMODULE_STRATEGY: recursive
   PROGRESSION_DIR: $CI_PROJECT_DIR
   DOCKER_TLS_CERTDIR: ""
   BRANCHE: $CI_COMMIT_REF_NAME

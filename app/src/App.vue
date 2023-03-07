@@ -10,9 +10,17 @@
 				border="1"
 				flat>
 				<v-app-bar-title>
-					<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
+					<div>
+						<div
+							onclick="window.location='./'"
+							style="cursor:pointer; width: fit-content"
+							class="font-family-serif"
+						>
+							<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
+						</div>
+					</div>
 				</v-app-bar-title>
-				<div  v-if="$store.getters.token()">
+				<div  v-if="$store.getters.obtenirToken()">
 
 					<v-row>
 						<v-col>
@@ -41,7 +49,7 @@
 			</v-app-bar>
 
 			<BannièreErreur style="width: 75vw" />
-			<NavBar :drawer="drawer" v-if="$store?.getters.token()"
+			<NavBar :drawer="drawer" v-if="$store?.getters.obtenirToken()"
 				@accomplissements="allerVersAccomplissements"
 				@nouvelExercice="nouvelExercice"
 				@basculerThèmeSombre="basculerThèmeSombre"

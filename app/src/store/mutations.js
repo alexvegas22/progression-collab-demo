@@ -121,9 +121,6 @@ export const mutations = {
 	setSélectionnerTestBas(state, val){
 		state.sélectionnerTestBas = val;
 	},
-	setChangerModeAffichageAvecRaccourci(state, val){
-		state.changerModeAffichageAvecRaccourci = val;
-	},
 	setIndicateursDeFonctionnalité(state, val){
 		state.indicateursDeFonctionnalité = val;
 	},

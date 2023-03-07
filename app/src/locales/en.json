@@ -41,7 +41,10 @@
 		"dateDeRéussite": "Solved",
 		"titreGraphParLangage": "Solved by language",
 		"titreGraphParDifficulté": "Solved by level",
-		"sans_titre": "[Untitled]"
+		"sans_titre": "[Untitled]",
+		"aucun_accomplissement": "You don't have any achievements yet",
+		"exercices_démo": "Would you like to try a demo exercise? (Don't forget to come back here afterwards)",
+		"exercices_démo_non": "No thanks"
 	},
 
 	"login": {
