@@ -7,9 +7,6 @@ export default {
 			préférences: new Boolean(false),
 		};
 	},
-	props: {
-		drawer: Boolean,
-	},
 	emits: ["accomplissements",
 		"nouvelExercice",
 		"basculerLocale",
