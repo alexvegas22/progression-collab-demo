@@ -10,22 +10,22 @@
 				<ul >
 					<li>
 						<a
-							href="/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNjM0NGY1MzgtMGVjMy00ZTNmLTgzMDgtZmMxMGQzNWM2YWFmL2luZm8ueW1s&demo"
+							href="./question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNjM0NGY1MzgtMGVjMy00ZTNmLTgzMDgtZmMxMGQzNWM2YWFmL2luZm8ueW1s&demo"
 						> Exercice 1 - Bonjour le monde!</a>
 					</li>
 					<li>
 						<a
-							href="/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNmUzNjNjYjMtNWEyOS00YjYyLThlY2YtNmJjZTI5MjNiOWQ0L2luZm8ueW1s"
+							href="./question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vNmUzNjNjYjMtNWEyOS00YjYyLThlY2YtNmJjZTI5MjNiOWQ0L2luZm8ueW1s"
 						> Exercice 2 - Bonjour Java!</a>
 					</li>
 					<li>
 						<a
-							href="/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vZGExNDNjMTEtZjc2My00MDY0LWJjMDMtNTYxZGNkODFjNmUyL2luZm8ueW1s"
+							href="./question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vZGExNDNjMTEtZjc2My00MDY0LWJjMDMtNTYxZGNkODFjNmUyL2luZm8ueW1s"
 						> Exercice 3 - Un premier algorithme</a>
 					</li>
 					<li>
 						<a
-							href="/question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vMzdhOTEwNGQtODJhZC00ZDZiLTk0OTktMmY2YTMxYzA1OTgyL2luZm8ueW1s"
+							href="./question?uri=aHR0cHM6Ly9wcm9ncmVzc2lvbi5wYWdlcy5kdGkuY3Jvc2Vtb250LnF1ZWJlYy9jb250ZW51L2RlbW8vMzdhOTEwNGQtODJhZC00ZDZiLTk0OTktMmY2YTMxYzA1OTgyL2luZm8ueW1s"
 						> Exercice 4 - Défi complet</a>
 					</li>
 				</ul>
