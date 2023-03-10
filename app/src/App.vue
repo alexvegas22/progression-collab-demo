@@ -22,10 +22,22 @@
 				</v-app-bar-title>
 				<div  v-if="$store.getters.obtenirToken()">
 
-					<v-card
-						width="max-content"
-						flat
-						:text = "username" />
+					<v-row style="align-items: center">
+						<v-col  class="p-0">
+							<v-card
+								width="fit-content"
+								flat
+								:text = "username" />
+						</v-col>
+						<v-col>
+						    <v-icon
+							style="margin-right: 1rem"
+								icon="mdi-logout"
+								@click="déconnexion">
+							</v-icon>
+						</v-col>
+					</v-row>
+
 				</div>
 
 				<div v-else>
@@ -43,7 +55,7 @@
 				@basculerThèmeSombre="basculerThèmeSombre"
 				@basculerLocale="basculerLocale"
 				@basculerVersion="basculerVersion"
-				@déconnexion="déconnexion" />
+				/>
 
 			<div v-show="enChargement" class="loader-parent">
 				<div class="loader">
