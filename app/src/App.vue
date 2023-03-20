@@ -22,22 +22,22 @@
 				</v-app-bar-title>
 				<div  v-if="$store.getters.obtenirToken()">
 
-					<v-row>
-						<v-col>
+					<v-row style="align-items: center">
+						<v-col  class="p-0">
 							<v-card
-								width="max-content"
+								width="fit-content"
 								flat
 								:text = "username" />
 						</v-col>
 						<v-col>
-
-							<v-app-bar-nav-icon @click.stop="drawer = !drawer">
-								<div class="d-xxl-none"> <v-icon icon="mdi-dots-vertical"/></div>
-								<div class="d-none d-xxl-flex"  > <v-icon :icon="drawer ? 'mdi-chevron-double-left' : 'mdi-chevron-double-right'"/></div>
-							</v-app-bar-nav-icon>
-
+						    <v-icon
+							style="margin-right: 1rem"
+								icon="mdi-logout"
+								@click="déconnexion">
+							</v-icon>
 						</v-col>
 					</v-row>
+
 				</div>
 
 				<div v-else>
@@ -49,13 +49,13 @@
 			</v-app-bar>
 
 			<BannièreErreur style="width: 75vw" />
-			<NavBar :drawer="drawer" v-if="$store?.getters.obtenirToken()"
+			<NavBar v-if="$store?.getters.obtenirToken()"
 				@accomplissements="allerVersAccomplissements"
 				@nouvelExercice="nouvelExercice"
 				@basculerThèmeSombre="basculerThèmeSombre"
 				@basculerLocale="basculerLocale"
 				@basculerVersion="basculerVersion"
-				@déconnexion="déconnexion" />
+				/>
 
 			<div v-show="enChargement" class="loader-parent">
 				<div class="loader">
@@ -95,7 +95,6 @@ export default {
 		return {
 			cb_auth: null,
 			cb_auth_params: null,
-			drawer: true,
 			dialogNouvelExercice: false,
 		};
 	},
