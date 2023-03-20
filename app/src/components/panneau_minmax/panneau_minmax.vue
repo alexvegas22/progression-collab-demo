@@ -1,29 +1,49 @@
-
 <template>
-	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
-	>
+	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}">
 		<div class="d-flex"
-			style=" justify-content: right;
-					padding: 2px"
-		>
-			<v-icon icon="mdi-window-minimize" size=16 :class="{invisible: état_min}" @click="minimiser" />
-			<v-icon icon="mdi-window-restore" size=16 :class="{invisible: !état_min && !état_max}" @click="restorer" />
-			<v-icon icon="mdi-window-maximize" size=16 :class="{invisible: état_max}" @click="maximiser" />
+			style=" justify-content: right; padding: 2px; margin-right: 0.5rem" >
+
+			<div :class="{invisible: état_min}" @click="minimiser" >
+				<slot name="min-icon">
+					<v-icon icon="mdi-window-minimize" :size=icon_size ></v-icon>
+				</slot>
+			</div>
+
+			<div :class="{invisible: !état_min && !état_max}" @click="restorer" >
+				<slot name="restore-icon">
+					<v-icon icon="mdi-window-restore" :size=icon_size ></v-icon>
+				</slot>
+			</div>
+
+			<div :class="{invisible: état_max}" @click="maximiser" >
+				<slot name="max-icon">
+					<v-icon icon="mdi-window-maximize" :size=icon_size ></v-icon>
+				</slot>
+			</div>
+
 		</div>
+
 		<div :class="{invisible: état_min}" style="flex-grow: 1; min-height: 0">
 			<slot/>
 		</div>
+
 	</div>
 </template>
-
 
 <script>
 export default {
 	name: "PanneauMinMax",
 	props: {
 		horizontal: Boolean,
-		minsize: {type: [Number, String], default: 32 },
-		size: {type: [Number, String] },
+		minsize: {
+			type: [Number, String],
+			default: 48
+		},
+		size: { type: [Number, String] },
+		icon_size: {
+			type: Number,
+			default: 16
+		}
 	},
 	emits: {
 		resize: 0,
@@ -109,13 +129,13 @@ export default {
  }
 
  .horizontal {
-     width: 2rem;
+     width: 3.5rem;
  }
 
  .maximisé {
      background-color: inherit;
      position: absolute;
-     left: 0px;
+     left: 56px;
      top: 64px;
      height: 100%;
      width: calc(100% - 56px);

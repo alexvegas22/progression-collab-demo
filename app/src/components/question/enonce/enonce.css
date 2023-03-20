@@ -41,11 +41,11 @@
 
 .crochet {
 	position: fixed;
-	top: 2.7rem;
-	left: -0.5rem;
+	top: 3.25rem;
+	left: 3rem;
 	opacity: 88%;
 	height: 0px;
-	z-index: 2000;
+	z-index: 1;
 }
 
 h3 {

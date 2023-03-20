@@ -1,9 +1,9 @@
 <template>
 	<v-navigation-drawer
 		expand-on-hover
-		location="right"
-		:rail="drawer"
-		:permanent="drawer"
+		location="left"
+		rail
+		permanent
 		v-on:update:rail="onUpdateRail"
 	>
 		<v-list

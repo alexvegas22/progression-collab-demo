@@ -24,7 +24,7 @@ export default {
 			pct_droite: parseFloat(this.size_droite),
 			px_gauche: this.toPx(this.pct_gauche),
 			px_droite: this.toPx(this.pct_droite),
-			taille_minimisée: this.convertRemToPixels(2),
+			taille_minimisée: this.convertRemToPixels(3),
 		};
 	},
 	computed : {
@@ -62,7 +62,7 @@ export default {
 				this.px_gauche = this.toPx(sizes[0].size);
 				this.px_droite = this.toPx(sizes[1].size);
 			}
-			this.$emit("redimensionnéGauche", sizes[0].size.toFixed(2));
+			this.$emit("redimensionnéGauche", sizes[0].size.toFixed(3));
 		},
 		resize_gauche(resize) {
 			if(resize<0) return;
