@@ -66,7 +66,7 @@ export default {
 			return this.$store.getters.thèmeSombre;
 		},
 		indicateursDeFonctionnalitéCommentaires() {
-			return this.$store.state.indicateursDeFonctionnalité["commentaires"];
+			return this.$store.getters.indicateursDeFonctionnalité("commentaires");
 		},
 		raccourcis() {
 			return this.$store.state.raccourcis;
@@ -209,9 +209,6 @@ export default {
 		},
 		lancerTestUniqueAvecRaccourci() {
 			this.testSélectionnéValider = !this.testSélectionnéValider;
-		},
-		changerModeAffichageAvecRaccourci() {
-			this.$store.dispatch("setChangerModeAffichageAvecRaccourci", true);
 		},
 		changerOngletAvecRaccourci() {
 			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;

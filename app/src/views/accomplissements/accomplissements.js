@@ -11,6 +11,19 @@ export default {
 	computed: {
 		username(){
 			return this.$store.state.username;
+		},
+		avancements(){
+			return this.$store.state.user?.avancements && Object.keys(this.$store.state.user?.avancements).length>0;
+		},
+		démos() {
+			return this.$store.getters.préférences["démos"]!==false;
+		},
+	},
+	methods: {
+		fermerDémos() {
+			this.$store.dispatch("setPréférences", {
+				démos: false,
+			});
 		}
 	}
 };

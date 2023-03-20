@@ -1,5 +1,8 @@
 <template>
-	<div>
+	<div
+		v-shortkey=raccourcis.sauvegarde
+		@shortkey="sauvegarder"
+	>
 		<div class="container p-0 xray">
 			<div
 				v-if="rôleÉditeur"
@@ -28,9 +31,11 @@
 		
 		<div
 			class="indicateur_sauvegarde"
-			:class="classeIndicateur"
 		>
-			●
+			<v-icon
+				:icon="icone_sauvegarde"
+				size="1rem"
+			/>
 		</div>
 		<Codemirror
 			id="editor"

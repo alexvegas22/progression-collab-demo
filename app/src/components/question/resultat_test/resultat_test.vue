@@ -13,6 +13,7 @@
 							style="flex-flow: row; flex: 1 1 0; height: 100%"
 						>
 							<Ampoule
+								v-if="feedback"
 								:estVisible="résultat && !résultat.sortie_erreur && feedback!==null"
 								class="rétroaction-test"
 								:feedback="feedback"
@@ -45,60 +46,71 @@
 					<template #droite>
 						<div
 							class="d-flex"
-							style="flex-flow: row; flex: 1 1 0; flex-grow: 1; height: 100%"
+							style="flex-flow: row; flex: 1 1 0; flex-grow: 1; "
 						>
-							<FenêtreInfo
-								v-if="!test.dirty"
-								présentation_étape="3.2"
-								:class="{'résultat-test': résultat}"
-							>
-								<template #titre>
-									{{ $t('resultat_test.sortieAttendue') }}
-								</template>
-								<!-- eslint-disable -->
-								<div v-if="!test.sortie_cachée">
-									<pre v-if="sortie_attendue"
-										 class="card-text p-3"
-										 v-html="sortie_attendue"
-									/>
-									<pre v-else>
-										<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-									</pre>
-								</div>
-								<!-- eslint-enable -->
-								<div v-else>
-									<pre>
-										<p class="card-text sortie vide p-3">{{ $t("resultat_test.cachée") }}</p>
-									</pre>
-								</div>
-							</FenêtreInfo>
-							<FenêtreInfo
+							<div class="titre-sorties">
+								{{ $t('resultat_test.sortieAttendue') }}
+							</div>
+							<div class="titre-sorties"
 								v-if="résultat"
-								présentation_étape="3.3"
-								style="width:50%; height:100%" >
-								<template #titre>
-									<div class="espace-titre-sortie-observée">
-										{{ $t('resultat_test.sortieConsole') }}
-										<sélecteur-mode-affichage
-											v-show="!test.sortie_cachée && sortie_attendue"
-											class="espace-sélecteur" />
-									</div>
-								</template>
-								<!-- eslint-disable -->
-								<div v-if="sortie_observée">
-									<pre
-										class="card-text p-3"
-											   v-html="sortie_observée"
-									/>
-								</div>
-								<!-- eslint-enable -->
-								<div v-else>
-									<pre>
-										<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-									</pre>
-								</div>
-							</FenêtreInfo>
+							>
+								{{ $t('resultat_test.sortieConsole') }}
+								<sélecteur-mode-affichage
+									v-show="!test.sortie_cachée && sortie_attendue"
+									class="espace-sélecteur"
+								/>
+							</div>
 						</div>
+						<FenêtreInfo
+							style="max-height: 100%"
+						>
+							<div
+								class="d-flex"
+								style="flex-flow: row; flex: 1 1 0; flex-grow: 1; "
+							>
+								<div
+									v-if="!test.dirty"
+									class="corps-sorties"
+									présentation_étape="3.2"
+									:class="{'résultat-test': résultat}"
+								>
+									<!-- eslint-disable -->
+									<div v-if="!test.sortie_cachée">
+										<pre v-if="sortie_attendue"
+											 class="card-text p-3"
+											 v-html="sortie_attendue"
+										/>
+										<pre v-else>
+											<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+										</pre>
+									</div>
+									<!-- eslint-enable -->
+									<div v-else>
+										<pre>
+											<p class="card-text sortie vide p-3">{{ $t("resultat_test.cachée") }}</p>
+										</pre>
+									</div>
+								</div>
+								<div
+									v-if="résultat"
+									présentation_étape="3.3"
+									class="corps-sorties" >
+									<!-- eslint-disable -->
+									<div v-if="sortie_observée">
+										<pre
+											class="card-text p-3"
+											v-html="sortie_observée"
+										/>
+									</div>
+									<!-- eslint-enable -->
+									<div v-else>
+										<pre>
+											<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+										</pre>
+									</div>
+								</div>
+							</div>
+						</FenêtreInfo>
 					</template>
 				</Diptyque>
 			</div>

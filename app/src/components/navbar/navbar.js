@@ -7,15 +7,12 @@ export default {
 			préférences: new Boolean(false),
 		};
 	},
-	props: {
-		drawer: Boolean,
-	},
 	emits: ["accomplissements",
 		"nouvelExercice",
 		"basculerLocale",
 		"basculerThèmeSombre",
 		"basculerVersion",
-		"déconnexion" ],
+	],
 	methods: {
 		onUpdateRail(état){
 			if(état){
@@ -63,20 +60,13 @@ export default {
 						 activé: this.indicateursDeFonctionnalitéVersionTest },
 					]
 				},
-				{
-					title: this.$t("menu.déconnexion"),
-					icon: "mdi-logout",
-					value: "déconnexion",
-					action: ()=>this.$emit("déconnexion")
-				}
 			];
-
 		},
 		token() {
-			return this.$store.getters.token();
+			return this.$store.getters.obtenirToken();
 		},
 		indicateursDeFonctionnalitéVersionTest(){
-			return this.$store.state.indicateursDeFonctionnalité["version_test"];
+			return this.$store.getters.indicateursDeFonctionnalité("version_test");
 		},
 		versionTest(){
 			return this.$cookies.get("fe_version")=="dev";

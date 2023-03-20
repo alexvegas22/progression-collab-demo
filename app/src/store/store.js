@@ -35,6 +35,7 @@ export default createStore({
 		username: null,
 		unleash: null,
 		raccourcis: {
+			sauvegarde: "['ctrl', 's']",
 			basculerModeParDifférences: "['alt', 'd']",
 			basculerThème: "['ctrl', 'alt', 's']",
 			itérerOnglets: "['alt', 'w']",
