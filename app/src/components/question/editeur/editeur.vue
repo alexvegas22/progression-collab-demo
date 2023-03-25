@@ -3,41 +3,40 @@
 		v-shortkey=raccourcis.sauvegarde
 		@shortkey="sauvegarder"
 	>
-		<div class="container p-0 xray">
-
-			<v-btn-toggle
-				density="compact"
-				v-model="xray">
-			
+		<v-toolbar
+			:color="$store.getters.thèmeSombre ? '#353535' : 'white'"
+			height="56px"
+			class="xray"
+		>
 				<v-btn
+					@click="() => {xray = !xray}"
 					value="true"
 					flat
 					size="small"
 					:title="$t('editeur.xray')"
 				>
 					<v-icon
-						icon="mdi-sunglasses"
+						:icon="xray ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
 					/>
 				</v-btn>
-			</v-btn-toggle>
 
-			<v-btn
-				:disabled="!pressePapier"
-				@click="copy"
-				:loading="copié"
-				flat
-				size="small"
-				:title="$t('editeur.copier')"
-			>
-				<v-icon
-					icon="mdi-content-copy"
-				/>
-				<template #loader>
-					{{$t('editeur.copié')}}
-				</template>
-			</v-btn>
+    			<v-btn
+    				:disabled="!pressePapier"
+    				@click="copy"
+    				:loading="copié"
+    				flat
+    				size="small"
+    				:title="$t('editeur.copier')"
+    			>
+    				<v-icon
+    					icon="mdi-content-copy"
+    				/>
+    				<template #loader>
+    					{{$t('editeur.copié')}}
+    				</template>
+    			</v-btn>
 
-		</div>
+			</v-toolbar>
 		
 		<div
 			class="indicateur_sauvegarde"
