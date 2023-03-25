@@ -5,6 +5,7 @@ export default {
 	thèmeSombre: state => state.préférences?.apparence_thème == "sombre",
 	erreurs: state => state.erreurs,
 	raccourcis: state => state.raccourcis,
+	tentative: state => state.tentative,
 	//On obtient le token via une fonction pour éviter qu'il soit mis en cache
 	token: () => {throw Error("Utilisez getters.obtenirToken() pour obtenir un token");},
 	obtenirToken: state => () => {
