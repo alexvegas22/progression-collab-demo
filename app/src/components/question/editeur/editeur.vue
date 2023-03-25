@@ -4,29 +4,39 @@
 		@shortkey="sauvegarder"
 	>
 		<div class="container p-0 xray">
-			<div
-				v-if="rôleÉditeur"
-				class="row align-items-end"
-				style="height: 1.5rem"
-			>
-				<div
-					class="col-auto"
+
+			<v-btn-toggle
+				density="compact"
+				v-model="xray">
+			
+				<v-btn
+					value="true"
+					flat
+					size="small"
+					:title="$t('editeur.xray')"
 				>
-					<div class="form-check form-switch btn-xray">
-						<input
-							id="btn_xray"
-							v-model="xray"
-							class="form-check-input"
-							type="checkbox"
-							name="btn_xray"
-						>
-						<label
-							class="form-check-label"
-							for="btn_xray"
-						>Tout voir</label>
-					</div>
-				</div>
-			</div>
+					<v-icon
+						icon="mdi-sunglasses"
+					/>
+				</v-btn>
+			</v-btn-toggle>
+
+			<v-btn
+				:disabled="!pressePapier"
+				@click="copy"
+				:loading="copié"
+				flat
+				size="small"
+				:title="$t('editeur.copier')"
+			>
+				<v-icon
+					icon="mdi-content-copy"
+				/>
+				<template #loader>
+					{{$t('editeur.copié')}}
+				</template>
+			</v-btn>
+
 		</div>
 		
 		<div
