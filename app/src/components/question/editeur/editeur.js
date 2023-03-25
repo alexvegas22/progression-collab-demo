@@ -24,7 +24,8 @@ export default {
 			zonesTraitées: false,
 			cm: null,
 			xray: this.$store.getters?.préférences?.xray && this.$store.getters.indicateursDeFonctionnalité("tout_voir"),
-			supportCB: typeof navigator.clipboard !== 'undefined',
+			pressePapier: navigator.clipboard,
+			copié: false
 		};
 	},
 	watch: {
@@ -122,11 +123,14 @@ export default {
 	},
 	methods: {
 		copy() {
-			if(this.supportCB)
-				navigator.clipboard.writeText(this.$store.getters.tentative.code);
-			else
-				console.log("no CB");
-		},
+			if(this.pressePapier) {
+				pressePapier.writeText(this.$store.getters.tentative.code);
+				this.copié=true
+			}
+			setTimeout( () =>{
+				this.copié=false;
+			}, 1000 );
+ 		},
 		onReady( cm ){
 			cm.on("beforeChange",  this.onBeforeChange);
 			cm.on("change",  this.onChange);
