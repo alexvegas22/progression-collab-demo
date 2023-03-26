@@ -124,7 +124,7 @@ export default {
 	methods: {
 		copy() {
 			if(this.pressePapier) {
-				pressePapier.writeText(this.$store.getters.tentative.code);
+				this.pressePapier.writeText(this.$store.getters.tentative.code);
 				this.copié=true
 			}
 			setTimeout( () =>{
