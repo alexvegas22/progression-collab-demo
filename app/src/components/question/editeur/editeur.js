@@ -124,7 +124,11 @@ export default {
 	methods: {
 		copy() {
 			if(this.pressePapier) {
-				this.pressePapier.writeText(this.$store.getters.tentative.code);
+				const code = this.$store.getters.tentative.code.split("\n").filter( (ligne) => {
+					return (ligne.match(/[+-]TODO|VISIBLE/g) || []).length !=1
+				}).join("\n").replace( /[+-]TODO|VISIBLE/g, "" )
+
+				this.pressePapier.writeText( code );
 				this.copié=true
 			}
 			setTimeout( () =>{
