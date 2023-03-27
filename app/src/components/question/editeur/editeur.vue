@@ -8,14 +8,14 @@
 			height="56px"
 			class="xray"
 		>
-				<v-btn
-					@click="() => {xray = !xray}"
-					value="true"
-					flat
-					size="small"
-					:title="$t('editeur.xray')"
-				>
-					<v-icon
+			<v-btn
+				@click="() => {xray = !xray}"
+				value="true"
+				size="small"
+				rounded="0"
+				:title="$t('editeur.xray')"
+			>
+				<v-icon
 						:icon="xray ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
 					/>
 				</v-btn>
@@ -26,6 +26,7 @@
     				:loading="copié"
     				flat
     				size="small"
+					rounded="0"
     				:title="$t('editeur.copier')"
     			>
     				<v-icon
