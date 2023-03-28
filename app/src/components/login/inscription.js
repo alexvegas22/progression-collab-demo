@@ -8,6 +8,7 @@ export default {
 	},
 	data() {
 		return {
+			email: "",
 			username: "",
 			password: "",
 			confirmation: "",
@@ -17,6 +18,14 @@ export default {
 	computed: {
 		authentificationPermise(){
 			return !this.$store.getters.obtenirToken() && !this.$store.state.authentificationEnCours;
+		},
+		email_vide(){
+			return this.email.trim() == "";
+		},
+		email_invalide(){
+			return !this.email.toLowerCase().match(
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
 		},
 		confirmation_vide() {
 			return this.password_req && this.confirmation != this.password;

@@ -105,7 +105,9 @@
 			<div class="col-sm-offset-3">
 				<v-btn
 					type="submit"
-					:disabled="!authentificationPermise ||
+				 	:disabled="!authentificationPermise ||
+					this.email_vide ||
+					this.email_invalide ||
 						this.username_vide ||
 						this.username_invalide ||
 						this.password_vide ||
