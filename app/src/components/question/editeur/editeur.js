@@ -250,8 +250,6 @@ export default {
 		},
 
 		traiterZones() {
-		    console.log("OK");
-
 		    zones.cacherHorsVisible(this.cm.doc);
 		    zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},

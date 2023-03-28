@@ -21,7 +21,7 @@ do
   # Use the existing JS file as template
   cp $file $file.tmpl
   envsubst "$vars" < $file.tmpl > $file
-#  rm $file.tmpl
+  rm $file.tmpl
 done
 
 exec "$@"
