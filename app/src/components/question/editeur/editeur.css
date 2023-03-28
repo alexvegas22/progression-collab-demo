@@ -62,13 +62,9 @@
 
 .xray {
 	position: absolute;
-	right: 7rem;
-	top: 4rem;
+	right: 3rem;
+	top: 4.2rem;
 	width: max-content;
-}
-
-.btn-xray {
-	position: relative;
 }
 
 .codemirror-container:not(.original-style) .CodeMirror, .codemirror-container:not(.original-style) .CodeMirror-merge-pane

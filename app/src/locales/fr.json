@@ -169,7 +169,10 @@
 		"langageÉbauche": "Langage : ",
 		"choixLangage": "-- Choisissez un langage --",
 		"réinitialiser": "Réinitialiser",
-		"réinitialiser_avertissement": "Vos modifications depuis la dernière tentative seront perdues. Voulez-vous réinitialiser?"
+		"réinitialiser_avertissement": "Vos modifications depuis la dernière tentative seront perdues. Voulez-vous réinitialiser?",
+		"copier": "Copier le code dans le presse-papier",
+		"xray": "Montrer le code caché",
+		"copié": "Copié!"
 	},
 
 	"retroaction_tentative": {

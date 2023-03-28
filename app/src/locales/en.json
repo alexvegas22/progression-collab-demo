@@ -170,7 +170,10 @@
 		"langageÉbauche": "Language : ",
 		"choixLangage": "-- Select a language --",
 		"réinitialiser": "Reset",
-		"réinitialiser_avertissement": "Changes made since the last attempt will be lost. Do you want to reset?"
+		"réinitialiser_avertissement": "Changes made since the last attempt will be lost. Do you want to reset?",
+		"copier": "Copy code to clipboard",
+		"xray": "Show hidden code",
+		"copié": "Copied!"
 	},
 
 	"retroaction_tentative": {

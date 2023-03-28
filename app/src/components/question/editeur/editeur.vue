@@ -3,31 +3,41 @@
 		v-shortkey=raccourcis.sauvegarde
 		@shortkey="sauvegarder"
 	>
-		<div class="container p-0 xray">
-			<div
-				v-if="rôleÉditeur"
-				class="row align-items-end"
-				style="height: 1.5rem"
+		<v-toolbar
+			:color="$store.getters.thèmeSombre ? '#353535' : 'white'"
+			height="56px"
+			class="xray"
+		>
+			<v-btn v-show="rôleÉditeur"
+				@click="() => {xray = !xray}"
+				value="true"
+				size="small"
+				rounded="0"
+				:title="$t('editeur.xray')"
 			>
-				<div
-					class="col-auto"
-				>
-					<div class="form-check form-switch btn-xray">
-						<input
-							id="btn_xray"
-							v-model="xray"
-							class="form-check-input"
-							type="checkbox"
-							name="btn_xray"
-						>
-						<label
-							class="form-check-label"
-							for="btn_xray"
-						>Tout voir</label>
-					</div>
-				</div>
-			</div>
-		</div>
+				<v-icon
+						:icon="xray ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
+					/>
+			</v-btn>
+
+    		<v-btn v-show="rôleÉditeur"
+    			:disabled="!pressePapier"
+    			@click="copy"
+    			:loading="copié"
+    			flat
+    			size="small"
+				rounded="0"
+    			:title="$t('editeur.copier')"
+    		>
+    			<v-icon
+    				icon="mdi-content-copy"
+    			/>
+    			<template #loader>
+    				{{$t('editeur.copié')}}
+    			</template>
+    		</v-btn>
+
+			</v-toolbar>
 		
 		<div
 			class="indicateur_sauvegarde"
