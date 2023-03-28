@@ -140,7 +140,8 @@
 	},
 	
 	"inscription": {
-		"username": "Veuillez choisir un nom d'utilisateur.",
+		"username": "Veuillez choisir un nom d'utilisateur",
+		"email": "Veuillez choisir une adresse courriel",
 		"confirmation": "Confirmation",
 		"boutonInscription": "S'inscrire",
 		"mdpDifférents": "Les deux mots de passe doivent correspondre."

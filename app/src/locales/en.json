@@ -142,6 +142,7 @@
 
 	"inscription": {
 		"username": "Choose a username",
+		"email": "Choose an email",
 		"confirmation": "Confirm",
 		"boutonInscription": "Sign in",
 		"mdpDifférents": "Passwords must match."

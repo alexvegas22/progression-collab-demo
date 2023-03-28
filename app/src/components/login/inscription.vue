@@ -8,6 +8,28 @@
 			<div class="form-group">
 				<div class="col-sm-6">
 					<label
+						for="email"
+						class="control-label"
+					>
+						{{ $t('inscription.email') }} :
+					</label>
+					<input
+						id="email"
+						v-model="email"
+						class="form-control"
+						type="email"
+						name="email"
+						autofocus
+					>
+					<div v-if="username_invalide">
+						{{ $t('login.usernameInvalide') }}
+					</div>
+				</div>
+				<div class="col-sm-6" />
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<label
 						for="username"
 						class="control-label"
 					>{{ $t('inscription.username') }} :</label>
