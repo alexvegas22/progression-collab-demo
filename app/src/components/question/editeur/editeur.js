@@ -24,6 +24,8 @@ export default {
 			zonesTraitées: false,
 			cm: null,
 			xray: this.$store.getters?.préférences?.xray && this.$store.getters.indicateursDeFonctionnalité("tout_voir"),
+			pressePapier: navigator.clipboard,
+			copié: false
 		};
 	},
 	watch: {
@@ -33,7 +35,6 @@ export default {
 				this.traiterZones();
 			}
 			else {
-				//Enlève le marquage
 				this.cm.setValue(this.cm.getValue());
 			}
 		},
@@ -121,6 +122,19 @@ export default {
 		window.removeEventListener("beforeunload", this.beforeWindowUnload);
 	},
 	methods: {
+		copy() {
+			if(this.pressePapier) {
+				const code = this.$store.getters.tentative.code.split("\n").filter( (ligne) => {
+					return (ligne.match(/[+-]TODO|VISIBLE/g) || []).length !=1
+				}).join("\n").replace( /[+-]TODO|VISIBLE/g, "" )
+
+				this.pressePapier.writeText( code );
+				this.copié=true
+			}
+			setTimeout( () =>{
+				this.copié=false;
+			}, 1000 );
+ 		},
 		onReady( cm ){
 			cm.on("beforeChange",  this.onBeforeChange);
 			cm.on("change",  this.onChange);
@@ -144,7 +158,7 @@ export default {
 			const mark = marks[0];
 			if ( mark.lines.length === 0 ) return;
 
-			// Enlève le ou les premièress espaces
+			// Enlève la ou les premières espaces
 			const ligne = mark.lines[0];
 			if(ligne.text.indexOf("+TODO ") > 0 &&
 			   ligne.text.indexOf("-TODO") > 0 ) {
@@ -236,8 +250,8 @@ export default {
 		},
 
 		traiterZones() {
-			zones.cacherHorsVisible(this.cm.doc);
-			zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
+		    zones.cacherHorsVisible(this.cm.doc);
+		    zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},
 
 		async sauvegarder() {
