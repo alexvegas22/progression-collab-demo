@@ -42,11 +42,13 @@ export default {
 	},
 	methods: {
 		inscrire() {
-			if (!(this.username_vide ||
+			if (!(this.email_vide ||
+				  this.email_invalide ||
+				  this.username_vide ||
 				  this.username_invalide ||
 				  this.password_vide ||
 				  this.confirmation_vide)) {
-				this.$emit("onLogin", { username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
+				this.$emit("onLogin", { email: this.email.trim(), username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
 			}
 		}
 	}
