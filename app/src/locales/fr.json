@@ -48,7 +48,7 @@
 	},
 
 	"login": {
-		"courriel": "Nom d'utilisateur",
+		"courriel": "Nom d'utilisateur ou adresse courriel",
 		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
