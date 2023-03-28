@@ -92,7 +92,7 @@ export default {
 			}
 		},
 		rôleÉditeur() {
-			return true; //this.$store.getters.indicateursDeFonctionnalité("tout_voir");
+			return this.$store.getters.indicateursDeFonctionnalité("tout_voir");
 		},
 		icone_sauvegarde() {
 			return this.indicateurSauvegardeEnCours ? "mdi-pencil-outline" : this.indicateurModifié ? "mdi-pencil" : "";
