@@ -143,6 +143,7 @@
 	"inscription": {
 		"username": "Username",
 		"email": "Email",
+		"emailInvalide": "This email is invalid.",
 		"confirmation": "Confirm",
 		"boutonInscription": "Sign in",
 		"mdpDifférents": "Passwords must match."

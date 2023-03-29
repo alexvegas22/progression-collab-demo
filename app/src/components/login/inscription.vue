@@ -21,8 +21,8 @@
 						name="email"
 						autofocus
 					>
-					<div v-if="username_invalide">
-						{{ $t('login.usernameInvalide') }}
+					<div v-if="email_invalide">
+						{{ $t('inscription.emailInvalide') }}
 					</div>
 				</div>
 				<div class="col-sm-6" />
