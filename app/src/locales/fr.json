@@ -141,8 +141,8 @@
 	
 	"inscription": {
 		"username": "Nom d'utilisateur",
-		"email": "Courriel",
-		"emailInvalide": "Ce courriel est invalide.",
+		"courriel": "Courriel",
+		"courrielInvalide": "Ce courriel est invalide.",
 		"confirmation": "Confirmation",
 		"boutonInscription": "S'inscrire",
 		"mdpDifférents": "Les deux mots de passe doivent correspondre."

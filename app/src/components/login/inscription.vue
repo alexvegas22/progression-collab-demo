@@ -8,21 +8,21 @@
 			<div class="form-group">
 				<div class="col-sm-6">
 					<label
-						for="email"
+						for="courriel"
 						class="control-label"
 					>
-						{{ $t('inscription.email') }} :
+						{{ $t('inscription.courriel') }} :
 					</label>
 					<input
-						id="email"
-						v-model="email"
+						id="courriel"
+						v-model="courriel"
 						class="form-control"
 						type="email"
-						name="email"
+						name="courriel"
 						autofocus
 					>
-					<div v-if="email_invalide">
-						{{ $t('inscription.emailInvalide') }}
+					<div v-if="courriel_invalide">
+						{{ $t('inscription.courrielInvalide') }}
 					</div>
 				</div>
 				<div class="col-sm-6" />
@@ -106,8 +106,8 @@
 				<v-btn
 					type="submit"
 				 	:disabled="!authentificationPermise ||
-					this.email_vide ||
-					this.email_invalide ||
+					this.courriel_vide ||
+					this.courriel_invalide ||
 						this.username_vide ||
 						this.username_invalide ||
 						this.password_vide ||
