@@ -8,6 +8,28 @@
 			<div class="form-group">
 				<div class="col-sm-6">
 					<label
+						for="courriel"
+						class="control-label"
+					>
+						{{ $t('inscription.courriel') }} :
+					</label>
+					<input
+						id="courriel"
+						v-model="courriel"
+						class="form-control"
+						type="email"
+						name="courriel"
+						autofocus
+					>
+					<div v-if="courriel_invalide">
+						{{ $t('inscription.courrielInvalide') }}
+					</div>
+				</div>
+				<div class="col-sm-6" />
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<label
 						for="username"
 						class="control-label"
 					>{{ $t('inscription.username') }} :</label>
@@ -83,7 +105,9 @@
 			<div class="col-sm-offset-3">
 				<v-btn
 					type="submit"
-					:disabled="!authentificationPermise ||
+				 	:disabled="!authentificationPermise ||
+					this.courriel_vide ||
+					this.courriel_invalide ||
 						this.username_vide ||
 						this.username_invalide ||
 						this.password_vide ||
