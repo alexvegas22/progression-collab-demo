@@ -3,7 +3,15 @@
 		"réseau": "Connection to server failed. Please retry or contact an administrator.",
 		"détails": "details",
 		"authentification": "Incorrect username or password.",
-		"inscription": "That username is already taken.",
+		"inscription": {
+			"usernameExistant": "This username is not available.",
+			"courrielExistant": "This email is not available",
+			"courrielInvalide": "This email is invalid.",
+			"champUsernameVide": "The field Username is mandatory.",
+			"champCourrielVide": "The field Email is mandatory.",
+			"champMotDePasseVide": "The field Password is mandatory.",
+			"champConfirmationVide": "The field Confirm is mandatory."
+		},
 		"tentative_intraitable": "The attempt is invalid. The question may be invalid or may have changed since your draft was loaded. Try reloading the initial draft. If the problem persists, contact an administrator.",
 		"question_introuvable": "The question does not exist or could not be retreived. If the problem persists, contact the author of the question."
 	},
