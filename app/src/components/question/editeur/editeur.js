@@ -125,16 +125,16 @@ export default {
 		copy() {
 			if(this.pressePapier) {
 				const code = this.$store.getters.tentative.code.split("\n").filter( (ligne) => {
-					return (ligne.match(/[+-]TODO|VISIBLE/g) || []).length !=1
-				}).join("\n").replace( /[+-]TODO|VISIBLE/g, "" )
+					return (ligne.match(/[+-]TODO|VISIBLE/g) || []).length !=1;
+				}).join("\n").replace( /[+-]TODO|VISIBLE/g, "" );
 
 				this.pressePapier.writeText( code );
-				this.copié=true
+				this.copié=true;
 			}
 			setTimeout( () =>{
 				this.copié=false;
 			}, 1000 );
- 		},
+		},
 		onReady( cm ){
 			cm.on("beforeChange",  this.onBeforeChange);
 			cm.on("change",  this.onChange);
