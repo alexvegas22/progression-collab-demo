@@ -30,8 +30,8 @@
 								:text = "username" />
 						</v-col>
 						<v-col>
-						    <v-icon
-							style="margin-right: 1rem"
+							<v-icon
+								style="margin-right: 1rem"
 								icon="mdi-logout"
 								@click="déconnexion">
 							</v-icon>
@@ -55,7 +55,7 @@
 				@basculerThèmeSombre="basculerThèmeSombre"
 				@basculerLocale="basculerLocale"
 				@basculerVersion="basculerVersion"
-				/>
+			/>
 
 			<div v-show="enChargement" class="loader-parent">
 				<div class="loader">
