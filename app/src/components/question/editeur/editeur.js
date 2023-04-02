@@ -92,7 +92,7 @@ export default {
 			}
 		},
 		rôleÉditeur() {
-			return true; //this.$store.getters.indicateursDeFonctionnalité("tout_voir");
+			return this.$store.getters.indicateursDeFonctionnalité("tout_voir");
 		},
 		icone_sauvegarde() {
 			return this.indicateurSauvegardeEnCours ? "mdi-pencil-outline" : this.indicateurModifié ? "mdi-pencil" : "";
@@ -250,8 +250,6 @@ export default {
 		},
 
 		traiterZones() {
-		    console.log("OK");
-
 		    zones.cacherHorsVisible(this.cm.doc);
 		    zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},

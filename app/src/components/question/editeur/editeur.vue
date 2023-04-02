@@ -8,7 +8,7 @@
 			height="56px"
 			class="xray"
 		>
-			<v-btn
+			<v-btn v-show="rôleÉditeur"
 				@click="() => {xray = !xray}"
 				value="true"
 				size="small"
