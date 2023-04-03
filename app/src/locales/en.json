@@ -5,12 +5,12 @@
 		"authentification": "Incorrect username or password.",
 		"inscription": {
 			"usernameExistant": "This username is not available.",
-			"courrielExistant": "This email is not available",
+			"courrielExistant": "This email is not available.",
 			"courrielInvalide": "This email is invalid.",
-			"champUsernameVide": "The field Username is mandatory.",
-			"champCourrielVide": "The field Email is mandatory.",
-			"champMotDePasseVide": "The field Password is mandatory.",
-			"champConfirmationVide": "The field Confirm is mandatory."
+			"champUsernameVide": "The username is mandatory.",
+			"champCourrielVide": "The email is mandatory.",
+			"champMotDePasseVide": "The password is mandatory.",
+			"champConfirmationVide": "Confirming your password is mandatory."
 		},
 		"tentative_intraitable": "The attempt is invalid. The question may be invalid or may have changed since your draft was loaded. Try reloading the initial draft. If the problem persists, contact an administrator.",
 		"question_introuvable": "The question does not exist or could not be retreived. If the problem persists, contact the author of the question."
@@ -56,7 +56,7 @@
 	},
 
 	"login": {
-		"courriel": "Username or email",
+		"courriel": "Username",
 		"motDePasse": "Password",
 		"boutonConnexion": "Log in",
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",

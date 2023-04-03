@@ -4,13 +4,13 @@
 		"détails": "détails",
 		"authentification": "Nom d'utilisateur ou mot de passe incorrect.",
 		"inscription": {
-			"usernameExistant": "Ce nom d'utilisateur n'est plus disponible.",
-			"courrielExistant": "Ce courriel n'est plus disponible",
+			"usernameExistant": "Ce nom d'utilisateur n'est pas disponible.",
+			"courrielExistant": "Ce courriel n'est pas disponible.",
 			"courrielInvalide": "Ce courriel n'est pas valide.",
-			"champUsernameVide": "Le champ Nom d'utilisateur est obligatoire.",
-			"champCourrielVide": "Le champ Courriel est obligatoire.",
-			"champMotDePasseVide": "Le champ Mot de passe est obligatoire.",
-			"champConfirmationVide": "Le champ Confirmation est obligatoire."
+			"champUsernameVide": "Le nom d'utilisateur est obligatoire.",
+			"champCourrielVide": "Le courriel est obligatoire.",
+			"champMotDePasseVide": "Le mot de passe est obligatoire.",
+			"champConfirmationVide": "La confirmation du mot de passe est obligatoire."
 		},
 		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur.",
 		"question_introuvable": "La question n'existe pas ou n'a pas pu être récupérée. Si le problème persiste, veuillez aviser l'auteur de la question."
@@ -56,7 +56,7 @@
 	},
 
 	"login": {
-		"courriel": "Nom d'utilisateur ou adresse courriel",
+		"courriel": "Nom d'utilisateur",
 		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
