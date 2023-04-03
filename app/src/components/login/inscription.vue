@@ -105,17 +105,11 @@
 			<div class="col-sm-offset-3">
 				<v-btn
 					type="submit"
-					:disabled="!authentificationPermise ||
-						this.courriel_vide ||
-						this.courriel_invalide ||
-						this.username_vide ||
-						this.username_invalide ||
-						this.password_vide ||
-						this.confirmation_vide"
+						  :disabled="!authentificationPermise ||
+						  !champs_valides"
 				>
 					{{$t('inscription.boutonInscription')}}
 				</v-btn>
-
 			</div>
 		</fieldset>
 	</form>
