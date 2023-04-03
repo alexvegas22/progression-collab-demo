@@ -9,8 +9,7 @@
 			"courrielInvalide": "Ce courriel n'est pas valide.",
 			"champUsernameVide": "Le nom d'utilisateur est obligatoire.",
 			"champCourrielVide": "Le courriel est obligatoire.",
-			"champMotDePasseVide": "Le mot de passe est obligatoire.",
-			"champConfirmationVide": "La confirmation du mot de passe est obligatoire."
+			"champMotDePasseVide": "Le mot de passe est obligatoire."
 		},
 		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur.",
 		"question_introuvable": "La question n'existe pas ou n'a pas pu être récupérée. Si le problème persiste, veuillez aviser l'auteur de la question."

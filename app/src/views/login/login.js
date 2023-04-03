@@ -50,6 +50,9 @@ export default {
 							if (erreurs.username[0].startsWith( "Err: 1001." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.usernameExistant") });
 							}
+							else if (erreurs.username[0].startsWith( "Err: 1003." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.usernameInvalide") });
+							}
 							else if (erreurs.username[0].startsWith( "Err: 1004." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champUsernameVide") });
 							}

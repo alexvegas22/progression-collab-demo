@@ -183,6 +183,7 @@ export default {
 
 	async authentifier({ commit }, params) {
 		const urlAuth = import.meta.env.VITE_API_URL + (params.inscrire ? "/inscription" : "/auth");
+		const courriel = params.courriel;
 		const username = params.username;
 		const password = params.password;
 		const persister = params.persister;
@@ -194,7 +195,7 @@ export default {
 			commit("setEnChargement", true);
 			try {
 
-				const token = await authentifierApi(urlAuth, username, password, domaine);
+				const token = await authentifierApi(urlAuth, username, courriel, password, domaine);
 
 				commit("setUsername", username);
 				commit("setToken", token);

@@ -5,7 +5,9 @@
 		@submit.prevent="inscrire"
 	>
 		<fieldset :disabled="!authentificationPermise">
-			<div class="form-group">
+			<div
+				v-if="auth_local"
+				class="form-group">
 				<div class="col-sm-6">
 					<label
 						for="courriel"
@@ -48,7 +50,7 @@
 				<div class="col-sm-6" />
 			</div>
 			<div
-				v-if="password_req"
+				v-if="auth_local"
 				class="form-group"
 			>
 				<div class="form-group">
@@ -105,8 +107,7 @@
 			<div class="col-sm-offset-3">
 				<v-btn
 					type="submit"
-					:disabled="!authentificationPermise ||
-						!champs_valides"
+					:disabled="!authentificationPermise || !champs_valides"
 				>
 					{{$t('inscription.boutonInscription')}}
 				</v-btn>

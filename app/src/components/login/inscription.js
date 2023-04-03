@@ -4,7 +4,7 @@ export default {
 		onLogin: Object,
 	},
 	props:{
-		password_req: Boolean,
+		auth_local: Boolean,
 	},
 	data() {
 		return {
@@ -28,10 +28,10 @@ export default {
 			);
 		},
 		confirmation_vide() {
-			return this.password_req && this.confirmation != this.password;
+			return this.auth_local && this.confirmation != this.password;
 		},
 		password_vide() {
-			return this.password_req && this.password == "";
+			return this.auth_local && this.password == "";
 		},
 		username_vide() {
 			return this.username.trim() == "";
@@ -40,13 +40,13 @@ export default {
 			return !this.username_vide && !this.username.trim().match(/^[-a-zA-Z0-9_]+$/);
 		},
 		champs_valides() {
-			return !(this.courriel_vide ||
-				 this.courriel_invalide ||
-				 this.username_vide ||
-				 this.username_invalide ||
-				 this.password_vide ||
-				 this.confirmation_vide
-			);
+			return !this.username_vide &&
+				   !this.username_invalide &&
+				   (!this.auth_local ||
+					!this.password_vide &&
+					!this.courriel_vide &&
+					!this.courriel_invalide &&
+					!this.confirmation_vide);
 		}
 	},
 	methods: {
