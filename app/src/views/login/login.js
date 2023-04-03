@@ -40,19 +40,42 @@ export default {
 						this.$router.push({name: "Home"});
 					}
 				}
-				catch(err){
+				catch( err ){
 					if (err.response && err.response.status == 401) {
 						this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
 					}
-					else if (err.response && err.response.status == 403) {
-						this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription") });
+					else if (err.response && err.response.status == 400) {
+						var erreurs = err.response.data.erreur;
+						if ("username" in erreurs && erreurs.username[0] ){
+							if (erreurs.username[0].startsWith( "Err: 1001." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.usernameExistant") });
+							}
+							else if (erreurs.username[0].startsWith( "Err: 1004." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champUsernameVide") });
+							}
+						}
+						if ("courriel" in erreurs && erreurs.courriel[0] ){
+							if (erreurs.courriel[0].startsWith( "Err: 1002." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.courrielExistant") });
+							}
+							else if (erreurs.courriel[0].startsWith( "Err: 1003." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.courrielInvalide") });
+							}
+							else if (erreurs.courriel[0].startsWith( "Err: 1004." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champCourrielVide") });
+							}
+						}
+						if ("password" in erreurs && erreurs.password[0] ) {
+							if (erreurs.password[0].startsWith( "Err: 1004." )){
+								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champMotDePasseVide") });
+							}
+						}
 					}
-					else{
+					else {
 						throw err;
 					}
 				}
 			})();
 		},
-
-	}
+	},
 };

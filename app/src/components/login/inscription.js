@@ -23,9 +23,9 @@ export default {
 			return this.courriel.trim() == "";
 		},
 		courriel_invalide(){
-			return !this.courriel.toLowerCase().match(
+			return !this.courriel_vide && !this.courriel.toLowerCase().match(
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
+			);
 		},
 		confirmation_vide() {
 			return this.password_req && this.confirmation != this.password;
@@ -38,16 +38,20 @@ export default {
 		},
 		username_invalide() {
 			return !this.username_vide && !this.username.trim().match(/^[-a-zA-Z0-9_]+$/);
+		},
+		champs_valides() {
+			return !(this.courriel_vide ||
+				 this.courriel_invalide ||
+				 this.username_vide ||
+				 this.username_invalide ||
+				 this.password_vide ||
+				 this.confirmation_vide
+			);
 		}
 	},
 	methods: {
 		inscrire() {
-			if (!(this.courriel_vide ||
-				  this.courriel_invalide ||
-				  this.username_vide ||
-				  this.username_invalide ||
-				  this.password_vide ||
-				  this.confirmation_vide)) {
+			if (this.champs_valides) {
 				this.$emit("onLogin", { courriel: this.courriel.trim(), username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
 			}
 		}
