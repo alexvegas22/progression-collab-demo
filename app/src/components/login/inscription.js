@@ -41,16 +41,17 @@ export default {
 		},
 		champs_valides() {
 			return !(this.courriel_vide ||
-					 this.courriel_invalide ||
-					 this.username_vide ||
-					 this.username_invalide ||
-					 this.password_vide ||
-					 this.confirmation_vide);
+				 this.courriel_invalide ||
+				 this.username_vide ||
+				 this.username_invalide ||
+				 this.password_vide ||
+				 this.confirmation_vide
+			);
 		}
 	},
 	methods: {
 		inscrire() {
-			if (champs_valides) {
+			if (this.champs_valides) {
 				this.$emit("onLogin", { courriel: this.courriel.trim(), username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
 			}
 		}

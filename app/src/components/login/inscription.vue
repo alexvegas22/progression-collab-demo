@@ -105,8 +105,8 @@
 			<div class="col-sm-offset-3">
 				<v-btn
 					type="submit"
-						  :disabled="!authentificationPermise ||
-						  !champs_valides"
+					:disabled="!authentificationPermise ||
+						!champs_valides"
 				>
 					{{$t('inscription.boutonInscription')}}
 				</v-btn>
