@@ -66,7 +66,7 @@
 				val="INSCRIPTION"
 			>
 				<Inscription
-					:password_req="auth_local"
+					:auth_local="auth_local"
 					@onLogin="onLogin"
 				/>
 			</tab-panel>
