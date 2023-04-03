@@ -1,7 +1,7 @@
 import { getData, postData } from "@/services/request_services";
 
-const authentifierApi = async (urlAuth, nom_utilisateur, mdp, domaine) =>
-	(await postData(urlAuth, null, { username: nom_utilisateur, password: mdp, domaine: domaine })).Token;
+const authentifierApi = async (urlAuth, nom_utilisateur, courriel, mdp, domaine) =>
+	(await postData(urlAuth, null, { username: nom_utilisateur, courriel: courriel, password: mdp, domaine: domaine })).Token;
 
 const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
 	(await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
