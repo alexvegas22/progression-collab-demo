@@ -20,7 +20,7 @@
 				/>
 			</v-btn>
 
-			<v-btn
+			<v-btn v-show="rôleÉditeur"
 				:disabled="!pressePapier"
 				@click="copy"
 				:loading="copié"
