@@ -10,6 +10,7 @@ import {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
+	postModifierUserApi,
 	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
@@ -225,6 +226,27 @@ export default {
 		);
 	},
 
+	async mettreAJourUser({commit}, params ){
+		return valider(async () => {
+			commit("setEnChargement", true);
+			try {
+				var data = { url: params.url, user: params.user };
+				var token = params.token;
+				const reponse = await postModifierUserApi( data , token );
+				
+				if (reponse == true){
+					commit("setMessageDeValidation", this.$t("inscriptionRéussi"));
+				}
+				else {
+					commit("setMessageDeValidation", this.$t("inscriptionÉchoué"));
+				}
+			}
+			finally {
+				commit("setEnChargement", false);
+			}
+		});
+	},
+	
 	async récupérerUser({ commit }, urlUser) {
 		return valider(async () => {
 			commit("setEnChargement", true);

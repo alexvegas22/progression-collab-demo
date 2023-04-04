@@ -1,4 +1,5 @@
 import Login from "@/components/login/login.vue";
+import jwt_decode from "jwt-decode";
 
 export default {
 	name: "LoginView",
@@ -12,6 +13,9 @@ export default {
 		}
 	},
 	computed: {
+		messageDeValidation() {
+			return this.$store.state.messageDeValidation;
+		},
 		token() {
 			return this.$store.getters.obtenirToken();
 		},
@@ -19,7 +23,24 @@ export default {
 			return this.$store.getters.configServeur;
 		}
 	},
+	mounted() {
+		this.traiterModifierUserCourant( window.location.search );
+	},
 	methods: {
+		traiterModifierUserCourant(paramètres){
+			var urlParams = new URLSearchParams(paramètres);
+			
+			if( urlParams.has("token") ) {
+				var tokenRessourcesDécodé = jwt_decode(urlParams.get("token"));
+				var urlUser = tokenRessourcesDécodé.ressources["url_user"];
+				
+				this.$store.dispatch("mettreAJourUser",{
+					url: urlUser,
+					user: { état : 1 },
+					token: urlParams.get("token")
+				});
+			}
+		},
 		onLogin( event ){
 
 			(async () => {
