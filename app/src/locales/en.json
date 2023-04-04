@@ -238,5 +238,10 @@
 		"commentaires": "Comments",
 		"placeholderCommentaire": "Write a comment",
 		"ligneCommentaire": "Line:"  
+	},
+
+	"notification": {
+		"inscriptionRéussi": "Congrats! You are now registered on Progression!",
+		"inscriptionÉchoué": "Registration failed. Please try again or contact administrator!"
 	}
 }

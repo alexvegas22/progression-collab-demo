@@ -238,5 +238,10 @@
 		"commentaires": "Commentaires",
 		"placeholderCommentaire": "Écrire un commentaire",
 		"ligneCommentaire": "Ligne:" 
+	},
+
+	"notification": {
+		"inscriptionRéussi": "Inscription terminé! Bienvenue sur Progression!",
+		"inscriptionÉchoué": "Inscription échoué. Veuillez s'il vous plaît réessayer ou contactez l'administrateur."
 	}
 }

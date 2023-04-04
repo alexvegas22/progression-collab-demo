@@ -1,4 +1,7 @@
 <template>
+	<div v-if="messageDeValidation">
+		{{ messageDeValidation }}
+	</div>
 	<div v-if="configServeur">
 		<Login @onLogin="onLogin" />
 	</div>

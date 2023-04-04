@@ -21,6 +21,7 @@ export default createStore({
 		erreur_callback: null,
 		indicateursDeFonctionnalité: [],
 		langageDéfaut: null,
+		messageDeValidation: null,
 		mode_affichage: 0,
 		nbRéussitesParLangage: [],
 		préférences: [],
