@@ -95,6 +95,13 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 	return avancement;
 };
 
+const postModifierUserApi = async (params, token) => {
+	const url = params.data.url;
+	const body = params.data.user;
+	var reponse = await postData(url, null, body, token);
+	return reponse;
+};
+
 const postAvancementApi = async (params, token) => {
 	const query = { include: "tentatives,sauvegardes" };
 	const body = {
@@ -265,6 +272,7 @@ export {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
+	postModifierUserApi,
 	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
