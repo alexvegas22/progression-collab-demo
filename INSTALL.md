@@ -2,7 +2,7 @@
 
 ## 1. Pré-requis
 - [git](https://git-scm.com/downloads)
-- [docker](https://www.docker.com/) *«facultatif»*
+- [docker](https://www.docker.com/)
 
 ## 2. Installation & Configuration 
 
