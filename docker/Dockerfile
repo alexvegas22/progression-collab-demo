@@ -48,6 +48,6 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 COPY default.conf /etc/nginx/conf.d/
-COPY entrypoint/* /docker-entrypoint.d/
+COPY docker/entrypoint/* /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/*
 COPY VERSION /docker-entrypoint.d/
