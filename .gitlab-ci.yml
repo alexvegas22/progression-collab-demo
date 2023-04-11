@@ -76,7 +76,7 @@ const_image:
   script:
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
-    - docker build --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
+    - docker build -f docker/Dockerfile --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
 
 const_lti:
