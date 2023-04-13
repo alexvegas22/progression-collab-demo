@@ -88,7 +88,7 @@ const_lti:
   before_script:
     - *login
   script:
-    - docker build -f docker/Dockerfile --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest --build-arg BUILDKIT_INLINE_CACHE=1 -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
+    - docker build -f ltijs/Dockerfile --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest --build-arg BUILDKIT_INLINE_CACHE=1 -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
   only:
   - master
