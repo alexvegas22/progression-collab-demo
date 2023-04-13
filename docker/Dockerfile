@@ -1,6 +1,6 @@
 FROM node:lts-alpine as build-stage
 #Environnement défaut, surdéfinir avec --build-arg ou un fichier .env
-ARG NODE_ENV=prod
+ARG NODE_ENV=production
 ARG MODE=production
 ARG VITE_API_URL=\$VITE_API_URL
 ARG VITE_FF_URL=\$VITE_FF_URL
@@ -19,9 +19,10 @@ RUN npm install -g http-server
 WORKDIR /app
 
 # copy both 'package.json' and 'package-lock.json' (if available)
-COPY app/package*.json ./
+COPY app/package.json ./
 
 # install project dependencies
+
 RUN npm install
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
