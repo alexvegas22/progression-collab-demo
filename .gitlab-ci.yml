@@ -78,7 +78,7 @@ const_image:
   script:
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
-    - docker build --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
+    - docker build -f docker/Dockerfile --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
 
 const_lti:
@@ -88,7 +88,7 @@ const_lti:
   before_script:
     - *login
   script:
-    - docker build --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest --build-arg BUILDKIT_INLINE_CACHE=1 -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
+    - docker build -f docker/Dockerfile --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest --build-arg BUILDKIT_INLINE_CACHE=1 -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
   only:
   - master
