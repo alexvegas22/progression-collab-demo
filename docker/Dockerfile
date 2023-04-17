@@ -2,6 +2,7 @@ FROM node:lts-alpine as build-stage
 #Environnement défaut, surdéfinir avec --build-arg ou un fichier .env
 ARG NODE_ENV=production
 ARG MODE=production
+ARG VITE_APP_VERSION=\$VITE_APP_VERSION
 ARG VITE_API_URL=\$VITE_API_URL
 ARG VITE_FF_URL=\$VITE_FF_URL
 ARG VITE_FF_SECRET=\$VITE_FF_SECRET
