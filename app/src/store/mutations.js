@@ -111,6 +111,7 @@ export const mutations = {
 	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
 		state.nbRéussitesParLangage = nbRéussitesParLangage;
 	},
+
 	setMessageDeValidation(state, val) {
 		state.messageDeValidation = val;
 	},

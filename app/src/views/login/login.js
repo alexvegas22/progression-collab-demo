@@ -32,7 +32,7 @@ export default {
 			
 			if( urlParams.has("token") ) {
 				var tokenRessourcesDécodé = jwt_decode(urlParams.get("token"));
-				var urlUser = tokenRessourcesDécodé.ressources["url_user"];
+				var urlUser = tokenRessourcesDécodé.user.links["self"];
 				
 				this.$store.dispatch("mettreAJourUser",{
 					url: urlUser,

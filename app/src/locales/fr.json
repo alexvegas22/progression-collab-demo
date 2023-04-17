@@ -242,6 +242,6 @@
 
 	"notification": {
 		"inscriptionRéussi": "Inscription terminé! Bienvenue sur Progression!",
-		"inscriptionÉchoué": "Inscription échoué. Veuillez s'il vous plaît réessayer ou contactez l'administrateur."
+		"inscriptionÉchoué": "Le courriel de votre utilisateur n'a pas encore été vérifié. Désirez-vous recevoir un nouveau courriel de validation?"
 	}
 }

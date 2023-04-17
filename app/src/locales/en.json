@@ -242,6 +242,6 @@
 
 	"notification": {
 		"inscriptionRéussi": "Congrats! You are now registered on Progression!",
-		"inscriptionÉchoué": "Registration failed. Please try again or contact administrator!"
+		"inscriptionÉchoué": "Your user's email has not yet been verified. Would you like to receive a new validation email?
 	}
 }
