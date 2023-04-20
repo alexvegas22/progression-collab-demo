@@ -228,22 +228,12 @@ export default {
 
 	async mettreAJourUser({commit}, params ){
 		return valider(async () => {
-			commit("setEnChargement", true);
-			try {
-				var data = { url: params.url, user: params.user };
-				var token = params.token;
-				const reponse = await postModifierUserApi( data , token );
-				
-				if (reponse == true){
-					commit("setMessageDeValidation", i18n.global.t("validation_courriel.réussie"));
-				}
-				else {
-					commit("setMessageDeValidation", i18n.global.t("validation_courriel.échouée"));
-				}
-			}
-			finally {
-				commit("setEnChargement", false);
-			}
+			var data = {
+				url: params.url,
+				user: params.user
+			};
+			var token = params.token;
+			return await postModifierUserApi( data , token );
 		});
 	},
 	
