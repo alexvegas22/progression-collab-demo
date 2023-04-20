@@ -235,10 +235,10 @@ export default {
 				const reponse = await postModifierUserApi( data , token );
 				
 				if (reponse == true){
-					commit("setMessageDeValidation", i18n.global.t("inscriptionRéussi"));
+					commit("setMessageDeValidation", i18n.global.t("validation_courriel.réussie"));
 				}
 				else {
-					commit("setMessageDeValidation", i18n.global.t("inscriptionÉchoué"));
+					commit("setMessageDeValidation", i18n.global.t("validation_courriel.échouée"));
 				}
 			}
 			finally {

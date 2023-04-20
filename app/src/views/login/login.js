@@ -14,7 +14,7 @@ export default {
 	},
 	computed: {
 		messageDeValidation() {
-			return this.$store.state.messageDeValidation;
+			return this.$t("validation_courriel.échouée");
 		},
 		token() {
 			return this.$store.getters.obtenirToken();
