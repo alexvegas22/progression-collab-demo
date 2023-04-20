@@ -24,20 +24,21 @@ export default {
 		}
 	},
 	mounted() {
-		this.traiterModifierUserCourant( window.location.search );
+		this.traiterValidationDeCourriel( window.location.search );
 	},
 	methods: {
-		traiterModifierUserCourant(paramètres){
+		traiterValidationDeCourriel(paramètres){
 			var urlParams = new URLSearchParams(paramètres);
 			
 			if( urlParams.has("token") ) {
-				var tokenRessourcesDécodé = jwt_decode(urlParams.get("token"));
-				var urlUser = tokenRessourcesDécodé.user.links["self"];
+				var token = urlParams.get("token");
+				var tokenDécodé = jwt_decode(token);
+				var urlUser = tokenDécodé.user.links.self;
 				
 				this.$store.dispatch("mettreAJourUser",{
 					url: urlUser,
 					user: { état : 1 },
-					token: urlParams.get("token")
+					token: token
 				});
 			}
 		},
