@@ -226,14 +226,16 @@ export default {
 		);
 	},
 
-	async mettreAJourUser({commit}, params ){
+	async mettreAJourUser( {commit}, params ){
 		return valider(async () => {
 			var data = {
 				url: params.url,
 				user: params.user
 			};
 			var token = params.token;
-			return await postModifierUserApi( data , token );
+			const user =  await postModifierUserApi( data , token );
+			commit("setUser", user);
+			return user;
 		});
 	},
 	

@@ -98,7 +98,8 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 const postModifierUserApi = async (params, token) => {
 	const url = params.url;
 	const body = params.user;
-	return await postData(url, null, body, token);
+	const data =  await postData(url, null, body, token);
+	return construireUser( data );
 };
 
 const postAvancementApi = async (params, token) => {
