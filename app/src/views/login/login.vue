@@ -1,7 +1,7 @@
 <template>
 	<BoiteDeDialogue
 		:visible="validation"
-		:messageDeValidation="messageDeValidation"
+		:messageDeValidation="$t('validation_courriel.échouée')"
 		@reponse="onReponse"
 	/>
 
