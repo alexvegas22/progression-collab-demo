@@ -1,9 +1,9 @@
 export default {
-    data(){
+	data(){
 		return {
 			dialog: false,
 		};
-    },
+	},
 	emits: {
 		onReponse: Object,
 	},
@@ -29,11 +29,11 @@ export default {
 	},
 	methods: {
 		onOui() {
-			this.$emit('onReponse', "oui");
+			this.$emit("onReponse", "oui");
 			this.dialog = false;
 		},
 		onNon() {
-			this.$emit('onReponse', "non");
+			this.$emit("onReponse", "non");
 			this.dialog = false;
 		}
 	}

@@ -26,8 +26,8 @@
 					</v-btn>
 					<v-btn
 						color="success"
-							   variant="text"
-							   @click="onOui"
+						variant="text"
+						@click="onOui"
 					>
 						{{ choixOui }}
 					</v-btn>
