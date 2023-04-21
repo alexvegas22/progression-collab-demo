@@ -46,9 +46,10 @@ export default {
 
 				(async () => {
 					try {
+						const ÉTAT_USER_ACTIF = 1;
 						const user = await this.$store.dispatch("mettreAJourUser",{
 							url: urlUser,
-							user: { état : 1 },
+							user: { état : ÉTAT_USER_ACTIF },
 							token: this.token
 						});
 					}
