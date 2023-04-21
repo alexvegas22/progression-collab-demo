@@ -2,7 +2,7 @@
 	<BoiteDeDialogue
 		:visible="validation"
 		:messageDeValidation="$t('validation_courriel.échouée')"
-		@reponse="onReponse"
+		@onReponse="onReponse"
 	/>
 
 	<div v-if="configServeur">
