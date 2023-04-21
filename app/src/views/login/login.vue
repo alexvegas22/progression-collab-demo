@@ -1,7 +1,10 @@
 <template>
-	<div v-if="messageDeValidation">
-		{{ messageDeValidation }}
-	</div>
+	<BoiteDeDialogue
+		:visible="validation"
+		:messageDeValidation="messageDeValidation"
+		@reponse="onReponse"
+	/>
+
 	<div v-if="configServeur">
 		<Login @onLogin="onLogin" />
 	</div>

@@ -37,6 +37,11 @@
 			"champ_url": "URL",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Cancel"
+		},
+		"boiteDeDialogue": {
+			"titreAvertissement": "Warning",
+			"choixOui": "Yes",
+			"choixNon": "No"
 		}
 	},
 

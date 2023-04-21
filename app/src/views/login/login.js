@@ -1,9 +1,18 @@
 import Login from "@/components/login/login.vue";
+import BoiteDeDialogue from "@/components/boite_de_dialogue/boite_de_dialogue.vue";
 import jwt_decode from "jwt-decode";
 
 export default {
 	name: "LoginView",
+	data(){
+		return {
+			token: null,
+			tokenDécodé: null,
+			validation: true,
+		};
+	},
 	components: {
+		BoiteDeDialogue,
 		Login,
 	},
 	props: {
@@ -29,21 +38,32 @@ export default {
 	methods: {
 		traiterValidationDeCourriel(paramètres){
 			var urlParams = new URLSearchParams(paramètres);
-			
+
 			if( urlParams.has("token") ) {
-				var token = urlParams.get("token");
-				var tokenDécodé = jwt_decode(token);
-				var urlUser = tokenDécodé.user.links.self;
-				
-				this.$store.dispatch("mettreAJourUser",{
-					url: urlUser,
-					user: { état : 1 },
-					token: token
-				});
+				this.token = urlParams.get("token");
+				this.tokenDécodé = jwt_decode(this.token);
+				var urlUser = this.tokenDécodé.url_user;
+
+				(async () => {
+					try {
+						const user = await this.$store.dispatch("mettreAJourUser",{
+							url: urlUser,
+							user: { état : 1 },
+							token: this.token
+						});
+					}
+					catch ( err ) {
+						if ( err.response && err.response.status == 401 ) {
+							this.validation = false;
+						}
+						else {
+							throw err;
+						}
+					}
+				})();
 			}
 		},
 		onLogin( event ){
-
 			(async () => {
 				try{
 					await this.$store.dispatch("authentifier", event);
