@@ -246,7 +246,7 @@
 	},
 
 	"validation_courriel": {
-		"réussie": "Votre courriel a été validé! Bienvenue sur Progression! Maintenant, vous pouvez vous connecter et commencer à programmer!",
+		"réussie": "Votre courriel a été validé! Bienvenue sur Progression! Maintenant, connectez-vous et commencez à programmer!",
 		"échouée": "Le courriel de votre utilisateur n'a pas encore été vérifié. Désirez-vous recevoir un nouveau courriel de validation?"
 	}
 }

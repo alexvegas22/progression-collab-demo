@@ -1,3 +1,4 @@
+import USER from '@/util/constantes.js';
 import Login from "@/components/login/login.vue";
 import BoîteConfirmation from "@/components/boite_de_dialogue/boîte_confirmation.vue";
 import jwt_decode from "jwt-decode";
@@ -6,9 +7,7 @@ export default {
 	name: "LoginView",
 	data(){
 		return {
-			token: null,
-			tokenDécodé: null,
-			validation: true,
+			courrielValidé : true,
 		};
 	},
 	components: {
@@ -37,22 +36,21 @@ export default {
 			var urlParams = new URLSearchParams(paramètres);
 
 			if( urlParams.has("token") ) {
-				this.token = urlParams.get("token");
-				this.tokenDécodé = jwt_decode(this.token);
-				var urlUser = this.tokenDécodé.url_user;
+				const token = urlParams.get("token");
+				const tokenDécodé = jwt_decode(token);
+				var urlUser = tokenDécodé.ressources.data.url_user;
 
 				(async () => {
 					try {
-						const ÉTAT_USER_ACTIF = 1;
-						await this.$store.dispatch("mettreAJourUser",{
+						await this.$store.dispatch("mettreÀJourUser",{
 							url: urlUser,
-							user: { état : ÉTAT_USER_ACTIF },
-							token: this.token
+							user: { état : USER.ÉTAT_ACTIF },
+							token: token
 						});
 					}
 					catch ( err ) {
 						if ( err.response && err.response.status == 401 ) {
-							this.validation = false;
+							this.courrielValidé = false;
 						}
 						else {
 							throw err;
@@ -81,7 +79,7 @@ export default {
 					}
 				}
 				catch( err ){
-					if (err.response && err.response.status == 401) {
+					if (err?.response?.status == 401) {
 						this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
 					}
 					else if (err.response && err.response.status == 400) {

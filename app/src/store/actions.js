@@ -226,19 +226,14 @@ export default {
 		);
 	},
 
-	async mettreAJourUser( {commit}, params ){
+	async mettreÀJourUser( {commit}, params ){
 		return valider(async () => {
-			var data = {
-				url: params.url,
-				user: params.user
-			};
-			var token = params.token;
-			const user =  await postModifierUserApi( data , token );
+			const user =  await postModifierUserApi( { url: params.url, user: params.user } , params.token );
 			commit("setUser", user);
 			return user;
 		});
 	},
-	
+
 	async récupérerUser({ commit }, urlUser) {
 		return valider(async () => {
 			commit("setEnChargement", true);

@@ -111,6 +111,7 @@ export const mutations = {
 	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
 		state.nbRéussitesParLangage = nbRéussitesParLangage;
 	},
+
 	setModeAffichage(state, val) {
 		state.mode_affichage = val;
 	},

@@ -1,6 +1,6 @@
 <template>
 	<BoîteConfirmation
-		:visible="validation"
+		:visible="courrielValidé"
 		:message="$t('validation_courriel.échouée')"
 		@onRéponse="onRéponse"
 	/>
