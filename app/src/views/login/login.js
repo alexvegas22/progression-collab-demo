@@ -49,7 +49,7 @@ export default {
 						});
 					}
 					catch ( err ) {
-						if ( err.response && err.response.status == 401 ) {
+						if ( err?.response?.status == 401 ) {
 							this.courrielValidé = false;
 						}
 						else {
@@ -79,7 +79,7 @@ export default {
 					}
 				}
 				catch( err ){
-					if (err?.response?.status == 401) {
+					if (err.response && err.response.status == 401) {
 						this.$store.dispatch("setErreurs", { message: this.$t("erreur.authentification") });
 					}
 					else if (err.response && err.response.status == 400) {
