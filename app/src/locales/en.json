@@ -39,9 +39,9 @@
 			"bouton_annuler": "Cancel"
 		},
 		"boiteDeDialogue": {
-			"titreAvertissement": "Warning",
-			"choixOui": "Yes",
-			"choixNon": "No"
+			"erreurSurvenue": "An error has occured",
+			"oui": "Yes",
+			"non": "No"
 		}
 	},
 

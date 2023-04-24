@@ -1,8 +1,8 @@
 <template>
-	<BoiteDeDialogue
+	<BoîteConfirmation
 		:visible="validation"
-		:messageDeValidation="$t('validation_courriel.échouée')"
-		@onReponse="onReponse"
+		:message="$t('validation_courriel.échouée')"
+		@onRéponse="onRéponse"
 	/>
 
 	<div v-if="configServeur">

@@ -1,5 +1,5 @@
 import Login from "@/components/login/login.vue";
-import BoiteDeDialogue from "@/components/boite_de_dialogue/boite_de_dialogue.vue";
+import BoîteConfirmation from "@/components/boite_de_dialogue/boîte_confirmation.vue";
 import jwt_decode from "jwt-decode";
 
 export default {
@@ -12,7 +12,7 @@ export default {
 		};
 	},
 	components: {
-		BoiteDeDialogue,
+		BoîteConfirmation,
 		Login,
 	},
 	props: {

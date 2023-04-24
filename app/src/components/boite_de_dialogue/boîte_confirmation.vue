@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<v-dialog
-			v-model="dialog"
+			v-model="dialogueVisible"
 			persistent
 			width="auto"
 		>
@@ -13,7 +13,7 @@
 					{{ titre }}
 				</v-card-title>
 				<v-card-text>
-					{{ messageDeValidation }}
+					{{ message }}
 				</v-card-text>
 				<v-card-actions>
 					<v-spacer></v-spacer>
@@ -37,4 +37,4 @@
 	</div>	
 </template>
 
-<script src="./boite_de_dialogue.js"></script>
+<script src="./boîte_confirmation.js"></script>
