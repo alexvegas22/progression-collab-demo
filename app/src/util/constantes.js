@@ -3,5 +3,5 @@ const USER = {
 };
 
 export default {
-    USER
+	USER
 };

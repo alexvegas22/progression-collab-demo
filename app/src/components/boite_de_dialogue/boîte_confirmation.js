@@ -8,22 +8,22 @@ export default {
 		onRéponse: Object,
 	},
 	props: {
-		visible: Boolean,
+		isVisible: Boolean,
 		message: String
 	},
 	computed: {
 		titre(){
 			return this.$t("dialogues.boiteDeDialogue.erreurSurvenue");
 		},
-		choixOui(){
+		oui(){
 			return this.$t("dialogues.boiteDeDialogue.oui");
 		},
-		choixNon(){
+		non(){
 			return this.$t("dialogues.boiteDeDialogue.non");
 		},
 	},
 	watch: {
-		visible(){
+		isVisible(){
 			this.dialogueVisible = true;
 		}
 	},

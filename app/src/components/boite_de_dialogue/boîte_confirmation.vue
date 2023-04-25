@@ -22,14 +22,14 @@
 						variant="text"
 						@click="onNon"
 					>
-						{{ choixNon }}
+						{{ non }}
 					</v-btn>
 					<v-btn
 						color="success"
 						variant="text"
 						@click="onOui"
 					>
-						{{ choixOui }}
+						{{ oui }}
 					</v-btn>
 				</v-card-actions>
 			</v-card>
