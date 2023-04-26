@@ -1,4 +1,4 @@
-import USER from '@/util/constantes.js';
+import USER from "@/util/constantes.js";
 import Login from "@/components/login/login.vue";
 import BoîteConfirmation from "@/components/boîtes_de_dialogue/boîte_confirmation.vue";
 import jwt_decode from "jwt-decode";
