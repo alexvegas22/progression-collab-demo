@@ -1,4 +1,5 @@
 export default {
+	name: "FenêtreConfirmation",
 	data(){
 		return {
 			dialogueVisible: false,
@@ -8,13 +9,11 @@ export default {
 		onRéponse: Object,
 	},
 	props: {
-		isVisible: Boolean,
+		estVisible: Boolean,
+		titre: String,
 		message: String
 	},
 	computed: {
-		titre(){
-			return this.$t("dialogues.boiteDeDialogue.erreurSurvenue");
-		},
 		oui(){
 			return this.$t("dialogues.boiteDeDialogue.oui");
 		},
@@ -23,7 +22,7 @@ export default {
 		},
 	},
 	watch: {
-		isVisible(){
+		estVisible(){
 			this.dialogueVisible = true;
 		}
 	},
