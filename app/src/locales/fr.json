@@ -245,7 +245,7 @@
 		"ligneCommentaire": "Ligne:" 
 	},
 
-	"validation_courriel": {
+	"validationCourriel": {
 		"réussie": "Votre courriel a été validé! Bienvenue sur Progression! Maintenant, connectez-vous et commencez à programmer!",
 		"échouée": "Le courriel de votre utilisateur n'a pas encore été vérifié. Désirez-vous recevoir un nouveau courriel de validation?"
 	}

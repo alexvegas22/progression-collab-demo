@@ -2,7 +2,7 @@
 	<BoîteConfirmation
 		:esVisible="courrielValidé"
 		:titre="$t('dialogues.boiteDeDialogue.erreurSurvenue')"
-		:message="$t('validation_courriel.échouée')"
+		:message="$t('validationCourriel.échouée')"
 		@onRéponse="onRéponse"
 	/>
 

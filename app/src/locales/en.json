@@ -245,7 +245,7 @@
 		"ligneCommentaire": "Line:"  
 	},
 
-	"validation_courriel": {
+	"validationCourriel": {
 		"réussie": "Congrats! Your email have been verified. Now go ahead, login and start coding!",
 		"échouée": "Sadly, that validation token seems to have expired. Would you like to receive a new validation email?"
 	}
