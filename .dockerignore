@@ -1,0 +1,8 @@
+# Fichiers liés à Docker                                                                                        
+.dockerignore                                                                                                                                                                                                                                                                                                                                   
+Dockerfile
+# Fichiers liés à Git                                                                                           
+.git                                                                                                            
+.gitignore                                                                                                      
+
+app/node_modules/ 

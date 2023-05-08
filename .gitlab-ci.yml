@@ -71,20 +71,24 @@ version_check:
 # Construction de l'image
 const_image:
   stage: build_image
+  variables:
+    DOCKER_BUILDKIT: 1
   before_script:
     - *login
   script:
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && target="production-stage" || target="build-stage"
     - \[\[ "$CI_COMMIT_REF_NAME" = "master" -o "$CI_COMMIT_REF_NAME" = "dev" \]\] && mode="prod" || mode="dev"
-    - docker build -f docker/Dockerfile --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
+    - docker build -f docker/Dockerfile --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg NODE_ENV=$mode --build-arg MODE=$mode --target $target -t $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE .
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$BRANCHE
 
 const_lti:
   stage: build_image
+  variables:
+    DOCKER_BUILDKIT: 1
   before_script:
     - *login
   script:
-    - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
+    - docker build -f ltijs/Dockerfile --cache-from $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest --build-arg BUILDKIT_INLINE_CACHE=1 -t $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest ltijs
     - docker push $CI_REGISTRY/$CI_PROJECT_PATH:lti_latest
   only:
   - master
@@ -175,7 +179,7 @@ deploy_staging:
   needs: [tag_latest]
   environment:
     name: staging
-    url: https://progression.dti.crosemont.quebec/staging/
+    url: $URL_STAGING
     on_stop: stop_staging
   before_script:
     - *preparer_contexte
@@ -183,8 +187,8 @@ deploy_staging:
   script:
     - TAG_DEPLOY=latest docker-compose pull app ltijs
     - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app ltijs
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
     
 stop_staging:
   stage: deploy_image
@@ -204,7 +208,7 @@ deploy_demo:
   needs: [tag_latest]
   environment:
     name: demo
-    url: https://progression.dti.crosemont.quebec/demo/
+    url: $URL_demo
     on_stop: stop_demo
   before_script:
     - *preparer_contexte
@@ -212,8 +216,8 @@ deploy_demo:
   script:
     - TAG_DEPLOY=latest docker-compose pull app
     - TAG_DEPLOY=latest docker-compose -p demo up --force-recreate -d app
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
 
 stop_demo:
   stage: deploy_image
@@ -232,7 +236,7 @@ deploy_dev:
   stage: deploy_image
   environment:
     name: dev
-    url: https://progression.dti.crosemont.quebec/dev/
+    url: $URL_DEV
     on_stop: stop_dev
   before_script:
     - *preparer_contexte
