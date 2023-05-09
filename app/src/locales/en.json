@@ -37,6 +37,13 @@
 			"champ_url": "URL",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Cancel"
+		},
+		"boiteDeDialogue": {
+			"continuer":"Proceed",
+			"confirmation":"Confirmation",
+			"information":"Information",
+			"oui": "Yes",
+			"non": "No"
 		}
 	},
 
@@ -238,5 +245,13 @@
 		"commentaires": "Comments",
 		"placeholderCommentaire": "Write a comment",
 		"ligneCommentaire": "Line:"  
+	},
+
+	"validationCourriel": {
+		"titreSuccès": "Nice !",
+		"titreÉchec": "An error has occured",
+		"réussie": "Congrats! Your email have been verified. Now go ahead, log in and start coding!",
+		"échouée": "Sadly, that validation token seems to have expired. Would you like to receive a new validation email?",
+		"expédié": "We've just sent an email to the address you provided. Please check your inbox and follow the instructions included."
 	}
 }

@@ -37,6 +37,13 @@
 			"champ_url": "URL",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Annuler"
+		},
+		"boiteDeDialogue": {
+			"continuer":"Continuer",
+			"confirmation":"Confirmation",
+			"information":"Information",
+			"oui": "Oui",
+			"non": "Non"
 		}
 	},
 
@@ -238,5 +245,13 @@
 		"commentaires": "Commentaires",
 		"placeholderCommentaire": "Écrire un commentaire",
 		"ligneCommentaire": "Ligne:" 
+	},
+
+	"validationCourriel": {
+		"titreSuccès": "Succès",
+		"titreÉchec": "Une erreur est survenue",
+		"réussie": "Votre courriel a été validé! Bienvenue sur Progression! Maintenant, connectez-vous et commencez à programmer!",
+		"échouée": "Malheureusement, le jeton de vérification semble avoir expiré. Désirez-vous recevoir un nouveau courriel de validation?",
+		"expédié": "Un courriel vous à été envoyé à l'adresse fournie. Veuillez consulter votre boite de récéption et suivre les instructions qui s'y trouvent."
 	}
 }

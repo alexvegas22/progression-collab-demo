@@ -1,9 +1,23 @@
+import USER from "@/util/constantes.js";
 import Login from "@/components/login/login.vue";
+import BoîteInfo from "@/components/boîtes_de_dialogue/boîte_info.vue";
+import BoîteConfirmation from "@/components/boîtes_de_dialogue/boîte_confirmation.vue";
+import jwt_decode from "jwt-decode";
 
 export default {
 	name: "LoginView",
+	data(){
+		return {
+			validationRéussie : true,
+			messageInformation : "",
+			erreurDeValidation : true,
+			tokenDécodé : null
+		};
+	},
 	components: {
+		BoîteConfirmation,
 		Login,
+		BoîteInfo,
 	},
 	props: {
 		origine: {
@@ -17,14 +31,85 @@ export default {
 		},
 		configServeur() {
 			return this.$store.getters.configServeur;
+		},
+		authLocal(){
+			return this.configServeur.AUTH.LOCAL;
+		},
+		authLdap(){
+			return this.configServeur.AUTH.LDAP;
 		}
 	},
+	mounted() {
+		this.traiterValidationDeCourriel( window.location.search );
+	},
 	methods: {
-		onLogin( event ){
+		traiterValidationDeCourriel(paramètres){
+			var urlParams = new URLSearchParams(paramètres);
+			if( urlParams.has("token") ) {
+				const token = urlParams.get("token");
+				this.tokenDécodé = jwt_decode(token);
+				var urlUser = this.tokenDécodé.ressources.data.url_user;
+				
+				(async () => {
+					try {
+						await this.$store.dispatch("mettreÀJourUser",{
+							url: urlUser,
+							user: { état : USER.ÉTAT_ACTIF },
+							token: token
+						});
 
+						this.messageInformation = this.$t("validationCourriel.réussie");
+						this.validationRéussie = !this.validationRéussie;
+					}
+					catch ( err ) {
+						if ( err?.response?.status == 401 ) {
+							this.erreurDeValidation = !this.erreurDeValidation;
+						}
+						else {
+							throw err;
+						}
+					}
+				})();
+			}
+		},
+		
+		async onRéponse( event ){
+			if ( event == "oui" ) {
+				const urlUser = this.tokenDécodé.ressources.data.url_user;
+				const username = this.tokenDécodé.user.username;
+				const courriel = this.tokenDécodé.user.courriel;
+
+				const réponse = await this.$store.dispatch("inscrire", {urlUser : urlUser, username : username, courriel : courriel});
+				if ( réponse ) {
+					this.messageInformation = this.$t("validationCourriel.expédié");
+					this.validationRéussie = !this.validationRéussie;
+				}
+			}
+		},
+
+		onLogin( event ){
+			this.effectuerLogin( event );
+		},
+		
+		onInscrire ( event ) {
+			if ( this.authLocal === false && this.authLdap === false ) {
+			    this.effectuerLogin( event );
+			}
+			else if ( this.authLocal ) {
+				(async () => {
+					const réponse = await this.$store.dispatch("inscrire", event);
+					if ( réponse ){
+						this.messageInformation = this.$t("validationCourriel.expédié");
+						this.validationRéussie = !this.validationRéussie;
+					}
+				})();
+			}
+		},
+		
+		effectuerLogin( params ){
 			(async () => {
 				try{
-					await this.$store.dispatch("authentifier", event);
+					await this.$store.dispatch("authentifier", params);
 					
 					// Rediriger vers la page idoine
 					if(this.origine){

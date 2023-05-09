@@ -1,7 +1,7 @@
 export default {
 	name: "Inscription",
 	emits: {
-		onLogin: Object,
+		onInscrire: Object,
 	},
 	props:{
 		auth_local: Boolean,
@@ -52,7 +52,7 @@ export default {
 	methods: {
 		inscrire() {
 			if (this.champs_valides) {
-				this.$emit("onLogin", { courriel: this.courriel.trim(), username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
+				this.$emit("onInscrire", { courriel: this.courriel.trim(), username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
 			}
 		}
 	}
