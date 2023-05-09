@@ -67,7 +67,7 @@
 			>
 				<Inscription
 					:auth_local="auth_local"
-					@onLogin="onLogin"
+					@onInscrire="onInscrire"
 				/>
 			</tab-panel>
 		</tab-panels>

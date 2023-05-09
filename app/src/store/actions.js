@@ -1,5 +1,6 @@
 import {
 	authentifierApi,
+	inscrireApi,
 	callbackGrade,
 	getConfigServeurApi,
 	getAvancementApi,
@@ -10,6 +11,7 @@ import {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
+	postModifierUserApi,
 	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
@@ -181,6 +183,18 @@ export default {
 		);
 	},
 
+	async inscrire( {_} ,  params ){
+		const urlInscription = import.meta.env.VITE_API_URL + "/user/" + params.username;
+		const courriel = params.courriel;
+		const username = params.username;
+		const motDePasse = params.password;
+
+		return valider(async () => {
+			return await inscrireApi(urlInscription, username, courriel, motDePasse);
+			
+		});
+	},
+
 	async authentifier({ commit }, params) {
 		const urlAuth = import.meta.env.VITE_API_URL + (params.inscrire ? "/inscription" : "/auth");
 		const courriel = params.courriel;
@@ -223,6 +237,14 @@ export default {
 			}
 		}
 		);
+	},
+
+	async mettreÀJourUser( {commit}, params ){
+		return valider(async () => {
+			const user =  await postModifierUserApi( { url: params.url, user: params.user } , params.token );
+			commit("setUser", user);
+			return user;
+		});
 	},
 
 	async récupérerUser({ commit }, urlUser) {
@@ -329,8 +351,7 @@ export default {
 			finally {
 				commit("setEnChargement", false);
 			}
-		}
-		);
+		});
 	},
 
 	async setAvancement({ commit, state }, params) {

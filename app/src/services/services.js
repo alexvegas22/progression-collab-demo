@@ -1,7 +1,10 @@
-import { getData, postData } from "@/services/request_services";
+import { getData, postData, putData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, nom_utilisateur, courriel, mdp, domaine) =>
 	(await postData(urlAuth, null, { username: nom_utilisateur, courriel: courriel, password: mdp, domaine: domaine })).Token;
+
+const inscrireApi = async (urlInscription, nom_utilisateur, courriel, mdp) =>
+	  await putData(urlInscription, null, { username: nom_utilisateur, courriel: courriel, password: mdp });
 
 const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
 	(await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
@@ -93,6 +96,13 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 	const data = await getData(url, query, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
+};
+
+const postModifierUserApi = async (params, token) => {
+	const url = params.url;
+	const body = params.user;
+	const data = await postData(url, null, body, token);
+	return construireUser( data );
 };
 
 const postAvancementApi = async (params, token) => {
@@ -254,6 +264,7 @@ function construireTentative(data, included = null) {
 
 export {
 	authentifierApi,
+	inscrireApi,
 	callbackAuth,
 	callbackGrade,
 	getConfigServeurApi,
@@ -265,6 +276,7 @@ export {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
+	postModifierUserApi,
 	postCommentaireApi,
 	postSauvegardeApi,
 	postTentative,
