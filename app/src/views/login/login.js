@@ -1,4 +1,4 @@
-import USER from "@/util/constantes.js";
+import constantes from "@/util/constantes.js";
 import Login from "@/components/login/login.vue";
 import BoîteInfo from "@/components/boîtes_de_dialogue/boîte_info.vue";
 import BoîteConfirmation from "@/components/boîtes_de_dialogue/boîte_confirmation.vue";
@@ -9,9 +9,11 @@ export default {
 	data(){
 		return {
 			validationRéussie : true,
+			erreurInscription : true,
 			messageInformation : "",
 			erreurDeValidation : true,
-			tokenDécodé : null
+			tokenDécodé : null,
+			ongletSélectionné: null
 		};
 	},
 	components: {
@@ -54,7 +56,7 @@ export default {
 					try {
 						await this.$store.dispatch("mettreÀJourUser",{
 							url: urlUser,
-							user: { état : USER.ÉTAT_ACTIF },
+							user: { état : constantes.USER.ACTIF },
 							token: token
 						});
 
@@ -76,8 +78,8 @@ export default {
 		async onRéponse( event ){
 			if ( event == "oui" ) {
 				const urlUser = this.tokenDécodé.ressources.data.url_user;
-				const username = this.tokenDécodé.user.username;
-				const courriel = this.tokenDécodé.user.courriel;
+				const username = this.tokenDécodé.ressources.data.user.username;
+				const courriel = this.tokenDécodé.ressources.data.user.courriel;
 
 				const réponse = await this.$store.dispatch("inscrire", {urlUser : urlUser, username : username, courriel : courriel});
 				if ( réponse ) {
@@ -92,15 +94,53 @@ export default {
 		},
 		
 		onInscrire ( event ) {
+			this.ongletSélectionné = "";
 			if ( this.authLocal === false && this.authLdap === false ) {
 			    this.effectuerLogin( event );
 			}
 			else if ( this.authLocal ) {
 				(async () => {
+
 					const réponse = await this.$store.dispatch("inscrire", event);
-					if ( réponse ){
+					if ( réponse?.response?.status == 400 ){
+						var erreurs = réponse.response.data.erreur;
+						this.messageInformation = "";
+						if ("username" in erreurs && erreurs.username[0] ){
+							if (erreurs.username[0].startsWith( "Err: 1001." )){
+								this.messageInformation += this.$t("erreur.inscription.usernameExistant") + "<br>";
+							}
+							else if (erreurs.username[0].startsWith( "Err: 1003." )){
+								this.messageInformation += this.$t("erreur.inscription.usernameInvalide") + "<br>";
+							}
+							else if (erreurs.username[0].startsWith( "Err: 1004." )){
+								this.messageInformation += this.$t("erreur.inscription.champUsernameVide") + "<br>";
+							}
+						}
+						if ("courriel" in erreurs && erreurs.courriel[0] ){
+							if (erreurs.courriel[0].startsWith( "Err: 1001." )){
+								this.messageInformation += this.$t("erreur.inscription.courrielExistant") + "<br>";
+							}
+							else if (erreurs.courriel[0].startsWith( "Err: 1003." )){
+								this.messageInformation += this.$t("erreur.inscription.courrielInvalide") + "<br>";
+							}
+							else if (erreurs.courriel[0].startsWith( "Err: 1004." )){
+								this.messageInformation += this.$t("erreur.inscription.champCourrielVide") + "<br>";
+							}
+						}
+						if ("password" in erreurs && erreurs.password[0] ) {
+							if (erreurs.password[0].startsWith( "Err: 1003." )){
+								this.messageInformation += this.$t("erreur.inscription.champMotDePasseFaible") + "<br>";
+							}
+							if (erreurs.password[0].startsWith( "Err: 1004." )){
+								this.messageInformation += this.$t("erreur.inscription.champMotDePasseVide") + "<br>";
+							}
+						}
+						this.erreurInscription = !this.erreurInscription;
+					}
+					else{
 						this.messageInformation = this.$t("validationCourriel.expédié");
 						this.validationRéussie = !this.validationRéussie;
+						this.ongletSélectionné = "STANDARD";
 					}
 				})();
 			}
@@ -132,24 +172,12 @@ export default {
 					else if (err.response && err.response.status == 400) {
 						var erreurs = err.response.data.erreur;
 						if ("username" in erreurs && erreurs.username[0] ){
-							if (erreurs.username[0].startsWith( "Err: 1001." )){
-								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.usernameExistant") });
-							}
-							else if (erreurs.username[0].startsWith( "Err: 1003." )){
-								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.usernameInvalide") });
-							}
-							else if (erreurs.username[0].startsWith( "Err: 1004." )){
+							if (erreurs.username[0].startsWith( "Err: 1004." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champUsernameVide") });
 							}
 						}
 						if ("courriel" in erreurs && erreurs.courriel[0] ){
-							if (erreurs.courriel[0].startsWith( "Err: 1002." )){
-								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.courrielExistant") });
-							}
-							else if (erreurs.courriel[0].startsWith( "Err: 1003." )){
-								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.courrielInvalide") });
-							}
-							else if (erreurs.courriel[0].startsWith( "Err: 1004." )){
+							if (erreurs.courriel[0].startsWith( "Err: 1004." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champCourrielVide") });
 							}
 						}
