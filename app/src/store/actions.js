@@ -190,8 +190,17 @@ export default {
 		const motDePasse = params.password;
 
 		return valider(async () => {
-			return await inscrireApi(urlInscription, username, courriel, motDePasse);
-			
+			try {
+				return await inscrireApi(urlInscription, username, courriel, motDePasse);
+			}
+			catch( erreur ){
+				if( erreur.response.status == 400 ) {
+					return erreur;
+				}
+				else {
+					throw erreur;
+				}
+			}
 		});
 	},
 
