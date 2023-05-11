@@ -1,13 +1,15 @@
 import { getData, postData, putData } from "@/services/request_services";
 
-const authentifierApi = async (urlAuth, nom_utilisateur, courriel, mdp, domaine) =>
-	(await postData(urlAuth, null, { username: nom_utilisateur, courriel: courriel, password: mdp, domaine: domaine })).Token;
+const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
+	return construireToken( await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine }));
+};
 
 const inscrireApi = async (urlInscription, nom_utilisateur, courriel, mdp) =>
-	  await putData(urlInscription, null, { username: nom_utilisateur, courriel: courriel, password: mdp });
+	await putData(urlInscription, null, { username: nom_utilisateur, courriel: courriel, password: mdp });
 
-const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
-	(await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
+const getTokenApi = async (urlAuth, nom_utilisateur, clé) => {
+	return construireToken( await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret }));
+};
 
 const getConfigServeurApi = async (urlConfig) => {
 	return getData(urlConfig).then((data) => {
@@ -68,6 +70,12 @@ const construireUser = ( data ) => {
 	return user;
 };
 
+
+function construireToken(item) {
+	var token  = item.attributes;
+	token.liens = item.links;
+	return token;
+}
 const getQuestionApi = async (urlQuestion, token) => {
 	const query = { include: "tests,ebauches" };
 	const data = await getData(urlQuestion, query, token);

@@ -197,8 +197,7 @@ export default {
 
 	async authentifier({ commit }, params) {
 		const urlAuth = import.meta.env.VITE_API_URL + (params.inscrire ? "/inscription" : "/auth");
-		const courriel = params.courriel;
-		const username = params.username;
+		const identifiant = params.identifiant;
 		const password = params.password;
 		const persister = params.persister;
 		const domaine = params.domaine;
@@ -208,18 +207,16 @@ export default {
 
 			commit("setEnChargement", true);
 			try {
-
-				const token = await authentifierApi(urlAuth, username, courriel, password, domaine);
-
-				commit("setUsername", username);
+				const token = await authentifierApi(urlAuth, identifiant, password, domaine);
 				commit("setToken", token);
-				const storage = persister ? localStorage : sessionStorage;
-				storage.setItem("username", username);
-
-				sessionStorage.setItem("token", token);
 
 				// Obtenir l'utilisateur
-				const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username);
+				const user = await this.dispatch("récupérerUser", token.liens.user);
+
+				const storage = persister ? localStorage : sessionStorage;
+				storage.setItem("username", user.username);
+
+				sessionStorage.setItem("token", token);
 
 				// Obtenir la clé d'authentification
 				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
