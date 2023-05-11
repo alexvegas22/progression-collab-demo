@@ -9,7 +9,7 @@ export default {
 	},
 	data() {
 		return {
-			username: "",
+			identifiant: "",
 			password: "",
 			persister: true,
 		};
@@ -24,20 +24,22 @@ export default {
 		password_vide() {
 			return this.password == "";
 		},
-		username_vide() {
-			return this.username.trim() == "";
+		identifiant_vide() {
+			return this.identifiant.trim() == "";
 		},
-		username_invalide() {
-			return !this.username_vide && !this.username.trim().match(/^[-a-zA-Z0-9_]+$/);
+		identifiant_invalide() {
+			return !this.identifiant_vide && !this.identifiant.trim().match(
+				/^[-a-zA-Z0-9_]+|(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
 		}
 	},
 	methods: {
 		login() {
-			if (!(this.username_vide ||
-				  this.username_invalide ||
+			if (!(this.identifiant_vide ||
+				  this.identifiant_invalide ||
 				  this.password_vide)){
 
-				this.$emit("onLogin", { username: this.username.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
+				this.$emit("onLogin", { identifiant: this.identifiant.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
 			}
 		},
 	},

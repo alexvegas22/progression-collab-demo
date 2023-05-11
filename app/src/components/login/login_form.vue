@@ -11,18 +11,18 @@
 					<label
 						for="username"
 						class="control-label"
-					>{{ $t('login.courriel') }} :</label>
+					>{{ $t('login.identifiant') }} :</label>
 					<input
 						id="username"
-						v-model="username"
+						v-model="identifiant"
 						class="form-control"
 						type="text"
 						name="username"
 						autofocus
 						:placeholder="placeholder"
 					>
-					<div v-if="username_invalide">
-						{{ $t('login.usernameInvalide') }}
+					<div v-if="identifiant_invalide">
+						{{ $t('login.identifiantInvalide') }}
 					</div>
 				</div>
 				<div class="col-sm-6" />
@@ -63,8 +63,8 @@
 				<v-btn
 					type="submit"
 					:disabled="!authentificationPermise ||
-						this.username_vide ||
-						this.username_invalide ||
+						this.identifiant_vide ||
+						this.identifiant_invalide ||
 						this.password_vide"
 				>
 					{{$t('login.boutonConnexion')}}
