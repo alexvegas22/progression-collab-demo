@@ -29,7 +29,7 @@ export default {
 		},
 		identifiant_invalide() {
 			return !this.identifiant_vide && !this.identifiant.trim().match(
-				/^[-a-zA-Z0-9_]+|(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				/^\w{2,64}$|^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/
 			);
 		}
 	},

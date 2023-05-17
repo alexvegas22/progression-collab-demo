@@ -24,7 +24,7 @@ export default {
 		},
 		courriel_invalide(){
 			return !this.courriel_vide && !this.courriel.toLowerCase().match(
-				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/
 			);
 		},
 		confirmation_vide() {
@@ -37,7 +37,7 @@ export default {
 			return this.username.trim() == "";
 		},
 		username_invalide() {
-			return !this.username_vide && !this.username.trim().match(/^[-a-zA-Z0-9_]+$/);
+			return !this.username_vide && !this.username.trim().match(/^\w{2,64}$/);
 		},
 		champs_valides() {
 			return !this.username_vide &&
