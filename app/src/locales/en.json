@@ -63,14 +63,14 @@
 	},
 
 	"login": {
-		"courriel": "Username",
+		"identifiant": "Username or email",
 		"motDePasse": "Password",
 		"boutonConnexion": "Log in",
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
 		"inscription": "Sign in",
-		"usernameInvalide": "The username must contain only letters, dashes et underscores.",
+		"identifiantInvalide": "Please use a valid username containing letters, dashes, and underscores only.",
 		"champObligatoire": "Mandatory field",
 		"mdpOublié": "forgot your password?"
 	},

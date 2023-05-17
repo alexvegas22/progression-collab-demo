@@ -63,14 +63,14 @@
 	},
 
 	"login": {
-		"courriel": "Nom d'utilisateur",
+		"identifiant": "Courriel ou nom d'utilisateur",
 		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"usernameInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
+		"identifiantInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
 		"champObligatoire": "Champ obligatoire",
 		"mdpOublié": "Mot de passe oublié?"
 	},
