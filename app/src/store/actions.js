@@ -184,9 +184,9 @@ export default {
 	},
 
 	async inscrire( {_} ,  params ){
-		const urlInscription = import.meta.env.VITE_API_URL + "/user/" + params.username;
+		const urlInscription = import.meta.env.VITE_API_URL + "/user";
 		const courriel = params.courriel;
-		const username = params.username;
+		const username = params.identifiant;
 		const motDePasse = params.password;
 
 		return valider(async () => {
@@ -205,7 +205,7 @@ export default {
 	},
 
 	async authentifier({ commit }, params) {
-		const urlAuth = import.meta.env.VITE_API_URL + (params.inscrire ? "/inscription" : "/auth");
+		const urlAuth = import.meta.env.VITE_API_URL + "/auth";
 		const identifiant = params.identifiant;
 		const password = params.password;
 		const persister = params.persister;

@@ -63,7 +63,7 @@
 	},
 
 	"login": {
-		"identifiant": "Username or email adress",
+		"identifiant": "Username or email",
 		"motDePasse": "Password",
 		"boutonConnexion": "Log in",
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",

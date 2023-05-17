@@ -1,14 +1,15 @@
 import { getData, postData, putData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
-	return construireToken( await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine }));
+	return construireToken( (await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine })).data);
 };
 
-const inscrireApi = async (urlInscription, nom_utilisateur, courriel, mdp) =>
-	await putData(urlInscription, null, { username: nom_utilisateur, courriel: courriel, password: mdp });
+const inscrireApi = async (urlInscription, nom_utilisateur, courriel, mdp) => {
+	return construireToken( (await putData(urlInscription, null, { username: nom_utilisateur, courriel: courriel, password: mdp })).data);
+};
 
 const getTokenApi = async (urlAuth, nom_utilisateur, clé) => {
-	return construireToken( await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret }));
+	return construireToken( (await postData(urlAuth, null, { identifiant: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).data);
 };
 
 const getConfigServeurApi = async (urlConfig) => {

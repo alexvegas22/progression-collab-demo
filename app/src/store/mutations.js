@@ -20,8 +20,8 @@ export const mutations = {
 	},
 
 	setToken(state, token) {
-		if(token) {
-			const token_décodé = jwt_decode(token);
+		if(token?.jwt) {
+			const token_décodé = jwt_decode(token.jwt);
 			const ttl = token_décodé.expired - token_décodé.current;
 
 			// Calcule l'heure d'expiration du token en fonction de l'heure du client

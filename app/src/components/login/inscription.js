@@ -52,7 +52,7 @@ export default {
 	methods: {
 		inscrire() {
 			if (this.champs_valides) {
-				this.$emit("onInscrire", { courriel: this.courriel.trim(), username: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
+				this.$emit("onInscrire", { courriel: this.courriel.trim(), identifiant: this.username.trim(), password: this.password, persister: this.persister, inscrire: true });
 			}
 		}
 	}

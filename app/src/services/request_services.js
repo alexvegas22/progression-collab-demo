@@ -8,7 +8,7 @@ async function getData(url, query = null, token = null, config = null) {
 	};
 
 	if (token) {
-		conf.headers = { Authorization: "Bearer " + token.token };
+		conf.headers = { Authorization: "Bearer " + token.jwt };
 	}
 
 	const réponse = await axios.request(conf);
@@ -25,7 +25,7 @@ async function postData(url, query = null, data = null, token = null, config = n
 	};
 
 	if (token) {
-		conf.headers = { Authorization: "Bearer " + token.token };
+		conf.headers = { Authorization: "Bearer " + token.jwt };
 	}
 
 	const réponse = await axios.request(conf);
@@ -42,7 +42,7 @@ async function putData(url, query = null, data = null, token = null, config = nu
 	};
 
 	if (token) {
-		conf.headers = { Authorization: "Bearer " + token.token };
+		conf.headers = { Authorization: "Bearer " + token.jwt };
 	}
 
 	const réponse = await axios.request(conf);
