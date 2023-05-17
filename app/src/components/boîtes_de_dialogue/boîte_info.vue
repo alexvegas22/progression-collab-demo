@@ -12,9 +12,9 @@
 				>
 					{{ titre }}
 				</v-card-title>
-				<v-card-text>
-					{{ message }}
-				</v-card-text>
+				<!-- eslint-disable -->
+				<v-card-text v-html="message" />
+				<!-- eslint-enable -->
 				<v-card-actions>
 					<v-spacer></v-spacer>
 					<v-btn

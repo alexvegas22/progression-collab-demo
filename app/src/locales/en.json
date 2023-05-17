@@ -9,7 +9,8 @@
 			"courrielInvalide": "This email is invalid.",
 			"champUsernameVide": "The username is mandatory.",
 			"champCourrielVide": "The email is mandatory.",
-			"champMotDePasseVide": "The password is mandatory."
+			"champMotDePasseVide": "The password is mandatory.",
+			"champMotDePasseFaible": "The password does not meet the complexity requirements. Please choose a password of at least 8 characters including a lower case letter, an uppercase letter and a number."			
 		},
 		"tentative_intraitable": "The attempt is invalid. The question may be invalid or may have changed since your draft was loaded. Try reloading the initial draft. If the problem persists, contact an administrator.",
 		"question_introuvable": "The question does not exist or could not be retreived. If the problem persists, contact the author of the question."
