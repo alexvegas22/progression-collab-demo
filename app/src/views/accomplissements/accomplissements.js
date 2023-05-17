@@ -24,6 +24,15 @@ export default {
 			this.$store.dispatch("setPréférences", {
 				démos: false,
 			});
+		},
+		ouvrirQuestion( uri, demo ){
+			this.$router.push( {
+				name: "Question",
+				query: {
+					uri: uri,
+					demo: demo,
+				}
+			});
 		}
 	}
 };
