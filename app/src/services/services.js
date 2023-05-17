@@ -73,9 +73,7 @@ const construireUser = ( data ) => {
 
 
 function construireToken(item) {
-	var token  = item.attributes;
-	token.liens = item.links;
-	return token;
+	return {...item.attributes, liens: item.links};
 }
 const getQuestionApi = async (urlQuestion, token) => {
 	const query = { include: "tests,ebauches" };

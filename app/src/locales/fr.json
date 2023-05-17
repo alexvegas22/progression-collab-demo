@@ -70,7 +70,7 @@
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"identifiantInvalide": "Utilisez un adresse courriel valide ou un nom d'utilisateur valide. N.-B. Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
+		"identifiantInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
 		"champObligatoire": "Champ obligatoire",
 		"mdpOublié": "Mot de passe oublié?"
 	},
