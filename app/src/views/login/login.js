@@ -57,7 +57,7 @@ export default {
 						await this.$store.dispatch("mettreÀJourUser",{
 							url: urlUser,
 							user: { état : constantes.USER.ACTIF },
-							token: token
+							token: { jwt: token }
 						});
 
 						this.messageInformation = this.$t("validationCourriel.réussie");
