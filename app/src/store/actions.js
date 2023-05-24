@@ -183,29 +183,26 @@ export default {
 		);
 	},
 
-	async inscrire( {_} ,  params ){
-		const urlInscription = import.meta.env.VITE_API_URL + "/user";
+	async inscrire( {commit} ,  params ){
+		const urlInscription = API_URL + "/user";
 		const courriel = params.courriel;
 		const username = params.identifiant;
 		const motDePasse = params.password;
 
 		return valider(async () => {
+			commit("setEnChargement", true);
 			try {
 				return await inscrireApi(urlInscription, username, courriel, motDePasse);
 			}
-			catch( erreur ){
-				if( erreur.response.status == 400 ) {
-					return erreur;
-				}
-				else {
-					throw erreur;
-				}
+			finally {
+				commit("setEnChargement", false);
+				commit("updateAuthentificationEnCours", false);
 			}
 		});
 	},
 
 	async authentifier({ commit }, params) {
-		const urlAuth = import.meta.env.VITE_API_URL + "/auth";
+		const urlAuth = API_URL + "/auth";
 		const identifiant = params.identifiant;
 		const password = params.password;
 		const persister = params.persister;

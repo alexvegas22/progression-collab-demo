@@ -29,7 +29,7 @@ cd progression_frontend
 ### 2.2 Créer et configurer le fichier d'environnement local
 - Exécuter la commande suivante pour créer le fichier des variables d'environnement
 ```
-cp app/.env.exemple app/.env.local
+cp app/env.exemple app/.env.local
 ```
 - Ouvrir le fichier des variables d'environnement avec l'éditeur de votre choix.
 ```

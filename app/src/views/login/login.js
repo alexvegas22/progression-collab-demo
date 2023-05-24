@@ -9,7 +9,6 @@ export default {
 	data(){
 		return {
 			validationRéussie : true,
-			erreurInscription : true,
 			messageInformation : "",
 			erreurDeValidation : true,
 			tokenDécodé : null,
@@ -49,8 +48,14 @@ export default {
 			var urlParams = new URLSearchParams(paramètres);
 			if( urlParams.has("token") ) {
 				const token = urlParams.get("token");
-				this.tokenDécodé = jwt_decode(token);
-				var urlUser = this.tokenDécodé.ressources.data.url_user;
+				try{
+					this.tokenDécodé = jwt_decode(token);
+					var urlUser = this.tokenDécodé.ressources.data.url_user;
+				}
+				catch( err ){
+					console.log("Token invalide");
+					return;
+				}
 				
 				(async () => {
 					try {
@@ -81,7 +86,7 @@ export default {
 				const username = this.tokenDécodé.ressources.data.user.username;
 				const courriel = this.tokenDécodé.ressources.data.user.courriel;
 
-				const réponse = await this.$store.dispatch("inscrire", {urlUser : urlUser, username : username, courriel : courriel});
+				const réponse = await this.$store.dispatch("inscrire", {urlUser : urlUser, identifiant : username, courriel : courriel});
 				if ( réponse ) {
 					this.messageInformation = this.$t("validationCourriel.expédié");
 					this.validationRéussie = !this.validationRéussie;
@@ -101,46 +106,32 @@ export default {
 			else if ( this.authLocal ) {
 				(async () => {
 
-					const réponse = await this.$store.dispatch("inscrire", event);
-					if ( réponse?.response?.status == 400 ){
-						var erreurs = réponse.response.data.erreur;
-						this.messageInformation = "";
-						if ("username" in erreurs && erreurs.username[0] ){
-							if (erreurs.username[0].startsWith( "Err: 1001." )){
-								this.messageInformation += this.$t("erreur.inscription.usernameExistant") + "<br>";
-							}
-							else if (erreurs.username[0].startsWith( "Err: 1003." )){
-								this.messageInformation += this.$t("erreur.inscription.usernameInvalide") + "<br>";
-							}
-							else if (erreurs.username[0].startsWith( "Err: 1004." )){
-								this.messageInformation += this.$t("erreur.inscription.champUsernameVide") + "<br>";
-							}
-						}
-						if ("courriel" in erreurs && erreurs.courriel[0] ){
-							if (erreurs.courriel[0].startsWith( "Err: 1001." )){
-								this.messageInformation += this.$t("erreur.inscription.courrielExistant") + "<br>";
-							}
-							else if (erreurs.courriel[0].startsWith( "Err: 1003." )){
-								this.messageInformation += this.$t("erreur.inscription.courrielInvalide") + "<br>";
-							}
-							else if (erreurs.courriel[0].startsWith( "Err: 1004." )){
-								this.messageInformation += this.$t("erreur.inscription.champCourrielVide") + "<br>";
-							}
-						}
-						if ("password" in erreurs && erreurs.password[0] ) {
-							if (erreurs.password[0].startsWith( "Err: 1003." )){
-								this.messageInformation += this.$t("erreur.inscription.champMotDePasseFaible") + "<br>";
-							}
-							if (erreurs.password[0].startsWith( "Err: 1004." )){
-								this.messageInformation += this.$t("erreur.inscription.champMotDePasseVide") + "<br>";
-							}
-						}
-						this.erreurInscription = !this.erreurInscription;
-					}
-					else{
+					try{
+						await this.$store.dispatch("inscrire", event);
+
 						this.messageInformation = this.$t("validationCourriel.expédié");
 						this.validationRéussie = !this.validationRéussie;
 						this.ongletSélectionné = "STANDARD";
+					}
+					catch(err){
+						if ( err?.response?.status >= 400 && err?.response?.status < 500){
+							var erreurs = err.response.data.erreur;
+							var messageErreur="";
+							for(var champ of ["username", "courriel", "password"]){
+								if(champ in erreurs){
+									if (erreurs[champ][0]?.startsWith( "Err: 1001." )){
+										messageErreur += this.$t(`erreur.inscription.${champ}.existant`) + "<br>";
+									}
+									else if (erreurs[champ][0]?.startsWith( "Err: 1003." )){
+										messageErreur += this.$t(`erreur.inscription.${champ}.invalide`) + "<br>";
+									}
+									else if (erreurs[champ][0]?.startsWith( "Err: 1004." )){
+										messageErreur += this.$t(`erreur.inscription.${champ}.vide`) + "<br>";
+									}
+								}
+							}
+							this.$store.dispatch("setErreurs", { message: messageErreur});
+						}
 					}
 				})();
 			}
@@ -172,17 +163,17 @@ export default {
 					else if (err.response && err.response.status == 400) {
 						var erreurs = err.response.data.erreur;
 						if ("username" in erreurs && erreurs.username[0] ){
-							if (erreurs.username[0].startsWith( "Err: 1004." )){
+							if (erreurs.username[0]?.startsWith( "Err: 1004." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champUsernameVide") });
 							}
 						}
 						if ("courriel" in erreurs && erreurs.courriel[0] ){
-							if (erreurs.courriel[0].startsWith( "Err: 1004." )){
+							if (erreurs.courriel[0]?.startsWith( "Err: 1004." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champCourrielVide") });
 							}
 						}
 						if ("password" in erreurs && erreurs.password[0] ) {
-							if (erreurs.password[0].startsWith( "Err: 1004." )){
+							if (erreurs.password[0]?.startsWith( "Err: 1004." )){
 								this.$store.dispatch("setErreurs", { message: this.$t("erreur.inscription.champMotDePasseVide") });
 							}
 						}
