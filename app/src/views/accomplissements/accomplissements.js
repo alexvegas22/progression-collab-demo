@@ -16,7 +16,7 @@ export default {
 			return this.$store.state.user?.avancements && Object.keys(this.$store.state.user?.avancements).length>0;
 		},
 		démos() {
-			return this.$store.getters.préférences["démos"]!==false;
+			return this.$store.getters.démos;
 		},
 	},
 	methods: {

@@ -21,6 +21,12 @@
 				single-line
 				required>
 			</v-text-field>
+			<v-card v-if="$store.getters.démos"
+				@click="redirectionAccomplissements">
+				<v-card-text>
+					{{$t("dialogues.nouvel_exercice.exercices_démo")}}
+				</v-card-text>
+			</v-card>
 			<v-card-actions>
 				<v-btn
 					color="primary"
@@ -63,6 +69,10 @@ export default {
 			this.traiterNouvelExercice();
 		},
 		annuler() {
+			this.affiché = false;
+		},
+		redirectionAccomplissements() {
+			this.$router.push( {name: "Accomplissements"});
 			this.affiché = false;
 		},
 		traiterNouvelExercice() {

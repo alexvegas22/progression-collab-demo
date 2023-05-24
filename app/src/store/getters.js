@@ -15,5 +15,7 @@ export default {
 	},
 	indicateursDeFonctionnalité: state => (indicateur) => {
 		return state.indicateursDeFonctionnalité[indicateur]?true:false;
-	}
+	},
+	démos: state => state.préférences["démos"]!==false,
+
 };
