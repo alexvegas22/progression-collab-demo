@@ -28,6 +28,7 @@
 			"titre": "Ouvrir un exercice",
 			"invite_url": "Entrez l'url d'un exercice",
 			"champ_url": "URL",
+			"exercices_démo": "(Pst! Vous ne savez pas par où commencer? Cliquez ici!)",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Annuler"
 		}
