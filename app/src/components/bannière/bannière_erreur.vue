@@ -6,9 +6,9 @@
 		v-show="erreurs"
 	>
 		<v-banner-text>
-			<div v-if="erreurs && erreurs.message">
-				{{ erreurs.message }}
-			</div>
+			<!-- eslint-disable -->
+			<div v-if="erreurs && erreurs.message" v-html="erreurs.message"/>
+			<!-- eslint-enable -->
 			<div v-if="erreurs && erreurs.détails">
 				{{ $t("erreur.réseau") }}
 				<details>
