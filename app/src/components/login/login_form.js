@@ -27,18 +27,24 @@ export default {
 		identifiant_vide() {
 			return this.identifiant.trim() == "";
 		},
-		identifiant_invalide() {
-			return !this.identifiant_vide && !this.identifiant.trim().match(
+		identifiant_valide() {
+			if( !this.identifiant_vide && !this.identifiant.trim().match(
 				/^\w{2,64}$|^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/
-			);
+			))
+				return this.$t("login.identifiantInvalide");
+
+			return true;
+		},
+		champs_valides() {
+			return !this.identifiant_vide &
+				   !this.identifiant_invalide &&
+				   !this.password_vide;
 		}
+
 	},
 	methods: {
 		login() {
-			if (!(this.identifiant_vide ||
-				  this.identifiant_invalide ||
-				  this.password_vide)){
-
+			if (this.champs_valides){
 				this.$emit("onLogin", { identifiant: this.identifiant.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
 			}
 		},

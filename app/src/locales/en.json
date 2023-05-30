@@ -165,10 +165,24 @@
 	"inscription": {
 		"username": "Username",
 		"courriel": "Email",
-		"courrielInvalide": "This email is invalid.",
 		"confirmation": "Confirm",
 		"boutonInscription": "Sign in",
-		"mdpDifférents": "Passwords must match."
+		"courrielInvalide": "This email is invalid.",
+		"erreur": {
+			"courriel": {
+				"invalide": "This email is invalid.",
+				"vide": "The email is mandatory."
+			},
+			"username": {
+				"invalide": "This username is invalid.",
+				"vide": "The username is mandatory."
+			},
+			"password": {
+				"invalide": "The password does not meet the complexity requirements. Please choose a password of at least 8 characters including a lower case letter, an uppercase letter and a number.",
+				"vide": "The password is mandatory.",
+				"confirmation": "Passwords must match"
+			}
+		}
 	},
 
 	"énoncé": {
