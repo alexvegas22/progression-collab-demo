@@ -6,6 +6,7 @@ export default {
 	props : {
 		domaine: String,
 		url_mdp_reinit: String,
+		focus: Boolean
 	},
 	data() {
 		return {
@@ -13,6 +14,18 @@ export default {
 			password: "",
 			persister: true,
 		};
+	},
+	watch : {
+		focus(){
+			if(this.focus){
+				this.$refs.identifiant.focus();
+			}
+		}
+	},
+	mounted(){
+		if(this.focus){
+			this.$refs.identifiant.focus();
+		}
 	},
 	computed: {
 		placeholder: function(){
@@ -37,7 +50,7 @@ export default {
 		},
 		champs_valides() {
 			return !this.identifiant_vide &
-				   !this.identifiant_invalide &&
+				   this.identifiant_valide &&
 				   !this.password_vide;
 		}
 

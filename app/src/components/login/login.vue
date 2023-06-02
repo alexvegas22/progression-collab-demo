@@ -50,6 +50,7 @@
 				<LoginForm
 					:domaine="ldap_domaine"
 					:url_mdp_reinit="ldap_url_mdp_reinit"
+					:focus="tabSélectionné=='LDAP'"
 					@onLogin="onLogin"
 				/>
 			</tab-panel>
@@ -58,7 +59,9 @@
 				key="k4"
 				val="STANDARD"
 			>
-				<LoginForm @onLogin="onLogin" />
+				<LoginForm @onLogin="onLogin"
+					:focus="tabSélectionné=='STANDARD'"
+				/>
 			</tab-panel>
 
 			<tab-panel
@@ -67,6 +70,7 @@
 			>
 				<Inscription
 					:auth_local="auth_local"
+					:focus="tabSélectionné=='INSCRIPTION'"
 					@onInscrire="onInscrire"
 				/>
 			</tab-panel>

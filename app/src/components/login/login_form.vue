@@ -18,6 +18,7 @@
 						v-model="identifiant"
 						name="identifiant"
 						variant="underlined"
+						ref="identifiant"
 						:rules="[identifiant_valide]"
 					/>
 

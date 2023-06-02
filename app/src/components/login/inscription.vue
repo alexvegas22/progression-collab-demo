@@ -13,6 +13,7 @@
 					v-model="courriel"
 					name="courriel"
 					variant="underlined"
+					ref="courriel"
 					:rules="[courriel_valide]"
 				/>
 

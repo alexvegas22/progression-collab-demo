@@ -7,6 +7,7 @@ export default {
 	},
 	props:{
 		auth_local: Boolean,
+		focus: Boolean,
 	},
 	data() {
 		return {
@@ -34,6 +35,18 @@ export default {
 					this.courriel_valide() === true &&
 					this.confirmation_valide() === true);
 		},
+	},
+	watch : {
+		focus(){
+			if(this.focus){
+				this.$refs.courriel.focus();
+			}
+		}
+	},
+	mounted(){
+		if(this.focus){
+			this.$refs.courriel.focus();
+		}
 	},
 	methods: {
 		courriel_vide(){
