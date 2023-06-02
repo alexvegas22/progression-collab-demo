@@ -64,9 +64,10 @@ export default {
 							user: { état : constantes.USER.ACTIF },
 							token: { jwt: token }
 						});
-
+						this.$store.dispatch("setUsername", this.tokenDécodé.ressources.data.user.username);
 						this.messageInformation = this.$t("validationCourriel.réussie");
 						this.validationRéussie = !this.validationRéussie;
+						this.ongletSélectionné = "STANDARD";
 					}
 					catch ( err ) {
 						if ( err?.response?.status == 401 ) {
