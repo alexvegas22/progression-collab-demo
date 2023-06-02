@@ -6,7 +6,6 @@ export default {
 		onInscrire: Object,
 	},
 	props:{
-		auth_local: Boolean,
 		focus: Boolean,
 	},
 	data() {
@@ -18,10 +17,10 @@ export default {
 			persister: true,
 		};
 	},
-	async mounted(){
-		this.proposer_username();
-	},
 	computed : {
+		auth_local() {
+			return this.$store.getters.configServeur.AUTH.LOCAL;
+		},
 		authentificationPermise(){
 			return !this.$store.getters.obtenirToken() && !this.$store.state.authentificationEnCours;
 		},
@@ -39,13 +38,18 @@ export default {
 	watch : {
 		focus(){
 			if(this.focus){
-				this.$refs.courriel.focus();
+				const champ = this.auth_local ? this.$refs.courriel : this.$refs.identifiant;
+				if(!champ.focused)
+					champ.focus();
 			}
 		}
 	},
-	mounted(){
+	async mounted(){
+		this.proposer_username();
 		if(this.focus){
-			this.$refs.courriel.focus();
+			const champ = this.auth_local ? this.$refs.courriel : this.$refs.identifiant;
+			if(!champ.focused)
+				champ.focus();
 		}
 	},
 	methods: {

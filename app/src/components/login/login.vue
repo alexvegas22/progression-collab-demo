@@ -69,7 +69,6 @@
 				val="INSCRIPTION"
 			>
 				<Inscription
-					:auth_local="auth_local"
 					:focus="tabSélectionné=='INSCRIPTION'"
 					@onInscrire="onInscrire"
 				/>

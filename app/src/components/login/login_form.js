@@ -20,14 +20,21 @@ export default {
 			if(this.focus){
 				this.$refs.identifiant.focus();
 			}
+		},
+		username(){
+			this.identifiant = this.username ?? "";
 		}
 	},
 	mounted(){
 		if(this.focus){
 			this.$refs.identifiant.focus();
 		}
+		this.identifiant = this.username ?? "";
 	},
 	computed: {
+		username: function(){
+			return this.$store.state.username;
+		},
 		placeholder: function(){
 			return this.domaine ? "@"+this.domaine : "";
 		},
@@ -38,10 +45,10 @@ export default {
 			return this.password == "";
 		},
 		identifiant_vide() {
-			return this.identifiant.trim() == "";
+			return this.identifiant?.trim() == "";
 		},
 		identifiant_valide() {
-			if( !this.identifiant_vide && !this.identifiant.trim().match(
+			if( !this.identifiant_vide && !this.identifiant?.trim().match(
 				/^\w{2,64}$|^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/
 			))
 				return this.$t("login.identifiantInvalide");
@@ -58,7 +65,7 @@ export default {
 	methods: {
 		login() {
 			if (this.champs_valides){
-				this.$emit("onLogin", { identifiant: this.identifiant.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
+				this.$emit("onLogin", { identifiant: this.identifiant?.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
 			}
 		},
 	},

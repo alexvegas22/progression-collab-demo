@@ -191,6 +191,7 @@ export default {
 
 		return valider(async () => {
 			commit("setEnChargement", true);
+			commit("setUsername", username);
 			try {
 				return await inscrireApi(urlInscription, username, courriel, motDePasse);
 			}

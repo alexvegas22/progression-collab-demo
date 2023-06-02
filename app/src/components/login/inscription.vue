@@ -22,6 +22,7 @@
 					v-model="username"
 					name="username"
 					:rules="[username_valide]"
+					ref="identifiant"
 					variant="underlined"
 				>
 					<template v-slot:append-inner>
@@ -62,6 +63,7 @@
 				lg="6"
 			>
 				<v-checkbox
+					v-if="!auth_local"
 					:label="$t('login.persister')"
 					v-model="persister"
 					name="persister"
