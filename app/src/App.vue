@@ -64,7 +64,7 @@
 
 			<DialogURL :ouvrir="dialogNouvelExercice" @ok="(url) => ouvrirNouvelExercice(url)" />
 
-			<router-view v-show="!enChargement" />
+			<router-view  />
 
 		</v-main>
 	</v-app>
