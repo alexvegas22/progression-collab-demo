@@ -78,10 +78,6 @@ const authentificationErreurHandler = function() {
 
 const valider = async (promesse) => {
 	return promesse
-		.then((résultat) => {
-			store.dispatch("setErreurs", null);
-			return résultat;
-		})
 		.catch((erreur) => {
 			if(erreur?.response?.status==401) {
 				authentificationErreurHandler(erreur);

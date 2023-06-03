@@ -150,8 +150,14 @@ export default {
 		commit("setUnleash", unleash);
 	},
 
-	async setErreurs({ commit }, erreurs) {
-		commit("setErreurs", erreurs);
+	async setErreurs({ commit, state }, erreurs) {
+		if(state.erreurs.length>=5) state.erreurs.splice(0,1);
+		state.erreurs.push(erreurs);
+		commit("setErreurs", state.erreurs);
+	},
+
+	async réinitialiserErreurs({ commit }) {
+		commit("setErreurs", []);
 	},
 
 	async setErreurCallback({ commit }, erreur) {

@@ -17,7 +17,7 @@ export default createStore({
 		enChargement: 0,
 		envoiTentativeEnCours: false,
 		authentificationEnCours:false,
-		erreurs: null,
+		erreurs: [],
 		erreur_callback: null,
 		indicateursDeFonctionnalité: [],
 		langageDéfaut: null,
