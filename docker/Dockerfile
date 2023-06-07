@@ -20,7 +20,7 @@ RUN npm install -g http-server
 WORKDIR /app
 
 # copy both 'package.json' and 'package-lock.json' (if available)
-COPY app/package.json ./
+COPY app/package-lock.json package.json ./
 
 # install project dependencies
 
