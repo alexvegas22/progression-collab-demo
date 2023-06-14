@@ -43,6 +43,8 @@ test_unitaires:
   except:
     - master
     - dev
+  # Désactivé tant qu'il n'existe pas de tests utiles
+  when: manual
     
 # Linter    
 linter:
