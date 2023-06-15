@@ -211,7 +211,7 @@
 		"sortieConsole": "Sortie observée",
 		"rétroaction": "Rétroaction",
 		"vide": "[vide]",
-		"cachée": "[cachée]"
+		"caché": "[caché]\n\nLes résultats de ce test sont cachés pour assurer que votre solution est indépendante des entrées."
 	},
 
 	"resultat_details": {
