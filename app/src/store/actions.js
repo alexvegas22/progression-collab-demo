@@ -13,6 +13,7 @@ import {
 	postAvancementApi,
 	postModifierUserApi,
 	postCommentaireApi,
+	postRésultat,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey,
@@ -525,10 +526,10 @@ export default {
 		return valider( async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, index: params.index, urlTentative: state.avancement.liens.tentatives}, token);
+				const résultat = await postRésultat({tentative: state.tentative, test: params.test, index: params.index, url: state.question.liens.résultats}, token);
 
 				if( !state.envoiTentativeEnCours ) {
-					commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+					commit("setRésultat", {index: indexTestSélectionné, résultat: résultat});
 				}
 			}
 			catch (e) {

@@ -159,7 +159,7 @@ const getTentativeApi = async (url, token, tokenRessources) => {
 const postTentative = async (params, token) => {
 	const urlRequete = params.urlTentative;
 	const query = { include: "resultats" };
-	const body = { langage: params.tentative.langage, code: params.tentative.code, test: params.test, index: params.index };
+	const body = { langage: params.tentative.langage, code: params.tentative.code };
 	const data = await postData(urlRequete, query, body, token);
 
 	if (data.erreur) {
@@ -178,6 +178,21 @@ const postTentative = async (params, token) => {
 		});
 	}
 	return tentative;
+};
+
+const postRésultat = async (params, token) => {
+	const urlRequete = params.url;
+	const body = { langage: params.tentative.langage, code: params.tentative.code, test: params.test, index: params.index };
+	const data = await postData(urlRequete, null, body, token);
+
+	if (data.erreur) {
+		console.log(data.erreur);
+		return null;
+	}
+
+	var résultat = data.data.attributes;
+	résultat.liens = data.data.links;
+	return résultat;
 };
 
 const postAuthKey = async (params, token) =>
@@ -290,6 +305,7 @@ export {
 	postAvancementApi,
 	postModifierUserApi,
 	postCommentaireApi,
+	postRésultat,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey,

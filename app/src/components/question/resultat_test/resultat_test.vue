@@ -25,10 +25,10 @@
 								<div>
 									<textarea
 										style="overflow: hidden"
-											   id="contenu_entrée"
-											   class="card-text p-3 inputTest"
-											   @input="entréesModifiées"
-											   v-model="this.test.entrée"
+										id="contenu_entrée"
+										class="card-text p-3 inputTest"
+										@input="entréesModifiées"
+										v-model="this.test.entrée"
 									></textarea>
 								</div>
 							</FenêtreInfo>
@@ -39,9 +39,9 @@
 								<div>
 									<textarea
 										id="contenu_params"
-											class="card-text p-3 inputTest"
-											@input="entréesModifiées"
-											v-model="this.test.params"
+										class="card-text p-3 inputTest"
+										@input="entréesModifiées"
+										v-model="this.test.params"
 									></textarea>
 								</div>
 							</FenêtreInfo>
@@ -80,10 +80,12 @@
 									présentation_étape="3.2"
 									:class="{'résultat-test': résultat}"
 								>
+									<!-- eslint-disable -->
 									<pre v-if="sortie_attendue"
 										 class="card-text p-3"
 										 v-html="sortie_attendue"
 									/>
+									<!-- eslint-enable -->
 									<pre v-else>
 										<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 									</pre>

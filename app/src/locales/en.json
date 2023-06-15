@@ -234,7 +234,7 @@
 		"sortieConsole": "Actual output",
 		"rétroaction": "Feedback",
 		"vide": "[empty]",
-		"caché": "[hidden]\n\nThe results for this test are hidden to ensure that your solution is independant of the inputs."
+		"caché": "[hidden]\n\nThe results for this test are hidden to ensure that your solution is independant from the inputs."
 	},
 
 	"resultat_details": {
