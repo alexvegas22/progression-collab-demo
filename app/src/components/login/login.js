@@ -68,6 +68,7 @@ export default {
 		},
 		onInscrire(event){
 			this.$emit("onInscrire", event);
+			this.sélection = "STANDARD"; 
 		},
 		estActif(tab) {
 			return this.tabSélectionné === tab;

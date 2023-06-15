@@ -12,7 +12,7 @@
 				<v-app-bar-title>
 					<div>
 						<div
-							onclick="window.location='./'"
+							@click="allerVersHome"
 							style="cursor:pointer; width: fit-content"
 							class="font-family-serif"
 						>
@@ -143,6 +143,9 @@ export default {
 		},
 		allerVersAccomplissements(){
 			this.allerVers("Accomplissements");
+		},
+		allerVersHome(){
+			this.allerVers("Home");
 		},
 		nouvelExercice() {
 			this.dialogNouvelExercice=!this.dialogNouvelExercice;

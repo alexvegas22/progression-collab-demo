@@ -165,8 +165,12 @@ export default {
 			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
 
 			this.tests[index].envoyé = true;
+			const test_sélectionné = this.tests[index];
 			this.$store.dispatch("soumettreTestUnique", {
-				test: this.tests[index],
+				test: {
+					entrée: test_sélectionné.entrée,
+					params: test_sélectionné.params,
+				},
 				index: index,
 			}).then( () => {
 				if(this.tentative.resultats[index]?.sortie_erreur){

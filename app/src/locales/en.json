@@ -43,6 +43,7 @@
 			"titre": "Open an exercise",
 			"invite_url": "Enter the URL of an exercice",
 			"champ_url": "URL",
+			"exercices_démo": "(Pst! don't know where to start? Click here!)",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Cancel"
 		},

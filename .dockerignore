@@ -1,11 +1,8 @@
-# Fichiers liés à Docker
+# Fichiers liés à Docker                                                                                        
+.dockerignore                                                                                                                                                                                                                                                                                                                                   
 Dockerfile
-.dockerignore
+# Fichiers liés à Git                                                                                           
+.git                                                                                                            
+.gitignore                                                                                                      
 
-# Fichiers liés à Git
-.git
-.gitignore
-
-# Dossier de mock
-mock/
-app/node_modules/
+app/node_modules/ 
