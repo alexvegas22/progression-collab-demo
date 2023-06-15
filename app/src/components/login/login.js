@@ -39,7 +39,6 @@ export default {
 		},
 	},
 	emits: {
-		onInscrire: Object,
 		onLogin: Object,
 	},
 	mounted(){
@@ -55,10 +54,6 @@ export default {
 	methods: {
 		onLogin(event){
 			this.$emit("onLogin", event);
-		},
-		onInscrire(event){
-			this.$emit("onInscrire", event);
-			this.sélection = "STANDARD"; 
 		},
 		estActif(tab) {
 			return this.tabSélectionné === tab;

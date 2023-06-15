@@ -5,30 +5,6 @@
 		@submit.prevent="inscrire"
 	>
 		<fieldset :disabled="!authentificationPermise">
-			<div
-				v-if="auth_local"
-				class="form-group">
-				<div class="col-sm-6">
-					<label
-						for="courriel"
-						class="control-label"
-					>
-						{{ $t('inscription.courriel') }} :
-					</label>
-					<input
-						id="courriel"
-						v-model="courriel"
-						class="form-control"
-						type="email"
-						name="courriel"
-						autofocus
-					>
-					<div v-if="courriel_invalide">
-						{{ $t('inscription.courrielInvalide') }}
-					</div>
-				</div>
-				<div class="col-sm-6" />
-			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
 					<label
@@ -50,7 +26,7 @@
 				<div class="col-sm-6" />
 			</div>
 			<div
-				v-if="auth_local"
+				v-if="password_req"
 				class="form-group"
 			>
 				<div class="form-group">
@@ -107,10 +83,15 @@
 			<div class="col-sm-offset-3">
 				<v-btn
 					type="submit"
-					:disabled="!authentificationPermise || !champs_valides"
+					:disabled="!authentificationPermise ||
+						this.username_vide ||
+						this.username_invalide ||
+						this.password_vide ||
+						this.confirmation_vide"
 				>
 					{{$t('inscription.boutonInscription')}}
 				</v-btn>
+
 			</div>
 		</fieldset>
 	</form>

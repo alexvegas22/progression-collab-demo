@@ -52,9 +52,7 @@
 							class="d-flex"
 							style="flex-flow: row; flex: 1 1 0; flex-grow: 1; "
 						>
-							<div
-								v-if="!test.dirty"
-								class="titre-sorties">
+							<div class="titre-sorties">
 								{{ $t('resultat_test.sortieAttendue') }}
 							</div>
 							<div class="titre-sorties"

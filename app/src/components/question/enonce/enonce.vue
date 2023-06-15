@@ -58,51 +58,37 @@
 			</div>
 		</div>
 		<div class="section-énoncé-texte">
-			<v-tabs v-model="tab"
-				v-if="question.énoncé.length>1"
-				présentation_étape="0.3"
-				density="compact">
-
-				<v-tab v-for="page in question.énoncé" :key="page.titre" :value="page.titre"
-					size="small"
-				>
-					{{page.titre}}
-				</v-tab>
-			</v-tabs>
-
-			<v-window v-model="tab"
-				style="overflow: auto; height: 100%">
-				<v-window-item
-					v-for="page in question.énoncé"
-					:key="page.titre"
-					:value="page.titre">
-					<v-card flat>
-						<!-- eslint-disable-->
-						<v-card-text v-html="page.texte"></v-card-text>
+			<perfect-scrollbar :options="{suppressScrollX: true}">
+				<div class="row flex-grow-1">
+					<!-- eslint-disable-->
+						<p
+							class="texte_énoncé"
+							présentation_étape="0.3"
+							v-html="question.énoncé"
+						/>
 						<!-- eslint-enable-->
-					</v-card>
-				</v-window-item>
-			</v-window>
-		</div>
-		<div
-			v-if="question.auteur"
-			class="d-flex"
-			:title="$t('énoncé.auteur')"
-		>
-			<v-icon icon="mdi-account-multiple" class="icone" />
-			<p class="footer-auteur">
-				{{ question.auteur }}
-			</p>
-		</div>
-		<div
-			v-if="question.licence"
-			class="d-flex"
-			:title="$t('énoncé.licence')"
-		>
-			<v-icon icon="mdi-copyright" class="icone" />
-			<p class="footer-license">
-				{{ question.licence }}
-			</p>
+				</div>
+				<div
+					v-if="question.auteur"
+					class="d-flex"
+					:title="$t('énoncé.auteur')"
+				>
+					<v-icon icon="mdi-account-multiple" class="icone" />
+					<p class="footer-auteur">
+						{{ question.auteur }}
+					</p>
+				</div>
+				<div
+					v-if="question.licence"
+					class="d-flex"
+					:title="$t('énoncé.licence')"
+				>
+					<v-icon icon="mdi-copyright" class="icone" />
+					<p class="footer-license">
+						{{ question.licence }}
+					</p>
+				</div>
+			</perfect-scrollbar>
 		</div>
 	</div>
 </template>

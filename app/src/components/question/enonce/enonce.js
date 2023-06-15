@@ -6,9 +6,6 @@ export default {
 		énoncéPleinÉcran: Boolean,
 		énoncéSemiÉcran: Boolean
 	},
-	data() {
-		return {tab: null};
-	},
 	emits: ["ajustéPanneauÉnoncé"],
 	computed: {
 		état_réussi() {
@@ -17,20 +14,7 @@ export default {
 		question() {
 			return new Proxy(this.$store.state.question, {
 				get: function (obj, prop) {
-					if(prop != "énoncé"){
-						return obj[prop];
-					}
-					const énoncé = obj["énoncé"];
-					if(!Array.isArray(énoncé)){
-						return [{
-							titre: null,
-							texte: parseMD(énoncé)
-						}];
-					}
-					return énoncé.map( page => ({
-						titre: page.titre,
-						texte: parseMD(page.texte)
-					}));
+					return prop == "énoncé" ? parseMD(obj[prop]) : obj[prop];
 				},
 			});
 		},
