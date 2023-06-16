@@ -85,6 +85,8 @@ export default {
 				return "mode", "shell";
 			} else if (value === "c") {
 				return "mode", "text/x-csrc";
+			} else if (value === "c#") {
+				return "mode", "text/x-csharp";
 			} else if (["cpp", "c++"].includes(value)) {
 				return "mode", "text/x-c++src";
 			} else {
