@@ -37,7 +37,8 @@ async function rafraîchirToken() {
 
 	if (authKey) {
 		try {
-			const token = await getTokenApi(API_URL + "/auth", username, authKey);
+			//À changer. L'URL devrait être pris de store.config.user.liens
+			const token = await getTokenApi(API_URL + "/user/" +  username + "/tokens", username, authKey);
 			sauvegarderToken(token);
 			return token;
 		}
@@ -210,7 +211,8 @@ export default {
 	},
 
 	async authentifier({ commit }, params) {
-		const urlAuth = API_URL + "/auth";
+
+		const urlAuth = API_URL;
 		const identifiant = params.identifiant;
 		const password = params.password;
 		const persister = params.persister;

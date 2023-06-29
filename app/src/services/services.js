@@ -1,9 +1,11 @@
 import { getData, postData, putData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
-	const token = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine })).data;
+	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp })).data.links.user;
 
-	return token ? construireToken( token ) : null;
+	const data = (await postData(urlUser+"/tokens", null, { identifiant: identifiant, password: mdp, domaine: domaine, data: { expiration: Math.round(Date.now() / 1000) + 300, ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
+
+	return data ? construireToken( data ) : null;
 };
 
 const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
@@ -13,15 +15,13 @@ const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
 };
 
 const getTokenApi = async (urlAuth, identifiant, clé) => {
-	const token = (await postData(urlAuth, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret })).data;
+	const token = (await postData(urlAuth, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret, data: { expiration: Math.round(Date.now() / 1000) + 300, ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
 	return token ? construireToken( token ): null;
 };
 
 const getConfigServeurApi = async (urlConfig) => {
 	return getData(urlConfig).then((data) => {
-		var config = data;
-
-		return config;
+		return construireConfig( data );
 	});
 };
 
@@ -77,9 +77,13 @@ const construireUser = ( data ) => {
 };
 
 
-function construireToken(item) {
-	return {...item.attributes, liens: item.links};
+function construireToken(data) {
+	var token = data.attributes;
+	token.liens = data.links;
+
+	return token;
 }
+
 const getQuestionApi = async (urlQuestion, token) => {
 	const query = { include: "tests,ebauches" };
 	const data = await getData(urlQuestion, query, token);
@@ -264,6 +268,13 @@ function construireSauvegarde(item) {
 	sauvegarde.langage = langage;
 
 	return sauvegarde;
+}
+
+function construireConfig(item) {
+	var config = item.data.attributes.config;
+	config.liens = item.links;
+
+	return config;
 }
 
 function construireTentative(data, included = null) {

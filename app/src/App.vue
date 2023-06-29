@@ -17,6 +17,9 @@
 							class="font-family-serif"
 						>
 							<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
+							<sup>
+								(v3-bêta)
+							</sup>
 						</div>
 					</div>
 				</v-app-bar-title>
@@ -76,8 +79,6 @@ import BannièreErreur from "@/components/bannière/bannière_erreur.vue";
 import NavBar from "@/components/navbar/navbar.vue";
 import DialogURL from "@/components/dialogurl/dialogurl.vue";
  
-const API_URL = import.meta.env.VITE_API_URL;
-
 export default {
 	 name: "App",
 	 setup () {
@@ -103,7 +104,6 @@ export default {
 		if(username){
 			this.$store.dispatch("setUsername", username);
 		}
-		this.$store.dispatch("récupérerConfigServeur", API_URL + "/config" );
 		this.traiterParamètresURL( window.location.search );
 	},
 	computed: {
