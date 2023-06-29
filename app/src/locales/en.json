@@ -3,7 +3,22 @@
 		"réseau": "Connection to server failed. Please retry or contact an administrator.",
 		"détails": "details",
 		"authentification": "Incorrect username or password.",
-		"inscription": "That username is already taken.",
+		"inscription": {
+			"courriel": {
+				"existant": "This email is not available.",
+				"invalide": "This email is invalid.",
+				"vide": "The email is mandatory."
+			},
+			"username": {
+				"existant": "This username is not available.",
+				"invalide": "This username is invalid.",
+				"vide": "The username is mandatory."
+			},
+			"password": {
+				"vide": "The password is mandatory.",
+				"invalide": "The password does not meet the complexity requirements. Please choose a password of at least 8 characters including a lower case letter, an uppercase letter and a number."
+			}
+		},
 		"tentative_intraitable": "The attempt is invalid. The question may be invalid or may have changed since your draft was loaded. Try reloading the initial draft. If the problem persists, contact an administrator.",
 		"question_introuvable": "The question does not exist or could not be retreived. If the problem persists, contact the author of the question."
 	},
@@ -28,8 +43,16 @@
 			"titre": "Open an exercise",
 			"invite_url": "Enter the URL of an exercice",
 			"champ_url": "URL",
+			"exercices_démo": "(Pst! don't know where to start? Click here!)",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Cancel"
+		},
+		"boiteDeDialogue": {
+			"continuer":"Proceed",
+			"confirmation":"Confirmation",
+			"information":"Information",
+			"oui": "Yes",
+			"non": "No"
 		}
 	},
 
@@ -48,14 +71,14 @@
 	},
 
 	"login": {
-		"courriel": "Username",
+		"identifiant": "Username or email",
 		"motDePasse": "Password",
 		"boutonConnexion": "Log in",
 		"authorisation": "Authorise the plateform {plateforme} to connect to Progression in your name for the course {cours} : ",
 		"persister": "Remember me on this computer",
 		"standard": "Standard",
 		"inscription": "Sign in",
-		"usernameInvalide": "The username must contain only letters, dashes et underscores.",
+		"identifiantInvalide": "Please use a valid username containing letters, dashes, and underscores only.",
 		"champObligatoire": "Mandatory field",
 		"mdpOublié": "forgot your password?"
 	},
@@ -141,10 +164,26 @@
 	},
 
 	"inscription": {
-		"username": "Choose a username",
+		"username": "Username",
+		"courriel": "Email",
 		"confirmation": "Confirm",
 		"boutonInscription": "Sign in",
-		"mdpDifférents": "Passwords must match."
+		"courrielInvalide": "This email is invalid.",
+		"erreur": {
+			"courriel": {
+				"invalide": "This email is invalid.",
+				"vide": "The email is mandatory."
+			},
+			"username": {
+				"invalide": "This username is invalid.",
+				"vide": "The username is mandatory."
+			},
+			"password": {
+				"invalide": "The password does not meet the complexity requirements. Please choose a password of at least 8 characters including a lower case letter, an uppercase letter and a number.",
+				"vide": "The password is mandatory.",
+				"confirmation": "Passwords must match"
+			}
+		}
 	},
 
 	"énoncé": {
@@ -195,7 +234,7 @@
 		"sortieConsole": "Actual output",
 		"rétroaction": "Feedback",
 		"vide": "[empty]",
-		"cachée": "[hidden]"
+		"caché": "[hidden]\n\nThe results for this test are hidden to ensure that your solution is independant from the inputs."
 	},
 
 	"resultat_details": {
@@ -229,5 +268,13 @@
 		"commentaires": "Comments",
 		"placeholderCommentaire": "Write a comment",
 		"ligneCommentaire": "Line:"  
+	},
+
+	"validationCourriel": {
+		"titreSuccès": "Nice !",
+		"titreÉchec": "An error has occured",
+		"réussie": "Congrats! Your email has been verified. Now go ahead, log in and start coding!",
+		"échouée": "Sadly, that validation token seems to have expired. Would you like to receive a new validation email?",
+		"expédié": "We've just sent an email to the address you provided. Please check your inbox and follow the instructions included."
 	}
 }

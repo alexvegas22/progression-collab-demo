@@ -39,10 +39,12 @@ test_unitaires:
     - job: const_image
       optional: true
   script:
-    - TAG_DEPLOY=$BRANCHE docker-compose run tests_app
+    - TAG_DEPLOY=$BRANCHE docker-compose run tests_webapp
   except:
     - master
     - dev
+  # Désactivé tant qu'il n'existe pas de tests utiles
+  when: manual
     
 # Linter    
 linter:
@@ -123,8 +125,8 @@ deploy_prod:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=latest docker-compose pull app
-    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
+    - TAG_DEPLOY=latest docker-compose pull webapp
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d webapp ltijs
   only:
     - master
   when:
@@ -136,7 +138,7 @@ stop_prod:
     name: prod
     action: stop
   script:
-    - docker-compose -p prod stop app ltijs
+    - docker-compose -p prod stop webapp ltijs
   when:
     manual
 
@@ -156,8 +158,8 @@ deploy_crosemont:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=latest docker-compose pull app ltijs
-    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d app ltijs
+    - TAG_DEPLOY=latest docker-compose pull webapp ltijs
+    - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d webapp ltijs
   only:
     - master
   when:
@@ -169,7 +171,7 @@ stop_crosemont:
     name: crosemont
     action: stop
   script:
-    - docker-compose -p prod stop app ltijs
+    - docker-compose -p prod stop webapp ltijs
   when:
     manual
     
@@ -185,8 +187,8 @@ deploy_staging:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=latest docker-compose pull app ltijs
-    - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d app ltijs
+    - TAG_DEPLOY=latest docker-compose pull webapp ltijs
+    - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d webapp ltijs
   rules:
     - if: '$CI_COMMIT_BRANCH == "master" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
     
@@ -196,7 +198,7 @@ stop_staging:
     name: staging
     action: stop
   script:
-    - docker-compose -p staging stop app ltijs
+    - docker-compose -p staging stop webapp ltijs
   only:
     - master
   when:
@@ -214,8 +216,8 @@ deploy_demo:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=latest docker-compose pull app
-    - TAG_DEPLOY=latest docker-compose -p demo up --force-recreate -d app
+    - TAG_DEPLOY=latest docker-compose pull webapp
+    - TAG_DEPLOY=latest docker-compose -p demo up --force-recreate -d webapp
   rules:
     - if: '$CI_COMMIT_BRANCH == "master" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
 
@@ -225,7 +227,7 @@ stop_demo:
     name: demo
     action: stop
   script:
-    - docker-compose -p demo stop app
+    - docker-compose -p demo stop webapp
   only:
     - master
   when:
@@ -242,8 +244,8 @@ deploy_dev:
     - *preparer_contexte
     - *login
   script:
-    - TAG_DEPLOY=dev docker-compose pull app
-    - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate -d app
+    - TAG_DEPLOY=dev docker-compose pull webapp
+    - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate -d webapp
   only:
     - dev
 
@@ -253,7 +255,7 @@ stop_dev:
     name: dev    
     action: stop
   script:
-    - docker-compose -p dev stop app
+    - docker-compose -p dev stop webapp
   only:
     - dev
   when:

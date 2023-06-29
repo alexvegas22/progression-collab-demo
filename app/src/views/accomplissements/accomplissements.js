@@ -16,13 +16,22 @@ export default {
 			return this.$store.state.user?.avancements && Object.keys(this.$store.state.user?.avancements).length>0;
 		},
 		démos() {
-			return this.$store.getters.préférences["démos"]!==false;
+			return this.$store.getters.démos;
 		},
 	},
 	methods: {
 		fermerDémos() {
 			this.$store.dispatch("setPréférences", {
 				démos: false,
+			});
+		},
+		ouvrirQuestion( uri, demo ){
+			this.$router.push( {
+				name: "Question",
+				query: {
+					uri: uri,
+					demo: demo,
+				}
 			});
 		}
 	}

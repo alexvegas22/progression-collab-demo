@@ -2,7 +2,7 @@
 	<div class="row g-0">
 		<div class="col-12 h-100">
 			<div
-				v-if="test"
+				v-if="test && !test.sortie_cachée"
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
@@ -22,24 +22,28 @@
 								<template #titre>
 									{{ $t('resultat_test.entrée') }}
 								</template>
-								<textarea
-									style="overflow: hidden"
-									id="contenu_entrée"
-									class="card-text p-3 inputTest"
-									@input="entréesModifiées"
-									v-model="this.test.entrée"
-								></textarea>
+								<div>
+									<textarea
+										style="overflow: hidden"
+										id="contenu_entrée"
+										class="card-text p-3 inputTest"
+										@input="entréesModifiées"
+										v-model="this.test.entrée"
+									></textarea>
+								</div>
 							</FenêtreInfo>
-							<FenêtreInfo v-if="test.params">
+							<FenêtreInfo v-if="test.params!==null">
 								<template #titre>
 									{{ $t('resultat_test.params') }}
 								</template>
-								<textarea
-									id="contenu_params"
-									class="card-text p-3 inputTest"
-									@input="entréesModifiées"
-									v-model="this.test.params"
-								></textarea>
+								<div>
+									<textarea
+										id="contenu_params"
+										class="card-text p-3 inputTest"
+										@input="entréesModifiées"
+										v-model="this.test.params"
+									></textarea>
+								</div>
 							</FenêtreInfo>
 						</div>
 					</template>
@@ -48,7 +52,9 @@
 							class="d-flex"
 							style="flex-flow: row; flex: 1 1 0; flex-grow: 1; "
 						>
-							<div class="titre-sorties">
+							<div
+								v-if="!test.dirty"
+								class="titre-sorties">
 								{{ $t('resultat_test.sortieAttendue') }}
 							</div>
 							<div class="titre-sorties"
@@ -56,7 +62,7 @@
 							>
 								{{ $t('resultat_test.sortieConsole') }}
 								<sélecteur-mode-affichage
-									v-show="!test.sortie_cachée && sortie_attendue"
+									v-show="sortie_attendue"
 									class="espace-sélecteur"
 								/>
 							</div>
@@ -75,21 +81,14 @@
 									:class="{'résultat-test': résultat}"
 								>
 									<!-- eslint-disable -->
-									<div v-if="!test.sortie_cachée">
-										<pre v-if="sortie_attendue"
-											 class="card-text p-3"
-											 v-html="sortie_attendue"
-										/>
-										<pre v-else>
-											<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-										</pre>
-									</div>
+									<pre v-if="sortie_attendue"
+										 class="card-text p-3"
+										 v-html="sortie_attendue"
+									/>
 									<!-- eslint-enable -->
-									<div v-else>
-										<pre>
-											<p class="card-text sortie vide p-3">{{ $t("resultat_test.cachée") }}</p>
-										</pre>
-									</div>
+									<pre v-else>
+										<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+									</pre>
 								</div>
 								<div
 									v-if="résultat"
@@ -113,6 +112,11 @@
 						</FenêtreInfo>
 					</template>
 				</Diptyque>
+			</div>
+			<div v-else>
+				<pre>
+					<p class="card-text sortie vide p-3">{{ $t("resultat_test.caché") }}</p>
+				</pre>
 			</div>
 		</div>
 	</div>

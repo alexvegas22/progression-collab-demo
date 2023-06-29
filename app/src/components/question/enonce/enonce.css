@@ -180,10 +180,7 @@ h3 {
 	box-sizing: border-box;
 	position: relative;
 	padding-right: 0.25rem;
-	top: 0.7rem;
-	height: calc(100vh - 11.7rem);
-    overflow: auto;
-	
+	overflow: hidden;
 }
 
 .ps {

@@ -1,6 +1,21 @@
 <template>
 	<div v-if="configServeur">
-		<Login @onLogin="onLogin" />
+		<BoîteInfo
+			:montrer="validationRéussie"
+			:titre="$t('validationCourriel.titreSuccès')"
+			:message="messageInformation"
+		/>
+		<BoîteConfirmation
+			:montrer="erreurDeValidation"
+			:titre="$t('validationCourriel.titreÉchec')"
+			:message="$t('validationCourriel.échouée')"
+			@onRéponse="onRéponse"
+		/>
+		<Login
+			@onLogin="onLogin"
+			@onInscrire="onInscrire"
+			:ongletSélectionné="ongletSélectionné"
+		/>
 	</div>
 </template>
 

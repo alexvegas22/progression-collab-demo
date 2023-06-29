@@ -3,7 +3,22 @@
 		"réseau": "Problème de connexion au serveur. Veuillez réessayer ou communiquer avec un administrateur.",
 		"détails": "détails",
 		"authentification": "Nom d'utilisateur ou mot de passe incorrect.",
-		"inscription": "Ce nom d'utilisateur est déjà utilisé.",
+		"inscription": {
+			"courriel": {
+				"existant": "Ce courriel n'est pas disponible.",
+				"invalide": "Ce courriel n'est pas valide.",
+				"vide": "Le courriel est obligatoire."
+			},
+			"username": {
+				"existant": "Ce nom d'utilisateur n'est pas disponible.",
+				"invalide": "Ce nom d'utilisateur n'est pas valide.",
+				"vide": "Le nom d'utilisateur est obligatoire."
+			},
+			"password": {
+				"vide": "Le mot de passe est obligatoire.",
+				"invalide": "Le mot de passe n'est pas conforme au minimum de complexité. Veuillez choisir un mot de passe d'au moins 8 caractères dont au moins une majuscule, une minuscule et un chiffre."
+			}
+		},
 		"tentative_intraitable": "La tentative est intraitable. La question peut être invalide ou avoir changé depuis que vous avez chargé l'ébauche. Essayez de recharger l'ébauche initiale et si le problème persiste, veuillez communiquer avec un administrateur.",
 		"question_introuvable": "La question n'existe pas ou n'a pas pu être récupérée. Si le problème persiste, veuillez aviser l'auteur de la question."
 	},
@@ -28,8 +43,16 @@
 			"titre": "Ouvrir un exercice",
 			"invite_url": "Entrez l'url d'un exercice",
 			"champ_url": "URL",
+			"exercices_démo": "(Pst! Vous ne savez pas par où commencer? Cliquez ici!)",
 			"bouton_ok": "OK",
 			"bouton_annuler": "Annuler"
+		},
+		"boiteDeDialogue": {
+			"continuer":"Continuer",
+			"confirmation":"Confirmation",
+			"information":"Information",
+			"oui": "Oui",
+			"non": "Non"
 		}
 	},
 
@@ -48,14 +71,14 @@
 	},
 
 	"login": {
-		"courriel": "Nom d'utilisateur",
+		"identifiant": "Courriel ou nom d'utilisateur",
 		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
 		"persister": "Se souvenir de moi sur cet ordinateur",
 		"standard": "Standard",
 		"inscription": "Inscription",
-		"usernameInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
+		"identifiantInvalide": "Le nom d'utilisateur ne peut contenir que des lettres, tirets ou sous-lignés.",
 		"champObligatoire": "Champ obligatoire",
 		"mdpOublié": "Mot de passe oublié?"
 	},
@@ -140,10 +163,25 @@
 	},
 	
 	"inscription": {
-		"username": "Veuillez choisir un nom d'utilisateur.",
+		"username": "Nom d'utilisateur",
+		"courriel": "Courriel",
 		"confirmation": "Confirmation",
 		"boutonInscription": "S'inscrire",
-		"mdpDifférents": "Les deux mots de passe doivent correspondre."
+		"erreur": {
+			"courriel": {
+				"invalide": "Ce courriel n'est pas valide.",
+				"vide": "Le courriel est obligatoire."
+			},
+			"username": {
+				"invalide": "Ce nom d'utilisateur n'est pas valide.",
+				"vide": "Le nom d'utilisateur est obligatoire."
+			},
+			"password": {
+				"invalide": "Le mot de passe n'est pas conforme au minimum de complexité. Veuillez choisir un mot de passe d'au moins 8 caractères dont au moins une majuscule, une minuscule et un chiffre.",
+				"vide": "Le mot de passe est obligatoire.",
+				"confirmation": "Les mots de passe doivent correspondre."
+			}
+		}
 	},
 
 	"énoncé": {
@@ -194,7 +232,7 @@
 		"sortieConsole": "Sortie observée",
 		"rétroaction": "Rétroaction",
 		"vide": "[vide]",
-		"cachée": "[cachée]"
+		"caché": "[caché]\n\nLes résultats de ce test sont cachés pour assurer que votre solution est indépendante des entrées."
 	},
 
 	"resultat_details": {
@@ -229,5 +267,13 @@
 		"commentaires": "Commentaires",
 		"placeholderCommentaire": "Écrire un commentaire",
 		"ligneCommentaire": "Ligne:" 
+	},
+
+	"validationCourriel": {
+		"titreSuccès": "Succès",
+		"titreÉchec": "Une erreur est survenue",
+		"réussie": "Votre courriel a été validé! Bienvenue sur Progression! Maintenant, connectez-vous et commencez à programmer!",
+		"échouée": "Malheureusement, le jeton de vérification semble avoir expiré. Désirez-vous recevoir un nouveau courriel de validation?",
+		"expédié": "Un courriel vous à été envoyé à l'adresse fournie. Veuillez consulter votre boite de récéption et suivre les instructions qui s'y trouvent."
 	}
 }

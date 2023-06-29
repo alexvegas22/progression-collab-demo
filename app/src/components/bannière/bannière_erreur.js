@@ -7,7 +7,7 @@ export default {
 	},
 	methods : {
 		effacerErreurs(){
-			this.$store.dispatch("setErreurs", null);
+			this.$store.dispatch("réinitialiserErreurs");
 		},
 	}
 };

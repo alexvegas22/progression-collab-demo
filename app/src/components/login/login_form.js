@@ -6,15 +6,35 @@ export default {
 	props : {
 		domaine: String,
 		url_mdp_reinit: String,
+		focus: Boolean
 	},
 	data() {
 		return {
-			username: "",
+			identifiant: "",
 			password: "",
 			persister: true,
 		};
 	},
+	watch : {
+		focus(){
+			if(this.focus){
+				this.$refs.identifiant.focus();
+			}
+		},
+		username(){
+			this.identifiant = this.username ?? "";
+		}
+	},
+	mounted(){
+		if(this.focus){
+			this.$refs.identifiant.focus();
+		}
+		this.identifiant = this.username ?? "";
+	},
 	computed: {
+		username: function(){
+			return this.$store.state.username;
+		},
 		placeholder: function(){
 			return this.domaine ? "@"+this.domaine : "";
 		},
@@ -24,20 +44,28 @@ export default {
 		password_vide() {
 			return this.password == "";
 		},
-		username_vide() {
-			return this.username.trim() == "";
+		identifiant_vide() {
+			return this.identifiant?.trim() == "";
 		},
-		username_invalide() {
-			return !this.username_vide && !this.username.trim().match(/^[-a-zA-Z0-9_]+$/);
+		identifiant_valide() {
+			if( !this.identifiant_vide && !this.identifiant?.trim().match(
+				/^\w{2,64}$|^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/
+			))
+				return this.$t("login.identifiantInvalide");
+
+			return true;
+		},
+		champs_valides() {
+			return !this.identifiant_vide &
+				   this.identifiant_valide &&
+				   !this.password_vide;
 		}
+
 	},
 	methods: {
 		login() {
-			if (!(this.username_vide ||
-				  this.username_invalide ||
-				  this.password_vide)){
-
-				this.$emit("onLogin", { username: this.username.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
+			if (this.champs_valides){
+				this.$emit("onLogin", { identifiant: this.identifiant?.trim(), password: this.password, persister: this.persister, domaine: this.domaine });
 			}
 		},
 	},
