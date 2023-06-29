@@ -32,4 +32,21 @@ async function postData(url, query = null, data = null, token = null, config = n
 	return réponse.data;
 }
 
-export { getData, postData };
+async function putData(url, query = null, data = null, token = null, config = null) {
+	let conf = {
+		url: url,
+		method: "put",
+		params: query,
+		data: data,
+		...config
+	};
+
+	if (token) {
+		conf.headers = { Authorization: "Bearer " + token };
+	}
+
+	const réponse = await axios.request(conf);
+	return réponse.data;
+}
+
+export { getData, postData, putData };
