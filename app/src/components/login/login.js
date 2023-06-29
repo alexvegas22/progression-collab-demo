@@ -6,12 +6,22 @@ export default {
 		LoginForm,
 		Inscription,
 	},
+	props: {
+		ongletSélectionné: null,
+	},
 	data(){
 		return {
 			sélection: null,
 			key_panneaux: 1,
 			animation: true
 		};
+	},
+	watch: {
+		ongletSélectionné() {
+			if(this.ongletSélectionné) {
+				this.sélection = this.ongletSélectionné;
+			}
+		}
 	},
 	computed: {
 		tabSélectionné: {
@@ -39,6 +49,7 @@ export default {
 		},
 	},
 	emits: {
+		onInscrire: Object,
 		onLogin: Object,
 	},
 	mounted(){
@@ -54,6 +65,10 @@ export default {
 	methods: {
 		onLogin(event){
 			this.$emit("onLogin", event);
+		},
+		onInscrire(event){
+			this.$emit("onInscrire", event);
+			this.sélection = "STANDARD"; 
 		},
 		estActif(tab) {
 			return this.tabSélectionné === tab;

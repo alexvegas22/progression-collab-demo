@@ -100,7 +100,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.$store.dispatch("setErreurs", null);
+		this.$store.dispatch("réinitialiserErreurs");
 		this.$store.dispatch("setErreurCallback", null);
 		if (this.uri && this.user) this.récupérerQuestion();
 		this.traiterParamètresURL(window.location.search);
@@ -125,9 +125,7 @@ export default {
 				this.$store.dispatch("setLangageDéfaut", urlParams.get("lang"));
 			}
 
-			if (urlParams.has("demo")) {
-				this.$store.dispatch("setDémo", true);
-			}
+			this.$store.dispatch("setDémo", urlParams.has("demo"));
 
 		},
 		récupérerOuCréerAvancement() {

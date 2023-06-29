@@ -96,7 +96,9 @@
 }
 
 .loader-parent {
-	height: 100vh;
+	position:fixed;
+	height: 100%;
+	width: 100%;
 	background: black;
 	opacity: 60%;
 	align-items: center;

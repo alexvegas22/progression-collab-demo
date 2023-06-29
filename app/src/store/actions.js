@@ -1,5 +1,6 @@
 import {
 	authentifierApi,
+	inscrireApi,
 	callbackGrade,
 	getConfigServeurApi,
 	getAvancementApi,
@@ -10,7 +11,9 @@ import {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
+	postModifierUserApi,
 	postCommentaireApi,
+	postRésultat,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey,
@@ -34,7 +37,8 @@ async function rafraîchirToken() {
 
 	if (authKey) {
 		try {
-			const token = await getTokenApi(API_URL + "/auth", username, authKey);
+			//À changer. L'URL devrait être pris de store.config.user.liens
+			const token = await getTokenApi(API_URL + "/user/" +  username + "/tokens", username, authKey);
 			sauvegarderToken(token);
 			return token;
 		}
@@ -148,8 +152,14 @@ export default {
 		commit("setUnleash", unleash);
 	},
 
-	async setErreurs({ commit }, erreurs) {
-		commit("setErreurs", erreurs);
+	async setErreurs({ commit, state }, erreurs) {
+		if(state.erreurs.length>=5) state.erreurs.splice(0,1);
+		state.erreurs.push(erreurs);
+		commit("setErreurs", state.erreurs);
+	},
+
+	async réinitialiserErreurs({ commit }) {
+		commit("setErreurs", []);
 	},
 
 	async setErreurCallback({ commit }, erreur) {
@@ -181,9 +191,29 @@ export default {
 		);
 	},
 
+	async inscrire( {commit} ,  params ){
+		const urlInscription = API_URL + "/user";
+		const courriel = params.courriel;
+		const username = params.identifiant;
+		const motDePasse = params.password;
+
+		return valider(async () => {
+			commit("setEnChargement", true);
+			commit("setUsername", username);
+			try {
+				return await inscrireApi(urlInscription, username, courriel, motDePasse);
+			}
+			finally {
+				commit("setEnChargement", false);
+				commit("updateAuthentificationEnCours", false);
+			}
+		});
+	},
+
 	async authentifier({ commit }, params) {
-		const urlAuth = import.meta.env.VITE_API_URL + (params.inscrire ? "/inscription" : "/auth");
-		const username = params.username;
+
+		const urlAuth = API_URL;
+		const identifiant = params.identifiant;
 		const password = params.password;
 		const persister = params.persister;
 		const domaine = params.domaine;
@@ -193,18 +223,16 @@ export default {
 
 			commit("setEnChargement", true);
 			try {
-
-				const token = await authentifierApi(urlAuth, username, password, domaine);
-
-				commit("setUsername", username);
+				const token = await authentifierApi(urlAuth, identifiant, password, domaine);
 				commit("setToken", token);
-				const storage = persister ? localStorage : sessionStorage;
-				storage.setItem("username", username);
-
-				sessionStorage.setItem("token", token);
 
 				// Obtenir l'utilisateur
-				const user = await this.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username);
+				const user = await this.dispatch("récupérerUser", token.liens.user);
+
+				const storage = persister ? localStorage : sessionStorage;
+				storage.setItem("username", user.username);
+
+				sessionStorage.setItem("token", token);
 
 				// Obtenir la clé d'authentification
 				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
@@ -222,6 +250,14 @@ export default {
 			}
 		}
 		);
+	},
+
+	async mettreÀJourUser( {commit}, params ){
+		return valider(async () => {
+			const user =  await postModifierUserApi( { url: params.url, user: params.user } , params.token );
+			commit("setUser", user);
+			return user;
+		});
 	},
 
 	async récupérerUser({ commit }, urlUser) {
@@ -328,8 +364,7 @@ export default {
 			finally {
 				commit("setEnChargement", false);
 			}
-		}
-		);
+		});
 	},
 
 	async setAvancement({ commit, state }, params) {
@@ -493,10 +528,10 @@ export default {
 		return valider( async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const retroactionTest = await postTentative({tentative: state.tentative, test: params.test, index: params.index, urlTentative: state.avancement.liens.tentatives}, token);
+				const résultat = await postRésultat({tentative: state.tentative, test: params.test, index: params.index, url: state.question.liens.résultats}, token);
 
 				if( !state.envoiTentativeEnCours ) {
-					commit("setRésultat", {index: indexTestSélectionné, résultat: retroactionTest.resultats[0]});
+					commit("setRésultat", {index: indexTestSélectionné, résultat: résultat});
 				}
 			}
 			catch (e) {

@@ -1,16 +1,27 @@
-import { getData, postData } from "@/services/request_services";
+import { getData, postData, putData } from "@/services/request_services";
 
-const authentifierApi = async (urlAuth, nom_utilisateur, mdp, domaine) =>
-	(await postData(urlAuth, null, { username: nom_utilisateur, password: mdp, domaine: domaine })).Token;
+const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
+	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp })).data.links.user;
 
-const getTokenApi = async (urlAuth, nom_utilisateur, clé) =>
-	(await postData(urlAuth, null, { username: nom_utilisateur, key_name: clé.nom, key_secret: clé.secret })).Token;
+	const data = (await postData(urlUser+"/tokens", null, { identifiant: identifiant, password: mdp, domaine: domaine, data: { expiration: Math.round(Date.now() / 1000) + 300, ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
+
+	return data ? construireToken( data ) : null;
+};
+
+const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
+	const token = (await putData(urlInscription, null, { username: identifiant, courriel: courriel, password: mdp })).data;
+
+	return token ? construireToken( token ): null;
+};
+
+const getTokenApi = async (urlAuth, identifiant, clé) => {
+	const token = (await postData(urlAuth, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret, data: { expiration: Math.round(Date.now() / 1000) + 300, ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
+	return token ? construireToken( token ): null;
+};
 
 const getConfigServeurApi = async (urlConfig) => {
 	return getData(urlConfig).then((data) => {
-		var config = data;
-
-		return config;
+		return construireConfig( data );
 	});
 };
 
@@ -65,6 +76,14 @@ const construireUser = ( data ) => {
 	return user;
 };
 
+
+function construireToken(data) {
+	var token = data.attributes;
+	token.liens = data.links;
+
+	return token;
+}
+
 const getQuestionApi = async (urlQuestion, token) => {
 	const query = { include: "tests,ebauches" };
 	const data = await getData(urlQuestion, query, token);
@@ -93,6 +112,13 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 	const data = await getData(url, query, token);
 	var avancement = construireAvancement(data.data, data.included);
 	return avancement;
+};
+
+const postModifierUserApi = async (params, token) => {
+	const url = params.url;
+	const body = params.user;
+	const data = await postData(url, null, body, token);
+	return construireUser( data );
 };
 
 const postAvancementApi = async (params, token) => {
@@ -137,7 +163,7 @@ const getTentativeApi = async (url, token, tokenRessources) => {
 const postTentative = async (params, token) => {
 	const urlRequete = params.urlTentative;
 	const query = { include: "resultats" };
-	const body = { langage: params.tentative.langage, code: params.tentative.code, test: params.test, index: params.index };
+	const body = { langage: params.tentative.langage, code: params.tentative.code };
 	const data = await postData(urlRequete, query, body, token);
 
 	if (data.erreur) {
@@ -156,6 +182,21 @@ const postTentative = async (params, token) => {
 		});
 	}
 	return tentative;
+};
+
+const postRésultat = async (params, token) => {
+	const urlRequete = params.url;
+	const body = { langage: params.tentative.langage, code: params.tentative.code, test: params.test, index: params.index };
+	const data = await postData(urlRequete, null, body, token);
+
+	if (data.erreur) {
+		console.log(data.erreur);
+		return null;
+	}
+
+	var résultat = data.data.attributes;
+	résultat.liens = data.data.links;
+	return résultat;
 };
 
 const postAuthKey = async (params, token) =>
@@ -229,6 +270,13 @@ function construireSauvegarde(item) {
 	return sauvegarde;
 }
 
+function construireConfig(item) {
+	var config = item.data.attributes.config;
+	config.liens = item.links;
+
+	return config;
+}
+
 function construireTentative(data, included = null) {
 	var tentative;
 	tentative = data.attributes;
@@ -254,6 +302,7 @@ function construireTentative(data, included = null) {
 
 export {
 	authentifierApi,
+	inscrireApi,
 	callbackAuth,
 	callbackGrade,
 	getConfigServeurApi,
@@ -265,7 +314,9 @@ export {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
+	postModifierUserApi,
 	postCommentaireApi,
+	postRésultat,
 	postSauvegardeApi,
 	postTentative,
 	postAuthKey,
