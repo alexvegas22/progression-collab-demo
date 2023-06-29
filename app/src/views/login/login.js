@@ -50,7 +50,7 @@ export default {
 				const token = urlParams.get("token");
 				try{
 					this.tokenDécodé = jwt_decode(token);
-					var urlUser = this.tokenDécodé.ressources.data.url_user;
+					var urlUser = this.tokenDécodé.data.url_user;
 				}
 				catch( err ){
 					console.log("Token invalide");
@@ -64,7 +64,7 @@ export default {
 							user: { état : constantes.USER.ACTIF },
 							token: { jwt: token }
 						});
-						this.$store.dispatch("setUsername", this.tokenDécodé.ressources.data.user.username);
+						this.$store.dispatch("setUsername", this.tokenDécodé.data.user.username);
 						this.messageInformation = this.$t("validationCourriel.réussie");
 						this.validationRéussie = !this.validationRéussie;
 						this.ongletSélectionné = "STANDARD";
@@ -83,9 +83,9 @@ export default {
 		
 		async onRéponse( event ){
 			if ( event == "oui" ) {
-				const urlUser = this.tokenDécodé.ressources.data.url_user;
-				const username = this.tokenDécodé.ressources.data.user.username;
-				const courriel = this.tokenDécodé.ressources.data.user.courriel;
+				const urlUser = this.tokenDécodé.data.url_user;
+				const username = this.tokenDécodé.data.user.username;
+				const courriel = this.tokenDécodé.data.user.courriel;
 
 				const réponse = await this.$store.dispatch("inscrire", {urlUser : urlUser, identifiant : username, courriel : courriel});
 				if ( réponse ) {
