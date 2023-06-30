@@ -190,8 +190,8 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 
 	const requête = process.env.API_URL + "/user/" + username + "/tokens";
 
-	const token = { data: data, ressources: ressources, expiration 0 };
-	const reponse = await axios.post(requête, { data: token, config);
+	const token_data = { data: data, ressources: ressources, expiration 0 };
+	const reponse = await axios.post(requête, { data: token_data, config);
 
 	return reponse.data.data.attributes.jwt;
 };
