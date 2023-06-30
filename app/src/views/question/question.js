@@ -131,7 +131,7 @@ export default {
 		récupérerOuCréerAvancement() {
 			if (this.$store.state.tokenRessources) {
 				const tokenRessourcesDécodé = jwt_decode(this.$store.state.tokenRessources);
-				const url_avancement = tokenRessourcesDécodé.ressources["url_avancement"];
+				const url_avancement = tokenRessourcesDécodé.data["url_avancement"];
 
 				this.récupérerAvancement(url_avancement);
 			}

@@ -102,7 +102,10 @@ export default {
 		onInscrire ( event ) {
 			this.ongletSélectionné = "";
 			if ( this.authLocal === false && this.authLdap === false ) {
-			    this.effectuerLogin( event );
+				(async () => {
+					await this.$store.dispatch("inscrire", event);
+					this.effectuerLogin( event );
+				})();
 			}
 			else if ( this.authLocal ) {
 				(async () => {
