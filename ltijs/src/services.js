@@ -70,11 +70,11 @@ const tokenEstValide = function (token, délais = 300) {
 };
 
 const loginEtObtenirToken = function (username, authKey_nom, authKey_secret) {
-	provMainDebug("Requête : " + process.env.API_URL + "/auth");
+	provMainDebug("Requête : " + process.env.API_URL + "/user/" + username + "/tokens");
 	provMainDebug("Params: username " + username + ", authKey_nom " + authKey_nom );
 
 	return axios
-		.post(process.env.API_URL + "/auth", {
+		.post(process.env.API_URL + "/user/" + username + "/tokens", {
 			username: username,
 			key_name: authKey_nom,
 			key_secret: authKey_secret,

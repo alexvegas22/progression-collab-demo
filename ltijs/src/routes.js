@@ -61,7 +61,7 @@ router.post("/lti/grade", async (req, res) => {
 
 		const userId = idToken.platformId + "/" + idToken.user;
 		const uri = req.body.uri;
-		const token = req.body.token;
+		const token = req.body.token.jwt;
 
 		if (!userId || !uri || !token) return res.status(400).send("Impossible de sauvegarder la note.");
 
@@ -157,8 +157,10 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 	const username = jwt_decode(token).username;
 	const id = username + "/" + uriQuestion;
 
-	const ressources = {
+	const data = {
 		url_avancement: process.env.API_URL + `avancement/${id}`,
+	};
+	const ressources = {
 		avancement: {
 			url: `^avancement/${id}$`,
 			method: "^GET$"
@@ -186,12 +188,12 @@ const récupérerTokenRessource = async function (token, uriQuestion) {
 		},
 	};
 
-	const requête = process.env.API_URL + "/token/" + username;
+	const requête = process.env.API_URL + "/user/" + username + "/tokens";
 
-	const reponse = await axios.post(requête, { ressources: ressources }, config);
-	provMainDebug("Token ressource: " + reponse.data.Token);
+	const token = { data: data, ressources: ressources, expiration 0 };
+	const reponse = await axios.post(requête, { data: token, config);
 
-	return reponse.data.Token;
+	return reponse.data.data.attributes.jwt;
 };
 
 router.get("*", (req, res) => {
