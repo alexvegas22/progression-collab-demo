@@ -246,9 +246,9 @@ deploy_dev:
   script:
     - TAG_DEPLOY=dev docker-compose pull webapp
     - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate -d webapp
-  only:
-    - dev
-
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
+  
 stop_dev:
   stage: deploy_image
   environment:
