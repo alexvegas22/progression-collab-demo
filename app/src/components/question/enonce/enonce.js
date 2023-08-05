@@ -12,7 +12,7 @@ export default {
 	emits: ["ajustéPanneauÉnoncé"],
 	computed: {
 		état_réussi() {
-			return this.$store.state.avancement.état == 2;
+			return this.$store.state.avancement.état == "réussi";
 		},
 		question() {
 			return new Proxy(this.$store.state.question, {
