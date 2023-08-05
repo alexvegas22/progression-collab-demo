@@ -455,7 +455,7 @@ export default {
 				if (avancement.niveau === null || avancement.niveau === "") {
 					avancement.niveau = "[N/D]";
 				}
-				if (avancement.état == 2) {
+				if (avancement.état == "réussi") {
 					if (avancement.niveau in difficultésRéussies) {
 						difficultésRéussies[avancement.niveau] += 1;
 					}
@@ -485,8 +485,8 @@ export default {
 				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
 				state.avancement.tentatives.unshift(tentative);
-				if (state.avancement.état != 2) {
-					state.avancement.état = tentative.réussi ? 2 : 1;
+				if (state.avancement.état != "réussi") {
+					state.avancement.état = tentative.réussi ? "réussi" : "non_réussi";
 				}
 
 				if (state.cb_succes && state.cb_succes_params) {
