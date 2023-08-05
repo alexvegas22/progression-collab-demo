@@ -1,7 +1,7 @@
 import { getData, postData, putData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
-	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp })).data.links.user;
+	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine})).data.links.user;
 
 	const data = (await postData(urlUser+"/tokens", null, { identifiant: identifiant, password: mdp, domaine: domaine, data: { expiration: Math.round(Date.now() / 1000) + 300, ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
 
