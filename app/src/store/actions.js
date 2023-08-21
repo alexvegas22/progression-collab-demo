@@ -528,7 +528,7 @@ export default {
 		return valider( async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const résultat = await postRésultat({tentative: state.tentative, test: params.test, url: state.question.liens.résultats}, token);
+				const résultat = await postRésultat({tentative: state.tentative, test: params.test, index: params.index, url: state.question.liens.résultats}, token);
 
 				if( !state.envoiTentativeEnCours ) {
 					commit("setRésultat", {index: indexTestSélectionné, résultat: résultat});
