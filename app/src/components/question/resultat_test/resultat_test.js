@@ -66,7 +66,7 @@ export default {
 	},
 	methods: {
 		rafraîchirSorties: function () {
-			if (!this.test || !(this.test.sortie_attendue || this.test.sortie_cachée))
+			if (!this.test || !(this.test.sortie_attendue || this.test.caché))
 			{
 				this.sortie_attendue = null;
 				this.sortie_observée = this.résultat?.sortie_observée.toString();
@@ -74,13 +74,13 @@ export default {
 			}
 
 			if (!this.résultat) {
-				this.sortie_attendue = this.test.sortie_cachée ? null : he.encode(this.test.sortie_attendue.toString());
+				this.sortie_attendue = this.test.caché ? null : he.encode(this.test.sortie_attendue.toString());
 				this.sortie_observée = null;
 				this.feedback = null;
 				return;
 			}
 
-			var résultats = !this.test.sortie_cachée ? différence(
+			var résultats = !this.test.caché ? différence(
 				this.résultat.sortie_observée.toString(),
 				this.test.sortie_attendue.toString(),
 				this.mode_affichage,
