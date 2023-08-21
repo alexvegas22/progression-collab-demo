@@ -2,7 +2,7 @@
 	<div class="row g-0">
 		<div class="col-12 h-100">
 			<div
-				v-if="test && !test.sortie_cachée"
+				v-if="test && !test.caché"
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
