@@ -149,7 +149,7 @@ const récupérerScore = async function (uri, token) {
 	const requête = process.env.API_URL + "/avancement/" + username + "/" + uri;
 
 	return axios.get(requête, config).then((res) => {
-		return res.data.data.attributes.état == 2 ? 100 : 0;
+		return res.data.data.attributes.état == "réussi" ? 100 : 0;
 	});
 };
 
