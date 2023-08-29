@@ -32,7 +32,7 @@
 									></textarea>
 								</div>
 							</FenêtreInfo>
-							<FenêtreInfo v-if="test.params!==null">
+							<FenêtreInfo v-if="test.params!==null && test.params!==''">
 								<template #titre>
 									{{ $t('resultat_test.params') }}
 								</template>
