@@ -18,33 +18,40 @@
 								class="rétroaction-test"
 								:feedback="feedback"
 							/>
-							<FenêtreInfo présentation_étape="3.1">
-								<template #titre>
-									{{ $t('resultat_test.entrée') }}
-								</template>
-								<div>
-									<textarea
-										style="overflow: hidden"
-										id="contenu_entrée"
-										class="card-text p-3 inputTest"
-										@input="entréesModifiées"
-										v-model="this.test.entrée"
-									></textarea>
+							<div  v-if="question.sous_type=='questionProg'">
+								<div
+									class="d-flex"
+									style="flex-flow: row; flex: 1 1 0; height: 100%"
+								>
+									<FenêtreInfo présentation_étape="3.1">
+										<template #titre>
+											{{ $t('resultat_test.entrée') }}
+										</template>
+										<div>
+											<textarea
+												style="overflow: hidden"
+												id="contenu_entrée"
+												class="card-text p-3 inputTest"
+												@input="entréesModifiées"
+												v-model="this.test.entrée"
+											></textarea>
+										</div>
+									</FenêtreInfo>
+									<FenêtreInfo v-if="test.params!==null && test.params!==''">
+										<template #titre>
+											{{ $t('resultat_test.params') }}
+										</template>
+										<div>
+											<textarea
+												id="contenu_params"
+												class="card-text p-3 inputTest"
+												@input="entréesModifiées"
+												v-model="this.test.params"
+											></textarea>
+										</div>
+									</FenêtreInfo>
 								</div>
-							</FenêtreInfo>
-							<FenêtreInfo v-if="test.params!==null && test.params!==''">
-								<template #titre>
-									{{ $t('resultat_test.params') }}
-								</template>
-								<div>
-									<textarea
-										id="contenu_params"
-										class="card-text p-3 inputTest"
-										@input="entréesModifiées"
-										v-model="this.test.params"
-									></textarea>
-								</div>
-							</FenêtreInfo>
+							</div>
 						</div>
 					</template>
 					<template #droite>

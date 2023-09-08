@@ -22,5 +22,5 @@ export default {
 		return state.indicateursDeFonctionnalité[indicateur]?true:false;
 	},
 	démos: state => state.préférences["démos"]!==false,
-
+	conteneurEnChargement: state => state.conteneurEnChargement,
 };

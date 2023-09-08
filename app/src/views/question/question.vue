@@ -24,7 +24,7 @@
 					<template #droite>
 						<Diptyque horizontal="true" gauche="true" droite="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
 							<template #gauche>
-								<div style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
+								<div v-if="question.sous_type=='questionProg'" style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
 									<Avancement
 										présentation_étape="2"
 										:tentative-réinitialisée="tentativeRéinitialisée"
@@ -42,6 +42,10 @@
 									<div style="position: relative; height: 0.75rem">
 										<RetroactionTentative/>
 									</div>
+								</div>
+								<div v-if="question.sous_type=='questionSys' && tentative?.url_terminal" style="height: 100%; display: flex; flex-flow: column">
+									<TTYShare :url="tentative.url_terminal">
+									</TTYShare>
 								</div>
 							</template>
 							<template #droite>

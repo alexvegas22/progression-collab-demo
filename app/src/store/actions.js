@@ -16,6 +16,7 @@ import {
 	postRésultat,
 	postSauvegardeApi,
 	postTentative,
+	postTentativeSys,
 	postAuthKey,
 	postUserApi
 } from "@/services/index.js";
@@ -114,7 +115,16 @@ function récupérerPourcentageRéussi(réussis, langage) {
 	return pourcentage.toFixed(1);
 }
 
-function sélectionnerTentative(avancement, question, lang_défaut) {
+function sélectionnerTentative(avancement, question, options) {
+	if(question?.sous_type == "questionProg")
+		return sélectionnerTentativeProg(avancement, question, options.lang_défaut);
+	
+	if(question?.sous_type == "questionSys"){
+		return sélectionnerTentativeSys(avancement, question);
+	}
+}
+
+function sélectionnerTentativeProg(avancement, question, lang_défaut) {
 	var tentative;
 
 	if (Object.keys(avancement.sauvegardes).length > 0) {
@@ -141,6 +151,13 @@ function sélectionnerTentative(avancement, question, lang_défaut) {
 	}
 
 	return tentative;
+}
+
+function sélectionnerTentativeSys(avancement) {
+	if (avancement.tentatives.length > 0) {
+		return avancement.tentatives[0];
+	}
+	else return { conteneur_id: "", url_terminal: "" };
 }
 
 export default {
@@ -318,9 +335,10 @@ export default {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
 					const avancement = await getAvancementApi(params.url, token, tokenRessources);
-
 					commit("setAvancement", avancement);
-					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+					const tentative = sélectionnerTentative(avancement, state.question, {lang_défaut: state.langageDéfaut} );
+
+					commit("setTentative", tentative);
 
 					return avancement;
 				}
@@ -369,7 +387,7 @@ export default {
 
 	async setAvancement({ commit, state }, params) {
 		commit("setAvancement", params.avancement);
-		commit("setTentative", sélectionnerTentative(params.avancement, state.question, state.langageDéfaut));
+		commit("setTentative", sélectionnerTentative(params.avancement, state.question, {lang_défaut: state.langageDéfaut}));
 	},
 	
 	async créerCommentaire( params ) {
@@ -480,7 +498,13 @@ export default {
 		return valider(async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+				var tentative = null;
+				if(state.question.sous_type == "questionSys"){
+					tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+				}
+				else{
+					tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+				}
 
 				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
@@ -541,6 +565,30 @@ export default {
 				else{
 					throw(e);
 				}
+			}
+		}
+		);
+	},
+
+	réinitialiserConteneur({commit, state}) {
+		return valider( async () => {
+			try {
+				commit("setConteneurEnChargement", true);
+				const token = await this.dispatch("getToken");
+				const tentative = await postTentativeSys({tentative: {conteneur_id: ""}, urlTentative: state.avancement.liens.tentatives}, token);
+
+				commit("setTentative", tentative);
+			}
+			catch (e) {
+				if(e?.response?.status==400) {
+					throw i18n.global.t("erreur.tentative_intraitable");
+				}
+				else{
+					throw(e);
+				}
+			}
+			finally {
+				commit("setConteneurEnChargement", false);
 			}
 		}
 		);

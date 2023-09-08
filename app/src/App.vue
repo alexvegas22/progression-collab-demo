@@ -183,8 +183,8 @@ export default {
 		},
 		ouvrirNouvelExercice(url) {
 			if(url) {
-				this.$store.dispatch("setUri", url);
-				this.allerVers("Question", {uri: url});
+			    this.$store.dispatch("setUri", url);
+			    this.allerVers("Question", {uri: url});
 			}
 		}
 	}

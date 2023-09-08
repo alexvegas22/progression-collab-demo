@@ -1,4 +1,3 @@
-
 import OngletsInformation from "@/components/question/onglets_information/onglets_information.vue";
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
@@ -8,6 +7,7 @@ import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
+import TTYShare from "@/components/question/ttyshare/ttyshare.vue";
 import jwt_decode from "jwt-decode";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 
@@ -36,6 +36,7 @@ export default {
 		BoutonSoumission,
 		PanneauCommentaire,
 		Diptyque,
+		TTYShare,
 	},
 	computed: {
 		user() {
@@ -86,7 +87,13 @@ export default {
 			if (this.uri && this.user) this.récupérerQuestion();
 		},
 		question: function () {
-			this.récupérerOuCréerAvancement();
+			if(this.$store.state.question)
+				this.récupérerOuCréerAvancement();
+		},
+		avancement: function (){
+			if (this.$store.state.question?.sous_type == "questionSys"){
+				this.$store.dispatch("soumettreTentative");
+			}
 		},
 		resultats: function (){
 			if (this.resultats){
@@ -102,7 +109,6 @@ export default {
 	mounted() {
 		this.$store.dispatch("réinitialiserErreurs");
 		this.$store.dispatch("setErreurCallback", null);
-		if (this.uri && this.user) this.récupérerQuestion();
 		this.traiterParamètresURL(window.location.search);
 	},
 	provide() {
@@ -142,12 +148,12 @@ export default {
 					this.récupérerAvancement(this.user.avancements[id_avancement].liens.self);
 				}
 				else{
-					const avancement = this.$store.state.cb_succes ? {
+					const avancement = { etat: "début", ...(this.$store.state.cb_succes ? {
 						extra: JSON.stringify({
 							cb_succes: this.$store.state.cb_succes,
 							cb_succes_params: this.$store.state.cb_succes_params ?? ""
 						})
-					} : {};
+					} : {}) };
 					this.sauvegarderAvancement(avancement).then((avancement) => {
 						this.$store.dispatch("setAvancement", {avancement: avancement});
 					});
