@@ -49,6 +49,9 @@ export default {
 			}
 			return res;
 		},
+		question_type() {
+			return this.$store.getters.question_type;
+		},
 		test_select() {
 			return this.$store.state.question.tests[this.index_select];
 		},
@@ -166,6 +169,8 @@ export default {
 
 			this.tests[index].envoyé = true;
 			const test_sélectionné = this.tests[index];
+			this.$store.dispatch("setRésultats", []);
+
 			this.$store.dispatch("soumettreTestUnique", {
 				test: {
 					entrée: test_sélectionné.entrée,

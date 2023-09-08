@@ -489,7 +489,7 @@ export default {
 		);
 	},
 
-	async soumettreTentative({ commit, state }) {
+	async soumettreTentative({ commit, state, getters }) {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("setRésultats", [] );
 		commit("setFeedback", null );
@@ -499,7 +499,7 @@ export default {
 			try {
 				const token = await this.dispatch("getToken");
 				var tentative = null;
-				if(state.question.sous_type == "questionSys"){
+				if(getters.question_type == "sys"){
 					tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
 				}
 				else{

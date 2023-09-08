@@ -45,6 +45,9 @@ export default {
 		question() {
 			return this.$store.state.question;
 		},
+		question_type() {
+			return this.$store.getters.question_type;
+		},
 		avancement() {
 			return this.$store.state.avancement;
 		},
