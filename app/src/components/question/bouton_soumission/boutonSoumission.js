@@ -1,6 +1,9 @@
 export default {
 	name: "BoutonSoumission",
 	computed: {
+		question_type(){
+			return this.$store.getters.question_type;
+		},
 		raccourcis(){
 			return this.$store.state.raccourcis;
 		},

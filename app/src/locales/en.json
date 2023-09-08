@@ -194,7 +194,9 @@
 
 	"validation_tentative": {
 		"boutonValider": "Validate the attempt",
-		"soumettre": "SUBMIT"
+		"boutonSoumettre": "Submit the attempt",
+		"soumettre": "SUBMIT",
+		"valider": "VALIDATE"
 	},
 
 	"jeu_tests": {

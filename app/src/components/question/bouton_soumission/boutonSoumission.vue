@@ -12,7 +12,7 @@
 				@shortkey="validerTentative"
 				@click="validerTentative"
 			>
-				{{$t('validation_tentative.soumettre')}}
+				{{question_type == 'prog' ? $t('validation_tentative.soumettre') : $t('validation_tentative.valider') }}
 				<v-icon
 					v-if="envoiEnCours"
 					style="color: gray; width: 1rem"

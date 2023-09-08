@@ -18,7 +18,7 @@
 								class="rétroaction-test"
 								:feedback="feedback"
 							/>
-							<div  v-if="question.sous_type=='questionProg'">
+							<div  v-if="question_type=='prog'">
 								<div
 									class="d-flex"
 									style="flex-flow: row; flex: 1 1 0; height: 100%"
