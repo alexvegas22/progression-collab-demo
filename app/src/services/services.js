@@ -1,7 +1,7 @@
 import { getData, postData, putData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
-	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine})).data.links.user;
+	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine })).data.links.user;
 
 	const data = (await postData(urlUser+"/tokens", null, { identifiant: identifiant, password: mdp, domaine: domaine, data: { expiration: Math.round(Date.now() / 1000) + 300, ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
 
@@ -171,17 +171,20 @@ const postTentative = async (params, token) => {
 		return null;
 	}
 
-	var tentative = data.data.attributes;
-	tentative.liens = data.data.links;
-	tentative.resultats = [];
-	if (data.included) {
-		data.included.forEach((item) => {
-			var resultat = item.attributes;
-			resultat.liens = item.links;
-			tentative.resultats.push(resultat);
-		});
+	return construireTentative( data.data, data.included );
+};
+
+const postTentativeSys = async (params, token) => {
+	const urlRequete = params.urlTentative;
+	const query = { include: "resultats" };
+	const body = { conteneur_id: params.tentative.conteneur_id };
+	const data = await postData(urlRequete, query, body, token);
+
+	if (data.erreur) {
+		return null;
 	}
-	return tentative;
+
+	return construireTentative( data.data, data.included );
 };
 
 const postRésultat = async (params, token) => {
@@ -293,7 +296,14 @@ function construireTentative(data, included = null) {
 					...item.attributes,
 					liens: item.links
 				};
-				tentative.commentaires.unshift(commentaire);
+				tentative.commentaires.push(commentaire);
+			}
+			else if (item.type == "resultat") {
+				const résultat = {
+					...item.attributes,
+					liens: item.links
+				};
+				tentative.resultats.push(résultat);
 			}
 		});
 	}
@@ -319,6 +329,7 @@ export {
 	postRésultat,
 	postSauvegardeApi,
 	postTentative,
+	postTentativeSys,
 	postAuthKey,
 	postUserApi,
 };

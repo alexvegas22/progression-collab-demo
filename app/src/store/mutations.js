@@ -127,6 +127,9 @@ export const mutations = {
 	setEnChargement(state, val){
 		state.enChargement = Math.max(0, state.enChargement + (val ? 1 : -1));
 	},
+	setConteneurEnChargement(state, val){
+		state.conteneurEnChargement = Math.max(0, state.conteneurEnChargement + (val ? 1 : -1));
+	},
 	setEntréeTest(state, val) {
 		state.question.tests[val.index].entrée = val.entrée;
 	},
@@ -144,10 +147,14 @@ export const mutations = {
 		state.tentative.resultats[params.index] = params.résultat;
 	},
 	setRésultats(state, val){
-		state.tentative.resultats = val;
+		if(state.tentative){
+			state.tentative.resultats = val;
+		}
 	},
 	setFeedback(state, val){
-		state.tentative.feedback = val;
+		if(state.tentative){
+			state.tentative.feedback = val;
+		}
 	},
 	setErreurCallback(state, val){
 		state.erreur_callback = val;

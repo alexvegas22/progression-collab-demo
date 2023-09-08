@@ -26,6 +26,10 @@ export default {
 			});
 		},
 		ouvrirQuestion( uri, demo ){
+			this.$store.dispatch("setTokenRessources", null);
+			this.$store.dispatch("setCallbackSucces", null);
+			this.$store.dispatch("setCallbackSuccesParams", null);
+
 			this.$router.push( {
 				name: "Question",
 				query: {

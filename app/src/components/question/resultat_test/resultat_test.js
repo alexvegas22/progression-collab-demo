@@ -60,6 +60,9 @@ export default {
 		mode_affichage() {
 			return this.$store.state.mode_affichage;
 		},
+		question() {
+			return this.$store.state.question;
+		},
 	},
 	mounted() {
 		this.rafraîchirSorties();
