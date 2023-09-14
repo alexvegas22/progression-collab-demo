@@ -142,3 +142,8 @@ pre {
 	cursor: pointer;
 }
 
+textarea {
+	background-color: rgb(0, 0, 0, 0) !important;
+	border-style: none;
+	resize: none;
+}

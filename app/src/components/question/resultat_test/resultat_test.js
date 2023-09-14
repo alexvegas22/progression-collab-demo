@@ -3,6 +3,7 @@ import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
 import he from "he";
 import Diptyque from "@/components/diptyque/diptyque.vue";
+import FenêtreInfo from "@/components/layouts/fenetre_info.vue";
 
 const différence = function (orig = "", modif = "", mode_affichage) {
 	const différences = diffChars(orig, modif);
@@ -40,6 +41,7 @@ export default {
 		SélecteurModeAffichage,
 		Ampoule,
 		Diptyque,
+		FenêtreInfo
 	},
 	name: "ResultatTest",
 	data() {
