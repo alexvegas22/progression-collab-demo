@@ -5,6 +5,7 @@ import "codemirror/mode/clike/clike";
 import "codemirror/mode/shell/shell";
 import "codemirror/mode/python/python";
 import "codemirror/mode/javascript/javascript";
+import "codemirror/mode/sql/sql";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
 import Codemirror from "codemirror-editor-vue3";
@@ -69,7 +70,7 @@ export default {
 			return this.$store.state.question.ebauches ?? [];
 		},
 		mode() {
-			const value = this.$store.state.tentative.langage;
+			const value = this.$store.state.tentative.langage.toLowerCase();
 		
 			if (value === "java") {
 				return "mode", "text/x-java";
@@ -87,6 +88,8 @@ export default {
 				return "mode", "text/x-csrc";
 			} else if (value === "c#") {
 				return "mode", "text/x-csharp";
+			} else if (value === "sql") {
+				return "mode", "text/x-sql";
 			} else if (["cpp", "c++"].includes(value)) {
 				return "mode", "text/x-c++src";
 			} else {
