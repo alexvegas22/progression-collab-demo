@@ -18,38 +18,32 @@
 								class="rétroaction-test"
 								:feedback="feedback"
 							/>
-							<div  v-if="question_type=='prog'">
+							<div style="width: 100%" v-if="question_type=='prog'">
 								<div
 									class="d-flex"
 									style="flex-flow: row; flex: 1 1 0; height: 100%"
 								>
-									<FenêtreInfo présentation_étape="3.1">
-										<template #titre>
-											{{ $t('resultat_test.entrée') }}
-										</template>
-										<div>
-											<textarea
-												style="overflow: hidden"
-												id="contenu_entrée"
-												class="card-text p-3 inputTest"
-												@input="entréesModifiées"
-												v-model="this.test.entrée"
-											></textarea>
-										</div>
-									</FenêtreInfo>
-									<FenêtreInfo v-if="test.params!==null && test.params!==''">
-										<template #titre>
-											{{ $t('resultat_test.params') }}
-										</template>
-										<div>
-											<textarea
-												id="contenu_params"
-												class="card-text p-3 inputTest"
-												@input="entréesModifiées"
-												v-model="this.test.params"
-											></textarea>
-										</div>
-									</FenêtreInfo>
+									<v-textarea
+										:label="$t('resultat_test.entrée')"
+										hide-details="true"
+										variant="solo"
+										rounded="0"
+										id="contenu_entrée"
+										@input="entréesModifiées"
+										v-model="this.test.entrée"
+									></v-textarea>
+
+									<v-textarea
+										v-if="test.params!==null && test.params!==''"
+										:label="$t('resultat_test.params')"
+										hide-details="true"
+										variant="solo"
+										rounded="0"
+										flat
+										id="contenu_params"
+										@input="entréesModifiées"
+										v-model="this.test.params"
+									></v-textarea>
 								</div>
 							</div>
 						</div>
@@ -130,4 +124,4 @@
 </template>
 
 <script src="./resultat_test.js"></script>
-<style src="./resultat_test.css"></style>
+<style scope src="./resultat_test.css"></style>
