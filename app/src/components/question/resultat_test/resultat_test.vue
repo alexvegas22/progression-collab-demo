@@ -6,7 +6,7 @@
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
-				<Diptyque horizontal="true">
+				<Diptyque horizontal="true" :gauche="question_type=='sys'?'caché':'fixe'" droite="fixe">
 					<template #gauche>
 						<div
 							class="d-flex"
@@ -18,7 +18,7 @@
 								class="rétroaction-test"
 								:feedback="feedback"
 							/>
-							<div style="width: 100%" v-if="question_type=='prog'">
+							<div style="width: 100%">
 								<div
 									class="d-flex"
 									style="flex-flow: row; flex: 1 1 0; height: 100%"
