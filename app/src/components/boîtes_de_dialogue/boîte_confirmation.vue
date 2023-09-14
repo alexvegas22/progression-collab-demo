@@ -18,7 +18,6 @@
 				<v-card-actions>
 					<v-spacer></v-spacer>
 					<v-btn
-						color="dark"
 						variant="text"
 						@click="onNon"
 					>
