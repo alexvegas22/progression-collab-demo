@@ -1,6 +1,6 @@
 <template>
 	<div class="row g-0">
-		<Diptyque gauche="false" droite="false" size_gauche="25" size_droite="75">
+		<Diptyque gauche="fixe" droite="fixe" size_gauche="25" size_droite="75">
 			<template #gauche>
 				<div class="section-tests">
 					<div
@@ -35,26 +35,28 @@
 								@select="select(index)"
 							>
 								<template #lancement>
-									<v-icon
-										v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
-										icon="mdi-cog mdi-spin"
-										class="btn-test-local disabled"
-										:title="$t('jeu_tests.exécuter')"
-										@click="validerTest(index)"
-									/>
-									<v-icon
-										v-else
-										icon="mdi-play"
-										class="btn-test-local"
-										:title="$t('jeu_tests.exécuter')"
-										@click="validerTest(index)"
-									/>
+									<div v-if="question_type!='sys'">
+										<v-icon
+											v-if="envoiEnCours || envoiTestUnique && tests[index]?.envoyé"
+											icon="mdi-cog mdi-spin"
+											class="btn-test-local disabled"
+											:title="$t('jeu_tests.exécuter')"
+											@click="validerTest(index)"
+										/>
+										<v-icon
+											v-else
+											icon="mdi-play"
+											class="btn-test-local"
+											:title="$t('jeu_tests.exécuter')"
+											@click="validerTest(index)"
+										/>
+									</div>
 								</template>
 							</Test>
 						</div>
 					</FenêtreInfo>
 					<BoutonSoumission
-						:title="$t('validation_tentative.boutonValider')"
+						:title="$t(question_type=='prog' ? 'validation_tentative.boutonSoumettre' : 'validation_tentative_boutonValider')"
 					/>
 				</div>
 			</template>

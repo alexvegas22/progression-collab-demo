@@ -2,11 +2,11 @@
 	<div class="row g-0">
 		<div class="col-12 h-100">
 			<div
-				v-if="test && !test.sortie_cachée"
+				v-if="test && !test.caché"
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
-				<Diptyque horizontal="true">
+				<Diptyque horizontal="true" :gauche="question_type=='sys'?'caché':'fixe'" droite="fixe">
 					<template #gauche>
 						<div
 							class="d-flex"
@@ -18,33 +18,34 @@
 								class="rétroaction-test"
 								:feedback="feedback"
 							/>
-							<FenêtreInfo présentation_étape="3.1">
-								<template #titre>
-									{{ $t('resultat_test.entrée') }}
-								</template>
-								<div>
-									<textarea
-										style="overflow: hidden"
+							<div style="width: 100%">
+								<div
+									class="d-flex"
+									style="flex-flow: row; flex: 1 1 0; height: 100%"
+								>
+									<v-textarea
+										:label="$t('resultat_test.entrée')"
+										hide-details="true"
+										variant="solo"
+										rounded="0"
 										id="contenu_entrée"
-										class="card-text p-3 inputTest"
 										@input="entréesModifiées"
 										v-model="this.test.entrée"
-									></textarea>
-								</div>
-							</FenêtreInfo>
-							<FenêtreInfo v-if="test.params!==null">
-								<template #titre>
-									{{ $t('resultat_test.params') }}
-								</template>
-								<div>
-									<textarea
+									></v-textarea>
+
+									<v-textarea
+										v-if="test.params!==null && test.params!==''"
+										:label="$t('resultat_test.params')"
+										hide-details="true"
+										variant="solo"
+										rounded="0"
+										flat
 										id="contenu_params"
-										class="card-text p-3 inputTest"
 										@input="entréesModifiées"
 										v-model="this.test.params"
-									></textarea>
+									></v-textarea>
 								</div>
-							</FenêtreInfo>
+							</div>
 						</div>
 					</template>
 					<template #droite>
@@ -123,4 +124,4 @@
 </template>
 
 <script src="./resultat_test.js"></script>
-<style src="./resultat_test.css"></style>
+<style scope src="./resultat_test.css"></style>

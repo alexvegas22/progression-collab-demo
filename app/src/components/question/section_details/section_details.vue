@@ -7,7 +7,7 @@
 			id="section-détails"
 			class="p-1"
 		>
-			<p>{{ $t("resultat_details.tempsTest") }} {{" "+résultat.temps_exec+" "}} {{ $t("resultat_details.unitéMesure") }}</p>
+			<p>{{ $t("resultat_details.tempsTest") }} {{" "+résultat.temps_exécution+" "}} {{ $t("resultat_details.unitéMesure") }}</p>
 		</div>
 	</div>
 </template>

@@ -194,7 +194,9 @@
 
 	"validation_tentative": {
 		"boutonValider": "Validate the attempt",
-		"soumettre": "SUBMIT"
+		"boutonSoumettre": "Submit the attempt",
+		"soumettre": "SUBMIT",
+		"valider": "VALIDATE"
 	},
 
 	"jeu_tests": {
@@ -276,5 +278,10 @@
 		"réussie": "Congrats! Your email has been verified. Now go ahead, log in and start coding!",
 		"échouée": "Sadly, that validation token seems to have expired. Would you like to receive a new validation email?",
 		"expédié": "We've just sent an email to the address you provided. Please check your inbox and follow the instructions included."
+	},
+
+	"ttyshare": {
+		"réinitialiser": "Reset",
+		"confirmation_réinitialiser": "Are sure you want to reset the exercice?"
 	}
 }

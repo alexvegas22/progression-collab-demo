@@ -3,21 +3,27 @@
 		<div class="d-flex"
 			style=" justify-content: right; padding: 2px; margin-right: 0.5rem" >
 
-			<div :class="{invisible: état_min}" @click="minimiser" >
+			<div :class="{invisible: état_max || état_min}" @click="minimiser" >
 				<slot name="min-icon">
-					<v-icon icon="mdi-window-minimize" :size=icon_size ></v-icon>
+					<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
 				</slot>
 			</div>
 
-			<div :class="{invisible: !état_min && !état_max}" @click="restorer" >
+			<div :class="{invisible: !état_max}" @click="restorer" >
 				<slot name="restore-icon">
-					<v-icon icon="mdi-window-restore" :size=icon_size ></v-icon>
+					<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
 				</slot>
 			</div>
 
-			<div :class="{invisible: état_max}" @click="maximiser" >
+			<div :class="{invisible: !état_min}" @click="restorer" >
+				<slot name="restore-icon">
+					<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
+				</slot>
+			</div>
+
+			<div :class="{invisible: état_max || état_min}" @click="maximiser" >
 				<slot name="max-icon">
-					<v-icon icon="mdi-window-maximize" :size=icon_size ></v-icon>
+					<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
 				</slot>
 			</div>
 

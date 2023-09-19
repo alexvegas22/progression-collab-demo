@@ -3,6 +3,7 @@ import Ampoule from "@/components/question/ampoule/ampoule.vue";
 import { diffChars } from "diff";
 import he from "he";
 import Diptyque from "@/components/diptyque/diptyque.vue";
+import FenêtreInfo from "@/components/layouts/fenetre_info.vue";
 
 const différence = function (orig = "", modif = "", mode_affichage) {
 	const différences = diffChars(orig, modif);
@@ -40,6 +41,7 @@ export default {
 		SélecteurModeAffichage,
 		Ampoule,
 		Diptyque,
+		FenêtreInfo
 	},
 	name: "ResultatTest",
 	data() {
@@ -60,13 +62,16 @@ export default {
 		mode_affichage() {
 			return this.$store.state.mode_affichage;
 		},
+		question_type() {
+			return this.$store.getters.question_type;
+		},
 	},
 	mounted() {
 		this.rafraîchirSorties();
 	},
 	methods: {
 		rafraîchirSorties: function () {
-			if (!this.test || !(this.test.sortie_attendue || this.test.sortie_cachée))
+			if (!this.test || !(this.test.sortie_attendue || this.test.caché))
 			{
 				this.sortie_attendue = null;
 				this.sortie_observée = this.résultat?.sortie_observée.toString();
@@ -74,13 +79,13 @@ export default {
 			}
 
 			if (!this.résultat) {
-				this.sortie_attendue = this.test.sortie_cachée ? null : he.encode(this.test.sortie_attendue.toString());
+				this.sortie_attendue = this.test.caché ? null : he.encode(this.test.sortie_attendue.toString());
 				this.sortie_observée = null;
 				this.feedback = null;
 				return;
 			}
 
-			var résultats = !this.test.sortie_cachée ? différence(
+			var résultats = !this.test.caché ? différence(
 				this.résultat.sortie_observée.toString(),
 				this.test.sortie_attendue.toString(),
 				this.mode_affichage,

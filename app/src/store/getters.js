@@ -22,5 +22,6 @@ export default {
 		return state.indicateursDeFonctionnalité[indicateur]?true:false;
 	},
 	démos: state => state.préférences["démos"]!==false,
-
+	conteneurEnChargement: state => state.conteneurEnChargement,
+	question_type: state => state.question.sous_type == "questionProg" ? "prog" : "sys"
 };

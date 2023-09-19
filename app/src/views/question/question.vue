@@ -15,16 +15,16 @@
 			<div
 				class="conteneur-question"
 			>
-				<Diptyque gauche=true droite=false :size_gauche="taillePanneauÉnoncé" :size_droite="100-taillePanneauÉnoncé" @redimensionnéGauche="redimensionnéÉnoncé">
+				<Diptyque droite="fixe" :size_gauche="taillePanneauÉnoncé" :size_droite="100-taillePanneauÉnoncé" @redimensionnéGauche="redimensionnéÉnoncé">
 					<template #gauche>
 						<Enonce
 							présentation_étape="0"
 						/>
 					</template>
 					<template #droite>
-						<Diptyque horizontal="true" gauche="true" droite="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
+						<Diptyque horizontal="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
 							<template #gauche>
-								<div style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
+								<div v-if="question_type=='prog'" style="height: 100%; display: flex; flex-flow: column">
 									<Avancement
 										présentation_étape="2"
 										:tentative-réinitialisée="tentativeRéinitialisée"
@@ -42,6 +42,10 @@
 									<div style="position: relative; height: 0.75rem">
 										<RetroactionTentative/>
 									</div>
+								</div>
+								<div v-if="question_type=='sys' && tentative?.url_terminal" style="height: 100%; display: flex; flex-flow: column">
+									<TTYShare :url="tentative.url_terminal">
+									</TTYShare>
 								</div>
 							</template>
 							<template #droite>
