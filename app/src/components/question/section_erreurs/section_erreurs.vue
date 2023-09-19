@@ -6,6 +6,7 @@
 		<div
 			id="section-erreur"
 			class="p-1"
+			style="display: flex; flex-flow: column; height: 100%"
 		>
 			<h5 class="text-danger font-weight-bold text-left card-title">
 				{{ $t("resultat_test.sortieErreur") }}
@@ -17,12 +18,9 @@
 				:feedback="résultat.feedback"
 				:estVisible="panneauAffiché"
 			/>
-			
-			<perfect-scrollbar class="margin-perfect-scrollbar">
-				<pre>
-					<p class="card-text">{{ résultat.sortie_erreur }}</p>
-				</pre>
-			</perfect-scrollbar>
+			<FenêtreInfo>
+				<pre>{{ résultat.sortie_erreur }}</pre>
+			</FenêtreInfo>
 		</div>
 	</div>
 </template>
