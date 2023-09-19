@@ -5,36 +5,27 @@
 	height: 18rem;
 }
 
-.section-erreur pre {
-	height: 100%;
-	overflow: visible;
-	overflow-y: visible;
-	max-width: 100%;
-}
-
 .margin-perfect-scrollbar {
-	margin-top: -.5rem;
-	padding-bottom: 2.5rem;
+    margin-top: -.5rem;
+    padding-bottom: 2.5rem;
 }
 
 /* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
 @media only screen and (min-width: 48rem) {
-	.section-erreur pre {
-		height: 100%;
-		overflow: visible;
-		overflow-y: visible;
-		max-width: 50vw;
-	}
+    .section-erreur pre {
+	height: 100%;
+	overflow: visible;
+	overflow-y: visible;
+    }
 }
 
 /* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
 @media only screen and (min-width: 48rem) and (max-width: 992px) {
-	.section-erreur pre {
-		height: 100%;
-		overflow: visible;
-		overflow-y: visible;
-		max-width: 50vw;
-	}
+    .section-erreur pre {
+	height: 100%;
+	overflow: visible;
+	overflow-y: visible;
+    }
 }
 
 /* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
