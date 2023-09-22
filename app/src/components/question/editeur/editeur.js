@@ -116,6 +116,9 @@ export default {
 		},
 		testsRéussisPct() {
 			return (this.$store.state.tentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+		},
+		sauvegardeActivée() {
+			return this.$store.getters.username != this.$store.tokenRessource?.username;
 		}
 	},
 	created() {
@@ -278,7 +281,7 @@ export default {
 		},
 
 		texteModifié() {
-			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
+			if (this.sauvegardeActivée && (!this.indicateurModifié || !this.sauvegardeAutomatique)) {
 				this.sauvegardeAutomatique = setTimeout(
 					this.sauvegarder
 					, import.meta.env.VITE_DELAI_SAUVEGARDE);
