@@ -118,11 +118,7 @@ export default {
 			return (this.$store.state.tentative.tests_réussis / this.$store.state.question.tests.length) * 100;
 		},
 		sauvegardeActivée() {
-			console.log(this.$store.tokenRessources);
-			console.log(this.$store.getters.username);
-			console.log(this.$store.tokenRessources?.username);
-			console.log(!this.$store.tokenRessources || this.$store.getters.username == this.$store.tokenRessources.username);
-			return !this.$store.tokenRessources || this.$store.getters.username == this.$store.tokenRessources.username;
+			return !this.$store.state.tokenRessources || this.$store.getters.username == this.$store.state.tokenRessources.username;
 		}
 	},
 	created() {
@@ -160,7 +156,6 @@ export default {
 			this.$store.dispatch("mettreAjourCode", cm.doc.getValue());
 			if(this.sauvegardeActivée){
 				this.texteModifié();
-				console.log("MODIFIÉ");
 			}
 
 			if(!this.zonesTraitées && !this.xray) {
