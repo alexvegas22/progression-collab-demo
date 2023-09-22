@@ -118,7 +118,7 @@ export default {
 			return (this.$store.state.tentative.tests_réussis / this.$store.state.question.tests.length) * 100;
 		},
 		sauvegardeActivée() {
-			return this.$store.getters.username != this.$store.tokenRessource?.username;
+			return !this.$store.tokenRessource || this.$store.getters.username == this.$store.tokenRessource.username;
 		}
 	},
 	created() {
