@@ -120,7 +120,8 @@ export default {
 		sauvegardeActivée() {
 			console.log(this.$store.tokenRessources);
 			console.log(this.$store.getters.username);
-			console.log(this.$store.tokenRessources.username);
+			console.log(this.$store.tokenRessources?.username);
+			console.log(!this.$store.tokenRessources || this.$store.getters.username == this.$store.tokenRessources.username);
 			return !this.$store.tokenRessources || this.$store.getters.username == this.$store.tokenRessources.username;
 		}
 	},
