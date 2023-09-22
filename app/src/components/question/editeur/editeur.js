@@ -154,7 +154,9 @@ export default {
 		},
 		onChange( cm, changeObj ){
 			this.$store.dispatch("mettreAjourCode", cm.doc.getValue());
-			this.texteModifié();
+			if(this.sauvegardeActivée){
+				this.texteModifié();
+			}
 
 			if(!this.zonesTraitées && !this.xray) {
 				this.traiterZones();
@@ -281,7 +283,7 @@ export default {
 		},
 
 		texteModifié() {
-			if (this.sauvegardeActivée && (!this.indicateurModifié || !this.sauvegardeAutomatique)) {
+			if (!this.indicateurModifié || !this.sauvegardeAutomatique) {
 				this.sauvegardeAutomatique = setTimeout(
 					this.sauvegarder
 					, import.meta.env.VITE_DELAI_SAUVEGARDE);
