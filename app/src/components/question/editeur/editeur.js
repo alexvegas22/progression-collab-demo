@@ -116,6 +116,9 @@ export default {
 		},
 		testsRéussisPct() {
 			return (this.$store.state.tentative.tests_réussis / this.$store.state.question.tests.length) * 100;
+		},
+		sauvegardeActivée() {
+			return !this.$store.state.tokenRessources || this.$store.getters.username == this.$store.state.tokenRessources.username;
 		}
 	},
 	created() {
@@ -151,7 +154,9 @@ export default {
 		},
 		onChange( cm, changeObj ){
 			this.$store.dispatch("mettreAjourCode", cm.doc.getValue());
-			this.texteModifié();
+			if(this.sauvegardeActivée){
+				this.texteModifié();
+			}
 
 			if(!this.zonesTraitées && !this.xray) {
 				this.traiterZones();
