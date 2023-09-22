@@ -281,6 +281,10 @@ export default {
 		},
 
 		texteModifié() {
+			console.log( this.$store.tokenRessource);
+			console.log( this.$store.getters.username);
+			console.log( this.$store.tokenRessource?.username);
+			console.log( !this.$store.tokenRessource || this.$store.getters.username == this.$store.tokenRessource.username);
 			if (this.sauvegardeActivée && (!this.indicateurModifié || !this.sauvegardeAutomatique)) {
 				this.sauvegardeAutomatique = setTimeout(
 					this.sauvegarder
