@@ -10,6 +10,11 @@
     padding-bottom: 2.5rem;
 }
 
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+}
+
 /* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
 @media only screen and (min-width: 48rem) {
     .section-erreur pre {
