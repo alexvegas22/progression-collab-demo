@@ -22,6 +22,7 @@ import {
 } from "@/services/index.js";
 
 import {i18n, sélectionnerLocale} from "@/util/i18n";
+import {copie_profonde} from "@/util/commun.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
@@ -626,6 +627,10 @@ export default {
 			resultats: [],
 			tests_réussis: null
 		});
+	},
+
+	réinitialiserTests({ commit, state }){
+		commit("setTests", copie_profonde( state.testsInitiaux ) );
 	},
 
 	setToken({ commit }, token) {

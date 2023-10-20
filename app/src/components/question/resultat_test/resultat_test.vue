@@ -6,7 +6,7 @@
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
-				<Diptyque horizontal="true" :gauche="question_type=='sys'?'caché':'fixe'" droite="fixe">
+				<Diptyque horizontal="true" :gauche="question_type=='sys'?'caché':'true'" droite="true">
 					<template #gauche>
 						<div
 							class="d-flex"

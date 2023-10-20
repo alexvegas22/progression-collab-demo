@@ -23,5 +23,6 @@ export default {
 	},
 	démos: state => state.préférences["démos"]!==false,
 	conteneurEnChargement: state => state.conteneurEnChargement,
-	question_type: state => state.question.sous_type == "questionProg" ? "prog" : "sys"
+	question_type: state => state.question.sous_type == "questionProg" ? "prog" : "sys",
+	résultats: state => state.tentative?.resultats?.map( (x) => x?.résultat ) ?? []
 };
