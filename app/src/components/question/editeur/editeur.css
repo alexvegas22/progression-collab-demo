@@ -62,8 +62,8 @@
 
 .xray {
 	position: absolute;
+	top: -1.8rem;
 	right: 3rem;
-	top: 4.2rem;
 	width: max-content;
 }
 
