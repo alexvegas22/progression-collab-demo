@@ -6,8 +6,6 @@ import Test from "@/components/question/test/test.vue";
 import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 
-import {copie_profonde} from "@/util/commun.js";
-
 export default {
 	components: {
 		Test,
@@ -33,21 +31,12 @@ export default {
 		};
 	},
 	emits: ["validerTentative"],
-	mounted() {
-		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
-	},
 	computed: {
 		raccourcis() {
 			return this.$store.state.raccourcis;
 		},
 		resultats() {
-			if(!this.$store.state.question || !this.$store.state.tentative?.resultats) return [];
-			var res = [];
-			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
-				var résultat = this.tentative?.resultats[i]?.résultat;
-				res.push(résultat);
-			}
-			return res;
+			return this.$store.getters.résultats;
 		},
 		question_type() {
 			return this.$store.getters.question_type;
@@ -71,9 +60,6 @@ export default {
 		},
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
-		},
-		dirty(){
-			return (this.resultats?.filter( t => t!=null ).length + this.tests.filter( t => t.dirty===true ).length) > 0;
 		},
 		envoiTestUnique(){
 			return this.tests?.filter( t => t?.envoyé!=null).length > 0;
@@ -119,7 +105,7 @@ export default {
 			deep: true,
 			handler: function(){
 				if(this.envoiEnCours === true){
-					this.réinitialiserTests();
+					this.$store.dispatch("réinitialiserTests");
 				}
 			}
 		},
@@ -185,11 +171,6 @@ export default {
 			}).finally( () => {
 				this.tests[index].envoyé = false;
 			});
-		},
-		réinitialiserTests(){
-			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
-			this.$store.dispatch("setRésultats", []);
-			this.changerOnglet( "ResultatTest" );
 		},
 	},
 };

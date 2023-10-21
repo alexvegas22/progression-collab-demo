@@ -8,16 +8,6 @@
 						style="display: flex; flex-flow: row; align-items: center"
 						:class="{ thème_sombre: thèmeSombre }"
 					>
-						<div style="flex-grow: 1">
-							{{ $t("jeu_tests.jeuTests") }}
-						</div>
-						<v-icon
-							icon="mdi-refresh"
-							v-show="dirty"
-							class="boutonRafraichissement"
-							:title="$t('jeu_tests.réinitialiser')"
-							@click="réinitialiserTests"
-						/>
 					</div>
 					<FenêtreInfo
 						class="panneau"
