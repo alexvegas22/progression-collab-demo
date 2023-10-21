@@ -33,8 +33,8 @@ export default {
 		},
 		taille_conteneur() {
 			return this.horizontal ?
-			this.$refs.sp.container.clientHeight :
-			this.$refs.sp.container.clientWidth;
+				this.$refs.sp.container.clientHeight :
+				this.$refs.sp.container.clientWidth;
 		},
 		entête_droite() {
 			return this.$slots?.entête_droite?.toString().length > 0;

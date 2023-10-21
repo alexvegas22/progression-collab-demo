@@ -26,8 +26,8 @@
 							<template #entête_gauche v-if="question_type=='prog'">
 								<Avancement
 									présentation_étape="2"
-								    :tentative-réinitialisée="tentativeRéinitialisée"
-								    :title="$t('avancement.choixLangage')"
+									:tentative-réinitialisée="tentativeRéinitialisée"
+									:title="$t('avancement.choixLangage')"
 								/>
 							</template>
 							<template #gauche>
@@ -61,28 +61,28 @@
 							<template #droite>
 								<onglets-information
 									présentation_étape="4"
-								    :onglet-changé="ongletChangéRaccourci"
-								    :test-sélectionné-haut="testSélectionnéHaut"
-								    :test-sélectionné-bas="testSélectionnéBas"
-								    :test-sélectionné-valider="testSélectionnéValider"
-								    style="height:100%"
+									:onglet-changé="ongletChangéRaccourci"
+									:test-sélectionné-haut="testSélectionnéHaut"
+									:test-sélectionné-bas="testSélectionnéBas"
+									:test-sélectionné-valider="testSélectionnéValider"
+									style="height:100%"
 
 								/>
 								<div
 									v-shortkey="raccourcis.itérerOnglets"
-												@shortkey="changerOngletAvecRaccourci"
+									@shortkey="changerOngletAvecRaccourci"
 								/>
 								<div
 									v-shortkey="raccourcis.itérerTestHaut"
-												@shortkey="sélectionnerTestDuHautAvecRaccourci"
+									@shortkey="sélectionnerTestDuHautAvecRaccourci"
 								/>
 								<div
 									v-shortkey="raccourcis.itérerTestBas"
-												@shortkey="sélectionnerTestDuBasAvecRaccourci"
+									@shortkey="sélectionnerTestDuBasAvecRaccourci"
 								/>
 								<div
 									v-shortkey="raccourcis.lancerTestUnique"
-												@shortkey="lancerTestUniqueAvecRaccourci"
+									@shortkey="lancerTestUniqueAvecRaccourci"
 								/>
 							</template>
 						</Diptyque>

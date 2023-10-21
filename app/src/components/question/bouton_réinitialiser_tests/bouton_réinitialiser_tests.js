@@ -17,4 +17,4 @@ export default {
 			this.$store.dispatch("setRésultats", []);
 		}
 	}
-}
+};
