@@ -49,7 +49,6 @@ export default {
 			sortie_observée: null,
 			sortie_attendue: null,
 			params: null,
-			feedback: null,
 		};
 	},
 	props: {
@@ -65,6 +64,9 @@ export default {
 		question_type() {
 			return this.$store.getters.question_type;
 		},
+		feedback() {
+			return this.résultat?.feedback;
+		}
 	},
 	mounted() {
 		this.rafraîchirSorties();
@@ -81,7 +83,6 @@ export default {
 			if (!this.résultat) {
 				this.sortie_attendue = this.test.caché ? null : he.encode(this.test.sortie_attendue.toString());
 				this.sortie_observée = null;
-				this.feedback = null;
 				return;
 			}
 
@@ -96,8 +97,6 @@ export default {
 
 			this.sortie_observée = résultats.résultat_observé;
 			this.sortie_attendue = résultats.résultat_attendu;
-			this.feedback = this.résultat.feedback;
-
 		},
 		entréesModifiées(){
 			this.test.dirty=true;
