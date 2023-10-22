@@ -1,5 +1,4 @@
 import jwt_decode from "jwt-decode";
-import {copie_profonde} from "@/util/commun.js";
 
 export const mutations = {
 	setErreurs(state, erreurs) {
@@ -78,7 +77,6 @@ export const mutations = {
 	},
 	setQuestion(state, question) {
 		state.question = question;
-		state.testsInitiaux = question ? copie_profonde( state.question.tests ) : [];
 	},
 	updateCodeTentative(state, code) {
 		state.tentative.code = code;

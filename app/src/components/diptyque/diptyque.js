@@ -31,16 +31,9 @@ export default {
 		h() {
 			return this.horizontal=="true";
 		},
-		taille_conteneur() {
-			return this.horizontal ?
-				this.$refs.sp.container.clientHeight :
-				this.$refs.sp.container.clientWidth;
-		},
-		entête_droite() {
-			return this.$slots?.entête_droite?.toString().length > 0;
-		},
-		entête_gauche() {
-			return this.$slots?.entête_gauche?.toString().length > 0;
+		taille_conteneur() { return this.horizontal ?
+			this.$refs.sp.container.clientHeight :
+			this.$refs.sp.container.clientWidth;
 		}
 	},
 	watch : {
