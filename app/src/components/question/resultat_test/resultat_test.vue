@@ -6,6 +6,13 @@
 				class="h-100 d-flex"
 				style="flex-flow: column"
 			>
+				<Ampoule
+					v-if="feedback"
+					:estVisible="résultat && !résultat.sortie_erreur && feedback!==null"
+					class="rétroaction-test"
+					:feedback="feedback"
+				/>
+
 				<Diptyque horizontal="true" :gauche="question_type=='sys'?'caché':'true'" droite="true">
 					<template #gauche>
 						<Ampoule
