@@ -22,16 +22,14 @@
 						/>
 					</template>
 					<template #droite>
-						<Diptyque horizontal="true" droite="fixe" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
-							<template #entête_gauche v-if="question_type=='prog'">
-								<Avancement
-									présentation_étape="2"
-									:tentative-réinitialisée="tentativeRéinitialisée"
-									:title="$t('avancement.choixLangage')"
-								/>
-							</template>
+						<Diptyque horizontal="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
 							<template #gauche>
 								<div v-if="question_type=='prog'" style="height: 100%; display: flex; flex-flow: column">
+									<Avancement
+										présentation_étape="2"
+										:tentative-réinitialisée="tentativeRéinitialisée"
+										:title="$t('avancement.choixLangage')"
+									/>
 									<div
 										v-if="tentative"
 										id="carre-editeur"
@@ -50,40 +48,37 @@
 									</TTYShare>
 								</div>
 							</template>
-							<template #entête_droite>
-								<div style="display: flex; flex-flow: row; align-items: center; width: fit-content">
-									<div style="flex-grow: 1">
-										{{ $t("jeu_tests.jeuTests") }}
-									</div>
-									<BoutonRéinitialiserTests />
-								</div>
-							</template>
 							<template #droite>
-								<onglets-information
-									présentation_étape="4"
-									:onglet-changé="ongletChangéRaccourci"
-									:test-sélectionné-haut="testSélectionnéHaut"
-									:test-sélectionné-bas="testSélectionnéBas"
-									:test-sélectionné-valider="testSélectionnéValider"
-									style="height:100%"
+								<div
+									class="col-12"
+									style="height: 100%"
+								>
+									<onglets-information
+										présentation_étape="4"
+										:onglet-changé="ongletChangéRaccourci"
+										:test-sélectionné-haut="testSélectionnéHaut"
+										:test-sélectionné-bas="testSélectionnéBas"
+										:test-sélectionné-valider="testSélectionnéValider"
+										style="height:100%"
 
-								/>
-								<div
-									v-shortkey="raccourcis.itérerOnglets"
-									@shortkey="changerOngletAvecRaccourci"
-								/>
-								<div
-									v-shortkey="raccourcis.itérerTestHaut"
-									@shortkey="sélectionnerTestDuHautAvecRaccourci"
-								/>
-								<div
-									v-shortkey="raccourcis.itérerTestBas"
-									@shortkey="sélectionnerTestDuBasAvecRaccourci"
-								/>
-								<div
-									v-shortkey="raccourcis.lancerTestUnique"
-									@shortkey="lancerTestUniqueAvecRaccourci"
-								/>
+									/>
+									<div
+										v-shortkey="raccourcis.itérerOnglets"
+										@shortkey="changerOngletAvecRaccourci"
+									/>
+									<div
+										v-shortkey="raccourcis.itérerTestHaut"
+										@shortkey="sélectionnerTestDuHautAvecRaccourci"
+									/>
+									<div
+										v-shortkey="raccourcis.itérerTestBas"
+										@shortkey="sélectionnerTestDuBasAvecRaccourci"
+									/>
+									<div
+										v-shortkey="raccourcis.lancerTestUnique"
+										@shortkey="lancerTestUniqueAvecRaccourci"
+									/>
+								</div>
 							</template>
 						</Diptyque>
 					</template>

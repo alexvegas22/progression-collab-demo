@@ -1,7 +1,7 @@
 <template>
 	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}">
 		<div class="d-flex"
-			style=" justify-content: right; padding: 2px; margin-right: 0.5rem">
+			style=" justify-content: right; padding: 2px; margin-right: 0.5rem" >
 
 			<div :class="{invisible: état_max || état_min}" @click="minimiser" >
 				<slot name="min-icon">
@@ -29,10 +29,7 @@
 
 		</div>
 
-		<div class="entête_panneau" style="max-width: fit-content">
-			<slot name="entête"/>
-		</div>
-		<div :class="{invisible: état_min}" style="flex-grow: 1; position: relative;">
+		<div :class="{invisible: état_min}" style="flex-grow: 1; min-height: 0">
 			<slot/>
 		</div>
 
@@ -120,12 +117,6 @@ export default {
 </script>
 
 <style scopped>
- .entête_panneau {
-	 position: relative;
-	 top: -1.6rem;
-	 height: 0.2rem;
- }
-
  .bordure {
 	 border: 1px solid rgba(128, 128, 128, 0.25);
  }
@@ -149,7 +140,7 @@ export default {
 
  .maximisé {
      background-color: inherit;
-     position: fixed;
+     position: absolute;
      left: 56px;
      top: 64px;
      height: 100%;

@@ -7,7 +7,6 @@ import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
-import BoutonRéinitialiserTests from "@/components/question/bouton_réinitialiser_tests/bouton_réinitialiser_tests.vue";
 import TTYShare from "@/components/question/ttyshare/ttyshare.vue";
 import jwt_decode from "jwt-decode";
 import Diptyque from "@/components/diptyque/diptyque.vue";
@@ -35,7 +34,6 @@ export default {
 		Présentation,
 		BoutonCommentaire,
 		BoutonSoumission,
-		BoutonRéinitialiserTests,
 		PanneauCommentaire,
 		Diptyque,
 		TTYShare,

@@ -28,7 +28,6 @@ export default createStore({
 		question: null,
 		sauvegardes: [],
 		tentative: null,
-		testsInitiaux: [],
 		thèmeSombre: false,
 		token: null,
 		tokenRessources : null,
