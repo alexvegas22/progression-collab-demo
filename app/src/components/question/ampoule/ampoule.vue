@@ -37,4 +37,4 @@
 </template>
 
 <script src="./ampoule.js"></script>
-<style src="./ampoule.css"></style>
+<style scoped src="./ampoule.css"></style>

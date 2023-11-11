@@ -73,6 +73,7 @@ export default {
 	},
 	methods: {
 		rafraîchirSorties: function () {
+
 			if (!this.test || !(this.test.sortie_attendue || this.test.caché))
 			{
 				this.sortie_attendue = null;

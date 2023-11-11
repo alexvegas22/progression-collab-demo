@@ -1,7 +1,9 @@
 <template>
-	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}">
-		<div class="d-flex"
-			style=" justify-content: right; padding: 2px; margin-right: 0.5rem" >
+	<div ref="contenu" :class="{normal: !état_max && !état_min, maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
+		class="full-flex column"
+	>
+		<div class="d-flex" style=" justify-content: right; padding: 2px; margin-right: 0.5rem;"
+		>
 
 			<div :class="{invisible: état_max || état_min}" @click="minimiser" >
 				<slot name="min-icon">
@@ -29,8 +31,13 @@
 
 		</div>
 
-		<div :class="{invisible: état_min}" style="flex-grow: 1; min-height: 0">
-			<slot/>
+		<div class="entête_panneau" >
+			<slot name="entête"/>
+		</div>
+		<div :class="{invisible: état_min, colonne: !horizontal, rangée: horizontal}" 
+			style="height: calc(100% - 1.8rem); "
+		>
+			<slot />
 		</div>
 
 	</div>
@@ -116,9 +123,17 @@ export default {
 };
 </script>
 
-<style scopped>
+<style scoped>
+ .entête_panneau {
+	position: relative;
+	top: -1.6rem;
+	height: 0.2rem;
+	width: fit-content
+ }
+
  .bordure {
-	 border: 1px solid rgba(128, 128, 128, 0.25);
+	border: 1px solid rgba(128, 128, 128, 0.25);
+	max-height: 100%;
  }
 
  .bouton {
@@ -140,12 +155,24 @@ export default {
 
  .maximisé {
      background-color: inherit;
-     position: absolute;
+     position: fixed;
      left: 56px;
      top: 64px;
-     height: 100%;
-     width: calc(100% - 56px);
+     height: calc(100vh - 64px);
+     width: calc(100vw - 56px);
      z-index: 9;
+ }
+
+ .normal {
+	height: 100%;
+	width: 100%
+ }
+ 
+ .colonne {
+	flex-direction: column
+ }
+ .rangée {
+	flex-direction: row
  }
 
 </style>

@@ -19,4 +19,4 @@
 </template>
 
 <script src="./sélecteur_mode_affichage.js"></script>
-<style src="./sélecteur_mode_affichage.css"></style>
+<style scoped src="./sélecteur_mode_affichage.css"></style>

@@ -1,15 +1,8 @@
 .editeur-container {
 	display: flex;
-	height: auto;
 	padding: 1.25rem;
 	padding-top: 0px;
 	flex-direction: row;
-}
-
-body {
-	overflow: hidden;
-	font-family: "Avenir", Arial, Helvetica, sans-serif;
-	font-size: 1rem;
 }
 
 .ebauche {
@@ -43,7 +36,6 @@ body {
 .conteneur-question {
 	display: flex;
 	flex-flow: column;
-	height: inherit;
 }
 
 .énoncé-semi {
@@ -51,19 +43,7 @@ body {
 }
 
 .énoncé-plein {
-	height: 100vh;
 	width: 100%;
-}
-
-.énoncé-caché {
-	width: 100%;
-	height: 2.25rem;
-	left: 0.65rem;
-	margin-left: 0;
-}
-
-.taille-écran {
-	height: calc(100vh - 56px);
 }
 
 .section-bouton-affichage {
@@ -106,10 +86,11 @@ body {
 	left: 10px;
 }
 
-// Alignement des images selon le texte alternatif
+/* Alignement des images selon le texte alternatif
 // img alt="texte alternatif >" // aligne à droite
 // img alt="texte alternatif <" // aligne à gauche
 // img alt="texte alternatif ><" // centre
+*/
 
 img[alt$=">"] {
 	float: right;

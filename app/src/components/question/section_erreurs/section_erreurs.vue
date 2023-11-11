@@ -3,10 +3,8 @@
 		v-if="résultat"
 		class="section-erreur"
 	>
-		<div
+		<div class="full-flex column"
 			id="section-erreur"
-			class="p-1"
-			style="display: flex; flex-flow: column; height: 100%"
 		>
 			<h5 class="text-danger font-weight-bold text-left card-title">
 				{{ $t("resultat_test.sortieErreur") }}
@@ -18,9 +16,9 @@
 				:feedback="résultat.feedback"
 				:estVisible="panneauAffiché"
 			/>
-			<FenêtreInfo>
+			<div class="full-flex row" >
 				<pre>{{ résultat.sortie_erreur }}</pre>
-			</FenêtreInfo>
+			</div>
 		</div>
 	</div>
 </template>

@@ -79,10 +79,10 @@ const authentificationErreurHandler = function() {
 const valider = async (promesse) => {
 	return promesse
 		.catch((erreur) => {
-			if(erreur?.response?.status==401) {
+			if(erreur?.response?.status == 401) {
 				authentificationErreurHandler(erreur);
 			}
-			else if(erreur?.response?.status && erreur.response.status!=200){
+			else if(erreur?.response?.status >= 300){
 				store.dispatch("setErreurs", { détails: erreur.response.data.erreur + " (erreur " + erreur.response.status + ") "  });
 			}
 			else if(typeof(erreur)=="string"){

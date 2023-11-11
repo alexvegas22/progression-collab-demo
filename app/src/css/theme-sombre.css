@@ -1,9 +1,12 @@
 /*CSS pour le thème sombre*/
 html,
+
+/*
 body {
 	height: 100%;
 	max-height: 100%;
 }
+*/
 
 .thème_sombre .contenu {
 	border-top: 0.1rem rgb(var(--bs-dark-rgb)) solid;
