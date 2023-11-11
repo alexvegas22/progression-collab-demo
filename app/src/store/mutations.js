@@ -27,7 +27,11 @@ export const mutations = {
 
 			// Calcule l'heure d'expiration du token en fonction de l'heure du client
 			// pour éviter qu'une disparité avec l'heure du serveur cause des problèmes de validation
+			console.log(Date.now());
+			console.log(ttl);
 			state.token = { token: token, timestamp: Math.round(Date.now() / 1000) + ttl };
+			console.log("TOKEN OK");
+			console.log(state.token);
 		}
 		else {
 			state.token = { token: null, timestamp: null };

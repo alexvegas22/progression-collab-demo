@@ -6,14 +6,16 @@
 	>
 		<input
 			id="btn_mode_normal"
-			v-model="mode_affichage" 
+			v-model="mode_affichage"
 			class="custom-control-input"
 			type="checkbox"
 			name="btn_mode_normal"
+
 		>
 		<div class="slider round"
 			v-shortkey="raccourcis.basculerModeParDifférences"
 			@shortkey="changerModeAffichageAvecRaccourci"
+			:class="{occupé: occupé}"
 		/>
 	</label>	
 </template>

@@ -1,39 +1,23 @@
 import SélecteurModeAffichage from "@/components/question/sélecteur_mode_affichage/sélecteur_mode_affichage.vue";
 import Ampoule from "@/components/question/ampoule/ampoule.vue";
-import { diffChars } from "diff";
-import he from "he";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 import FenêtreInfo from "@/components/layouts/fenetre_info.vue";
+import he from "he";
 
-const différence = function (orig = "", modif = "", mode_affichage) {
-	const différences = diffChars(orig, modif);
+import diff_worker from "@/diff_worker";
 
-	var résultat_ins = "";
-	var résultat_del = "";
+const différence = async function (orig = "", modif = "", mode_affichage) {
+	return new Promise( resolve => {
+		diff_worker.worker.onmessage = function( e ){
+			resolve(e.data);
+		};
 
-	différences.forEach((différence) => {
-		const texte_encodé = he.encode(différence.value);
-		
-		if (différence.added) {
-			résultat_ins += `<span class="diff différent ins ${mode_affichage ? " enabled" : ""}">${texte_encodé}</span>`;
-		} else if (différence.removed) {
-			résultat_del += `<span class="diff différent del ${mode_affichage ? " enabled" : ""}">${texte_encodé}</span>`;
-		} else {
-			résultat_ins += texte_encodé;
-			résultat_del += texte_encodé;
-		}
+		diff_worker.send( {
+			orig: orig,
+			modif: modif,
+			mode: mode_affichage
+		} );
 	});
-
-	return {
-		résultat_attendu: résultat_ins.replaceAll(
-			"\n",
-			`<span class="diff visuel ${mode_affichage ? " enabled" : ""}">↵\n</span>`,
-		),
-		résultat_observé: résultat_del.replaceAll(
-			"\n",
-			`<span class="diff visuel ${mode_affichage ? " enabled" : ""}">↵\n</span>`,
-		),
-	};
 };
 
 export default {
@@ -49,6 +33,8 @@ export default {
 			sortie_observée: null,
 			sortie_attendue: null,
 			params: null,
+			dirty: false,
+			recalcul: false,
 		};
 	},
 	props: {
@@ -72,9 +58,8 @@ export default {
 		this.rafraîchirSorties();
 	},
 	methods: {
-		rafraîchirSorties: function () {
-
-			if (!this.test || !(this.test.sortie_attendue || this.test.caché))
+		rafraîchirSorties: async function () {
+			if (!this.test || !this.test.sortie_attendue && !this.test.caché)
 			{
 				this.sortie_attendue = null;
 				this.sortie_observée = this.résultat?.sortie_observée.toString();
@@ -87,18 +72,26 @@ export default {
 				return;
 			}
 
-			var résultats = !this.test.caché ? différence(
-				this.résultat.sortie_observée.toString(),
-				this.test.sortie_attendue.toString(),
-				this.mode_affichage,
-			): {
-				résultat_attendu: this.test.sortie_attendue?.toString(),
-				résultat_observé: this.résultat.sortie_observée?.toString()
-			};
+			if (!this.test.caché && this.mode_affichage) {
+				this.dirty = false;
+				this.recalcul = true;
 
-			this.sortie_observée = résultats.résultat_observé;
-			this.sortie_attendue = résultats.résultat_attendu;
+				var res = await différence(
+					this.résultat.sortie_observée.toString(),
+					this.test.sortie_attendue.toString(),
+					this.mode_affichage);
+
+				this.sortie_observée = res.résultat_observé;
+				this.sortie_attendue = res.résultat_attendu;
+
+				this.recalcul = false;
+			}
+			else {
+				this.sortie_observée = this.résultat.sortie_observée?.toString();
+				this.sortie_attendue = this.test.sortie_attendue?.toString();
+			}
 		},
+		
 		entréesModifiées(){
 			this.test.dirty=true;
 			this.$store.dispatch("setTest", {
@@ -113,15 +106,11 @@ export default {
 				index: this.index
 			});
 		},
-	},
-	watch: {
-		test: function () {
-			this.rafraîchirSorties();
-		},
-		résultat: function () {
-			this.rafraîchirSorties();
-		},
-		mode_affichage: function (mode) {
+		
+		async onModeChange (mode) {
+			if(this.dirty) {
+				await this.rafraîchirSorties();
+			}
 			if (mode) {
 				Array.from(document.getElementsByClassName("diff différent")).forEach((item) => {
 					item.classList.add("enabled");
@@ -137,6 +126,16 @@ export default {
 					item.classList.remove("enabled");
 				});
 			}
+		},
+	},
+	watch: {
+		test: function () {
+			this.dirty = true;
+			this.rafraîchirSorties();
+		},
+		résultat: function () {
+			this.dirty = true;
+			this.rafraîchirSorties();
 		},
 	},
 };
