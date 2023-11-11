@@ -242,6 +242,7 @@ export default {
 			commit("setEnChargement", true);
 			try {
 				const token = await authentifierApi(urlAuth, identifiant, password, domaine);
+				console.log(token);
 				commit("setToken", token);
 
 				// Obtenir l'utilisateur

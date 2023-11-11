@@ -49,9 +49,12 @@
 							v-if="résultat"
 						>
 							{{ $t('resultat_test.sortieConsole') }}
-							<sélecteur-mode-affichage
+
+							<SélecteurModeAffichage
+								@onModeChange="onModeChange"
 								v-show="sortie_attendue"
 								class="espace-sélecteur"
+								:occupé="recalcul"
 							/>
 						</div>
 					</div>

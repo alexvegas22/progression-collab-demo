@@ -1,5 +1,11 @@
 export default {
 	name: "SélecteurModeAffichage",
+	emits: {
+		onModeChange: false,
+	},
+	props: {
+		occupé: Boolean
+	},
 	computed: {
 		mode_affichage: {
 			get: function () {
@@ -7,6 +13,7 @@ export default {
 			},
 			set: function (mode) {
 				this.$store.dispatch("setModeAffichage", mode);
+				this.$emit("onModeChange", this.mode_affichage == 1 );
 			},
 		},
 		raccourcis() {
@@ -15,6 +22,7 @@ export default {
 	},
 	methods: {
 		changerModeAffichageAvecRaccourci() {
+			this.$emit("onModeChange", this.mode_affichage == 1 );
 			this.$store.dispatch("basculerModeAffichage");
 		},
 	}
