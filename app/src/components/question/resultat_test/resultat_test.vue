@@ -56,7 +56,7 @@
 						</div>
 					</div>
 
-					<div style="overflow: scroll; flex-grow: 1; max-height: 100%; display: flex; flex-direction: row; align-content: center">
+					<div style="overflow: auto; flex-grow: 1; max-height: 100%; display: flex; flex-direction: row; align-content: center">
 						<div
 							v-if="!test.dirty"
 							class="corps-sorties"
@@ -64,14 +64,14 @@
 							:class="{'résultat-test': résultat}"
 						>
 							<!-- eslint-disable -->
-								<pre v-if="sortie_attendue"
-									 class="card-text p-3"
-									 v-html="sortie_attendue"
-								/>
-								<!-- eslint-enable -->
+							<pre v-if="sortie_attendue"
+								 class="card-text p-3"
+								 v-html="sortie_attendue"
+							/>
+							<!-- eslint-enable -->
 							<pre v-else>
-									<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-								</pre>
+								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+							</pre>
 						</div>
 						<div
 							v-if="résultat"
@@ -79,10 +79,10 @@
 							présentation_étape="3.3"
 						>
 							<!-- eslint-disable -->
-								<pre v-if="sortie_attendue"
-									 class="card-text p-3"
-									 v-html="sortie_observée"
-								/>
+							<pre v-if="sortie_observée"
+								 class="card-text p-3"
+								 v-html="sortie_observée"
+							/>
 
 								<!-- eslint-enable -->
 							<v-card v-else>

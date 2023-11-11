@@ -3,7 +3,7 @@
 	>
 		<template #gauche>
 			<div class="section-tests">
-				<div style="overflow: scroll; flex-grow: 1">
+				<div style="overflow: auto; flex-grow: 1;">
 					<div
 						v-for="(test, index) in tests"
 						:key="index"
@@ -37,7 +37,7 @@
 						</Test>
 					</div>
 				</div>
-				<div>
+				<div class="full-flex column" style="align-items: center; height: fit-content">
 					<BoutonSoumission/>
 				</div>
 			</div>
