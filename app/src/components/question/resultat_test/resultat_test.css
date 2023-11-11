@@ -44,7 +44,6 @@ pre {
 }
 
 .résultat-test {
-	max-width: 50%;
 	padding-bottom: 1rem;
 	border-right: 1px solid rgba(0, 0, 0, 0.125);
 }
@@ -67,7 +66,6 @@ pre {
 .titre-sorties{
 	width: 100%;
 	min-width: 50%;
-	border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 .rétroaction-test {

@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-if="tempsÉxecution && résultat"
+		v-if="résultat?.temps_exécution"
 		class="section-détails"
 	>
 		<div
@@ -13,4 +13,4 @@
 </template>
 
 <script src="./section_details.js"></script>
-<style src="./section_details.css"></style>
+<style scoped src="./section_details.css"></style>

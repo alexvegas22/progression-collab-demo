@@ -108,5 +108,5 @@
 </template>
 
 <script src="./enonce.js"></script>
-<style src="./enonce.css"></style>
+<style scoped src="./enonce.css"></style>
 

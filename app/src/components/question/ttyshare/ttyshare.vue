@@ -28,4 +28,4 @@
 	</div>
 </template>
 <script src="./ttyshare.js"></script>
-<style src="./ttyshare.css"></style>
+<style scoped src="./ttyshare.css"></style>

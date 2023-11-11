@@ -4,7 +4,28 @@
 }
 
 .contenu {
-	height: calc(100vh - 56px);
+	height: calc(100vh - 64px);
+	overflow: hidden;
+}
+
+body {
+/*	overflow: hidden; */
+	font-family: "Avenir", Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+}
+
+.full-flex {
+	height: 100%;
+	width: 100%;
+	display: flex;
+}
+
+.column{
+	flex-flow: column;
+}
+
+.row{
+	flex-flow: row;
 }
 
 .barBtn {
@@ -12,7 +33,6 @@
     font-size: 1.7rem;
     margin-right: 1.2rem;
 }
-
 
 .dropdown-menu[data-bs-popper] {
 	top: 100%;

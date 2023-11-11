@@ -1,8 +1,11 @@
+.rétroaction-test {
+	position: fixed;
+	right: 3rem;
+}
+
 .section-erreur {
 	flex: 1 1 0px;
-	min-height: 0px;
 	flex-flow: column;
-	height: 18rem;
 }
 
 .margin-perfect-scrollbar {
@@ -13,29 +16,4 @@
 pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-}
-
-/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
-@media only screen and (min-width: 48rem) {
-    .section-erreur pre {
-	height: 100%;
-	overflow: visible;
-	overflow-y: visible;
-    }
-}
-
-/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
-@media only screen and (min-width: 48rem) and (max-width: 992px) {
-    .section-erreur pre {
-	height: 100%;
-	overflow: visible;
-	overflow-y: visible;
-    }
-}
-
-/* -------------- Écrans de 768px et + (48rem et +) ----------------------*/
-@media only screen and (max-width: 48rem) {
-	.margin-perfect-scrollbar {
-		padding-bottom: 4rem;
-	}
 }
