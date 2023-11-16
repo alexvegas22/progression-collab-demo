@@ -46,7 +46,7 @@
 	width: 100%;
 	display: flex;
 	flex-flow: column;
-	border: none;
+	border: 1px solid rgba(128, 128, 128, 0.25);
 }
 
 .onglets-subséquents {

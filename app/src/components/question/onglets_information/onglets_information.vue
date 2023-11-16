@@ -43,9 +43,11 @@
 			</div>
 		</template>
 		<template #droite>
-			<v-card class="full-flex column">
+			<v-card class="full-flex column"
+			>
 				<div >
 					<v-tabs
+						bg-color="rgba(128, 128, 128, 0.25)"
 						density="compact"
 						v-model="ongletActif"
 					>

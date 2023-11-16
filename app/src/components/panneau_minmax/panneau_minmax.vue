@@ -2,40 +2,43 @@
 	<div ref="contenu" :class="{normal: !état_max && !état_min, maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
 		class="full-flex column"
 	>
-		<div class="d-flex" style=" justify-content: right; padding: 2px; margin-right: 0.5rem;"
-		>
-
-			<div :class="{invisible: état_max || état_min}" @click="minimiser" >
-				<slot name="min-icon">
-					<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
-				</slot>
+		<div class="d-flex" style="flex-flow: row; justify-content: right">
+			<div class="entête_panneau" >
+				<div style="height: 1.8rem; padding-left: 3px">
+					<slot name="entête"/>
+				</div>
 			</div>
+			<div class="d-flex theme_sombre contenu" style="min-width: 2rem; padding: 0.1rem; position: absolute; height: 1.8rem"
+			>
 
-			<div :class="{invisible: !état_max}" @click="restorer" >
-				<slot name="restore-icon">
-					<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
-				</slot>
+				<div :class="{invisible: état_max || état_min}" @click="minimiser" >
+					<slot name="min-icon">
+						<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
+
+				<div :class="{invisible: !état_max}" @click="restorer" >
+					<slot name="restore-icon">
+						<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
+
+				<div :class="{invisible: !état_min}" @click="restorer" >
+					<slot name="restore-icon">
+						<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
+
+				<div :class="{invisible: état_max || état_min}" @click="maximiser" >
+					<slot name="max-icon">
+						<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
+
 			</div>
-
-			<div :class="{invisible: !état_min}" @click="restorer" >
-				<slot name="restore-icon">
-					<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
-				</slot>
-			</div>
-
-			<div :class="{invisible: état_max || état_min}" @click="maximiser" >
-				<slot name="max-icon">
-					<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
-				</slot>
-			</div>
-
-		</div>
-
-		<div class="entête_panneau" >
-			<slot name="entête"/>
 		</div>
 		<div :class="{invisible: état_min, colonne: !horizontal, rangée: horizontal}" 
-			style="height: calc(100% - 1.8rem); "
+			style="height: calc(100% - 1.8rem);"
 		>
 			<slot />
 		</div>
@@ -125,10 +128,7 @@ export default {
 
 <style scoped>
  .entête_panneau {
-	position: relative;
-	top: -1.6rem;
-	height: 0.2rem;
-	width: fit-content
+	width: 100%;
  }
 
  .bordure {

@@ -92,16 +92,6 @@ export default {
 					scrolling: false,
 					header: { "title": this.$t("présentation.entrées.titre") },
 					content: this.$t("présentation.entrées.contenu"),
-					before: type => new Promise((resolve) => {
-						if(type=="next"){
-							var onglet = document.getElementById("onglet_ES");
-							var event;
-							event = document.createEvent("MouseEvents");
-							event.initMouseEvent("click", true, true, window);
-							onglet.dispatchEvent(event);
-						}
-						resolve();
-					})
 				},
 				{
 					target: "[présentation_étape=\"3.2\"]",

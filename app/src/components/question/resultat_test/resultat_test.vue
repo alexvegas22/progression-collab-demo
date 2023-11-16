@@ -13,8 +13,10 @@
 			<template #gauche>
 				<div
 					class="full-flex"
+					style="	border: 1px solid rgba(128, 128, 128, 0.25);"
+					présentation_étape="3.1"
 				>
-					<v-textarea
+					<v-textarea 
 						:label="$t('resultat_test.entrée')"
 						hide-details="true"
 						variant="solo"
@@ -36,29 +38,29 @@
 					></v-textarea>
 				</div>
 			</template>
+			<template #entête_droite>
+				<div style="display: flex; flex-flow: row; width: 100%">
+					<div
+						v-if="!test.dirty"
+						class="titre-sorties">
+						{{ $t('resultat_test.sortieAttendue') }}
+					</div>
+					<div class="titre-sorties"
+						v-if="résultat"
+					>
+						{{ $t('resultat_test.sortieConsole') }}
+
+						<SélecteurModeAffichage
+							@onModeChange="onModeChange"
+							v-show="sortie_attendue"
+							class="espace-sélecteur"
+							:occupé="recalcul"
+						/>
+					</div>
+				</div>
+			</template>
 			<template #droite>
 				<div class="full-flex column">
-
-					<div style="display: flex; flex-direction: row">
-						<div
-							v-if="!test.dirty"
-							class="titre-sorties">
-							{{ $t('resultat_test.sortieAttendue') }}
-						</div>
-						<div class="titre-sorties"
-							v-if="résultat"
-						>
-							{{ $t('resultat_test.sortieConsole') }}
-
-							<SélecteurModeAffichage
-								@onModeChange="onModeChange"
-								v-show="sortie_attendue"
-								class="espace-sélecteur"
-								:occupé="recalcul"
-							/>
-						</div>
-					</div>
-
 					<div style="overflow: auto; flex-grow: 1; max-height: 100%; display: flex; flex-direction: row; align-content: center">
 						<div
 							v-if="!test.dirty"

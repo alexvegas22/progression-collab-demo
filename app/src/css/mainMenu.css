@@ -1,11 +1,14 @@
 :root{
 	/* corrige un problème de couleur dans le menu */
 	--v-theme-overlay-multiplier: 1;
+	--panneau-light: #212529;
+
 }
 
 .contenu {
 	height: calc(100vh - 64px);
 	overflow: hidden;
+	background-color: rgb(var(--bs-white-rgb));
 }
 
 body {
@@ -40,7 +43,7 @@ body {
 	right: 0;
 	width: max-content;
 	margin-top: 1rem !important;
-	background-color: #212529;
+	background-color: var(--panneau-light);
 	transform-origin: top center;
 	animation: translateY 500ms ease-in-out forwards;
 }
@@ -48,7 +51,7 @@ body {
 
 .dropdown-menu .dropdown-submenu-p {
 	width: 200px !important;
-	background-color: #212529;
+	background-color: var(--panneau-light);
 	transform-origin: bottom right;
 	animation: translateX 500ms ease-in-out forwards;
 
@@ -180,10 +183,10 @@ body {
 
 .splitpanes--vertical > .splitpanes__splitter {
 	min-width: 6px;
-	background-color: rgb(var(--bs-light-rgb));
+	background-color: rgb(var(--bs-light));
 }
 
 .splitpanes--horizontal > .splitpanes__splitter {
 	min-height: 6px;
-	background-color: rgb(var(--bs-light-rgb));
+	background-color: rgb(var(--bs-light));
 }
