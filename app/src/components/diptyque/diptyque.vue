@@ -9,7 +9,9 @@
 				<slot
 					name="gauche" />
 			</PanneauMinMax>
-			<slot v-else name="gauche" />
+			<div v-else class="bordure_panneau">
+				<slot name="gauche" />
+			</div>
 		</pane>
 		<pane :size="pct_droite" v-if="droite!='caché'" :class="[{horizontal: h}, {vertical: !h}]">
 			<PanneauMinMax v-if='droite!="fixe" || entête_droite' :icon_size='droite!="fixe"?16:0' :horizontal="h" :size=px_droite minsize="60" @resize="resize_droite"
@@ -19,7 +21,9 @@
 				</template>
 				<slot name="droite" />
 			</PanneauMinMax>
-			<slot v-else name="droite"/>
+			<div v-else class="bordure_panneau">
+				<slot name="droite"/>
+			</div>
 		</pane>
 	</splitpanes>
 </template>

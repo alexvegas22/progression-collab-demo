@@ -12,7 +12,8 @@
 		>
 			<template #gauche>
 				<div
-					class="full-flex"
+					class="full-flex bordure-grise"
+					présentation_étape="3.1"
 				>
 					<v-textarea
 						:label="$t('resultat_test.entrée')"
@@ -36,63 +37,60 @@
 					></v-textarea>
 				</div>
 			</template>
-			<template #droite>
-				<div class="full-flex column">
-
-					<div style="display: flex; flex-direction: row">
-						<div
-							v-if="!test.dirty"
-							class="titre-sorties">
-							{{ $t('resultat_test.sortieAttendue') }}
-						</div>
-						<div class="titre-sorties"
-							v-if="résultat"
-						>
-							{{ $t('resultat_test.sortieConsole') }}
-
-							<SélecteurModeAffichage
-								@onModeChange="onModeChange"
-								v-show="sortie_attendue"
-								class="espace-sélecteur"
-								:occupé="recalcul"
-							/>
-						</div>
+			<template #entête_droite>
+				<div style="display: flex; flex-flow: row; width: 100%">
+					<div
+						v-if="!test.dirty"
+						class="titre-sorties">
+						{{ $t('resultat_test.sortieAttendue') }}
 					</div>
+					<div class="titre-sorties"
+						v-if="résultat"
+					>
+						{{ $t('resultat_test.sortieConsole') }}
 
-					<div style="overflow: auto; flex-grow: 1; max-height: 100%; display: flex; flex-direction: row; align-content: center">
-						<div
-							v-if="!test.dirty"
-							class="corps-sorties"
-							présentation_étape="3.2"
-							:class="{'résultat-test': résultat}"
-						>
-							<!-- eslint-disable -->
+						<SélecteurModeAffichage
+							@onModeChange="onModeChange"
+							v-show="sortie_attendue"
+							class="espace-sélecteur"
+							:occupé="recalcul"
+						/>
+					</div>
+				</div>
+			</template>
+			<template #droite>
+				<div class="full-flex panneaux-sorties">
+					<div
+						v-if="!test.dirty"
+						présentation_étape="3.2"
+						:class="{'corps-sorties': true, 'résultat-test': résultat}"
+					>
+						<!-- eslint-disable -->
 							<pre v-if="sortie_attendue"
 								 class="card-text p-3"
 								 v-html="sortie_attendue"
 							/>
 							<!-- eslint-enable -->
-							<pre v-else>
+						<pre v-else>
 								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
 							</pre>
-						</div>
-						<div
-							v-if="résultat"
-							class="corps-sorties"
-							présentation_étape="3.3"
-						>
-							<!-- eslint-disable -->
+					</div>
+					<div
+						v-if="résultat"
+						class="corps-sorties"
+						présentation_étape="3.3"
+					>
+						<!-- eslint-disable -->
 							<pre v-if="sortie_observée"
 								 class="card-text p-3"
 								 v-html="sortie_observée"
 							/>
 
 								<!-- eslint-enable -->
-							<v-card v-else>
-								<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-							</v-card>
+						<v-card v-else>
+							<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
+						</v-card>
 
-						</div>
 					</div>
 				</div>
 			</template>

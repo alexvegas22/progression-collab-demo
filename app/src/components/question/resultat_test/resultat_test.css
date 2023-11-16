@@ -39,6 +39,15 @@
 	background-color: #ffb3b3 !important;
 }
 
+.bordure-grise {
+	border: 1px solid rgba(128, 128, 128, 0.25)
+}
+
+.panneaux-sorties {
+	overflow-x: scroll;
+	flex-flow: row;
+}
+
 pre {
 	margin: 0 !important;
 }
@@ -64,7 +73,7 @@ pre {
 }
 
 .titre-sorties{
-	width: 100%;
+	width: 50%;
 	min-width: 50%;
 }
 
