@@ -1,13 +1,6 @@
 /*CSS pour le thème sombre*/
 html,
 
-/*
-body {
-	height: 100%;
-	max-height: 100%;
-}
-*/
-
 :root {
 	--panneau-dark: #353535;
 }

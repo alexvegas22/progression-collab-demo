@@ -2,7 +2,8 @@
 	/* corrige un problème de couleur dans le menu */
 	--v-theme-overlay-multiplier: 1;
 	--panneau-light: #212529;
-
+	--hauteur-entête: 1.8rem;
+	--gris: 128, 128, 128, 0.25;
 }
 
 .contenu {
@@ -189,4 +190,8 @@ body {
 .splitpanes--horizontal > .splitpanes__splitter {
 	min-height: 6px;
 	background-color: rgb(var(--bs-light));
+}
+
+.gris {
+	background-color : rgba(var(--gris));
 }

@@ -47,7 +47,7 @@
 			>
 				<div >
 					<v-tabs
-						bg-color="rgba(128, 128, 128, 0.25)"
+						class="gris"
 						density="compact"
 						v-model="ongletActif"
 					>

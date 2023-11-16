@@ -20,14 +20,14 @@
 .dropdown-menu {
 	border-radius: 0;
 	margin-top: 0rem;
-	border-color: rgba(128, 128, 128, 0.25);
+	border-color: rgba(var(--gris));
 }
 
 .dropdown-toggle {
 	margin-left: -3px;
 	min-width: 4rem;
 	left: 0.13rem;
-	border-color: rgba(128, 128, 128, 0.25);
+	border-color: rgba(var(--gris));
 	border-style: solid;
 	border-width: 1px;
 	padding: 0rem 0.5rem 0.1rem 0.5rem;

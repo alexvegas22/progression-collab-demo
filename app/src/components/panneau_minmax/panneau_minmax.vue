@@ -2,14 +2,11 @@
 	<div ref="contenu" :class="{normal: !état_max && !état_min, maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
 		class="full-flex column"
 	>
-		<div class="d-flex" style="flex-flow: row; justify-content: right">
-			<div class="entête_panneau" >
-				<div style="height: 1.8rem; padding-left: 3px">
-					<slot name="entête"/>
-				</div>
+		<div class="d-flex barre_titre">
+			<div class="entête_panneau">
+				<slot name="entête"/>
 			</div>
-			<div class="d-flex theme_sombre contenu" style="min-width: 2rem; padding: 0.1rem; position: absolute; height: 1.8rem"
-			>
+			<div class="d-flex theme_sombre contenu groupe_boutons">
 
 				<div :class="{invisible: état_max || état_min}" @click="minimiser" >
 					<slot name="min-icon">
@@ -38,7 +35,7 @@
 			</div>
 		</div>
 		<div :class="{invisible: état_min, colonne: !horizontal, rangée: horizontal}" 
-			style="height: calc(100% - 1.8rem);"
+			style="height: calc(100% - var(--hauteur-entête));"
 		>
 			<slot />
 		</div>
@@ -127,15 +124,29 @@ export default {
 </script>
 
 <style scoped>
+
+ .barre_titre {
+	 justify-content: right
+ }
+ 
  .entête_panneau {
-	width: 100%;
+	 width: 100%;
+	 height: var(--hauteur-entête);
+	 padding-left: 3px
  }
 
  .bordure {
-	border: 1px solid rgba(128, 128, 128, 0.25);
 	max-height: 100%;
+	border: 1px solid rgba(var(--gris));
  }
 
+ .groupe_boutons {
+	 min-width: 2rem;
+	 padding: 0.1rem;
+	 position: absolute;
+	 height: var(--hauteur-entête);
+ }
+ 
  .bouton {
      font-size: 0.6rem;
      padding: 1px;
