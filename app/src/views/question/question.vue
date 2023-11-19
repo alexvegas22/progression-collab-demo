@@ -58,14 +58,19 @@
 						<template #droite>
 							<onglets-information
 								présentation_étape="4"
-								:onglet-changé="ongletChangéRaccourci"
+								:onglet-changé-droite="ongletChangéRaccourciDroite"
+								:onglet-changé-gauche="ongletChangéRaccourciGauche"
 								:test-sélectionné-haut="testSélectionnéHaut"
 								:test-sélectionné-bas="testSélectionnéBas"
 								:test-sélectionné-valider="testSélectionnéValider"
 							/>
 							<div
-								v-shortkey="raccourcis.itérerOnglets"
-								@shortkey="changerOngletAvecRaccourci"
+								v-shortkey="raccourcis.itérerOngletsDroite"
+								@shortkey="changerOngletAvecRaccourciDroite"
+							/>
+							<div
+								v-shortkey="raccourcis.itérerOngletsGauche"
+								@shortkey="changerOngletAvecRaccourciGauche"
 							/>
 							<div
 								v-shortkey="raccourcis.itérerTestHaut"

@@ -51,14 +51,22 @@
 						density="compact"
 						v-model="ongletActif"
 					>
-						<v-tab value="ResultatTest">
-							{{ $t("onglets_informations.entrées/sorties") }}
+						<v-tab value="ResultatTest"
+							:title="$t('onglets_informations.entrées/sorties.tooltip')"
+						>
+							{{ $t("onglets_informations.entrées/sorties.titre") }}
 						</v-tab>
-						<v-tab value="ErreursTest">
-							{{ $t("onglets_informations.erreurs") }}
+						<v-tab value="ErreursTest"
+							:title="$t('onglets_informations.erreurs.tooltip')"
+							v-show="resultat_select?.sortie_erreur"
+						>
+							{{ $t("onglets_informations.erreurs.titre") }}
 						</v-tab>
-						<v-tab value="DétailsTest">
-							{{ $t("onglets_informations.détails") }}
+						<v-tab value="DétailsTest"
+							:title="$t('onglets_informations.détails.tooltip')"
+							v-show="resultat_select?.temps_exécution"
+						>
+							{{ $t("onglets_informations.détails.titre") }}
 						</v-tab>
 					</v-tabs>
 				</div>
