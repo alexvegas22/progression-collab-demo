@@ -1,6 +1,6 @@
 <template>
 	<div ref="contenu" :class="{normal: !état_max && !état_min, maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
-		class="full-flex column"
+		class="full-flex ffcolumn"
 	>
 		<div class="d-flex barre_titre">
 			<div class="entête_panneau">
@@ -143,6 +143,7 @@ export default {
  .groupe_boutons {
 	 min-width: 2rem;
 	 padding: 0.1rem;
+	 padding-right: 0.5rem;
 	 position: absolute;
 	 height: var(--hauteur-entête);
  }
@@ -157,6 +158,7 @@ export default {
  }
  
  .minimisé {
+	 border: 0px;
      height: 1rem;
  }
 

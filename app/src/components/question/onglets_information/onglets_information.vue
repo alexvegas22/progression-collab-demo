@@ -37,13 +37,13 @@
 						</Test>
 					</div>
 				</div>
-				<div class="full-flex column" style="align-items: center; height: fit-content">
+				<div class="full-flex ffcolumn" style="align-items: center; height: fit-content">
 					<BoutonSoumission/>
 				</div>
 			</div>
 		</template>
 		<template #droite>
-			<v-card class="full-flex column"
+			<v-card class="full-flex ffcolumn"
 			>
 				<div >
 					<v-tabs

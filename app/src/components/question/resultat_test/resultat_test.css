@@ -45,7 +45,6 @@
 
 .panneaux-sorties {
 	overflow-x: scroll;
-	flex-flow: row;
 }
 
 pre {

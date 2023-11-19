@@ -12,23 +12,27 @@
 		>
 			<template #gauche>
 				<div
-					class="full-flex bordure-grise"
+					class="full-flex ffrow bordure-grise"
 					présentation_étape="3.1"
+					style="padding: 5px;"
 				>
 					<v-textarea
+						class="textarea"
 						:label="$t('resultat_test.entrée')"
 						hide-details="true"
-						variant="solo"
+						variant="plain"
 						rounded="0"
+						flat
 						id="contenu_entrée"
 						@input="entréesModifiées"
 						v-model="this.test.entrée"
 					></v-textarea>
-					<v-textarea
-						v-if="test.params!==null && test.params!==''"
+
+					<v-textarea v-if="test.params!==null && test.params!==''"
+						class="textarea"
 						:label="$t('resultat_test.params')"
 						hide-details="true"
-						variant="solo"
+						variant="plain"
 						rounded="0"
 						flat
 						id="contenu_params"
@@ -59,7 +63,7 @@
 				</div>
 			</template>
 			<template #droite>
-				<div class="full-flex panneaux-sorties">
+				<div class="full-flex ffrow panneaux-sorties">
 					<div
 						v-if="!test.dirty"
 						présentation_étape="3.2"
@@ -81,15 +85,16 @@
 						présentation_étape="3.3"
 					>
 						<!-- eslint-disable -->
-							<pre v-if="sortie_observée"
-								 class="card-text p-3"
-								 v-html="sortie_observée"
-							/>
+						<pre v-if="sortie_observée"
+							 class="card-text p-3"
+							 v-html="sortie_observée"
+						/>
 
 								<!-- eslint-enable -->
-						<v-card v-else>
+						<pre v-else
+							class="card-text p-3">
 							<p class="card-text sortie vide p-3">{{ $t("resultat_test.vide") }}</p>
-						</v-card>
+						</pre>
 
 					</div>
 				</div>
@@ -97,9 +102,10 @@
 		</Diptyque>
 	</div>
 	<div v-else>
-		<pre>
-			<p class="card-text sortie vide p-3">{{ $t("resultat_test.caché") }}</p>
-		</pre>
+		<pre
+			class="contenu card-text p-3">
+				<p class="sortie vide">{{ $t("resultat_test.caché") }}</p>
+			</pre>
 	</div>
 </template>
 

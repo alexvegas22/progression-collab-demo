@@ -1,13 +1,16 @@
 <template>
 	<div
 		v-if="résultat?.temps_exécution"
-		class="section-détails"
+		class="section-détails contenu"
 	>
 		<div
 			id="section-détails"
 			class="p-1"
 		>
-			<p>{{ $t("resultat_details.tempsTest") }} {{" "+résultat.temps_exécution+" "}} {{ $t("resultat_details.unitéMesure") }}</p>
+			<pre
+				class="contenu card-text p-3">
+				<p class="sortie vide">{{ $t("resultat_details.tempsTest") }} {{" "+résultat.temps_exécution+" "}} {{ $t("resultat_details.unitéMesure") }}</p>
+			</pre>
 		</div>
 	</div>
 </template>
