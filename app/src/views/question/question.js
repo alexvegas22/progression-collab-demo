@@ -19,7 +19,6 @@ export default {
 	data() {
 		return {
 			panneauCommentaireOuvert: false,
-			testSélectionnéValider: false,
 			tentativeRéinitialisée: false,
 		};
 	},
@@ -206,9 +205,6 @@ export default {
 		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
-		},
-		lancerTestUniqueAvecRaccourci() {
-			this.testSélectionnéValider = !this.testSélectionnéValider;
 		},
 		réinitialiserTentativeAvecRaccourci() {
 			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;

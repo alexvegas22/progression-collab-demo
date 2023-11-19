@@ -16,7 +16,6 @@ export default {
 		DétailsTest,
 		Diptyque,
 	},
-		testSélectionnéValider: Boolean,
 	data() {
 		return {
 			ongletActif: "ResultatTest",
@@ -78,11 +77,6 @@ export default {
 				}
 			}
 		},
-		testSélectionnéValider: {
-			deep: true,
-			handler: function(){
-				this.validerTest(this.index_select);
-			}
 		envoiEnCours: {
 			deep: true,
 			handler: function(){
@@ -162,7 +156,8 @@ export default {
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
 			this.select( this.index_select );
 		},
-		validerTest(index){
+		validerTestSélectionné(){
+			const index = this.index_select;
 			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
 
 			this.tests[index].envoyé = true;

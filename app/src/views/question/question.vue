@@ -58,11 +58,6 @@
 						<template #droite>
 							<onglets-information
 								présentation_étape="4"
-								:test-sélectionné-valider="testSélectionnéValider"
-							/>
-							<div
-								v-shortkey="raccourcis.lancerTestUnique"
-								@shortkey="lancerTestUniqueAvecRaccourci"
 							/>
 						</template>
 					</Diptyque>

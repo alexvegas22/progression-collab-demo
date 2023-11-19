@@ -61,6 +61,10 @@
 					v-shortkey="raccourcis.itérerTestBas"
 					@shortkey="basculerTestBas"
 				/>
+				<div
+					v-shortkey="raccourcis.lancerTestUnique"
+					@shortkey="validerTestSélectionné"
+				/>
 				<div >
 					<v-tabs
 						class="gris"
