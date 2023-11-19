@@ -9,8 +9,6 @@
 			/>
 		</div>
 		<div
-			v-shortkey="raccourcis.réinitialiser"
-			@shortkey="réinitialiserTentativeAvecRaccourci"
 			class="full-flex ffrow"
 			style="padding: 7px"
 		>
@@ -25,7 +23,6 @@
 						<template #entête_gauche v-if="question_type=='prog'">
 							<Avancement
 								présentation_étape="2"
-								:tentative-réinitialisée="tentativeRéinitialisée"
 								:title="$t('avancement.choixLangage')"
 							/>
 						</template>

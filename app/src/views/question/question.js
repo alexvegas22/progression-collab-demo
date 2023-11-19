@@ -19,7 +19,6 @@ export default {
 	data() {
 		return {
 			panneauCommentaireOuvert: false,
-			tentativeRéinitialisée: false,
 		};
 	},
 	components: {
@@ -205,9 +204,6 @@ export default {
 		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
-		},
-		réinitialiserTentativeAvecRaccourci() {
-			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		},
 		redimensionnéÉnoncé( taille ) {
 			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0};

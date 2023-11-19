@@ -2,6 +2,8 @@
 	<div
 		class="d-flex"
 		style="flex-flow: row"
+		v-shortkey="raccourcis.réinitialiser"
+		@shortkey="reinitialiserCodeEditeur(langage)"
 	>
 		<div class="barre-menu-langage">
 			<div
