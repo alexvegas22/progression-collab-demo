@@ -257,11 +257,21 @@
 		"ébauche_initiale": "Reset initial draft"
 	},
 
+
 	"onglets_informations": {
-		"entrées/sorties": "Input / Output",
-		"erreurs": "Errors",
-		"rétroactions": "Feedback",
-		"détails": "Details"
+		"entrées/sorties": {
+			"tooltip": "Input to and output from the test",
+			"titre": "Input / Output"
+		},
+		"erreurs": {
+			"tooltip": "Error output from the test",
+			"titre": "Errors"
+		},
+		"détails": {
+			"tooltip": "Execution details for the test",
+			"titre": "Details"
+		},
+		"rétroactions": "Feedback"
 	},
 
 	"commentaire": {

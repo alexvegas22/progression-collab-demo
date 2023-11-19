@@ -24,11 +24,11 @@ body {
 	display: flex;
 }
 
-.column{
+.ffcolumn{
 	flex-flow: column;
 }
 
-.row{
+.ffrow{
 	flex-flow: row;
 }
 

@@ -16,12 +16,6 @@ export default {
 		DétailsTest,
 		Diptyque,
 	},
-	props: {
-		ongletChangé: Boolean,
-		testSélectionnéHaut: Boolean,
-		testSélectionnéBas: Boolean,
-		testSélectionnéValider: Boolean,
-	},
 	data() {
 		return {
 			ongletActif: "ResultatTest",
@@ -83,24 +77,6 @@ export default {
 				}
 			}
 		},
-		testSélectionnéHaut: {
-			deep: true,
-			handler: function(){
-				this.basculerTestHaut();
-			}
-		},
-		testSélectionnéBas: {
-			deep: true,
-			handler: function(){
-				this.basculerTestBas();
-			}
-		},
-		testSélectionnéValider: {
-			deep: true,
-			handler: function(){
-				this.validerTest(this.index_select);
-			}
-		},
 		envoiEnCours: {
 			deep: true,
 			handler: function(){
@@ -109,26 +85,54 @@ export default {
 				}
 			}
 		},
+		index_select() {
+			this.select(this.index_select);
+		}
 	},
 	methods: {
 		changerOnglet( onglet ){
 			this.ongletActif = onglet;
 		},
-		itérerOnglets() {
-			if(this.resultat_select){
-				if(this.ongletActif === "ResultatTest") {
-					if(this.resultat_select.sortie_erreur){
-						this.ongletActif = "ErreursTest";
+		itérerOnglets(direction) {
+			if( direction > 0 ) {
+				if(this.resultat_select){
+					if(this.ongletActif === "ResultatTest") {
+						if(this.resultat_select.sortie_erreur){
+							this.ongletActif = "ErreursTest";
+						}
+						else{
+							this.ongletActif = "DétailsTest";
+						}
 					}
-					else{
+					else if(this.ongletActif === "ErreursTest"){
 						this.ongletActif = "DétailsTest";
 					}
+					else {
+						this.ongletActif = "ResultatTest";
+					}
 				}
-				else if(this.ongletActif === "ErreursTest"){
-					this.ongletActif = "DétailsTest";
-				}
-				else {
-					this.ongletActif = "ResultatTest";
+			}
+			else {
+				if(this.resultat_select){
+					if(this.ongletActif === "ResultatTest") {
+						if(this.resultat_select.temps_exécution){
+							this.ongletActif = "DétailsTest";
+						}
+						else if(this.resultat_select.sortie_erreur){
+							this.ongletActif = "ErreursTest";
+						}
+					}
+					else if(this.ongletActif === "ErreursTest"){
+						this.ongletActif = "ResultatTest";
+					}
+					else {
+						if(this.resultat_select.sortie_erreur){
+							this.ongletActif = "ErreursTest";
+						}
+						else{
+							this.ongletActif = "ResultatTest";
+						}
+					}
 				}
 			}
 		},
@@ -137,7 +141,7 @@ export default {
 			if(this.ongletActif === "ErreursTest" && !this.tentative?.resultats[index]?.sortie_erreur){
 				this.changerOnglet("ResultatTest");
 			}
-			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exec){
+			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exécution){
 				this.changerOnglet("ResultatTest");
 			}
 		},
@@ -146,11 +150,14 @@ export default {
 			if(this.index_select == -1) {
 				this.index_select = this.$store.state.question.tests.length - 1;
 			}
+			this.select( this.index_select );
 		},
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
+			this.select( this.index_select );
 		},
-		validerTest(index){
+		validerTestSélectionné(){
+			const index = this.index_select;
 			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
 
 			this.tests[index].envoyé = true;

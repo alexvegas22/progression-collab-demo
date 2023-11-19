@@ -47,7 +47,6 @@
 	display: flex;
 	flex-flow: column;
 	border: 1px solid rgba(var(--gris));
-	border-left: 0px;
 }
 
 .onglets-subséquents {

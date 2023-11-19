@@ -11,8 +11,8 @@ export default {
 			get: function () {
 				return this.$store.state.mode_affichage;
 			},
-			set: function (mode) {
-				this.$store.dispatch("setModeAffichage", mode);
+			set: async function (mode) {
+				await this.$store.dispatch("setModeAffichage", mode);
 				this.$emit("onModeChange", this.mode_affichage == 1 );
 			},
 		},
@@ -21,9 +21,9 @@ export default {
 		}
 	},
 	methods: {
-		changerModeAffichageAvecRaccourci() {
+		async changerModeAffichageAvecRaccourci() {
+			await this.$store.dispatch("basculerModeAffichage");
 			this.$emit("onModeChange", this.mode_affichage == 1 );
-			this.$store.dispatch("basculerModeAffichage");
 		},
 	}
 };

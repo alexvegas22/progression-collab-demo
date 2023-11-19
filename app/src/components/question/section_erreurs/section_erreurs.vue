@@ -1,9 +1,9 @@
 <template>
 	<div
 		v-if="résultat"
-		class="section-erreur"
+		class="section-erreur contenu"
 	>
-		<div class="full-flex column"
+		<div class="full-flex ffcolumn"
 			id="section-erreur"
 		>
 			<h5 class="text-danger font-weight-bold text-left card-title">
@@ -16,8 +16,11 @@
 				:feedback="résultat.feedback"
 				:estVisible="panneauAffiché"
 			/>
-			<div class="full-flex row" >
-				<pre>{{ résultat.sortie_erreur }}</pre>
+			<div class="full-flex ffrow" >
+				<pre
+					class="contenu card-text p-3">
+					<p class="sortie vide">{{ résultat.sortie_erreur }}</p>
+				</pre>
 			</div>
 		</div>
 	</div>

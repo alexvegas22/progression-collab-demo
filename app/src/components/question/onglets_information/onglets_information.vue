@@ -37,28 +37,56 @@
 						</Test>
 					</div>
 				</div>
-				<div class="full-flex column" style="align-items: center; height: fit-content">
+				<div class="full-flex ffcolumn" style="align-items: center; height: fit-content">
 					<BoutonSoumission/>
 				</div>
 			</div>
 		</template>
 		<template #droite>
-			<v-card class="full-flex column"
+			<v-card class="full-flex ffcolumn"
 			>
+				<div
+					v-shortkey="raccourcis.itérerOngletsDroite"
+					@shortkey="itérerOnglets(1)"
+				/>
+				<div
+					v-shortkey="raccourcis.itérerOngletsGauche"
+					@shortkey="itérerOnglets(-1)"
+				/>
+				<div
+					v-shortkey="raccourcis.itérerTestHaut"
+					@shortkey="basculerTestHaut"
+				/>
+				<div
+					v-shortkey="raccourcis.itérerTestBas"
+					@shortkey="basculerTestBas"
+				/>
+				<div
+					v-shortkey="raccourcis.lancerTestUnique"
+					@shortkey="validerTestSélectionné"
+				/>
 				<div >
 					<v-tabs
 						class="gris"
 						density="compact"
 						v-model="ongletActif"
 					>
-						<v-tab value="ResultatTest">
-							{{ $t("onglets_informations.entrées/sorties") }}
+						<v-tab value="ResultatTest"
+							:title="$t('onglets_informations.entrées/sorties.tooltip')"
+						>
+							{{ $t("onglets_informations.entrées/sorties.titre") }}
 						</v-tab>
-						<v-tab value="ErreursTest">
-							{{ $t("onglets_informations.erreurs") }}
+						<v-tab value="ErreursTest"
+							:title="$t('onglets_informations.erreurs.tooltip')"
+							v-show="resultat_select?.sortie_erreur"
+						>
+							{{ $t("onglets_informations.erreurs.titre") }}
 						</v-tab>
-						<v-tab value="DétailsTest">
-							{{ $t("onglets_informations.détails") }}
+						<v-tab value="DétailsTest"
+							:title="$t('onglets_informations.détails.tooltip')"
+							v-show="resultat_select?.temps_exécution"
+						>
+							{{ $t("onglets_informations.détails.titre") }}
 						</v-tab>
 					</v-tabs>
 				</div>

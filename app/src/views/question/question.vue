@@ -9,9 +9,8 @@
 			/>
 		</div>
 		<div
-			v-shortkey="raccourcis.réinitialiser"
-			@shortkey="réinitialiserTentativeAvecRaccourci"
-			class="full-flex"
+			class="full-flex ffrow"
+			style="padding: 7px"
 		>
 			<Diptyque droite="fixe" :size_gauche="taillePanneauÉnoncé" :size_droite="100-taillePanneauÉnoncé" @redimensionnéGauche="redimensionnéÉnoncé">
 				<template #gauche>
@@ -24,12 +23,11 @@
 						<template #entête_gauche v-if="question_type=='prog'">
 							<Avancement
 								présentation_étape="2"
-								:tentative-réinitialisée="tentativeRéinitialisée"
 								:title="$t('avancement.choixLangage')"
 							/>
 						</template>
 						<template #gauche>
-							<div v-if="question_type=='prog'" class="full-flex column">
+							<div v-if="question_type=='prog'" class="full-flex ffcolumn">
 								<EditeurCode style="flex-grow: 1; overflow: auto" 
 									v-if="tentative"
 									présentation_étape="1"
@@ -38,14 +36,15 @@
 									<RetroactionTentative/>
 								</div>
 							</div>
-							<div v-if="question_type=='sys' && tentative?.url_terminal" class="full-flex column">
+							<div v-if="question_type=='sys' && tentative?.url_terminal" class="full-flex ffcolumn">
 								<TTYShare :url="tentative.url_terminal">
 								</TTYShare>
 							</div>
 						</template>
-						<template #entête_droite>
-							<div class="full-flex row" >
-								<div>
+						<template #entête_droite
+						>
+							<div class="full-flex ffrow" >
+								<div style="width: fit-content">
 									{{ $t("jeu_tests.jeuTests") }}
 								</div>
 								<div>
@@ -56,26 +55,6 @@
 						<template #droite>
 							<onglets-information
 								présentation_étape="4"
-								:onglet-changé="ongletChangéRaccourci"
-								:test-sélectionné-haut="testSélectionnéHaut"
-								:test-sélectionné-bas="testSélectionnéBas"
-								:test-sélectionné-valider="testSélectionnéValider"
-							/>
-							<div
-								v-shortkey="raccourcis.itérerOnglets"
-								@shortkey="changerOngletAvecRaccourci"
-							/>
-							<div
-								v-shortkey="raccourcis.itérerTestHaut"
-								@shortkey="sélectionnerTestDuHautAvecRaccourci"
-							/>
-							<div
-								v-shortkey="raccourcis.itérerTestBas"
-								@shortkey="sélectionnerTestDuBasAvecRaccourci"
-							/>
-							<div
-								v-shortkey="raccourcis.lancerTestUnique"
-								@shortkey="lancerTestUniqueAvecRaccourci"
 							/>
 						</template>
 					</Diptyque>

@@ -19,11 +19,6 @@ export default {
 	data() {
 		return {
 			panneauCommentaireOuvert: false,
-			ongletChangéRaccourci: false,
-			testSélectionnéHaut: false,
-			testSélectionnéBas: false,
-			testSélectionnéValider: false,
-			tentativeRéinitialisée: false,
 		};
 	},
 	components: {
@@ -209,21 +204,6 @@ export default {
 		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
-		},
-		sélectionnerTestDuHautAvecRaccourci() {
-			this.testSélectionnéHaut = !this.testSélectionnéHaut;
-		},
-		sélectionnerTestDuBasAvecRaccourci() {
-			this.testSélectionnéBas = !this.testSélectionnéBas;
-		},
-		lancerTestUniqueAvecRaccourci() {
-			this.testSélectionnéValider = !this.testSélectionnéValider;
-		},
-		changerOngletAvecRaccourci() {
-			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
-		},
-		réinitialiserTentativeAvecRaccourci() {
-			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		},
 		redimensionnéÉnoncé( taille ) {
 			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0};
