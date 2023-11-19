@@ -19,8 +19,6 @@ export default {
 	data() {
 		return {
 			panneauCommentaireOuvert: false,
-			ongletChangéRaccourciDroite: false,
-			ongletChangéRaccourciGauche: false,
 			testSélectionnéHaut: false,
 			testSélectionnéBas: false,
 			testSélectionnéValider: false,
@@ -219,12 +217,6 @@ export default {
 		},
 		lancerTestUniqueAvecRaccourci() {
 			this.testSélectionnéValider = !this.testSélectionnéValider;
-		},
-		changerOngletAvecRaccourciDroite() {
-			this.ongletChangéRaccourciDroite = !this.ongletChangéRaccourciDroite;
-		},
-		changerOngletAvecRaccourciGauche() {
-			this.ongletChangéRaccourciGauche = !this.ongletChangéRaccourciGauche;
 		},
 		réinitialiserTentativeAvecRaccourci() {
 			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;

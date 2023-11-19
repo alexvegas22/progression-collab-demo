@@ -45,6 +45,14 @@
 		<template #droite>
 			<v-card class="full-flex ffcolumn"
 			>
+				<div
+					v-shortkey="raccourcis.itérerOngletsDroite"
+					@shortkey="itérerOnglets(1)"
+				/>
+				<div
+					v-shortkey="raccourcis.itérerOngletsGauche"
+					@shortkey="itérerOnglets(-1)"
+				/>
 				<div >
 					<v-tabs
 						class="gris"

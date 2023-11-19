@@ -17,8 +17,6 @@ export default {
 		Diptyque,
 	},
 	props: {
-		ongletChangéDroite: Boolean,
-		ongletChangéGauche: Boolean,
 		testSélectionnéHaut: Boolean,
 		testSélectionnéBas: Boolean,
 		testSélectionnéValider: Boolean,
@@ -82,18 +80,6 @@ export default {
 					}
 					this.changerOnglet("ResultatTest");
 				}
-			}
-		},
-		ongletChangéDroite: {
-			deep: true,
-			handler: function(){
-				this.itérerOnglets(1);
-			}
-		},
-		ongletChangéGauche: {
-			deep: true,
-			handler: function(){
-				this.itérerOnglets(-1);
 			}
 		},
 		testSélectionnéHaut: {
