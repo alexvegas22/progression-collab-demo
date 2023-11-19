@@ -13,7 +13,7 @@
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
 			>
-				{{ langage }}
+				{{ langage_capitalisé }}
 			</div>
 			<ul
 				id="langage-dropdown"
@@ -26,7 +26,7 @@
 					:key="langage"
 					class="dropdown-item dropdown-submenu"
 				>
-					<a>{{ langage }}</a>
+					<a>{{ capitalize(langage) }}</a>
 					
 					<div
 						class="dropdown-menu langage-submenu"

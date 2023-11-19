@@ -11,6 +11,9 @@ export default {
 		langage() {
 			return this.$store.state.tentative?.langage;
 		},
+		langage_capitalisé() {
+			return this.capitalize( this.langage );
+		},
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
@@ -36,6 +39,9 @@ export default {
 		},
 	},
 	methods: {
+		capitalize: function( chaîne ) {
+			return chaîne.charAt(0).toUpperCase() + chaîne.slice(1);
+		},
 		filtrerTentativesParLangage: function (langage) {
 			return this.tentatives.filter((item) => item.langage == langage);
 		},
