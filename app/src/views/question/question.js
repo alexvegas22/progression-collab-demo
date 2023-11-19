@@ -19,8 +19,6 @@ export default {
 	data() {
 		return {
 			panneauCommentaireOuvert: false,
-			testSélectionnéHaut: false,
-			testSélectionnéBas: false,
 			testSélectionnéValider: false,
 			tentativeRéinitialisée: false,
 		};
@@ -208,12 +206,6 @@ export default {
 		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
-		},
-		sélectionnerTestDuHautAvecRaccourci() {
-			this.testSélectionnéHaut = !this.testSélectionnéHaut;
-		},
-		sélectionnerTestDuBasAvecRaccourci() {
-			this.testSélectionnéBas = !this.testSélectionnéBas;
 		},
 		lancerTestUniqueAvecRaccourci() {
 			this.testSélectionnéValider = !this.testSélectionnéValider;

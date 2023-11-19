@@ -16,11 +16,7 @@ export default {
 		DétailsTest,
 		Diptyque,
 	},
-	props: {
-		testSélectionnéHaut: Boolean,
-		testSélectionnéBas: Boolean,
 		testSélectionnéValider: Boolean,
-	},
 	data() {
 		return {
 			ongletActif: "ResultatTest",
@@ -82,24 +78,11 @@ export default {
 				}
 			}
 		},
-		testSélectionnéHaut: {
-			deep: true,
-			handler: function(){
-				this.basculerTestHaut();
-			}
-		},
-		testSélectionnéBas: {
-			deep: true,
-			handler: function(){
-				this.basculerTestBas();
-			}
-		},
 		testSélectionnéValider: {
 			deep: true,
 			handler: function(){
 				this.validerTest(this.index_select);
 			}
-		},
 		envoiEnCours: {
 			deep: true,
 			handler: function(){

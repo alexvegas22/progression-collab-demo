@@ -53,6 +53,14 @@
 					v-shortkey="raccourcis.itérerOngletsGauche"
 					@shortkey="itérerOnglets(-1)"
 				/>
+				<div
+					v-shortkey="raccourcis.itérerTestHaut"
+					@shortkey="basculerTestHaut"
+				/>
+				<div
+					v-shortkey="raccourcis.itérerTestBas"
+					@shortkey="basculerTestBas"
+				/>
 				<div >
 					<v-tabs
 						class="gris"

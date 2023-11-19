@@ -58,17 +58,7 @@
 						<template #droite>
 							<onglets-information
 								présentation_étape="4"
-								:test-sélectionné-haut="testSélectionnéHaut"
-								:test-sélectionné-bas="testSélectionnéBas"
 								:test-sélectionné-valider="testSélectionnéValider"
-							/>
-							<div
-								v-shortkey="raccourcis.itérerTestHaut"
-								@shortkey="sélectionnerTestDuHautAvecRaccourci"
-							/>
-							<div
-								v-shortkey="raccourcis.itérerTestBas"
-								@shortkey="sélectionnerTestDuBasAvecRaccourci"
 							/>
 							<div
 								v-shortkey="raccourcis.lancerTestUnique"
