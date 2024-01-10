@@ -5,6 +5,7 @@ import "codemirror/mode/clike/clike";
 import "codemirror/mode/shell/shell";
 import "codemirror/mode/python/python";
 import "codemirror/mode/javascript/javascript";
+import "codemirror/mode/rust/rust";
 import "codemirror/mode/sql/sql";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
@@ -84,6 +85,8 @@ export default {
 				return "mode", "python";
 			} else if (value === "bash") {
 				return "mode", "shell";
+			} else if (value === "rust") {
+				return "mode", "text/rust";
 			} else if (value === "c") {
 				return "mode", "text/x-csrc";
 			} else if (value === "c#") {

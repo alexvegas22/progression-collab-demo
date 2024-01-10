@@ -42,7 +42,7 @@
 				</div>
 			</template>
 			<template #entête_droite>
-				<div style="display: flex; flex-flow: row; width: 100%">
+				<div style="display: flex; flex-flow: row; width: calc(100% + var(--largeur-boutons-entête) + 0.5rem )">
 					<div
 						v-if="!test.dirty"
 						class="titre-sorties">
