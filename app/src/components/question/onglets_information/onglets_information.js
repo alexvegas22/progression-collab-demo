@@ -157,7 +157,9 @@ export default {
 			this.select( this.index_select );
 		},
 		validerTestSélectionné(){
-			const index = this.index_select;
+			this.validerTest(this.index_select);
+		},
+		validerTest(index){
 			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
 
 			this.tests[index].envoyé = true;
