@@ -15,7 +15,13 @@ const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
 };
 
 const getTokenApi = async (urlAuth, identifiant, clé) => {
-	const token = (await postData(urlAuth, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret, data: { expiration: "+300", ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
+	const token = ( await postData( urlAuth, null, { identifiant: identifiant,
+	                                                 key_name: clé.nom,
+	                                                 key_secret: clé.secret,
+	                                                 data: { expiration: "+300",
+	                                                         ressources: { api: {
+		                                                         url: "^.*",
+		                                                         method: "^.*" } } } } ) ).data;
 	return token ? construireToken( token ): null;
 };
 

@@ -17,8 +17,7 @@ import {
 	postSauvegardeApi,
 	postTentative,
 	postTentativeSys,
-	postAuthKey,
-	postUserApi
+	postAuthKey
 } from "@/services/index.js";
 
 import {i18n, sélectionnerLocale} from "@/util/i18n";
@@ -273,7 +272,7 @@ export default {
 
 	async mettreÀJourUser( {commit}, params ){
 		return valider(async () => {
-			const user =  await postModifierUserApi( { url: params.url, user: params.user } , params.token );
+			const user =  await patchUserApi( { url: params.url, user: params.user } , params.token );
 			commit("setUser", user);
 			return user;
 		});
@@ -737,7 +736,7 @@ export default {
 
 		return valider( async () => {
 			const token = await this.dispatch("getToken");
-			await postUserApi({url: state.user.liens.self, user: getters.user, préférences: préférences }, token);
+			await patchUserApi({url: state.user.liens.self, user: getters.user}, token);
 		} );
 	},
 

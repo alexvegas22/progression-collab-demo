@@ -21,7 +21,7 @@
 								(v3-bêta)
 							</sup>
 							<span v-show="dev" title="interface expérimentale">
-							   🥼
+								🥼
 							</span>
 						</div>
 					</div>
