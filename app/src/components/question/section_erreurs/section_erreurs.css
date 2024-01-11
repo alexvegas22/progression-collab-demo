@@ -4,6 +4,7 @@
 }
 
 .section-erreur {
+	height: 100%;
 	flex: 1 1 0px;
 	flex-flow: column;
 }
@@ -11,6 +12,11 @@
 .margin-perfect-scrollbar {
     margin-top: -.5rem;
     padding-bottom: 2.5rem;
+}
+
+.titre{
+	width: 100%;
+	min-width: 50%;
 }
 
 pre {

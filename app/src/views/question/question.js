@@ -1,6 +1,7 @@
 import OngletsInformation from "@/components/question/onglets_information/onglets_information.vue";
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
+import EditeurToolbar from "@/components/question/editeur/toolbar.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
 import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
@@ -26,6 +27,7 @@ export default {
 		Enonce,
 		Avancement,
 		EditeurCode,
+		EditeurToolbar,
 		RetroactionTentative,
 		Présentation,
 		BoutonCommentaire,

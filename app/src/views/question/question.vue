@@ -21,10 +21,14 @@
 				<template #droite>
 					<Diptyque horizontal="true" droite="fixe" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
 						<template #entête_gauche v-if="question_type=='prog'">
-							<Avancement
-								présentation_étape="2"
-								:title="$t('avancement.choixLangage')"
-							/>
+							<div class="full-flex ffrow">
+								<Avancement
+									présentation_étape="2"
+									:title="$t('avancement.choixLangage')"
+									style="flex-grow: 1"
+								/>
+								<EditeurToolbar/>
+							</div>
 						</template>
 						<template #gauche>
 							<div v-if="question_type=='prog'" class="full-flex ffcolumn">

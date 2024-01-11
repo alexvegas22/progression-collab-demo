@@ -6,8 +6,8 @@
 			<div class="entête_panneau">
 				<slot name="entête"/>
 			</div>
-			<div class="d-flex theme_sombre contenu groupe_boutons">
 
+			<div class="d-flex theme_sombre contenu groupe_boutons">
 				<div :class="{invisible: état_max || état_min}" @click="minimiser" >
 					<slot name="min-icon">
 						<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
@@ -31,7 +31,6 @@
 						<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
 					</slot>
 				</div>
-
 			</div>
 		</div>
 		<div :class="{invisible: état_min, colonne: !horizontal, rangée: horizontal}" 
@@ -126,7 +125,7 @@ export default {
 <style scoped>
 
  .barre_titre {
-	 justify-content: right
+	 justify-content: left
  }
  
  .entête_panneau {
@@ -138,13 +137,15 @@ export default {
  .bordure {
 	max-height: 100%;
 	border: 1px solid rgba(var(--gris));
+	border-radius: 5px;
  }
 
  .groupe_boutons {
+	 position: asbolute;
 	 min-width: 2rem;
 	 padding: 0.1rem;
 	 padding-right: 0.5rem;
-	 position: absolute;
+	 border-radius: 5px;
 	 height: var(--hauteur-entête);
  }
  
