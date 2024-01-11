@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { mutations } from "./mutations";
+import { getCookie } from "@/util/cookie";
 import actions from "./actions";
 import getters from "./getters";
 
@@ -13,6 +14,7 @@ export default createStore({
 		changerModeAffichageAvecRaccourci: false,
 		configServeur: null,
 		démo: false,
+		dev: getCookie("fe_version")=="dev",
 		difficultésRéussies: [],
 		enChargement: 0,
 		conteneurEnChargement: 0,
