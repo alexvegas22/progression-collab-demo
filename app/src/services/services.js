@@ -19,14 +19,9 @@ const getTokenApi = async (urlAuth, identifiant, clé) => {
 	                                                 key_name: clé.nom,
 	                                                 key_secret: clé.secret,
 	                                                 data: { expiration: "+300",
-	                                                         ressources: {
-		                                                         api: {
-			                                                         url: "^.*",
-			                                                         method: "^.*"
-		                                                         }
-	                                                         }
-	                                                       }
-	                                               } ) ).data;
+	                                                         ressources: { api: {
+		                                                         url: "^.*",
+		                                                         method: "^.*" } } } } ) ).data;
 	return token ? construireToken( token ): null;
 };
 
