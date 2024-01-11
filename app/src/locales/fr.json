@@ -257,10 +257,19 @@
 	},
 
 	"onglets_informations": {
-		"entrées/sorties": "Entrées / Sorties",
-		"erreurs": "Erreurs",
+		"entrées/sorties": {
+			"tooltip": "Entrées et sorties du test",
+			"titre": "Entrées / Sorties"
+		},
+		"erreurs": {
+			"tooltip": "Sorties d'erreur du test",
+			"titre": "Erreurs"
+		},
 		"rétroactions": "Rétroaction",
-		"détails": "Détails"
+		"détails": {
+			"tooltip": "Détalis d'exécution du test",
+			"titre": "Détails"
+		}
 	},
 
 	"commentaire": {

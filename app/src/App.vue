@@ -20,6 +20,9 @@
 							<sup>
 								(v3-bêta)
 							</sup>
+							<span v-show="dev" title="interface expérimentale">
+							   🥼
+							</span>
 						</div>
 					</div>
 				</v-app-bar-title>
@@ -67,7 +70,7 @@
 
 			<DialogURL :ouvrir="dialogNouvelExercice" @ok="(url) => ouvrirNouvelExercice(url)" />
 
-			<router-view  />
+			<router-view class="contenu" />
 
 		</v-main>
 	</v-app>
@@ -97,6 +100,7 @@ export default {
 			cb_auth: null,
 			cb_auth_params: null,
 			dialogNouvelExercice: false,
+			dev: this.$store.getters.dev,
 		};
 	},
 	created() {

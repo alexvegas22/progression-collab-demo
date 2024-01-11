@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { mutations } from "./mutations";
+import { getCookie } from "@/util/cookie";
 import actions from "./actions";
 import getters from "./getters";
 
@@ -13,6 +14,7 @@ export default createStore({
 		changerModeAffichageAvecRaccourci: false,
 		configServeur: null,
 		démo: false,
+		dev: getCookie("fe_version")=="dev",
 		difficultésRéussies: [],
 		enChargement: 0,
 		conteneurEnChargement: 0,
@@ -28,6 +30,7 @@ export default createStore({
 		question: null,
 		sauvegardes: [],
 		tentative: null,
+		testsInitiaux: [],
 		thèmeSombre: false,
 		token: null,
 		tokenRessources : null,
@@ -39,7 +42,8 @@ export default createStore({
 			sauvegarde: "['ctrl', 's']",
 			basculerModeParDifférences: "['alt', 'd']",
 			basculerThème: "['ctrl', 'alt', 's']",
-			itérerOnglets: "['alt', 'w']",
+			itérerOngletsDroite: "['alt', 'tab']",
+			itérerOngletsGauche: "['alt', 'shift', 'tab']",
 			itérerTestBas: "['alt', 'arrowdown']",
 			itérerTestHaut: "['alt', 'arrowup']",
 			lancerTestUnique: "['alt', 'arrowright']",

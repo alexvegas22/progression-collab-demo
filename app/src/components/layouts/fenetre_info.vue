@@ -1,19 +1,13 @@
 <template>
-	<div
-		style="flex: 1 1 0; min-height: 0; flex-flow: column"
+	<header v-if="$slots.titre"
+		class="bordure-titre p-1"
 		:class="{ thème_sombre: thèmeSombre }"
-		class="bordure-fenetre d-flex"
 	>
-		<header v-if="$slots.titre"
-			class="bordure-titre p-1"
-			:class="{ thème_sombre: thèmeSombre }"
-		>
-			<slot name="titre" />
-		</header>
-		<perfect-scrollbar>
-			<slot />
-		</perfect-scrollbar>
-	</div>
+		<slot name="titre" />
+	</header>
+	<perfect-scrollbar style="height: 100%">
+		<slot />
+	</perfect-scrollbar>
 </template>
 
 <script src="./fenetre_info.js"></script>

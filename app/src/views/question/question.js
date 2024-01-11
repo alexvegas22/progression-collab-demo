@@ -1,12 +1,14 @@
 import OngletsInformation from "@/components/question/onglets_information/onglets_information.vue";
 import Enonce from "@/components/question/enonce/enonce.vue";
 import EditeurCode from "@/components/question/editeur/editeur.vue";
+import EditeurToolbar from "@/components/question/editeur/toolbar.vue";
 import RetroactionTentative from "@/components/question/retroaction_tentative/retroaction_tentative.vue";
 import Présentation from "@/components/question/présentation/présentation.vue";
 import BoutonCommentaire from "@/components/question/commentaires/bouton.vue";
 import PanneauCommentaire from "@/components/question/commentaires/sidebar.vue";
 import Avancement from "@/components/question/avancement/avancement.vue";
 import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
+import BoutonRéinitialiserTests from "@/components/question/bouton_réinitialiser_tests/bouton_réinitialiser_tests.vue";
 import TTYShare from "@/components/question/ttyshare/ttyshare.vue";
 import jwt_decode from "jwt-decode";
 import Diptyque from "@/components/diptyque/diptyque.vue";
@@ -18,11 +20,6 @@ export default {
 	data() {
 		return {
 			panneauCommentaireOuvert: false,
-			ongletChangéRaccourci: false,
-			testSélectionnéHaut: false,
-			testSélectionnéBas: false,
-			testSélectionnéValider: false,
-			tentativeRéinitialisée: false,
 		};
 	},
 	components: {
@@ -30,10 +27,12 @@ export default {
 		Enonce,
 		Avancement,
 		EditeurCode,
+		EditeurToolbar,
 		RetroactionTentative,
 		Présentation,
 		BoutonCommentaire,
 		BoutonSoumission,
+		BoutonRéinitialiserTests,
 		PanneauCommentaire,
 		Diptyque,
 		TTYShare,
@@ -95,7 +94,7 @@ export default {
 		},
 		avancement: function (){
 			if (this.$store.state.question?.sous_type == "questionSys"){
-				this.$store.dispatch("soumettreTentative");
+				this.$store.dispatch("soumettreTentative", true);
 			}
 		},
 		resultats: function (){
@@ -207,21 +206,6 @@ export default {
 		},
 		basculerMenuCommentaire() {
 			this.panneauCommentaireOuvert = !this.panneauCommentaireOuvert;
-		},
-		sélectionnerTestDuHautAvecRaccourci() {
-			this.testSélectionnéHaut = !this.testSélectionnéHaut;
-		},
-		sélectionnerTestDuBasAvecRaccourci() {
-			this.testSélectionnéBas = !this.testSélectionnéBas;
-		},
-		lancerTestUniqueAvecRaccourci() {
-			this.testSélectionnéValider = !this.testSélectionnéValider;
-		},
-		changerOngletAvecRaccourci() {
-			this.ongletChangéRaccourci = !this.ongletChangéRaccourci;
-		},
-		réinitialiserTentativeAvecRaccourci() {
-			this.tentativeRéinitialisée = !this.tentativeRéinitialisée;
 		},
 		redimensionnéÉnoncé( taille ) {
 			const disposition = this.$store.getters?.préférences?.disposition ?? {énoncé: 0};

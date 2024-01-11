@@ -16,9 +16,7 @@ export default {
 	},
 	methods: {
 		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {
-				tentativeCourante: this.$store.state.tentative
-			});
+			this.$store.dispatch("soumettreTentative", false );
 		},
 	}
 };

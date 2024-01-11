@@ -22,6 +22,7 @@ import {
 } from "@/services/index.js";
 
 import {i18n, sélectionnerLocale} from "@/util/i18n";
+import {copie_profonde} from "@/util/commun.js";
 import jwt_decode from "jwt-decode";
 
 var validateur = (v) => v;
@@ -241,6 +242,7 @@ export default {
 			commit("setEnChargement", true);
 			try {
 				const token = await authentifierApi(urlAuth, identifiant, password, domaine);
+				console.log(token);
 				commit("setToken", token);
 
 				// Obtenir l'utilisateur
@@ -489,7 +491,7 @@ export default {
 		);
 	},
 
-	async soumettreTentative({ commit, state, getters }) {
+	async soumettreTentative({ commit, state, getters }, première = false) {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("setRésultats", [] );
 		commit("setFeedback", null );
@@ -500,7 +502,13 @@ export default {
 				const token = await this.dispatch("getToken");
 				var tentative = null;
 				if(getters.question_type == "sys"){
-					tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+					if(première) {
+						tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+						tentative.resultats = null;
+					}
+					else {
+						tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+					}
 				}
 				else{
 					tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
@@ -626,6 +634,10 @@ export default {
 			resultats: [],
 			tests_réussis: null
 		});
+	},
+
+	réinitialiserTests({ commit, state }){
+		commit("setTests", copie_profonde( state.testsInitiaux ) );
 	},
 
 	setToken({ commit }, token) {

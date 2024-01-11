@@ -1,5 +1,5 @@
 <template>
-	<v-sheet>
+	<v-sheet style="overflow: scroll">
 		<!-- Navigation-->
 		<!-- 
 	     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">

@@ -6,8 +6,6 @@ import Test from "@/components/question/test/test.vue";
 import BoutonSoumission from "@/components/question/bouton_soumission/boutonSoumission.vue";
 import Diptyque from "@/components/diptyque/diptyque.vue";
 
-import {copie_profonde} from "@/util/commun.js";
-
 export default {
 	components: {
 		Test,
@@ -18,12 +16,6 @@ export default {
 		DétailsTest,
 		Diptyque,
 	},
-	props: {
-		ongletChangé: Boolean,
-		testSélectionnéHaut: Boolean,
-		testSélectionnéBas: Boolean,
-		testSélectionnéValider: Boolean,
-	},
 	data() {
 		return {
 			ongletActif: "ResultatTest",
@@ -33,21 +25,12 @@ export default {
 		};
 	},
 	emits: ["validerTentative"],
-	mounted() {
-		this.testsInitiaux =  copie_profonde(this.$store.state.question.tests);
-	},
 	computed: {
 		raccourcis() {
 			return this.$store.state.raccourcis;
 		},
 		resultats() {
-			if(!this.$store.state.question || !this.$store.state.tentative?.resultats) return [];
-			var res = [];
-			for (var i = 0; i < this.$store.state.question.tests.length; i++) {
-				var résultat = this.tentative?.resultats[i]?.résultat;
-				res.push(résultat);
-			}
-			return res;
+			return this.$store.getters.résultats;
 		},
 		question_type() {
 			return this.$store.getters.question_type;
@@ -72,9 +55,6 @@ export default {
 		envoiEnCours() {
 			return this.$store.state.envoiTentativeEnCours;
 		},
-		dirty(){
-			return (this.resultats?.filter( t => t!=null ).length + this.tests.filter( t => t.dirty===true ).length) > 0;
-		},
 		envoiTestUnique(){
 			return this.tests?.filter( t => t?.envoyé!=null).length > 0;
 		}
@@ -97,52 +77,62 @@ export default {
 				}
 			}
 		},
-		testSélectionnéHaut: {
-			deep: true,
-			handler: function(){
-				this.basculerTestHaut();
-			}
-		},
-		testSélectionnéBas: {
-			deep: true,
-			handler: function(){
-				this.basculerTestBas();
-			}
-		},
-		testSélectionnéValider: {
-			deep: true,
-			handler: function(){
-				this.validerTest(this.index_select);
-			}
-		},
 		envoiEnCours: {
 			deep: true,
 			handler: function(){
 				if(this.envoiEnCours === true){
-					this.réinitialiserTests();
+					this.$store.dispatch("réinitialiserTests");
 				}
 			}
 		},
+		index_select() {
+			this.select(this.index_select);
+		}
 	},
 	methods: {
 		changerOnglet( onglet ){
 			this.ongletActif = onglet;
 		},
-		itérerOnglets() {
-			if(this.resultat_select){
-				if(this.ongletActif === "ResultatTest") {
-					if(this.resultat_select.sortie_erreur){
-						this.ongletActif = "ErreursTest";
+		itérerOnglets(direction) {
+			if( direction > 0 ) {
+				if(this.resultat_select){
+					if(this.ongletActif === "ResultatTest") {
+						if(this.resultat_select.sortie_erreur){
+							this.ongletActif = "ErreursTest";
+						}
+						else{
+							this.ongletActif = "DétailsTest";
+						}
 					}
-					else{
+					else if(this.ongletActif === "ErreursTest"){
 						this.ongletActif = "DétailsTest";
 					}
+					else {
+						this.ongletActif = "ResultatTest";
+					}
 				}
-				else if(this.ongletActif === "ErreursTest"){
-					this.ongletActif = "DétailsTest";
-				}
-				else {
-					this.ongletActif = "ResultatTest";
+			}
+			else {
+				if(this.resultat_select){
+					if(this.ongletActif === "ResultatTest") {
+						if(this.resultat_select.temps_exécution){
+							this.ongletActif = "DétailsTest";
+						}
+						else if(this.resultat_select.sortie_erreur){
+							this.ongletActif = "ErreursTest";
+						}
+					}
+					else if(this.ongletActif === "ErreursTest"){
+						this.ongletActif = "ResultatTest";
+					}
+					else {
+						if(this.resultat_select.sortie_erreur){
+							this.ongletActif = "ErreursTest";
+						}
+						else{
+							this.ongletActif = "ResultatTest";
+						}
+					}
 				}
 			}
 		},
@@ -151,7 +141,7 @@ export default {
 			if(this.ongletActif === "ErreursTest" && !this.tentative?.resultats[index]?.sortie_erreur){
 				this.changerOnglet("ResultatTest");
 			}
-			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exec){
+			if(this.ongletActif === "DétailsTest" && !this.tentative?.resultats[index]?.temps_exécution){
 				this.changerOnglet("ResultatTest");
 			}
 		},
@@ -160,9 +150,14 @@ export default {
 			if(this.index_select == -1) {
 				this.index_select = this.$store.state.question.tests.length - 1;
 			}
+			this.select( this.index_select );
 		},
 		basculerTestBas(){
 			this.index_select = ( this.index_select + 1 ) % this.$store.state.question.tests.length;
+			this.select( this.index_select );
+		},
+		validerTestSélectionné(){
+			this.validerTest(this.index_select);
 		},
 		validerTest(index){
 			if(this.envoiEnCours || this.tests[index]?.envoyé ) return;
@@ -185,11 +180,6 @@ export default {
 			}).finally( () => {
 				this.tests[index].envoyé = false;
 			});
-		},
-		réinitialiserTests(){
-			this.$store.dispatch("setTests", copie_profonde(this.testsInitiaux));
-			this.$store.dispatch("setRésultats", []);
-			this.changerOnglet( "ResultatTest" );
 		},
 	},
 };

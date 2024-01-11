@@ -1,12 +1,15 @@
 .btn-valider {
 	height: 2rem;
 	min-width: max-content;
-	margin: 1rem;
+	width: max-content;
+	margin: 0.5rem;
 	padding: 0.5rem;
 	border-radius: 25px;
 	background-color: rgb(37, 177, 34);
+	align-items: center;
+	display: flex;
+	flex-flow: row;
 }
-
 .btn-valider:hover {
 	transform: scale(1.05);
 }

@@ -3,7 +3,6 @@ export default {
 	props: {
 		thèmeSombre: Boolean,
 		pleinÉcran: Boolean,
-		tentativeRéinitialisée: Boolean,
 	},
 	emits: ["basculéPanneauÉditeur"],
 	inject: ["avancement"],
@@ -11,31 +10,23 @@ export default {
 		langage() {
 			return this.$store.state.tentative?.langage;
 		},
+		langage_capitalisé() {
+			return this.capitalize( this.langage );
+		},
 		tentatives() {
 			return this.$store.state.avancement.tentatives ?? [];
 		},
 		langages() {
 			return Object.keys(this.$store.state.question.ebauches);
 		},
-		réinitialiserTentativeAvecRaccourci() {
-			return this.$store.state.réinitialiserTentativeAvecRaccourci;
-		}
-	},
-	watch:{
-		réinitialiserTentativeAvecRaccourci() {
-			if(this.réinitialiserTentativeAvecRaccourci === true){
-				this.reinitialiserCodeEditeurRaccourcis(this.langage);
-				this.$store.dispatch("setRéinitialiserTentativeAvecRaccourci",false);
-			}
-		},
-		tentativeRéinitialisée: {
-			deep: true,
-			handler: function(){
-				this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
-			}
+		raccourcis() {
+			return this.$store.state.raccourcis;
 		},
 	},
 	methods: {
+		capitalize: function( chaîne ) {
+			return chaîne.charAt(0).toUpperCase() + chaîne.slice(1);
+		},
 		filtrerTentativesParLangage: function (langage) {
 			return this.tentatives.filter((item) => item.langage == langage);
 		},
@@ -81,9 +72,6 @@ export default {
 					ref: ref,
 				},
 			});
-		},
-		reinitialiserCodeEditeurRaccourcis(){
-			this.reinitialiserCodeEditeur(this.$store.state.tentative.langage);
 		},
 	},
 };

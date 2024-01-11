@@ -5,6 +5,7 @@ import "codemirror/mode/clike/clike";
 import "codemirror/mode/shell/shell";
 import "codemirror/mode/python/python";
 import "codemirror/mode/javascript/javascript";
+import "codemirror/mode/rust/rust";
 import "codemirror/mode/sql/sql";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/monokai.css";
@@ -24,14 +25,10 @@ export default {
 			sauvegardeAutomatique: null,
 			zonesTraitées: false,
 			cm: null,
-			xray: this.$store.getters?.préférences?.xray && this.$store.getters.indicateursDeFonctionnalité("tout_voir"),
-			pressePapier: navigator.clipboard,
-			copié: false
 		};
 	},
 	watch: {
 		xray() {
-			this.$store.dispatch("setPréférences", {xray: this.xray} );
 			if(!this.xray){
 				this.traiterZones();
 			}
@@ -44,6 +41,9 @@ export default {
 		}
 	},
 	computed: {
+		xray() {
+			return this.$store.getters?.préférences?.xray && this.$store.getters.indicateursDeFonctionnalité("tout_voir");
+		},
 		raccourcis() {
 			return this.$store.getters.raccourcis;
 		},
@@ -71,7 +71,7 @@ export default {
 		},
 		mode() {
 			const value = this.$store.state.tentative.langage.toLowerCase();
-		
+
 			if (value === "java") {
 				return "mode", "text/x-java";
 			} else if (value === "javascript") {
@@ -84,6 +84,8 @@ export default {
 				return "mode", "python";
 			} else if (value === "bash") {
 				return "mode", "shell";
+			} else if (value === "rust") {
+				return "mode", "text/rust";
 			} else if (value === "c") {
 				return "mode", "text/x-csrc";
 			} else if (value === "c#") {
@@ -95,9 +97,6 @@ export default {
 			} else {
 				return "mode", value;
 			}
-		},
-		rôleÉditeur() {
-			return this.$store.getters.indicateursDeFonctionnalité("tout_voir");
 		},
 		icone_sauvegarde() {
 			return this.indicateurSauvegardeEnCours ? "mdi-pencil-outline" : this.indicateurModifié ? "mdi-pencil" : "";
@@ -130,19 +129,6 @@ export default {
 		window.removeEventListener("beforeunload", this.beforeWindowUnload);
 	},
 	methods: {
-		copy() {
-			if(this.pressePapier) {
-				const code = this.$store.getters.tentative.code.split("\n").filter( (ligne) => {
-					return (ligne.match(/[+-]TODO|VISIBLE/g) || []).length !=1;
-				}).join("\n").replace( /[+-]TODO|VISIBLE/g, "" );
-
-				this.pressePapier.writeText( code );
-				this.copié=true;
-			}
-			setTimeout( () =>{
-				this.copié=false;
-			}, 1000 );
-		},
 		onReady( cm ){
 			cm.on("beforeChange",  this.onBeforeChange);
 			cm.on("change",  this.onChange);
@@ -196,10 +182,10 @@ export default {
 
 			// Si la zone marquée a été effacée
 			if( mark.from.line == changeObj.from.line
-			 && mark.to.line == changeObj.to.line
-			 && mark.from.ch == changeObj.from.ch
-			 && mark.to.ch == changeObj.to.ch
-			 && changeObj.text == "" ) {
+			    && mark.to.line == changeObj.to.line
+			    && mark.from.ch == changeObj.from.ch
+			    && mark.to.ch == changeObj.to.ch
+			    && changeObj.text == "" ) {
 				changeObj.update( mark.from, mark.to, " " );
 			}
 		},
@@ -260,8 +246,8 @@ export default {
 		},
 
 		traiterZones() {
-		    zones.cacherHorsVisible(this.cm.doc);
-		    zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
+			zones.cacherHorsVisible(this.cm.doc);
+			zones.désactiverHorsTodo(this.cm.doc, this.$store.getters.thèmeSombre?"#272822":"white");
 		},
 
 		async sauvegarder() {
