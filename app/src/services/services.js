@@ -1,4 +1,4 @@
-import { getData, postData, putData } from "@/services/request_services";
+import { getData, postData, putData, patchData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
 	const urlUser = (await postData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine })).data.links.user;
@@ -9,27 +9,40 @@ const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
 };
 
 const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
-	const token = (await putData(urlInscription, null, { username: identifiant, courriel: courriel, password: mdp })).data;
+	const token = (await putData(urlInscription.replace("{id}", identifiant), null, { username: identifiant, courriel: courriel, password: mdp })).data;
 
 	return token ? construireToken( token ): null;
 };
 
 const getTokenApi = async (urlAuth, identifiant, clé) => {
-	const token = (await postData(urlAuth, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret, data: { expiration: "+300", ressources: { api: { url: "^.*", method: "^.*" } } } })).data;
+	const token = ( await postData( urlAuth, null, { identifiant: identifiant,
+	                                                 key_name: clé.nom,
+	                                                 key_secret: clé.secret,
+	                                                 data: { expiration: "+300",
+	                                                         ressources: {
+		                                                         api: {
+			                                                         url: "^.*",
+			                                                         method: "^.*"
+		                                                         }
+	                                                         }
+	                                                       }
+	                                               } ) ).data;
 	return token ? construireToken( token ): null;
 };
 
-const getConfigServeurApi = async (urlConfig) => {
-	return getData(urlConfig).then((data) => {
-		return construireConfig( data );
-	});
+const getConfigServeurApi = async (urlConfig, token, {identifiant, clé}) => {
+	if(token){
+		return construireConfig( (await getData(urlConfig, null, token) ).data );
+	}
+	else if( identifiant && clé ){
+		return construireConfig( (await postData(urlConfig, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret })).data );
+	}
+	else return null;
 };
 
 const getUserApi = async (urlUser, token) => {
 	const query = { include: "avancements" };
-	return getData(urlUser, query, token).then((data) => {
-		return construireUser( data );
-	});
+	return construireUser( await getData( urlUser, query, token ) );
 };
 
 const getUserAvecTentativesApi = async (urlUser, token) => {
@@ -114,10 +127,10 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 	return avancement;
 };
 
-const postModifierUserApi = async (params, token) => {
+const patchUserApi = async (params, token) => {
 	const url = params.url;
-	const body = params.user;
-	const data = await postData(url, null, body, token);
+	const user = params.user;
+	const data = await patchData(url, null, {préférences: JSON.stringify(user.préférences)}, token);
 	return construireUser( data );
 };
 
@@ -274,7 +287,7 @@ function construireSauvegarde(item) {
 }
 
 function construireConfig(item) {
-	var config = item.data.attributes.config;
+	var config = item.attributes.config;
 	config.liens = item.links;
 
 	return config;
@@ -324,7 +337,7 @@ export {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
-	postModifierUserApi,
+	patchUserApi,
 	postCommentaireApi,
 	postRésultat,
 	postSauvegardeApi,

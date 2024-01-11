@@ -1,8 +1,7 @@
 import axios from "axios";
 
-async function getData(url, query = null, token = null, config = null) {
+function conf(token, query, config) {
 	let conf = {
-		url: url,
 		params: query,
 		...config
 	};
@@ -11,42 +10,23 @@ async function getData(url, query = null, token = null, config = null) {
 		conf.headers = { Authorization: "Bearer " + token.jwt };
 	}
 
-	const réponse = await axios.request(conf);
-	return réponse.data;
+	return conf;
+}
+
+async function getData(url, query = null, token = null, config = null) {
+	return (await axios.get(url, conf(token, query, config))).data;
 }
 
 async function postData(url, query = null, data = null, token = null, config = null) {
-	let conf = {
-		url: url,
-		method: "post",
-		params: query,
-		data: data,
-		...config
-	};
-
-	if (token) {
-		conf.headers = { Authorization: "Bearer " + token.jwt };
-	}
-
-	const réponse = await axios.request(conf);
-	return réponse.data;
+	return (await axios.post(url, data, conf(token, query, config))).data;
 }
 
 async function putData(url, query = null, data = null, token = null, config = null) {
-	let conf = {
-		url: url,
-		method: "put",
-		params: query,
-		data: data,
-		...config
-	};
-
-	if (token) {
-		conf.headers = { Authorization: "Bearer " + token.jwt };
-	}
-
-	const réponse = await axios.request(conf);
-	return réponse.data;
+	return (await axios.put(url, data, conf(token, query, config))).data;
 }
 
-export { getData, postData, putData };
+async function patchData(url, query = null, data = null, token = null, config = null) {
+	return (await axios.patch(url, data, conf(token, query, config))).data;
+}
+
+export { getData, postData, putData, patchData };

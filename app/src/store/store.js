@@ -26,7 +26,6 @@ export default createStore({
 		langageDéfaut: null,
 		mode_affichage: 0,
 		nbRéussitesParLangage: [],
-		préférences: [],
 		question: null,
 		sauvegardes: [],
 		tentative: null,

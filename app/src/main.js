@@ -113,7 +113,4 @@ unleash.on("update", () => {
 
 unleash.start();
 
-
-store.dispatch("récupérerConfigServeur", import.meta.env.VITE_API_URL);
-
 router.isReady().then( () => app.mount("#app"));

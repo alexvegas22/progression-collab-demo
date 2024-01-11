@@ -35,6 +35,9 @@ export default {
 		config_serveur(){
 			return this.$store.getters.configServeur;
 		},
+		inscription_locale(){
+			return this.$store.getters.configServeur.liens.inscrire;
+		},
 		auth_local(){
 			return this.config_serveur.AUTH.LOCAL;
 		},
