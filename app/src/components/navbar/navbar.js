@@ -69,7 +69,7 @@ export default {
 			return this.$store.getters.indicateursDeFonctionnalité("version_test");
 		},
 		versionTest(){
-			return this.$store.getters.dev;;
+			return this.$store.getters.dev;
 		},
 		thèmeSombre() {
 			return this.$store.getters.thèmeSombre;
