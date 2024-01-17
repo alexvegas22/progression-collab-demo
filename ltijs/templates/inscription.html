@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="card">
+			<div class="card-body">
+				<form method="post">
+					<div class="card">
+						<div class="card-body">
+							 Veuillez fournir les coordonnées du responsable de votre plateforme :
+						</div>
+					</div>
+					<label for="nom" class="form-label">Nom: </label>
+					<input name="nom" id="nom" class="form-control">
+					<label for="email" class="form-label">Courriel: </label>
+					<input name="email" id="email" type="email" class="form-control">
+					<input type="submit" value="S'inscrire">
+					<input type="hidden" name="openid_configuration" value="{{openid_configuration}}">
+					<input type="hidden" name="registration_token" value="{{registration_token}}">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

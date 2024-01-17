@@ -11,7 +11,7 @@
 			class="section-erreur contenu"
 		>
 			<div class="full-flex ffcolumn"
-						id="section-erreur"
+				id="section-erreur"
 			>
 				<Ampoule 
 					v-if="résultat.sortie_erreur && résultat.feedback"
