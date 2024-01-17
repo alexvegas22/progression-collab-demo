@@ -56,7 +56,7 @@ lti.setup(
 			name: "Progression",
 			logo: process.env.URL_BASE + "/favicon.ico",
 			description: "Un exerciseur conçu pour aider l'apprentissage de la programmation par la pratique",
-			autoActive: true
+			autoActivate: true
 		}
 	},
 );
