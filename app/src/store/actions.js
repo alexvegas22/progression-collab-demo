@@ -214,7 +214,7 @@ export default {
 				const authKey = récupérerCléSauvegardée();
 				const username = récupérerUsername();
 				if( username && authKey ) {
-					config = await getConfigServeurApi(urlConfig, null, {identifiant: username, clé: authKey});
+					config = await getConfigServeurApi(urlConfig, null, username, authKey );
 				}
 				else{
 					config = await getConfigServeurApi(urlConfig);
@@ -236,7 +236,7 @@ export default {
 			commit("setEnChargement", true);
 			commit("setUsername", username);
 			try {
-				return await inscrireApi(urlInscription.url, username, courriel, motDePasse);
+				return await inscrireApi(urlInscription, username, courriel, motDePasse);
 			}
 			finally {
 				commit("setEnChargement", false);

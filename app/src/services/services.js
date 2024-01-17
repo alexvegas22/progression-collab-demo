@@ -9,7 +9,7 @@ const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
 };
 
 const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
-	const token = (await putData(urlInscription.replace("{id}", identifiant), null, { username: identifiant, courriel: courriel, password: mdp })).data;
+	const token = (await putData(urlInscription.replace("{username}", identifiant), null, { username: identifiant, courriel: courriel, password: mdp })).data;
 
 	return token ? construireToken( token ): null;
 };
@@ -25,14 +25,16 @@ const getTokenApi = async (urlAuth, identifiant, clé) => {
 	return token ? construireToken( token ): null;
 };
 
-const getConfigServeurApi = async (urlConfig, token, {identifiant, clé}) => {
+const getConfigServeurApi = async (urlConfig, token, identifiant, clé) => {
 	if(token){
 		return construireConfig( (await getData(urlConfig, null, token) ).data );
 	}
 	else if( identifiant && clé ){
 		return construireConfig( (await postData(urlConfig, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret })).data );
 	}
-	else return null;
+	else {
+		return construireConfig( (await getData(urlConfig) ).data );
+	}
 };
 
 const getUserApi = async (urlUser, token) => {
@@ -125,7 +127,7 @@ const getAvancementApi = async (url, token, tokenRessources) => {
 const patchUserApi = async (params, token) => {
 	const url = params.url;
 	const user = params.user;
-	const data = await patchData(url, null, {préférences: JSON.stringify(user.préférences)}, token);
+	const data = await patchData(url, null, {état: user.état, préférences: JSON.stringify(user.préférences)}, token);
 	return construireUser( data );
 };
 
