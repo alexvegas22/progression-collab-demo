@@ -31,7 +31,7 @@ const getConfigServeurApi = async (urlConfig, token, identifiant, clé) => {
 		return construireConfig( (await getData(urlConfig, null, token.jwt) ).data );
 	}
 	else if( identifiant && clé ){
-		return construireConfig( (await postData(urlConfig, null, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret })).data );
+		return construireConfig( (await getData(urlConfig, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret })).data );
 	}
 	else {
 		return construireConfig( (await getData(urlConfig) ).data );
