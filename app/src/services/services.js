@@ -9,13 +9,14 @@ const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
 };
 
 const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
-	const token = (await putData(urlInscription.replace("{username}", identifiant), null, { username: identifiant, courriel: courriel, password: mdp }, )).data;
+	const token = (await postData(urlInscription, null, { username: identifiant, courriel: courriel, password: mdp } )).data;
 
 	return token ? construireToken( token ): null;
 };
 
 const getTokenApi = async (urlAuth, identifiant, clé) => {
 	const token = ( await postData( urlAuth,
+	                                null,
 	                                {data: { expiration: "+300",
 	                                         ressources: { api: {
 		                                         url: "^.*",

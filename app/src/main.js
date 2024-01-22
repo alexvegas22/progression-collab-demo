@@ -68,6 +68,7 @@ store.subscribe( (mutation) => {
 app.use(i18n);
 
 const authentificationErreurHandler = function() {
+	store.dispatch("déconnexion");
 	if ( router.currentRoute.value.name != "LoginView" ) {
 		router.push({
 			name: "LoginView",

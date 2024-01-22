@@ -287,6 +287,20 @@ export default {
 		);
 	},
 
+	async déconnexion({commit}){
+		sessionStorage.removeItem("authKey_nom");
+		sessionStorage.removeItem("authKey_secret");
+		localStorage.removeItem("authKey_nom");
+		localStorage.removeItem("authKey_secret");
+		sessionStorage.removeItem("token");
+		localStorage.removeItem("username");
+		sessionStorage.removeItem("username");
+
+		commit("setUsername", null);
+		commit("setUser", null);
+		commit("setToken", null);
+	},
+
 	async mettreÀJourUser( {commit}, params ){
 		return valider(async () => {
 			const user =  await patchUserApi( { url: params.url, user: params.user } , params.token );
