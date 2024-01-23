@@ -42,18 +42,15 @@ async function rafraîchirToken() {
 			const lien_tokens = store.getters.user?.liens?.tokens ?? store.getters.configServeur?.liens?.tokens;
 			if(lien_tokens){
 				const token = await getTokenApi(lien_tokens, username, authKey);
-				sauvegarderToken(token);
 				return token;
 			}
 			return null;
 		}
 		catch(err) {
-			sauvegarderToken(null);
 			console.log(err);
 			throw err;
 		}
 	} else {
-		sauvegarderToken(null);
 		const err = new Error("Clé d'authentification non disponible");
 		console.log(err);
 		throw err;
@@ -72,11 +69,6 @@ function récupérerCléSauvegardée() {
 		return { nom: localStorage.getItem("authKey_nom"), secret: localStorage.getItem("authKey_secret") };
 
 	return null;
-}
-
-function sauvegarderToken(token) {
-	if (localStorage.getItem("token")) localStorage.setItem("token", token);
-	else sessionStorage.setItem("token", token);
 }
 
 function générerAuthKey(user, token, expiration = 0) {
@@ -267,8 +259,6 @@ export default {
 				const storage = persister ? localStorage : sessionStorage;
 				storage.setItem("username", user.username);
 
-				sessionStorage.setItem("token", token);
-
 				// Obtenir la clé d'authentification
 				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
@@ -292,7 +282,6 @@ export default {
 		sessionStorage.removeItem("authKey_secret");
 		localStorage.removeItem("authKey_nom");
 		localStorage.removeItem("authKey_secret");
-		sessionStorage.removeItem("token");
 		localStorage.removeItem("username");
 		sessionStorage.removeItem("username");
 
