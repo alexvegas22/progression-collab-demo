@@ -224,17 +224,16 @@ export default {
 		const username = params.identifiant;
 		const motDePasse = params.password;
 
-		return valider(async () => {
-			commit("setEnChargement", true);
-			commit("setUsername", username);
-			try {
-				return await inscrireApi(urlInscription, username, courriel, motDePasse);
-			}
-			finally {
-				commit("setEnChargement", false);
-				commit("updateAuthentificationEnCours", false);
-			}
-		});
+		commit("setEnChargement", true);
+		commit("setUsername", username);
+		try {
+			return await inscrireApi(urlInscription, username, courriel, motDePasse);
+		}
+		finally {
+			commit("setEnChargement", false);
+			commit("updateAuthentificationEnCours", false);
+		}
+
 	},
 
 	async authentifier({ commit }, params) {
