@@ -17,10 +17,21 @@ const userSchema = new mongoose.Schema({
 });
 userSchema.index({ userId: 1 }, { unique: true });
 
+const platformContact = new mongoose.Schema({
+	platformUrl: String,
+	name: String,
+	email: String
+});
+
 try {
 	mongoose.model("user", userSchema);
 } catch (err) {
-	provMainDebug("Model already registered. Continuing");
+	provMainDebug("Model userSchema already registered. Continuing");
+}
+try {
+	mongoose.model("platformContact", platformContact);
+} catch (err) {
+	provMainDebug("Model platformContact already registered. Continuing");
 }
 
 lti.setup(
@@ -38,7 +49,15 @@ lti.setup(
 			secure: false, // Set secure to true if the testing platform is in a different domain and https is being used
 			sameSite: "", // Set sameSite to 'None' if the testing platform is in a different domain and https is being used
 		},
-		devMode: true, // Set DevMode to true if the testing platform is in a different domain and https is not being used
+		devMode: true, // Set DevMode to true if the testing platform is in a different domain and https is not being used,
+		dynRegRoute: "/lti/register",
+		dynReg:  {
+			url: process.env.URL_BASE,
+			name: "Progression",
+			logo: process.env.URL_BASE + "/favicon.ico",
+			description: "Un exerciseur conçu pour aider l'apprentissage de la programmation par la pratique",
+			autoActivate: true
+		}
 	},
 );
 
@@ -91,6 +110,29 @@ lti.onConnect(async (idToken, req, res) => {
 	}
 });
 
+lti.onDynamicRegistration(async (req, res, next) => {
+  try {
+	  if (!req.query.openid_configuration) {
+		  return res.status(400).send({ status: 400, error: 'Bad Request', details: { message: 'Missing parameter: "openid_configuration".' } });
+	  }
+	  if (!req.body.email || !req.body.nom ){
+		  return res.render("inscription", {
+			  openid_configuration: req.query.openid_configuration,
+			  registration_token: req.query.registration_token });
+	  }
+	  const message = await lti.DynamicRegistration.register(
+		  req.query.openid_configuration,
+		  req.query.registration_token);
+
+	  res.setHeader('Content-type', 'text/html');
+	  res.send(message);
+  } catch (err) {
+	  if (err.message === 'PLATFORM_ALREADY_REGISTERED') {
+		  return res.status(403).send({ status: 403, error: 'Forbidden', details: { message: 'Platform already registered.' } });
+	  }
+	  return res.status(500).send({ status: 500, error: 'Internal Server Error', details: { message: err.message } });
+  }
+});
 
 const btoa_url = (s) =>
 	  btoa(unescape(encodeURIComponent(s)))
@@ -111,7 +153,7 @@ const setup = async () => {
 	try{
 		const plateformes = require("./plateformes.json");
 		plateformes.forEach( async (plateforme ) => {
-			await lti.registerPlatform( plateforme )
+			await lti.registerPlatform( plateforme );
 		});
 	}
 	catch(e) {
