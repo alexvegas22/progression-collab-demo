@@ -27,7 +27,7 @@
 			</tab>
 
 			<tab
-				v-if="auth_local || !auth_ldap"
+				v-if="inscription_locale"
 				key="k2"
 				label="INSCRIPTION"
 				val="INSCRIPTION"

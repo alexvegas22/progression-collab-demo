@@ -1,7 +1,7 @@
 const USER = {
-	INACTIF: 0,
-	ACTIF : 1,
-	ATTENTE_DE_CONFIRMATION: 2,
+	INACTIF: "inactif",
+	ACTIF : "actif",
+	ATTENTE_DE_CONFIRMATION: "en_attente_de_validation",
 };
 
 export default {

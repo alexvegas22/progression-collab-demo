@@ -39,7 +39,9 @@ const router = createRouter({
 	routes,
 });
 
-router.beforeEach( (to, from, next ) => {
+router.beforeEach( async function(to, from, next ){
+	const config = store.getters.configServeur ?? await store.dispatch("récupérerConfigServeur", import.meta.env.VITE_API_URL);
+
 	//Si le user est déjà chargé, continue
 	if(store.state.user){
 		next();
@@ -61,8 +63,10 @@ router.beforeEach( (to, from, next ) => {
 		return;
 	}
 
-	//Charge l'utilisateur et contitnue
-	store.dispatch("récupérerUser", import.meta.env.VITE_API_URL + "/user/" + username).then( () => {
+	//Charge l'utilisateur et continue
+
+	try{
+		await store.dispatch("récupérerUser", config.liens.user);
 		//N'envoie pas au login si l'utilisateur est déjà connecté
 		if( to.name=="LoginView" ) {
 			next( { name:"Home" } );
@@ -70,16 +74,17 @@ router.beforeEach( (to, from, next ) => {
 		else {
 			next();
 		}
-	} ).catch( () => {
+	}
+	catch {
 		sessionStorage.removeItem("username");
 		localStorage.removeItem("username");
 
 		//redirige vers la page de Login
 		next( { name: "LoginView",
-			    query: to.query,
-			    params: { origine: to.fullPath }
-		});
-	});
+		        query: to.query,
+		        params: { origine: to.fullPath }
+		      });
+	}
 });
 
 export default router;

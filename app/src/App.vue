@@ -155,17 +155,7 @@ export default {
 			this.dialogNouvelExercice=!this.dialogNouvelExercice;
 		},
 		déconnexion(){
-			sessionStorage.removeItem("authKey_nom");
-			sessionStorage.removeItem("authKey_secret");
-			localStorage.removeItem("authKey_nom");
-			localStorage.removeItem("authKey_secret");
-			sessionStorage.removeItem("token");
-			localStorage.removeItem("username");
-			sessionStorage.removeItem("username");
-
-			this.$store.dispatch("setUsername", null);
-			this.$store.dispatch("setUser", null);
-			this.$store.dispatch("setToken", null);
+			this.$store.dispatch("déconnexion");
 			this.$router.push( {name: "Home"} );
 		},
 		basculerThèmeSombre() {

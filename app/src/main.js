@@ -68,6 +68,7 @@ store.subscribe( (mutation) => {
 app.use(i18n);
 
 const authentificationErreurHandler = function() {
+	store.dispatch("déconnexion");
 	if ( router.currentRoute.value.name != "LoginView" ) {
 		router.push({
 			name: "LoginView",
@@ -82,7 +83,7 @@ const valider = async (promesse) => {
 			if(erreur?.response?.status == 401) {
 				authentificationErreurHandler(erreur);
 			}
-			else if(erreur?.response?.status >= 300){
+			else if(erreur?.response?.status >= 500){
 				store.dispatch("setErreurs", { détails: erreur.response.data.erreur + " (erreur " + erreur.response.status + ") "  });
 			}
 			else if(typeof(erreur)=="string"){
@@ -112,8 +113,5 @@ unleash.on("update", () => {
 });
 
 unleash.start();
-
-
-store.dispatch("récupérerConfigServeur", import.meta.env.VITE_API_URL);
 
 router.isReady().then( () => app.mount("#app"));
