@@ -11,19 +11,19 @@ import {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
-	postModifierUserApi,
+	patchUserApi,
 	postCommentaireApi,
 	postRésultat,
 	postSauvegardeApi,
 	postTentative,
 	postTentativeSys,
-	postAuthKey,
-	postUserApi
+	postAuthKey
 } from "@/services/index.js";
 
 import {i18n, sélectionnerLocale} from "@/util/i18n";
 import {copie_profonde} from "@/util/commun.js";
 import jwt_decode from "jwt-decode";
+import store from "./store.js";
 
 var validateur = (v) => v;
 
@@ -37,20 +37,20 @@ async function rafraîchirToken() {
 	const authKey = récupérerCléSauvegardée();
 	const username = récupérerUsername();
 
-	if (authKey) {
+	if (username && authKey) {
 		try {
-			//À changer. L'URL devrait être pris de store.config.user.liens
-			const token = await getTokenApi(API_URL + "/user/" +  username + "/tokens", username, authKey);
-			sauvegarderToken(token);
-			return token;
+			const lien_tokens = store.getters.user?.liens?.tokens ?? store.getters.configServeur?.liens?.tokens;
+			if(lien_tokens){
+				const token = await getTokenApi(lien_tokens, username, authKey);
+				return token;
+			}
+			return null;
 		}
 		catch(err) {
-			sauvegarderToken(null);
 			console.log(err);
 			throw err;
 		}
 	} else {
-		sauvegarderToken(null);
 		const err = new Error("Clé d'authentification non disponible");
 		console.log(err);
 		throw err;
@@ -69,11 +69,6 @@ function récupérerCléSauvegardée() {
 		return { nom: localStorage.getItem("authKey_nom"), secret: localStorage.getItem("authKey_secret") };
 
 	return null;
-}
-
-function sauvegarderToken(token) {
-	if (localStorage.getItem("token")) localStorage.setItem("token", token);
-	else sessionStorage.setItem("token", token);
 }
 
 function générerAuthKey(user, token, expiration = 0) {
@@ -199,33 +194,46 @@ export default {
 		}
 	},
 
-	async récupérerConfigServeur({ commit }, urlConfig) {
+	async récupérerConfigServeur({ commit, getters }, urlConfig) {
 		return valider(async () => {
-			const config = await getConfigServeurApi(urlConfig);
+			const token = getters.obtenirToken();
+
+			var config=null;
+			if(token){
+				config = await getConfigServeurApi(urlConfig, token);
+			}
+			else{
+				const authKey = récupérerCléSauvegardée();
+				const username = récupérerUsername();
+				if( username && authKey ) {
+					config = await getConfigServeurApi(urlConfig, null, username, authKey );
+				}
+				else{
+					config = await getConfigServeurApi(urlConfig);
+				}
+			}
 
 			commit("setConfigServeur", config);
 			return config;
-		}
-		);
+		});
 	},
 
 	async inscrire( {commit} ,  params ){
-		const urlInscription = API_URL + "/user";
+		const urlInscription = store.getters.configServeur.liens.inscrire;
 		const courriel = params.courriel;
 		const username = params.identifiant;
 		const motDePasse = params.password;
 
-		return valider(async () => {
-			commit("setEnChargement", true);
-			commit("setUsername", username);
-			try {
-				return await inscrireApi(urlInscription, username, courriel, motDePasse);
-			}
-			finally {
-				commit("setEnChargement", false);
-				commit("updateAuthentificationEnCours", false);
-			}
-		});
+		commit("setEnChargement", true);
+		commit("setUsername", username);
+		try {
+			return await inscrireApi(urlInscription, username, courriel, motDePasse);
+		}
+		finally {
+			commit("setEnChargement", false);
+			commit("updateAuthentificationEnCours", false);
+		}
+
 	},
 
 	async authentifier({ commit }, params) {
@@ -242,7 +250,6 @@ export default {
 			commit("setEnChargement", true);
 			try {
 				const token = await authentifierApi(urlAuth, identifiant, password, domaine);
-				console.log(token);
 				commit("setToken", token);
 
 				// Obtenir l'utilisateur
@@ -250,8 +257,6 @@ export default {
 
 				const storage = persister ? localStorage : sessionStorage;
 				storage.setItem("username", user.username);
-
-				sessionStorage.setItem("token", token);
 
 				// Obtenir la clé d'authentification
 				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
@@ -271,9 +276,22 @@ export default {
 		);
 	},
 
+	async déconnexion({commit}){
+		sessionStorage.removeItem("authKey_nom");
+		sessionStorage.removeItem("authKey_secret");
+		localStorage.removeItem("authKey_nom");
+		localStorage.removeItem("authKey_secret");
+		localStorage.removeItem("username");
+		sessionStorage.removeItem("username");
+
+		commit("setUsername", null);
+		commit("setUser", null);
+		commit("setToken", null);
+	},
+
 	async mettreÀJourUser( {commit}, params ){
 		return valider(async () => {
-			const user =  await postModifierUserApi( { url: params.url, user: params.user } , params.token );
+			const user =  await patchUserApi( { url: params.url, user: params.user } , params.token );
 			commit("setUser", user);
 			return user;
 		});
@@ -737,7 +755,7 @@ export default {
 
 		return valider( async () => {
 			const token = await this.dispatch("getToken");
-			await postUserApi({url: state.user.liens.self, user: getters.user, préférences: préférences }, token);
+			await patchUserApi({url: state.user.liens.self, user: getters.user}, token);
 		} );
 	},
 
