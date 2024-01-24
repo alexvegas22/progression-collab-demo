@@ -1,4 +1,4 @@
-import { getData, postData, putData, patchData } from "@/services/request_services";
+import { getData, postData, patchData } from "@/services/request_services";
 
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
 	const urlTokens = (await getData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine })).data.links.tokens;
@@ -15,13 +15,13 @@ const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
 const getTokenApi = async (urlAuth, identifiant, clé) => {
 	const token = ( await postData( urlAuth,
 	                                null,
-	                                {data: { expiration: "+300",
-	                                         ressources: { api: {
-		                                         url: "^.*",
-		                                         method: "^.*" } } } },
-	                                { identifiant: identifiant,
-	                                  key_name: clé.nom,
-	                                  key_secret: clé.secret} ) ).data;
+	                                { data: { expiration: "+300",
+	                                          ressources: { api: {
+		                                          url: "^.*",
+		                                          method: "^.*" } } } },
+		                            { identifiant: identifiant,
+		                              key_name: clé.nom,
+		                              key_secret: clé.secret} ) ).data;
 	return token ? construireToken( token ): null;
 };
 
