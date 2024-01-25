@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 function conf(query, creds, config) {
 	let conf = {
 		params: query,
@@ -13,8 +15,8 @@ function conf(query, creds, config) {
 		else if (creds.identifiant && creds.password ){
 			conf.headers = { Authorization: "Basic " + btoa(`${creds.identifiant}:${creds.password}:${creds.domaine??""}`) };
 		}
-		else if (creds.identifiant && creds.key_name && creds.key_secret){
-			conf.headers = { Authorization: "Key " + btoa(`${creds.identifiant}:${creds.key_name}:${creds.key_secret}`) };
+		else if (creds.identifiant && creds.key_name){
+			conf.headers = { Authorization: "Key " + btoa(`${creds.identifiant}:${creds.key_name}`) };
 		}
 	}
 
