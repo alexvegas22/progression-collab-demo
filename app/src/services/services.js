@@ -1,9 +1,15 @@
 import { getData, postData, patchData } from "@/services/request_services";
 
+//Ressources permises par les token d'authentification.
+//Exclut l'accès aux ressources tokens et cles
+const ressources_token_auth = { data: { expiration: "+300",
+	                                    ressources: { api: { url: "^(users?|ebauche|question|test|avancement|tentative|commentaire|test|sauvegarde)((?!tokens|cles).)*\/?$", //eslint-disable-line no-useless-escape
+	                                                         method: "^.*" } } } };
+
 const authentifierApi = async (urlAuth, identifiant, mdp, domaine) => {
 	const urlTokens = (await getData(urlAuth, null, { identifiant: identifiant, password: mdp, domaine: domaine })).data.links.tokens;
 
-	const data = (await postData(urlTokens, null, { data: { expiration: "+300", ressources: { api: { url: "^.*", method: "^.*" } } } }, { identifiant: identifiant, password: mdp, domaine: domaine })).data;
+	const data = (await postData(urlTokens, null, ressources_token_auth, { identifiant: identifiant, password: mdp, domaine: domaine })).data;
 
 	return data ? construireToken( data ) : null;
 };
@@ -15,13 +21,9 @@ const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
 const getTokenApi = async (urlAuth, identifiant, clé) => {
 	const token = ( await postData( urlAuth,
 	                                null,
-	                                { data: { expiration: "+300",
-	                                          ressources: { api: {
-		                                          url: "^.*",
-		                                          method: "^.*" } } } },
+	                                ressources_token_auth,
 		                            { identifiant: identifiant,
-		                              key_name: clé.nom,
-		                              key_secret: clé.secret} ) ).data;
+		                              key_name: clé } ) ).data;
 	return token ? construireToken( token ): null;
 };
 
@@ -30,7 +32,7 @@ const getConfigServeurApi = async (urlConfig, token, identifiant, clé) => {
 		return construireConfig( (await getData(urlConfig, null, token.jwt) ).data );
 	}
 	else if( identifiant && clé ){
-		return construireConfig( (await getData(urlConfig, null, { identifiant: identifiant, key_name: clé.nom, key_secret: clé.secret })).data );
+		return construireConfig( (await getData(urlConfig, null, { identifiant: identifiant, key_name: clé })).data );
 	}
 	else {
 		return construireConfig( (await getData(urlConfig) ).data );
@@ -212,8 +214,8 @@ const postRésultat = async (params, token) => {
 	return résultat;
 };
 
-const postAuthKey = async (params, token) =>
-	await postData(params.url, null, params.clé, token.jwt)
+const postAuthKey = async (params, identifiant, password, domaine) =>
+	await postData(params.url, null, params.clé, { identifiant: identifiant, password: password, domaine: domaine } )
 		.then((data) => {
 			return {
 				nom: params.clé.nom,

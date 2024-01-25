@@ -13,6 +13,10 @@ function getCookie(cname) {
 	return "";
 }
 
+function setCookie(cname, value, flags) {
+	document.cookie = `${cname}=${value}; ${flags}`;
+}
+
 export {
-	getCookie
+	getCookie, setCookie
 };
