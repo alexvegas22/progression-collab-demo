@@ -3,6 +3,7 @@ import { getData, postData, patchData } from "@/services/request_services";
 //Ressources permises par les token d'authentification.
 //Exclut l'accès aux ressources tokens et cles
 const ressources_token_auth = { data: { expiration: "+300",
+	                                    fingerprint: true,
 	                                    ressources: { api: { url: "^(users?|ebauche|question|test|avancement|tentative|commentaire|test|sauvegarde)((?!tokens|cles).)*\/?$", //eslint-disable-line no-useless-escape
 	                                                         method: "^.*" } } } };
 
