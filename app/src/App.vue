@@ -17,9 +17,6 @@
 							class="font-family-serif"
 						>
 							<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
-							<sup>
-								(v3-bêta)
-							</sup>
 							<span v-show="dev" title="interface expérimentale">
 								🥼
 							</span>
