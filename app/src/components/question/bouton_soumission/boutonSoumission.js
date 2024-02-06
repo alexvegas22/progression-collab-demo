@@ -1,6 +1,9 @@
 export default {
 	name: "BoutonSoumission",
 	computed: {
+		question_type(){
+			return this.$store.getters.question_type;
+		},
 		raccourcis(){
 			return this.$store.state.raccourcis;
 		},
@@ -13,9 +16,7 @@ export default {
 	},
 	methods: {
 		validerTentative() {
-			this.$store.dispatch("soumettreTentative", {
-				tentativeCourante: this.$store.state.tentative
-			});
+			this.$store.dispatch("soumettreTentative", false );
 		},
 	}
 };

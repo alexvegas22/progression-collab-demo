@@ -71,7 +71,7 @@
 	},
 
 	"login": {
-		"identifiant": "Courriel ou nom d'utilisateur",
+		"identifiant": "Nom d'utilisateur",
 		"motDePasse": "Mot de passe",
 		"boutonConnexion": "Connexion",
 		"authorisation": "Authoriser la plateforme {plateforme} à se connecter à Progression en votre nom pour le cours {cours} : ",
@@ -192,7 +192,9 @@
 	
 	"validation_tentative": {
 		"boutonValider": "Valider la tentative",
-		"soumettre": "SOUMETTRE"
+		"boutonSoumettre": "Soumettre la tentative",
+		"soumettre": "SOUMETTRE",
+		"valider": "VALIDER"
 	},
 
 	"jeu_tests": {
@@ -255,10 +257,19 @@
 	},
 
 	"onglets_informations": {
-		"entrées/sorties": "Entrées / Sorties",
-		"erreurs": "Erreurs",
+		"entrées/sorties": {
+			"tooltip": "Entrées et sorties du test",
+			"titre": "Entrées / Sorties"
+		},
+		"erreurs": {
+			"tooltip": "Sorties d'erreur du test",
+			"titre": "Erreurs"
+		},
 		"rétroactions": "Rétroaction",
-		"détails": "Détails"
+		"détails": {
+			"tooltip": "Détalis d'exécution du test",
+			"titre": "Détails"
+		}
 	},
 
 	"commentaire": {
@@ -275,5 +286,10 @@
 		"réussie": "Votre courriel a été validé! Bienvenue sur Progression! Maintenant, connectez-vous et commencez à programmer!",
 		"échouée": "Malheureusement, le jeton de vérification semble avoir expiré. Désirez-vous recevoir un nouveau courriel de validation?",
 		"expédié": "Un courriel vous à été envoyé à l'adresse fournie. Veuillez consulter votre boite de récéption et suivre les instructions qui s'y trouvent."
+	},
+
+	"ttyshare": {
+		"réinitialiser": "Réinitialiser",
+		"confirmation_réinitialiser": "Désirez-vous vraiment réinitialiser l'exercice?"
 	}
 }

@@ -1,3 +1,4 @@
+/*Nécessaire en production*/
 .CodeMirror pre.CodeMirror-line {
 	font-family: monospace !important;
 }
@@ -58,13 +59,6 @@
 	position: relative;
 	top: -22px;
 	z-index: 100;
-}
-
-.xray {
-	position: absolute;
-	right: 3rem;
-	top: 4.2rem;
-	width: max-content;
 }
 
 .codemirror-container:not(.original-style) .CodeMirror, .codemirror-container:not(.original-style) .CodeMirror-merge-pane

@@ -1,0 +1,16 @@
+.horizontal {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.vertical {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+}
+
+.bordure_panneau {
+	width: 100%;
+	height: 100%;
+}

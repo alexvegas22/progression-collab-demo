@@ -23,8 +23,7 @@
 
 .encadré-titre {
 	background:#00000025;
-	margin-left: -0.25rem;
-	margin-right: 0.5rem;
+	margin-right: 0.25rem;
 	padding: 0.25rem;
 	border-radius: 0;
 }
@@ -32,7 +31,6 @@
 .titre {
 	font-size: 1.5em;
 	font-weight: bold;
-	z-index: 1;
 }
 
 .description{
@@ -45,7 +43,6 @@
 	left: 3rem;
 	opacity: 88%;
 	height: 0px;
-	z-index: 1;
 }
 
 h3 {
@@ -73,13 +70,11 @@ h3 {
 .énoncéPlacement {
 	width: fit-content;
 	max-width: 75%;
-	z-index: 1;
 }
 
 .énoncéPlacement.PasDeDifficulté {
 	width: fit-content;
 	max-width: 100%;
-	z-index: 1;
 }
 
 .badge.niveau {

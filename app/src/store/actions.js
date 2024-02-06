@@ -11,17 +11,19 @@ import {
 	getUserApi,
 	getUserAvecTentativesApi,
 	postAvancementApi,
-	postModifierUserApi,
+	patchUserApi,
 	postCommentaireApi,
 	postRésultat,
 	postSauvegardeApi,
 	postTentative,
-	postAuthKey,
-	postUserApi
+	postTentativeSys,
+	postAuthKey
 } from "@/services/index.js";
 
 import {i18n, sélectionnerLocale} from "@/util/i18n";
+import {copie_profonde} from "@/util/commun.js";
 import jwt_decode from "jwt-decode";
+import store from "./store.js";
 
 var validateur = (v) => v;
 
@@ -35,20 +37,20 @@ async function rafraîchirToken() {
 	const authKey = récupérerCléSauvegardée();
 	const username = récupérerUsername();
 
-	if (authKey) {
+	if (username && authKey) {
 		try {
-			//À changer. L'URL devrait être pris de store.config.user.liens
-			const token = await getTokenApi(API_URL + "/user/" +  username + "/tokens", username, authKey);
-			sauvegarderToken(token);
-			return token;
+			const lien_tokens = store.getters.user?.liens?.tokens ?? store.getters.configServeur?.liens?.tokens;
+			if(lien_tokens){
+				const token = await getTokenApi(lien_tokens, username, authKey);
+				return token;
+			}
+			return null;
 		}
 		catch(err) {
-			sauvegarderToken(null);
 			console.log(err);
 			throw err;
 		}
 	} else {
-		sauvegarderToken(null);
 		const err = new Error("Clé d'authentification non disponible");
 		console.log(err);
 		throw err;
@@ -60,18 +62,7 @@ function récupérerUsername() {
 }
 
 function récupérerCléSauvegardée() {
-	if (sessionStorage.getItem("authKey_nom") && sessionStorage.getItem("authKey_secret"))
-		return { nom: sessionStorage.getItem("authKey_nom"), secret: sessionStorage.getItem("authKey_secret") };
-
-	if (localStorage.getItem("authKey_nom") && localStorage.getItem("authKey_secret"))
-		return { nom: localStorage.getItem("authKey_nom"), secret: localStorage.getItem("authKey_secret") };
-
-	return null;
-}
-
-function sauvegarderToken(token) {
-	if (localStorage.getItem("token")) localStorage.setItem("token", token);
-	else sessionStorage.setItem("token", token);
+	return sessionStorage.getItem("authKey_nom") ?? localStorage.getItem("authKey_nom");
 }
 
 function générerAuthKey(user, token, expiration = 0) {
@@ -114,7 +105,16 @@ function récupérerPourcentageRéussi(réussis, langage) {
 	return pourcentage.toFixed(1);
 }
 
-function sélectionnerTentative(avancement, question, lang_défaut) {
+function sélectionnerTentative(avancement, question, options) {
+	if(question?.sous_type == "questionProg")
+		return sélectionnerTentativeProg(avancement, question, options.lang_défaut);
+	
+	if(question?.sous_type == "questionSys"){
+		return sélectionnerTentativeSys(avancement, question);
+	}
+}
+
+function sélectionnerTentativeProg(avancement, question, lang_défaut) {
 	var tentative;
 
 	if (Object.keys(avancement.sauvegardes).length > 0) {
@@ -141,6 +141,13 @@ function sélectionnerTentative(avancement, question, lang_défaut) {
 	}
 
 	return tentative;
+}
+
+function sélectionnerTentativeSys(avancement) {
+	if (avancement.tentatives.length > 0) {
+		return avancement.tentatives[0];
+	}
+	else return { conteneur_id: "", url_terminal: "" };
 }
 
 export default {
@@ -181,33 +188,46 @@ export default {
 		}
 	},
 
-	async récupérerConfigServeur({ commit }, urlConfig) {
+	async récupérerConfigServeur({ commit, getters }, urlConfig) {
 		return valider(async () => {
-			const config = await getConfigServeurApi(urlConfig);
+			const token = getters.obtenirToken();
+
+			var config=null;
+			if(token){
+				config = await getConfigServeurApi(urlConfig, token);
+			}
+			else{
+				const authKey = récupérerCléSauvegardée();
+				const username = récupérerUsername();
+				if( username && authKey ) {
+					config = await getConfigServeurApi(urlConfig, null, username, authKey );
+				}
+				else{
+					config = await getConfigServeurApi(urlConfig);
+				}
+			}
 
 			commit("setConfigServeur", config);
 			return config;
-		}
-		);
+		});
 	},
 
 	async inscrire( {commit} ,  params ){
-		const urlInscription = API_URL + "/user";
+		const urlInscription = store.getters.configServeur.liens.inscrire;
 		const courriel = params.courriel;
 		const username = params.identifiant;
 		const motDePasse = params.password;
 
-		return valider(async () => {
-			commit("setEnChargement", true);
-			commit("setUsername", username);
-			try {
-				return await inscrireApi(urlInscription, username, courriel, motDePasse);
-			}
-			finally {
-				commit("setEnChargement", false);
-				commit("updateAuthentificationEnCours", false);
-			}
-		});
+		commit("setEnChargement", true);
+		commit("setUsername", username);
+		try {
+			return await inscrireApi(urlInscription, username, courriel, motDePasse);
+		}
+		finally {
+			commit("setEnChargement", false);
+			commit("updateAuthentificationEnCours", false);
+		}
+
 	},
 
 	async authentifier({ commit }, params) {
@@ -232,15 +252,12 @@ export default {
 				const storage = persister ? localStorage : sessionStorage;
 				storage.setItem("username", user.username);
 
-				sessionStorage.setItem("token", token);
-
 				// Obtenir la clé d'authentification
 				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
-				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, token);
+				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, identifiant, password, domaine);
 
 				storage.setItem("authKey_nom", authKey.nom);
-				storage.setItem("authKey_secret", authKey.clé.secret);
 
 				return token;
 			}
@@ -252,9 +269,20 @@ export default {
 		);
 	},
 
+	async déconnexion({commit}){
+		sessionStorage.removeItem("authKey_nom");
+		localStorage.removeItem("authKey_nom");
+		localStorage.removeItem("username");
+		sessionStorage.removeItem("username");
+
+		commit("setUsername", null);
+		commit("setUser", null);
+		commit("setToken", null);
+	},
+
 	async mettreÀJourUser( {commit}, params ){
 		return valider(async () => {
-			const user =  await postModifierUserApi( { url: params.url, user: params.user } , params.token );
+			const user =  await patchUserApi( { url: params.url, user: params.user } , params.token );
 			commit("setUser", user);
 			return user;
 		});
@@ -318,9 +346,10 @@ export default {
 					const token = await this.dispatch("getToken");
 					const tokenRessources = params.tokenRessources;
 					const avancement = await getAvancementApi(params.url, token, tokenRessources);
-
 					commit("setAvancement", avancement);
-					commit("setTentative", sélectionnerTentative(avancement, state.question, state.langageDéfaut));
+					const tentative = sélectionnerTentative(avancement, state.question, {lang_défaut: state.langageDéfaut} );
+
+					commit("setTentative", tentative);
 
 					return avancement;
 				}
@@ -369,7 +398,7 @@ export default {
 
 	async setAvancement({ commit, state }, params) {
 		commit("setAvancement", params.avancement);
-		commit("setTentative", sélectionnerTentative(params.avancement, state.question, state.langageDéfaut));
+		commit("setTentative", sélectionnerTentative(params.avancement, state.question, {lang_défaut: state.langageDéfaut}));
 	},
 	
 	async créerCommentaire( params ) {
@@ -455,7 +484,7 @@ export default {
 				if (avancement.niveau === null || avancement.niveau === "") {
 					avancement.niveau = "[N/D]";
 				}
-				if (avancement.état == 2) {
+				if (avancement.état == "réussi") {
 					if (avancement.niveau in difficultésRéussies) {
 						difficultésRéussies[avancement.niveau] += 1;
 					}
@@ -471,7 +500,7 @@ export default {
 		);
 	},
 
-	async soumettreTentative({ commit, state }) {
+	async soumettreTentative({ commit, state, getters }, première = false) {
 		commit("updateEnvoieTentativeEnCours", true);
 		commit("setRésultats", [] );
 		commit("setFeedback", null );
@@ -480,13 +509,25 @@ export default {
 		return valider(async () => {
 			try {
 				const token = await this.dispatch("getToken");
-				const tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+				var tentative = null;
+				if(getters.question_type == "sys"){
+					if(première) {
+						tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+						tentative.resultats = null;
+					}
+					else {
+						tentative = await postTentativeSys({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+					}
+				}
+				else{
+					tentative = await postTentative({tentative: state.tentative, urlTentative: state.avancement.liens.tentatives}, token);
+				}
 
 				commit("setTentative", tentative);
 				commit("updateEnvoieTentativeEnCours", false);
 				state.avancement.tentatives.unshift(tentative);
-				if (state.avancement.état != 2) {
-					state.avancement.état = tentative.réussi ? 2 : 1;
+				if (state.avancement.état != "réussi") {
+					state.avancement.état = tentative.réussi ? "réussi" : "non_réussi";
 				}
 
 				if (state.cb_succes && state.cb_succes_params) {
@@ -546,6 +587,30 @@ export default {
 		);
 	},
 
+	réinitialiserConteneur({commit, state}) {
+		return valider( async () => {
+			try {
+				commit("setConteneurEnChargement", true);
+				const token = await this.dispatch("getToken");
+				const tentative = await postTentativeSys({tentative: {conteneur_id: ""}, urlTentative: state.avancement.liens.tentatives}, token);
+
+				commit("setTentative", tentative);
+			}
+			catch (e) {
+				if(e?.response?.status==400) {
+					throw i18n.global.t("erreur.tentative_intraitable");
+				}
+				else{
+					throw(e);
+				}
+			}
+			finally {
+				commit("setConteneurEnChargement", false);
+			}
+		}
+		);
+	},
+
 	async mettreAjourSauvegarde({ commit, state }) {
 		const params = {
 			url: state.avancement.liens.sauvegardes,
@@ -578,6 +643,10 @@ export default {
 			resultats: [],
 			tests_réussis: null
 		});
+	},
+
+	réinitialiserTests({ commit, state }){
+		commit("setTests", copie_profonde( state.testsInitiaux ) );
 	},
 
 	setToken({ commit }, token) {
@@ -677,7 +746,7 @@ export default {
 
 		return valider( async () => {
 			const token = await this.dispatch("getToken");
-			await postUserApi({url: state.user.liens.self, user: getters.user, préférences: préférences }, token);
+			await patchUserApi({url: state.user.liens.self, user: getters.user}, token);
 		} );
 	},
 

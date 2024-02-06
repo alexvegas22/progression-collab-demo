@@ -1,4 +1,5 @@
 import jwt_decode from "jwt-decode";
+import {copie_profonde} from "@/util/commun.js";
 
 export const mutations = {
 	setErreurs(state, erreurs) {
@@ -77,6 +78,7 @@ export const mutations = {
 	},
 	setQuestion(state, question) {
 		state.question = question;
+		state.testsInitiaux = question ? copie_profonde( state.question.tests ) : [];
 	},
 	updateCodeTentative(state, code) {
 		state.tentative.code = code;
@@ -100,13 +102,13 @@ export const mutations = {
 		state.difficultésRéussies = difficultésRéussies;
 	},
 	setThèmeSombre(state, val) {
-		state.préférences.thème = val ? "monokai" : "default";
+		state.user.préférences.thème = val ? "monokai" : "default";
 	},
 	setPréférences(state, val) {
-		state.préférences = val;
+		state.user.préférences = val;
 	},
 	setLocale(state, val) {
-		state.préférences.locale = val;
+		state.user.préférences.locale = val;
 	},
 	setNbRéussitesParLangage(state, nbRéussitesParLangage) {
 		state.nbRéussitesParLangage = nbRéussitesParLangage;
@@ -127,6 +129,9 @@ export const mutations = {
 	setEnChargement(state, val){
 		state.enChargement = Math.max(0, state.enChargement + (val ? 1 : -1));
 	},
+	setConteneurEnChargement(state, val){
+		state.conteneurEnChargement = Math.max(0, state.conteneurEnChargement + (val ? 1 : -1));
+	},
 	setEntréeTest(state, val) {
 		state.question.tests[val.index].entrée = val.entrée;
 	},
@@ -144,10 +149,14 @@ export const mutations = {
 		state.tentative.resultats[params.index] = params.résultat;
 	},
 	setRésultats(state, val){
-		state.tentative.resultats = val;
+		if(state.tentative){
+			state.tentative.resultats = val;
+		}
 	},
 	setFeedback(state, val){
-		state.tentative.feedback = val;
+		if(state.tentative){
+			state.tentative.feedback = val;
+		}
 	},
 	setErreurCallback(state, val){
 		state.erreur_callback = val;

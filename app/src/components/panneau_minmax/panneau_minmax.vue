@@ -1,30 +1,42 @@
 <template>
-	<div class="d-flex flex-column" ref="contenu" :class="{maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}">
-		<div class="d-flex"
-			style=" justify-content: right; padding: 2px; margin-right: 0.5rem" >
-
-			<div :class="{invisible: état_min}" @click="minimiser" >
-				<slot name="min-icon">
-					<v-icon icon="mdi-window-minimize" :size=icon_size ></v-icon>
-				</slot>
+	<div ref="contenu" :class="{normal: !état_max && !état_min, maximisé: état_max, minimisé: état_min, horizontal: !horizontal && état_min, bordure: true}"
+		class="full-flex ffcolumn"
+	>
+		<div class="d-flex barre_titre">
+			<div class="entête_panneau">
+				<slot name="entête"/>
 			</div>
 
-			<div :class="{invisible: !état_min && !état_max}" @click="restorer" >
-				<slot name="restore-icon">
-					<v-icon icon="mdi-window-restore" :size=icon_size ></v-icon>
-				</slot>
-			</div>
+			<div class="d-flex theme_sombre contenu groupe_boutons">
+				<div :class="{invisible: état_max || état_min}" @click="minimiser" >
+					<slot name="min-icon">
+						<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
 
-			<div :class="{invisible: état_max}" @click="maximiser" >
-				<slot name="max-icon">
-					<v-icon icon="mdi-window-maximize" :size=icon_size ></v-icon>
-				</slot>
-			</div>
+				<div :class="{invisible: !état_max}" @click="restorer" >
+					<slot name="restore-icon">
+						<v-icon icon="mdi-square-medium-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
 
+				<div :class="{invisible: !état_min}" @click="restorer" >
+					<slot name="restore-icon">
+						<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
+
+				<div :class="{invisible: état_max || état_min}" @click="maximiser" >
+					<slot name="max-icon">
+						<v-icon icon="mdi-square-rounded-outline" :size=icon_size ></v-icon>
+					</slot>
+				</div>
+			</div>
 		</div>
-
-		<div :class="{invisible: état_min}" style="flex-grow: 1; min-height: 0">
-			<slot/>
+		<div :class="{invisible: état_min, colonne: !horizontal, rangée: horizontal}" 
+			style="height: calc(100% - var(--hauteur-entête));"
+		>
+			<slot />
 		</div>
 
 	</div>
@@ -110,11 +122,33 @@ export default {
 };
 </script>
 
-<style scopped>
- .bordure {
-	 border: 1px solid rgba(128, 128, 128, 0.25);
+<style scoped>
+
+ .barre_titre {
+	 justify-content: left
+ }
+ 
+ .entête_panneau {
+	 width: 100%;
+	 height: var(--hauteur-entête);
+	 padding-left: 3px
  }
 
+ .bordure {
+	max-height: 100%;
+	border: 1px solid rgba(var(--gris));
+	border-radius: 5px;
+ }
+
+ .groupe_boutons {
+	 position: asbolute;
+	 min-width: 2rem;
+	 padding: 0.1rem;
+	 padding-right: 0.5rem;
+	 border-radius: 5px;
+	 height: var(--hauteur-entête);
+ }
+ 
  .bouton {
      font-size: 0.6rem;
      padding: 1px;
@@ -125,6 +159,7 @@ export default {
  }
  
  .minimisé {
+	 border: 0px;
      height: 1rem;
  }
 
@@ -134,12 +169,24 @@ export default {
 
  .maximisé {
      background-color: inherit;
-     position: absolute;
+     position: fixed;
      left: 56px;
      top: 64px;
-     height: 100%;
-     width: calc(100% - 56px);
+     height: calc(100vh - 64px);
+     width: calc(100vw - 56px);
      z-index: 9;
+ }
+
+ .normal {
+	height: 100%;
+	width: 100%
+ }
+ 
+ .colonne {
+	flex-direction: column
+ }
+ .rangée {
+	flex-direction: row
  }
 
 </style>

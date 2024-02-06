@@ -17,9 +17,9 @@
 							class="font-family-serif"
 						>
 							<span style="color:rgb(13,202,240); font-weight: bold">Prog</span>ression
-							<sup>
-								(v3-bêta)
-							</sup>
+							<span v-show="dev" title="interface expérimentale">
+								🥼
+							</span>
 						</div>
 					</div>
 				</v-app-bar-title>
@@ -67,7 +67,7 @@
 
 			<DialogURL :ouvrir="dialogNouvelExercice" @ok="(url) => ouvrirNouvelExercice(url)" />
 
-			<router-view  />
+			<router-view class="contenu" />
 
 		</v-main>
 	</v-app>
@@ -97,6 +97,7 @@ export default {
 			cb_auth: null,
 			cb_auth_params: null,
 			dialogNouvelExercice: false,
+			dev: this.$store.getters.dev,
 		};
 	},
 	created() {
@@ -151,17 +152,7 @@ export default {
 			this.dialogNouvelExercice=!this.dialogNouvelExercice;
 		},
 		déconnexion(){
-			sessionStorage.removeItem("authKey_nom");
-			sessionStorage.removeItem("authKey_secret");
-			localStorage.removeItem("authKey_nom");
-			localStorage.removeItem("authKey_secret");
-			sessionStorage.removeItem("token");
-			localStorage.removeItem("username");
-			sessionStorage.removeItem("username");
-
-			this.$store.dispatch("setUsername", null);
-			this.$store.dispatch("setUser", null);
-			this.$store.dispatch("setToken", null);
+			this.$store.dispatch("déconnexion");
 			this.$router.push( {name: "Home"} );
 		},
 		basculerThèmeSombre() {
@@ -183,8 +174,8 @@ export default {
 		},
 		ouvrirNouvelExercice(url) {
 			if(url) {
-				this.$store.dispatch("setUri", url);
-				this.allerVers("Question", {uri: url});
+			    this.$store.dispatch("setUri", url);
+			    this.allerVers("Question", {uri: url});
 			}
 		}
 	}

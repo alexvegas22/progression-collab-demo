@@ -14,7 +14,7 @@ export default defineConfig({
 	server: {
 		host: true,
 		hmr:  {
-			clientPort: 8000
+			clientPort: process.env.VITE_APP_PORT,
 		}
 	},
 	envDir: ".",

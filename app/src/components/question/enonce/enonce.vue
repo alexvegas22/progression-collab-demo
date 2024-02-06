@@ -57,10 +57,10 @@
 				{{ question.description }}
 			</div>
 		</div>
-		<div class="section-énoncé-texte">
+		<div class="section-énoncé-texte"
+			présentation_étape="0.3">
 			<v-tabs v-model="tab"
 				v-if="question.énoncé.length>1"
-				présentation_étape="0.3"
 				density="compact">
 
 				<v-tab v-for="page in question.énoncé" :key="page.titre" :value="page.titre"
@@ -108,5 +108,5 @@
 </template>
 
 <script src="./enonce.js"></script>
-<style src="./enonce.css"></style>
+<style scoped src="./enonce.css"></style>
 

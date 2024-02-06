@@ -1,6 +1,7 @@
 <template>
 	<div
-		v-if="user && question && avancement">
+		v-if="user && question && avancement"
+	>
 		<div>
 			<Présentation
 				v-if="démo"
@@ -8,86 +9,69 @@
 			/>
 		</div>
 		<div
-			v-shortkey="raccourcis.réinitialiser"
-			class="taille-écran p-0"
-			@shortkey="réinitialiserTentativeAvecRaccourci"
+			class="full-flex ffrow"
+			style="padding: 7px"
 		>
-			<div
-				class="conteneur-question"
-			>
-				<Diptyque gauche=true droite=false :size_gauche="taillePanneauÉnoncé" :size_droite="100-taillePanneauÉnoncé" @redimensionnéGauche="redimensionnéÉnoncé">
-					<template #gauche>
-						<Enonce
-							présentation_étape="0"
-						/>
-					</template>
-					<template #droite>
-						<Diptyque horizontal="true" gauche="true" droite="true" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
-							<template #gauche>
-								<div style="height: 100%; display: flex; flex-flow: column"> <!-- maximisé : height: calc(100% - 4.8rem);  -->
-									<Avancement
-										présentation_étape="2"
-										:tentative-réinitialisée="tentativeRéinitialisée"
-										:title="$t('avancement.choixLangage')"
-									/>
-									<div
-										v-if="tentative"
-										id="carre-editeur"
-										style="flex-grow: 1; display: flex; flex-flow: column; overflow: auto;"
-									>
-										<EditeurCode style="flex-grow: 1" v-if="tentative"
-											présentation_étape="1"
-										/>
-									</div>
-									<div style="position: relative; height: 0.75rem">
-										<RetroactionTentative/>
-									</div>
-								</div>
-							</template>
-							<template #droite>
-								<div
-									class="col-12"
-									style="height: 100%"
-								>
-									<onglets-information
-										présentation_étape="4"
-										:onglet-changé="ongletChangéRaccourci"
-										:test-sélectionné-haut="testSélectionnéHaut"
-										:test-sélectionné-bas="testSélectionnéBas"
-										:test-sélectionné-valider="testSélectionnéValider"
-										style="height:100%"
-
-									/>
-									<div
-										v-shortkey="raccourcis.itérerOnglets"
-										@shortkey="changerOngletAvecRaccourci"
-									/>
-									<div
-										v-shortkey="raccourcis.itérerTestHaut"
-										@shortkey="sélectionnerTestDuHautAvecRaccourci"
-									/>
-									<div
-										v-shortkey="raccourcis.itérerTestBas"
-										@shortkey="sélectionnerTestDuBasAvecRaccourci"
-									/>
-									<div
-										v-shortkey="raccourcis.lancerTestUnique"
-										@shortkey="lancerTestUniqueAvecRaccourci"
-									/>
-								</div>
-							</template>
-						</Diptyque>
-					</template>
-				</Diptyque>
-				<div
-					v-if="tentative?.commentaires && indicateursDeFonctionnalitéCommentaires"
-					class="btnCommentaire"
-				>
-					<BoutonCommentaire
-						:menuOuvert="panneauCommentaireOuvert"
-						@basculerMenuCommentaire="basculerMenuCommentaire"
+			<Diptyque droite="fixe" :size_gauche="taillePanneauÉnoncé" :size_droite="100-taillePanneauÉnoncé" @redimensionnéGauche="redimensionnéÉnoncé">
+				<template #gauche>
+					<Enonce
+						présentation_étape="0"
 					/>
-				</div>
+				</template>
+				<template #droite>
+					<Diptyque horizontal="true" droite="fixe" :size_gauche="tailleÉditeur" :size_droite="100-tailleÉditeur" @redimensionnéGauche="redimensionnéÉditeur">
+						<template #entête_gauche v-if="question_type=='prog'">
+							<div class="full-flex ffrow">
+								<Avancement
+									présentation_étape="2"
+									:title="$t('avancement.choixLangage')"
+									style="flex-grow: 1"
+								/>
+								<EditeurToolbar/>
+							</div>
+						</template>
+						<template #gauche>
+							<div v-if="question_type=='prog'" class="full-flex ffcolumn">
+								<EditeurCode style="flex-grow: 1; overflow: auto" 
+									v-if="tentative"
+									présentation_étape="1"
+								/>
+								<div style="position: relative; height: 0.75rem">
+									<RetroactionTentative/>
+								</div>
+							</div>
+							<div v-if="question_type=='sys' && tentative?.url_terminal" class="full-flex ffcolumn">
+								<TTYShare :url="tentative.url_terminal">
+								</TTYShare>
+							</div>
+						</template>
+						<template #entête_droite
+						>
+							<div class="full-flex ffrow" >
+								<div style="width: fit-content">
+									{{ $t("jeu_tests.jeuTests") }}
+								</div>
+								<div>
+									<BoutonRéinitialiserTests  />
+								</div>
+							</div>
+						</template>
+						<template #droite>
+							<onglets-information
+								présentation_étape="4"
+							/>
+						</template>
+					</Diptyque>
+				</template>
+			</Diptyque>
+			<div
+				v-if="tentative?.commentaires && indicateursDeFonctionnalitéCommentaires"
+				class="btnCommentaire"
+			>
+				<BoutonCommentaire
+					:menuOuvert="panneauCommentaireOuvert"
+					@basculerMenuCommentaire="basculerMenuCommentaire"
+				/>
 			</div>
 		</div>
 		<PanneauCommentaire
@@ -98,5 +82,5 @@
 </template>
 
 <script src="./question.js"></script>
-<style src="./question.css"></style>
+<style src="./question.css" ></style>
 <style src="../../css/mainMenu.css"></style>

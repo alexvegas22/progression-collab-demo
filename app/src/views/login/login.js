@@ -102,37 +102,47 @@ export default {
 		onInscrire ( event ) {
 			this.ongletSélectionné = "";
 			if ( this.authLocal === false && this.authLdap === false ) {
-			    this.effectuerLogin( event );
+				(async () => {
+					await this.$store.dispatch("inscrire", event);
+					this.effectuerLogin( event );
+				})();
 			}
 			else if ( this.authLocal ) {
 				(async () => {
 
 					try{
-						await this.$store.dispatch("inscrire", event);
+						const user = await this.$store.dispatch("inscrire", event);
 
-						this.messageInformation = this.$t("validationCourriel.expédié");
-						this.validationRéussie = !this.validationRéussie;
+						if(user.état == constantes.USER.EN_ATTENTE_DE_VALIDATION){
+							this.messageInformation = this.$t("validationCourriel.expédié");
+							this.validationRéussie = !this.validationRéussie;
+						}
 						this.ongletSélectionné = "STANDARD";
 					}
 					catch(err){
-						if ( err?.response?.status >= 400 && err?.response?.status < 500){
-							var erreurs = err.response.data.erreur;
-							var messageErreur="";
-							for(var champ of ["username", "courriel", "password"]){
-								if(champ in erreurs){
-									if (erreurs[champ][0]?.startsWith( "Err: 1001." )){
-										messageErreur += this.$t(`erreur.inscription.${champ}.existant`) + "<br>";
-									}
-									else if (erreurs[champ][0]?.startsWith( "Err: 1003." )){
-										messageErreur += this.$t(`erreur.inscription.${champ}.invalide`) + "<br>";
-									}
-									else if (erreurs[champ][0]?.startsWith( "Err: 1004." )){
-										messageErreur += this.$t(`erreur.inscription.${champ}.vide`) + "<br>";
-									}
+						var erreurs = err.response.data.erreur;
+						var messageErreur="";
+
+						if ( err?.response?.status == 400) {
+							for(let erreur in erreurs){
+								if(["username", "courriel", "password"].indexOf(erreur) > -1){
+									messageErreur += this.$t(`erreur.inscription.${erreur}.invalide`) + "<br>";
+								}
+								else {
+									messageErreur += erreurs[erreur];
 								}
 							}
-							this.$store.dispatch("setErreurs", { message: messageErreur});
 						}
+						if ( err?.response?.status == 409) {
+							if(erreurs.search("courriel") > -1) {
+								messageErreur += this.$t("erreur.inscription.courriel.existant") + "<br>";
+							}
+							else {
+								messageErreur += this.$t("erreur.inscription.username.existant") + "<br>";
+							}
+						}
+
+						this.$store.dispatch("setErreurs", { message: messageErreur});
 					}
 				})();
 			}

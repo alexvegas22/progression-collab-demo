@@ -1,10 +1,10 @@
 export default {
+	user: state => state.user,
 	username: state => state.username,
 	configServeur: state => state.configServeur,
 	version: state => state.configServeur.version,
-	préférences: state => state.préférences,
-	locale: state => state.préférences?.locale,
-	thèmeSombre: state => state.préférences?.apparence_thème == "sombre",
+	locale: state => state.user?.préférences?.locale,
+	thèmeSombre: state => state.user?.préférences?.apparence_thème == "sombre",
 	erreurs: state => state.erreurs,
 	raccourcis: state => state.raccourcis,
 	tentative: state => state.tentative,
@@ -21,6 +21,9 @@ export default {
 	indicateursDeFonctionnalité: state => (indicateur) => {
 		return state.indicateursDeFonctionnalité[indicateur]?true:false;
 	},
-	démos: state => state.préférences["démos"]!==false,
-
+	démos: state => state.user?.préférences["démos"]!==false,
+	conteneurEnChargement: state => state.conteneurEnChargement,
+	question_type: state => state.question.sous_type == "questionProg" ? "prog" : "sys",
+	résultats: state => state.tentative?.resultats?.map( (x) => x?.résultat ) ?? [],
+	dev: state => state.dev,
 };

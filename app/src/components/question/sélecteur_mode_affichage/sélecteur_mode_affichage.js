@@ -1,12 +1,19 @@
 export default {
 	name: "SélecteurModeAffichage",
+	emits: {
+		onModeChange: false,
+	},
+	props: {
+		occupé: Boolean
+	},
 	computed: {
 		mode_affichage: {
 			get: function () {
 				return this.$store.state.mode_affichage;
 			},
-			set: function (mode) {
-				this.$store.dispatch("setModeAffichage", mode);
+			set: async function (mode) {
+				await this.$store.dispatch("setModeAffichage", mode);
+				this.$emit("onModeChange", this.mode_affichage == 1 );
 			},
 		},
 		raccourcis() {
@@ -14,8 +21,9 @@ export default {
 		}
 	},
 	methods: {
-		changerModeAffichageAvecRaccourci() {
-			this.$store.dispatch("basculerModeAffichage");
+		async changerModeAffichageAvecRaccourci() {
+			await this.$store.dispatch("basculerModeAffichage");
+			this.$emit("onModeChange", this.mode_affichage == 1 );
 		},
 	}
 };

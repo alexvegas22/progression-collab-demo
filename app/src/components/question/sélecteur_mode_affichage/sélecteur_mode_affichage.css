@@ -66,3 +66,7 @@
  .custom-control-label {
 	 bottom: 0.125rem;
  }
+
+input:checked + .slider.occupé {
+		background-color: red;
+	}
