@@ -278,6 +278,7 @@ export default {
 		commit("setUsername", null);
 		commit("setUser", null);
 		commit("setToken", null);
+		commit("configServeur", null);
 	},
 
 	async mettreÀJourUser( {commit}, params ){
