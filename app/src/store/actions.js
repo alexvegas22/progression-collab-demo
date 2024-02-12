@@ -278,6 +278,7 @@ export default {
 		commit("setUsername", null);
 		commit("setUser", null);
 		commit("setToken", null);
+		commit("configServeur", null);
 	},
 
 	async mettreÀJourUser( {commit}, params ){
@@ -741,7 +742,7 @@ export default {
 
 	setPréférences( {commit, state, getters}, params ) {
 
-		const préférences = {...getters.préférences, ...params };
+		const préférences = {...getters.user.préférences, ...params };
 		commit("setPréférences", préférences);
 
 		return valider( async () => {
