@@ -38,6 +38,10 @@ export const mutations = {
 		state.tokenRessources = tokenRessources;
 	},
 
+	setTokenScore(state, tokenScore) {
+		state.tokenScore = tokenScore;
+	},
+
 	setUri(state, uri) {
 		state.uri = uri;
 	},

@@ -281,6 +281,50 @@ export default {
 		commit("configServeur", null);
 	},
 
+	async récupérerTokenScore({ commit, state }) {
+		if (state.tokenScore) return state.tokenScore;
+
+		const authKey = récupérerCléSauvegardée();
+		const username = récupérerUsername();
+		const id = `${username}/${state.uri}`;
+
+		const token_modèle = {
+			data: {
+				expiration: "0",
+				fingerprint: false,
+				data : {
+					url_avancement: API_URL + `avancement/${id}`,
+				},
+				ressources : {
+					avancement: {
+						url: `^avancement/${id}$`,
+						method: "^GET$"
+					},
+					tentative: {
+						url: `^tentative/${id}/.*$`,
+						method: "^GET$"
+					},
+					commentaire: {
+						url: `^commentaire/${id}/.*$`,
+						method: "^GET$"
+					},
+					commentaires: {
+						url: `^tentative/${id}/.*/commentaires$`,
+						method: "^POST$"
+					}
+				}
+			}
+		};
+
+		return valider(async () => {
+			const lien_tokens = store.getters.user.liens.tokens;
+			const token = await getTokenApi(lien_tokens, username, authKey, token_modèle);
+
+			commit("setTokenScore", token);
+			return token;
+		});
+	},
+
 	async mettreÀJourUser( {commit}, params ){
 		return valider(async () => {
 			const user =  await patchUserApi( { url: params.url, user: params.user } , params.token );
@@ -533,10 +577,11 @@ export default {
 
 				if (state.cb_succes && state.cb_succes_params) {
 					try{
+						const tokenScore = await store.dispatch("récupérerTokenScore");
 						await callbackGrade(state.cb_succes, {
 							...state.cb_succes_params,
 							uri: state.uri,
-							token: token,
+							token: tokenScore,
 						});
 					}
 					catch(e){
