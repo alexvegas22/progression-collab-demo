@@ -2,56 +2,9 @@ const router = require("express").Router();
 const axios = require("axios");
 const path = require("path");
 const provMainDebug = require("debug")("provider:main");
-const services = require("./services.js");
 const jwt_decode = require("jwt-decode");
 
 const lti = require("ltijs").Provider;
-
-const obtenirEtSauvegarderAuthKey = async function (userId, username, token) {
-	const clé_id = "LTIauthKey_" + randomID();
-
-	return obtenirAuthKey(username, token, clé_id).then((résultat) => {
-		sauvegarderAuthKey(userId, clé_id, résultat.data.data.attributes.secret);
-	});
-};
-
-const obtenirAuthKey = function (username, token, clé_id) {
-	provMainDebug("Obtention de la clé");
-
-	return axios.post(
-		process.env.API_URL + "/user/" + username + "/cles",
-		{ nom: clé_id, portée: 1 },
-		{ headers: { Authorization: "bearer " + token } },
-	);
-};
-
-const sauvegarderAuthKey = function (userId, clé_id, clé_secret) {
-	provMainDebug("Sauvegarde de l'utilisateur " + userId);
-
-	const db = lti.Database;
-	db.Update(
-		null,
-		"user",
-		{ userId: userId },
-		{
-			$set: {
-				authKey_nom: clé_id,
-				authKey_secret: clé_secret,
-			}
-		},
-	)
-		.then(() => provMainDebug("Utilisateur sauvegardé."))
-		.catch((error) => {
-			provMainDebug("Erreur de sauvegarde : " + error);
-		});
-};
-
-const randomID = function () {
-	/* Math.random should be unique because of its seeding algorithm.
-	   Convert it to base 36 (numbers + letters), and grab the first 9 characters
-	   after the decimal. */
-	return Math.random().toString(36).substr(2, 9);
-};
 
 router.post("/lti/grade", async (req, res) => {
 	try {
@@ -67,14 +20,12 @@ router.post("/lti/grade", async (req, res) => {
 
 		const score = await récupérerScore(uri, token);
 
-		const tokenRessource = await récupérerTokenRessource(token, uri);
-
 		// Note
 		const gradeObj = {
 			userId: idToken.user,
 			scoreGiven: score,
 			scoreMaximum: 100,
-			comment: tokenRessource,
+			comment: token,
 			activityProgress: "Completed",
 			gradingProgress: "FullyGraded",
 		};
@@ -111,30 +62,6 @@ router.post("/lti/grade", async (req, res) => {
 	}
 });
 
-
-router.post("/lti/auth", async (req, res) => {
-	provMainDebug("/lti/auth");
-
-	const idToken = res.locals.token;
-	const userId = idToken.platformId + "/" + idToken.user;
-	const username = req.body.username;
-	const token = req.body.token;
-	if (!token) return res.status(400).send("un token doit être fourni");
-
-	var user = await services.récupérerUser(userId);
-	if (!user) {
-		user = { userId: userId, username: username };
-		services.sauvegarderUser(user);
-	}
-	services.sauvegarderToken(user, token);
-
-	obtenirEtSauvegarderAuthKey(userId, username, token).then(
-		() => res.status(200).send("OK")
-	)
-		.catch((err) => res.status(500).send(err));
-
-});
-
 const récupérerScore = async function (uri, token) {
 	provMainDebug("Requête : " + process.env.API_URL + "/avancement");
 	provMainDebug("Params :  uri : " + uri);
@@ -146,54 +73,11 @@ const récupérerScore = async function (uri, token) {
 		},
 	};
 
-	const requête = process.env.API_URL + "/avancement/" + username + "/" + uri;
+	const requête = process.env.VITE_API_URL + "/avancement/" + username + "/" + uri;
 
 	return axios.get(requête, config).then((res) => {
 		return res.data.data.attributes.état == "réussi" ? 100 : 0;
 	});
-};
-
-const récupérerTokenRessource = async function (token, uriQuestion) {
-	const username = jwt_decode(token).username;
-	const id = username + "/" + uriQuestion;
-
-	const data = {
-		url_avancement: process.env.API_URL + `avancement/${id}`,
-	};
-	const ressources = {
-		avancement: {
-			url: `^avancement/${id}$`,
-			method: "^GET$"
-		},
-		avancements: {
-			url: `^user/${username}/avancements$`,
-			method: "^GET$"
-		},
-		tentative: {
-			url: `^tentative/${id}/.*$`,
-			method: "^GET$"
-		},
-		commentaire: {
-			url: `^commentaire/${id}/.*$`,
-			method: "^GET$"
-		},
-		commentaires: {
-			url: `^tentative/${id}/.*/commentaires$`,
-			method: "^POST$"
-		}};
-
-	const config = {
-		headers: {
-			Authorization: "Bearer " + token,
-		},
-	};
-
-	const requête = process.env.API_URL + "/user/" + username + "/tokens";
-
-	const token_data = { data: data, ressources: ressources, expiration: 0 };
-	const reponse = await axios.post(requête, { data: token_data}, config );
-
-	return reponse.data.data.attributes.jwt;
 };
 
 router.get("*", (req, res) => {
