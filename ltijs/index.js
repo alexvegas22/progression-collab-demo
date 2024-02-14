@@ -121,6 +121,33 @@ lti.onDynamicRegistration(async (req, res) => {
 	}
 });
 
+// Sur le clic du bouton «Sélectionner le contenu»
+lti.onDeepLinking(async (token, req, res) => {
+	// Banque de question fixe.
+	// L'URL complet (https://demo-session-intensive-equipe-moodle-c4c30b15f405f64810b6f6f4b2.pages.dti.crosemont.quebec/liste_questions.html)
+	// n'est pas correctement décodé par ltijs et doit être remplacé par un alias
+	return lti.redirect(res, 'http://tinyurl.com/d97vweh9');
+});
+
+// Sur la sélection du contenu
+lti.app.post('/lti/deeplink', async (req, res) => {
+	const resource = req.body;
+	const items = [
+		{
+			type: 'ltiResourceLink',
+			title: resource.title,
+			text: resource.description,
+			custom: {
+				src: resource.src,
+			}
+		}
+	];
+	// Creates the deep linking request form
+	const form = await lti.DeepLinking.createDeepLinkingForm(res.locals.token, items, { message: 'Successfully registered resource!' });
+
+	return res.send(form);
+});
+
 const btoa_url = (s) =>
 	  btoa(unescape(encodeURIComponent(s)))
 	  .replace(/\//g, "_")
