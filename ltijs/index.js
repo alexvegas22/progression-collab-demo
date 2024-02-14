@@ -124,9 +124,7 @@ lti.onDynamicRegistration(async (req, res) => {
 // Sur le clic du bouton «Sélectionner le contenu»
 lti.onDeepLinking(async (token, req, res) => {
 	// Banque de question fixe.
-	// L'URL complet (https://demo-session-intensive-equipe-moodle-c4c30b15f405f64810b6f6f4b2.pages.dti.crosemont.quebec/liste_questions.html)
-	// n'est pas correctement décodé par ltijs et doit être remplacé par un alias
-	return lti.redirect(res, 'http://tinyurl.com/d97vweh9');
+	return lti.redirect(res, 'https://session-intensive.pages.dti.crosemont.quebec/equipe-moodle/demo/liste_questions.html');
 });
 
 // Sur la sélection du contenu
