@@ -12,7 +12,7 @@ function conf(query, creds, config) {
 		if (typeof creds === "string"){
 			conf.headers = { Authorization: "Bearer " + creds };
 		}
-		else if (creds.identifiant && creds.password ){
+		else if (creds.identifiant && "password" in creds ){
 			conf.headers = { Authorization: "Basic " + btoa(`${creds.identifiant}:${creds.password}:${creds.domaine??""}`) };
 		}
 		else if (creds.identifiant && creds.key_name){

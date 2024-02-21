@@ -33,6 +33,7 @@ export default createStore({
 		thèmeSombre: false,
 		token: null,
 		tokenRessources : null,
+		tokenScore: null,
 		uri: null,
 		user: null,
 		username: null,

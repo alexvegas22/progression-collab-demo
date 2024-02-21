@@ -8,26 +8,12 @@ const routes = require("./src/routes");
 const services = require("./src/services.js");
 const consolidate = require("consolidate");
 
-const userSchema = new mongoose.Schema({
-	userId: String, // Id de la plateforme
-	username: String, // username Progression
-	token: String, // token JWT Progression
-	authKey_nom: String, // Clé d'authentification Progression
-	authKey_secret: String,
-});
-userSchema.index({ userId: 1 }, { unique: true });
-
 const platformContact = new mongoose.Schema({
 	platformUrl: String,
 	name: String,
 	email: String
 });
 
-try {
-	mongoose.model("user", userSchema);
-} catch (err) {
-	provMainDebug("Model userSchema already registered. Continuing");
-}
 try {
 	mongoose.model("platformContact", platformContact);
 } catch (err) {
@@ -110,28 +96,29 @@ lti.onConnect(async (idToken, req, res) => {
 	}
 });
 
-lti.onDynamicRegistration(async (req, res, next) => {
-  try {
-	  if (!req.query.openid_configuration) {
-		  return res.status(400).send({ status: 400, error: 'Bad Request', details: { message: 'Missing parameter: "openid_configuration".' } });
-	  }
-	  if (!req.body.email || !req.body.nom ){
-		  return res.render("inscription", {
-			  openid_configuration: req.query.openid_configuration,
-			  registration_token: req.query.registration_token });
-	  }
-	  const message = await lti.DynamicRegistration.register(
-		  req.query.openid_configuration,
-		  req.query.registration_token);
+lti.onDynamicRegistration(async (req, res) => {
+	try {
+		if (!req.query.openid_configuration) {
+			return res.status(400).send({ status: 400, error: "Bad Request", details: { message: "Missing parameter: \"openid_configuration\"." } });
+		}
+		if (!req.body.email || !req.body.nom) {
+			return res.render("inscription", {
+				openid_configuration: req.query.openid_configuration,
+				registration_token: req.query.registration_token
+			});
+		}
+		const message = await lti.DynamicRegistration.register(
+			req.query.openid_configuration,
+			req.query.registration_token);
 
-	  res.setHeader('Content-type', 'text/html');
-	  res.send(message);
-  } catch (err) {
-	  if (err.message === 'PLATFORM_ALREADY_REGISTERED') {
-		  return res.status(403).send({ status: 403, error: 'Forbidden', details: { message: 'Platform already registered.' } });
-	  }
-	  return res.status(500).send({ status: 500, error: 'Internal Server Error', details: { message: err.message } });
-  }
+		res.setHeader("Content-type", "text/html");
+		return res.send(message);
+	} catch (err) {
+		if (err.message === "PLATFORM_ALREADY_REGISTERED") {
+			return res.status(403).send({ status: 403, error: "Forbidden", details: { message: "Platform already registered." } });
+		}
+		return res.status(500).send({ status: 500, error: "Internal Server Error", details: { message: err.message } });
+	}
 });
 
 const btoa_url = (s) =>

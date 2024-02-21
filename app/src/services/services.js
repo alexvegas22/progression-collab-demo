@@ -3,6 +3,7 @@ import { getData, postData, patchData } from "@/services/request_services";
 //Ressources permises par les token d'authentification.
 //Exclut l'accès aux ressources tokens et cles
 const ressources_token_auth = { data: { expiration: "+300",
+	                                    fingerprint: true,
 	                                    ressources: { api: { url: "^(users?|ebauche|question|test|avancement|tentative|commentaire|test|sauvegarde)((?!tokens|cles).)*\/?$", //eslint-disable-line no-useless-escape
 	                                                         method: "^.*" } } } };
 
@@ -18,10 +19,10 @@ const inscrireApi = async (urlInscription, identifiant, courriel, mdp) => {
 	return construireUser(await postData(urlInscription, null, { username: identifiant, courriel: courriel, password: mdp } ));
 };
 
-const getTokenApi = async (urlAuth, identifiant, clé) => {
+const getTokenApi = async (urlAuth, identifiant, clé, token_modèle = ressources_token_auth ) => {
 	const token = ( await postData( urlAuth,
 	                                null,
-	                                ressources_token_auth,
+	                                token_modèle,
 		                            { identifiant: identifiant,
 		                              key_name: clé } ) ).data;
 	return token ? construireToken( token ): null;
