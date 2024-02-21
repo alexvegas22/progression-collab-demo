@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import actions from "./store/actions.js";
 import { i18n, sélectionnerLocale } from "./util/i18n";
+import { AuthentificationError } from "./util/commun";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "vue3-tabs";
@@ -80,11 +81,12 @@ const authentificationErreurHandler = function() {
 const valider = async (promesse) => {
 	return promesse
 		.catch((erreur) => {
-			if(erreur?.response?.status == 401) {
-				authentificationErreurHandler(erreur);
+			if(erreur?.response?.status >= 500){
+				store.dispatch("setErreurs", { détails: JSON.strigify(erreur.response.data.erreur) + " (erreur " + erreur.response.status + ") "  });
 			}
-			else if(erreur?.response?.status >= 500){
-				store.dispatch("setErreurs", { détails: erreur.response.data.erreur + " (erreur " + erreur.response.status + ") "  });
+			else if(erreur instanceof AuthentificationError || erreur?.response?.status == 401){
+				store.dispatch("setErreurs", { message: i18n.global.t("erreur.réseau") });
+				authentificationErreurHandler(erreur);
 			}
 			else if(typeof(erreur)=="string"){
 				store.dispatch("setErreurs", { message: erreur });

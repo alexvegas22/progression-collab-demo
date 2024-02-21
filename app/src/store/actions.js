@@ -21,7 +21,7 @@ import {
 } from "@/services/index.js";
 
 import {i18n, sélectionnerLocale} from "@/util/i18n";
-import {copie_profonde} from "@/util/commun.js";
+import {copie_profonde, AuthentificationError} from "@/util/commun.js";
 import jwt_decode from "jwt-decode";
 import store from "./store.js";
 
@@ -48,10 +48,10 @@ async function rafraîchirToken() {
 		}
 		catch(err) {
 			console.log(err);
-			throw err;
+			throw new AuthentificationError("Erreur d'authentification.");
 		}
 	} else {
-		const err = new Error("Clé d'authentification non disponible");
+		const err = new AuthentificationError("Clé d'authentification non disponible.");
 		console.log(err);
 		throw err;
 	}
@@ -231,7 +231,6 @@ export default {
 	},
 
 	async authentifier({ commit }, params) {
-
 		const urlAuth = API_URL;
 		const identifiant = params.identifiant;
 		const password = params.password;
@@ -239,34 +238,30 @@ export default {
 		const domaine = params.domaine;
 		commit("updateAuthentificationEnCours", true);
 
-		return valider(async () => {
+		commit("setEnChargement", true);
+		try {
+			const token = await authentifierApi(urlAuth, identifiant, password, domaine);
+			commit("setToken", token);
 
-			commit("setEnChargement", true);
-			try {
-				const token = await authentifierApi(urlAuth, identifiant, password, domaine);
-				commit("setToken", token);
+			// Obtenir l'utilisateur
+			const user = await this.dispatch("récupérerUser", token.liens.user);
 
-				// Obtenir l'utilisateur
-				const user = await this.dispatch("récupérerUser", token.liens.user);
+			const storage = persister ? localStorage : sessionStorage;
+			storage.setItem("username", user.username);
 
-				const storage = persister ? localStorage : sessionStorage;
-				storage.setItem("username", user.username);
+			// Obtenir la clé d'authentification
+			var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
 
-				// Obtenir la clé d'authentification
-				var clé = générerAuthKey(user, token, persister ? 0 : (Math.floor(Date.now() / 1000 + parseInt(import.meta.env.VITE_API_AUTH_KEY_TTL))));
+			const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, identifiant, password, domaine);
 
-				const authKey = await postAuthKey({ url: user.liens.clés, clé: clé }, identifiant, password, domaine);
+			storage.setItem("authKey_nom", authKey.nom);
 
-				storage.setItem("authKey_nom", authKey.nom);
-
-				return token;
-			}
-			finally {
-				commit("setEnChargement", false);
-				commit("updateAuthentificationEnCours", false);
-			}
+			return token;
 		}
-		);
+		finally {
+			commit("setEnChargement", false);
+			commit("updateAuthentificationEnCours", false);
+		}
 	},
 
 	async déconnexion({commit}){
