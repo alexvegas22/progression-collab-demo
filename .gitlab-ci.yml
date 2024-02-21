@@ -119,7 +119,7 @@ deploy_prod:
   needs: [tag_latest]
   environment:
     name: prod
-    url: https://progression.dti.crosemont.quebec/
+    url: $URL_PROD
     on_stop: stop_prod
   before_script:
     - *preparer_contexte
@@ -127,8 +127,8 @@ deploy_prod:
   script:
     - TAG_DEPLOY=latest docker-compose pull webapp
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d webapp ltijs
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_PROD'
   when:
     manual
     
@@ -139,6 +139,8 @@ stop_prod:
     action: stop
   script:
     - docker-compose -p prod stop webapp ltijs
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_PROD'
   when:
     manual
 
@@ -151,17 +153,17 @@ deploy_crosemont:
     - crosemont
   environment:
     name: crosemont
-    url: https://progression.crosemont.qc.ca/
+    url: $URL_PROD_2
     on_stop: stop_crosemont
   before_script:
-    - export CD_HOST=progression.crosemont.qc.ca CD_PORT=22 CD_USER=updater
+    - export CD_HOST=$CD_HOST_2 CD_PORT=$CD_PORT_2 CD_USER=$CD_USER_2
     - *preparer_contexte
     - *login
   script:
     - TAG_DEPLOY=latest docker-compose pull webapp ltijs
     - TAG_DEPLOY=latest docker-compose -p prod up --force-recreate -d webapp ltijs
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_PROD_2'
   when:
     manual
     
@@ -172,6 +174,8 @@ stop_crosemont:
     action: stop
   script:
     - docker-compose -p prod stop webapp ltijs
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_PROD_2'
   when:
     manual
     
@@ -190,7 +194,7 @@ deploy_staging:
     - TAG_DEPLOY=latest docker-compose pull webapp ltijs
     - TAG_DEPLOY=latest docker-compose -p staging up --force-recreate -d webapp ltijs
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_STAGING'
     
 stop_staging:
   stage: deploy_image
@@ -199,8 +203,8 @@ stop_staging:
     action: stop
   script:
     - docker-compose -p staging stop webapp ltijs
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_STAGING'
   when:
     manual
 
@@ -210,7 +214,7 @@ deploy_demo:
   needs: [tag_latest]
   environment:
     name: demo
-    url: $URL_demo
+    url: $URL_DEMO
     on_stop: stop_demo
   before_script:
     - *preparer_contexte
@@ -219,7 +223,7 @@ deploy_demo:
     - TAG_DEPLOY=latest docker-compose pull webapp
     - TAG_DEPLOY=latest docker-compose -p demo up --force-recreate -d webapp
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_DEMO'
 
 stop_demo:
   stage: deploy_image
@@ -228,8 +232,8 @@ stop_demo:
     action: stop
   script:
     - docker-compose -p demo stop webapp
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $URL_DEMO'
   when:
     manual
     
@@ -247,7 +251,7 @@ deploy_dev:
     - TAG_DEPLOY=dev docker-compose pull webapp
     - TAG_DEPLOY=dev docker-compose -p dev up --force-recreate -d webapp
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev" && $CI_REGISTRY == "git.dti.crosemont.quebec:5050"'
+    - if: '$CI_COMMIT_BRANCH == "dev" && $URL_DEV'
   
 stop_dev:
   stage: deploy_image
@@ -256,8 +260,8 @@ stop_dev:
     action: stop
   script:
     - docker-compose -p dev stop webapp
-  only:
-    - dev
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev" && $URL_DEV'
   when:
     manual
     
