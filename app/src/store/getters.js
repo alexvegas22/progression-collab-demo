@@ -16,7 +16,7 @@ export default {
 		const token = state.token;
 		const temps_courant = Math.round(Date.now() / 1000);
 		// Retourne le token jusqu'à 10s avant son expiration
-		return token && temps_courant < token.timestamp - 10 ? token.token : null;
+		return token?.timestamp && temps_courant < token.timestamp - 10 ? token.token : null;
 	},
 	indicateursDeFonctionnalité: state => (indicateur) => {
 		return state.indicateursDeFonctionnalité[indicateur]?true:false;
