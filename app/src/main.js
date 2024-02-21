@@ -82,7 +82,7 @@ const valider = async (promesse) => {
 	return promesse
 		.catch((erreur) => {
 			if(erreur?.response?.status >= 500){
-				store.dispatch("setErreurs", { détails: JSON.strigify(erreur.response.data.erreur) + " (erreur " + erreur.response.status + ") "  });
+				store.dispatch("setErreurs", { détails: JSON.stringify(erreur.response.data.erreur) + " (erreur " + erreur.response.status + ") "  });
 			}
 			else if(erreur instanceof AuthentificationError || erreur?.response?.status == 401){
 				store.dispatch("setErreurs", { message: i18n.global.t("erreur.réseau") });
