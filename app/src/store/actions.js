@@ -200,7 +200,17 @@ export default {
 				const authKey = récupérerCléSauvegardée();
 				const username = récupérerUsername();
 				if( username && authKey ) {
-					config = await getConfigServeurApi(urlConfig, null, username, authKey );
+					try{
+						config = await getConfigServeurApi(urlConfig, null, username, authKey );
+					}
+					catch(err){
+						if(err.response.status == 400){
+							throw new AuthentificationError("Erreur d'authentification.");
+						}
+						else{
+							throw err;
+						}
+					}
 				}
 				else{
 					config = await getConfigServeurApi(urlConfig);
